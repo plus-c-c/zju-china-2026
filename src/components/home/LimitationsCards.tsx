@@ -1,7 +1,7 @@
 import { useState, type ReactNode } from "react";
 import "./LimitationsCards.css";
 
-const LOCAL = `${import.meta.env.BASE_URL}images/home`;
+const LOCAL = `https://static.igem.wiki/teams/6102/wiki/images/home`;
 
 type CardArtwork = {
   name: string;

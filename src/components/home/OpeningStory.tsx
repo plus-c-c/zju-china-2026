@@ -72,7 +72,7 @@ export function GlobalBurdenScene({ play }: { play: boolean }) {
           <PlayOnceGif
             alt="A person experiencing knee pain while using stairs"
             className="opening-burden__person"
-            gif={`${staticGif}/knee-pain-once.webp`}
+            gif={`https://static.igem.wiki/teams/6102/wiki/gif/going-up-the-stairs/stairs-pain-compressed.webp`}
             play={play}
             poster={`${staticGif}/knee-pain-first.avif`}
           />

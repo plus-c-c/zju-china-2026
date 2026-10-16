@@ -16,14 +16,14 @@ export function HydrogelMaterialsPage() {
         alt=""
         aria-hidden="true"
         className="hydrogel-materials-page__bone"
-        src={`${imageRoot}/home-05-solution-bone.png`}
+        src={`https://static.igem.wiki/teams/6102/wiki/images/home/home-05-solution-bone.avif`}
       />
       <img
         alt=""
         aria-hidden="true"
         className="hydrogel-materials-page__syringe"
         data-settled={settled}
-        src={`${imageRoot}/home-05-solution-syringe.png`}
+        src={`https://static.igem.wiki/teams/6102/wiki/images/home/home-05-solution-syringe.avif`}
       />
 
       <h2 className="hydrogel-materials-page__kicker" data-node-id="912:6">
