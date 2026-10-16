@@ -12,9 +12,8 @@ import {
   RehabilitationScene,
   SportsTraumaScene,
 } from "../components/home/OpeningStory";
-import Page05BirdReturnsToNest from "../components/home/Page05BirdReturnsToNest";
+import BirdReturnsToNest from "../components/home/BirdReturnsToNest";
 import { HydrogelMaterialsPage } from "../components/home/HydrogelMaterialsPage";
-import { MaterialPipelineStory } from "../components/home/Page06MaterialStory";
 import { MaterialLimitations } from "../components/home/LimitationsCards";
 import { Footer } from "../components/Footer";
 import "../components/home/Layers.css";
@@ -25,7 +24,6 @@ import {
   STORY_STOPS,
   useStoryNavigation,
 } from "../components/home/UseStoryNavigation";
-import "../components/home/MaterialStory.css";
 
 function Scene({
   children,
@@ -37,8 +35,6 @@ function Scene({
   birdStage,
   birdLandingProgress,
   next,
-  pipelineStep = -1,
-  pipelineProgress = 0,
   footer = false,
   style,
 }: {
@@ -51,8 +47,6 @@ function Scene({
   birdStage: number;
   birdLandingProgress: number;
   next: () => void;
-  pipelineStep?: number;
-  pipelineProgress?: number;
   footer?: boolean;
   style?: CSSProperties;
 }) {
@@ -73,8 +67,6 @@ function Scene({
           birdStage,
           birdLandingProgress,
           next,
-          pipelineStep,
-          pipelineProgress,
         }}
       >
         <div className="home-scene-canvas">{children}</div>
@@ -106,7 +98,6 @@ export function Home() {
     limitationsEntry,
     cardTransition,
     nestTitle,
-    pipelineProgress,
   } = useStoryNavigation();
   const viewport = useRef<HTMLDivElement>(null);
   const [size, setSize] = useState({ width: 1280, height: 720 });
@@ -156,11 +147,7 @@ export function Home() {
         <MaterialLimitations yellowRemoved={cardTransition.yellowExit > 0.98} />
       ),
     },
-    { name: "Return to NEST", content: <Page05BirdReturnsToNest /> },
-    {
-      name: "NEST material pipeline",
-      content: <MaterialPipelineStory progress={pipelineProgress} />,
-    },
+    { name: "Return to NEST", content: <BirdReturnsToNest /> },
     { name: "NEST footer", content: <Footer story /> },
   ];
   const style = {
@@ -232,11 +219,18 @@ export function Home() {
                   ...(index === 5
                     ? {
                         "--hydrogel-background-image": `url("${import.meta.env.BASE_URL}images/home/hydrogel-materials-background.png")`,
-                        opacity: hydrogelExit,
+                        "--hydrogel-exit": hydrogelExit,
                       }
                     : {}),
                   ...(index === 6
                     ? {
+                        "--hydrogel-background-image": `url("${import.meta.env.BASE_URL}images/home/hydrogel-materials-background.png")`,
+                        ...(crossfade?.incoming === index
+                          ? {
+                              backgroundColor: "transparent",
+                              backgroundImage: "none",
+                            }
+                          : {}),
                         "--cards-yellow-y": `${cardTransition.yellowExit * -760}px`,
                         "--limitations-cards-entry": limitationsEntry.cards,
                         "--limitations-cards-y": `${(1 - limitationsEntry.cards) * 32}px`,
@@ -260,8 +254,6 @@ export function Home() {
               birdStage={birdStage}
               birdLandingProgress={birdLandingProgress}
               next={next}
-              pipelineStep={index === 8 ? Math.round(pipelineProgress) : -1}
-              pipelineProgress={pipelineProgress}
             >
               {scene.content}
             </Scene>

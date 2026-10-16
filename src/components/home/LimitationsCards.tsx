@@ -1,13 +1,11 @@
 import { useState, type ReactNode } from "react";
 import "./LimitationsCards.css";
 
-const STATIC = "https://static.igem.wiki/teams/6102/wiki/images/home";
 const LOCAL = `${import.meta.env.BASE_URL}images/home`;
 
 type CardArtwork = {
   name: string;
   className: string;
-  local?: boolean;
 };
 
 type CardCopy = {
@@ -22,12 +20,22 @@ const yellowCards: CardCopy[] = [
     title: "Scalability",
     body: (
       <>
-        Complex fabrication limits batch consistency and large-scale production.
+        Complex
+        <br />
+        fabrication limits
+        <br />
+        batch
+        <br />
+        consistency and
+        <br />
+        large-scale
+        <br />
+        production.
       </>
     ),
     frontArt: [
       {
-        name: "home-06-card-art-01.avif",
+        name: "home-06-card-art-01.png",
         className: "limitations-art--yellow-scalability",
       },
     ],
@@ -35,17 +43,14 @@ const yellowCards: CardCopy[] = [
       {
         name: "home-limit-back-cell-a.png",
         className: "limitations-art--cell-a",
-        local: true,
       },
       {
         name: "home-limit-back-cell-b.png",
         className: "limitations-art--cell-b",
-        local: true,
       },
       {
         name: "home-limit-back-cell-c.png",
         className: "limitations-art--cell-c",
-        local: true,
       },
     ],
   },
@@ -59,13 +64,24 @@ const yellowCards: CardCopy[] = [
     ),
     body: (
       <>
-        Cartilage repair materials must withstand mechanical stress and remain
-        firmly attached to damaged tissue.
+        Cartilage in different
+        <br />
+        locations requires distinct
+        <br />
+        mechanical properties, while
+        <br />
+        repetitive loading pose
+        <br />
+        challenges for the fixation
+        <br />
+        and durability of the
+        <br />
+        material.
       </>
     ),
     frontArt: [
       {
-        name: "home-06-card-art-02.avif",
+        name: "home-06-card-art-02.png",
         className: "limitations-art--yellow-mechanical",
       },
     ],
@@ -73,7 +89,6 @@ const yellowCards: CardCopy[] = [
       {
         name: "home-limit-back-patient.png",
         className: "limitations-art--patient",
-        local: true,
       },
     ],
   },
@@ -87,13 +102,20 @@ const yellowCards: CardCopy[] = [
     ),
     body: (
       <>
-        Matrix loss, degradation, and inflammation demand adaptable repair
-        strategies.
+        Matrix loss,
+        <br />
+        degradation, and
+        <br />
+        inflammation
+        <br />
+        demand adaptable
+        <br />
+        repair strategies.
       </>
     ),
     frontArt: [
       {
-        name: "home-06-card-art-03.avif",
+        name: "home-06-card-art-03-new.png",
         className: "limitations-art--yellow-dynamic",
       },
     ],
@@ -101,17 +123,14 @@ const yellowCards: CardCopy[] = [
       {
         name: "home-limit-back-dna.png",
         className: "limitations-art--dna",
-        local: true,
       },
       {
         name: "home-limit-back-cell-outline.png",
         className: "limitations-art--cell-outline",
-        local: true,
       },
       {
         name: "home-limit-back-nucleus.png",
         className: "limitations-art--nucleus",
-        local: true,
       },
     ],
   },
@@ -128,18 +147,26 @@ const blueCards: CardCopy[] = [
     ),
     body: (
       <>
-        Complex fabrication limits batch consistency and large-scale production.
+        Complex fabrication
+        <br />
+        limits batch
+        <br />
+        consistency and
+        <br />
+        large-scale
+        <br />
+        production.
       </>
     ),
     frontArt: [
       {
-        name: "home-07-card-art-01.avif",
+        name: "home-07-card-art-01-trimmed.png",
         className: "limitations-art--blue-organism",
       },
     ],
     backArt: [
       {
-        name: "home-07-card-art-01.avif",
+        name: "home-07-card-art-01-trimmed.png",
         className: "limitations-art--blue-back-organism",
       },
     ],
@@ -153,19 +180,30 @@ const blueCards: CardCopy[] = [
     ),
     body: (
       <>
-        Cartilage repair materials must withstand mechanical stress and remain
-        firmly attached to damaged tissue.
+        SELP offers tunable stiffness
+        <br />
+        and toughness, while RGD
+        <br />
+        motifs within its chains
+        <br />
+        promote
+        <br />
+        adhesion
+        <br />
+        and tissue
+        <br />
+        integration.
       </>
     ),
     frontArt: [
       {
-        name: "home-07-card-art-02.avif",
+        name: "home-07-card-art-02-trimmed.png",
         className: "limitations-art--blue-selp",
       },
     ],
     backArt: [
       {
-        name: "home-07-card-art-02.avif",
+        name: "home-07-card-art-02-trimmed.png",
         className: "limitations-art--blue-back-selp",
       },
     ],
@@ -180,35 +218,40 @@ const blueCards: CardCopy[] = [
     ),
     body: (
       <>
-        Matrix loss, degradation, and inflammation demand adaptable repair
-        strategies.
+        Matrix loss, degradation,
+        <br />
+        and inflammation
+        <br />
+        demand adaptable
+        <br />
+        repair strategies.
       </>
     ),
     frontArt: [
       {
-        name: "home-07-card-art-03b.avif",
+        name: "home-07-card-art-03b-trimmed.png",
         className: "limitations-art--blue-gag",
       },
       {
-        name: "home-07-card-art-03c.avif",
+        name: "home-07-card-art-03c-trimmed.png",
         className: "limitations-art--blue-liposome",
       },
       {
-        name: "home-07-card-art-03a.avif",
+        name: "home-07-card-art-03a-trimmed.png",
         className: "limitations-art--blue-magnetic",
       },
     ],
     backArt: [
       {
-        name: "home-07-card-art-03b.avif",
+        name: "home-07-card-art-03b-trimmed.png",
         className: "limitations-art--blue-back-gag",
       },
       {
-        name: "home-07-card-art-03c.avif",
+        name: "home-07-card-art-03c-trimmed.png",
         className: "limitations-art--blue-back-liposome",
       },
       {
-        name: "home-07-card-art-03a.avif",
+        name: "home-07-card-art-03a-trimmed.png",
         className: "limitations-art--blue-back-magnetic",
       },
     ],
@@ -217,13 +260,12 @@ const blueCards: CardCopy[] = [
 
 function Artwork({ art }: { art: CardArtwork }) {
   return (
-    <img
-      alt=""
+    <span
       aria-hidden="true"
       className={`limitations-art ${art.className}`}
-      decoding="async"
-      src={`${art.local ? LOCAL : STATIC}/${art.name}`}
-    />
+    >
+      <img alt="" decoding="async" src={`${LOCAL}/${art.name}`} />
+    </span>
   );
 }
 
@@ -250,21 +292,21 @@ function CardLayer({
     >
       <span className="limitations-layer__shadow" aria-hidden="true" />
       <span className="limitations-layer__flip">
-        <span className="limitations-layer__face limitations-layer__face--front">
+        <button
+          aria-label={`Show details for card ${index + 1}`}
+          className="limitations-layer__face limitations-layer__face--front"
+          onClick={() => setFlipped(true)}
+          tabIndex={active && !flipped ? 0 : -1}
+          type="button"
+        >
           <span className="limitations-card-title">{card.title}</span>
           {card.frontArt.map((art) => (
             <Artwork art={art} key={art.name} />
           ))}
-          <button
-            aria-label={`Show details for card ${index + 1}`}
-            className="limitations-card-click"
-            onClick={() => setFlipped(true)}
-            tabIndex={active && !flipped ? 0 : -1}
-            type="button"
-          >
+          <span className="limitations-card-click" aria-hidden="true">
             Click
-          </button>
-        </span>
+          </span>
+        </button>
         <button
           aria-label={`Return card ${index + 1} to its front`}
           className="limitations-layer__face limitations-layer__face--back"

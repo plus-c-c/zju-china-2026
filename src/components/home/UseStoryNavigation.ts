@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
 export const STORY_STOPS = [
-  0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 6, 6, 7, 7, 7, 7, 7, 8, 8, 8, 8, 9,
+  0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 6, 6, 7, 7, 7, 7, 7, 8,
 ];
 
 /** Native scrolling controls the timeline without wheel or touch interception. */
@@ -101,16 +101,13 @@ export function useStoryNavigation() {
   const statementTextProgress = smoothstep(clamp((fraction - 0.46) / 0.5));
   const personProgress = smoothstep(clamp((fraction - 0.78) / 0.22));
   const hydrogelExit = limitationsCut
-    ? 1 - smoothstep(clamp(fraction / 0.28))
-    : 1;
-  const limitationsBackgroundProgress = smoothstep(
-    clamp((fraction - 0.3) / 0.18),
-  );
+    ? smoothstep(clamp((fraction - 0.04) / 0.4))
+    : 0;
   const limitationsCardsEntry = limitationsCut
-    ? smoothstep(clamp((fraction - 0.48) / 0.24))
+    ? smoothstep(clamp((fraction - 0.52) / 0.25))
     : 1;
   const limitationsTitleEntry = limitationsCut
-    ? smoothstep(clamp((fraction - 0.74) / 0.22))
+    ? smoothstep(clamp((fraction - 0.76) / 0.22))
     : 1;
   const openingContent: Record<number, number> = { 1: 0, 2: 0, 3: 0, 4: 0 };
   const openingDecor: Record<number, number> = { 1: 1, 2: 0, 3: 0, 4: 0 };
@@ -185,7 +182,7 @@ export function useStoryNavigation() {
       ? {
           incoming: to,
           opacity: limitationsCut
-            ? limitationsBackgroundProgress
+            ? 1
             : to === 1
               ? statementBackgroundProgress
               : backgroundProgress,
@@ -214,7 +211,6 @@ export function useStoryNavigation() {
     birdProgress: clamp((position - 17) / 2),
     birdStage: position < 18 ? 0 : position < 19 ? 1 : 2,
     birdLandingProgress: clamp((position - 19) / 0.85),
-    pipelineProgress: Math.max(0, Math.min(3, position - 21)),
     nextScene: () => {
       const target = nextSceneStop >= 0 ? nextSceneStop : position + 1;
       seek(target, 1250, Math.max(0, target - 1));

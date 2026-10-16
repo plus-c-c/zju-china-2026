@@ -5,8 +5,6 @@ export const StoryContext = createContext({
   birdProgress: 0,
   birdStage: 0,
   birdLandingProgress: 0,
-  pipelineStep: -1,
-  pipelineProgress: 0,
   next: () => {},
 });
 export const useStory = () => useContext(StoryContext);

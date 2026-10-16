@@ -142,7 +142,7 @@ export const worldMapData: Record<string, WorldMapRecord> = {
   },
   CHN: {
     country: "China",
-    mapCount: 152848106,
+    mapCount: 156063167,
   },
   CIV: {
     country: "Côte d’Ivoire",
@@ -751,10 +751,6 @@ export const worldMapData: Record<string, WorldMapRecord> = {
   TUV: {
     country: "Tuvalu",
     mapCount: 768,
-  },
-  TWN: {
-    country: "Taiwan",
-    mapCount: 3215061,
   },
   TZA: {
     country: "United Republic of Tanzania",

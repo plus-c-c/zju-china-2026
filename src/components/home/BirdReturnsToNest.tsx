@@ -3,12 +3,12 @@ import { useStory } from "./StoryContext";
 const staticHome = "https://static.igem.wiki/teams/6102/wiki/images/home";
 const imgFlyingBirdFrame1 = `${staticHome}/home-08-bird-flight-01.avif`;
 const imgFlyingBirdFrame2 = `${staticHome}/home-08-bird-flight-02.avif`;
-const imgBoneNest = `${staticHome}/home-08-bone.avif`;
+const imgBoneNest = `${import.meta.env.BASE_URL}images/home/bird-return-bone.png`;
 const imgBirdRestingOnBone = `${staticHome}/home-08-bird-landed-2.avif`;
 const imgAccentBlushGlow = `https://static.igem.wiki/teams/6102/wiki/images/home/c207d.svg`;
 const imgAccentYellowOrbit = `https://static.igem.wiki/teams/6102/wiki/images/home/55f95.svg`;
 
-export default function Page05BirdReturnsToNest() {
+export default function BirdReturnsToNest() {
   const { birdProgress, birdStage, birdLandingProgress } = useStory();
   const reduced = useReducedMotion();
   const quick = reduced ? { duration: 0.01 } : undefined;

@@ -140,6 +140,26 @@
   stroke-width: 2;
 }
 
+.opening-burden__world .china-nine-dash {
+  fill: #174e78;
+  opacity: 0;
+  pointer-events: none;
+  stroke: #174e78;
+  stroke-width: 1.05;
+  transition: opacity 150ms ease;
+  vector-effect: non-scaling-stroke;
+}
+
+.opening-burden__world[data-active-iso="CHN"] .country[data-iso="CHN"] {
+  filter: brightness(1.08);
+  stroke: #c98b04;
+  stroke-width: 2;
+}
+
+.opening-burden__world[data-active-iso="CHN"] .china-nine-dash {
+  opacity: 1;
+}
+
 .opening-burden__map-tip {
   position: absolute;
   z-index: 5;

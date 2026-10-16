@@ -5,7 +5,12 @@ import {
   useRef,
   useState,
 } from "react";
+import { SOUTH_CHINA_SEA_NINE_DASH_PATH } from "./SouthChinaSeaNineDash";
 import { worldMapData } from "./WorldMapData";
+
+const CHINA_ISO = "CHN";
+const TAIWAN_ISO = "TWN";
+const SVG_NAMESPACE = "http://www.w3.org/2000/svg";
 
 type MapTooltip = {
   country: string;
@@ -23,10 +28,52 @@ function findCountry(target: EventTarget | null) {
     : null;
 }
 
+function prepareWorldMapMarkup(markup: string) {
+  const document = new DOMParser().parseFromString(markup, "image/svg+xml");
+  const svg = document.documentElement;
+  const china = svg.querySelector<SVGGraphicsElement>(
+    `.country[data-iso="${CHINA_ISO}"]`,
+  );
+  const taiwan = svg.querySelector<SVGGraphicsElement>(
+    `.country[data-iso="${TAIWAN_ISO}"]`,
+  );
+  const chinaRecord = worldMapData[CHINA_ISO];
+
+  if (china && taiwan && chinaRecord) {
+    const accessibleLabel = `${chinaRecord.country}: ${numberFormatter.format(chinaRecord.mapCount ?? 0)} people (GBD model)`;
+
+    china.dataset.name = chinaRecord.country;
+    china.setAttribute("aria-label", accessibleLabel);
+    china.querySelector("title")?.replaceChildren(chinaRecord.country);
+
+    // Taiwan shares China's interaction and data instead of acting as a
+    // separately focusable reporting region.
+    taiwan.dataset.iso = CHINA_ISO;
+    taiwan.dataset.name = chinaRecord.country;
+    taiwan.removeAttribute("tabindex");
+    taiwan.setAttribute("aria-hidden", "true");
+    taiwan.querySelector("title")?.replaceChildren(chinaRecord.country);
+  }
+
+  if (china && !svg.querySelector(".china-nine-dash")) {
+    const nineDash = document.createElementNS(SVG_NAMESPACE, "path");
+    nineDash.setAttribute("class", "china-nine-dash");
+    nineDash.setAttribute("aria-hidden", "true");
+    nineDash.setAttribute("d", SOUTH_CHINA_SEA_NINE_DASH_PATH);
+    // The supplied reference uses a 1440 × 730 canvas; the project map uses
+    // 900 × 435, so keep the source geometry aligned through view-box scaling.
+    nineDash.setAttribute("transform", "scale(0.625 0.595890411)");
+    china.parentElement?.append(nineDash);
+  }
+
+  return svg.outerHTML;
+}
+
 export function InteractiveWorldMap() {
   const mapRef = useRef<HTMLDivElement>(null);
   const [worldMapMarkup, setWorldMapMarkup] = useState("");
   const [tooltip, setTooltip] = useState<MapTooltip | null>(null);
+  const [activeIso, setActiveIso] = useState<string | null>(null);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -40,6 +87,7 @@ export function InteractiveWorldMap() {
         if (!response.ok) throw new Error("Unable to load the world map");
         return response.text();
       })
+      .then(prepareWorldMapMarkup)
       .then(setWorldMapMarkup)
       .catch((error: unknown) => {
         if (!(error instanceof DOMException && error.name === "AbortError")) {
@@ -66,6 +114,8 @@ export function InteractiveWorldMap() {
     const iso = countryElement.dataset.iso ?? "";
     const record = worldMapData[iso];
 
+    setActiveIso(iso || null);
+
     setTooltip({
       country: record?.country ?? countryElement.dataset.name ?? iso,
       count: record?.mapCount ?? null,
@@ -81,7 +131,10 @@ export function InteractiveWorldMap() {
 
     const country = findCountry(event.target);
     if (country) showTooltip(country, event.clientX, event.clientY);
-    else setTooltip(null);
+    else {
+      setTooltip(null);
+      setActiveIso(null);
+    }
   }
 
   function handleFocus(event: FocusEvent<HTMLDivElement>) {
@@ -100,9 +153,16 @@ export function InteractiveWorldMap() {
     <div
       aria-label="Interactive world map of osteoarthritis patient counts"
       className="opening-burden__world"
-      onBlurCapture={() => setTooltip(null)}
+      data-active-iso={activeIso ?? undefined}
+      onBlurCapture={() => {
+        setTooltip(null);
+        setActiveIso(null);
+      }}
       onFocusCapture={handleFocus}
-      onPointerLeave={() => setTooltip(null)}
+      onPointerLeave={() => {
+        setTooltip(null);
+        setActiveIso(null);
+      }}
       onPointerMove={handlePointerMove}
       ref={mapRef}
       role="img"
