@@ -122,7 +122,7 @@ export function Software() {
           </div>
           <figure className="figure d-block my-4 text-center">
             <img
-              src="https://static.igem.wiki/teams/6102/wiki/images/software/s-01.avif"
+              src="https://static.igem.wiki/teams/6102/wiki/images/software/01.avif"
               alt="Pipeline overview of the SELP molecular dynamics simulation platform."
               className="figure-img img-fluid rounded"
               style={{ width: "100%" }}
@@ -293,7 +293,7 @@ export function Software() {
           </p>
           <figure className="figure d-block my-4 text-center">
             <img
-              src="https://static.igem.wiki/teams/6102/wiki/images/software/s-02.avif"
+              src="https://static.igem.wiki/teams/6102/wiki/images/software/02.avif"
               alt="Step 1 parameter panel."
               className="figure-img img-fluid rounded"
               style={{ width: "100%" }}
@@ -479,7 +479,7 @@ export function Software() {
           </p>
           <figure className="figure d-block my-4 text-center">
             <img
-              src="https://static.igem.wiki/teams/6102/wiki/images/software/s-03.avif"
+              src="https://static.igem.wiki/teams/6102/wiki/images/software/03.avif"
               alt="Step 3 run summary."
               className="figure-img img-fluid rounded"
               style={{ width: "100%" }}
@@ -676,7 +676,7 @@ export function Software() {
           </p>
           <figure className="figure d-block my-4 text-center">
             <img
-              src="https://static.igem.wiki/teams/6102/wiki/images/software/s-04.avif"
+              src="https://static.igem.wiki/teams/6102/wiki/images/software/04.avif"
               alt="Ordering screen."
               className="figure-img img-fluid rounded"
               style={{ width: "100%" }}
@@ -781,7 +781,7 @@ export function Software() {
           </p>
           <figure className="figure d-block my-4 text-center">
             <img
-              src="https://static.igem.wiki/teams/6102/wiki/images/software/s-05.avif"
+              src="https://static.igem.wiki/teams/6102/wiki/images/software/05.avif"
               alt="The four-step app wizard."
               className="figure-img img-fluid rounded"
               style={{ width: "100%" }}
