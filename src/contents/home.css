@@ -63,9 +63,11 @@ body.home-story-open .app {
   min-height: 100dvh;
 }
 .story-viewport {
-  position: fixed;
+  position: sticky;
   z-index: 1;
-  inset: 0;
+  top: 0;
+  width: 100%;
+  height: 100dvh;
   overflow: hidden;
   touch-action: pan-y;
 }
@@ -125,7 +127,13 @@ body.home-story-open .app {
   overflow: hidden;
   background: #f6faff;
 }
-.story-viewport :is(#home-2, #home-4) {
+.story-viewport #home-2 {
+  background-color: #bdd8fb;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.story-viewport #home-4 {
   background: linear-gradient(90deg, #2e6199 0%, #5287ba 62%, #85abd6 100%);
 }
 .story-viewport #home-3 {
@@ -163,6 +171,14 @@ body.home-story-open .app {
 .story-viewport #home-8 {
   background: linear-gradient(180deg, #f4f9ff 0%, #fffcf1 15%, #ffde70 100%);
 }
+.story-viewport :is(#home-9, #home-10) {
+  background: radial-gradient(
+    circle at 50% 48%,
+    #eef8ff 0%,
+    #cfe9ff 45%,
+    #a9d7ff 100%
+  );
+}
 .story-viewport #home-8 :is(.home-layer-52, .home-layer-53) {
   opacity: var(--nest-title, 1);
   translate: -50% calc((1 - var(--nest-title, 1)) * -42px);
@@ -170,6 +186,10 @@ body.home-story-open .app {
 @media (prefers-reduced-motion: reduce) {
   .story-viewport #home-8 {
     --nest-title: 1 !important;
+  }
+
+  .opening-bubble__float {
+    animation: none;
   }
 }
 .story-viewport .home-footer-scene {

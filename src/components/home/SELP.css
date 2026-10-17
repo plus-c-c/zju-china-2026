@@ -1,0 +1,517 @@
+.nest-solution-scene {
+  position: relative;
+  width: 1280px;
+  height: 720px;
+  overflow: hidden;
+}
+
+.nest-solution-design {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 1366px;
+  height: 768px;
+  overflow: hidden;
+  transform: translate(-50%, -50%) scale(0.9375);
+  transform-origin: center;
+}
+
+.nest-solution-background {
+  position: absolute;
+  inset: 0;
+  background: transparent;
+}
+
+.nest-solution-scene :is(h2, p) {
+  margin: 0;
+}
+
+.nest-solution-card {
+  position: absolute;
+  overflow: visible;
+  border-radius: 35px;
+  background: linear-gradient(180deg, rgb(244 249 255 / 92%) 0%, #ffeca0 100%);
+  box-shadow:
+    8px 8px 0 #9ed2f5,
+    0 14px 28px rgb(34 84 137 / 14%);
+}
+
+.nest-solution-card--selp {
+  left: 726.67px;
+  top: 58px;
+  width: 566.67px;
+  height: 306.67px;
+}
+
+.nest-solution-card--ligase {
+  left: 123px;
+  top: 433px;
+  width: 568px;
+  height: 306.67px;
+}
+
+.nest-solution-selp-title,
+.nest-solution-ligase-title {
+  position: absolute;
+  z-index: 2;
+  color: #054db0;
+  font-family: "Silkscreen", monospace;
+  font-weight: 700;
+}
+
+.nest-solution-selp-title {
+  left: 97px;
+  top: -16px;
+  width: 350px;
+  font-size: 60px;
+  line-height: 69px;
+  letter-spacing: -6px;
+  text-align: center;
+}
+
+.nest-solution-selp-subtitle {
+  position: absolute;
+  z-index: 2;
+  left: 141px;
+  top: 54px;
+  color: rgb(0 0 0 / 67%);
+  font-size: 23px;
+  font-weight: 500;
+  line-height: 31px;
+  white-space: nowrap;
+}
+
+.nest-solution-selp-copy {
+  position: absolute;
+  z-index: 2;
+  left: 68px;
+  top: 97px;
+  width: 405px;
+  color: #05080d;
+  font-size: 23px;
+  line-height: 31px;
+}
+
+.nest-solution-ligase-title {
+  left: 57px;
+  top: 12px;
+  width: 430px;
+  font-size: 34px;
+  line-height: 42px;
+}
+
+.nest-solution-ligase-copy {
+  position: absolute;
+  z-index: 2;
+  left: 87px;
+  top: 98px;
+  width: 370px;
+  color: #05080d;
+  font-size: 23px;
+  line-height: 31px;
+}
+
+.nest-solution-button {
+  position: absolute;
+  z-index: 5;
+  display: grid;
+  width: 230px;
+  height: 70px;
+  place-items: center;
+  border: 4px solid #facf8c;
+  border-radius: 35px;
+  background: #fafbfe;
+  color: #1f2126;
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 36px;
+  text-decoration: none;
+  box-shadow: 12px 13px 0 rgb(150 196 244 / 34%);
+}
+
+.nest-solution-button--selp {
+  left: 157px;
+  top: 231px;
+}
+
+.nest-solution-button--ligase {
+  left: 157px;
+  top: 242px;
+}
+
+.nest-solution-selp-chain {
+  position: absolute;
+  z-index: 1;
+  left: 116px;
+  top: 59px;
+  width: 480px;
+  height: auto;
+  max-width: none;
+  transform: rotate(-16.04deg);
+  transform-origin: center;
+}
+
+.nest-solution-arrow {
+  position: absolute;
+  z-index: 2;
+  overflow: visible;
+}
+
+.nest-solution-arrow--upper {
+  left: 455px;
+  top: 143px;
+  width: 380px;
+  height: 217px;
+}
+
+.nest-solution-arrow--lower {
+  left: 505px;
+  top: 407px;
+  width: 236px;
+  height: 135px;
+  transform: rotate(10deg);
+}
+
+.nest-solution-functionalized-chain,
+.nest-solution-ligase-connector {
+  position: absolute;
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.nest-solution-functionalized-chain {
+  left: 825px;
+  top: 445px;
+  width: 449px;
+  height: 316px;
+}
+
+.nest-solution-functionalized-chain img {
+  position: absolute;
+  left: -452px;
+  top: -116px;
+  width: 1069px;
+  max-width: none;
+  transform: rotate(-3deg);
+}
+
+.nest-solution-ligase-connector {
+  left: 793px;
+  top: 392px;
+  width: 257px;
+  height: 244px;
+}
+
+.nest-solution-ligase-connector img {
+  position: absolute;
+  left: -493px;
+  top: -37px;
+  width: 1160px;
+  max-width: none;
+}
+
+.nest-solution-scene--oa .nest-solution-background {
+  background: transparent;
+}
+
+.oa-intro {
+  position: absolute;
+  z-index: 2;
+  left: 116px;
+  top: 79px;
+  width: 1180px;
+  color: #05080d;
+  font-size: 28px;
+  line-height: 50px;
+}
+
+.oa-intro strong {
+  font-size: 36px;
+  font-weight: 700;
+}
+
+.oa-intro .oa-intro__target {
+  color: #054db0;
+  font-size: 48px;
+  font-weight: 800;
+}
+
+.oa-panel {
+  position: absolute;
+  left: 101.39px;
+  top: 247.17px;
+  width: 1191.1px;
+  height: 488.4px;
+  border-radius: 35px;
+  background: linear-gradient(180deg, rgb(244 249 255 / 94%) 0%, #ffe99a 100%);
+  box-shadow:
+    8px 8px 0 #9ed2f5,
+    0 14px 28px rgb(38 89 141 / 14%);
+}
+
+.oa-panel-copy {
+  position: absolute;
+  left: 522.61px;
+  top: 80px;
+  width: 576px;
+  color: #05080d;
+  font-size: 28px;
+  line-height: 40px;
+}
+
+.oa-panel-copy p + p {
+  margin-top: 28px;
+}
+
+.oa-panel-copy strong {
+  font-weight: 700;
+}
+
+.oa-cycle-image {
+  position: absolute;
+  left: 84.52px;
+  top: 101px;
+  width: 383.42px;
+  height: auto;
+  max-width: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nest-solution-button {
+    transition: none;
+  }
+}
+
+.selp-pipeline {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  overflow: hidden;
+  background: #f4f9ff;
+  font-family: "Outfit", sans-serif;
+}
+
+.selp-pipeline__canvas {
+  container-type: inline-size;
+  width: min(100%, 1366px);
+  margin: 0 auto;
+}
+
+.selp-pipeline__stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1366 / 770;
+}
+
+.selp-pipeline__stage--gag {
+  aspect-ratio: 1366 / 780;
+  margin-top: -3.37cqw;
+}
+
+.selp-pipeline__stage--mitochondrial {
+  aspect-ratio: 1366 / 784;
+  margin-top: -2.49cqw;
+}
+
+.selp-pipeline__card {
+  position: absolute;
+  width: 44.33%;
+  border-radius: 2.49cqw;
+  background: #ffeda1;
+  box-shadow: 0 0.88cqw 4.98cqw rgb(64 82 97 / 11%);
+  color: #000;
+}
+
+.selp-pipeline__card h2,
+.selp-pipeline__card p {
+  position: absolute;
+  margin: 0;
+}
+
+.selp-pipeline__card h2 {
+  width: 77.28%;
+  color: #173b64;
+  font-size: 3.51cqw;
+  font-weight: 700;
+  line-height: 1.29;
+}
+
+.selp-pipeline__card p {
+  width: 79.59%;
+  font-size: 1.76cqw;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.selp-pipeline__stage--magnetic .selp-pipeline__card {
+  left: 10%;
+  top: 21.05%;
+  height: 52.61%;
+}
+
+.selp-pipeline__stage--magnetic .selp-pipeline__card h2 {
+  left: 11.29%;
+  top: 7.62%;
+}
+
+.selp-pipeline__stage--magnetic .selp-pipeline__card p {
+  left: 11.29%;
+  top: 57.49%;
+}
+
+.selp-pipeline__stage--gag .selp-pipeline__card {
+  left: 47.74%;
+  top: 20.79%;
+  height: 51.94%;
+}
+
+.selp-pipeline__stage--gag .selp-pipeline__card h2 {
+  left: 10.21%;
+  top: 16.25%;
+}
+
+.selp-pipeline__stage--gag .selp-pipeline__card p {
+  left: 10.21%;
+  top: 56.24%;
+}
+
+.selp-pipeline__stage--mitochondrial .selp-pipeline__card {
+  left: 12.66%;
+  top: 18.37%;
+  width: 43.56%;
+  height: 56.25%;
+}
+
+.selp-pipeline__stage--mitochondrial .selp-pipeline__card h2 {
+  left: 13.61%;
+  top: 10.43%;
+}
+
+.selp-pipeline__stage--mitochondrial .selp-pipeline__card p {
+  left: 13.61%;
+  top: 47.17%;
+  width: 81.01%;
+}
+
+.selp-pipeline__art,
+.selp-pipeline__connector {
+  position: absolute;
+  display: block;
+  max-width: none;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.selp-pipeline__art--magnetic-network {
+  left: 56.94%;
+  top: 25.68%;
+  width: 36.88%;
+  height: 43.61%;
+}
+
+.selp-pipeline__art--purple-flask {
+  left: 5.38%;
+  top: 58.94%;
+  width: 10.39%;
+  height: 20.64%;
+}
+
+.selp-pipeline__art--purple-vial {
+  left: 63.06%;
+  top: 69.48%;
+  width: 11.69%;
+  height: 21.89%;
+}
+
+.selp-pipeline__art--gag-chain {
+  left: 4.78%;
+  top: 24.5%;
+  width: 41.49%;
+  height: 42.59%;
+  transform: rotate(-11.75deg);
+}
+
+.selp-pipeline__art--pink-vial {
+  left: 5.79%;
+  top: 61.2%;
+  width: 18.35%;
+  height: 32.91%;
+}
+
+.selp-pipeline__art--gag-reactor {
+  left: 85.73%;
+  top: 51.45%;
+  width: 10.39%;
+  height: 27.3%;
+}
+
+.selp-pipeline__art--mito-reactor {
+  left: 6.64%;
+  top: 56.89%;
+  width: 12%;
+  height: 23.07%;
+}
+
+.selp-pipeline__art--yellow-vial {
+  left: 58.81%;
+  top: 59.48%;
+  width: 19.55%;
+  height: 35%;
+}
+
+.selp-pipeline__art--liposome {
+  left: 68.96%;
+  top: 26.15%;
+  width: 20.71%;
+  height: 30.85%;
+}
+
+.selp-pipeline__pill {
+  position: absolute;
+  display: block;
+  width: 16.98%;
+  height: 9.35%;
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: 0 0.88cqw 1.24cqw 0.07cqw rgb(28 56 99 / 32%);
+}
+
+.selp-pipeline__stage--magnetic .selp-pipeline__pill {
+  left: 72.72%;
+  top: 78.27%;
+}
+
+.selp-pipeline__stage--gag .selp-pipeline__pill {
+  left: 18.94%;
+  top: 74.1%;
+  height: 9.23%;
+}
+
+.selp-pipeline__stage--mitochondrial .selp-pipeline__pill {
+  left: 72.91%;
+  top: 74.57%;
+  height: 9.18%;
+}
+
+.selp-pipeline__connector {
+  z-index: 2;
+  left: 33.2%;
+  width: 39.45%;
+  height: auto;
+}
+
+.selp-pipeline__connector--first {
+  top: 75.32%;
+}
+
+.selp-pipeline__connector--second {
+  top: 72.77%;
+}
+
+@media (max-width: 700px) {
+  .selp-pipeline__canvas {
+    width: 136.6%;
+    margin-left: -18.3%;
+  }
+}

@@ -1,11 +1,33 @@
-import { useEffect, useRef, useState } from "react";
+import {
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  type CSSProperties,
+} from "react";
 import { useReducedMotion } from "motion/react";
 import { InteractiveWorldMap } from "./InteractiveWorldMap";
+import { useStory } from "./StoryContext";
 import "./OpeningStory.css";
 
 const staticRoot = "https://static.igem.wiki/teams/6102/wiki";
 const staticHome = `${staticRoot}/images/home`;
 const staticGif = `${staticRoot}/gif`;
+const localHome = `${import.meta.env.BASE_URL}images/home`;
+
+const statementBubbleNames = [
+  "osteoarthritis",
+  "hyaline",
+  "focal",
+  "gout",
+  "patellae",
+  "acl",
+  "decorTop",
+  "decorLeft",
+  "decorRight",
+] as const;
+
+type StatementBubbleName = (typeof statementBubbleNames)[number];
 
 function PlayOnceGif({
   alt,
@@ -44,17 +66,160 @@ function PlayOnceGif({
 }
 
 export function OpeningStatement() {
+  const { active } = useStory();
+  const bubbleOrder = useMemo(() => {
+    const shuffled = [...statementBubbleNames];
+    for (let index = shuffled.length - 1; index > 0; index -= 1) {
+      const swapIndex = Math.floor(Math.random() * (index + 1));
+      [shuffled[index], shuffled[swapIndex]] = [
+        shuffled[swapIndex],
+        shuffled[index],
+      ];
+    }
+    return Object.fromEntries(
+      shuffled.map((name, index) => [name, index]),
+    ) as Record<StatementBubbleName, number>;
+  }, []);
+  const bubbleStyle = (name: StatementBubbleName) =>
+    ({
+      "--bubble-enter-delay": `${360 + bubbleOrder[name] * 105}ms`,
+    }) as CSSProperties;
+
   return (
     <div
       className="opening-scene opening-scene--statement"
-      data-node-id="967:867"
+      data-node-id="1123:5"
     >
-      <div className="opening-content">
-        <h1 className="opening-statement__title" data-node-id="967:871">
-          Cartilage damage is widespread—
-          <br />
-          yet lasting repair remains elusive.
-        </h1>
+      <div className="opening-statement__design">
+        <div className="opening-content">
+          <h1 className="opening-statement__title" data-node-id="1134:20">
+            Cartilage
+            <br />
+            damage is
+            <br />
+            widespread—
+            <br />
+            yet lasting
+            <br />
+            repair remains
+            <br />
+            elusive.
+          </h1>
+
+          <div
+            className={`opening-bubbles${active ? " opening-bubbles--active" : ""}`}
+            aria-label="Types of cartilage damage"
+          >
+            <div
+              className="opening-bubble opening-bubble--osteoarthritis"
+              style={bubbleStyle("osteoarthritis")}
+            >
+              <div className="opening-bubble__float">
+                <img
+                  src={`${localHome}/opening-bubble-osteoarthritis.svg`}
+                  alt=""
+                />
+                <span>osteoarthritis</span>
+              </div>
+            </div>
+            <div
+              className="opening-bubble opening-bubble--hyaline"
+              style={bubbleStyle("hyaline")}
+            >
+              <div className="opening-bubble__float">
+                <img src={`${localHome}/opening-bubble-hyaline.svg`} alt="" />
+                <span>
+                  hyaline
+                  <br />
+                  cartilage
+                  <br />
+                  injury
+                </span>
+              </div>
+            </div>
+            <div
+              className="opening-bubble opening-bubble--focal"
+              style={bubbleStyle("focal")}
+            >
+              <div className="opening-bubble__float">
+                <img src={`${localHome}/opening-bubble-focal.svg`} alt="" />
+                <span>
+                  focal traumatic
+                  <br />
+                  cartilage defect
+                </span>
+              </div>
+            </div>
+            <div
+              className="opening-bubble opening-bubble--gout"
+              style={bubbleStyle("gout")}
+            >
+              <div className="opening-bubble__float">
+                <img src={`${localHome}/opening-bubble-gout.svg`} alt="" />
+                <span>chronic gout</span>
+              </div>
+            </div>
+            <div
+              className="opening-bubble opening-bubble--patellae"
+              style={bubbleStyle("patellae")}
+            >
+              <div className="opening-bubble__float">
+                <img src={`${localHome}/opening-bubble-patellae.svg`} alt="" />
+                <span>
+                  chondromalacia
+                  <br />
+                  patellae
+                </span>
+              </div>
+            </div>
+            <div
+              className="opening-bubble opening-bubble--acl"
+              style={bubbleStyle("acl")}
+            >
+              <div className="opening-bubble__float">
+                <img src={`${localHome}/opening-bubble-acl.svg`} alt="" />
+                <span>
+                  status post ACL
+                  <br />
+                  reconstruction
+                </span>
+              </div>
+            </div>
+            <div
+              className="opening-bubble opening-bubble--decor-top"
+              aria-hidden="true"
+              style={bubbleStyle("decorTop")}
+            >
+              <div className="opening-bubble__float">
+                <img src={`${localHome}/opening-bubble-decor-top.svg`} alt="" />
+              </div>
+            </div>
+            <div
+              className="opening-bubble opening-bubble--decor-left"
+              aria-hidden="true"
+              style={bubbleStyle("decorLeft")}
+            >
+              <div className="opening-bubble__float">
+                <img
+                  src={`${localHome}/opening-bubble-decor-left.svg`}
+                  alt=""
+                />
+              </div>
+            </div>
+            <div
+              className="opening-bubble opening-bubble--decor-right"
+              aria-hidden="true"
+              style={bubbleStyle("decorRight")}
+            >
+              <div className="opening-bubble__float">
+                <img
+                  src={`${localHome}/opening-bubble-decor-right.svg`}
+                  alt=""
+                />
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

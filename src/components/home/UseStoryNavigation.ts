@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
 export const STORY_STOPS = [
-  0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 6, 6, 7, 7, 7, 7, 7, 8,
+  0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 6, 6, 7, 7, 7, 7, 7, 8, 8, 9, 9,
 ];
 
 /** Native scrolling controls the timeline without wheel or touch interception. */
@@ -87,8 +87,10 @@ export function useStoryNavigation() {
   // Character scenes enter in four beats: background, decor/card, text, then
   // the stationary character animation. The outgoing scene clears first.
   const openingCut = from !== to && from >= 0 && to <= 4;
+  const hydrogelCut = from === 4 && to === 5;
   const limitationsCut = from === 5 && to === 6;
-  const cut = openingCut || limitationsCut;
+  const solutionCut = from === 8 && to === 9;
+  const cut = openingCut || hydrogelCut || limitationsCut || solutionCut;
   const scenePosition = cut ? from : from + (to - from) * fraction;
   const smoothstep = (value: number) => value * value * (3 - 2 * value);
   const clamp = (value: number) => Math.max(0, Math.min(1, value));
@@ -108,6 +110,12 @@ export function useStoryNavigation() {
     : 1;
   const limitationsTitleEntry = limitationsCut
     ? smoothstep(clamp((fraction - 0.76) / 0.22))
+    : 1;
+  const solutionCrossfade = solutionCut
+    ? smoothstep(clamp((fraction - 0.08) / 0.72))
+    : 1;
+  const hydrogelCrossfade = hydrogelCut
+    ? smoothstep(clamp((fraction - 0.06) / 0.82))
     : 1;
   const openingContent: Record<number, number> = { 1: 0, 2: 0, 3: 0, 4: 0 };
   const openingDecor: Record<number, number> = { 1: 1, 2: 0, 3: 0, 4: 0 };
@@ -183,9 +191,13 @@ export function useStoryNavigation() {
           incoming: to,
           opacity: limitationsCut
             ? 1
-            : to === 1
-              ? statementBackgroundProgress
-              : backgroundProgress,
+            : solutionCut
+              ? solutionCrossfade
+              : hydrogelCut
+                ? hydrogelCrossfade
+                : to === 1
+                  ? statementBackgroundProgress
+                  : backgroundProgress,
         }
       : null,
     hydrogelExit,

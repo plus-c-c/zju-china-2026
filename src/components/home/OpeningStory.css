@@ -37,20 +37,237 @@
   color: #f6faff;
 }
 
+.opening-statement__design {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 1366px;
+  height: 768px;
+  transform: translate(-50%, -50%) scale(0.9375);
+  transform-origin: center;
+}
+
 .opening-statement__title {
   position: absolute;
-  left: 101px;
-  top: 113px;
-  width: 405px;
+  z-index: 3;
+  left: 148px;
+  top: 172px;
+  width: 360px;
   color: #f6faff;
-  font-size: 64px;
-  font-weight: 600;
-  line-height: 1.08;
+  font-size: 51px;
+  font-weight: 500;
+  line-height: normal;
   opacity: var(--opening-text, 1);
   transform: translateX(
     calc(var(--opening-enter-left, 0px) + var(--opening-text-exit-left, 0px))
   );
   will-change: opacity, transform;
+}
+
+.opening-bubbles {
+  position: absolute;
+  inset: 0;
+  transform: translateX(var(--opening-enter-right, 0px));
+  will-change: transform;
+}
+
+.opening-bubble {
+  --bubble-drift-x: 7px;
+  --bubble-drift-y: -12px;
+  position: absolute;
+  z-index: 2;
+  opacity: 0;
+  cursor: pointer;
+  transition:
+    transform 240ms ease,
+    z-index 0s 240ms;
+  transform-origin: center;
+}
+
+.opening-bubbles--active .opening-bubble {
+  animation: opening-bubble-enter 480ms cubic-bezier(0.22, 0.8, 0.3, 1)
+    var(--bubble-enter-delay, 360ms) both;
+}
+
+.opening-bubble:hover {
+  z-index: 12;
+  transform: scale(1.13);
+  transition:
+    transform 240ms ease,
+    z-index 0s;
+}
+
+.opening-bubble__float {
+  position: absolute;
+  inset: 0;
+  animation: opening-bubble-float var(--bubble-duration, 5.8s) ease-in-out
+    var(--bubble-delay, 0s) infinite alternate;
+  will-change: transform;
+}
+
+.opening-bubble img {
+  position: absolute;
+  left: -8px;
+  top: -5px;
+  width: calc(100% + 34px) !important;
+  height: calc(100% + 34px) !important;
+  max-width: none;
+  pointer-events: none;
+}
+
+.opening-bubble span {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: #101319;
+  font-size: 23px;
+  font-weight: 500;
+  line-height: normal;
+  text-align: center;
+  pointer-events: none;
+}
+
+.opening-bubble--osteoarthritis {
+  left: 584px;
+  top: 120px;
+  width: 230px;
+  height: 230px;
+  --bubble-duration: 5.4s;
+}
+
+.opening-bubble--hyaline {
+  left: 770px;
+  top: 193px;
+  width: 328px;
+  height: 328px;
+  --bubble-drift-x: -8px;
+  --bubble-drift-y: 10px;
+  --bubble-duration: 6.7s;
+  --bubble-delay: -1.8s;
+}
+
+.opening-bubble--hyaline span {
+  font-size: 39px;
+}
+
+.opening-bubble--focal {
+  left: 985px;
+  top: 80px;
+  width: 226px;
+  height: 226px;
+  --bubble-drift-x: 10px;
+  --bubble-drift-y: -8px;
+  --bubble-duration: 6.1s;
+  --bubble-delay: -3.2s;
+}
+
+.opening-bubble--focal span {
+  font-size: 22px;
+}
+
+.opening-bubble--gout {
+  left: 1159px;
+  top: 278px;
+  width: 147px;
+  height: 147px;
+  --bubble-drift-x: -5px;
+  --bubble-drift-y: 9px;
+  --bubble-duration: 5.2s;
+  --bubble-delay: -2.4s;
+}
+
+.opening-bubble--gout span,
+.opening-bubble--patellae span {
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.opening-bubble--patellae {
+  left: 1002px;
+  top: 402px;
+  width: 188px;
+  height: 188px;
+  --bubble-drift-x: 8px;
+  --bubble-drift-y: 12px;
+  --bubble-duration: 6.4s;
+  --bubble-delay: -4.1s;
+}
+
+.opening-bubble--acl {
+  left: 681px;
+  top: 432px;
+  width: 237px;
+  height: 237px;
+  --bubble-drift-x: -9px;
+  --bubble-drift-y: -7px;
+  --bubble-duration: 5.9s;
+  --bubble-delay: -2.9s;
+}
+
+.opening-bubble--acl span {
+  font-size: 21px;
+  font-weight: 400;
+}
+
+.opening-bubble--decor-top {
+  left: 733px;
+  top: 84px;
+  width: 69px;
+  height: 69px;
+  --bubble-drift-x: 4px;
+  --bubble-drift-y: -10px;
+  --bubble-duration: 4.7s;
+  --bubble-delay: -1.1s;
+}
+
+.opening-bubble--decor-left {
+  left: 540px;
+  top: 495px;
+  width: 91px;
+  height: 91px;
+  --bubble-drift-x: -6px;
+  --bubble-drift-y: 8px;
+  --bubble-duration: 5.1s;
+  --bubble-delay: -3.7s;
+}
+
+.opening-bubble--decor-right {
+  left: 1138px;
+  top: 616px;
+  width: 77px;
+  height: 77px;
+  --bubble-drift-x: 7px;
+  --bubble-drift-y: -8px;
+  --bubble-duration: 4.9s;
+  --bubble-delay: -2.2s;
+}
+
+@keyframes opening-bubble-float {
+  from {
+    transform: translate3d(
+      calc(var(--bubble-drift-x) * -0.45),
+      calc(var(--bubble-drift-y) * -0.45),
+      0
+    );
+  }
+
+  to {
+    transform: translate3d(var(--bubble-drift-x), var(--bubble-drift-y), 0);
+  }
+}
+
+@keyframes opening-bubble-enter {
+  from {
+    opacity: 0;
+    filter: blur(8px);
+  }
+
+  to {
+    opacity: 1;
+    filter: blur(0);
+  }
 }
 
 .opening-burden__title {
@@ -338,7 +555,7 @@
 .opening-sports__title {
   position: absolute;
   left: 70px;
-  top: 148px;
+  top: 108px;
   width: 480px;
   color: #f6faff;
   font-size: 48px;
@@ -360,7 +577,7 @@
 .opening-sports__score {
   position: absolute;
   left: 70px;
-  top: 280px;
+  top: 300px;
   width: 454px;
   font-weight: 700;
   line-height: 1;
@@ -400,7 +617,7 @@
 .opening-sports__body {
   position: absolute;
   left: 70px;
-  top: 556px;
+  top: 526px;
   width: 430px;
   color: rgb(246 250 255 / 76%);
   font-size: 32px;
@@ -526,6 +743,11 @@
 @media (prefers-reduced-motion: reduce) {
   .opening-content {
     transform: none;
+  }
+
+  .opening-bubbles--active .opening-bubble {
+    opacity: 1;
+    animation: none;
   }
 
   .opening-burden__title,
