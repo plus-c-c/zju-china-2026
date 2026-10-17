@@ -24,35 +24,62 @@ export function Toc({
     const footer = document.querySelector("footer.footer");
     if (!content || !header) return;
 
-    const elements = Array.from(
-      content.querySelectorAll<HTMLElement>("h2, h3, h4"),
-    );
-    const usedIds = new Set(
-      Array.from(document.querySelectorAll("[id]"), (node) => node.id),
-    );
-    elements.forEach((element, index) => {
-      if (element.id) return;
-      const slug =
-        (element.textContent || "section")
-          .trim()
-          .toLowerCase()
-          .replace(/[^\p{L}\p{N}]+/gu, "-")
-          .replace(/^-|-$/g, "") || "section";
-      let id = slug;
-      let suffix = index + 1;
-      while (usedIds.has(id)) id = `${slug}-${suffix++}`;
-      element.id = id;
-      usedIds.add(id);
-    });
-    setHeadings(
-      elements.map((element) => ({
+    let elements: HTMLElement[] = [];
+    let frame = 0;
+    let collectFrame = 0;
+    const isExpanded = (element: HTMLElement) =>
+      !element.closest("[hidden], details:not([open])") &&
+      element.dataset.tocCollapsed !== "true" &&
+      !element.classList.contains("visually-hidden");
+
+    const collectHeadings = () => {
+      collectFrame = 0;
+      elements = Array.from(
+        content.querySelectorAll<HTMLElement>(
+          'h2, h3, h4, h5[data-toc="include"]',
+        ),
+      ).filter(
+        (element) =>
+          element.dataset.toc !== "exclude" &&
+          !element.closest("[hidden], details:not([open])"),
+      );
+      const usedIds = new Set(
+        Array.from(document.querySelectorAll("[id]"), (node) => node.id),
+      );
+      elements.forEach((element, index) => {
+        if (element.id) return;
+        const slug =
+          (element.textContent || "section")
+            .trim()
+            .toLowerCase()
+            .replace(/[^\p{L}\p{N}]+/gu, "-")
+            .replace(/^-|-$/g, "") || "section";
+        let id = slug;
+        let suffix = index + 1;
+        while (usedIds.has(id)) id = `${slug}-${suffix++}`;
+        element.id = id;
+        usedIds.add(id);
+      });
+      const next = elements.map((element) => ({
         id: element.id,
         text: element.textContent || "",
-        level: element.tagName === "H2" ? 1 : 2,
-      })),
-    );
+        level:
+          element.tagName === "H2" ? 1 : Number(element.dataset.tocDepth) || 2,
+      }));
+      setHeadings((previous) =>
+        previous.length === next.length &&
+        previous.every(
+          (heading, index) =>
+            heading.id === next[index].id &&
+            heading.text === next[index].text &&
+            heading.level === next[index].level,
+        )
+          ? previous
+          : next,
+      );
+      scheduleUpdate();
+    };
 
-    let frame = 0;
     const update = () => {
       frame = 0;
       const footerRect = footer?.getBoundingClientRect();
@@ -62,8 +89,9 @@ export function Toc({
         footerRect.bottom > 0;
       setVisible(header.getBoundingClientRect().bottom <= 0 && !footerVisible);
       const viewportCenter = window.innerHeight / 2;
-      let current = elements[0]?.id || "";
-      for (const element of elements) {
+      const expandedElements = elements.filter(isExpanded);
+      let current = expandedElements[0]?.id || "";
+      for (const element of expandedElements) {
         if (element.getBoundingClientRect().top <= viewportCenter)
           current = element.id;
         else break;
@@ -73,13 +101,25 @@ export function Toc({
     const scheduleUpdate = () => {
       if (!frame) frame = window.requestAnimationFrame(update);
     };
-    update();
+    collectHeadings();
     window.addEventListener("scroll", scheduleUpdate, { passive: true });
     window.addEventListener("resize", scheduleUpdate);
     const observer = new ResizeObserver(scheduleUpdate);
     observer.observe(content);
     observer.observe(header);
     if (footer) observer.observe(footer);
+
+    const mutations = new MutationObserver(() => {
+      if (!collectFrame)
+        collectFrame = window.requestAnimationFrame(collectHeadings);
+    });
+    mutations.observe(content, {
+      childList: true,
+      subtree: true,
+      characterData: true,
+      attributes: true,
+      attributeFilter: ["hidden", "open", "class", "data-toc-collapsed"],
+    });
 
     // Support opening a direct link to a section after its generated ID exists.
     if (window.location.hash) {
@@ -95,7 +135,9 @@ export function Toc({
       window.removeEventListener("scroll", scheduleUpdate);
       window.removeEventListener("resize", scheduleUpdate);
       observer.disconnect();
+      mutations.disconnect();
       window.cancelAnimationFrame(frame);
+      window.cancelAnimationFrame(collectFrame);
     };
   }, []);
 

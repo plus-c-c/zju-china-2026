@@ -4,7 +4,8 @@
 }
 
 .page-article h2,
-.page-article h3 {
+.page-article h3,
+.page-article h4 {
   scroll-margin-top: 112px;
 }
 
@@ -43,13 +44,23 @@
   font-size: 1.5rem;
 }
 
+.page-layout-with-toc {
+  --toc-left: clamp(24px, 4vw, 80px);
+  --toc-width: 278px;
+  --toc-gap: 24px;
+}
+
 .page-toc {
   position: fixed;
+  display: flex;
+  flex-direction: column;
   top: 104px;
-  left: 80px;
+  left: var(--toc-left);
   /* Controls the overall width of the table of contents. */
-  width: 278px;
-  max-height: calc(100dvh - 228px);
+  width: var(--toc-width);
+  max-height: calc(100dvh - 148px);
+  box-sizing: border-box;
+  overflow: hidden;
   /* Controls the inner spacing around the entire table of contents. */
   padding: 20px 12px;
   z-index: 1020;
@@ -69,6 +80,7 @@
 }
 
 .page-toc-title {
+  flex-shrink: 0;
   /* The last value controls the space below the "On this page" title. */
   margin: 0 8px 16px;
   color: #223c81;
@@ -81,7 +93,7 @@
   list-style: none;
   padding: 0;
   margin: 0;
-  max-height: calc(100dvh - 220px);
+  min-height: 0;
   overflow-y: auto;
   overscroll-behavior: contain;
   scrollbar-width: thin;
@@ -89,6 +101,7 @@
 
 .page-toc-list a {
   display: block;
+  box-sizing: border-box;
   /* Vertical padding controls the space above and below every TOC entry. */
   padding: 10px 12px;
   border-left: 5px solid transparent;
@@ -109,7 +122,17 @@
   font-size: 18px;
 }
 
+.page-toc-level-3 a {
+  margin-left: 30px;
+  padding-left: 10px;
+  font-size: 16px;
+}
 
+.page-toc-level-4 a {
+  margin-left: 40px;
+  padding-left: 8px;
+  font-size: 16px;
+}
 
 .page-toc-level-1.page-toc-section-current > a {
   border-left-color: currentColor;
@@ -121,8 +144,6 @@
 }
 .page-toc-list a[aria-current="location"] {
   border-left-color: currentColor;
-  /* This overrides the normal second-level font size while an entry is active. */
-  font-size: 20px;
   color: #365dc9;
 }
 .page-toc-list a:focus-visible {
@@ -130,9 +151,10 @@
   outline-offset: -2px;
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1201px) {
   .page-layout-with-toc {
-    padding-left: 288px;
+    /* Keep the article beyond the fixed sidebar at every desktop width. */
+    padding-left: calc(var(--toc-left) + var(--toc-width) + var(--toc-gap));
     padding-right: 144px;
   }
   .page-layout-with-toc .page-article {
@@ -145,9 +167,9 @@
     display: none;
   }
   .page-article {
-  padding-right: 24px;
-  padding-left: 24px;
-}
+    padding-right: 24px;
+    padding-left: 24px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
