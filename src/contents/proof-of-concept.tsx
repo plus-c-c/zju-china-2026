@@ -477,7 +477,7 @@ export function ProofOfConcept() {
           </p>
           <figure className="my-4 text-center">
             <img
-              src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-11.avif"
+              src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-11.webp"
               alt="Figure 11: Bright-field recording of magnetic particle aggregates reorienting"
               className="img-fluid rounded"
               style={{ width: "100%" }}
@@ -493,7 +493,7 @@ export function ProofOfConcept() {
           </figure>
           <figure className="my-4 text-center">
             <img
-              src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-12.avif"
+              src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-12.webp"
               alt="Figure 12: Fluorescence recording of protein-labeled complexes reorienting"
               className="img-fluid rounded"
               style={{ width: "100%" }}
