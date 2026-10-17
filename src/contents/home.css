@@ -1,219 +1,89 @@
-.home-container,
 .nest-home {
+  min-height: 100dvh;
+  overflow: clip;
   background: #f6faff;
-}
-.nest-home {
   font-family: "Outfit", sans-serif;
 }
-.nest-home p {
-  margin: 0;
+
+.nest-home p { margin: 0; }
+.nest-home button { padding: 0; border: 0; }
+.nest-home button:focus-visible { outline: 4px solid #0341c8; outline-offset: -6px; }
+.nest-home img[src$=".svg"] { width: auto; height: auto; }
+
+.home-intro-section {
+  position: relative;
+  width: 100%;
+  height: 100dvh;
+  min-height: 640px;
+  overflow: hidden;
 }
-.home-scene {
+
+.home-flow-scene {
   position: relative;
   width: 100%;
   overflow: hidden;
-  scroll-margin-top: 0;
+  background: radial-gradient(circle at 50% 50%, #eef6ff 0%, #d7eaff 48%, #afd6f8 100%);
 }
-.home-scene:focus {
-  outline: none;
-}
-.home-scene-canvas {
+
+.home-flow-scene__canvas {
+  position: absolute;
+  left: 50%;
+  top: 0;
   width: 1280px;
+  height: 720px;
+  transform-origin: top center;
+}
+
+.home-flow-scene--hydrogel,
+.home-flow-scene--limitations {
+  background-color: #ddecff;
+  background-image: radial-gradient(circle at 50% 50%, #eef6ff 0%, #d7eaff 48%, #afd6f8 100%);
+}
+
+.home-flow-scene--limitations .limitations-page { background: transparent; }
+
+.home-card-draw {
   position: relative;
-  transform-origin: top left;
+  height: 300dvh;
+  min-height: 1900px;
+  background-color: #ddecff;
+  background-image: radial-gradient(circle at 50% 50%, #eef6ff 0%, #d7eaff 48%, #afd6f8 100%);
 }
-.nest-home button {
-  padding: 0;
-  border: 0;
-}
-.nest-home button:focus-visible {
-  outline: 4px solid #0341c8;
-  outline-offset: -6px;
-}
-/* The Figma scenes are illustrations; scaling their shared coordinate space keeps pipes and the two knee halves continuous. */
-@media (prefers-reduced-motion: reduce) {
-  .nest-home {
-    scroll-behavior: auto;
-  }
-}
-/* Keep exported SVG root geometry, including the original filter padding. */
-.nest-home img[src$=".svg"] {
-  width: auto;
-  height: auto;
-}
-.home-story-mobile {
-  height: auto;
-}
-.home-story-mobile .home-scene-canvas {
-  width: 100%;
-  transform: none !important;
-}
-.home-story-mobile .home-scene-canvas > div {
-  min-height: 820px;
-}
-/* Native document scrolling drives the fixed story viewport. */
-html.home-story-open {
-  overflow-y: scroll;
-  scroll-behavior: auto;
-}
-body.home-story-open {
-  overflow: visible;
-}
-body.home-story-open .app {
-  min-height: 100dvh;
-}
-.story-viewport {
+
+.home-card-draw__sticky {
   position: sticky;
-  z-index: 1;
   top: 0;
   width: 100%;
   height: 100dvh;
+  min-height: 560px;
   overflow: hidden;
-  touch-action: pan-y;
+  background: radial-gradient(circle at 50% 50%, #eef6ff 0%, #d7eaff 48%, #afd6f8 100%);
 }
-.story-track {
-  transition: none;
-  will-change: transform;
-}
-.story-track[data-transition="instant"] {
-  transition: none;
-}
-.home-story-scrollbar {
-  position: absolute;
-  z-index: 10;
-  right: 0;
-  top: 0;
-  width: 16px;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  appearance: none;
-  writing-mode: vertical-lr;
-  direction: ltr;
-  background: transparent;
-  cursor: pointer;
-  touch-action: none;
-}
-.home-story-scrollbar::-webkit-slider-runnable-track {
-  width: 6px;
-  height: 100%;
+
+.home-card-draw .limitations-page {
   background: transparent;
 }
-.home-story-scrollbar::-webkit-slider-thumb {
-  appearance: none;
-  width: 6px;
-  height: 44px;
-  border-radius: 8px;
-  background: var(--scrollbar-thumb-color, #006cd1);
-}
-.home-story-scrollbar::-moz-range-track {
-  width: 6px;
-  height: 100%;
-  background: transparent;
-}
-.home-story-scrollbar::-moz-range-thumb {
-  width: 6px;
-  height: 44px;
-  border: 0;
-  border-radius: 8px;
-  background: var(--scrollbar-thumb-color, #006cd1);
-}
-.home-story-scrollbar:focus-visible {
-  outline: 2px solid #006cd1;
-  outline-offset: -2px;
-}
-.story-viewport .home-scene {
-  height: var(--screen-height);
-  overflow: hidden;
-  background: #f6faff;
-}
-.story-viewport #home-2 {
-  background-color: #bdd8fb;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-.story-viewport #home-4 {
-  background: linear-gradient(90deg, #2e6199 0%, #5287ba 62%, #85abd6 100%);
-}
-.story-viewport #home-3 {
-  background: linear-gradient(90deg, #5987bf 0%, #c4dbf5 52%, #f6faff 100%);
-}
-.story-viewport #home-5 {
-  background: linear-gradient(90deg, #f6faff 0%, #ebf2fc 58%, #b8d4f2 100%);
-}
-.story-viewport #home-5::after {
-  content: "";
-  position: absolute;
-  z-index: 1;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: clamp(96px, 16vh, 172px);
-  pointer-events: none;
-  background: linear-gradient(180deg, transparent 0%, #ddecff 100%);
-}
-.story-viewport #home-6 {
-  background-color: #ddecff;
-  background-image: var(--hydrogel-background-image);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-.story-viewport #home-5 .home-scene-canvas {
-  z-index: 2;
-}
-.story-viewport #home-7 {
-  background-color: #ddecff;
-  background-image: var(--hydrogel-background-image);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-.story-viewport #home-7 .limitations-page {
-  background: transparent;
-}
-.story-viewport .home-scene-canvas {
+
+.home-card-draw__canvas {
   position: absolute;
   left: 50%;
   top: 50%;
   width: 1280px;
   height: 720px;
-  transform: translate(-50%, -50%) scale(var(--scene-scale));
   transform-origin: center;
 }
-.story-viewport :is(#home-8, #home-9) {
-  background: radial-gradient(
-    circle at 50% 50%,
-    #eef6ff 0%,
-    #d7eaff 48%,
-    #afd6f8 100%
-  );
-}
+
 @media (prefers-reduced-motion: reduce) {
-  .opening-bubble__float {
-    animation: none;
+  .home-card-draw {
+    height: 100dvh;
+    min-height: 640px;
+  }
+
+  .home-card-draw__sticky {
+    position: relative;
   }
 }
-.story-viewport .home-footer-scene {
-  background: #f6faff;
-}
-.story-viewport #home-1 .home-scene-canvas {
-  width: 100%;
-  height: 100%;
-  left: 0;
-  top: 0;
-  transform: none;
-}
-.story-viewport .home-footer-scene .home-scene-canvas {
-  width: 100%;
-  height: 100%;
-  left: 0;
-  top: 0;
-  transform: none;
-}
+
 @media (prefers-reduced-motion: reduce) {
-  .story-track {
-    transition: none;
-  }
+  html:focus-within { scroll-behavior: auto; }
 }
