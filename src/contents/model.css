@@ -75,11 +75,13 @@
 }
 
 .protein-cluster--wide .protein-text {
+  /* Placed directly below the image when a wide step appears — no
+     margin transition, so the card does not shrink in place first and
+     then slide down. */
   align-self: start;
   height: auto;
   max-height: calc(100dvh - var(--protein-figure-h, 466px) - 170px);
   margin-top: var(--protein-figure-h, 466px);
-  transition: margin-top 0.32s ease;
 }
 
 /* Smooth swap: the incoming structure slides in from one side while the
