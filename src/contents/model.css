@@ -82,24 +82,101 @@
   transition: margin-top 0.32s ease;
 }
 
-/* Smooth swap: crossfade — the new structure fades in underneath while the
-   outgoing one fades out on top (its own box keeps the previous geometry). */
-.protein-structure-frame > img {
-  animation: protein-fade-in 0.34s ease;
+/* Smooth swap: the incoming structure slides in from one side while the
+   outgoing one slides out to the other (direction set by the step order). */
+.protein-structure-in {
+  position: absolute;
+  inset: 0;
 }
 
 .protein-structure-out {
   position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.protein-structure-out-box {
+  position: absolute;
   top: 50%;
   left: 50%;
   overflow: hidden;
-  pointer-events: none;
   transform: translate(-50%, -50%);
-  animation: protein-fade-out 0.34s ease forwards;
 }
 
-.protein-caption {
-  animation: protein-fade-in 0.32s ease;
+.protein-slide-forward .protein-structure-in {
+  animation: protein-slide-in-forward 0.36s ease;
+}
+
+.protein-slide-backward .protein-structure-in {
+  animation: protein-slide-in-backward 0.36s ease;
+}
+
+.protein-slide-forward .protein-structure-out {
+  animation: protein-slide-out-forward 0.36s ease forwards;
+}
+
+.protein-slide-backward .protein-structure-out {
+  animation: protein-slide-out-backward 0.36s ease forwards;
+}
+
+.protein-slide-forward .protein-caption-in {
+  animation: protein-slide-in-forward 0.36s ease;
+}
+
+.protein-slide-backward .protein-caption-in {
+  animation: protein-slide-in-backward 0.36s ease;
+}
+
+.protein-slide-forward .protein-caption-out {
+  animation: protein-slide-out-forward 0.36s ease forwards;
+}
+
+.protein-slide-backward .protein-caption-out {
+  animation: protein-slide-out-backward 0.36s ease forwards;
+}
+
+/* Text panel: the body slides up / down (vertical counterpart of the
+   structure and caption slides). */
+.protein-slide-forward .protein-text-inner {
+  animation: protein-rise-in 0.36s ease;
+}
+
+.protein-slide-forward .protein-text-out {
+  animation: protein-rise-out 0.36s ease forwards;
+}
+
+.protein-slide-backward .protein-text-inner {
+  animation: protein-sink-in 0.36s ease;
+}
+
+.protein-slide-backward .protein-text-out {
+  animation: protein-sink-out 0.36s ease forwards;
+}
+
+.protein-caption-stack {
+  position: relative;
+  display: block;
+}
+
+.protein-caption-out {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  pointer-events: none;
+}
+
+.protein-text-stack {
+  position: relative;
+}
+
+.protein-text-out {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  pointer-events: none;
 }
 
 .protein-structure-frame img {
@@ -186,34 +263,10 @@
   margin-top: 0 !important;
 }
 
-.protein-text-inner {
-  animation: protein-step-in 0.26s ease;
-}
-
-@keyframes protein-fade-out {
-  from {
-    opacity: 1;
-  }
-
-  to {
-    opacity: 0;
-  }
-}
-
-@keyframes protein-fade-in {
+@keyframes protein-slide-in-forward {
   from {
     opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes protein-step-in {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
+    transform: translateX(100%);
   }
 
   to {
@@ -222,15 +275,98 @@
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .protein-text-inner {
-    animation: none;
+@keyframes protein-slide-in-backward {
+  from {
+    opacity: 0;
+    transform: translateX(-100%);
   }
 
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes protein-slide-out-forward {
+  from {
+    opacity: 1;
+    transform: none;
+  }
+
+  to {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes protein-slide-out-backward {
+  from {
+    opacity: 1;
+    transform: none;
+  }
+
+  to {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
+
+@keyframes protein-rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes protein-rise-out {
+  from {
+    opacity: 1;
+    transform: none;
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+}
+
+@keyframes protein-sink-in {
+  from {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes protein-sink-out {
+  from {
+    opacity: 1;
+    transform: none;
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
   .protein-structure-frame,
-  .protein-structure-frame > img,
+  .protein-structure-in,
   .protein-structure-out,
-  .protein-caption,
+  .protein-caption-in,
+  .protein-caption-out,
+  .protein-text-inner,
+  .protein-text-out,
   .protein-cluster--wide .protein-text {
     transition: none;
     animation: none;

@@ -44,6 +44,9 @@ interface StructureFigureProps {
   /** Wide figures (structure + zoom inset): the zoom panel spills into the
    *  text area and the text card starts below the image. */
   wide?: boolean;
+  /** Position of this figure in the step sequence; the sign of the change
+   *  picks the slide direction (forward = out left / in from right). */
+  order: number;
 }
 
 /** Structure crop — the source images are wide multi-panel sheets; the
@@ -52,6 +55,7 @@ interface CropSnapshot {
   src: string;
   bounds: readonly [number, number, number, number];
   structureFraction: number;
+  order: number;
 }
 
 /** Crop geometry of one sheet, as inline styles (the sheet is 3000 px wide;
@@ -83,26 +87,30 @@ function StructureFigure({
   structureFraction,
   focusX,
   wide,
+  order,
 }: StructureFigureProps) {
   const [left, top, right, bottom] = bounds;
   const contentWidth = right - left;
   const contentHeight = bottom - top;
 
-  // Crossfade: the outgoing crop stays on top, fading out, while the new
-  // one fades in underneath.
+  // Slide transition: the outgoing crop slides out to one side while the
+  // incoming one slides in from the other (direction follows the step
+  // order, so Next and Previous mirror each other).
   const latestRef = useRef<CropSnapshot | null>(null);
   const timerRef = useRef(0);
+  const [direction, setDirection] = useState<"forward" | "backward">("forward");
   const [outgoing, setOutgoing] = useState<
     (CropSnapshot & { width: number; height: number }) | null
   >(null);
 
   useLayoutEffect(() => {
     const previous = latestRef.current;
-    latestRef.current = { src, bounds, structureFraction };
+    latestRef.current = { src, bounds, structureFraction, order };
     if (!previous || previous.src === src) return;
     if (timerRef.current) window.clearTimeout(timerRef.current);
+    setDirection(order >= previous.order ? "forward" : "backward");
     setOutgoing({ ...previous, ...frameSize(previous) });
-    timerRef.current = window.setTimeout(() => setOutgoing(null), 400);
+    timerRef.current = window.setTimeout(() => setOutgoing(null), 420);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [src]);
 
@@ -115,7 +123,9 @@ function StructureFigure({
 
   return (
     <div
-      className={`protein-structure${wide ? " protein-structure--wide" : ""}`}
+      className={`protein-structure${
+        wide ? " protein-structure--wide" : ""
+      } protein-slide-${direction}`}
     >
       <div
         className="protein-structure-frame"
@@ -127,21 +137,21 @@ function StructureFigure({
           } as CSSProperties
         }
       >
-        <img
-          key={src}
-          className="protein-structure-in"
-          src={src}
-          alt={alt}
-          loading="lazy"
-          style={cropStyle(bounds)}
-        />
+        <span className="protein-structure-in" key={src}>
+          <img src={src} alt={alt} loading="lazy" style={cropStyle(bounds)} />
+        </span>
         {outgoing && (
-          <span
-            className="protein-structure-out"
-            style={{ width: outgoing.width, height: outgoing.height }}
-            aria-hidden="true"
-          >
-            <img src={outgoing.src} alt="" style={cropStyle(outgoing.bounds)} />
+          <span className="protein-structure-out" aria-hidden="true">
+            <span
+              className="protein-structure-out-box"
+              style={{ width: outgoing.width, height: outgoing.height }}
+            >
+              <img
+                src={outgoing.src}
+                alt=""
+                style={cropStyle(outgoing.bounds)}
+              />
+            </span>
           </span>
         )}
       </div>
@@ -214,6 +224,39 @@ function ProteinStepper({ steps }: { steps: ProteinStep[] }) {
     });
   };
 
+  // Direction of the caption / text slide; the outgoing step stays
+  // rendered until its slide-out finishes.
+  const transitionTimerRef = useRef(0);
+  const [transition, setTransition] = useState<{
+    direction: "forward" | "backward";
+    outgoing: ProteinStep | null;
+  }>({ direction: "forward", outgoing: null });
+  const previousIndexRef = useRef(0);
+
+  useLayoutEffect(() => {
+    const previousIndex = previousIndexRef.current;
+    previousIndexRef.current = index;
+    if (previousIndex === index) return;
+    if (transitionTimerRef.current)
+      window.clearTimeout(transitionTimerRef.current);
+    setTransition({
+      direction: index > previousIndex ? "forward" : "backward",
+      outgoing: stepsRef.current[previousIndex] ?? null,
+    });
+    transitionTimerRef.current = window.setTimeout(
+      () => setTransition((current) => ({ ...current, outgoing: null })),
+      420,
+    );
+  }, [index]);
+
+  useEffect(
+    () => () => {
+      if (transitionTimerRef.current)
+        window.clearTimeout(transitionTimerRef.current);
+    },
+    [],
+  );
+
   const step = steps[index] ?? steps[0];
 
   return (
@@ -228,7 +271,7 @@ function ProteinStepper({ steps }: { steps: ProteinStep[] }) {
         <div
           className={`protein-cluster${
             step?.figureHeight ? " protein-cluster--wide" : ""
-          }`}
+          } protein-slide-${transition.direction}`}
           style={
             step?.figureHeight
               ? ({
@@ -239,8 +282,17 @@ function ProteinStepper({ steps }: { steps: ProteinStep[] }) {
         >
           <figure className="protein-figure">
             {step?.figure}
-            <figcaption className="protein-caption" key={step?.key}>
-              {step?.caption}
+            <figcaption className="protein-caption">
+              <div className="protein-caption-stack">
+                {transition.outgoing && (
+                  <div className="protein-caption-out" aria-hidden="true">
+                    {transition.outgoing.caption}
+                  </div>
+                )}
+                <div className="protein-caption-in" key={step?.key}>
+                  {step?.caption}
+                </div>
+              </div>
             </figcaption>
             <div className="protein-nav">
               <button
@@ -268,8 +320,15 @@ function ProteinStepper({ steps }: { steps: ProteinStep[] }) {
             role="region"
             aria-label="Rational design of SnoopLigase2"
           >
-            <div className="protein-text-inner" key={step?.key}>
-              {step?.body}
+            <div className="protein-text-stack">
+              {transition.outgoing && (
+                <div className="protein-text-out" aria-hidden="true">
+                  {transition.outgoing.body}
+                </div>
+              )}
+              <div className="protein-text-inner" key={step?.key}>
+                {step?.body}
+              </div>
             </div>
           </div>
         </div>
@@ -288,6 +347,7 @@ const SNOOP_STEPS: ProteinStep[] = [
         bounds={[731, 280, 1926, 1569]}
         structureFraction={0.68}
         focusX={0.562}
+        order={0}
       />
     ),
     caption: (
@@ -342,6 +402,7 @@ const SNOOP_STEPS: ProteinStep[] = [
         bounds={[1097, 287, 1945, 1585]}
         structureFraction={0.874}
         focusX={0.495}
+        order={1}
       />
     ),
     caption: (
@@ -381,6 +442,7 @@ const SNOOP_STEPS: ProteinStep[] = [
         bounds={[884, 312, 2073, 1573]}
         structureFraction={0.635}
         focusX={0.532}
+        order={2}
       />
     ),
     caption: (
@@ -429,6 +491,7 @@ const SNOOP_STEPS: ProteinStep[] = [
         bounds={[852, 352, 1905, 1518]}
         structureFraction={0.652}
         focusX={0.608}
+        order={3}
       />
     ),
     caption: (
@@ -465,6 +528,7 @@ const SNOOP_STEPS: ProteinStep[] = [
         bounds={[620, 261, 2033, 1546]}
         structureFraction={0.619}
         focusX={0.586}
+        order={4}
       />
     ),
     caption: (
@@ -508,6 +572,7 @@ const SNOOP_STEPS: ProteinStep[] = [
         bounds={[851, 339, 2039, 1448]}
         structureFraction={0.631}
         focusX={0.491}
+        order={5}
       />
     ),
     caption: (
@@ -552,6 +617,7 @@ const SNOOP_STEPS: ProteinStep[] = [
         structureFraction={0.215}
         focusX={0.208}
         wide
+        order={6}
       />
     ),
     caption: (
@@ -587,6 +653,7 @@ const SNOOP_STEPS: ProteinStep[] = [
         structureFraction={0.22}
         focusX={0.206}
         wide
+        order={7}
       />
     ),
     caption: (
@@ -620,6 +687,7 @@ const SNOOP_STEPS: ProteinStep[] = [
         bounds={[552, 344, 2025, 1537]}
         structureFraction={0.558}
         focusX={0.623}
+        order={8}
       />
     ),
     caption: (
