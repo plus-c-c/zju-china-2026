@@ -29,7 +29,9 @@
      screen across steps. */
   --protein-stage-h: clamp(300px, 52vh, 520px);
   position: absolute;
-  top: calc(40dvh - var(--protein-stage-h) / 2);
+  /* Raised so the black panel border inside the wide figures keeps clear
+     of the text card's top edge. */
+  top: calc(40dvh - var(--protein-stage-h) / 2 - 60px);
   left: 0;
   z-index: 2;
   display: flex;
@@ -74,8 +76,9 @@
 /* On wide steps the text card starts below the protein image. */
 .protein-pin--wide .protein-figure {
   /* The wide frame is taller than the stage: centre it exactly on the same
-     40dvh line so the protein keeps the identical on-screen centre. */
-  top: calc(40dvh - var(--protein-figure-h, 466px) / 2);
+     line as every other step (identical on-screen centre), raised like the
+     regular steps. */
+  top: calc(40dvh - var(--protein-figure-h, 466px) / 2 - 60px);
 }
 
 .protein-pin--wide .protein-text {
