@@ -2,6 +2,67 @@ import { MathFormula } from "../components/MathFormula";
 
 // English manuscript supplied in Model.md. Scientific wording and unfinished
 // result placeholders are retained; duplicate bilingual draft is excluded.
+
+type ModelFigureProps = {
+  src: string;
+  alt: string;
+  width?: number;
+  // Bounds include every visible pixel and a small transparent margin.
+  bounds?: readonly [number, number, number, number];
+};
+
+function ModelFigure({ src, alt, width = 680, bounds }: ModelFigureProps) {
+  if (bounds) {
+    const [left, top, right, bottom] = bounds;
+    const contentWidth = right - left;
+    const contentHeight = bottom - top;
+    return (
+      <figure className="my-4 text-center">
+        <div
+          style={{
+            position: "relative",
+            overflow: "hidden",
+            width: `min(100%, ${width}px)`,
+            aspectRatio: `${contentWidth} / ${contentHeight}`,
+            marginInline: "auto",
+          }}
+        >
+          <img
+            src={src}
+            alt={alt}
+            loading="lazy"
+            style={{
+              position: "absolute",
+              display: "block",
+              width: `${(3000 / contentWidth) * 100}%`,
+              maxWidth: "none",
+              height: "auto",
+              left: `${(-left / contentWidth) * 100}%`,
+              top: `${(-top / contentHeight) * 100}%`,
+            }}
+          />
+        </div>
+      </figure>
+    );
+  }
+  return (
+    <figure className="my-4 text-center">
+      <img
+        src={src}
+        alt={alt}
+        loading="lazy"
+        className="rounded"
+        style={{
+          display: "block",
+          width: `min(100%, ${width}px)`,
+          height: "auto",
+          marginInline: "auto",
+        }}
+      />
+    </figure>
+  );
+}
+
 export function Model() {
   return (
     <div className="row mt-4 mb-5">
@@ -49,14 +110,11 @@ export function Model() {
               "Starting from the protein sequence, we first performed conformational simulations of individual protein chains, followed by coarse-grained simulations. We then constructed hydrated multichain networks, used molecular dynamics (MD) to observe their structural evolution, and calculated the strain response of fixed configurations."
             }
           </p>
-          <figure className="my-4 text-center">
-            <img
-              src="https://static.igem.wiki/teams/6102/wiki/images/model/selp/1.avif"
-              alt="Modeling figure"
-              className="img-fluid rounded"
-              loading="lazy"
-            />
-          </figure>
+          <ModelFigure
+            src="https://static.igem.wiki/teams/6102/wiki/images/model/selp/1.avif"
+            alt="Workflow for SELP hydrogel modeling"
+            width={840}
+          />
           <p>
             <em>
               {"Figure 1 | Schematic overview of the complete workflow. "}
@@ -152,14 +210,11 @@ export function Model() {
               "Inspection of the connectivity revealed an issue requiring improvement: local chain clusters could become connected, and the network could exhibit periodic wrapping, while some chains remained outside the overall crosslinked network. We therefore prioritized connections between different chain clusters in subsequent steps. When suitable candidate sites were unavailable, the clusters were guided closer together and the connectivity checks were repeated."
             }
           </p>
-          <figure className="my-4 text-center">
-            <img
-              src="https://static.igem.wiki/teams/6102/wiki/images/model/selp/2.avif"
-              alt="Modeling figure"
-              className="img-fluid rounded"
-              loading="lazy"
-            />
-          </figure>
+          <ModelFigure
+            src="https://static.igem.wiki/teams/6102/wiki/images/model/selp/2.avif"
+            alt="Initial configurations of the two SELP systems"
+            width={840}
+          />
           <p>
             <em>{"Figure 2 | Initial states of the two systems."}</em>
           </p>
@@ -178,14 +233,11 @@ export function Model() {
               ", progressively extending the simulations from short relaxation runs to 4 ns each. Sampling statistics were collected from the trajectories between 2 and 4 ns, with the simulations performed in 500 ps segments."
             }
           </p>
-          <figure className="my-4 text-center">
-            <img
-              src="https://static.igem.wiki/teams/6102/wiki/images/model/selp/3.avif"
-              alt="Modeling figure"
-              className="img-fluid rounded"
-              loading="lazy"
-            />
-          </figure>
+          <ModelFigure
+            src="https://static.igem.wiki/teams/6102/wiki/images/model/selp/3.avif"
+            alt="Final configurations of the SELP sampling runs"
+            width={840}
+          />
           <p>
             <em>
               {
@@ -198,14 +250,11 @@ export function Model() {
               "We also checked the temperature, concentration, crosslink distances, and checkpoint-based continuation. Mean temperatures over the final 250 ps of each stage ranged from 310.03 to 310.31 K, and mean concentrations ranged from 100.017 to 100.066 mg/mL. Tyrosine crosslink distances recorded across all logs ranged from 0.295 to 0.470 nm."
             }
           </p>
-          <figure className="my-4 text-center">
-            <img
-              src="https://static.igem.wiki/teams/6102/wiki/images/model/selp/4.avif"
-              alt="Modeling figure"
-              className="img-fluid rounded"
-              loading="lazy"
-            />
-          </figure>
+          <ModelFigure
+            src="https://static.igem.wiki/teams/6102/wiki/images/model/selp/4.avif"
+            alt="Temperature, concentration and crosslink statistics"
+            width={840}
+          />
           <p>
             <em>
               {
@@ -330,14 +379,11 @@ export function Model() {
           <MathFormula display>
             {"a=1.895,\\qquad b=19.793\\ \\mathrm{kPa}"}
           </MathFormula>
-          <figure className="my-4 text-center">
-            <img
-              src="https://static.igem.wiki/teams/6102/wiki/images/model/selp/5.avif"
-              alt="Modeling figure"
-              className="img-fluid rounded"
-              loading="lazy"
-            />
-          </figure>
+          <ModelFigure
+            src="https://static.igem.wiki/teams/6102/wiki/images/model/selp/5.avif"
+            alt="Calculated compressive moduli"
+            width={680}
+          />
           <p>
             <em>
               {
@@ -386,27 +432,21 @@ export function Model() {
             }
             <strong>{" The wet-lab results are presented below:"}</strong>
           </p>
-          <figure className="my-4 text-center">
-            <img
-              src="https://static.igem.wiki/teams/6102/wiki/images/model/selp/6.avif"
-              alt="Modeling figure"
-              className="img-fluid rounded"
-              loading="lazy"
-            />
-          </figure>
+          <ModelFigure
+            src="https://static.igem.wiki/teams/6102/wiki/images/model/selp/6.avif"
+            alt="Experimental stress–strain curves"
+            width={680}
+          />
           <p>
             <em>
               {"Figure 6 | Experimentally measured stress–strain curves. "}
             </em>
           </p>
-          <figure className="my-4 text-center">
-            <img
-              src="https://static.igem.wiki/teams/6102/wiki/images/model/selp/7.avif"
-              alt="Modeling figure"
-              className="img-fluid rounded"
-              loading="lazy"
-            />
-          </figure>
+          <ModelFigure
+            src="https://static.igem.wiki/teams/6102/wiki/images/model/selp/7.avif"
+            alt="Experimental Young’s moduli"
+            width={680}
+          />
           <p>
             <em>
               {"Figure 7 | Experimentally measured compressive moduli.  "}
@@ -528,14 +568,12 @@ export function Model() {
               " The purpose of the modeling was to identify candidates worth experimental validation, rather than to infer turnover directly from structural scores alone."
             }
           </p>
-          <figure className="my-4 text-center">
-            <img
-              src="https://static.igem.wiki/teams/6102/wiki/images/model/snoopligase/1.avif"
-              alt="Modeling figure"
-              className="img-fluid rounded"
-              loading="lazy"
-            />
-          </figure>
+          <ModelFigure
+            src="https://static.igem.wiki/teams/6102/wiki/images/model/snoopligase/1.avif"
+            alt="Ligase template structure and catalytic residues"
+            width={334}
+            bounds={[731, 280, 1926, 1569]}
+          />
           <p>
             <em>
               {
@@ -559,14 +597,12 @@ export function Model() {
               " Using coordinate-constrained FastRelax in PyRosetta, we generated 20 parental models and selected several representative conformations. These models have identical sequences but represent different optimized conformations, reducing the dependence of subsequent screening on a single starting structure.[1, 3]"
             }
           </p>
-          <figure className="my-4 text-center">
-            <img
-              src="https://static.igem.wiki/teams/6102/wiki/images/model/snoopligase/2.avif"
-              alt="Modeling figure"
-              className="img-fluid rounded"
-              loading="lazy"
-            />
-          </figure>
+          <ModelFigure
+            src="https://static.igem.wiki/teams/6102/wiki/images/model/snoopligase/2.avif"
+            alt="Representative parental ligase structure"
+            width={235}
+            bounds={[1097, 287, 1945, 1585]}
+          />
           <p>
             <em>
               {"Figure 2 | Representative conformation of the parental model"}
@@ -588,14 +624,12 @@ export function Model() {
               "By jointly analyzing backbone dihedral angles, secondary structure, solvent exposure, and distance from key functional regions, we selected five candidates: A771P, N775P, E785P, S795P, and D796P. We then constructed mutants and matched controls for the representative conformations and performed repeated calculations using the same ref2015 scoring function, side-chain optimization scope, and FastRelax workflow.[5, 6]"
             }
           </p>
-          <figure className="my-4 text-center">
-            <img
-              src="https://static.igem.wiki/teams/6102/wiki/images/model/snoopligase/3.avif"
-              alt="Modeling figure"
-              className="img-fluid rounded"
-              loading="lazy"
-            />
-          </figure>
+          <ModelFigure
+            src="https://static.igem.wiki/teams/6102/wiki/images/model/snoopligase/3.avif"
+            alt="Five candidate stabilizing substitution sites"
+            width={339}
+            bounds={[884, 312, 2073, 1573]}
+          />
           <p>
             <em>
               {
@@ -623,14 +657,12 @@ export function Model() {
               ". Together with inspection of representative structures, these results led us to define the original structure carrying A771P and E785P as Construct1."
             }
           </p>
-          <figure className="my-4 text-center">
-            <img
-              src="https://static.igem.wiki/teams/6102/wiki/images/model/snoopligase/4.avif"
-              alt="Modeling figure"
-              className="img-fluid rounded"
-              loading="lazy"
-            />
-          </figure>
+          <ModelFigure
+            src="https://static.igem.wiki/teams/6102/wiki/images/model/snoopligase/4.avif"
+            alt="Double mutant superimposed on its control"
+            width={325}
+            bounds={[852, 352, 1905, 1518]}
+          />
           <p>
             <em>
               {
@@ -656,14 +688,12 @@ export function Model() {
               "The evaluation included retention of the isopeptide linkage, changes in key distances around E803, overall conformational displacement, and an interaction proxy between the ligase core and the Tag/tail regions. However, the core–tail interactions of Construct1 were slightly more favorable in eight calculations, suggesting that the stabilization design may also have an enhancing effect."
             }
           </p>
-          <figure className="my-4 text-center">
-            <img
-              src="https://static.igem.wiki/teams/6102/wiki/images/model/snoopligase/5.avif"
-              alt="Modeling figure"
-              className="img-fluid rounded"
-              loading="lazy"
-            />
-          </figure>
+          <ModelFigure
+            src="https://static.igem.wiki/teams/6102/wiki/images/model/snoopligase/5.avif"
+            alt="Construct1 product-like structure"
+            width={396}
+            bounds={[620, 261, 2033, 1546]}
+          />
           <p>
             <em>
               {
@@ -677,14 +707,12 @@ export function Model() {
               "We performed a per-residue analysis of the 104 ligase core residues in 20 single-chain product models. Based on interface distances, contact extent, and structural protection criteria, we selected six sites—K792, N793, S795, E827, V828, and V831—and designed 12 substitutions comprising alanine-scanning mutations or more conservative replacements."
             }
           </p>
-          <figure className="my-4 text-center">
-            <img
-              src="https://static.igem.wiki/teams/6102/wiki/images/model/snoopligase/6.avif"
-              alt="Modeling figure"
-              className="img-fluid rounded"
-              loading="lazy"
-            />
-          </figure>
+          <ModelFigure
+            src="https://static.igem.wiki/teams/6102/wiki/images/model/snoopligase/6.avif"
+            alt="Six candidate product-interface sites"
+            width={386}
+            bounds={[851, 339, 2039, 1448]}
+          />
           <p>
             <em>{"Figure 6 | The six sites selected through screening"}</em>
           </p>
@@ -711,23 +739,19 @@ export function Model() {
               " Its median unbound-state score difference was −0.138 REU, and its median product-interface interaction difference was +1.386 REU."
             }
           </p>
-          <figure className="my-4 text-center">
-            <img
-              src="https://static.igem.wiki/teams/6102/wiki/images/model/snoopligase/7.avif"
-              alt="Modeling figure"
-              className="img-fluid rounded"
-              loading="lazy"
-            />
-          </figure>
+          <ModelFigure
+            src="https://static.igem.wiki/teams/6102/wiki/images/model/snoopligase/7.avif"
+            alt="E827 control and local interface detail"
+            width={720}
+            bounds={[72, 39, 2913, 1713]}
+          />
           <p></p>
-          <figure className="my-4 text-center">
-            <img
-              src="https://static.igem.wiki/teams/6102/wiki/images/model/snoopligase/8.avif"
-              alt="Modeling figure"
-              className="img-fluid rounded"
-              loading="lazy"
-            />
-          </figure>
+          <ModelFigure
+            src="https://static.igem.wiki/teams/6102/wiki/images/model/snoopligase/8.avif"
+            alt="Q827 mutant and local interface detail"
+            width={720}
+            bounds={[72, 39, 2913, 1713]}
+          />
           <p>
             <em>
               {
@@ -751,14 +775,12 @@ export function Model() {
               " We have now completed the modeling work, and wet-lab validation is proceeding in parallel."
             }
           </p>
-          <figure className="my-4 text-center">
-            <img
-              src="https://static.igem.wiki/teams/6102/wiki/images/model/snoopligase/9.avif"
-              alt="Modeling figure"
-              className="img-fluid rounded"
-              loading="lazy"
-            />
-          </figure>
+          <ModelFigure
+            src="https://static.igem.wiki/teams/6102/wiki/images/model/snoopligase/9.avif"
+            alt="SnoopLigase2-ZJU mutation overview"
+            width={444}
+            bounds={[552, 344, 2025, 1537]}
+          />
           <p>
             <em>{"Figure 8 | The overview of SnoopLigase2-ZJU."}</em>
             {" **"}
@@ -2135,59 +2157,41 @@ export function Model() {
               "We completed the magnetic field simulation using COMSOL and MATLAB."
             }
           </p>
-          <figure className="my-4 text-center">
-            <img
-              src="https://static.igem.wiki/teams/6102/wiki/images/model/model/b-field.avif"
-              alt="Modeling figure"
-              className="img-fluid rounded"
-              loading="lazy"
-            />
-          </figure>
-          <figure className="my-4 text-center">
-            <img
-              src="https://static.igem.wiki/teams/6102/wiki/images/model/model/b-xz-y-0-000mm.avif"
-              alt="Modeling figure"
-              className="img-fluid rounded"
-              loading="lazy"
-            />
-          </figure>
-          <figure className="my-4 text-center">
-            <img
-              src="https://static.igem.wiki/teams/6102/wiki/images/model/model/b-yz-x-0-000mm.avif"
-              alt="Modeling figure"
-              className="img-fluid rounded"
-              loading="lazy"
-            />
-          </figure>
+          <ModelFigure
+            src="https://static.igem.wiki/teams/6102/wiki/images/model/model/b-field.avif"
+            alt="Magnetic field simulation"
+            width={680}
+          />
+          <ModelFigure
+            src="https://static.igem.wiki/teams/6102/wiki/images/model/model/b-xz-y-0-000mm.avif"
+            alt="Magnetic field simulation"
+            width={680}
+          />
+          <ModelFigure
+            src="https://static.igem.wiki/teams/6102/wiki/images/model/model/b-yz-x-0-000mm.avif"
+            alt="Magnetic field simulation"
+            width={680}
+          />
           <p>
             {
               "After this, we imported the magnetic field results and compressive modulus data into the MATLAB code we wrote to complete the computational simulation of the hydrogel in an anisotropic magnetic field."
             }
           </p>
-          <figure className="my-4 text-center">
-            <img
-              src="https://static.igem.wiki/teams/6102/wiki/images/model/model/fiber-axial-strain-epsf.avif"
-              alt="Modeling figure"
-              className="img-fluid rounded"
-              loading="lazy"
-            />
-          </figure>
-          <figure className="my-4 text-center">
-            <img
-              src="https://static.igem.wiki/teams/6102/wiki/images/model/model/magnetic-field-h-x.avif"
-              alt="Modeling figure"
-              className="img-fluid rounded"
-              loading="lazy"
-            />
-          </figure>
-          <figure className="my-4 text-center">
-            <img
-              src="https://static.igem.wiki/teams/6102/wiki/images/model/model/e-z-local-young-modulus.avif"
-              alt="Modeling figure"
-              className="img-fluid rounded"
-              loading="lazy"
-            />
-          </figure>
+          <ModelFigure
+            src="https://static.igem.wiki/teams/6102/wiki/images/model/model/fiber-axial-strain-epsf.avif"
+            alt="Magnetic field simulation"
+            width={680}
+          />
+          <ModelFigure
+            src="https://static.igem.wiki/teams/6102/wiki/images/model/model/magnetic-field-h-x.avif"
+            alt="Magnetic field simulation"
+            width={680}
+          />
+          <ModelFigure
+            src="https://static.igem.wiki/teams/6102/wiki/images/model/model/e-z-local-young-modulus.avif"
+            alt="Magnetic field simulation"
+            width={680}
+          />
           <h3 className="mt-5 mb-3">{"Code"}</h3>
           <h4 className="mt-5 mb-3">{"References"}</h4>
           <p>
