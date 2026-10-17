@@ -238,7 +238,7 @@ export function SelpPipeline() {
           </article>
           <LoopingPipelineGif
             className="selp-pipeline__art selp-pipeline__art--magnetic-network"
-            src={`${STATIC_GIF}/magnetic-nanoparticle-chain-assembly.gif`}
+            src={`${STATIC_GIF}/magnetic-nanoparticle-chain-assembly.webp`}
             alt="Magnetically aligned SELP network"
             duration={4800}
           />
@@ -277,7 +277,7 @@ export function SelpPipeline() {
           </article>
           <LoopingPipelineGif
             className="selp-pipeline__art selp-pipeline__art--gag-chain"
-            src={`${STATIC_GIF}/selp-chain-original-pink-zoom.gif`}
+            src={`${STATIC_GIF}/selp-chain-original-pink-zoom.webp`}
             alt="GAG-binding SELP peptide chain"
             duration={5600}
           />
@@ -327,7 +327,7 @@ export function SelpPipeline() {
           />
           <LoopingPipelineGif
             className="selp-pipeline__art selp-pipeline__art--liposome"
-            src={`${STATIC_GIF}/selp-liposome-zoom-blue-elements.gif`}
+            src={`${STATIC_GIF}/selp-liposome-zoom-blue-elements.webp`}
             alt="Mitochondria-loaded liposome"
             duration={4640}
           />
