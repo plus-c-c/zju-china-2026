@@ -4,11 +4,11 @@ import { DbtlStepper } from "./engineering/DbtlStepper";
 import { buildSteps, STEP_DVH } from "./engineering/steps";
 import { EngineeringReferences } from "./engineering/EngineeringReferences";
 import { gagRetentionGroup } from "./engineering/groups/gag-retention";
+import { hardwareGroup } from "./engineering/groups/hardware";
 import { mitochondrialTherapyGroup } from "./engineering/groups/mitochondrial-therapy";
-import { nestSoftwareGroup } from "./engineering/groups/nest-software";
 import { proteinHydrogelModelingGroup } from "./engineering/groups/protein-hydrogel-modeling";
 import { selpHydrogelsGroup } from "./engineering/groups/selp-hydrogels-and-ligation";
-import { selpMdPlatformGroup } from "./engineering/groups/selp-md-platform";
+import { softwareGroup } from "./engineering/groups/software";
 import { tvnMagneticBindingGroup } from "./engineering/groups/tvn-magnetic-binding";
 import "./engineering.css";
 
@@ -19,7 +19,9 @@ import "./engineering.css";
  *   - four sections following the 2025 ZJU-China engineering page: Project
  *     Design / Wet Lab / Dry Lab / Human Practices;
  *   - Wet Lab is split into four groups following the Notebook page, with
- *     SELP hydrogels and the ligation system merged into one group;
+ *     SELP hydrogels and the ligation system merged into one group; Dry Lab
+ *     holds Protein Hydrogel Modeling, Hardware, and Software (the SELP MD
+ *     platform and NEST Software as its two sub-modules);
  *   - one shared one-screen layout for every view: the nav rows, the
  *     level-3 tab row, the DBTL ring and the text panel form a cluster that
  *     pins to the middle of the viewport while the page scroll drives the
@@ -54,11 +56,7 @@ const SECTIONS: Section[] = [
   {
     key: "dry-lab",
     label: "Dry Lab",
-    groups: [
-      proteinHydrogelModelingGroup,
-      selpMdPlatformGroup,
-      nestSoftwareGroup,
-    ],
+    groups: [proteinHydrogelModelingGroup, hardwareGroup, softwareGroup],
   },
   { key: "human-practices", label: "Human Practices", groups: [] },
 ];

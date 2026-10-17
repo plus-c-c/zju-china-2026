@@ -1,3 +1,4 @@
+import { DbtlFigure } from "./Figure";
 import type { DbtlModule } from "./dbtl";
 
 export const anisotropyModule: DbtlModule = {
@@ -93,6 +94,10 @@ export const anisotropyModule: DbtlModule = {
               placing electrodes in the material, providing a more
               straightforward integration with injection and illumination.
             </p>
+            <DbtlFigure
+              src="engineering/02/01.avif"
+              caption="Comparison of the electric-field and magnetic-field alignment routes. Both strategies were assessed within the same injection–alignment–illumination workflow; the magnetic-field route acts on responsive components within the precursor and does not require electrodes in the material."
+            />
           </>
         ),
         Learn: (
@@ -146,6 +151,10 @@ export const anisotropyModule: DbtlModule = {
               coordinated control over particle&ndash;fiber interactions and
               fiber integration into the SELP scaffold.
             </p>
+            <DbtlFigure
+              src="engineering/02/02.avif"
+              caption="The magnetically responsive composite-fiber approach. Fe₃O₄-loaded fibers were designed as directional carriers that also participate in network formation through Ru/SPS-mediated photocrosslinking."
+            />
           </>
         ),
         Learn: (
@@ -264,6 +273,10 @@ export const anisotropyModule: DbtlModule = {
               that integrates particle binding and SELP attachment and can be
               manufactured and assessed separately.
             </p>
+            <DbtlFigure
+              src="engineering/02/03.avif"
+              caption="Screening of particle–protein coupling strategies, from covalent modification of the nanoparticles to a genetically encoded Fe₃O₄-binding peptide sequence."
+            />
           </>
         ),
         Learn: (
@@ -317,6 +330,10 @@ export const anisotropyModule: DbtlModule = {
               matching each design element with a corresponding verification
               method.
             </p>
+            <DbtlFigure
+              src="engineering/02/04.avif"
+              caption="Design of the TVN–DogTag magnetic module. The Fe₃O₄-binding heptapeptide TVN is fused to DogTag, which is covalently ligated to the SnoopTag2-bearing SELP scaffold by SnoopLigase2."
+            />
           </>
         ),
         Test: (
@@ -382,6 +399,10 @@ export const anisotropyModule: DbtlModule = {
               Nanoparticle quantity and mixing procedures also affected sample
               appearance.
             </p>
+            <DbtlFigure
+              src="engineering/02/05.avif"
+              caption="Peptide-based detection of TVN binding to Fe₃O₄ nanoparticles and optimization of the fluorescence readout conditions."
+            />
           </>
         ),
         Learn: (
@@ -423,6 +444,10 @@ export const anisotropyModule: DbtlModule = {
               quantification. Ultrafiltration-based concentration was included
               when required to prepare samples for ligation assays.
             </p>
+            <DbtlFigure
+              src={["engineering/02/06.avif", "engineering/02/07.avif"]}
+              caption="Expression and purification of the TVN–DogTag module. SDS–PAGE analysis of the expression screen and of the purified protein."
+            />
           </>
         ),
         Test: (
@@ -489,6 +514,10 @@ export const anisotropyModule: DbtlModule = {
               same band pattern. These results supported the formation of the
               proposed ligation products.
             </p>
+            <DbtlFigure
+              src="engineering/02/08.avif"
+              caption="Ligation testing with a GFP model substrate. Higher-molecular-weight products appear in the SnoopLigase-containing reactions, supporting DogTag-mediated ligation."
+            />
           </>
         ),
         Learn: (
@@ -544,6 +573,10 @@ export const anisotropyModule: DbtlModule = {
               provided a basis for subsequent integration of the module with
               SELP.
             </p>
+            <DbtlFigure
+              src={["engineering/02/09.avif", "engineering/02/10.avif"]}
+              caption="Fluorescence detection of particle-associated samples. Labeling, binding, and washing conditions were compared to separate sample-preparation performance from imaging performance."
+            />
           </>
         ),
         Learn: (
