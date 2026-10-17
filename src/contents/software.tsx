@@ -689,12 +689,14 @@ export function Software() {
             moves automatically to Operating Instructions, and the order details
             are handled centrally by the project team (Figure 4).
           </p>
+          {/* Figure 4 为竖版手机截图（500×1000）：宽度取 25%，
+              使渲染高度与横版 Figure 5（software/005，1752×876，2:1）一致 */}
           <figure className="figure d-block my-4 text-center">
             <img
               src="https://static.igem.wiki/teams/6102/wiki/images/software/04.avif"
               alt="Ordering screen."
               className="figure-img img-fluid rounded"
-              style={{ width: "100%" }}
+              style={{ width: "25%" }}
               loading="lazy"
               decoding="async"
             />

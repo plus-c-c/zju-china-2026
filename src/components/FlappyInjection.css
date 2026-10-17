@@ -1,0 +1,207 @@
+.flappy {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #c5d5ed;
+  border-radius: 22px;
+  background: #ebf1fa;
+  box-shadow: 5px 5px 0 #c3d9f1;
+}
+
+.flappy canvas {
+  display: block;
+  width: 100%;
+  aspect-ratio: 960 / 520;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.flappy__overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 20px;
+  text-align: center;
+  pointer-events: none;
+}
+
+.flappy__overlay--soft {
+  background: rgb(235 241 250 / 55%);
+}
+
+.flappy__overlay--win {
+  background: rgb(70 107 207 / 84%);
+}
+
+.flappy__overlay-title {
+  margin: 0;
+  color: #365dc9;
+  font-size: clamp(28px, 5vw, 44px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.flappy__overlay--win .flappy__overlay-title {
+  color: #fff;
+}
+
+.flappy__overlay-text {
+  max-width: 480px;
+  margin: 0;
+  color: #405b87;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.flappy__overlay--win .flappy__overlay-text {
+  color: #e8f0ff;
+}
+
+/* 右下角：横置注射图示（针管朝右，注入受损软骨） */
+.inject {
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  display: flex;
+  align-items: flex-start;
+  padding: 12px 14px 10px;
+  border: 1px solid #c5d5ed;
+  border-radius: 14px;
+  background: rgb(255 255 255 / 94%);
+  box-shadow: 3px 3px 0 rgb(195 217 241 / 80%);
+  pointer-events: none;
+}
+
+.inject__syringe {
+  position: relative;
+  width: 78px;
+  height: 52px;
+  margin-top: 33px;
+  margin-right: -30px;
+}
+
+.inject__syringe-inner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 52px;
+  height: 78px;
+  transform: translate(-50%, -50%) rotate(-90deg);
+}
+
+.inject__syringe-inner img {
+  display: block;
+  width: 100%;
+}
+
+/* 进度色块：5 段矩形，每段填充针管图"金属领圈"位置的像素（多色金属） */
+.inject__blocks {
+  position: absolute;
+  top: 38%;
+  left: 42%;
+  width: 16%;
+  height: 18%;
+  display: flex;
+  flex-direction: column;
+}
+
+.inject__block {
+  flex: 1 1 0;
+  background-image: url("https://static.igem.wiki/teams/6102/wiki/images/home/home-05-solution-syringe.avif");
+  /* 与针管图 1:1 同尺寸，窗口对准金属领圈（复制相应位置的图片） */
+  background-size: 52px 78px;
+  background-position: -22px -15px;
+  opacity: 0;
+}
+
+.inject__block--on {
+  opacity: 1;
+}
+
+/* 骨头横置（关节面朝左，正对针头） */
+.inject__bone {
+  position: relative;
+  width: 90px;
+  height: 120px;
+}
+
+.inject__bone-inner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 120px;
+  height: 90px;
+  overflow: hidden;
+  transform: translate(-50%, -50%) rotate(-90deg);
+}
+
+.inject__bone-inner img {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+.inject__damage {
+  position: absolute;
+  top: 38%;
+  left: 35%;
+  width: 32%;
+  height: 14%;
+  background: #c9705a;
+  clip-path: polygon(
+    0% 22%,
+    16% 0%,
+    38% 12%,
+    60% 2%,
+    84% 14%,
+    100% 34%,
+    88% 56%,
+    96% 80%,
+    72% 96%,
+    46% 86%,
+    24% 100%,
+    8% 74%,
+    12% 46%
+  );
+  transition: opacity 260ms ease;
+}
+
+@media (max-width: 600px) {
+  .inject {
+    right: 8px;
+    bottom: 8px;
+    padding: 9px 10px 8px;
+  }
+
+  .inject__syringe {
+    width: 62px;
+    height: 42px;
+    margin-top: 26px;
+    margin-right: -24px;
+  }
+
+  .inject__syringe-inner {
+    width: 42px;
+    height: 62px;
+  }
+
+  .inject__bone {
+    width: 72px;
+    height: 96px;
+  }
+
+  .inject__bone-inner {
+    width: 96px;
+    height: 72px;
+  }
+
+  .inject__block {
+    background-size: 42px 62px;
+    background-position: -18px -12px;
+  }
+}
