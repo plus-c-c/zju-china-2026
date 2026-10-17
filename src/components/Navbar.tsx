@@ -1,18 +1,23 @@
-import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import BootstrapNavbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
 import { Link, useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Pages from "../pages.ts";
+import { navigationIcon, pageDetails } from "./navigationIcons";
 import "./Navbar.css";
+
+const desktopNavigation = () => window.matchMedia("(min-width: 992px)").matches;
 
 export function Navbar({ introEntrance = false }: { introEntrance?: boolean }) {
   const location = useLocation();
+  const navRef = useRef<HTMLElement>(null);
   const [expanded, setExpanded] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [navbarVisible, setNavbarVisible] = useState(true);
   const [introPlaying, setIntroPlaying] = useState(introEntrance);
+
+  const closeMenus = () => {
+    setOpenDropdown(null);
+    setExpanded(false);
+  };
 
   useEffect(() => {
     setOpenDropdown(null);
@@ -43,85 +48,81 @@ export function Navbar({ introEntrance = false }: { introEntrance?: boolean }) {
     };
   }, [location.pathname]);
 
-  const handleToggle = (nextExpanded: boolean) => {
-    setExpanded(nextExpanded);
-    if (!nextExpanded) setOpenDropdown(null);
-  };
+  useEffect(() => {
+    const handleOutsidePointer = (event: PointerEvent) => {
+      if (!navRef.current?.contains(event.target as Node)) {
+        setOpenDropdown(null);
+        setExpanded(false);
+      }
+    };
+    const breakpoint = window.matchMedia("(min-width: 992px)");
+    const handleResize = () => {
+      setOpenDropdown(null);
+      setExpanded(false);
+    };
+
+    document.addEventListener("pointerdown", handleOutsidePointer);
+    breakpoint.addEventListener("change", handleResize);
+    return () => {
+      document.removeEventListener("pointerdown", handleOutsidePointer);
+      breakpoint.removeEventListener("change", handleResize);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!expanded) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [expanded]);
 
   const navbarHidden = !navbarVisible;
-
-  const pages = Pages.filter(
-    (item) => !("path" in item && item.path === "/"),
-  ).map((item, pageIndex) => {
-    if ("folder" in item && item.folder) {
-      const dropdownId = `page-${pageIndex}`;
-      const folderItems = item.folder.map((subpage, subpageIndex) => {
-        if (subpage.path) {
-          return (
-            <NavDropdown.Item
-              key={`subpage-${pageIndex}-${subpageIndex}`}
-              as={Link}
-              to={subpage.path}
-              active={location.pathname === subpage.path}
-              onClick={() => {
-                setOpenDropdown(null);
-                setExpanded(false);
-              }}
-            >
-              {subpage.name}
-            </NavDropdown.Item>
-          );
-        }
-      });
-      return (
-        <NavDropdown
-          key={`page-${pageIndex}`}
-          title={item.name}
-          active={item.folder.some(
-            (subpage) => subpage.path === location.pathname,
-          )}
-          id={dropdownId}
-          show={openDropdown === dropdownId}
-          onToggle={(nextShow) => setOpenDropdown(nextShow ? dropdownId : null)}
-        >
-          {folderItems}
-        </NavDropdown>
-      );
-    } else if ("path" in item && item.path) {
-      return (
-        <Nav.Link
-          key={`page-${pageIndex}`}
-          as={Link}
-          to={item.path}
-          active={location.pathname === item.path}
-          onClick={() => setExpanded(false)}
-        >
-          {item.name}
-        </Nav.Link>
-      );
-    }
-  });
+  const pages = Pages.filter((item) => !("path" in item && item.path === "/"));
 
   return (
-    <BootstrapNavbar
-      expand="lg"
-      expanded={expanded}
-      onToggle={handleToggle}
+    <nav
+      ref={navRef}
       aria-label="Main navigation"
       aria-hidden={navbarHidden}
       inert={navbarHidden}
+      onPointerLeave={(event) => {
+        if (event.pointerType === "mouse" && desktopNavigation()) {
+          setOpenDropdown(null);
+        }
+      }}
+      onBlur={(event) => {
+        // Switching panels can hide the focused link and send focus to the body.
+        // Only a real focus destination outside this navigation should close it.
+        if (
+          event.relatedTarget &&
+          !event.currentTarget.contains(event.relatedTarget)
+        ) {
+          closeMenus();
+        }
+      }}
+      onKeyDown={(event) => {
+        if (event.key !== "Escape") return;
+        event.preventDefault();
+        if (openDropdown) {
+          document.getElementById(`${openDropdown}-trigger`)?.focus();
+          setOpenDropdown(null);
+        } else if (expanded) {
+          document.getElementById("nest-navigation-toggle")?.focus();
+          setExpanded(false);
+        }
+      }}
       onAnimationEnd={(event) => {
         if (event.target === event.currentTarget) setIntroPlaying(false);
       }}
       className={`nest-navbar${introPlaying ? " nest-navbar-intro-enter" : ""}${navbarHidden ? " nest-navbar-hidden" : ""}`}
-      fixed="top"
     >
-      <Container fluid>
-        <BootstrapNavbar.Brand
-          as={Link}
+      <div className="nest-navbar-bar">
+        <Link
           to="/"
           className="brand-link"
-          onClick={() => setExpanded(false)}
+          onClick={closeMenus}
           aria-label="ZJU-China home"
         >
           <img
@@ -131,25 +132,212 @@ export function Navbar({ introEntrance = false }: { introEntrance?: boolean }) {
             width="98"
             height="41"
           />
-        </BootstrapNavbar.Brand>
-        <BootstrapNavbar.Toggle aria-controls="basic-navbar-nav" />
-        <BootstrapNavbar.Collapse id="basic-navbar-nav">
-          <Nav className="navbar-nav">
-            {pages}
-            <span
+        </Link>
+
+        <button
+          id="nest-navigation-toggle"
+          className="nest-navigation-toggle"
+          type="button"
+          aria-label={expanded ? "Close navigation" : "Open navigation"}
+          aria-controls="nest-navigation"
+          aria-expanded={expanded}
+          onClick={() => {
+            setExpanded(!expanded);
+            setOpenDropdown(null);
+          }}
+        >
+          <span />
+          <span />
+          <span />
+        </button>
+
+        <div
+          id="nest-navigation"
+          className={`nest-navigation${expanded ? " is-expanded" : ""}`}
+        >
+          <ul className="nest-nav-list">
+            {pages.map((item, index) => {
+              if ("folder" in item && item.folder) {
+                const dropdownId = `nest-menu-${index}`;
+                const isOpen = openDropdown === dropdownId;
+                const isActive = item.folder.some(
+                  (page) => page.path === location.pathname,
+                );
+
+                return (
+                  <li
+                    key={item.name}
+                    className="nest-nav-group"
+                    onPointerEnter={(event) => {
+                      if (
+                        event.pointerType === "mouse" &&
+                        desktopNavigation()
+                      ) {
+                        setOpenDropdown(dropdownId);
+                      }
+                    }}
+                  >
+                    <button
+                      id={`${dropdownId}-trigger`}
+                      type="button"
+                      className={`nest-nav-trigger${isActive ? " is-active" : ""}`}
+                      aria-expanded={isOpen}
+                      aria-controls={dropdownId}
+                      onClick={(event) =>
+                        setOpenDropdown(
+                          desktopNavigation() &&
+                            window.matchMedia("(hover: hover)").matches &&
+                            event.detail > 0
+                            ? dropdownId
+                            : isOpen
+                              ? null
+                              : dropdownId,
+                        )
+                      }
+                      onKeyDown={(event) => {
+                        if (
+                          event.key !== "ArrowDown" &&
+                          event.key !== "ArrowUp"
+                        )
+                          return;
+                        event.preventDefault();
+                        setOpenDropdown(dropdownId);
+                        const focusLast = event.key === "ArrowUp";
+                        requestAnimationFrame(() => {
+                          const links = document
+                            .getElementById(dropdownId)
+                            ?.querySelectorAll<HTMLAnchorElement>("a");
+                          if (links?.length)
+                            links[focusLast ? links.length - 1 : 0].focus();
+                        });
+                      }}
+                    >
+                      <span>{item.name}</span>
+                      <span className="nest-nav-chevron" aria-hidden="true" />
+                    </button>
+
+                    <div
+                      id={dropdownId}
+                      className="nest-mega-panel"
+                      aria-labelledby={`${dropdownId}-trigger`}
+                      hidden={!isOpen}
+                      onKeyDown={(event) => {
+                        if (
+                          !["ArrowDown", "ArrowUp", "Home", "End"].includes(
+                            event.key,
+                          )
+                        )
+                          return;
+                        const links = Array.from(
+                          event.currentTarget.querySelectorAll<HTMLAnchorElement>(
+                            "a",
+                          ),
+                        );
+                        const current = links.indexOf(
+                          document.activeElement as HTMLAnchorElement,
+                        );
+                        if (current === -1) return;
+                        event.preventDefault();
+                        const next =
+                          event.key === "Home"
+                            ? 0
+                            : event.key === "End"
+                              ? links.length - 1
+                              : (current +
+                                  (event.key === "ArrowDown" ? 1 : -1) +
+                                  links.length) %
+                                links.length;
+                        links[next].focus();
+                      }}
+                    >
+                      <ul className="nest-mega-grid">
+                        {item.folder.map((page) => {
+                          if (!page.path) return null;
+                          const details = pageDetails[page.path];
+                          const active = location.pathname === page.path;
+                          return (
+                            <li key={page.path}>
+                              <Link
+                                className={`nest-nav-tile${active ? " is-active" : ""}`}
+                                to={page.path}
+                                aria-current={active ? "page" : undefined}
+                                onClick={closeMenus}
+                              >
+                                <img
+                                  className="nest-tile-icon"
+                                  src={
+                                    details
+                                      ? navigationIcon(details.icon)
+                                      : undefined
+                                  }
+                                  alt=""
+                                  width="72"
+                                  height="72"
+                                />
+                                <span className="nest-tile-copy">
+                                  <span className="nest-tile-title">
+                                    {page.name}
+                                  </span>
+                                  {details && (
+                                    <span className="nest-tile-description">
+                                      {details.description}
+                                    </span>
+                                  )}
+                                </span>
+                                <span
+                                  className="nest-tile-arrow"
+                                  aria-hidden="true"
+                                >
+                                  ↗
+                                </span>
+                              </Link>
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    </div>
+                  </li>
+                );
+              }
+
+              if ("path" in item && item.path) {
+                return (
+                  <li
+                    key={item.path}
+                    onPointerEnter={(event) => {
+                      if (event.pointerType === "mouse" && desktopNavigation())
+                        setOpenDropdown(null);
+                    }}
+                  >
+                    <Link
+                      className={`nest-nav-trigger${location.pathname === item.path ? " is-active" : ""}`}
+                      to={item.path}
+                      aria-current={
+                        location.pathname === item.path ? "page" : undefined
+                      }
+                      onClick={closeMenus}
+                    >
+                      <span>{item.name}</span>
+                    </Link>
+                  </li>
+                );
+              }
+              return null;
+            })}
+            <li
               className="navigation-cart"
               title="Shopping cart — not available yet"
             >
               <img
-                src={`https://static.igem.wiki/teams/6102/wiki/images/navigation/cart.svg`}
+                src="https://static.igem.wiki/teams/6102/wiki/images/navigation/cart.svg"
                 alt="Shopping cart (not available yet)"
                 width="22"
                 height="22"
               />
-            </span>
-          </Nav>
-        </BootstrapNavbar.Collapse>
-      </Container>
-    </BootstrapNavbar>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
   );
 }
