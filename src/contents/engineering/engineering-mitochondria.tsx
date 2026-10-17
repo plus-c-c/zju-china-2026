@@ -154,6 +154,10 @@ export const mitochondriaModule: DbtlModule = {
               design allowed subsequent comparisons to focus on sequence
               differences within this region (Figure 1.2.1).
             </p>
+            <DbtlFigure
+              src="design/02/02.avif"
+              caption="Figure 1.2.1. Design of the responsive construct and the Control construct. Both share the same attachment sites and expression framework; the responsive region RRGPLGLSLGKR is replaced by the scrambled sequence RKGLSLGLPGRR in the Control construct."
+            />
           </>
         ),
         Test: (
@@ -168,10 +172,6 @@ export const mitochondriaModule: DbtlModule = {
               a basis for assessing sequence-dependent differences, although its
               actual cleavage behavior still required experimental evaluation.
             </p>
-            <DbtlFigure
-              src="design/02/02.avif"
-              caption="Figure 1.2.1. Design of the responsive construct and the Control construct. Both share the same attachment sites and expression framework; the responsive region RRGPLGLSLGKR is replaced by the scrambled sequence RKGLSLGLPGRR in the Control construct."
-            />
           </>
         ),
         Learn: (

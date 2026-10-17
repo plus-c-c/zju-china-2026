@@ -235,6 +235,10 @@ export const scaffoldModule: DbtlModule = {
               influential factor, with the 2 M NaCl buffer giving the highest
               purification yield.
             </p>
+            <DbtlFigure
+              src={["result/01/05.avif", "result/01/06.avif"]}
+              caption="Figure 1.2.1. Systematic optimization of the ITC purification conditions. (A) SDS–PAGE analysis of the temperature × salt-concentration gradient screen. (B) SDS–PAGE verification of the complete ITC workflow under the optimized conditions (65 °C in PBS containing 2 M NaCl), together with the resulting lyophilized protein product. H-Sup., supernatant after heating; C-Sup., supernatant after cooling."
+            />
           </>
         ),
         Learn: (
@@ -258,10 +262,6 @@ export const scaffoldModule: DbtlModule = {
               constitutes the &ldquo;standardized production module&rdquo; we
               aimed for.
             </p>
-            <DbtlFigure
-              src={["result/01/05.avif", "result/01/06.avif"]}
-              caption="Figure 1.2.1. Systematic optimization of the ITC purification conditions. (A) SDS–PAGE analysis of the temperature × salt-concentration gradient screen. (B) SDS–PAGE verification of the complete ITC workflow under the optimized conditions (65 °C in PBS containing 2 M NaCl), together with the resulting lyophilized protein product. H-Sup., supernatant after heating; C-Sup., supernatant after cooling."
-            />
           </>
         ),
       },
@@ -394,6 +394,10 @@ export const scaffoldModule: DbtlModule = {
               CCK-8 assay, which confirmed that the material has no obvious
               cytotoxicity).
             </p>
+            <DbtlFigure
+              src="result/01/32.avif"
+              caption="Figure 1.3.1. Establishment of the Ru/SPS photocrosslinking route. Comparison of the crosslinking strategies available for protein hydrogels and the mechanism by which Ru/SPS-mediated photoinitiation generates covalent dityrosine crosslinks between tyrosine residues under visible light; comparison of gelation with the original and the upgraded light source in the inverted-tube test; and the cytocompatibility of the resulting hydrogel evaluated by the CCK-8 assay."
+            />
           </>
         ),
         Learn: (
@@ -441,10 +445,6 @@ export const scaffoldModule: DbtlModule = {
               into our Protocol for reuse in all subsequent hydrogel
               experiments.
             </p>
-            <DbtlFigure
-              src="result/01/32.avif"
-              caption="Figure 1.3.1. Establishment of the Ru/SPS photocrosslinking route. Comparison of the crosslinking strategies available for protein hydrogels and the mechanism by which Ru/SPS-mediated photoinitiation generates covalent dityrosine crosslinks between tyrosine residues under visible light; comparison of gelation with the original and the upgraded light source in the inverted-tube test; and the cytocompatibility of the resulting hydrogel evaluated by the CCK-8 assay."
-            />
           </>
         ),
       },

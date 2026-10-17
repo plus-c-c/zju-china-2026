@@ -136,3 +136,35 @@ body.scrollbar::-webkit-scrollbar-thumb {
 .bd-callout-danger {
   border-left-color: #d9534f;
 }
+
+/* ---------------------------------------------------------------
+   Tables — one unified "three-line" (book-tabs) look for the whole
+   wiki: a top rule, a rule under the header row, and a bottom rule,
+   without vertical borders or header fills. The !important flags
+   neutralise Bootstrap's .table-bordered rules and the per-page
+   table styles (results, etc.). */
+table {
+  border-collapse: collapse;
+  --bs-table-bg: transparent;
+  --bs-table-accent-bg: transparent;
+}
+
+table th,
+table td {
+  border: none !important;
+  background: transparent !important;
+}
+
+table thead {
+  background: transparent !important;
+}
+
+table thead th {
+  border-top: 2px solid #223c81 !important;
+  border-bottom: 1px solid #223c81 !important;
+}
+
+table > tbody:last-of-type > tr:last-child > td,
+table > tbody:last-of-type > tr:last-child > th {
+  border-bottom: 2px solid #223c81 !important;
+}

@@ -11,10 +11,12 @@ interface DbtlFigureProps {
   caption?: ReactNode;
   /** Alt text; defaults to the caption when it is a plain string. */
   alt?: string;
+  /** Optional display width for the image(s), e.g. "50%". */
+  width?: string;
 }
 
 /** Figure inside a DBTL panel: image(s) on top, caption below. */
-export function DbtlFigure({ src, caption, alt }: DbtlFigureProps) {
+export function DbtlFigure({ src, caption, alt, width }: DbtlFigureProps) {
   const sources = Array.isArray(src) ? src : [src];
   const label = alt ?? (typeof caption === "string" ? caption : "Figure");
   return (
@@ -25,6 +27,7 @@ export function DbtlFigure({ src, caption, alt }: DbtlFigureProps) {
           loading="lazy"
           src={`${STATIC_BASE}/${source}`}
           alt={label}
+          style={width ? { width } : undefined}
         />
       ))}
       {caption && <figcaption>{caption}</figcaption>}
