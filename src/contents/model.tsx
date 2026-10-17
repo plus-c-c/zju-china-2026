@@ -1258,7 +1258,7 @@ export function Model() {
               </MathFormula>
               <p>
                 {"The normalization condition determines "}
-                <MathFormula>{"C(\\mathbf{x}"}</MathFormula>
+                <MathFormula>{"C(\\mathbf{x})"}</MathFormula>
                 {":"}
               </p>
               <MathFormula display>
@@ -1299,7 +1299,7 @@ export function Model() {
               </MathFormula>
               <p>
                 {"where "}
-                <MathFormula>{"L(\\alpha_f"}</MathFormula>
+                <MathFormula>{"L(\\alpha_f)"}</MathFormula>
                 {" is the Langevin function:"}
               </p>
               <MathFormula display>
