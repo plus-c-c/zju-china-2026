@@ -11,10 +11,17 @@ import "./model.css";
 /** Scroll distance per protein step, in vh. */
 const STEP_DVH = 40;
 
+/** On-screen width of the main protein, in px — kept identical across all
+ *  figures so switching steps does not resize the subject. */
+const PROTEIN_PX = 170;
+
 interface ProteinStep {
   key: string;
   /** Left column: the structure rendering of this protein. */
   figure: ReactNode;
+  /** Height (px) of the rendered figure for wide steps; the text card's top
+   *  edge starts just below the image. */
+  figureHeight?: number;
   /** Figure caption, under the structure. */
   caption: ReactNode;
   /** Right column: the design text shown for this protein. */
@@ -26,35 +33,47 @@ interface StructureFigureProps {
   alt: string;
   /** Crop rectangle of the wide source sheet (see ModelFigure in model.tsx). */
   bounds: readonly [number, number, number, number];
+  /** Width of the main protein as a fraction of the crop width (measured on
+   *  the asset); the frame is sized so the protein always renders at
+   *  PROTEIN_PX regardless of the crop. */
+  structureFraction: number;
   /** x-position (fraction of the crop width) of the protein's geometric
-   *  centre. When set, the figure is shown at full stage height and the
-   *  zoom inset on its right spills over the text column, so the protein
-   *  itself keeps the same on-screen centre as every other step. */
-  focusX?: number;
+   *  centre; the frame is shifted so that point stays at the stage centre. */
+  focusX: number;
+  /** Wide figures (structure + zoom inset): the zoom panel spills into the
+   *  text area and the text card starts below the image. */
+  wide?: boolean;
 }
 
 /** Structure crop — the source images are wide multi-panel sheets; the
  *  bounds pick the visible region (same arrangement as ModelFigure). */
-function StructureFigure({ src, alt, bounds, focusX }: StructureFigureProps) {
+function StructureFigure({
+  src,
+  alt,
+  bounds,
+  structureFraction,
+  focusX,
+  wide,
+}: StructureFigureProps) {
   const [left, top, right, bottom] = bounds;
   const contentWidth = right - left;
   const contentHeight = bottom - top;
   return (
     <div
-      className={`protein-structure${
-        focusX !== undefined ? " protein-structure--wide" : ""
-      }`}
+      className={`protein-structure${wide ? " protein-structure--wide" : ""}`}
     >
       <div
         className="protein-structure-frame"
         style={
           {
             "--protein-ratio": contentWidth / contentHeight,
-            ...(focusX !== undefined ? { "--protein-focus-x": focusX } : {}),
+            "--protein-frame-w": `${Math.round(PROTEIN_PX / structureFraction)}px`,
+            "--protein-focus-x": focusX,
           } as CSSProperties
         }
       >
         <img
+          key={src}
           src={src}
           alt={alt}
           loading="lazy"
@@ -145,10 +164,23 @@ function ProteinStepper({ steps }: { steps: ProteinStep[] }) {
       }}
     >
       <div className="protein-pin">
-        <div className="protein-cluster">
+        <div
+          className={`protein-cluster${
+            step?.figureHeight ? " protein-cluster--wide" : ""
+          }`}
+          style={
+            step?.figureHeight
+              ? ({
+                  "--protein-figure-h": `${step.figureHeight}px`,
+                } as CSSProperties)
+              : undefined
+          }
+        >
           <figure className="protein-figure">
             {step?.figure}
-            <figcaption className="protein-caption">{step?.caption}</figcaption>
+            <figcaption className="protein-caption" key={step?.key}>
+              {step?.caption}
+            </figcaption>
             <div className="protein-nav">
               <button
                 type="button"
@@ -193,6 +225,8 @@ const SNOOP_STEPS: ProteinStep[] = [
         src="https://static.igem.wiki/teams/6102/wiki/images/model/snoopligase/1.avif"
         alt="Ligase template structure and catalytic residues"
         bounds={[731, 280, 1926, 1569]}
+        structureFraction={0.68}
+        focusX={0.562}
       />
     ),
     caption: (
@@ -245,6 +279,8 @@ const SNOOP_STEPS: ProteinStep[] = [
         src="https://static.igem.wiki/teams/6102/wiki/images/model/snoopligase/2.avif"
         alt="Representative parental ligase structure"
         bounds={[1097, 287, 1945, 1585]}
+        structureFraction={0.874}
+        focusX={0.495}
       />
     ),
     caption: (
@@ -282,6 +318,8 @@ const SNOOP_STEPS: ProteinStep[] = [
         src="https://static.igem.wiki/teams/6102/wiki/images/model/snoopligase/3.avif"
         alt="Five candidate stabilizing substitution sites"
         bounds={[884, 312, 2073, 1573]}
+        structureFraction={0.635}
+        focusX={0.532}
       />
     ),
     caption: (
@@ -328,6 +366,8 @@ const SNOOP_STEPS: ProteinStep[] = [
         src="https://static.igem.wiki/teams/6102/wiki/images/model/snoopligase/4.avif"
         alt="Double mutant superimposed on its control"
         bounds={[852, 352, 1905, 1518]}
+        structureFraction={0.652}
+        focusX={0.608}
       />
     ),
     caption: (
@@ -362,6 +402,8 @@ const SNOOP_STEPS: ProteinStep[] = [
         src="https://static.igem.wiki/teams/6102/wiki/images/model/snoopligase/5.avif"
         alt="Construct1 product-like structure"
         bounds={[620, 261, 2033, 1546]}
+        structureFraction={0.619}
+        focusX={0.586}
       />
     ),
     caption: (
@@ -403,6 +445,8 @@ const SNOOP_STEPS: ProteinStep[] = [
         src="https://static.igem.wiki/teams/6102/wiki/images/model/snoopligase/6.avif"
         alt="Six candidate product-interface sites"
         bounds={[851, 339, 2039, 1448]}
+        structureFraction={0.631}
+        focusX={0.491}
       />
     ),
     caption: (
@@ -438,12 +482,15 @@ const SNOOP_STEPS: ProteinStep[] = [
   },
   {
     key: "e827",
+    figureHeight: 466,
     figure: (
       <StructureFigure
         src="https://static.igem.wiki/teams/6102/wiki/images/model/snoopligase/7.avif"
         alt="E827 control and local interface detail"
         bounds={[72, 39, 2913, 1713]}
-        focusX={0.21}
+        structureFraction={0.215}
+        focusX={0.208}
+        wide
       />
     ),
     caption: (
@@ -470,12 +517,15 @@ const SNOOP_STEPS: ProteinStep[] = [
   },
   {
     key: "q827",
+    figureHeight: 455,
     figure: (
       <StructureFigure
         src="https://static.igem.wiki/teams/6102/wiki/images/model/snoopligase/8.avif"
         alt="Q827 mutant and local interface detail"
         bounds={[72, 39, 2913, 1713]}
-        focusX={0.21}
+        structureFraction={0.22}
+        focusX={0.206}
+        wide
       />
     ),
     caption: (
@@ -507,6 +557,8 @@ const SNOOP_STEPS: ProteinStep[] = [
         src="https://static.igem.wiki/teams/6102/wiki/images/model/snoopligase/9.avif"
         alt="SnoopLigase2-ZJU mutation overview"
         bounds={[552, 344, 2025, 1537]}
+        structureFraction={0.558}
+        focusX={0.623}
       />
     ),
     caption: (

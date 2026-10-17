@@ -49,20 +49,49 @@
   position: relative;
   flex: none;
   overflow: hidden;
-  width: min(100%, calc(var(--protein-stage-h) * var(--protein-ratio, 1)));
+  /* Sized from the measured structure fraction so the main protein always
+     renders at the same width (PROTEIN_PX); the frame slides so the
+     protein's centre stays at the stage centre. */
+  width: var(
+    --protein-frame-w,
+    min(100%, calc(var(--protein-stage-h) * var(--protein-ratio, 1)))
+  );
   aspect-ratio: var(--protein-ratio, 1);
   border: 1px solid #e3e8f4;
   border-radius: 12px;
   background: #fbfcfe;
+  transition:
+    width 0.32s ease,
+    transform 0.32s ease;
+  transform: translateX(calc((0.5 - var(--protein-focus-x, 0.5)) * 100%));
 }
 
-/* Wide figures (structure + zoom inset): rendered at full stage height and
-   shifted left so the protein's geometric centre sits exactly where the
-   other steps put it — the zoom inset then spills over the text column. */
-.protein-structure--wide .protein-structure-frame {
-  width: calc(var(--protein-stage-h) * var(--protein-ratio, 1));
-  max-width: none;
-  transform: translateX(calc((0.5 - var(--protein-focus-x, 0.5)) * 100%));
+/* Wide figures (structure + zoom inset): the stage grows to the frame so
+   the zoom panel can spill into the text area without clipping. */
+.protein-structure--wide {
+  height: auto;
+}
+
+/* On wide steps the text card starts below the protein image. */
+.protein-cluster--wide .protein-figure {
+  align-self: start;
+}
+
+.protein-cluster--wide .protein-text {
+  align-self: start;
+  height: auto;
+  max-height: calc(100dvh - var(--protein-figure-h, 466px) - 170px);
+  margin-top: var(--protein-figure-h, 466px);
+  transition: margin-top 0.32s ease;
+}
+
+/* Smooth swap: a new structure fades in while the frame morphs. */
+.protein-structure-frame img {
+  animation: protein-fade-in 0.32s ease;
+}
+
+.protein-caption {
+  animation: protein-fade-in 0.32s ease;
 }
 
 .protein-structure-frame img {
@@ -153,6 +182,16 @@
   animation: protein-step-in 0.26s ease;
 }
 
+@keyframes protein-fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
 @keyframes protein-step-in {
   from {
     opacity: 0;
@@ -167,6 +206,14 @@
 
 @media (prefers-reduced-motion: reduce) {
   .protein-text-inner {
+    animation: none;
+  }
+
+  .protein-structure-frame,
+  .protein-structure-frame img,
+  .protein-caption,
+  .protein-cluster--wide .protein-text {
+    transition: none;
     animation: none;
   }
 }
@@ -194,8 +241,14 @@
     max-height: none;
   }
 
-  .protein-structure--wide .protein-structure-frame {
-    width: min(100%, calc(var(--protein-stage-h) * var(--protein-ratio, 1)));
+  .protein-structure-frame {
+    width: min(100%, var(--protein-frame-w, 100%));
     transform: none;
+  }
+
+  .protein-cluster--wide .protein-text {
+    height: auto;
+    max-height: none;
+    margin-top: 1rem;
   }
 }
