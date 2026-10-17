@@ -5,6 +5,7 @@ import {
   useRef,
   useState,
 } from "react";
+import { CHINA_ISLANDS_PATH } from "./ChinaIslands";
 import { SOUTH_CHINA_SEA_NINE_DASH_PATH } from "./SouthChinaSeaNineDash";
 import { worldMapData } from "./WorldMapData";
 
@@ -64,6 +65,16 @@ function prepareWorldMapMarkup(markup: string) {
     // 900 × 435, so keep the source geometry aligned through view-box scaling.
     nineDash.setAttribute("transform", "scale(0.625 0.595890411)");
     china.parentElement?.append(nineDash);
+  }
+
+  if (china && !svg.querySelector(".china-islands")) {
+    const chinaIslands = document.createElementNS(SVG_NAMESPACE, "path");
+    chinaIslands.setAttribute("class", "country china-islands");
+    chinaIslands.setAttribute("data-iso", CHINA_ISO);
+    chinaIslands.setAttribute("data-name", chinaRecord?.country ?? "China");
+    chinaIslands.setAttribute("aria-hidden", "true");
+    chinaIslands.setAttribute("d", CHINA_ISLANDS_PATH);
+    china.parentElement?.append(chinaIslands);
   }
 
   return svg.outerHTML;
