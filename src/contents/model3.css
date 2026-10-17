@@ -1,0 +1,370 @@
+/* Model 3 — formula-driven presentation with a fixed slide frame */
+
+/* ===== 卡组 ===== */
+.m3-deck {
+  position: relative;
+  margin-top: 22px;
+  /* 跑道：首屏 + 每步一段滚动行程（与 engineering 的 runway 相同） */
+  height: calc(100dvh + (var(--m3-count) - 1) * 45vh);
+}
+
+/* 目录锚点：每步滚动进度位置处的隐藏标题 */
+.m3-anchor {
+  top: calc(var(--m3-seg) * 45vh);
+}
+
+.m3-deck__stage {
+  position: sticky;
+  top: 84px;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  /* 卡片底部与页面底部保持距离 */
+  max-height: calc(100vh - 84px - 48px);
+}
+
+/* ===== 主方程 ===== */
+.m3-master {
+  flex: 0 0 auto;
+  padding: 12px 16px 10px;
+  border: 1px solid #c5d5ed;
+  border-radius: 16px;
+  background: rgb(255 255 255 / 96%);
+  box-shadow: 3px 3px 0 #c3d9f1;
+  backdrop-filter: blur(2px);
+}
+
+.m3-master__label {
+  margin: 0 0 6px;
+  color: #7d9cc9;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.m3-master__eq {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  column-gap: 2px;
+  font-size: 15px;
+  line-height: 2.1;
+}
+
+.m3-master__prefix {
+  margin-right: 4px;
+}
+
+.m3-term {
+  padding: 1px 5px;
+  border-radius: 8px;
+  opacity: 0.16;
+  transition:
+    opacity 450ms ease,
+    background-color 450ms ease;
+}
+
+.m3-term--on {
+  opacity: 1;
+}
+
+.m3-term--new {
+  background: #dce9ff;
+  animation: m3-term-pulse 1.4s ease;
+}
+
+.m3-term__op {
+  margin-right: 5px;
+  color: #405b87;
+}
+
+@keyframes m3-term-pulse {
+  0% {
+    background: #a9c7f7;
+  }
+
+  100% {
+    background: #dce9ff;
+  }
+}
+
+/* ===== 步进导航 ===== */
+.m3-dots {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.m3-dot {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 1px solid #c5d5ed;
+  border-radius: 50%;
+  background: #fff;
+  color: #365dc9;
+  font: inherit;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.m3-dot--done {
+  background: #dce9ff;
+}
+
+.m3-dot--active {
+  border-color: #466bcf;
+  background: #466bcf;
+  color: #fff;
+}
+
+.m3-dot:focus-visible {
+  outline: 2px solid #365dc9;
+  outline-offset: 2px;
+}
+
+/* ===== 固定文本框（框不动，仅文本滑动） ===== */
+.m3-slide {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-height: 0;
+  margin-top: 14px;
+  padding: 16px 20px 14px;
+  border: 1px solid #c5d5ed;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 5px 5px 0 #c3d9f1;
+}
+
+/* 裁剪视口：滑动的文本只在框内出现 */
+.m3-slides {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.m3-slide__inner {
+  position: relative; /* 滑入层在流内 */
+  display: flex;
+  flex: 1 1 auto; /* 填满裁剪视口，内容区在框内滚动 */
+  flex-direction: column;
+  min-height: 0;
+}
+
+.m3-slide__inner--in.m3-slide__inner--fwd {
+  animation: m3-in-fwd 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.m3-slide__inner--in.m3-slide__inner--back {
+  animation: m3-in-back 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.m3-slide__inner--out {
+  position: absolute; /* 滑出层叠加在上层 */
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.m3-slide__inner--out.m3-slide__inner--fwd {
+  animation: m3-out-fwd 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.m3-slide__inner--out.m3-slide__inner--back {
+  animation: m3-out-back 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes m3-in-fwd {
+  from {
+    opacity: 0;
+    transform: translateX(72px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes m3-in-back {
+  from {
+    opacity: 0;
+    transform: translateX(-72px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes m3-out-fwd {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateX(-72px);
+  }
+}
+
+@keyframes m3-out-back {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateX(72px);
+  }
+}
+
+/* ===== 幻灯片内容 ===== */
+.m3-slide__head {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.m3-slide__num {
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: #466bcf;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.m3-slide__title {
+  color: #223c81;
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.m3-slide__goal {
+  flex: 0 0 auto;
+  margin: 6px 0 0;
+  color: #405b87;
+  font-size: 15.5px;
+  font-style: italic;
+}
+
+/* 内容区：可滚动（滚到底/顶后由边界步进接管），保留卡片主滚动条 */
+.m3-slide__content {
+  flex: 1 1 auto;
+  min-height: 60px;
+  margin-top: 12px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding-right: 2px;
+  scrollbar-color: #006cd1 transparent;
+  scrollbar-width: thin;
+}
+
+.m3-slide__content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.m3-slide__content::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.m3-slide__content::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background-color: #006cd1;
+}
+
+/* 首/末步放开滚动链接：继续下滑进入 references，上滑回到上文 */
+.m3-slide__content--chain {
+  overscroll-behavior: auto;
+}
+
+/* ===== 配图 ===== */
+.m3-figure {
+  margin: 20px 0;
+  text-align: center;
+}
+
+.m3-figure img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+/* ===== 移动端 ===== */
+@media (max-width: 900px) {
+  .m3-deck {
+    height: calc(100dvh + (var(--m3-count) - 1) * 52vh);
+  }
+
+  .m3-anchor {
+    top: calc(var(--m3-seg) * 52vh);
+  }
+
+  .m3-deck__stage {
+    top: 8px;
+    max-height: calc(100vh - 8px - 32px);
+  }
+
+  .m3-master {
+    padding: 10px 10px 8px;
+  }
+
+  .m3-master__eq {
+    font-size: 12.5px;
+    line-height: 1.9;
+  }
+
+  .m3-slide {
+    padding: 12px 14px 10px;
+  }
+
+  .m3-slide__title {
+    font-size: 18px;
+  }
+
+  .m3-dot {
+    width: 22px;
+    height: 22px;
+  }
+}
+
+/* ===== 动画降级 ===== */
+@media (prefers-reduced-motion: reduce) {
+  .m3-slide__inner--in,
+  .m3-slide__inner--out {
+    animation: none;
+  }
+
+  /* 无动画时滑出层直接隐藏，避免旧文本在卡片上闪现 */
+  .m3-slide__inner--out {
+    display: none;
+  }
+
+  .m3-term {
+    transition: none;
+  }
+
+  .m3-term--new {
+    animation: none;
+  }
+}

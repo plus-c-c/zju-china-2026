@@ -261,11 +261,18 @@
   height: clamp(380px, 66vh, 680px);
   padding: 1.5rem 1.6rem;
   overflow-y: auto;
+  overscroll-behavior: contain;
   background: #fff;
   border: 2px solid #e3e8f4;
   border-radius: 18px;
   box-shadow: 0 10px 30px rgba(34, 60, 129, 0.08);
   outline: none;
+}
+
+/* First / last step: release the scroll chaining so the page continues
+   past the stepper (down into the next section, up into the previous one). */
+.protein-text--chain {
+  overscroll-behavior: auto;
 }
 
 .protein-text:focus-visible {

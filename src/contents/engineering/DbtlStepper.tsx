@@ -1,4 +1,8 @@
 import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
+import {
+  STEP_ADVANCE_ENABLED,
+  useBoundaryStepAdvance,
+} from "../../components/useBoundaryStepAdvance";
 import type { DbtlModule, DbtlPhase } from "./dbtl";
 import { buildSteps, type Step } from "./steps";
 import { DbtlRing } from "./DbtlRing";
@@ -46,9 +50,53 @@ export function DbtlStepper({
   indexRef.current = index;
   stepsRef.current = steps;
 
-  // Reset the text panel once a new step is shown.
+  /** Scroll the page to the progress position of a step, so the scroll
+   *  mapping and the sequence state stay in sync (the pinned view does not
+   *  move; only the scrollbar does). */
+  const scrollToStep = (
+    target: number,
+    behavior: ScrollBehavior = "instant",
+  ) => {
+    const runway = rootRef.current?.closest(
+      ".eng-runway",
+    ) as HTMLElement | null;
+    if (!runway) return;
+    const total = runway.offsetHeight - window.innerHeight;
+    if (total <= 0) return;
+    const runwayTop = runway.getBoundingClientRect().top + window.scrollY;
+    const y =
+      runwayTop + (total * target) / Math.max(1, stepsRef.current.length - 1);
+    window.scrollTo({ top: y, behavior });
+  };
+
+  const goToStep = (target: number) => {
+    if (target < 0) return;
+    setIndex(target);
+    scrollToStep(target);
+  };
+
+  /** Boundary stepping: the wheel / touch advances one step per gesture once
+   *  the text panel reaches its bottom (or its top, scrolling up). */
+  const suppressUntilRef = useBoundaryStepAdvance({
+    stageRef: rootRef,
+    panelRef,
+    getIndex: () => indexRef.current,
+    getCount: () => stepsRef.current.length,
+    onAdvance: (target) => {
+      setIndex(target);
+      scrollToStep(target, "smooth");
+    },
+  });
+
+  // The text panel resets whenever a new step is shown: forward lands at the
+  // top, backward at the bottom (continuing an upward read).
+  const prevIndexRef = useRef(0);
   useEffect(() => {
-    panelRef.current?.scrollTo({ top: 0 });
+    const panel = panelRef.current;
+    const backward = index < prevIndexRef.current;
+    prevIndexRef.current = index;
+    if (!panel) return;
+    panel.scrollTo({ top: STEP_ADVANCE_ENABLED && backward ? panel.scrollHeight : 0 });
   }, [index]);
 
   // Map the scroll progress through the page-level runway to the step index.
@@ -60,6 +108,7 @@ export function DbtlStepper({
     let frame = 0;
     const update = () => {
       frame = 0;
+      if (performance.now() < suppressUntilRef.current) return;
       const rect = runway.getBoundingClientRect();
       const total = runway.offsetHeight - window.innerHeight;
       if (total <= 0) return;
@@ -78,7 +127,7 @@ export function DbtlStepper({
       window.removeEventListener("resize", schedule);
       window.cancelAnimationFrame(frame);
     };
-  }, []);
+  }, [suppressUntilRef]);
 
   const step = steps[index];
   const currentCycleIndex = useMemo(() => {
@@ -89,28 +138,6 @@ export function DbtlStepper({
     const next = steps.slice(index).find((entry) => entry.kind === "phase");
     return next?.cycleIndex ?? Math.max(module.cycles.length - 1, 0);
   }, [module, step, steps, index]);
-
-  /** Scroll the page to the progress position of a step, so the scroll
-   *  mapping and the sequence state stay in sync (the pinned view does not
-   *  move; only the scrollbar does). */
-  const scrollToStep = (target: number) => {
-    const runway = rootRef.current?.closest(
-      ".eng-runway",
-    ) as HTMLElement | null;
-    if (!runway) return;
-    const total = runway.offsetHeight - window.innerHeight;
-    if (total <= 0) return;
-    const runwayTop = runway.getBoundingClientRect().top + window.scrollY;
-    const y =
-      runwayTop + (total * target) / Math.max(1, stepsRef.current.length - 1);
-    window.scrollTo({ top: y, behavior: "instant" });
-  };
-
-  const goToStep = (target: number) => {
-    if (target < 0) return;
-    setIndex(target);
-    scrollToStep(target);
-  };
 
   const goToPhase = (phase: DbtlPhase) => {
     if (currentCycleIndex < 0) return;
@@ -160,7 +187,12 @@ export function DbtlStepper({
             </div>
           )}
           <div
-            className="dbtl-panel-body"
+            className={`dbtl-panel-body${
+              !STEP_ADVANCE_ENABLED ||
+              (steps.length > 1 && (index === 0 || index === steps.length - 1))
+                ? " dbtl-panel-body--chain"
+                : ""
+            }`}
             ref={panelRef}
             tabIndex={0}
             role="region"

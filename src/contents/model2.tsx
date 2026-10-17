@@ -7,6 +7,10 @@ import {
   type ReactNode,
 } from "react";
 import { MathFormula } from "../components/MathFormula";
+import {
+  STEP_ADVANCE_ENABLED,
+  useBoundaryStepAdvance,
+} from "../components/useBoundaryStepAdvance";
 import "./model.css";
 
 /** Scroll distance per protein step, in vh. */
@@ -170,15 +174,51 @@ function StructureFigure({
 function ProteinStepper({ steps }: { steps: ProteinStep[] }) {
   const [index, setIndex] = useState(0);
   const runwayRef = useRef<HTMLDivElement>(null);
+  const pinRef = useRef<HTMLDivElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
   const indexRef = useRef(0);
   const stepsRef = useRef(steps);
   indexRef.current = index;
   stepsRef.current = steps;
 
-  // The right-hand text starts at the top whenever the protein switches.
+  /** Jump to a protein and keep the page scroll in sync (the pinned view
+   *  does not move; only the scrollbar does). */
+  const goTo = (target: number, behavior: ScrollBehavior = "instant") => {
+    if (target < 0 || target > stepsRef.current.length - 1) return;
+    setIndex(target);
+    const runway = runwayRef.current;
+    if (!runway) return;
+    const total = runway.offsetHeight - window.innerHeight;
+    if (total <= 0) return;
+    const top = runway.getBoundingClientRect().top + window.scrollY;
+    window.scrollTo({
+      top: top + (total * target) / Math.max(1, stepsRef.current.length - 1),
+      behavior,
+    });
+  };
+
+  /** Boundary stepping: the wheel / touch advances one protein per gesture
+   *  once the text panel reaches its bottom (or its top, scrolling up). */
+  const suppressUntilRef = useBoundaryStepAdvance({
+    stageRef: pinRef,
+    panelRef,
+    getIndex: () => indexRef.current,
+    getCount: () => stepsRef.current.length,
+    onAdvance: (target) => goTo(target, "smooth"),
+  });
+
+  // The right-hand text resets whenever the protein switches: forward lands
+  // at the top, backward at the bottom (continuing an upward read).
+  const entryDirectionRef = useRef<"forward" | "backward">("forward");
   useEffect(() => {
-    panelRef.current?.scrollTo({ top: 0 });
+    const panel = panelRef.current;
+    if (!panel) return;
+    panel.scrollTo({
+      top:
+        STEP_ADVANCE_ENABLED && entryDirectionRef.current === "backward"
+          ? panel.scrollHeight
+          : 0,
+    });
   }, [index]);
 
   // Map the scroll progress through the runway to the protein index.
@@ -188,6 +228,7 @@ function ProteinStepper({ steps }: { steps: ProteinStep[] }) {
     let frame = 0;
     const update = () => {
       frame = 0;
+      if (performance.now() < suppressUntilRef.current) return;
       const rect = runway.getBoundingClientRect();
       const total = runway.offsetHeight - window.innerHeight;
       if (total <= 0) return;
@@ -206,23 +247,7 @@ function ProteinStepper({ steps }: { steps: ProteinStep[] }) {
       window.removeEventListener("resize", schedule);
       window.cancelAnimationFrame(frame);
     };
-  }, []);
-
-  /** Jump to a protein and keep the page scroll in sync (the pinned view
-   *  does not move; only the scrollbar does). */
-  const goTo = (target: number) => {
-    if (target < 0 || target > stepsRef.current.length - 1) return;
-    setIndex(target);
-    const runway = runwayRef.current;
-    if (!runway) return;
-    const total = runway.offsetHeight - window.innerHeight;
-    if (total <= 0) return;
-    const top = runway.getBoundingClientRect().top + window.scrollY;
-    window.scrollTo({
-      top: top + (total * target) / Math.max(1, stepsRef.current.length - 1),
-      behavior: "instant",
-    });
-  };
+  }, [suppressUntilRef]);
 
   // Direction of the caption / text slide; the outgoing step stays
   // rendered until its slide-out finishes.
@@ -237,6 +262,7 @@ function ProteinStepper({ steps }: { steps: ProteinStep[] }) {
     const previousIndex = previousIndexRef.current;
     previousIndexRef.current = index;
     if (previousIndex === index) return;
+    entryDirectionRef.current = index > previousIndex ? "forward" : "backward";
     if (transitionTimerRef.current)
       window.clearTimeout(transitionTimerRef.current);
     setTransition({
@@ -271,6 +297,7 @@ function ProteinStepper({ steps }: { steps: ProteinStep[] }) {
         className={`protein-pin protein-slide-${transition.direction}${
           step?.figureHeight ? " protein-pin--wide" : ""
         }`}
+        ref={pinRef}
         style={
           step?.figureHeight
             ? ({
@@ -297,7 +324,13 @@ function ProteinStepper({ steps }: { steps: ProteinStep[] }) {
           </figure>
         </div>
         <div
-          className="protein-text"
+          className={`protein-text${
+            !STEP_ADVANCE_ENABLED ||
+            index === 0 ||
+            index === steps.length - 1
+              ? " protein-text--chain"
+              : ""
+          }`}
           ref={panelRef}
           tabIndex={0}
           role="region"
