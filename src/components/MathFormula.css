@@ -1,0 +1,11 @@
+.math-formula-display {
+  display: block;
+  overflow-x: auto;
+  overflow-y: hidden;
+  margin: 1rem 0;
+  padding: 0.25rem 0;
+}
+
+.math-formula-display .katex-display {
+  margin: 0;
+}

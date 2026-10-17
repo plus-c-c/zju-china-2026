@@ -2,6 +2,8 @@
 
 This repository uses `TypeScript` and `React` to manage the wikis.
 
+**Deployed wiki (GitHub Pages): https://plus-c-c.github.io/igem-zju-china-2026/**
+
 This repository **MUST** contain all coding assets to generate your team's wiki
 (HTML, CSS, JavaScript, TypeScript, Python, etc).
 

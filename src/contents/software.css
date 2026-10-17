@@ -1,0 +1,14 @@
+/* Software page — presentation for the deployment code block */
+.software-page pre {
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 0.5rem;
+  padding: 1rem 1.25rem;
+  overflow-x: auto;
+  font-size: 0.875rem;
+  line-height: 1.7;
+}
+
+.software-page pre code {
+  color: #212529;
+}

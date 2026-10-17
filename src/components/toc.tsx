@@ -7,22 +7,26 @@ type Heading = { id: string; text: string; level: number };
 export function Toc({
   title,
   children,
+  hideToc = false,
 }: {
   title: string;
   children: ReactNode;
+  hideToc?: boolean;
 }) {
   const headerRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const tocRef = useRef<HTMLElement>(null);
   const [headings, setHeadings] = useState<Heading[]>([]);
   const [visible, setVisible] = useState(false);
+  const [footerInView, setFooterInView] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
   const [activeId, setActiveId] = useState("");
 
   useEffect(() => {
     const content = contentRef.current;
     const header = headerRef.current;
     const footer = document.querySelector("footer.footer");
-    if (!content || !header) return;
+    if (!content || !header || hideToc) return;
 
     let elements: HTMLElement[] = [];
     let frame = 0;
@@ -36,7 +40,7 @@ export function Toc({
       collectFrame = 0;
       elements = Array.from(
         content.querySelectorAll<HTMLElement>(
-          'h2, h3, h4, h5[data-toc="include"]',
+          'h2, h3, h4[data-toc="include"], h5[data-toc="include"]',
         ),
       ).filter(
         (element) =>
@@ -87,6 +91,7 @@ export function Toc({
         !!footerRect &&
         footerRect.top < window.innerHeight &&
         footerRect.bottom > 0;
+      setFooterInView(footerVisible);
       setVisible(header.getBoundingClientRect().bottom <= 0 && !footerVisible);
       const viewportCenter = window.innerHeight / 2;
       const expandedElements = elements.filter(isExpanded);
@@ -139,20 +144,43 @@ export function Toc({
       window.cancelAnimationFrame(frame);
       window.cancelAnimationFrame(collectFrame);
     };
-  }, []);
+  }, [hideToc]);
 
   useEffect(() => {
     const nav = tocRef.current;
     const active = nav?.querySelector<HTMLElement>('[aria-current="location"]');
     const list = nav?.querySelector<HTMLElement>(".page-toc-list");
-    if (!active || !list || !visible) return;
+    if (!active || !list || (!visible && !mobileOpen)) return;
     const itemRect = active.getBoundingClientRect();
     const listRect = list.getBoundingClientRect();
     if (itemRect.top < listRect.top)
       list.scrollTop -= listRect.top - itemRect.top;
     else if (itemRect.bottom > listRect.bottom)
       list.scrollTop += itemRect.bottom - listRect.bottom;
-  }, [activeId, visible]);
+  }, [activeId, visible, mobileOpen]);
+
+  // 页脚出现时收起移动端目录，避免悬浮按钮/面板遮挡页脚
+  useEffect(() => {
+    if (footerInView) setMobileOpen(false);
+  }, [footerInView]);
+
+  // 移动端目录面板：点击外部或按 Esc 关闭
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const closeOnOutside = (event: PointerEvent) => {
+      const target = event.target as Element | null;
+      if (!target?.closest(".page-toc, .page-toc-toggle")) setMobileOpen(false);
+    };
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setMobileOpen(false);
+    };
+    document.addEventListener("pointerdown", closeOnOutside);
+    document.addEventListener("keydown", closeOnEscape);
+    return () => {
+      document.removeEventListener("pointerdown", closeOnOutside);
+      document.removeEventListener("keydown", closeOnEscape);
+    };
+  }, [mobileOpen]);
 
   const activeHeadingIndex = headings.findIndex(
     (heading) => heading.id === activeId,
@@ -173,22 +201,26 @@ export function Toc({
     return parentId === activeTopLevelId;
   });
 
+  const showToc = !hideToc && headings.length > 0;
+
   return (
     <>
       <div ref={headerRef}>
         <Header title={title} />
       </div>
-      <div
-        className={`page-layout ${headings.length > 0 ? "page-layout-with-toc" : ""}`}
-      >
-        {headings.length > 0 && (
+      <div className={`page-layout ${showToc ? "page-layout-with-toc" : ""}`}>
+        {showToc && (
           <nav
             ref={tocRef}
             aria-label="On this page"
-            className={`page-toc ${visible ? "page-toc-visible" : ""}`}
+            className={`page-toc ${visible ? "page-toc-visible" : ""}${mobileOpen ? " page-toc-open" : ""}`}
           >
-            <h2 className="page-toc-title">On this page</h2>
-            <ul id="page-toc-list" className="page-toc-list">
+            <h2 className="page-toc-title">{title || "On this page"}</h2>
+            <ul
+              id="page-toc-list"
+              className="page-toc-list"
+              onClick={() => setMobileOpen(false)}
+            >
               {visibleHeadings.map((heading) => (
                 <li
                   key={heading.id}
@@ -210,6 +242,22 @@ export function Toc({
               ))}
             </ul>
           </nav>
+        )}
+        {showToc && (
+          <button
+            type="button"
+            className={`page-toc-toggle${
+              footerInView ? "" : " page-toc-toggle-visible"
+            }${mobileOpen ? " page-toc-toggle-open" : ""}`}
+            aria-expanded={mobileOpen}
+            aria-controls="page-toc-list"
+            aria-label="Table of contents"
+            onClick={() => setMobileOpen((open) => !open)}
+          >
+            <span className="page-toc-toggle-bar" aria-hidden="true" />
+            <span className="page-toc-toggle-bar" aria-hidden="true" />
+            <span className="page-toc-toggle-bar" aria-hidden="true" />
+          </button>
         )}
         <div ref={contentRef} className="container page-article">
           {children}

@@ -3,10 +3,12 @@ import react from "@vitejs/plugin-react";
 import { stringToSlug } from "./src/utils/stringToSlug";
 
 // https://vitejs.dev/config/
-export default () => {
-  const env = loadEnv("dev", process.cwd());
+export default ({ mode }) => {
+  const env = loadEnv(mode, process.cwd(), "");
+  const basePath = env.VITE_BASE_PATH || `/${stringToSlug(env.VITE_TEAM_NAME || "igem-starter")}/`;
+
   return defineConfig({
-    base: `/${stringToSlug(env.VITE_TEAM_NAME)}/`,
+    base: basePath,
     plugins: [react()],
   });
 };

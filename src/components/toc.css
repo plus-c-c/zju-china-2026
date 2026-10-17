@@ -5,7 +5,8 @@
 
 .page-article h2,
 .page-article h3,
-.page-article h4 {
+.page-article h4,
+.page-article li[id] {
   scroll-margin-top: 112px;
 }
 
@@ -151,6 +152,10 @@
   outline-offset: -2px;
 }
 
+.page-toc-toggle {
+  display: none;
+}
+
 @media (min-width: 1201px) {
   .page-layout-with-toc {
     /* Keep the article beyond the fixed sidebar at every desktop width. */
@@ -166,14 +171,102 @@
   .page-toc {
     display: none;
   }
+
   .page-article {
     padding-right: 24px;
     padding-left: 24px;
   }
+
+  /* 左下角悬浮汉堡按钮 */
+  .page-toc-toggle {
+    position: fixed;
+    left: 16px;
+    bottom: 16px;
+    z-index: 1041;
+    display: grid;
+    place-content: center;
+    gap: 5px;
+    width: 52px;
+    height: 52px;
+    padding: 0;
+    border: 0;
+    border-radius: 16px;
+    background: #365dc9;
+    color: #fff;
+    box-shadow: 0 6px 18px rgb(23 60 100 / 28%);
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition:
+      opacity 200ms ease,
+      transform 200ms ease,
+      visibility 200ms;
+  }
+
+  .page-toc-toggle-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+
+  .page-toc-toggle-bar {
+    display: block;
+    width: 22px;
+    height: 2.5px;
+    border-radius: 2px;
+    background: currentcolor;
+    transition:
+      transform 200ms ease,
+      opacity 200ms ease;
+  }
+
+  /* 打开时汉堡变 X */
+  .page-toc-toggle-open .page-toc-toggle-bar:nth-child(1) {
+    transform: translateY(7.5px) rotate(45deg);
+  }
+
+  .page-toc-toggle-open .page-toc-toggle-bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  .page-toc-toggle-open .page-toc-toggle-bar:nth-child(3) {
+    transform: translateY(-7.5px) rotate(-45deg);
+  }
+
+  /* 展开的目录面板：按钮上方浮出 */
+  .page-toc.page-toc-open {
+    display: flex;
+    top: auto;
+    bottom: 80px;
+    left: 16px;
+    width: min(320px, calc(100vw - 32px));
+    max-height: min(62dvh, 520px);
+    padding: 16px 10px;
+    border: 1px solid #c5d5ed;
+    border-radius: 18px;
+    background: #fff;
+    box-shadow: 0 14px 40px rgb(23 60 100 / 22%);
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    z-index: 1040;
+  }
+
+  .page-toc.page-toc-open .page-toc-title {
+    margin: 0 8px 10px;
+    font-size: 20px;
+  }
+
+  .page-toc.page-toc-open .page-toc-list {
+    max-height: none;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .page-toc {
+  .page-toc,
+  .page-toc-toggle,
+  .page-toc-toggle-bar {
     transition: none;
   }
 }

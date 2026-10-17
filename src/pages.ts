@@ -126,6 +126,12 @@ const Pages: (Page | Folder)[] = [
         component: Parts,
       },
       {
+        name: "Notebook",
+        title: "Notebook",
+        path: "/notebook",
+        component: Notebook,
+      },
+      {
         name: "Safety",
         title: "Safety",
         path: "/safety",
@@ -182,12 +188,6 @@ const Pages: (Page | Folder)[] = [
   {
     name: "Team",
     folder: [
-      {
-        name: "Notebook",
-        title: "Notebook",
-        path: "/notebook",
-        component: Notebook,
-      },
       {
         name: "Members",
         title: "Members",

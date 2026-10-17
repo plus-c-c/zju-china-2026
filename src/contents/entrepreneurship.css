@@ -1,0 +1,95 @@
+/* Expandable card ("extend box") for the Entrepreneurship page.
+   Click the header to expand / collapse the text box below. */
+
+.entre-card {
+  border: 2px solid #9ebfe4;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #fff;
+  margin: 1.1rem 0;
+  font-family: "Outfit", sans-serif;
+}
+
+.entre-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+  text-align: left;
+  background: #0c4dc6;
+  color: #fff;
+  border: 0;
+  padding: 0.95rem 1.3rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.35;
+  cursor: pointer;
+  transition: background-color 0.25s ease;
+}
+
+.entre-card-header:hover {
+  background: #0a3ea0;
+}
+
+.entre-card-title {
+  flex: 1 1 auto;
+}
+
+.entre-card-chevron {
+  flex: 0 0 auto;
+  width: 0.7rem;
+  height: 0.7rem;
+  margin-top: -0.35rem;
+  border-right: 2.5px solid currentColor;
+  border-bottom: 2.5px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform 0.3s ease;
+}
+
+.entre-card--open .entre-card-chevron {
+  margin-top: 0.35rem;
+  transform: rotate(225deg);
+}
+
+.entre-card-content {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.45s ease;
+  background: #eef4fd;
+}
+
+.entre-card--open .entre-card-content {
+  grid-template-rows: 1fr;
+}
+
+.entre-card-content-inner {
+  overflow: hidden;
+}
+
+.entre-card-pad {
+  padding: 1rem 1.3rem 1.1rem;
+  border-top: 2px solid #9ebfe4;
+}
+
+.entre-card-pad p {
+  font-size: 1rem;
+  color: #233d5c;
+  line-height: 1.65;
+  margin: 0.5rem 0;
+}
+
+.entre-card-pad p:first-child {
+  margin-top: 0;
+}
+
+.entre-card-pad p:last-child {
+  margin-bottom: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .entre-card-content,
+  .entre-card-chevron {
+    transition: none;
+  }
+}

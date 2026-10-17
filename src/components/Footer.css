@@ -6,8 +6,10 @@
   margin-top: clamp(80px, 8vw, 128px);
   padding: calc(32px + var(--footer-arch-height)) 40px 32px;
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 40px;
+  /* Single column at every width; minmax(0, 1fr) (not 1fr) so the sponsor
+     marquee's huge min-content width cannot stretch the grid. */
+  grid-template-columns: minmax(0, 1fr);
+  gap: 28px;
   background: transparent;
   color: #fff;
   font-family: "Outfit", sans-serif;
@@ -31,63 +33,123 @@
   margin: 0;
 }
 
-.footer__left {
+.footer__brand-row {
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.75rem;
+}
+
+.footer__team-logo {
+  display: block;
+  width: auto;
+  height: 52px;
+}
+
+.footer__uni-logo {
+  display: block;
+  width: auto;
+  height: 36px;
+}
+
+.footer__contact-title {
+  margin: 0 0 6px;
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+.footer__contact-email a {
+  font-weight: 500;
+}
+
+.footer__supporters-title {
+  margin: 0 0 16px;
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-align: center;
+}
+
+.sponsors-container {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  padding: 0.5rem 0;
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 12%,
+    #000 88%,
+    transparent
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 12%,
+    #000 88%,
+    transparent
+  );
+}
+
+.sponsors-track {
+  display: flex;
+  width: fit-content;
+  /* Five copies of the logo set: the loop translates by exactly one copy
+     (-20%), and the remaining four copies always cover the container, so the
+     strip never runs empty on wide screens. */
+  animation: footer-sponsor-scroll 40s linear infinite;
+  will-change: transform;
+}
+
+.sponsor-slide {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 168px;
+  height: 92px;
+  margin-right: 1rem;
+  padding: 0.6rem;
+  background: #fff;
+  border-radius: 10px;
+}
+
+.sponsor-slide img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+@keyframes footer-sponsor-scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-20%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sponsors-track {
+    animation: none;
+  }
 }
 
 .footer__tagline {
   font-family: "Mansalva", cursive;
   font-weight: 200;
   font-size: 22px;
+  text-align: center;
 }
 
 .footer__legal {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 20px;
   color: #dce8f6;
-}
-
-.footer__sponsors {
-  position: relative;
-  width: min(100%, 520px);
-  height: 104px;
-  margin-top: 14px;
-  overflow: hidden;
-  border-radius: 10px;
-  background: #fff;
-}
-
-.footer__sponsor-logo {
-  position: absolute;
-  inset: 0;
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: left center;
-  animation: footer-sponsor-carousel 8s ease-in-out infinite;
-}
-
-.footer__sponsor-logo:nth-child(2) {
-  animation-delay: -4s;
-}
-
-@keyframes footer-sponsor-carousel {
-  0%,
-  45% {
-    opacity: 1;
-  }
-
-  50%,
-  95% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
 }
 
 .footer a {
@@ -117,17 +179,61 @@
     --footer-arch-height: 48px;
     min-height: 320px;
     padding: calc(28px + var(--footer-arch-height)) 24px 28px;
-    grid-template-columns: 1fr;
-    gap: 52px;
+    font-size: 16px;
+  }
+
+  .footer__brand-row {
+    gap: 0.75rem;
+    margin-bottom: 14px;
+  }
+
+  .footer__team-logo {
+    height: 42px;
+  }
+
+  .footer__uni-logo {
+    height: 26px;
+  }
+
+  .footer__tagline {
+    font-size: 19px;
+  }
+
+  .footer__supporters-title {
+    margin-bottom: 12px;
+    font-size: 20px;
+  }
+
+  .sponsors-container {
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      #000 7%,
+      #000 93%,
+      transparent
+    );
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent,
+      #000 7%,
+      #000 93%,
+      transparent
+    );
+  }
+
+  .sponsor-slide {
+    width: 140px;
+    height: 80px;
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .footer__sponsor-logo {
-    animation: none;
+@media (max-width: 420px) {
+  .footer__team-logo {
+    height: 36px;
   }
 
-  .footer__sponsor-logo:nth-child(2) {
-    display: none;
+  .sponsor-slide {
+    width: 120px;
+    height: 70px;
   }
 }

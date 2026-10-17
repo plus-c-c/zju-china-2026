@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useRef } from "react";
-import { setup, render } from "./water-shader";
+import { setup, render } from "./WaterShader";
 
 /** Adapter for the original Figma WGSL shader; a gradient remains if WebGPU is unavailable. */
 export function WaterSurface({

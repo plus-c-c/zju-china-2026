@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { MitochondrialResults } from "./results/MitochondrialResults";
 import scaffold from "./results/scaffold-content.json";
 import "./results/results.css";
 
@@ -39,7 +40,12 @@ export function Results() {
       if (hash === "#wetlab-platform" || hash.startsWith("#wetlab-scaffold-"))
         setActiveModule("platform");
       else if (hash === "#wetlab-function") setActiveModule("function");
-      else return;
+      else if (hash.startsWith("#wetlab-delivery-")) {
+        setActiveModule("function");
+        setOpenFunctions((current) =>
+          current.includes("delivery") ? current : [...current, "delivery"],
+        );
+      } else return;
       cancelAnimationFrame(frame);
       frame = requestAnimationFrame(() => {
         document.getElementById(hash.slice(1))?.scrollIntoView();
@@ -171,9 +177,13 @@ export function Results() {
                 key={module.id}
                 hidden={!openFunctions.includes(module.id)}
               >
-                <p className="wetlab-results__pending">
-                  Content for this module is being prepared.
-                </p>
+                {module.id === "delivery" ? (
+                  <MitochondrialResults />
+                ) : (
+                  <p className="wetlab-results__pending">
+                    Content for this module is being prepared.
+                  </p>
+                )}
               </section>
             ))}
           </div>

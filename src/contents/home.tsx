@@ -6,37 +6,40 @@ import {
   type CSSProperties,
 } from "react";
 import { HomeIntro } from "../components/home/HomeIntro";
-import GlobalBurden from "../components/home/GlobalBurden";
-import Page03SportsTrauma from "../components/home/Page03SportsTrauma";
-import Page04PostOpRehabilitation from "../components/home/Page04PostOpRehabilitation";
-import Page05BirdReturnsToNest from "../components/home/Page05BirdReturnsToNest";
 import {
-  HydrogelExplanation,
-  MaterialPipelineStory,
-  MaterialLimitations,
-} from "../components/home/Page06MaterialStory";
+  GlobalBurdenScene,
+  OpeningStatement,
+  RehabilitationScene,
+  SportsTraumaScene,
+} from "../components/home/OpeningStory";
+import BirdReturnsToNest from "../components/home/BirdReturnsToNest";
+import {
+  OsteoarthritisTargetScene,
+  SelpAndSnoopLigaseScene,
+  SelpPipeline,
+} from "../components/home/SELP";
+import { HydrogelMaterialsPage } from "../components/home/HydrogelMaterialsPage";
+import { MaterialLimitations } from "../components/home/LimitationsCards";
 import { Footer } from "../components/Footer";
-import "../components/home/layers.css";
+import "../components/home/Layers.css";
 import "./home.css";
 
 import { StoryContext } from "../components/home/StoryContext";
 import {
   STORY_STOPS,
   useStoryNavigation,
-} from "../components/home/useStoryNavigation";
-import "../components/home/material-story.css";
+} from "../components/home/UseStoryNavigation";
 
 function Scene({
   children,
   name,
   index,
   active,
+  settled,
   birdProgress,
   birdStage,
   birdLandingProgress,
   next,
-  pipelineStep = -1,
-  pipelineProgress = 0,
   footer = false,
   style,
 }: {
@@ -44,12 +47,11 @@ function Scene({
   name: string;
   index: number;
   active: boolean;
+  settled: boolean;
   birdProgress: number;
   birdStage: number;
   birdLandingProgress: number;
   next: () => void;
-  pipelineStep?: number;
-  pipelineProgress?: number;
   footer?: boolean;
   style?: CSSProperties;
 }) {
@@ -65,12 +67,11 @@ function Scene({
       <StoryContext.Provider
         value={{
           active,
+          settled,
           birdProgress,
           birdStage,
           birdLandingProgress,
           next,
-          pipelineStep,
-          pipelineProgress,
         }}
       >
         <div className="home-scene-canvas">{children}</div>
@@ -82,9 +83,7 @@ export function Home() {
   const {
     stop,
     page,
-    burdenStage,
-    burdenProgress,
-    burdenPain,
+    settledPage,
     birdProgress,
     birdStage,
     birdLandingProgress,
@@ -92,16 +91,18 @@ export function Home() {
     nextScene,
     scenePosition,
     crossfade,
-    sportsText,
-    sportsArt,
-    sportsFrame,
-    rehabText,
-    rehabArt,
-    rehabFrame,
-    hydrogelInjection,
+    openingContent,
+    openingDecor,
+    openingText,
+    openingPerson,
+    openingDecorExit,
+    openingTextExit,
+    openingPersonExit,
+    burdenStatReveal,
+    hydrogelExit,
+    limitationsEntry,
     cardTransition,
     nestTitle,
-    pipelineProgress,
   } = useStoryNavigation();
   const viewport = useRef<HTMLDivElement>(null);
   const [size, setSize] = useState({ width: 1280, height: 720 });
@@ -129,31 +130,37 @@ export function Home() {
       content: <HomeIntro onEnter={nextScene} />,
     },
     {
+      name: "Cartilage damage",
+      content: <OpeningStatement />,
+    },
+    {
       name: "Global burden",
-      content: (
-        <GlobalBurden
-          stage={burdenStage}
-          progress={burdenProgress}
-          painProgress={burdenPain}
-        />
-      ),
+      content: <GlobalBurdenScene play={openingPerson[2] > 0.96} />,
     },
     {
       name: "Sports trauma",
-      content: <Page03SportsTrauma frameProgress={sportsFrame} />,
+      content: <SportsTraumaScene play={openingPerson[3] > 0.96} />,
     },
     {
       name: "Post-operative rehabilitation",
-      content: <Page04PostOpRehabilitation frameProgress={rehabFrame} />,
+      content: <RehabilitationScene play={openingPerson[4] > 0.96} />,
     },
-    { name: "No single solution fits all", content: <HydrogelExplanation /> },
-    { name: "Material limitations", content: <MaterialLimitations /> },
-    { name: "Return to NEST", content: <Page05BirdReturnsToNest /> },
+    { name: "Hydrogel materials", content: <HydrogelMaterialsPage /> },
     {
-      name: "NEST material pipeline",
-      content: <MaterialPipelineStory progress={pipelineProgress} />,
+      name: "Material limitations",
+      content: (
+        <MaterialLimitations yellowRemoved={cardTransition.yellowExit > 0.98} />
+      ),
     },
-    { name: "NEST footer", content: <Footer story /> },
+    { name: "Return to NEST", content: <BirdReturnsToNest /> },
+    {
+      name: "SELP and SnoopLigase-ZJU",
+      content: <SelpAndSnoopLigaseScene />,
+    },
+    {
+      name: "Osteoarthritis target",
+      content: <OsteoarthritisTargetScene />,
+    },
   ];
   const style = {
     "--scene-scale": Math.min(size.width / 1280, size.height / 720),
@@ -161,81 +168,124 @@ export function Home() {
     "--screen-width": `${size.width}px`,
   } as CSSProperties;
   return (
-    <div
-      className="home-scroll-space"
-      style={{
-        height: STORY_STOPS.length * size.height,
-      }}
-    >
+    <>
       <div
-        ref={viewport}
-        className="nest-home story-viewport"
-        style={style}
-        data-story-stop={stop}
-        data-story-page={page + 1}
-        data-bird-progress={birdProgress}
+        className="home-scroll-space"
+        style={{
+          height: STORY_STOPS.length * size.height,
+        }}
       >
         <div
-          className="story-track"
-          style={{
-            transform: `translateY(${-scenePosition * size.height}px)`,
-          }}
+          ref={viewport}
+          className="nest-home story-viewport"
+          style={style}
+          data-story-stop={stop}
+          data-story-page={page + 1}
+          data-bird-progress={birdProgress}
         >
-          {scenes.map((scene, index) => (
-            <Scene
-              key={scene.name}
-              name={scene.name}
-              index={index}
-              style={
-                {
-                  ...(crossfade?.incoming === index
-                    ? {
-                        transform: "translateY(-100%)",
-                        opacity: crossfade.opacity,
-                        zIndex: 2,
-                      }
-                    : {}),
-                  ...(index === 2 || index === 3
-                    ? {
-                        "--intro-text": index === 2 ? sportsText : rehabText,
-                        "--intro-art": index === 2 ? sportsArt : rehabArt,
-                      }
-                    : {}),
-                  ...(index === 4
-                    ? {
-                        "--hydrogel-injection-offset": `${hydrogelInjection * 108}px`,
-                      }
-                    : {}),
-                  ...(index === 5
-                    ? {
-                        "--cards-yellow-y": `${cardTransition.yellowExit * -760}px`,
-                        "--cards-blue-y": `${cardTransition.yellowExit * -760}px`,
-                        "--limitations-opacity": 1 - cardTransition.yellowExit,
-                        "--limitations-title-y": `${cardTransition.yellowExit * -42}px`,
-                        "--results-text-opacity":
-                          cardTransition.resultTextEntry,
-                        "--results-text-y": `${(1 - cardTransition.resultTextEntry) * 24}px`,
-                        "--results-entry-y": `${(1 - cardTransition.resultEntry) * 34}px`,
-                        "--results-opacity": cardTransition.resultEntry,
-                      }
-                    : {}),
-                  ...(index === 6 ? { "--nest-title": nestTitle } : {}),
-                } as CSSProperties
-              }
-              active={page === index}
-              footer={scene.name === "NEST footer"}
-              birdProgress={birdProgress}
-              birdStage={birdStage}
-              birdLandingProgress={birdLandingProgress}
-              next={next}
-              pipelineStep={index === 7 ? Math.round(pipelineProgress) : -1}
-              pipelineProgress={pipelineProgress}
-            >
-              {scene.content}
-            </Scene>
-          ))}
+          <div
+            className="story-track"
+            style={{
+              transform: `translateY(${-scenePosition * size.height}px)`,
+            }}
+          >
+            {scenes.map((scene, index) => (
+              <Scene
+                key={scene.name}
+                name={scene.name}
+                index={index}
+                style={
+                  {
+                    ...(crossfade?.incoming === index
+                      ? {
+                          transform: "translateY(-100%)",
+                          opacity: crossfade.opacity,
+                          zIndex: 2,
+                        }
+                      : {}),
+                    ...(index >= 1 && index <= 4
+                      ? {
+                          ...(index === 1
+                            ? {
+                                backgroundColor: "#bdd8fb",
+                                backgroundImage: `url("${import.meta.env.BASE_URL}images/home/opening-bubbles-background.png")`,
+                                backgroundPosition: "center",
+                                backgroundRepeat: "no-repeat",
+                                backgroundSize: "cover",
+                              }
+                            : {}),
+                          "--opening-content": openingContent[index],
+                          "--opening-enter-left": `${(1 - openingText[index]) * -110}px`,
+                          "--opening-enter-right": `${(1 - openingText[index]) * 110}px`,
+                          "--opening-text-exit-left": `${openingTextExit[index] * -110}px`,
+                          "--opening-text-exit-right": `${openingTextExit[index] * 110}px`,
+                          "--opening-y": "0px",
+                          "--opening-decor":
+                            openingDecor[index] * (1 - openingDecorExit[index]),
+                          "--opening-text":
+                            openingText[index] * (1 - openingTextExit[index]),
+                          "--opening-person":
+                            openingPerson[index] *
+                            (1 - openingPersonExit[index]),
+                          ...(index === 2
+                            ? {
+                                "--burden-stat-reveal": burdenStatReveal,
+                                "--burden-map-opacity":
+                                  1 - burdenStatReveal * 0.72,
+                                "--burden-legend-opacity":
+                                  1 - burdenStatReveal * 0.66,
+                              }
+                            : {}),
+                        }
+                      : {}),
+                    ...(index === 5
+                      ? {
+                          "--hydrogel-background-image":
+                            "radial-gradient(circle at 50% 50%, #eef6ff 0%, #d7eaff 48%, #afd6f8 100%)",
+                          "--hydrogel-exit": hydrogelExit,
+                        }
+                      : {}),
+                    ...(index === 6
+                      ? {
+                          "--hydrogel-background-image":
+                            "radial-gradient(circle at 50% 50%, #eef6ff 0%, #d7eaff 48%, #afd6f8 100%)",
+                          ...(crossfade?.incoming === index
+                            ? {
+                                backgroundColor: "transparent",
+                                backgroundImage: "none",
+                              }
+                            : {}),
+                          "--cards-yellow-y": `${cardTransition.yellowExit * -760}px`,
+                          "--limitations-cards-entry": limitationsEntry.cards,
+                          "--limitations-cards-y": `${(1 - limitationsEntry.cards) * 32}px`,
+                          "--limitations-title-entry": limitationsEntry.title,
+                          "--limitations-title-opacity":
+                            1 - cardTransition.yellowExit,
+                          "--limitations-title-y": `${(1 - limitationsEntry.title) * 18}px`,
+                          "--solution-title-opacity":
+                            cardTransition.resultTextEntry,
+                        }
+                      : {}),
+                    ...(index === 7 ? { "--nest-title": nestTitle } : {}),
+                  } as CSSProperties
+                }
+                active={page === index || crossfade?.incoming === index}
+                settled={
+                  index === 5 ? scenePosition >= index : settledPage === index
+                }
+                birdProgress={birdProgress}
+                birdStage={birdStage}
+                birdLandingProgress={birdLandingProgress}
+                next={next}
+              >
+                {scene.content}
+              </Scene>
+            ))}
+          </div>
         </div>
       </div>
-    </div>
+      <SelpPipeline />
+      <Footer />
+    </>
   );
 }

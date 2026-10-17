@@ -1,5 +1,36 @@
 import "./Footer.css";
 
+/**
+ * All footer icons are uploaded through the iGEM wiki deliverables tool
+ * (https://teams.igem.org/6102/deliverables/wiki/) and served from
+ * static.igem.wiki. To add a logo, upload it there and append the resulting
+ * URL to one of the lists below.
+ */
+const uploads = "https://static.igem.wiki/teams/6102/wiki/images";
+
+const universityLogos = [
+  {
+    src: `${uploads}/footer/001.avif`,
+    alt: "College of Life Sciences, Zhejiang University",
+  },
+  {
+    src: `${uploads}/footer/002.avif`,
+    alt: "Zhejiang University",
+  },
+];
+
+const sponsorLogos = [
+  { src: `${uploads}/footer/01-genscript.avif`, alt: "GenScript" },
+  { src: `${uploads}/footer/02-yanyin.avif`, alt: "Yanyin" },
+  { src: `${uploads}/footer/03-cusabio-huamei.avif`, alt: "CUSABIO" },
+  {
+    src: `${uploads}/footer/04-twist-bioscience.avif`,
+    alt: "Twist Bioscience",
+  },
+  { src: `${uploads}/footer/05-biorender.avif`, alt: "BioRender" },
+  { src: `${uploads}/footer/06-addgene.avif`, alt: "Addgene" },
+];
+
 export function Footer({ story = false }: { story?: boolean }) {
   return (
     <footer
@@ -7,10 +38,51 @@ export function Footer({ story = false }: { story?: boolean }) {
       data-node-id="192:311"
       data-name="Footer / Desktop"
     >
-      <div className="footer__left" data-node-id="192:312">
-        <p className="footer__tagline" data-node-id="192:315">
-          An engineered hydrogel platform for healthier joints and a better
-          tomorrow.
+      <p className="footer__tagline" data-node-id="192:315">
+        An engineered hydrogel platform for healthier joints and a better
+        tomorrow.
+      </p>
+
+      <div className="footer__brand-row">
+        <img
+          className="footer__team-logo"
+          src={`${uploads}/team-logo.avif`}
+          alt="ZJU-China"
+        />
+        {universityLogos.map((logo) => (
+          <img
+            className="footer__uni-logo"
+            key={logo.src}
+            src={logo.src}
+            alt={logo.alt}
+            loading="lazy"
+          />
+        ))}
+      </div>
+
+      <div className="footer__supporters">
+        <h4 className="footer__supporters-title">WE THANK OUR SUPPORTERS:</h4>
+        <div className="sponsors-container">
+          <div className="sponsors-track">
+            {Array.from({ length: 5 }, () => sponsorLogos)
+              .flat()
+              .map((logo, index) => (
+                <div className="sponsor-slide" key={`${logo.alt}-${index}`}>
+                  <img
+                    src={logo.src}
+                    alt={index < sponsorLogos.length ? logo.alt : ""}
+                    loading="lazy"
+                  />
+                </div>
+              ))}
+          </div>
+        </div>
+      </div>
+
+      <div className="footer__contact">
+        <h5 className="footer__contact-title">FOLLOW &amp; CONTACT</h5>
+        <p className="footer__contact-email">
+          <a href="mailto:ZJUChina@outlook.com">ZJUChina@outlook.com</a>
         </p>
       </div>
 
@@ -29,18 +101,6 @@ export function Footer({ story = false }: { story?: boolean }) {
           </a>
           .
         </p>
-        <div className="footer__sponsors" aria-label="Project sponsors">
-          <img
-            className="footer__sponsor-logo"
-            src="https://static.igem.wiki/teams/6102/wiki/images/footer/001.avif"
-            alt="College of Life Sciences, Zhejiang University"
-          />
-          <img
-            className="footer__sponsor-logo"
-            src="https://static.igem.wiki/teams/6102/wiki/images/footer/002.avif"
-            alt="Zhejiang University"
-          />
-        </div>
       </div>
     </footer>
   );

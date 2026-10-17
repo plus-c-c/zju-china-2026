@@ -420,7 +420,7 @@
   translate: -50% 0;
   overflow-wrap: break-word;
   position: absolute;
-  font-family: "Outfit", sans-serif;
+  font-family: "Outfit", Arial, sans-serif;
   font-weight: 500;
   height: 24px;
   line-height: normal;
@@ -565,12 +565,12 @@
   padding-top: 9px;
   padding-bottom: 9px;
   border-radius: 999px;
-  top: 649px;
+  top: 635px;
   width: 210px;
 }
 .home-layer-62 {
   overflow-wrap: break-word;
-  font-family: "Outfit", sans-serif;
+  font-family: "Outfit", Arial, sans-serif;
   font-weight: 500;
   line-height: normal;
   font-style: normal;

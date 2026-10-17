@@ -47,10 +47,12 @@
   grid-template-columns: minmax(180px, 30%) minmax(0, 1fr);
   align-items: center;
   overflow: hidden;
-  border: 1px solid #c5d5ed;
   border-radius: 22px;
   background: #fff;
+  /* 边框用内阴影绘制（卡片自身绘制、不受 overflow 裁剪）：
+     悬停时面板可直达卡片边缘，消除边框内缘与面板裁剪边之间的抗锯齿白缝 */
   box-shadow:
+    inset 0 0 0 1px #c5d5ed,
     5px 5px 0 #4475cb,
     10px 10px 0 #c3d9f1;
   transition:
@@ -59,8 +61,10 @@
 }
 
 .members-card:is(:hover, :focus-visible) {
+  /* 悬停时边框加粗 1px 并换色（内阴影） */
   transform: translateY(-5px);
   box-shadow:
+    inset 0 0 0 2px #466bcf,
     7px 7px 0 #4475cb,
     14px 14px 0 #c3d9f1;
 }
@@ -77,8 +81,6 @@
 .members-card--reversed .members-card__portrait {
   grid-column: 2;
   grid-row: 1;
-  margin-right: 12px;
-  margin-left: 28px;
 }
 
 .members-card--reversed .members-card__details {
@@ -88,7 +90,8 @@
 
 .members-card__portrait {
   min-width: 0;
-  margin: 20px 28px 20px 12px;
+  /* 四边等距 20px（原左右为 12/28，与上下 20 不一致） */
+  margin: 20px;
   overflow: hidden;
   border-radius: 14px;
   background: #e8f0fb;
@@ -212,6 +215,10 @@
 @media (hover: none) {
   .members-card:is(:hover, :focus-visible) {
     transform: none;
+    box-shadow:
+      inset 0 0 0 1px #c5d5ed,
+      5px 5px 0 #4475cb,
+      10px 10px 0 #c3d9f1;
   }
 
   .members-card__details {

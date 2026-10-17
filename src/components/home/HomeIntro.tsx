@@ -1,9 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import "./HomeIntro.css";
 
-const remoteVideo =
-  "https://static.igem.wiki/teams/6102/wiki/videos/homepage.mp4";
-const localVideo = `${import.meta.env.BASE_URL}videos/homepage.mp4`;
+const homepageVideo = `${import.meta.env.BASE_URL}videos/homepage.mp4`;
 
 type HomeIntroProps = {
   onEnter: () => void;
@@ -11,7 +9,6 @@ type HomeIntroProps = {
 
 export function HomeIntro({ onEnter }: HomeIntroProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [videoSource, setVideoSource] = useState(remoteVideo);
   const [finished, setFinished] = useState(false);
 
   const finishIntro = useCallback(() => {
@@ -23,13 +20,8 @@ export function HomeIntro({ onEnter }: HomeIntroProps) {
     const video = videoRef.current;
     if (!video) return;
 
-    const playback = video.play();
-    if (playback) {
-      void playback.catch(() => {
-        if (videoSource === localVideo) finishIntro();
-      });
-    }
-  }, [finishIntro, videoSource]);
+    void video.play().catch(() => finishIntro());
+  }, [finishIntro]);
 
   useEffect(() => {
     document.documentElement.classList.toggle("home-intro-open", !finished);
@@ -51,7 +43,7 @@ export function HomeIntro({ onEnter }: HomeIntroProps) {
       <video
         ref={videoRef}
         className="home-intro__video"
-        src={videoSource}
+        src={homepageVideo}
         autoPlay
         muted
         playsInline
@@ -59,13 +51,7 @@ export function HomeIntro({ onEnter }: HomeIntroProps) {
         disablePictureInPicture
         controlsList="nodownload nofullscreen noremoteplayback"
         onEnded={finishIntro}
-        onError={() => {
-          if (videoSource !== localVideo) {
-            setVideoSource(localVideo);
-          } else {
-            finishIntro();
-          }
-        }}
+        onError={finishIntro}
       />
       <div className="home-intro__landing" aria-hidden={!finished}>
         <div className="home-intro__brand" aria-label="NEST">
