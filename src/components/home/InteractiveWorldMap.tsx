@@ -74,6 +74,7 @@ function prepareWorldMapMarkup(markup: string) {
     chinaIslands.setAttribute("data-name", chinaRecord?.country ?? "China");
     chinaIslands.setAttribute("aria-hidden", "true");
     chinaIslands.setAttribute("d", CHINA_ISLANDS_PATH);
+    chinaIslands.setAttribute("transform", "scale(0.625 0.595890411)");
     china.parentElement?.append(chinaIslands);
   }
 
