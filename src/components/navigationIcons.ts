@@ -14,7 +14,7 @@ export const pageDetails: Record<
 > = {
   "/description": {
     icon: "03_description.png",
-    description: "The story behind our project",
+    description: "The context behind our project",
   },
   "/design": {
     icon: "04-design.png",
@@ -22,7 +22,7 @@ export const pageDetails: Record<
   },
   "/proof-of-concept": {
     icon: "05_proof_of_concept.png",
-    description: "Explore our proof of concept",
+    description: "Putting the concept to the test",
   },
   "/implementation": {
     icon: "06_implementation.png",
@@ -30,64 +30,70 @@ export const pageDetails: Record<
   },
   "/future-plan": {
     icon: "07-future plan.png",
-    description: "Where we go next",
+    description: "The next steps for our project",
   },
   "/contribution": {
     icon: "08_contribution.png",
-    description: "What we share with the community",
+    description: "Resources for the iGEM community",
   },
   "/experiments": {
     icon: "11_experiment_result.png",
-    description: "Our experimental work",
+    description: "Explore our experimental work",
   },
   "/results": {
     icon: "11_experiment_result.png",
-    description: "Explore our findings",
+    description: "Platform and function in focus",
   },
   "/protocol": {
     icon: "12_protocol.png",
-    description: "Methods, step by step",
+    description: "Methods and step-by-step procedures",
   },
   "/parts": {
     icon: "13_parts.png",
-    description: "Our biological building blocks",
+    description: "The biological parts in our system",
   },
   "/notebook": {
     icon: "25_notebook.png",
-    description: "Follow our lab journey",
+    description: "Follow our work in the lab",
   },
   "/safety": {
     icon: "14_safety.png",
-    description: "Safety throughout our work",
+    description: "Responsible work in the laboratory",
   },
-  "/hardware": { icon: "16_hardware.png", description: "Explore our hardware" },
-  "/software": { icon: "17_software.png", description: "Explore our software" },
+  "/hardware": {
+    icon: "16_hardware.png",
+    description: "Tools built for our project",
+  },
+  "/software": {
+    icon: "17_software.png",
+    description: "Our computational tools",
+  },
   "/model": {
     icon: "18_model.png",
-    description: "A closer look at our models",
+    description: "Understanding our system through models",
   },
   "/human-practices": {
     icon: "20_integrated_human_practices.png",
-    description: "Connecting our project with people",
+    description: "Listening, learning and responding",
   },
   "/entrepreneurship": {
     icon: "21_entrepreneurship.png",
-    description: "Explore the business perspective",
+    description: "Exploring a path to market",
   },
   "/education": {
     icon: "22_education.png",
-    description: "Sharing science and ideas",
+    description: "Sharing science with our communities",
   },
   "/members": {
     icon: "26_members.png",
-    description: "Meet the people behind the project",
+    description: "Meet the people behind ZJU-China",
   },
   "/attributions": {
     icon: "27_attributions.png",
-    description: "Recognising every contribution",
+    description: "The people and support behind the work",
   },
   "/sponsors": {
     icon: "28_sponsors.png",
-    description: "The support behind our team",
+    description: "The partners supporting our team",
   },
 };

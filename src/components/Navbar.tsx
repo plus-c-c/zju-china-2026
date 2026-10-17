@@ -9,17 +9,24 @@ const desktopNavigation = () => window.matchMedia("(min-width: 992px)").matches;
 export function Navbar({ introEntrance = false }: { introEntrance?: boolean }) {
   const location = useLocation();
   const navRef = useRef<HTMLElement>(null);
+  const leaveTimer = useRef<number | undefined>(undefined);
+  const focusFrame = useRef(0);
+  const hoverOpened = useRef<string | null>(null);
   const [expanded, setExpanded] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [navbarVisible, setNavbarVisible] = useState(true);
   const [introPlaying, setIntroPlaying] = useState(introEntrance);
 
+  const cancelLeave = () => window.clearTimeout(leaveTimer.current);
   const closeMenus = () => {
+    cancelLeave();
+    hoverOpened.current = null;
     setOpenDropdown(null);
     setExpanded(false);
   };
 
   useEffect(() => {
+    window.clearTimeout(leaveTimer.current);
     setOpenDropdown(null);
     setExpanded(false);
     let frame = 0;
@@ -45,12 +52,17 @@ export function Navbar({ introEntrance = false }: { introEntrance?: boolean }) {
     return () => {
       window.removeEventListener("scroll", handleScroll);
       window.cancelAnimationFrame(frame);
+      window.cancelAnimationFrame(focusFrame.current);
+      window.clearTimeout(leaveTimer.current);
     };
   }, [location.pathname]);
 
   useEffect(() => {
     const handleOutsidePointer = (event: PointerEvent) => {
-      if (!navRef.current?.contains(event.target as Node)) {
+      if (
+        event.target instanceof Node &&
+        !navRef.current?.contains(event.target)
+      ) {
         setOpenDropdown(null);
         setExpanded(false);
       }
@@ -87,9 +99,16 @@ export function Navbar({ introEntrance = false }: { introEntrance?: boolean }) {
       aria-label="Main navigation"
       aria-hidden={navbarHidden}
       inert={navbarHidden}
+      onPointerEnter={cancelLeave}
       onPointerLeave={(event) => {
         if (event.pointerType === "mouse" && desktopNavigation()) {
-          setOpenDropdown(null);
+          cancelLeave();
+          leaveTimer.current = window.setTimeout(() => {
+            const panel = openDropdown
+              ? document.getElementById(openDropdown)
+              : null;
+            if (!panel?.contains(document.activeElement)) setOpenDropdown(null);
+          }, 180);
         }
       }}
       onBlur={(event) => {
@@ -103,7 +122,24 @@ export function Navbar({ introEntrance = false }: { introEntrance?: boolean }) {
         }
       }}
       onKeyDown={(event) => {
+        if (event.key === "Tab" && expanded && !desktopNavigation()) {
+          const controls = Array.from(
+            event.currentTarget.querySelectorAll<HTMLElement>(
+              "a[href], button",
+            ),
+          ).filter((element) => element.getClientRects().length > 0);
+          const first = controls[0];
+          const last = controls[controls.length - 1];
+          if (event.shiftKey && document.activeElement === first) {
+            event.preventDefault();
+            last?.focus();
+          } else if (!event.shiftKey && document.activeElement === last) {
+            event.preventDefault();
+            first?.focus();
+          }
+        }
         if (event.key !== "Escape") return;
+        cancelLeave();
         event.preventDefault();
         if (openDropdown) {
           document.getElementById(`${openDropdown}-trigger`)?.focus();
@@ -171,8 +207,11 @@ export function Navbar({ introEntrance = false }: { introEntrance?: boolean }) {
                     onPointerEnter={(event) => {
                       if (
                         event.pointerType === "mouse" &&
-                        desktopNavigation()
+                        desktopNavigation() &&
+                        window.matchMedia("(hover: hover)").matches
                       ) {
+                        cancelLeave();
+                        if (!isOpen) hoverOpened.current = dropdownId;
                         setOpenDropdown(dropdownId);
                       }
                     }}
@@ -183,17 +222,15 @@ export function Navbar({ introEntrance = false }: { introEntrance?: boolean }) {
                       className={`nest-nav-trigger${isActive ? " is-active" : ""}`}
                       aria-expanded={isOpen}
                       aria-controls={dropdownId}
-                      onClick={(event) =>
+                      onClick={() => {
+                        cancelLeave();
                         setOpenDropdown(
-                          desktopNavigation() &&
-                            window.matchMedia("(hover: hover)").matches &&
-                            event.detail > 0
-                            ? dropdownId
-                            : isOpen
-                              ? null
-                              : dropdownId,
-                        )
-                      }
+                          isOpen && hoverOpened.current !== dropdownId
+                            ? null
+                            : dropdownId,
+                        );
+                        hoverOpened.current = null;
+                      }}
                       onKeyDown={(event) => {
                         if (
                           event.key !== "ArrowDown" &&
@@ -201,15 +238,20 @@ export function Navbar({ introEntrance = false }: { introEntrance?: boolean }) {
                         )
                           return;
                         event.preventDefault();
+                        cancelLeave();
+                        hoverOpened.current = null;
                         setOpenDropdown(dropdownId);
                         const focusLast = event.key === "ArrowUp";
-                        requestAnimationFrame(() => {
-                          const links = document
-                            .getElementById(dropdownId)
-                            ?.querySelectorAll<HTMLAnchorElement>("a");
-                          if (links?.length)
-                            links[focusLast ? links.length - 1 : 0].focus();
-                        });
+                        window.cancelAnimationFrame(focusFrame.current);
+                        focusFrame.current = window.requestAnimationFrame(
+                          () => {
+                            const links = document
+                              .getElementById(dropdownId)
+                              ?.querySelectorAll<HTMLAnchorElement>("a");
+                            if (links?.length)
+                              links[focusLast ? links.length - 1 : 0].focus();
+                          },
+                        );
                       }}
                     >
                       <span>{item.name}</span>

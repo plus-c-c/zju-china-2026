@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
 export const STORY_STOPS = [
-  0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 6, 6, 7, 7, 7, 7, 7, 8, 8, 9, 9,
+  0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 6, 6, 7, 7, 8, 8,
 ];
 
 /** Native scrolling controls the timeline without wheel or touch interception. */
@@ -87,9 +87,16 @@ export function useStoryNavigation() {
   // Character scenes enter in four beats: background, decor/card, text, then
   // the stationary character animation. The outgoing scene clears first.
   const openingCut = from !== to && from >= 0 && to <= 4;
+  const hydrogelCut = from === 4 && to === 5;
   const limitationsCut = from === 5 && to === 6;
-  const solutionCut = from === 8 && to === 9;
-  const cut = openingCut || limitationsCut || solutionCut;
+  const ourSolutionCut = from === 6 && to === 7;
+  const selpToOaCut = from === 7 && to === 8;
+  const cut =
+    openingCut ||
+    hydrogelCut ||
+    limitationsCut ||
+    ourSolutionCut ||
+    selpToOaCut;
   const scenePosition = cut ? from : from + (to - from) * fraction;
   const smoothstep = (value: number) => value * value * (3 - 2 * value);
   const clamp = (value: number) => Math.max(0, Math.min(1, value));
@@ -104,15 +111,20 @@ export function useStoryNavigation() {
   const hydrogelExit = limitationsCut
     ? smoothstep(clamp((fraction - 0.04) / 0.4))
     : 0;
+  const hydrogelEntry = hydrogelCut
+    ? smoothstep(clamp((fraction - 0.38) / 0.5))
+    : 1;
   const limitationsCardsEntry = limitationsCut
     ? smoothstep(clamp((fraction - 0.52) / 0.25))
     : 1;
   const limitationsTitleEntry = limitationsCut
     ? smoothstep(clamp((fraction - 0.76) / 0.22))
     : 1;
-  const solutionCrossfade = solutionCut
-    ? smoothstep(clamp((fraction - 0.08) / 0.72))
-    : 1;
+  const solutionCrossfade = ourSolutionCut
+    ? smoothstep(clamp((fraction - 0.18) / 0.64))
+    : selpToOaCut
+      ? smoothstep(clamp((fraction - 0.08) / 0.72))
+      : 1;
   const openingContent: Record<number, number> = { 1: 0, 2: 0, 3: 0, 4: 0 };
   const openingDecor: Record<number, number> = { 1: 1, 2: 0, 3: 0, 4: 0 };
   const openingText: Record<number, number> = { 1: 1, 2: 0, 3: 0, 4: 0 };
@@ -135,7 +147,7 @@ export function useStoryNavigation() {
     3: 0,
     4: 0,
   };
-  if (openingCut) {
+  if (openingCut || hydrogelCut) {
     if (from >= 1 && from <= 4) {
       openingContent[from] = 1;
       openingDecor[from] = 1;
@@ -145,10 +157,12 @@ export function useStoryNavigation() {
       openingTextExit[from] = backgroundProgress;
       openingPersonExit[from] = backgroundProgress;
     }
-    openingContent[to] = 1;
-    openingDecor[to] = decorProgress;
-    openingText[to] = to === 1 ? statementTextProgress : textProgress;
-    openingPerson[to] = personProgress;
+    if (openingCut) {
+      openingContent[to] = 1;
+      openingDecor[to] = decorProgress;
+      openingText[to] = to === 1 ? statementTextProgress : textProgress;
+      openingPerson[to] = personProgress;
+    }
   } else if (from === to && from >= 1 && from <= 4) {
     openingContent[from] = 1;
     openingDecor[from] = 1;
@@ -168,7 +182,6 @@ export function useStoryNavigation() {
     0,
     Math.min(1, (cardProgress - 0.65) / 0.35),
   );
-  const reveal = (start: number) => clamp((position - start) / 0.35);
   const nextSceneStop = STORY_STOPS.findIndex(
     (value, index) => index > position && value > scenePosition,
   );
@@ -182,14 +195,17 @@ export function useStoryNavigation() {
           incoming: to,
           opacity: limitationsCut
             ? 1
-            : solutionCut
-              ? solutionCrossfade
-              : to === 1
-                ? statementBackgroundProgress
-                : backgroundProgress,
+            : hydrogelCut
+              ? backgroundProgress
+              : ourSolutionCut || selpToOaCut
+                ? solutionCrossfade
+                : to === 1
+                  ? statementBackgroundProgress
+                  : backgroundProgress,
         }
       : null,
     hydrogelExit,
+    hydrogelEntry,
     limitationsEntry: {
       cards: limitationsCardsEntry,
       title: limitationsTitleEntry,
@@ -207,11 +223,9 @@ export function useStoryNavigation() {
       resultTextEntry: smoothstep(resultTextProgress),
       resultEntry: smoothstep(resultEntryProgress),
     },
-    nestTitle: reveal(16.1),
-    // Spread the flight across both stationary bird-scene intervals.
-    birdProgress: clamp((position - 17) / 2),
-    birdStage: position < 18 ? 0 : position < 19 ? 1 : 2,
-    birdLandingProgress: clamp((position - 19) / 0.85),
+    ourSolutionExit: ourSolutionCut
+      ? smoothstep(clamp((fraction - 0.04) / 0.52))
+      : 0,
     nextScene: () => {
       const target = nextSceneStop >= 0 ? nextSceneStop : position + 1;
       seek(target, 1250, Math.max(0, target - 1));
