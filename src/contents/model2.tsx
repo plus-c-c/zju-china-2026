@@ -1,5 +1,6 @@
 import {
   useEffect,
+  useLayoutEffect,
   useRef,
   useState,
   type CSSProperties,
@@ -47,6 +48,34 @@ interface StructureFigureProps {
 
 /** Structure crop — the source images are wide multi-panel sheets; the
  *  bounds pick the visible region (same arrangement as ModelFigure). */
+interface CropSnapshot {
+  src: string;
+  bounds: readonly [number, number, number, number];
+  structureFraction: number;
+}
+
+/** Crop geometry of one sheet, as inline styles (the sheet is 3000 px wide;
+ *  the crop is addressed with percentages of the containing box). */
+function cropStyle(
+  bounds: readonly [number, number, number, number],
+): CSSProperties {
+  const [left, top, right, bottom] = bounds;
+  const contentWidth = right - left;
+  const contentHeight = bottom - top;
+  return {
+    width: `${(3000 / contentWidth) * 100}%`,
+    left: `${(-left / contentWidth) * 100}%`,
+    top: `${(-top / contentHeight) * 100}%`,
+  };
+}
+
+function frameSize(snapshot: CropSnapshot) {
+  const [left, top, right, bottom] = snapshot.bounds;
+  const width = Math.round(PROTEIN_PX / snapshot.structureFraction);
+  const height = Math.round(width / ((right - left) / (bottom - top)));
+  return { width, height };
+}
+
 function StructureFigure({
   src,
   alt,
@@ -58,6 +87,32 @@ function StructureFigure({
   const [left, top, right, bottom] = bounds;
   const contentWidth = right - left;
   const contentHeight = bottom - top;
+
+  // Crossfade: the outgoing crop stays on top, fading out, while the new
+  // one fades in underneath.
+  const latestRef = useRef<CropSnapshot | null>(null);
+  const timerRef = useRef(0);
+  const [outgoing, setOutgoing] = useState<
+    (CropSnapshot & { width: number; height: number }) | null
+  >(null);
+
+  useLayoutEffect(() => {
+    const previous = latestRef.current;
+    latestRef.current = { src, bounds, structureFraction };
+    if (!previous || previous.src === src) return;
+    if (timerRef.current) window.clearTimeout(timerRef.current);
+    setOutgoing({ ...previous, ...frameSize(previous) });
+    timerRef.current = window.setTimeout(() => setOutgoing(null), 400);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [src]);
+
+  useEffect(
+    () => () => {
+      if (timerRef.current) window.clearTimeout(timerRef.current);
+    },
+    [],
+  );
+
   return (
     <div
       className={`protein-structure${wide ? " protein-structure--wide" : ""}`}
@@ -74,15 +129,21 @@ function StructureFigure({
       >
         <img
           key={src}
+          className="protein-structure-in"
           src={src}
           alt={alt}
           loading="lazy"
-          style={{
-            width: `${(3000 / contentWidth) * 100}%`,
-            left: `${(-left / contentWidth) * 100}%`,
-            top: `${(-top / contentHeight) * 100}%`,
-          }}
+          style={cropStyle(bounds)}
         />
+        {outgoing && (
+          <span
+            className="protein-structure-out"
+            style={{ width: outgoing.width, height: outgoing.height }}
+            aria-hidden="true"
+          >
+            <img src={outgoing.src} alt="" style={cropStyle(outgoing.bounds)} />
+          </span>
+        )}
       </div>
     </div>
   );

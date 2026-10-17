@@ -57,9 +57,6 @@
     min(100%, calc(var(--protein-stage-h) * var(--protein-ratio, 1)))
   );
   aspect-ratio: var(--protein-ratio, 1);
-  border: 1px solid #e3e8f4;
-  border-radius: 12px;
-  background: #fbfcfe;
   transition:
     width 0.32s ease,
     transform 0.32s ease;
@@ -85,9 +82,20 @@
   transition: margin-top 0.32s ease;
 }
 
-/* Smooth swap: a new structure fades in while the frame morphs. */
-.protein-structure-frame img {
-  animation: protein-fade-in 0.32s ease;
+/* Smooth swap: crossfade — the new structure fades in underneath while the
+   outgoing one fades out on top (its own box keeps the previous geometry). */
+.protein-structure-frame > img {
+  animation: protein-fade-in 0.34s ease;
+}
+
+.protein-structure-out {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  overflow: hidden;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  animation: protein-fade-out 0.34s ease forwards;
 }
 
 .protein-caption {
@@ -182,6 +190,16 @@
   animation: protein-step-in 0.26s ease;
 }
 
+@keyframes protein-fade-out {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
 @keyframes protein-fade-in {
   from {
     opacity: 0;
@@ -210,7 +228,8 @@
   }
 
   .protein-structure-frame,
-  .protein-structure-frame img,
+  .protein-structure-frame > img,
+  .protein-structure-out,
   .protein-caption,
   .protein-cluster--wide .protein-text {
     transition: none;
