@@ -7,9 +7,12 @@ type Heading = { id: string; text: string; level: number };
 export function Toc({
   title,
   children,
+  hideToc = false,
 }: {
   title: string;
   children: ReactNode;
+  /** Render without the "On this page" sidebar (content gets the full width). */
+  hideToc?: boolean;
 }) {
   const headerRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -24,35 +27,37 @@ export function Toc({
     const content = contentRef.current;
     const header = headerRef.current;
     const footer = document.querySelector("footer.footer");
-    if (!content || !header) return;
+    if (!content || !header || hideToc) return;
 
-    const elements = Array.from(
-      content.querySelectorAll<HTMLElement>("h2, h3"),
-    );
-    const usedIds = new Set(
-      Array.from(document.querySelectorAll("[id]"), (node) => node.id),
-    );
-    elements.forEach((element, index) => {
-      if (element.id) return;
-      const slug =
-        (element.textContent || "section")
-          .trim()
-          .toLowerCase()
-          .replace(/[^\p{L}\p{N}]+/gu, "-")
-          .replace(/^-|-$/g, "") || "section";
-      let id = slug;
-      let suffix = index + 1;
-      while (usedIds.has(id)) id = `${slug}-${suffix++}`;
-      element.id = id;
-      usedIds.add(id);
-    });
-    setHeadings(
-      elements.map((element) => ({
-        id: element.id,
-        text: element.textContent || "",
-        level: element.tagName === "H2" ? 1 : 2,
-      })),
-    );
+    let elements: HTMLElement[] = [];
+    const collect = () => {
+      elements = Array.from(content.querySelectorAll<HTMLElement>("h2, h3"));
+      const usedIds = new Set(
+        Array.from(document.querySelectorAll("[id]"), (node) => node.id),
+      );
+      elements.forEach((element, index) => {
+        if (element.id) return;
+        const slug =
+          (element.textContent || "section")
+            .trim()
+            .toLowerCase()
+            .replace(/[^\p{L}\p{N}]+/gu, "-")
+            .replace(/^-|-$/g, "") || "section";
+        let id = slug;
+        let suffix = index + 1;
+        while (usedIds.has(id)) id = `${slug}-${suffix++}`;
+        element.id = id;
+        usedIds.add(id);
+      });
+      setHeadings(
+        elements.map((element) => ({
+          id: element.id,
+          text: element.textContent || "",
+          level: element.tagName === "H2" ? 1 : 2,
+        })),
+      );
+    };
+    collect();
 
     let frame = 0;
     const update = () => {
@@ -84,6 +89,14 @@ export function Toc({
     observer.observe(header);
     if (footer) observer.observe(footer);
 
+    // Rebuild the heading list when the page content changes in place
+    // (for example, when switching between module tabs on a page).
+    const contentObserver = new MutationObserver(() => {
+      collect();
+      scheduleUpdate();
+    });
+    contentObserver.observe(content, { childList: true, subtree: true });
+
     // Support opening a direct link to a section after its generated ID exists.
     if (window.location.hash) {
       let id = window.location.hash.slice(1);
@@ -98,9 +111,10 @@ export function Toc({
       window.removeEventListener("scroll", scheduleUpdate);
       window.removeEventListener("resize", scheduleUpdate);
       observer.disconnect();
+      contentObserver.disconnect();
       window.cancelAnimationFrame(frame);
     };
-  }, []);
+  }, [hideToc]);
 
   useEffect(() => {
     const nav = tocRef.current;
@@ -157,15 +171,15 @@ export function Toc({
     return parentId === activeTopLevelId;
   });
 
+  const showToc = !hideToc && headings.length > 0;
+
   return (
     <>
       <div ref={headerRef}>
         <Header title={title} />
       </div>
-      <div
-        className={`page-layout ${headings.length > 0 ? "page-layout-with-toc" : ""}`}
-      >
-        {headings.length > 0 && (
+      <div className={`page-layout ${showToc ? "page-layout-with-toc" : ""}`}>
+        {showToc && (
           <nav
             ref={tocRef}
             aria-label="On this page"
@@ -201,7 +215,7 @@ export function Toc({
             </ul>
           </nav>
         )}
-        {headings.length > 0 && (
+        {showToc && (
           <button
             type="button"
             className={`page-toc-toggle${
