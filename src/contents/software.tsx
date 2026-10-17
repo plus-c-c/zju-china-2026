@@ -38,9 +38,8 @@ export function Software() {
           <ul>
             <li>
               <strong>Researchers</strong>: How does a SELP sequence behave
-              mechanically after crosslinking? How do crosslink density,
-              strain, and the applied magnetic field change the overall
-              response?
+              mechanically after crosslinking? How do crosslink density, strain,
+              and the applied magnetic field change the overall response?
             </li>
             <li>
               <strong>Clinicians</strong>: Given a specific formulation, how
@@ -49,7 +48,9 @@ export function Software() {
           </ul>
           <p>
             The two software tools answer these questions.{" "}
-            <strong>Software I · SELP Molecular Dynamics Simulation Platform</strong>{" "}
+            <strong>
+              Software I · SELP Molecular Dynamics Simulation Platform
+            </strong>{" "}
             serves researchers: it organizes the simulation workflow into a
             pipeline that can be inspected and modified at any time, supporting
             prediction of material behavior and explanation of its causes.{" "}
@@ -102,19 +103,26 @@ export function Software() {
                 <tr>
                   <td>Step 1</td>
                   <td>flow_tiger2</td>
-                  <td>Single-chain conformations (all-atom enhanced sampling)</td>
+                  <td>
+                    Single-chain conformations (all-atom enhanced sampling)
+                  </td>
                   <td>TIGER2 (all-atom MD)</td>
                 </tr>
                 <tr>
                   <td>Step 2</td>
                   <td>flow_gromacs_cg</td>
-                  <td>Coarse-grained crosslinked network and compressive modulus</td>
+                  <td>
+                    Coarse-grained crosslinked network and compressive modulus
+                  </td>
                   <td>GROMACS (coarse-grained)</td>
                 </tr>
                 <tr>
                   <td>Step 3</td>
                   <td>flow_magnetomech</td>
-                  <td>Anisotropic response under the applied field (magneto-mechanical coupling)</td>
+                  <td>
+                    Anisotropic response under the applied field
+                    (magneto-mechanical coupling)
+                  </td>
                   <td>Magnetomechanics (composite + field)</td>
                 </tr>
               </tbody>
@@ -130,10 +138,10 @@ export function Software() {
               decoding="async"
             />
             <figcaption className="figure-caption">
-              Figure 1: Pipeline overview — ① flow name and the three-step
-              chain (TIGER2 → GROMACS → Magnetomech, with products passed along
-              the chain); ② completion (2 / 3 steps complete); ③ each step card
-              with its run status.
+              Figure 1: Pipeline overview — ① flow name and the three-step chain
+              (TIGER2 → GROMACS → Magnetomech, with products passed along the
+              chain); ② completion (2 / 3 steps complete); ③ each step card with
+              its run status.
             </figcaption>
           </figure>
 
@@ -214,7 +222,9 @@ export function Software() {
             </table>
           </div>
 
-          <h3 className="mt-5 mb-3">1.3 Usage Flow: From Parameters to Results</h3>
+          <h3 className="mt-5 mb-3">
+            1.3 Usage Flow: From Parameters to Results
+          </h3>
           <p>
             The platform fits the whole pipeline into a single page, organized
             around the four questions a user asks in order: where the run
@@ -303,8 +313,8 @@ export function Software() {
             <figcaption className="figure-caption">
               Figure 2: Step 1 parameter panel — ① sequence and annotation
               input; ② Where this step runs (the step can only start once it
-              shows configured); ③ the Derive sub-panel; ④ Motif annotations;
-              ⑤ Save / Save &amp; restart.
+              shows configured); ③ the Derive sub-panel; ④ Motif annotations; ⑤
+              Save / Save &amp; restart.
             </figcaption>
           </figure>
 
@@ -314,12 +324,12 @@ export function Software() {
           <p>
             The panel is titled <strong>Sequence &amp; annotation input</strong>{" "}
             and contains the following fields: <strong>Protein</strong> (an
-            identifier only, e.g. 2KY10),{" "}
-            <strong>Amino-acid sequence</strong> (multi-line text box, showing
-            the residue count live), <strong>PSF topology</strong> (e.g.
-            protein.psf, generated on the remote host and required before NAMD
-            can start). Illegal amino-acid codes are flagged immediately, and an
-            empty sequence cannot be saved.
+            identifier only, e.g. 2KY10), <strong>Amino-acid sequence</strong>{" "}
+            (multi-line text box, showing the residue count live),{" "}
+            <strong>PSF topology</strong> (e.g. protein.psf, generated on the
+            remote host and required before NAMD can start). Illegal amino-acid
+            codes are flagged immediately, and an empty sequence cannot be
+            saved.
           </p>
           <p>
             <strong>Motif annotations</strong> highlight every occurrence of
@@ -391,7 +401,10 @@ export function Software() {
                 <tr>
                   <td>Stretch</td>
                   <td>ε</td>
-                  <td>Axial Hencky strains sampled along each axis, comma-separated</td>
+                  <td>
+                    Axial Hencky strains sampled along each axis,
+                    comma-separated
+                  </td>
                 </tr>
                 <tr>
                   <td>Replicas</td>
@@ -413,10 +426,10 @@ export function Software() {
           </div>
           <p>
             Crosslink-density hint: below the Crosslinks field the platform
-            shows the number of crosslinks per chain live (e.g. 1.375
-            crosslinks per chain), so the network density can be judged against
-            the target range while filling in the form, rather than after the
-            simulation ends.
+            shows the number of crosslinks per chain live (e.g. 1.375 crosslinks
+            per chain), so the network density can be judged against the target
+            range while filling in the form, rather than after the simulation
+            ends.
           </p>
           <p>
             The compressive modulus computed in the second step is written into
@@ -568,7 +581,9 @@ export function Software() {
             </p>
           </blockquote>
 
-          <h4 className="mt-4 mb-3">1.3.4 Results and Interpretation: Results</h4>
+          <h4 className="mt-4 mb-3">
+            1.3.4 Results and Interpretation: Results
+          </h4>
           <p>
             Results groups output by category and shows only the result tabs a
             step actually produces; steps that are not finished yet state what
@@ -747,7 +762,10 @@ export function Software() {
                 <tr>
                   <td>4</td>
                   <td>Premixing</td>
-                  <td>On-screen instruction: wait for the premixer&rsquo;s green light</td>
+                  <td>
+                    On-screen instruction: wait for the premixer&rsquo;s green
+                    light
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -781,7 +799,7 @@ export function Software() {
           </p>
           <figure className="figure d-block my-4 text-center">
             <img
-              src="https://static.igem.wiki/teams/6102/wiki/images/software/05.avif"
+              src="https://static.igem.wiki/teams/6102/wiki/images/software/005.avif"
               alt="The four-step app wizard."
               className="figure-img img-fluid rounded"
               style={{ width: "100%" }}
@@ -790,9 +808,9 @@ export function Software() {
             />
             <figcaption className="figure-caption">
               Figure 5: The app wizard — ① scan the QR code (manual entry also
-              possible); ② load the formulation-specific Instructions for Use;
-              ③ add the reagents in order and confirm each one; ④ premixing —
-              wait for the premixer&rsquo;s green light.
+              possible); ② load the formulation-specific Instructions for Use; ③
+              add the reagents in order and confirm each one; ④ premixing — wait
+              for the premixer&rsquo;s green light.
             </figcaption>
           </figure>
 
@@ -830,7 +848,9 @@ export function Software() {
                 </tr>
                 <tr>
                   <td>Localisation</td>
-                  <td>Bilingual interface copy, switchable in-app with EN / CH</td>
+                  <td>
+                    Bilingual interface copy, switchable in-app with EN / CH
+                  </td>
                 </tr>
                 <tr>
                   <td>Server dependency</td>
@@ -884,7 +904,9 @@ export function Software() {
           <h3 className="mt-5 mb-3">3.2 Performance Optimization</h3>
           <ul>
             <li>
-              <strong>Software I · separation of remote and local computation</strong>
+              <strong>
+                Software I · separation of remote and local computation
+              </strong>
               : long-running simulations go to the remote cluster, while
               second-scale computations such as the third step run locally on
               the backend host, without SSH and without occupying the cluster
@@ -941,11 +963,11 @@ cd igem-2026-app
 
           <h4 className="mt-4 mb-3">3.3.3 Code Availability</h4>
           <p>
-            The Software I documentation includes
-            docs/full-workflow-guide.md, docs/simulation-principles.md,
-            docs/sequence-annotation-workflow.md, docs/task-creation.md,
-            docs/environment-setup.md and others; Software II is a standard
-            Gradle project that builds without extra environment configuration.
+            The Software I documentation includes docs/full-workflow-guide.md,
+            docs/simulation-principles.md, docs/sequence-annotation-workflow.md,
+            docs/task-creation.md, docs/environment-setup.md and others;
+            Software II is a standard Gradle project that builds without extra
+            environment configuration.
           </p>
         </article>
       </div>
