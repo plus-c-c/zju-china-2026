@@ -27,7 +27,7 @@ export function Toc({
     if (!content || !header) return;
 
     const elements = Array.from(
-      content.querySelectorAll<HTMLElement>("h2, h3, h4"),
+      content.querySelectorAll<HTMLElement>("h2, h3"),
     );
     const usedIds = new Set(
       Array.from(document.querySelectorAll("[id]"), (node) => node.id),
