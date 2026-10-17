@@ -6,8 +6,10 @@
   margin-top: clamp(80px, 8vw, 128px);
   padding: calc(32px + var(--footer-arch-height)) 40px 32px;
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 40px;
+  /* Single column at every width; minmax(0, 1fr) (not 1fr) so the sponsor
+     marquee's huge min-content width cannot stretch the grid. */
+  grid-template-columns: minmax(0, 1fr);
+  gap: 28px;
   background: transparent;
   color: #fff;
   font-family: "Outfit", sans-serif;
@@ -31,17 +33,12 @@
   margin: 0;
 }
 
-.footer__left {
-  display: flex;
-  flex-direction: column;
-}
-
 .footer__brand-row {
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 1.75rem;
-  margin-bottom: 18px;
 }
 
 .footer__team-logo {
@@ -56,12 +53,6 @@
   height: 36px;
 }
 
-.footer__right {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
 .footer__contact-title {
   margin: 0 0 6px;
   font-size: 20px;
@@ -71,10 +62,6 @@
 
 .footer__contact-email a {
   font-weight: 500;
-}
-
-.footer__bottom {
-  grid-column: 1 / -1;
 }
 
 .footer__supporters-title {
@@ -155,12 +142,13 @@
   font-family: "Mansalva", cursive;
   font-weight: 200;
   font-size: 22px;
+  text-align: center;
 }
 
 .footer__legal {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 20px;
   color: #dce8f6;
 }
 
@@ -191,10 +179,6 @@
     --footer-arch-height: 48px;
     min-height: 320px;
     padding: calc(28px + var(--footer-arch-height)) 24px 28px;
-    /* minmax(0, 1fr), not 1fr: the sponsor marquee has a huge min-content
-       width, which would otherwise stretch the whole grid past the viewport. */
-    grid-template-columns: minmax(0, 1fr);
-    gap: 36px;
     font-size: 16px;
   }
 

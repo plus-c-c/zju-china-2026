@@ -38,59 +38,29 @@ export function Footer({ story = false }: { story?: boolean }) {
       data-node-id="192:311"
       data-name="Footer / Desktop"
     >
-      <div className="footer__left" data-node-id="192:312">
-        <div className="footer__brand-row">
+      <p className="footer__tagline" data-node-id="192:315">
+        An engineered hydrogel platform for healthier joints and a better
+        tomorrow.
+      </p>
+
+      <div className="footer__brand-row">
+        <img
+          className="footer__team-logo"
+          src={`${uploads}/team-logo.avif`}
+          alt="ZJU-China"
+        />
+        {universityLogos.map((logo) => (
           <img
-            className="footer__team-logo"
-            src={`${uploads}/team-logo.avif`}
-            alt="ZJU-China"
+            className="footer__uni-logo"
+            key={logo.src}
+            src={logo.src}
+            alt={logo.alt}
+            loading="lazy"
           />
-          {universityLogos.map((logo) => (
-            <img
-              className="footer__uni-logo"
-              key={logo.src}
-              src={logo.src}
-              alt={logo.alt}
-              loading="lazy"
-            />
-          ))}
-        </div>
-        <p className="footer__tagline" data-node-id="192:315">
-          An engineered hydrogel platform for healthier joints and a better
-          tomorrow.
-        </p>
+        ))}
       </div>
 
-      <div className="footer__right">
-        <div className="footer__contact">
-          <h5 className="footer__contact-title">FOLLOW &amp; CONTACT</h5>
-          <p className="footer__contact-email">
-            <a href="mailto:ZJUChina@outlook.com">ZJUChina@outlook.com</a>
-          </p>
-        </div>
-
-        <div className="footer__legal" data-node-id="192:316">
-          <p>
-            © 2026 - Content on this site is licensed under a{" "}
-            <a
-              href="https://creativecommons.org/licenses/by/4.0/"
-              rel="license"
-            >
-              Creative Commons Attribution 4.0 International license
-            </a>
-            .
-          </p>
-          <p>
-            The repository used to create this website is available at{" "}
-            <a href="https://gitlab.igem.org/2026/zju-china">
-              gitlab.igem.org/2026/zju-china
-            </a>
-            .
-          </p>
-        </div>
-      </div>
-
-      <div className="footer__bottom">
+      <div className="footer__supporters">
         <h4 className="footer__supporters-title">WE THANK OUR SUPPORTERS:</h4>
         <div className="sponsors-container">
           <div className="sponsors-track">
@@ -107,6 +77,30 @@ export function Footer({ story = false }: { story?: boolean }) {
               ))}
           </div>
         </div>
+      </div>
+
+      <div className="footer__contact">
+        <h5 className="footer__contact-title">FOLLOW &amp; CONTACT</h5>
+        <p className="footer__contact-email">
+          <a href="mailto:ZJUChina@outlook.com">ZJUChina@outlook.com</a>
+        </p>
+      </div>
+
+      <div className="footer__legal" data-node-id="192:316">
+        <p>
+          © 2026 - Content on this site is licensed under a{" "}
+          <a href="https://creativecommons.org/licenses/by/4.0/" rel="license">
+            Creative Commons Attribution 4.0 International license
+          </a>
+          .
+        </p>
+        <p>
+          The repository used to create this website is available at{" "}
+          <a href="https://gitlab.igem.org/2026/zju-china">
+            gitlab.igem.org/2026/zju-china
+          </a>
+          .
+        </p>
       </div>
     </footer>
   );
