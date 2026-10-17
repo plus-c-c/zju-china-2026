@@ -162,8 +162,12 @@
 }
 
 .protein-caption-stack {
+  /* Clip the sliding captions to the caption's own area: the moving text
+     must not appear over the text card on the right or the TOC on the
+     left. */
   position: relative;
   display: block;
+  overflow: hidden;
 }
 
 .protein-caption-out {

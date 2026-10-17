@@ -624,7 +624,7 @@ const SNOOP_STEPS: ProteinStep[] = [
       <p>
         <em>
           {
-            "Figure 7 | Representative product-like structure of the E827 control. The dashed line indicates the measured distance between K734 NZ and E827 OE2 (2.80 Å)."
+            "Figure 7a | Representative product-like structure of the E827 control. The dashed line indicates the measured distance between K734 NZ and E827 OE2 (2.80 Å)."
           }
         </em>
       </p>
@@ -660,7 +660,7 @@ const SNOOP_STEPS: ProteinStep[] = [
       <p>
         <em>
           {
-            "Figure 8 | The Q827 mutant in the same representation. The dashed line indicates the measured distance between K734 NZ and Q827 OE1 (5.87 Å)."
+            "Figure 7b | The Q827 mutant in the same representation. The dashed line indicates the measured distance between K734 NZ and Q827 OE1 (5.87 Å)."
           }
         </em>
       </p>
@@ -692,7 +692,7 @@ const SNOOP_STEPS: ProteinStep[] = [
     ),
     caption: (
       <p>
-        <em>{"Figure 9 | The overview of SnoopLigase2-ZJU."}</em>
+        <em>{"Figure 8 | The overview of SnoopLigase2-ZJU."}</em>
       </p>
     ),
     body: (
