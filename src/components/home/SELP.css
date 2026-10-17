@@ -32,7 +32,7 @@
   border-radius: 35px;
   background: linear-gradient(180deg, rgb(244 249 255 / 92%) 0%, #ffeca0 100%);
   box-shadow:
-    8px 8px 0 #9ed2f5,
+    6px 6px 0 #9ed2f5,
     0 14px 28px rgb(34 84 137 / 14%);
 }
 
@@ -47,7 +47,7 @@
   left: 123px;
   top: 433px;
   width: 568px;
-  height: 306.67px;
+  height: 286.67px;
 }
 
 .nest-solution-selp-title,
@@ -60,8 +60,8 @@
 }
 
 .nest-solution-selp-title {
-  left: 97px;
-  top: -16px;
+  left: 107px;
+  top: -36px;
   width: 350px;
   font-size: 60px;
   line-height: 69px;
@@ -72,8 +72,8 @@
 .nest-solution-selp-subtitle {
   position: absolute;
   z-index: 2;
-  left: 141px;
-  top: 54px;
+  left: 161px;
+  top: 44px;
   color: rgb(0 0 0 / 67%);
   font-size: 23px;
   font-weight: 500;
@@ -84,19 +84,19 @@
 .nest-solution-selp-copy {
   position: absolute;
   z-index: 2;
-  left: 68px;
-  top: 97px;
-  width: 405px;
+  left: 99px;
+  top: 95px;
+  width: 455px;
   color: #05080d;
-  font-size: 23px;
-  line-height: 31px;
+  font-size: 26px;
+  line-height: 38px;
 }
 
 .nest-solution-ligase-title {
-  left: 57px;
-  top: 12px;
-  width: 430px;
-  font-size: 34px;
+  left: 50px;
+  top: -20px;
+  width: 500px;
+  font-size: 40px;
   line-height: 42px;
 }
 
@@ -104,11 +104,11 @@
   position: absolute;
   z-index: 2;
   left: 87px;
-  top: 98px;
-  width: 370px;
+  top: 70px;
+  width: 450px;
   color: #05080d;
-  font-size: 23px;
-  line-height: 31px;
+  font-size: 28px;
+  line-height: 38px;
 }
 
 .nest-solution-button {
@@ -126,17 +126,17 @@
   font-weight: 600;
   line-height: 36px;
   text-decoration: none;
-  box-shadow: 12px 13px 0 rgb(150 196 244 / 34%);
+  box-shadow: 6px 6px 0 rgb(150 196 244 / 34%);
 }
 
 .nest-solution-button--selp {
   left: 157px;
-  top: 231px;
+  top: 271px;
 }
 
 .nest-solution-button--ligase {
   left: 157px;
-  top: 242px;
+  top: 249px;
 }
 
 .nest-solution-selp-chain {
@@ -166,8 +166,8 @@
 
 .nest-solution-arrow--lower {
   left: 505px;
-  top: 407px;
-  width: 236px;
+  top: 507px;
+  width: 380px;
   height: 135px;
   transform: rotate(10deg);
 }
@@ -240,9 +240,9 @@
 .oa-panel {
   position: absolute;
   left: 101.39px;
-  top: 247.17px;
+  top: 260px;
   width: 1191.1px;
-  height: 488.4px;
+  height: 450px;
   border-radius: 35px;
   background: linear-gradient(180deg, rgb(244 249 255 / 94%) 0%, #ffe99a 100%);
   box-shadow:
@@ -253,7 +253,7 @@
 .oa-panel-copy {
   position: absolute;
   left: 522.61px;
-  top: 80px;
+  top: 65px;
   width: 576px;
   color: #05080d;
   font-size: 28px;
@@ -270,9 +270,9 @@
 
 .oa-cycle-image {
   position: absolute;
-  left: 84.52px;
-  top: 101px;
-  width: 383.42px;
+  left: 80px;
+  top: 70px;
+  width: 390px;
   height: auto;
   max-width: none;
 }
@@ -285,7 +285,7 @@
 
 .selp-pipeline {
   position: relative;
-  z-index: 2;
+  z-index: 1;
   width: 100%;
   overflow: hidden;
   background: #f4f9ff;
@@ -300,6 +300,7 @@
 
 .selp-pipeline__stage {
   position: relative;
+  isolation: isolate;
   width: 100%;
   aspect-ratio: 1366 / 770;
 }
@@ -316,6 +317,7 @@
 
 .selp-pipeline__card {
   position: absolute;
+  z-index: 1;
   width: 44.33%;
   border-radius: 2.49cqw;
   background: #ffeda1;
@@ -418,10 +420,10 @@
 }
 
 .selp-pipeline__art--purple-vial {
-  left: 63.06%;
-  top: 69.48%;
-  width: 11.69%;
-  height: 21.89%;
+  left: 57%;
+  top: 65%;
+  width: 20%;
+  height: 35%;
 }
 
 .selp-pipeline__art--gag-chain {
@@ -433,7 +435,7 @@
 }
 
 .selp-pipeline__art--pink-vial {
-  left: 5.79%;
+  left: 4%;
   top: 61.2%;
   width: 18.35%;
   height: 32.91%;
@@ -454,10 +456,19 @@
 }
 
 .selp-pipeline__art--yellow-vial {
-  left: 58.81%;
+  left: 57%;
   top: 59.48%;
   width: 19.55%;
   height: 35%;
+}
+
+.selp-pipeline__art--purple-flask,
+.selp-pipeline__art--purple-vial,
+.selp-pipeline__art--pink-vial,
+.selp-pipeline__art--gag-reactor,
+.selp-pipeline__art--mito-reactor,
+.selp-pipeline__art--yellow-vial {
+  z-index: 2;
 }
 
 .selp-pipeline__art--liposome {
@@ -495,18 +506,18 @@
 }
 
 .selp-pipeline__connector {
-  z-index: 2;
+  z-index: 0;
   left: 33.2%;
   width: 39.45%;
   height: auto;
 }
 
 .selp-pipeline__connector--first {
-  top: 75.32%;
+  top: 72%;
 }
 
 .selp-pipeline__connector--second {
-  top: 72.77%;
+  top: 72%;
 }
 
 @media (max-width: 700px) {

@@ -33,6 +33,22 @@
   margin: 0;
 }
 
+.opening-text-line {
+  --opening-line-progress: clamp(
+    0,
+    calc(var(--opening-text, 1) * 1.42 - var(--opening-line-offset, 0)),
+    1
+  );
+  display: block;
+  opacity: var(--opening-line-progress);
+  transform: translate3d(
+    calc(var(--opening-line-x, 0px) * (1 - var(--opening-line-progress))),
+    0,
+    0
+  );
+  will-change: opacity, transform;
+}
+
 .opening-scene--statement {
   color: #f6faff;
 }
@@ -67,7 +83,9 @@
 .opening-bubbles {
   position: absolute;
   inset: 0;
-  transform: translateX(var(--opening-enter-right, 0px));
+  transform: translateX(
+    calc(var(--opening-enter-right, 0px) + var(--opening-text-exit-right, 0px))
+  );
   will-change: transform;
 }
 
@@ -432,8 +450,7 @@
   text-align: center;
   pointer-events: none;
   opacity: var(--burden-stat-reveal, 0);
-  transform: translateY(var(--burden-stat-y, 18px));
-  will-change: opacity, transform;
+  will-change: opacity;
 }
 
 .opening-burden__stat strong {
@@ -448,6 +465,22 @@
   margin-top: 10px;
   font-size: 32px;
   line-height: 1.25;
+}
+
+.opening-burden__stat strong,
+.opening-burden__stat p {
+  --burden-line-progress: clamp(
+    0,
+    calc(var(--burden-stat-reveal, 0) * 1.18 - var(--burden-line-delay, 0)),
+    1
+  );
+  opacity: var(--burden-line-progress);
+  transform: translateY(calc(18px * (1 - var(--burden-line-progress))));
+  will-change: opacity, transform;
+}
+
+.opening-burden__stat p {
+  --burden-line-delay: 0.08;
 }
 
 .opening-burden__legend {
@@ -733,7 +766,7 @@
   font-weight: 600;
 }
 
-.opening-rehab__cost span {
+.opening-rehab__cost-note {
   display: block;
   margin-top: -42px;
   font-size: 32px;
@@ -742,6 +775,11 @@
 
 @media (prefers-reduced-motion: reduce) {
   .opening-content {
+    transform: none;
+  }
+
+  .opening-text-line {
+    opacity: 1;
     transform: none;
   }
 

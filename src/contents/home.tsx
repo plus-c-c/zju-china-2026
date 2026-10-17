@@ -234,7 +234,6 @@ export function Home() {
                                   1 - burdenStatReveal * 0.72,
                                 "--burden-legend-opacity":
                                   1 - burdenStatReveal * 0.66,
-                                "--burden-stat-y": `${(1 - burdenStatReveal) * 18}px`,
                               }
                             : {}),
                         }

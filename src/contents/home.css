@@ -142,12 +142,26 @@ body.home-story-open .app {
 .story-viewport #home-5 {
   background: linear-gradient(90deg, #f6faff 0%, #ebf2fc 58%, #b8d4f2 100%);
 }
+.story-viewport #home-5::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: clamp(96px, 16vh, 172px);
+  pointer-events: none;
+  background: linear-gradient(180deg, transparent 0%, #ddecff 100%);
+}
 .story-viewport #home-6 {
   background-color: #ddecff;
   background-image: var(--hydrogel-background-image);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+}
+.story-viewport #home-5 .home-scene-canvas {
+  z-index: 2;
 }
 .story-viewport #home-7 {
   background-color: #ddecff;

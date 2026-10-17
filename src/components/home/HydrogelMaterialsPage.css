@@ -53,6 +53,7 @@
 }
 
 .hydrogel-materials-page__kicker {
+  --hydrogel-item-exit: clamp(0, calc(var(--hydrogel-exit, 0) * 1.45), 1);
   position: absolute;
   left: 317px;
   z-index: 1;
@@ -64,8 +65,8 @@
   font-weight: 700;
   line-height: 44px;
   text-align: center;
-  opacity: calc(1 - var(--hydrogel-exit, 0));
-  translate: 0 calc(var(--hydrogel-exit, 0) * -96px);
+  opacity: calc(1 - var(--hydrogel-item-exit));
+  translate: 0 calc(var(--hydrogel-item-exit) * -96px);
   will-change: opacity, translate;
 }
 
@@ -74,6 +75,11 @@
 }
 
 .hydrogel-materials-page__title {
+  --hydrogel-item-exit: clamp(
+    0,
+    calc(var(--hydrogel-exit, 0) * 1.45 - 0.06),
+    1
+  );
   position: absolute;
   left: 108px;
   z-index: 1;
@@ -84,12 +90,17 @@
   font-size: 72px;
   font-weight: 600;
   line-height: 83px;
-  opacity: calc(1 - var(--hydrogel-exit, 0));
-  translate: calc(var(--hydrogel-exit, 0) * -180px) 0;
+  opacity: calc(1 - var(--hydrogel-item-exit));
+  translate: calc(var(--hydrogel-item-exit) * -180px) 0;
   will-change: opacity, translate;
 }
 
 .hydrogel-materials-page__subtitle {
+  --hydrogel-item-exit: clamp(
+    0,
+    calc(var(--hydrogel-exit, 0) * 1.45 - 0.12),
+    1
+  );
   position: absolute;
   left: 110px;
   z-index: 1;
@@ -100,8 +111,8 @@
   font-size: 42px;
   font-weight: 600;
   line-height: 55px;
-  opacity: calc(1 - var(--hydrogel-exit, 0));
-  translate: calc(var(--hydrogel-exit, 0) * -180px) 0;
+  opacity: calc(1 - var(--hydrogel-item-exit));
+  translate: calc(var(--hydrogel-item-exit) * -180px) 0;
   will-change: opacity, translate;
 }
 
@@ -115,12 +126,37 @@
   font-size: 28px;
   font-weight: 400;
   line-height: 41px;
-  opacity: calc(1 - var(--hydrogel-exit, 0));
-  translate: calc(var(--hydrogel-exit, 0) * -180px) 0;
+}
+
+.hydrogel-materials-page__copy p {
+  --hydrogel-item-exit: clamp(
+    0,
+    calc(var(--hydrogel-exit, 0) * 1.45 - var(--hydrogel-line-delay, 0.18)),
+    1
+  );
+  opacity: calc(1 - var(--hydrogel-item-exit));
+  translate: calc(var(--hydrogel-item-exit) * -180px) 0;
   will-change: opacity, translate;
 }
 
+.hydrogel-materials-page__copy p:nth-child(2) {
+  --hydrogel-line-delay: 0.23;
+}
+
+.hydrogel-materials-page__copy p:nth-child(3) {
+  --hydrogel-line-delay: 0.28;
+}
+
+.hydrogel-materials-page__copy p:nth-child(4) {
+  --hydrogel-line-delay: 0.33;
+}
+
 .hydrogel-materials-page .hydrogel-materials-page__button {
+  --hydrogel-item-exit: clamp(
+    0,
+    calc(var(--hydrogel-exit, 0) * 1.45 - 0.38),
+    1
+  );
   position: absolute;
   left: 110px;
   z-index: 1;
@@ -139,8 +175,8 @@
   font-weight: 600;
   line-height: 41px;
   place-items: center;
-  opacity: calc(1 - var(--hydrogel-exit, 0));
-  translate: calc(var(--hydrogel-exit, 0) * -180px) 0;
+  opacity: calc(1 - var(--hydrogel-item-exit));
+  translate: calc(var(--hydrogel-item-exit) * -180px) 0;
   will-change: opacity, translate;
 }
 

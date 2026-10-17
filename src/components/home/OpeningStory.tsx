@@ -29,6 +29,12 @@ const statementBubbleNames = [
 
 type StatementBubbleName = (typeof statementBubbleNames)[number];
 
+const openingLineStyle = (index: number, side: "left" | "right" = "left") =>
+  ({
+    "--opening-line-offset": index * 0.055,
+    "--opening-line-x": `${(side === "left" ? -1 : 1) * (18 + Math.min(index, 6) * 1.2)}px`,
+  }) as CSSProperties;
+
 function PlayOnceGif({
   alt,
   className,
@@ -66,7 +72,17 @@ function PlayOnceGif({
 }
 
 export function OpeningStatement() {
-  const { active } = useStory();
+  const { active, settled } = useStory();
+  const [bubblesRevealed, setBubblesRevealed] = useState(false);
+
+  useEffect(() => {
+    if (settled) {
+      setBubblesRevealed(true);
+    } else if (!active) {
+      setBubblesRevealed(false);
+    }
+  }, [active, settled]);
+
   const bubbleOrder = useMemo(() => {
     const shuffled = [...statementBubbleNames];
     for (let index = shuffled.length - 1; index > 0; index -= 1) {
@@ -82,7 +98,7 @@ export function OpeningStatement() {
   }, []);
   const bubbleStyle = (name: StatementBubbleName) =>
     ({
-      "--bubble-enter-delay": `${360 + bubbleOrder[name] * 105}ms`,
+      "--bubble-enter-delay": `${100 + bubbleOrder[name] * 105}ms`,
     }) as CSSProperties;
 
   return (
@@ -93,21 +109,28 @@ export function OpeningStatement() {
       <div className="opening-statement__design">
         <div className="opening-content">
           <h1 className="opening-statement__title" data-node-id="1134:20">
-            Cartilage
-            <br />
-            damage is
-            <br />
-            widespread—
-            <br />
-            yet lasting
-            <br />
-            repair remains
-            <br />
-            elusive.
+            <span className="opening-text-line" style={openingLineStyle(0)}>
+              Cartilage
+            </span>
+            <span className="opening-text-line" style={openingLineStyle(1)}>
+              damage is
+            </span>
+            <span className="opening-text-line" style={openingLineStyle(2)}>
+              widespread—
+            </span>
+            <span className="opening-text-line" style={openingLineStyle(3)}>
+              yet lasting
+            </span>
+            <span className="opening-text-line" style={openingLineStyle(4)}>
+              repair remains
+            </span>
+            <span className="opening-text-line" style={openingLineStyle(5)}>
+              elusive.
+            </span>
           </h1>
 
           <div
-            className={`opening-bubbles${active ? " opening-bubbles--active" : ""}`}
+            className={`opening-bubbles${bubblesRevealed ? " opening-bubbles--active" : ""}`}
             aria-label="Types of cartilage damage"
           >
             <div
@@ -231,8 +254,12 @@ export function GlobalBurdenScene({ play }: { play: boolean }) {
       <div className="opening-content">
         <div className="opening-side opening-side--left">
           <h2 className="opening-burden__title" data-node-id="967:11">
-            A world in <strong>PAIN</strong>.
-            <br />A need for repair.
+            <span className="opening-text-line" style={openingLineStyle(0)}>
+              A world in <strong>PAIN</strong>.
+            </span>
+            <span className="opening-text-line" style={openingLineStyle(1)}>
+              A need for repair.
+            </span>
           </h2>
           <PlayOnceGif
             alt="A person experiencing knee pain while using stairs"
@@ -272,19 +299,31 @@ export function SportsTraumaScene({ play }: { play: boolean }) {
       <div className="opening-content">
         <div className="opening-side opening-side--left">
           <h2 className="opening-sports__title" data-node-id="1009:27">
-            Pain <strong>takes more</strong>
-            <br />
-            than movement.
+            <span className="opening-text-line" style={openingLineStyle(0)}>
+              Pain <strong>takes more</strong>
+            </span>
+            <span className="opening-text-line" style={openingLineStyle(1)}>
+              than movement.
+            </span>
           </h2>
           <div className="opening-sports__score" data-node-id="1009:29">
-            <strong>27.5</strong>
-            <span>OUT OF 100</span>
-            <small>(lower is worse)</small>
+            <strong className="opening-text-line" style={openingLineStyle(2)}>
+              27.5
+            </strong>
+            <span className="opening-text-line" style={openingLineStyle(3)}>
+              OUT OF 100
+            </span>
+            <small className="opening-text-line" style={openingLineStyle(4)}>
+              (lower is worse)
+            </small>
           </div>
           <p className="opening-sports__body" data-node-id="1009:28">
-            Quality of life score
-            <br />
-            prior to cartilage repair
+            <span className="opening-text-line" style={openingLineStyle(5)}>
+              Quality of life score
+            </span>
+            <span className="opening-text-line" style={openingLineStyle(6)}>
+              prior to cartilage repair
+            </span>
           </p>
         </div>
 
@@ -330,14 +369,33 @@ export function RehabilitationScene({ play }: { play: boolean }) {
 
         <div className="opening-side opening-side--right">
           <h2 className="opening-rehab__title" data-node-id="967:881">
-            Getting life back
-            <br />
-            comes at a <strong>COST</strong>.
+            <span
+              className="opening-text-line"
+              style={openingLineStyle(0, "right")}
+            >
+              Getting life back
+            </span>
+            <span
+              className="opening-text-line"
+              style={openingLineStyle(1, "right")}
+            >
+              comes at a <strong>COST</strong>.
+            </span>
           </h2>
           <div className="opening-rehab__cost" data-node-id="967:882">
-            <strong>~£2</strong>
-            <b>billion/yr.</b>
-            <span>Treatment-spending scenario.</span>
+            <div
+              className="opening-text-line"
+              style={openingLineStyle(2, "right")}
+            >
+              <strong>~£2</strong>
+              <b>billion/yr.</b>
+            </div>
+            <span
+              className="opening-text-line opening-rehab__cost-note"
+              style={openingLineStyle(3, "right")}
+            >
+              Treatment-spending scenario.
+            </span>
           </div>
         </div>
       </div>

@@ -144,7 +144,7 @@ export function OsteoarthritisTargetScene() {
   );
 }
 
-const PIPELINE_ASSETS = "/images/home";
+const PIPELINE_ASSETS = "https://static.igem.wiki/teams/6102/wiki/images/home";
 
 function PipelinePill({ label }: { label: string }) {
   return <span className="selp-pipeline__pill" aria-label={label} />;
@@ -171,17 +171,17 @@ export function SelpPipeline() {
           </article>
           <img
             className="selp-pipeline__art selp-pipeline__art--magnetic-network"
-            src={`${PIPELINE_ASSETS}/pipeline-c45df.png`}
+            src={`${PIPELINE_ASSETS}/pipeline-c45df.avif`}
             alt="Magnetically aligned SELP network"
           />
           <img
             className="selp-pipeline__art selp-pipeline__art--purple-flask"
-            src={`${PIPELINE_ASSETS}/pipeline-8ada8.png`}
+            src={`${PIPELINE_ASSETS}/pipeline-8ada8.avif`}
             alt=""
           />
           <img
             className="selp-pipeline__art selp-pipeline__art--purple-vial"
-            src={`${PIPELINE_ASSETS}/pipeline-98a2f.png`}
+            src={`${PIPELINE_ASSETS}/pipeline-98a2f.avif`}
             alt=""
           />
           <PipelinePill label="Magnetic module details" />
@@ -206,17 +206,17 @@ export function SelpPipeline() {
           </article>
           <img
             className="selp-pipeline__art selp-pipeline__art--gag-chain"
-            src={`${PIPELINE_ASSETS}/pipeline-9996d.png`}
+            src={`${PIPELINE_ASSETS}/pipeline-9996d.avif`}
             alt="GAG-binding SELP peptide chain"
           />
           <img
             className="selp-pipeline__art selp-pipeline__art--pink-vial"
-            src={`${PIPELINE_ASSETS}/pipeline-4567c.png`}
+            src={`${PIPELINE_ASSETS}/pipeline-4567c.avif`}
             alt=""
           />
           <img
             className="selp-pipeline__art selp-pipeline__art--gag-reactor"
-            src={`${PIPELINE_ASSETS}/pipeline-b9107.png`}
+            src={`${PIPELINE_ASSETS}/pipeline-b9107.avif`}
             alt=""
           />
           <PipelinePill label="GAG retention module details" />
@@ -242,17 +242,17 @@ export function SelpPipeline() {
           </article>
           <img
             className="selp-pipeline__art selp-pipeline__art--mito-reactor"
-            src={`${PIPELINE_ASSETS}/b8418.png`}
+            src={`${PIPELINE_ASSETS}/b8418.avif`}
             alt=""
           />
           <img
             className="selp-pipeline__art selp-pipeline__art--yellow-vial"
-            src={`${PIPELINE_ASSETS}/pipeline-fabb3.png`}
+            src={`${PIPELINE_ASSETS}/pipeline-fabb3.avif`}
             alt=""
           />
           <img
             className="selp-pipeline__art selp-pipeline__art--liposome"
-            src={`${PIPELINE_ASSETS}/pipeline-6b438.png`}
+            src={`${PIPELINE_ASSETS}/pipeline-6b438.avif`}
             alt="Mitochondria-loaded liposome"
           />
           <PipelinePill label="Mitochondrial therapeutic module details" />

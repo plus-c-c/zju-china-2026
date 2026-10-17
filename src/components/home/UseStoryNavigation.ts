@@ -87,10 +87,9 @@ export function useStoryNavigation() {
   // Character scenes enter in four beats: background, decor/card, text, then
   // the stationary character animation. The outgoing scene clears first.
   const openingCut = from !== to && from >= 0 && to <= 4;
-  const hydrogelCut = from === 4 && to === 5;
   const limitationsCut = from === 5 && to === 6;
   const solutionCut = from === 8 && to === 9;
-  const cut = openingCut || hydrogelCut || limitationsCut || solutionCut;
+  const cut = openingCut || limitationsCut || solutionCut;
   const scenePosition = cut ? from : from + (to - from) * fraction;
   const smoothstep = (value: number) => value * value * (3 - 2 * value);
   const clamp = (value: number) => Math.max(0, Math.min(1, value));
@@ -113,9 +112,6 @@ export function useStoryNavigation() {
     : 1;
   const solutionCrossfade = solutionCut
     ? smoothstep(clamp((fraction - 0.08) / 0.72))
-    : 1;
-  const hydrogelCrossfade = hydrogelCut
-    ? smoothstep(clamp((fraction - 0.06) / 0.82))
     : 1;
   const openingContent: Record<number, number> = { 1: 0, 2: 0, 3: 0, 4: 0 };
   const openingDecor: Record<number, number> = { 1: 1, 2: 0, 3: 0, 4: 0 };
@@ -140,34 +136,29 @@ export function useStoryNavigation() {
     4: 0,
   };
   if (openingCut) {
-    openingContent[from] = from === 0 ? 1 : 0;
+    if (from >= 1 && from <= 4) {
+      openingContent[from] = 1;
+      openingDecor[from] = 1;
+      openingText[from] = 1;
+      openingPerson[from] = 1;
+      openingDecorExit[from] = backgroundProgress;
+      openingTextExit[from] = backgroundProgress;
+      openingPersonExit[from] = backgroundProgress;
+    }
     openingContent[to] = 1;
     openingDecor[to] = decorProgress;
     openingText[to] = to === 1 ? statementTextProgress : textProgress;
     openingPerson[to] = personProgress;
   } else if (from === to && from >= 1 && from <= 4) {
-    const delayedForBurden = from === 2;
-    const decorExit = delayedForBurden
-      ? smoothstep(clamp((fraction - 0.84) / 0.14))
-      : smoothstep(clamp((fraction - 0.54) / 0.22));
-    const textExit = delayedForBurden
-      ? smoothstep(clamp((fraction - 0.7) / 0.14))
-      : smoothstep(clamp((fraction - 0.32) / 0.22));
-    const personExit = delayedForBurden
-      ? smoothstep(clamp((fraction - 0.56) / 0.14))
-      : smoothstep(clamp((fraction - 0.1) / 0.22));
     openingContent[from] = 1;
     openingDecor[from] = 1;
     openingText[from] = 1;
     openingPerson[from] = 1;
-    openingDecorExit[from] = decorExit;
-    openingTextExit[from] = textExit;
-    openingPersonExit[from] = personExit;
   } else if (from >= 1 && from <= 4) {
     openingContent[from] = 0;
   }
   const burdenStatReveal = smoothstep(clamp((position - 4.08) / 0.54));
-  const cardProgress = clamp((position - 13) / 2);
+  const cardProgress = clamp((position - 13) / 1.55);
   const yellowExitProgress = Math.max(0, Math.min(1, cardProgress * 2));
   const resultTextProgress = Math.max(
     0,
@@ -193,11 +184,9 @@ export function useStoryNavigation() {
             ? 1
             : solutionCut
               ? solutionCrossfade
-              : hydrogelCut
-                ? hydrogelCrossfade
-                : to === 1
-                  ? statementBackgroundProgress
-                  : backgroundProgress,
+              : to === 1
+                ? statementBackgroundProgress
+                : backgroundProgress,
         }
       : null,
     hydrogelExit,
