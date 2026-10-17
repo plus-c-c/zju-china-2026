@@ -174,7 +174,7 @@
 .dbtl {
   --dbtl-stack-h: clamp(380px, calc(90vh - 12rem), 700px);
   display: grid;
-  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.28fr);
   gap: clamp(1.5rem, 3vw, 3rem);
   align-items: center;
   margin-top: 1.5rem;
@@ -183,10 +183,13 @@
 .dbtl-ring-wrap {
   display: flex;
   justify-content: flex-start;
+  /* Nudge the ring slightly towards the page edge, freeing width for the
+     card on the right. */
+  margin-left: -0.75rem;
 }
 
 .dbtl-ring {
-  width: min(100%, 620px);
+  width: min(100%, 560px);
   max-width: 100%;
   height: auto;
   margin: 0;
@@ -234,10 +237,10 @@
   stroke: #64b4ff;
 }
 
-/* The highlighted segment flips its white letters to black to keep contrast
-   against the boosted colour. */
+/* The highlighted segment flips its white letters to the site's yellow,
+   matching the boosted colour. */
 .dbtl-ring .dbtl-hi path[fill="white"] {
-  fill: #000;
+  fill: #ffd452;
 }
 
 .dbtl-ring[data-active="design"] .dbtl-hi-design,
@@ -382,8 +385,10 @@
 }
 
 .eng-aggregate .eng-module-nav {
+  /* Same spacing as between the level-2 buttons and the level-3 tabs
+     (0.35rem + 0.2rem below). */
   margin-top: 0;
-  margin-bottom: 0.6vh;
+  margin-bottom: 0.55rem;
 }
 
 .eng-aggregate .eng-subnav {
