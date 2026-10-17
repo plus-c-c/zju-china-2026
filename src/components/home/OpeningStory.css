@@ -13,6 +13,12 @@
   will-change: opacity, transform;
 }
 
+/* Keep Figure 3's artwork and typography at the same relative scale. */
+.opening-scene--rehab .opening-content {
+  transform: translateY(var(--opening-y, 0)) scale(0.9);
+  transform-origin: center;
+}
+
 .opening-burden__visual,
 .opening-sports__decor,
 .opening-rehab__decor {
@@ -67,11 +73,11 @@
   position: absolute;
   z-index: 3;
   left: 148px;
-  top: 172px;
+  top: 192px;
   width: 360px;
   color: #f6faff;
-  font-size: 51px;
-  font-weight: 500;
+  font-size: 45px;
+  font-weight: 600;
   line-height: normal;
   opacity: var(--opening-text, 1);
   transform: translateX(
@@ -291,11 +297,11 @@
 .opening-burden__title {
   position: absolute;
   z-index: 3;
-  left: 68px;
-  top: 76px;
+  left: 128px;
+  top:96px;
   width: 480px;
   color: #f6faff;
-  font-size: 48px;
+  font-size: 38px;
   font-weight: 600;
   line-height: 62px;
   opacity: var(--opening-text, 1);
@@ -307,7 +313,7 @@
 
 .opening-burden__title strong {
   color: #e60c00;
-  font-size: 64px;
+  font-size: 54px;
   font-weight: 900;
 }
 
@@ -315,8 +321,8 @@
   position: absolute;
   left: 515px;
   top: 115px;
-  width: 737px;
-  height: 497px;
+  width: 637px;
+  height: 457px;
   border-radius: 30px;
   background: rgb(255 227 135 / 90%);
   box-shadow: 0 18px 38px rgb(23 59 99 / 12%);
@@ -324,17 +330,17 @@
 
 .opening-burden__map {
   position: absolute;
-  left: 515px;
+  left: 435px;
   top: 145.5px;
-  width: 738px;
+  width: 608px;
   height: 436px;
 }
 
 .opening-burden__world {
   position: absolute;
-  left: 9px;
+  left: 39px;
   top: 12px;
-  width: 720px !important;
+  width: 680px !important;
   height: 348px !important;
 }
 
@@ -443,7 +449,7 @@
 .opening-burden__stat {
   position: absolute;
   z-index: 1;
-  left: 67px;
+  left: 87px;
   top: 91.5px;
   width: 606px;
   color: rgb(23 59 99 / 82%);
@@ -456,14 +462,14 @@
 .opening-burden__stat strong {
   display: block;
   color: #0341c8;
-  font-size: 150px;
+  font-size: 100px;
   font-weight: 900;
   line-height: 0.95;
 }
 
 .opening-burden__stat p {
   margin-top: 10px;
-  font-size: 32px;
+  font-size: 22px;
   line-height: 1.25;
 }
 
@@ -485,13 +491,13 @@
 
 .opening-burden__legend {
   position: absolute;
-  left: 221.4px;
-  top: 377.3px;
-  width: 295.2px;
+  left: 290px;
+  top: 350px;
+  width: 205.2px;
   height: 54px;
   color: #173b64;
-  font-family: "Inter", sans-serif;
-  font-size: 11px;
+  font-family: "Outfit", sans-serif;
+  font-size: 8px;
   pointer-events: none;
   opacity: var(--burden-legend-opacity, 1);
 }
@@ -499,13 +505,13 @@
 .opening-burden__legend strong {
   display: block;
   margin-bottom: 8px;
-  font-size: 12px;
+  font-size: 8px;
   line-height: 15px;
 }
 
 .opening-burden__legend img {
   display: block;
-  width: 295.2px !important;
+  width: 205.2px !important;
   height: 9.24px !important;
   margin-bottom: 3px;
 }
@@ -516,9 +522,9 @@
 
 .opening-burden__person {
   position: absolute;
-  left: 94px;
-  top: 218.5px;
-  width: 405px;
+  left: 134px;
+  top: 190px;
+  width: 355px;
   height: 442px;
   object-fit: contain;
   opacity: var(--opening-person, 1);
@@ -553,45 +559,45 @@
 
 .opening-sports__disc {
   left: 650px;
-  top: 54px;
-  width: 548px;
-  height: 548px;
+  top: 70px;
+  width: 450px;
+  height: 450px;
   background: rgb(163 196 235 / 48%);
 }
 
 .opening-sports__accent {
-  left: 935px;
-  top: 88px;
-  width: 235px;
-  height: 235px;
+  left: 910px;
+  top: 108px;
+  width: 160px;
+  height: 160px;
   background: rgb(255 227 135 / 92%);
 }
 
 .opening-sports__stage {
   left: 580px;
-  top: 84px;
-  width: 650px;
-  height: 568px;
+  top: 104px;
+  width: 540px;
+  height: 500px;
   border: 1px solid rgb(246 250 255 / 15%);
   border-radius: 30px;
   background: rgb(246 250 255 / 9%);
 }
 
 .opening-sports__spark {
-  left: 1090px;
+  left: 1020px;
   top: 100px;
-  width: 72px;
-  height: 72px;
+  width: 60px;
+  height: 60px;
   background: rgb(236 146 142 / 72%);
 }
 
 .opening-sports__title {
   position: absolute;
-  left: 70px;
+  left: 120px;
   top: 108px;
   width: 480px;
   color: #f6faff;
-  font-size: 48px;
+  font-size: 38px;
   font-weight: 600;
   line-height: 1.08;
   opacity: var(--opening-text, 1);
@@ -603,14 +609,14 @@
 
 .opening-sports__title strong {
   color: #ec928e;
-  font-size: 64px;
-  font-weight: 700;
+  font-size: 54px;
+  font-weight: 900;
 }
 
 .opening-sports__score {
   position: absolute;
-  left: 70px;
-  top: 300px;
+  left: 120px;
+  top: 310px;
   width: 454px;
   font-weight: 700;
   line-height: 1;
@@ -629,14 +635,14 @@
 
 .opening-sports__score strong {
   color: #ffd452;
-  font-size: 150px;
+  font-size: 120px;
   letter-spacing: 0.08em;
   line-height: 0.94;
 }
 
 .opening-sports__score span {
   color: #ffeda1;
-  font-size: 36px;
+  font-size: 26px;
   letter-spacing: 0.08em;
 }
 
@@ -649,11 +655,11 @@
 
 .opening-sports__body {
   position: absolute;
-  left: 70px;
-  top: 526px;
+  left: 120px;
+  top: 530px;
   width: 430px;
   color: rgb(246 250 255 / 76%);
-  font-size: 32px;
+  font-size: 26px;
   font-weight: 500;
   line-height: 1.08;
   opacity: var(--opening-text, 1);
@@ -665,10 +671,10 @@
 
 .opening-sports__person {
   position: absolute;
-  left: 642px;
-  top: 142px;
-  width: 580px;
-  height: 485px;
+  left: 600px;
+  top: 182px;
+  width: 480px;
+  height: 405px;
   object-fit: fill;
   opacity: var(--opening-person, 1);
   will-change: opacity;
@@ -676,9 +682,9 @@
 
 .opening-rehab__stage {
   left: 40px;
-  top: 66px;
-  width: 696px;
-  height: 588px;
+  top: 86px;
+  width: 656px;
+  height: 558px;
   border-radius: 30px;
   background: rgb(246 250 255 / 76%);
   box-shadow: 0 18px 38px rgb(23 59 99 / 8%);
@@ -694,15 +700,15 @@
 
 .opening-rehab__yellow {
   left: 388px;
-  top: 84px;
-  width: 270px;
-  height: 270px;
+  top: 134px;
+  width: 200px;
+  height: 200px;
   background: rgb(255 212 82 / 32%);
 }
 
 .opening-rehab__dot {
-  left: 645px;
-  top: 82px;
+  left: 575px;
+  top: 102px;
   width: 66px;
   height: 66px;
   background: #ffd452;
@@ -725,7 +731,7 @@
   top: 200px;
   width: 430px;
   color: #173b64;
-  font-size: 48px;
+  font-size: 38px;
   font-weight: 600;
   line-height: 1.08;
   opacity: var(--opening-text, 1);
@@ -737,8 +743,8 @@
 
 .opening-rehab__title strong {
   color: #e30c00;
-  font-size: 64px;
-  font-weight: 700;
+  font-size: 54px;
+  font-weight: 900;
 }
 
 .opening-rehab__cost {
@@ -755,8 +761,8 @@
 }
 
 .opening-rehab__cost strong {
-  font-size: 150px;
-  font-weight: 700;
+  font-size: 120px;
+  font-weight: 600;
   line-height: 1.5;
 }
 
@@ -776,6 +782,10 @@
 @media (prefers-reduced-motion: reduce) {
   .opening-content {
     transform: none;
+  }
+
+  .opening-scene--rehab .opening-content {
+    transform: scale(0.9);
   }
 
   .opening-text-line {

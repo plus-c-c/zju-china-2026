@@ -89,15 +89,16 @@ export function Toc({
     observer.observe(header);
     if (footer) observer.observe(footer);
 
-    // Rebuild the heading list when the page content changes in place
-    // (for example, when switching between module tabs on a page).
-    const contentObserver = new MutationObserver(() => {
-      collect();
-      scheduleUpdate();
-    });
-    contentObserver.observe(content, { childList: true, subtree: true });
+    const hashTimers: number[] = [];
+    let hashScrollCancelled = false;
+    const cancelHashScroll = () => {
+      hashScrollCancelled = true;
+      hashTimers.forEach((timer) => window.clearTimeout(timer));
+    };
 
-    // Support opening a direct link to a section after its generated ID exists.
+    // Re-align deep links after lazy content has settled. The Design page has
+    // many images above its module headings, so a single early scroll can drift.
+    
     if (window.location.hash) {
       let id = window.location.hash.slice(1);
       try {
@@ -105,11 +106,32 @@ export function Toc({
       } catch {
         /* Ignore malformed URL escapes. */
       }
-      elements.find((element) => element.id === id)?.scrollIntoView();
+      const target = elements.find((element) => element.id === id);
+      const scrollToTarget = () => {
+        if (!hashScrollCancelled) target?.scrollIntoView();
+      };
+      scrollToTarget();
+      [750, 2000].forEach((delay) =>
+        hashTimers.push(window.setTimeout(scrollToTarget, delay)),
+      );
+      void document.fonts?.ready.then(scrollToTarget);
+      window.addEventListener("wheel", cancelHashScroll, {
+        once: true,
+        passive: true,
+      });
+      window.addEventListener("touchstart", cancelHashScroll, {
+        once: true,
+        passive: true,
+      });
+      window.addEventListener("keydown", cancelHashScroll, { once: true });
     }
     return () => {
       window.removeEventListener("scroll", scheduleUpdate);
       window.removeEventListener("resize", scheduleUpdate);
+      window.removeEventListener("wheel", cancelHashScroll);
+      window.removeEventListener("touchstart", cancelHashScroll);
+      window.removeEventListener("keydown", cancelHashScroll);
+      hashTimers.forEach((timer) => window.clearTimeout(timer));
       observer.disconnect();
       contentObserver.disconnect();
       window.cancelAnimationFrame(frame);

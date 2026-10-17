@@ -41,7 +41,9 @@
 }
 
 .limitations-page__heading--blue {
-  opacity: var(--solution-title-opacity, 0);
+  opacity: calc(
+    var(--solution-title-opacity, 0) * (1 - var(--our-solution-exit, 0))
+  );
 }
 
 .limitations-card-row {
@@ -51,7 +53,9 @@
   display: grid;
   grid-template-columns: repeat(3, 367px);
   column-gap: 63px;
-  opacity: var(--limitations-cards-entry, 1);
+  opacity: calc(
+    var(--limitations-cards-entry, 1) * (1 - var(--our-solution-exit, 0))
+  );
   transform: translateY(var(--limitations-cards-y, 0px));
   will-change: opacity, transform;
 }
