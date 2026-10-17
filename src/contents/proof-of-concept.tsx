@@ -93,7 +93,7 @@ export function ProofOfConcept() {
           </p>
           <figure className="my-4 text-center">
             <img
-              src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-01-v2.avif"
+              src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-01.avif"
               alt="Figure 2: Production of scaffolds with different repeat numbers"
               className="img-fluid rounded"
               style={{ width: "100%" }}
@@ -141,7 +141,7 @@ export function ProofOfConcept() {
           </p>
           <figure className="my-4 text-center">
             <img
-              src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-03.avif"
+              src="https://static.igem.wiki/teams/6102/wiki/images/result/01/10.avif"
               alt="Figure 4: Rapid gelation of SELP"
               className="img-fluid rounded"
               style={{ width: "100%" }}
