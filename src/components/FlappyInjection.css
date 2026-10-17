@@ -7,6 +7,10 @@
   box-shadow: 5px 5px 0 #c3d9f1;
 }
 
+.flappy__arena {
+  position: relative;
+}
+
 .flappy canvas {
   display: block;
   width: 100%;
@@ -61,18 +65,13 @@
   color: #e8f0ff;
 }
 
-/* 右下角：横置注射图示（针管朝右，注入受损软骨） */
+/* 卡片内侧·左下角：横置注射图示，底边紧贴地面下缘（卡片底边），无白色底框 */
 .inject {
   position: absolute;
-  right: 14px;
-  bottom: 14px;
+  left: 2px;
+  bottom: 2px;
   display: flex;
   align-items: flex-start;
-  padding: 12px 14px 10px;
-  border: 1px solid #c5d5ed;
-  border-radius: 14px;
-  background: rgb(255 255 255 / 94%);
-  box-shadow: 3px 3px 0 rgb(195 217 241 / 80%);
   pointer-events: none;
 }
 
@@ -93,48 +92,113 @@
   transform: translate(-50%, -50%) rotate(-90deg);
 }
 
-.inject__syringe-inner img {
+/* 活塞推进 + 液面随动：针管图拆成四层——
+   活塞层（plunger）：仅保留“推柄+推杆”区域，随进度沿筒身推进；
+   液柱层（liquid）：仅保留筒内液柱，随进度从顶部裁切下降；
+   底图上层（base）：上段底图，挖掉活塞缺口（外扩 4px 消除描边残影）；
+   底图下层（base-bottom）：下段底图，避开液柱矩形。
+   行程 = 317 素材像素（≈18.34% 高度）≈ 14.3px，与液面下降完全同步。 */
+.inject__syringe-liquid,
+.inject__syringe-plunger,
+.inject__syringe-base,
+.inject__syringe-base-bottom {
+  position: absolute;
+  inset: 0;
   display: block;
   width: 100%;
+  height: auto;
 }
 
-/* 进度色块：5 段矩形，每段填充针管图"金属领圈"位置的像素（多色金属） */
-.inject__blocks {
+.inject__syringe-plunger {
+  z-index: 0;
+  clip-path: polygon(
+    39.8% 5.96%,
+    60% 5.96%,
+    60% 12.33%,
+    54.35% 12.33%,
+    54.35% 37.96%,
+    45.3% 37.96%,
+    45.3% 12.33%,
+    39.8% 12.33%
+  );
+  transform: translateY(calc(var(--inject-progress, 0) * 14.3px));
+  transition: transform 0.45s ease;
+}
+
+/* 推入筒内的推杆段：素材中透过玻璃的深色调 (#5a6470)。
+   上端固定在筒口，下端随活塞头下移，与活塞、液面同步。 */
+.inject__syringe-rod {
   position: absolute;
-  top: 38%;
-  left: 42%;
-  width: 16%;
-  height: 18%;
-  display: flex;
-  flex-direction: column;
+  top: 30%;
+  bottom: calc(63.54% - var(--inject-progress, 0) * 18.34%);
+  left: 45.3%;
+  z-index: 1;
+  width: 9.05%;
+  background: #5a6470;
+  border-top: 1px solid #39434d;
+  pointer-events: none;
+  transition: bottom 0.45s ease;
 }
 
-.inject__block {
-  flex: 1 1 0;
-  background-image: url("https://static.igem.wiki/teams/6102/wiki/images/home/home-05-solution-syringe.avif");
-  /* 与针管图 1:1 同尺寸，窗口对准金属领圈（复制相应位置的图片） */
-  background-size: 52px 78px;
-  background-position: -22px -15px;
-  opacity: 0;
+.inject__syringe-liquid {
+  z-index: 2;
+  clip-path: inset(
+    calc(37.96% + var(--inject-progress, 0) * 18.5%) 44.6% 43.69% 44.35%
+  );
+  transition: clip-path 0.45s ease;
 }
 
-.inject__block--on {
-  opacity: 1;
+.inject__syringe-base {
+  z-index: 3;
+  /* 活塞缺口反向环绕，nonzero 规则下成为真正的孔 */
+  clip-path: polygon(
+    0% 0%,
+    39.8% 0%,
+    39.8% 12.33%,
+    45.3% 12.33%,
+    45.3% 37.96%,
+    54.35% 37.96%,
+    54.35% 12.33%,
+    60% 12.33%,
+    60% 5.96%,
+    39.8% 5.96%,
+    39.8% 0%,
+    100% 0%,
+    100% 37.96%,
+    0% 37.96%
+  );
 }
 
-/* 骨头横置（关节面朝左，正对针头） */
+.inject__syringe-base-bottom {
+  z-index: 3;
+  /* 下段底图：顶部让出液柱矩形（x 44.35–55.4%，y 37.96–56.31%） */
+  clip-path: polygon(
+    0% 37.96%,
+    44.35% 37.96%,
+    44.35% 56.31%,
+    55.4% 56.31%,
+    55.4% 37.96%,
+    100% 37.96%,
+    100% 100%,
+    0% 100%
+  );
+}
+
 .inject__bone {
+  /* 底对齐并下调，使骨头图（含图内透明边距）的墨迹下缘正好贴住卡片底边 */
   position: relative;
-  width: 90px;
-  height: 120px;
+  align-self: flex-end;
+  width: 60px;
+  height: 80px;
+  margin-bottom: -14px;
 }
 
 .inject__bone-inner {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 120px;
-  height: 90px;
+  width: 80px;
+  height: 60px;
   overflow: hidden;
   transform: translate(-50%, -50%) rotate(-90deg);
 }
@@ -172,12 +236,6 @@
 }
 
 @media (max-width: 600px) {
-  .inject {
-    right: 8px;
-    bottom: 8px;
-    padding: 9px 10px 8px;
-  }
-
   .inject__syringe {
     width: 62px;
     height: 42px;
@@ -191,17 +249,17 @@
   }
 
   .inject__bone {
-    width: 72px;
-    height: 96px;
+    width: 48px;
+    height: 64px;
+    margin-bottom: -10px;
   }
 
   .inject__bone-inner {
-    width: 96px;
-    height: 72px;
+    width: 64px;
+    height: 48px;
   }
 
-  .inject__block {
-    background-size: 42px 62px;
-    background-position: -18px -12px;
+  .inject__syringe-plunger {
+    transform: translateY(calc(var(--inject-progress, 0) * 11.6px));
   }
 }

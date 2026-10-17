@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import "./FlappyInjection.css";
 
 /**
@@ -203,12 +203,16 @@ export function FlappyInjection() {
       ctx.fillStyle = "#e9d2a9";
       for (let i = 0; i < 6; i++) {
         const px = x + 22 + ((pipe.seed * 31 + i * 47) % (PIPE_W - 44));
-        const pyTop = 14 + ((pipe.seed * 53 + i * 67) % Math.max(topShaftH - 30, 1));
+        const pyTop =
+          14 + ((pipe.seed * 53 + i * 67) % Math.max(topShaftH - 30, 1));
         ctx.beginPath();
         ctx.ellipse(px, pyTop, 4.5, 6.5, 0, 0, Math.PI * 2);
         ctx.fill();
         const pyBottom =
-          bottomTop + 14 + ((pipe.seed * 67 + i * 41) % Math.max(H - GROUND - bottomTop - 30, 1));
+          bottomTop +
+          14 +
+          ((pipe.seed * 67 + i * 41) %
+            Math.max(H - GROUND - bottomTop - 30, 1));
         ctx.beginPath();
         ctx.ellipse(px, pyBottom, 4.5, 6.5, 0, 0, Math.PI * 2);
         ctx.fill();
@@ -297,55 +301,68 @@ export function FlappyInjection() {
 
   return (
     <div className="flappy">
-      <canvas
-        ref={canvasRef}
-        onClick={() => flapRef.current()}
-        aria-label="Mini game: fly between the bones and complete the injection"
-      />
-      {phase === "ready" && (
-        <div className="flappy__overlay flappy__overlay--soft">
-          <p className="flappy__overlay-title">Inject the cartilage</p>
-          <p className="flappy__overlay-text">
-            Click / tap / press Space to fly. Pass {TOTAL_BONES} healthy bones
-            to finish the injection.
-          </p>
-        </div>
-      )}
-      {phase === "over" && (
-        <div className="flappy__overlay flappy__overlay--soft">
-          <p className="flappy__overlay-title">GAME OVER</p>
-          <p className="flappy__overlay-text">
-            Click / tap / press Space to retry.
-          </p>
-        </div>
-      )}
-      {phase === "won" && (
-        <div className="flappy__overlay flappy__overlay--win">
-          <p className="flappy__overlay-title">YOU WIN!</p>
-          <p className="flappy__overlay-text">
-            Injection complete — the cartilage is repaired.
-          </p>
-          <p className="flappy__overlay-text">
-            Click / tap / press Space to play again.
-          </p>
-        </div>
-      )}
+      <div className="flappy__arena">
+        <canvas
+          ref={canvasRef}
+          onClick={() => flapRef.current()}
+          aria-label="Mini game: fly between the bones and complete the injection"
+        />
+        {phase === "ready" && (
+          <div className="flappy__overlay flappy__overlay--soft">
+            <p className="flappy__overlay-title">Inject the cartilage</p>
+            <p className="flappy__overlay-text">
+              Click / tap / press Space to fly. Pass {TOTAL_BONES} healthy bones
+              to finish the injection.
+            </p>
+          </div>
+        )}
+        {phase === "over" && (
+          <div className="flappy__overlay flappy__overlay--soft">
+            <p className="flappy__overlay-title">GAME OVER</p>
+            <p className="flappy__overlay-text">
+              Click / tap / press Space to retry.
+            </p>
+          </div>
+        )}
+        {phase === "won" && (
+          <div className="flappy__overlay flappy__overlay--win">
+            <p className="flappy__overlay-title">YOU WIN!</p>
+            <p className="flappy__overlay-text">
+              Injection complete — the cartilage is repaired.
+            </p>
+            <p className="flappy__overlay-text">
+              Click / tap / press Space to play again.
+            </p>
+          </div>
+        )}
+      </div>
       <div className="inject" aria-hidden="true">
         <div className="inject__syringe">
-          <div className="inject__syringe-inner">
-            <img src={`${ASSETS}/home-05-solution-syringe.avif`} alt="" />
-            <div className="inject__blocks">
-              {[0, 1, 2, 3, 4].map((index) => (
-                <span
-                  key={index}
-                  className={`inject__block${
-                    progress * TOTAL_BONES > index + 0.5
-                      ? " inject__block--on"
-                      : ""
-                  }`}
-                />
-              ))}
-            </div>
+          <div
+            className="inject__syringe-inner"
+            style={{ "--inject-progress": progress } as CSSProperties}
+          >
+            <img
+              className="inject__syringe-plunger"
+              src={`${ASSETS}/home-05-solution-syringe.avif`}
+              alt=""
+            />
+            <div className="inject__syringe-rod" aria-hidden="true" />
+            <img
+              className="inject__syringe-liquid"
+              src={`${ASSETS}/home-05-solution-syringe.avif`}
+              alt=""
+            />
+            <img
+              className="inject__syringe-base"
+              src={`${ASSETS}/home-05-solution-syringe.avif`}
+              alt=""
+            />
+            <img
+              className="inject__syringe-base-bottom"
+              src={`${ASSETS}/home-05-solution-syringe.avif`}
+              alt=""
+            />
           </div>
         </div>
         <div className="inject__bone">
