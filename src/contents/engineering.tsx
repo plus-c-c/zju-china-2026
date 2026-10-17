@@ -1,6 +1,6 @@
 import { useLayoutEffect, useRef, useState } from "react";
 import type { Group, Part } from "./engineering/group";
-import { DbtlStepper, STEP_DVH } from "./engineering/DbtlStepper";
+import { buildSteps, DbtlStepper, STEP_DVH } from "./engineering/DbtlStepper";
 import { EngineeringReferences } from "./engineering/EngineeringReferences";
 import { gagRetentionGroup } from "./engineering/groups/gag-retention";
 import { mitochondrialTherapyGroup } from "./engineering/groups/mitochondrial-therapy";
@@ -19,10 +19,16 @@ import "./engineering.css";
  *     Design / Wet Lab / Dry Lab / Human Practices;
  *   - Wet Lab is split into four groups following the Notebook page, with
  *     SELP hydrogels and the ligation system merged into one group;
- *   - each group's level-3 tab row is "Introduction | sub-modules |
- *     Conclusion": the Introduction tab hosts the group-level lead (总引导段)
- *     and the Conclusion tab the group-level outlook (总展望段), while each
- *     sub-module tab shows only its own cycles, numbered from 1 again;
+ *   - one shared one-screen layout for every view: the nav rows, the
+ *     level-3 tab row, the DBTL ring and the text panel form a cluster that
+ *     pins to the middle of the viewport while the page scroll drives the
+ *     steps;
+ *   - level-3 tabs are "Introduction | sub-modules | Conclusion": the
+ *     Introduction tab hosts the group-level lead (总引导段) and the
+ *     Conclusion tab the group-level outlook (总展望段);
+ *   - each sub-module's own lead / outlook (引导段 / 展望段) sit at the
+ *     cycle-button row: they are the first / last steps of the sequence, so
+ *     the DBTL ring stays unlit and the panel shows no phase badge on them;
  *   - Project Design and Human Practices stay blank until their content is
  *     added.
  */
@@ -31,17 +37,6 @@ interface Section {
   label: string;
   groups: Group[];
 }
-
-/**
- * Focus view — a code-level switch (no visible control on the page).
- *
- * When true: every lead / outlook block and every heading except the shared
- * References heading are hidden, and the level-3 tabs move above the DBTL
- * panel, centred like the Cycle buttons below — so the tab row, the panel
- * and the cycle buttons together are exactly as tall as the DBTL ring.
- * Flip this constant and rebuild to switch the view.
- */
-const FOCUS_MODE = true;
 
 const SECTIONS: Section[] = [
   { key: "project-design", label: "Project Design", groups: [] },
@@ -71,28 +66,8 @@ export function Engineering() {
   const [activeKey, setActiveKey] = useState("wet-lab");
   const [groupIndex, setGroupIndex] = useState(0);
   const [tabIndex, setTabIndex] = useState(0);
-  const focusMode = FOCUS_MODE;
   const prevNavRef = useRef({ activeKey, groupIndex, tabIndex });
 
-  // Any level switch (section / group / tab) returns to the very start of
-  // the sequence — Cycle 1 Design: the page scrolls back to the top of the
-  // new runway before paint, so the stepper mounts with progress 0 and the
-  // scroll mapping cannot jump to a stale step. (Comparing against the
-  // previous values keeps the very first render — and dev double-invocation —
-  // from scrolling the page on load.)
-  useLayoutEffect(() => {
-    const prev = prevNavRef.current;
-    const changed =
-      prev.activeKey !== activeKey ||
-      prev.groupIndex !== groupIndex ||
-      prev.tabIndex !== tabIndex;
-    prevNavRef.current = { activeKey, groupIndex, tabIndex };
-    if (!changed) return;
-    const runway = document.querySelector(".eng-runway, .dbtl-runway");
-    if (!runway) return;
-    const top = runway.getBoundingClientRect().top + window.scrollY;
-    window.scrollTo({ top, behavior: "instant" });
-  }, [activeKey, groupIndex, tabIndex]);
   const activeSection =
     SECTIONS.find((section) => section.key === activeKey) ?? SECTIONS[0];
   const activeGroup =
@@ -110,8 +85,9 @@ export function Engineering() {
   };
 
   // Level-3 tabs: Introduction (group lead) → sub-modules → Conclusion
-  // (group outlook). They exist when the whole group is one module
-  // (single-module group, possibly split into several sub-modules).
+  // (group outlook). The Introduction tab exists when the group or its
+  // shared module carries lead content; the Conclusion tab when the group
+  // carries an outlook or its single shared module carries an outro.
   const introModule =
     activeGroup &&
     new Set(activeGroup.parts.map((part) => part.module)).size === 1
@@ -123,27 +99,25 @@ export function Engineering() {
       activeGroup.lead ||
       (introModule && (introModule.introTitle || introModule.intro))),
   );
-  const hasConclusion = Boolean(introModule?.outro);
+  const conclusionContent = activeGroup?.outlook ?? introModule?.outro;
+  const hasConclusion = Boolean(conclusionContent);
 
   type Tab =
     | { kind: "intro" }
     | { kind: "part"; part: Part }
     | { kind: "conclusion" };
-  const allTabs: Tab[] = activeGroup
+  const tabs: Tab[] = activeGroup
     ? [
         ...(hasIntro ? [{ kind: "intro" } as Tab] : []),
         ...activeGroup.parts.map((part) => ({ kind: "part", part }) as Tab),
         ...(hasConclusion ? [{ kind: "conclusion" } as Tab] : []),
       ]
     : [];
-  // Focus view keeps only the sub-module tabs (leads and outlooks are hidden).
-  const tabs = focusMode
-    ? allTabs.filter((tab) => tab.kind === "part")
-    : allTabs;
   const activeTab = tabs[tabIndex] ?? tabs[0];
   const activePart = activeTab?.kind === "part" ? activeTab.part : undefined;
 
-  // A part shows only its own cycles; the stepper numbers them from 1 again.
+  // A part shows only its own cycles, numbered from 1 again; its lead and
+  // outlook become the boundary steps of the sequence.
   const stepperModule = activePart
     ? activePart.cycleSlice
       ? {
@@ -159,20 +133,66 @@ export function Engineering() {
   const partHasStepper = Boolean(
     stepperModule && stepperModule.cycles.length > 0,
   );
-  const stepCount = stepperModule
-    ? stepperModule.cycles.length * 4 + (stepperModule.infos?.length ?? 0)
-    : 0;
-  // In focus view the tab row moves into the stepper card (above the panel);
-  // it stays inline only when there is no stepper to host it.
-  const navInline = !focusMode || !partHasStepper;
+  const partLead =
+    activePart && (activePart.heading || activePart.lead) ? (
+      <>
+        {activePart.heading && (
+          <h3 className="dbtl-section-title">{activePart.heading}</h3>
+        )}
+        {activePart.lead}
+      </>
+    ) : undefined;
+  const steps =
+    stepperModule && partHasStepper
+      ? buildSteps(stepperModule, partLead, activePart?.outlook)
+      : [];
+  const stepCount = steps.length;
+  const startIndex = steps.findIndex(
+    (entry) =>
+      entry.kind === "phase" &&
+      entry.cycleIndex === 0 &&
+      entry.phase === "Design",
+  );
+
+  // Any level switch returns to the top of the sequence — Cycle 1 Design for
+  // sub-module views (skipping the lead step when there is one), the top of
+  // the static cluster for the Introduction / Conclusion views. The scroll
+  // happens before paint, so the stepper mounts with the right progress and
+  // the scroll mapping cannot jump to a stale step. (Comparing against the
+  // previous values keeps the very first render — and dev double-invocation —
+  // from scrolling the page on load.)
+  useLayoutEffect(() => {
+    const prev = prevNavRef.current;
+    const changed =
+      prev.activeKey !== activeKey ||
+      prev.groupIndex !== groupIndex ||
+      prev.tabIndex !== tabIndex;
+    prevNavRef.current = { activeKey, groupIndex, tabIndex };
+    if (!changed) return;
+    const runway = document.querySelector(".eng-runway") as HTMLElement | null;
+    if (runway && startIndex >= 0 && steps.length > 1) {
+      const total = runway.offsetHeight - window.innerHeight;
+      const top = runway.getBoundingClientRect().top + window.scrollY;
+      window.scrollTo({
+        top: top + (total * startIndex) / (steps.length - 1),
+        behavior: "instant",
+      });
+      return;
+    }
+    const anchor = document.querySelector(".eng-static");
+    if (anchor) {
+      window.scrollTo({
+        top: anchor.getBoundingClientRect().top + window.scrollY,
+        behavior: "instant",
+      });
+    }
+  }, [activeKey, groupIndex, tabIndex]);
 
   const tabNav = tabs.map((tab, index) => (
     <button
       key={tab.kind === "part" ? tab.part.label : tab.kind}
       type="button"
-      className={`${focusMode ? "dbtl-subnav-button" : "eng-partnav-button"} ${
-        tabIndex === index ? "active" : ""
-      }`}
+      className={`dbtl-subnav-button ${tabIndex === index ? "active" : ""}`}
       aria-pressed={tabIndex === index}
       onClick={() => setTabIndex(index)}
     >
@@ -183,6 +203,19 @@ export function Engineering() {
           : tab.part.label}
     </button>
   ));
+
+  const introContent = (
+    <>
+      {introModule?.introTitle && (
+        <h3 className="dbtl-section-title">{introModule.introTitle}</h3>
+      )}
+      {introModule?.intro}
+      {activeGroup?.heading && (
+        <h3 className="dbtl-section-title">{activeGroup.heading}</h3>
+      )}
+      {activeGroup?.lead}
+    </>
+  );
 
   const content = (
     <>
@@ -214,69 +247,32 @@ export function Engineering() {
           ))}
         </div>
       )}
-      {activeGroup && (
-        <>
-          {navInline && <div className="eng-partnav">{tabNav}</div>}
-          {activeTab?.kind === "intro" && (
-            <>
-              {introModule && (
-                <h2 className="mt-4 mb-3">{introModule.title}</h2>
-              )}
-              {introModule?.introTitle && (
-                <h3 className="mt-5 mb-3">{introModule.introTitle}</h3>
-              )}
-              {introModule?.intro}
-              {activeGroup.heading && (
-                <h3 className="mt-5 mb-3">{activeGroup.heading}</h3>
-              )}
-              {activeGroup.lead}
-            </>
-          )}
-          {activeTab?.kind === "part" && activePart && stepperModule && (
-            <>
-              {!focusMode && (
-                <>
-                  <h2 className="mt-4 mb-3">{activePart.module.title}</h2>
-                  {/* Fallback for groups without a dedicated Introduction
-                          tab: the module-level lead stays on the part view. */}
-                  {!hasIntro && (
-                    <>
-                      {activePart.module.introTitle && (
-                        <h3 className="mt-5 mb-3">
-                          {activePart.module.introTitle}
-                        </h3>
-                      )}
-                      {activePart.module.intro}
-                      {activeGroup.heading && (
-                        <h3 className="mt-5 mb-3">{activeGroup.heading}</h3>
-                      )}
-                      {activeGroup.lead}
-                    </>
-                  )}
-                  {activePart.heading && (
-                    <h3 className="mt-5 mb-3">{activePart.heading}</h3>
-                  )}
-                  {activePart.lead}
-                </>
-              )}
-              {stepperModule.cycles.length > 0 && (
-                <DbtlStepper
-                  key={`${activePart.module.title}-${activePart.label}`}
-                  module={stepperModule}
-                  focus={focusMode}
-                  topNav={navInline ? undefined : <>{tabNav}</>}
-                />
-              )}
-            </>
-          )}
-          {activeTab?.kind === "conclusion" && introModule && (
-            <>
-              <h2 className="mt-4 mb-3">{introModule.title}</h2>
-              {introModule.outro}
-            </>
-          )}
-        </>
-      )}
+      {activeGroup &&
+        (activeTab?.kind === "part" && activePart && stepperModule ? (
+          partHasStepper ? (
+            <DbtlStepper
+              key={`${activePart.module.title}-${activePart.label}`}
+              module={stepperModule}
+              lead={partLead}
+              outlook={activePart.outlook}
+              topNav={<>{tabNav}</>}
+            />
+          ) : (
+            <div className="eng-partnav">{tabNav}</div>
+          )
+        ) : activeTab?.kind === "intro" ? (
+          <DbtlStepper
+            key={`${activeGroup.label}-intro`}
+            content={introContent}
+            topNav={<>{tabNav}</>}
+          />
+        ) : activeTab?.kind === "conclusion" ? (
+          <DbtlStepper
+            key={`${activeGroup.label}-conclusion`}
+            content={conclusionContent}
+            topNav={<>{tabNav}</>}
+          />
+        ) : null)}
     </>
   );
 
@@ -284,19 +280,23 @@ export function Engineering() {
     <div className="row mt-4 mb-5">
       <div className="col-12">
         <article>
-          {focusMode && stepCount > 0 ? (
-            <div
-              className="eng-runway"
-              style={{
-                height: `calc(${100 + Math.max(0, stepCount - 1) * STEP_DVH}dvh)`,
-              }}
-            >
-              <div className="eng-pin">
+          {activeGroup ? (
+            stepCount > 0 ? (
+              <div
+                className="eng-runway"
+                style={{
+                  height: `calc(${100 + Math.max(0, stepCount - 1) * STEP_DVH}dvh)`,
+                }}
+              >
+                <div className="eng-pin">
+                  <div className="eng-aggregate">{content}</div>
+                </div>
+              </div>
+            ) : (
+              <div className="eng-static">
                 <div className="eng-aggregate">{content}</div>
               </div>
-            </div>
-          ) : focusMode ? (
-            <div className="eng-aggregate">{content}</div>
+            )
           ) : (
             content
           )}

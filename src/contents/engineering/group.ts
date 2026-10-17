@@ -9,20 +9,24 @@ import type { DbtlModule } from "./dbtl";
 export interface Part {
   label: string;
   module: DbtlModule;
-  /** Optional sub-module heading shown above the stepper. */
+  /** Optional sub-module heading shown with its lead (引导段). */
   heading?: string;
-  /** Optional lead content for the sub-module (its section intro). */
+  /** Optional lead content for the sub-module (引导段). */
   lead?: ReactNode;
+  /** Optional outlook content for the sub-module (展望段). */
+  outlook?: ReactNode;
   /** [start, end) slice of the module's cycles that belongs to this part. */
   cycleSlice?: [number, number];
 }
 
 export interface Group {
   label: string;
-  /** Optional group-level heading shown for every sub-module (总引导). */
+  /** Optional group-level heading shown in the Introduction tab. */
   heading?: string;
   /** Optional group-level lead content (总引导段). */
   lead?: ReactNode;
+  /** Optional group-level outlook content (总展望段). */
+  outlook?: ReactNode;
   parts: Part[];
 }
 
