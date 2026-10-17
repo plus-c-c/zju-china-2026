@@ -1,0 +1,183 @@
+/* Rational design of SnoopLigase2 — pinned protein stepper (Model module 2).
+   Layout: structure figure + caption + Previous/Next on the left, the
+   design text on the right; the page scroll advances one protein per step
+   while the whole cluster stays centred. */
+
+.protein-runway {
+  position: relative;
+}
+
+.protein-pin {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  height: 100dvh;
+}
+
+.protein-cluster {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(1.5rem, 3vw, 3rem);
+  align-items: center;
+  width: 100%;
+}
+
+.protein-figure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 0;
+  margin: 0;
+}
+
+.protein-structure {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.protein-structure + .protein-structure {
+  margin-top: 0.8rem;
+}
+
+.protein-structure-frame {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  max-width: 520px;
+  border: 1px solid #e3e8f4;
+  border-radius: 12px;
+  background: #fbfcfe;
+}
+
+.protein-structure-frame img {
+  position: absolute;
+  display: block;
+  max-width: none;
+  height: auto;
+}
+
+.protein-caption {
+  max-width: 560px;
+  margin: 0.7rem 0 0;
+  text-align: center;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #5c6f96;
+}
+
+.protein-caption p {
+  margin-bottom: 0;
+}
+
+.protein-nav {
+  display: flex;
+  gap: 1.6rem;
+  margin-top: 0.8rem;
+}
+
+.protein-nav-button {
+  padding: 0.45rem 0.2rem;
+  border: none;
+  border-bottom: 3px solid #e0e6f3;
+  background: none;
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: #8697b5;
+  cursor: pointer;
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.protein-nav-button:hover:not(:disabled) {
+  color: #365dc9;
+}
+
+.protein-nav-button:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+/* Right-hand text: fills the column, scrolls on its own wheel. */
+.protein-text {
+  height: clamp(380px, 66vh, 680px);
+  padding: 1.5rem 1.6rem;
+  overflow-y: auto;
+  background: #fff;
+  border: 2px solid #e3e8f4;
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(34, 60, 129, 0.08);
+  outline: none;
+}
+
+.protein-text:focus-visible {
+  box-shadow:
+    inset 0 0 0 2px #365dc9,
+    0 10px 30px rgba(34, 60, 129, 0.08);
+}
+
+.protein-text p,
+.protein-text li {
+  font-size: 1.15rem;
+  line-height: 1.7;
+}
+
+.protein-text h3 {
+  margin: 1.4rem 0 0.7rem !important;
+  font-size: 1.3rem;
+  line-height: 1.45;
+  color: #223c81;
+}
+
+.protein-text h3:first-child {
+  margin-top: 0 !important;
+}
+
+.protein-text-inner {
+  animation: protein-step-in 0.26s ease;
+}
+
+@keyframes protein-step-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .protein-text-inner {
+    animation: none;
+  }
+}
+
+/* Stacked layout on small screens: no pinning, everything scrolls
+   normally. */
+@media (max-width: 991.98px) {
+  .protein-runway {
+    height: auto !important;
+  }
+
+  .protein-pin {
+    position: static;
+    height: auto;
+    padding: 1rem 0;
+  }
+
+  .protein-cluster {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.5rem;
+  }
+
+  .protein-text {
+    height: auto;
+    max-height: none;
+  }
+}
