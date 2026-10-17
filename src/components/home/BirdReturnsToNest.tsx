@@ -107,7 +107,7 @@ export default function BirdReturnsToNest() {
           className="home-resting-bird-image"
           src={imgBirdRestingOnBone}
           onError={(event) => {
-            const fallback = `https://static.igem.wiki/teams/6102/wiki/images/home/home-08-bird-landed-2.avif`;
+            const fallback = `https://static.igem.wiki/teams/6102/wiki/images/home/bird-return-bone-2.avif`;
             if (
               event.currentTarget.src !==
               new URL(fallback, window.location.href).href
