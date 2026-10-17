@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { MitochondrialResults } from "./results/MitochondrialResults";
+import { FunctionResults } from "./results/FunctionResults";
 import scaffold from "./results/scaffold-content.json";
 import "./results/results.css";
 
@@ -7,7 +7,9 @@ const functionModules = [
   { id: "anisotropy", label: "Magnetically responsive anisotropy" },
   { id: "gag", label: "GAG retention" },
   { id: "delivery", label: "Delivery" },
-];
+] as const;
+
+type FunctionModuleId = (typeof functionModules)[number]["id"];
 
 export function Results() {
   const [activeModule, setActiveModule] = useState<
@@ -15,7 +17,9 @@ export function Results() {
   >(null);
   const platformOpen = activeModule === "platform";
   const functionOpen = activeModule === "function";
-  const [openFunctions, setOpenFunctions] = useState<string[]>([]);
+  const [activeFunction, setActiveFunction] = useState<FunctionModuleId | null>(
+    null,
+  );
   const scrollTarget = useRef<string | null>(null);
   const lastTrigger = useRef("wetlab-platform-button");
 
@@ -25,27 +29,34 @@ export function Results() {
     const frame = requestAnimationFrame(() => {
       const target = document.getElementById(id);
       target?.scrollIntoView({ block: "start", behavior: "instant" });
-      if (id === "wetlab-modules")
+      if (id === "wetlab-modules" || id === "wetlab-function-modules")
         document
           .getElementById(lastTrigger.current)
           ?.focus({ preventScroll: true });
       scrollTarget.current = null;
     });
     return () => cancelAnimationFrame(frame);
-  }, [platformOpen, functionOpen]);
+  }, [platformOpen, functionOpen, activeFunction]);
 
   useEffect(() => {
     let frame = 0;
     function openSection(hash: string) {
       if (hash === "#wetlab-platform" || hash.startsWith("#wetlab-scaffold-"))
         setActiveModule("platform");
-      else if (hash === "#wetlab-function") setActiveModule("function");
-      else if (hash.startsWith("#wetlab-delivery-")) {
+      else if (
+        hash === "#wetlab-function" ||
+        hash === "#wetlab-function-modules"
+      )
         setActiveModule("function");
-        setOpenFunctions((current) =>
-          current.includes("delivery") ? current : [...current, "delivery"],
+      else {
+        const module = functionModules.find((item) =>
+          hash.startsWith(`#wetlab-${item.id}-`),
         );
-      } else return;
+        if (!module) return;
+        setActiveModule("function");
+        setActiveFunction(module.id);
+      }
+      scrollTarget.current = null;
       cancelAnimationFrame(frame);
       frame = requestAnimationFrame(() => {
         document.getElementById(hash.slice(1))?.scrollIntoView();
@@ -79,12 +90,10 @@ export function Results() {
     };
   }, []);
 
-  function toggleFunction(id: string) {
-    setOpenFunctions((previous) =>
-      previous.includes(id)
-        ? previous.filter((item) => item !== id)
-        : [...previous, id],
-    );
+  function toggleFunction(id: FunctionModuleId) {
+    lastTrigger.current = `wetlab-${id}-button`;
+    scrollTarget.current = "wetlab-function-modules";
+    setActiveFunction((previous) => (previous === id ? null : id));
   }
 
   return (
@@ -152,19 +161,22 @@ export function Results() {
             Function
           </h2>
           <div id="wetlab-function-content" hidden={!functionOpen}>
-            <div className="wetlab-results__function-buttons">
+            <div
+              id="wetlab-function-modules"
+              className="wetlab-results__function-buttons"
+            >
               {functionModules.map((module) => (
                 <button
                   key={module.id}
                   id={`wetlab-${module.id}-button`}
                   type="button"
-                  aria-expanded={openFunctions.includes(module.id)}
+                  aria-expanded={activeFunction === module.id}
                   aria-controls={`wetlab-${module.id}-content`}
                   onClick={() => toggleFunction(module.id)}
                 >
                   {module.label}
                   <span aria-hidden="true">
-                    {openFunctions.includes(module.id) ? "−" : "+"}
+                    {activeFunction === module.id ? "−" : "+"}
                   </span>
                 </button>
               ))}
@@ -175,14 +187,18 @@ export function Results() {
                 id={`wetlab-${module.id}-content`}
                 aria-labelledby={`wetlab-${module.id}-button`}
                 key={module.id}
-                hidden={!openFunctions.includes(module.id)}
+                hidden={activeFunction !== module.id}
               >
-                {module.id === "delivery" ? (
-                  <MitochondrialResults />
-                ) : (
-                  <p className="wetlab-results__pending">
-                    Content for this module is being prepared.
-                  </p>
+                {functionOpen && activeFunction === module.id && (
+                  <>
+                    <FunctionResults module={module.id} />
+                    <a
+                      className="wetlab-results__module-return"
+                      href="#wetlab-function-modules"
+                    >
+                      Back to Function modules
+                    </a>
+                  </>
                 )}
               </section>
             ))}

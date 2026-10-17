@@ -137,6 +137,7 @@
 }
 
 .wetlab-results__navigation button {
+  flex: 1 1 0;
   justify-content: center;
   width: auto;
   min-height: 44px;
@@ -310,7 +311,8 @@
   min-width: 540px;
 }
 
-.wetlab-results td {
+.wetlab-results td,
+.wetlab-results th {
   padding: 10px;
   border: 1px solid #cad8ea;
   vertical-align: top;
@@ -334,8 +336,73 @@
   background: #fff;
 }
 
-.wetlab-results__pending {
-  color: #62748c;
+.wetlab-results__function-original > h3:first-child {
+  margin-top: 0;
+}
+
+.wetlab-results__function-original :is(h4, h5, h6) {
+  margin-top: 28px;
+  margin-bottom: 16px;
+}
+
+.wetlab-results__function-original .column > :nth-child(2) {
+  margin-top: 0;
+}
+
+.wetlab-results__video {
+  margin: 20px 0;
+}
+
+.wetlab-results__video iframe {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  background: #f0f4f9;
+}
+
+.wetlab-results__video figcaption {
+  margin-top: 10px;
+}
+
+.wetlab-results .source-math--display {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  padding: 8px 0;
+}
+
+.wetlab-results .source-math .katex {
+  font-size: 1em;
+}
+
+.wetlab-results .source-math--display .katex-display {
+  margin: 8px 0;
+  text-align: left;
+}
+
+.wetlab-results table caption {
+  caption-side: top;
+  color: #4d617c;
+}
+
+.wetlab-results .wetlab-results__table-notes {
+  margin: 10px 0 16px;
+  font-size: 0.875rem;
+}
+
+.wetlab-results .wetlab-results__table-notes p {
+  margin-bottom: 6px;
+}
+
+.wetlab-results__module-return {
+  display: inline-block;
+  margin-top: 28px;
+  scroll-margin-top: 80px;
+}
+
+#wetlab-function-modules {
+  scroll-margin-top: 80px;
 }
 
 .wetlab-results__references {
@@ -384,6 +451,10 @@
 }
 
 @media (max-width: 575px) {
+  .wetlab-results__function-module {
+    padding: 14px;
+  }
+
   .wetlab-results__navigation {
     gap: 4px;
     padding: 8px;
