@@ -37,19 +37,36 @@ function buildSteps(module: DbtlModule): Step[] {
   return steps;
 }
 
-const WHEEL_THRESHOLD = 80;
-const WHEEL_COOLDOWN_MS = 320;
-const WHEEL_IDLE_MS = 400;
+/** Scroll distance per step, as a fraction of the viewport height. */
+export const STEP_DVH = 30;
 
 interface DbtlStepperProps {
   module: DbtlModule;
+  /** Focus view (code-level switch): shorter, stepper-only card layout. */
+  focus?: boolean;
+  /** Level-3 tab buttons rendered above the panel (focus view). */
+  topNav?: ReactNode;
 }
 
-export function DbtlStepper({ module }: DbtlStepperProps) {
+/**
+ * DBTL stepper — embedded in the page scroll the same way as the home page
+ * story sections: the stepper sits in a taller "runway", pins itself to the
+ * middle of the viewport (sticky), and the scroll progress through the
+ * runway drives the Design–Build–Test–Learn sequence. No wheel is captured:
+ * scrolling is native from beginning to end, and the page only continues
+ * past the stepper once the last step (or, scrolling up, the first step) has
+ * been passed.
+ */
+export function DbtlStepper({
+  module,
+  focus = false,
+  topNav,
+}: DbtlStepperProps) {
   const steps = useMemo(() => buildSteps(module), [module]);
   const [index, setIndex] = useState(0);
 
-  const areaRef = useRef<HTMLDivElement>(null);
+  const runwayRef = useRef<HTMLDivElement>(null);
+  const rootRef = useRef<HTMLDivElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
   const indexRef = useRef(0);
   const stepsRef = useRef<Step[]>(steps);
@@ -61,87 +78,34 @@ export function DbtlStepper({ module }: DbtlStepperProps) {
     panelRef.current?.scrollTo({ top: 0 });
   }, [index]);
 
+  // Map the scroll progress through the runway to the step index. In focus
+  // view the runway lives on the page level (it wraps the whole cluster,
+  // nav rows included); otherwise the stepper renders its own.
   useEffect(() => {
-    const area = areaRef.current;
-    const panel = panelRef.current;
-    if (!area || !panel) return;
-
-    const hold = { delta: 0, lastEvent: 0, lastNav: 0 };
-
-    // Switch steps in sequence; the wheel events over the stepper are always
-    // intercepted so the page never moves while stepping (both directions).
-    const navigate = (direction: 1 | -1, event: WheelEvent) => {
-      event.preventDefault();
-      const target = indexRef.current + direction;
-      if (target < 0 || target >= stepsRef.current.length) {
-        hold.delta = 0;
-        return; // no further step: keep the page still
-      }
-      const now = performance.now();
-      if (now - hold.lastEvent > WHEEL_IDLE_MS) hold.delta = 0;
-      hold.lastEvent = now;
-      hold.delta += event.deltaY;
-      if (
-        Math.abs(hold.delta) >= WHEEL_THRESHOLD &&
-        now - hold.lastNav > WHEEL_COOLDOWN_MS
-      ) {
-        hold.delta = 0;
-        hold.lastNav = now;
-        setIndex(target);
-      }
+    const runway =
+      runwayRef.current ??
+      (rootRef.current?.closest(".eng-runway") as HTMLElement | null);
+    if (!runway) return;
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const rect = runway.getBoundingClientRect();
+      const total = runway.offsetHeight - window.innerHeight;
+      if (total <= 0) return;
+      const progress = Math.min(1, Math.max(0, -rect.top / total));
+      const target = Math.round(progress * (stepsRef.current.length - 1));
+      if (target !== indexRef.current) setIndex(target);
     };
-
-    const onWheel = (event: WheelEvent) => {
-      const direction = event.deltaY > 0 ? 1 : -1;
-      const inPanel = panel.contains(event.target as Node);
-      if (inPanel) {
-        // Inside the text box: native scrolling first, chain at the edges.
-        const atBottom =
-          panel.scrollTop + panel.clientHeight >= panel.scrollHeight - 1;
-        const atTop = panel.scrollTop <= 0;
-        const chaining =
-          (direction > 0 && atBottom) || (direction < 0 && atTop);
-        if (!chaining) {
-          hold.delta = 0;
-          return;
-        }
-      }
-      navigate(direction as 1 | -1, event);
+    const schedule = () => {
+      if (!frame) frame = window.requestAnimationFrame(update);
     };
-
-    let touchStartY: number | null = null;
-    let touchConsumed = false;
-    const onTouchStart = (event: TouchEvent) => {
-      touchStartY = event.touches[0]?.clientY ?? null;
-      touchConsumed = false;
-    };
-    const onTouchMove = (event: TouchEvent) => {
-      if (touchStartY === null || touchConsumed) return;
-      if (panel.contains(event.target as Node)) return;
-      const y = event.touches[0]?.clientY ?? touchStartY;
-      const dy = touchStartY - y;
-      if (Math.abs(dy) < 36) return;
-      const direction = dy > 0 ? 1 : -1;
-      const target = indexRef.current + direction;
-      if (target < 0 || target >= stepsRef.current.length) return;
-      event.preventDefault();
-      touchConsumed = true;
-      setIndex(target);
-    };
-    const onTouchEnd = () => {
-      touchStartY = null;
-      touchConsumed = false;
-    };
-
-    area.addEventListener("wheel", onWheel, { passive: false });
-    area.addEventListener("touchstart", onTouchStart, { passive: true });
-    area.addEventListener("touchmove", onTouchMove, { passive: false });
-    area.addEventListener("touchend", onTouchEnd, { passive: true });
+    update();
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule);
     return () => {
-      area.removeEventListener("wheel", onWheel);
-      area.removeEventListener("touchstart", onTouchStart);
-      area.removeEventListener("touchmove", onTouchMove);
-      area.removeEventListener("touchend", onTouchEnd);
+      window.removeEventListener("scroll", schedule);
+      window.removeEventListener("resize", schedule);
+      window.cancelAnimationFrame(frame);
     };
   }, []);
 
@@ -154,21 +118,45 @@ export function DbtlStepper({ module }: DbtlStepperProps) {
     return next?.cycleIndex ?? Math.max(module.cycles.length - 1, 0);
   }, [step, steps, index, module.cycles.length]);
 
+  /** Scroll the page to the progress position of a step, so the scroll
+   *  mapping and the sequence state stay in sync (the pinned view does not
+   *  move; only the scrollbar does). */
+  const scrollToStep = (target: number) => {
+    const runway =
+      runwayRef.current ??
+      (rootRef.current?.closest(".eng-runway") as HTMLElement | null);
+    if (!runway) return;
+    const total = runway.offsetHeight - window.innerHeight;
+    if (total <= 0) return;
+    const runwayTop = runway.getBoundingClientRect().top + window.scrollY;
+    const y =
+      runwayTop + (total * target) / Math.max(1, stepsRef.current.length - 1);
+    window.scrollTo({ top: y, behavior: "instant" });
+  };
+
+  const goToStep = (target: number) => {
+    if (target < 0) return;
+    setIndex(target);
+    scrollToStep(target);
+  };
+
   const goToPhase = (phase: DbtlPhase) => {
-    const target = steps.findIndex(
-      (entry) =>
-        entry.kind === "phase" &&
-        entry.cycleIndex === currentCycleIndex &&
-        entry.phase === phase,
+    goToStep(
+      steps.findIndex(
+        (entry) =>
+          entry.kind === "phase" &&
+          entry.cycleIndex === currentCycleIndex &&
+          entry.phase === phase,
+      ),
     );
-    if (target >= 0) setIndex(target);
   };
 
   const goToCycle = (cycleIndex: number) => {
-    const target = steps.findIndex(
-      (entry) => entry.kind === "phase" && entry.cycleIndex === cycleIndex,
+    goToStep(
+      steps.findIndex(
+        (entry) => entry.kind === "phase" && entry.cycleIndex === cycleIndex,
+      ),
     );
-    if (target >= 0) setIndex(target);
   };
 
   const phaseBadge = step?.kind === "phase" && step.phase ? step.phase : null;
@@ -177,12 +165,13 @@ export function DbtlStepper({ module }: DbtlStepperProps) {
       ? module.cycles[step.cycleIndex].title
       : (step?.title ?? "");
 
-  return (
-    <div className="dbtl" ref={areaRef}>
+  const stepper = (
+    <div className={`dbtl${focus ? " dbtl-focus" : ""}`} ref={rootRef}>
       <div className="dbtl-ring-wrap">
         <DbtlRing active={phaseBadge} onSelect={goToPhase} />
       </div>
       <div className="dbtl-main">
+        {topNav && <div className="dbtl-subnav">{topNav}</div>}
         <div className="dbtl-panel">
           <div className="dbtl-panel-head">
             {phaseBadge && (
@@ -231,6 +220,20 @@ export function DbtlStepper({ module }: DbtlStepperProps) {
           ))}
         </div>
       </div>
+    </div>
+  );
+
+  if (focus) return stepper;
+
+  return (
+    <div
+      className="dbtl-runway"
+      ref={runwayRef}
+      style={{
+        height: `calc(${100 + Math.max(0, steps.length - 1) * STEP_DVH}dvh)`,
+      }}
+    >
+      <div className="dbtl-pin">{stepper}</div>
     </div>
   );
 }

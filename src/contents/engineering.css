@@ -169,6 +169,26 @@
 /* DBTL stepper — ring on the left, step text on the right, cycle buttons
    below; wheel over the area (or past the edges of the text box) moves
    through the Design–Build–Test–Learn sequence. */
+/* The stepper lives in a taller runway and pins itself to the middle of
+   the viewport while the page scroll advances the steps (the same pattern
+   as the home page story sections). */
+.dbtl-runway {
+  position: relative;
+}
+
+.dbtl-pin {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  height: 100dvh;
+}
+
+.dbtl-pin > .dbtl {
+  width: 100%;
+}
+
 .dbtl {
   display: grid;
   grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
@@ -193,11 +213,12 @@
   height: auto;
 }
 
-/* Highlighting: the artwork is drawn as a uniformly faded base copy plus
-   masked full-colour copies of each segment. The masks reproduce the
-   original stacking of the four interlocking segments, so a highlighted
-   segment is never painted over the parts that cover it — while the
-   other segments stay semi-transparently faded. */
+/* Highlighting: the base copy renders the artwork exactly as the SVG defines
+   it; the active segment is shown by a masked copy in a "150% opacity"
+   colour. Plain opacity cannot exceed 1 (and opacity() clamps too), so the
+   exact meaning is applied directly: C' = 1.5·C − 0.5·background over the
+   page background (#EBF1FA), which in turn boosts the segment colours. The
+   masks keep the original stacking of the four interlocking segments. */
 .dbtl-ring [data-seg] {
   cursor: pointer;
 }
@@ -206,6 +227,32 @@
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.25s ease;
+}
+
+.dbtl-ring .dbtl-hi-design path[stroke] {
+  stroke: #136aee;
+}
+
+.dbtl-ring .dbtl-hi-build path[stroke] {
+  stroke: #0043bb;
+}
+
+.dbtl-ring .dbtl-hi-test path[stroke] {
+  stroke: #0768df;
+}
+
+.dbtl-ring .dbtl-hi-test circle {
+  fill: #0768df;
+}
+
+.dbtl-ring .dbtl-hi-learn path[stroke] {
+  stroke: #64b4ff;
+}
+
+/* The highlighted segment flips its white letters to black to keep contrast
+   against the boosted colour. */
+.dbtl-ring .dbtl-hi path[fill="white"] {
+  fill: #000;
 }
 
 .dbtl-ring[data-active="design"] .dbtl-hi-design,
@@ -277,7 +324,6 @@
   flex: 1;
   padding: 1.25rem 1.5rem 1.5rem;
   overflow-y: auto;
-  overscroll-behavior: contain;
   outline: none;
 }
 
@@ -291,8 +337,8 @@
 
 .dbtl .dbtl-panel-inner p,
 .dbtl .dbtl-panel-inner li {
-  font-size: 1.02rem;
-  line-height: 1.65;
+  font-size: 1.25rem;
+  line-height: 1.7;
 }
 
 .dbtl .dbtl-panel-inner p {
@@ -326,6 +372,117 @@
   justify-content: center;
   gap: 0.35rem 1.4rem;
   margin-top: 1.1rem;
+}
+
+/* Level-3 tab row when it moves above the panel in focus view; shares the
+   cycle-button styling and centring. */
+.dbtl-subnav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.35rem 1.4rem;
+  margin-bottom: 0.8rem;
+}
+
+/* The focus-view cluster (nav rows + tabs + stepper) is engaged as one
+   scroll segment by the stepper; tune its vertical rhythm so the cluster
+   fills the page while stepping. */
+.eng-aggregate {
+  display: flex;
+  flex-direction: column;
+}
+
+.eng-aggregate .eng-module-nav {
+  margin-top: 0;
+  margin-bottom: 0.6vh;
+}
+
+.eng-aggregate .eng-subnav {
+  margin-bottom: 0.35rem;
+}
+
+.eng-aggregate .dbtl {
+  margin-top: 0.2rem;
+}
+
+/* Focus view: the whole cluster (nav rows + stepper) pins to the middle of
+   the viewport and the page scroll drives the steps. */
+.eng-runway {
+  position: relative;
+}
+
+.eng-pin {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100dvh;
+}
+
+.eng-pin > .eng-aggregate {
+  width: 100%;
+}
+
+.dbtl-subnav-button {
+  padding: 0.45rem 0.2rem;
+  border: none;
+  border-bottom: 3px solid #e0e6f3;
+  background: none;
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: #8697b5;
+  cursor: pointer;
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.dbtl-subnav-button:hover {
+  color: #365dc9;
+}
+
+.dbtl-subnav-button.active {
+  color: #223c81;
+  border-bottom-color: #365dc9;
+}
+
+/* Focus view (code-level switch, no visible control): the level-3 tabs move
+   above the panel; the card grows to carry larger text, while the DBTL ring
+   is moved to the left (its compression has been rolled back). */
+.dbtl.dbtl-focus {
+  --dbtl-stack-h: clamp(380px, calc(90vh - 12rem), 700px);
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+}
+
+.dbtl.dbtl-focus .dbtl-ring-wrap {
+  justify-content: flex-start;
+}
+
+.dbtl.dbtl-focus .dbtl-ring {
+  width: min(100%, 620px);
+  max-width: 100%;
+  height: auto;
+  margin: 0;
+}
+
+.dbtl.dbtl-focus .dbtl-ring svg {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+}
+
+.dbtl.dbtl-focus .dbtl-main {
+  display: flex;
+  flex-direction: column;
+  height: var(--dbtl-stack-h);
+}
+
+.dbtl.dbtl-focus .dbtl-panel {
+  flex: 1 1 0;
+  min-height: 0;
+  height: auto;
 }
 
 .dbtl-cycle-button {
@@ -363,5 +520,28 @@
 
   .dbtl-panel {
     height: clamp(260px, 54vh, 480px);
+  }
+
+  /* Focus view keeps the stacked mobile layout (no fixed-height column). */
+  .dbtl.dbtl-focus .dbtl-ring-wrap {
+    justify-content: center;
+  }
+
+  .dbtl.dbtl-focus .dbtl-ring {
+    width: min(100%, 300px);
+    height: auto;
+    margin: 0 auto;
+  }
+
+  .dbtl.dbtl-focus .dbtl-main {
+    height: auto;
+  }
+
+  .dbtl.dbtl-focus .dbtl-panel {
+    height: clamp(260px, 54vh, 480px);
+  }
+
+  .dbtl.dbtl-focus .dbtl-subnav {
+    margin-top: 0.2rem;
   }
 }
