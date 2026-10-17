@@ -267,19 +267,19 @@ function ProteinStepper({ steps }: { steps: ProteinStep[] }) {
         height: `calc(${100 + Math.max(0, steps.length - 1) * STEP_DVH}dvh)`,
       }}
     >
-      <div className="protein-pin">
-        <div
-          className={`protein-cluster${
-            step?.figureHeight ? " protein-cluster--wide" : ""
-          } protein-slide-${transition.direction}`}
-          style={
-            step?.figureHeight
-              ? ({
-                  "--protein-figure-h": `${step.figureHeight}px`,
-                } as CSSProperties)
-              : undefined
-          }
-        >
+      <div
+        className={`protein-pin protein-slide-${transition.direction}${
+          step?.figureHeight ? " protein-pin--wide" : ""
+        }`}
+        style={
+          step?.figureHeight
+            ? ({
+                "--protein-figure-h": `${step.figureHeight}px`,
+              } as CSSProperties)
+            : undefined
+        }
+      >
+        <div className="protein-cluster">
           <figure className="protein-figure">
             {step?.figure}
             <figcaption className="protein-caption">
@@ -294,43 +294,43 @@ function ProteinStepper({ steps }: { steps: ProteinStep[] }) {
                 </div>
               </div>
             </figcaption>
-            <div className="protein-nav">
-              <button
-                type="button"
-                className="protein-nav-button"
-                onClick={() => goTo(index - 1)}
-                disabled={index === 0}
-              >
-                Previous
-              </button>
-              <button
-                type="button"
-                className="protein-nav-button"
-                onClick={() => goTo(index + 1)}
-                disabled={index === steps.length - 1}
-              >
-                Next
-              </button>
-            </div>
           </figure>
-          <div
-            className="protein-text"
-            ref={panelRef}
-            tabIndex={0}
-            role="region"
-            aria-label="Rational design of SnoopLigase2"
-          >
-            <div className="protein-text-stack">
-              {transition.outgoing && (
-                <div className="protein-text-out" aria-hidden="true">
-                  {transition.outgoing.body}
-                </div>
-              )}
-              <div className="protein-text-inner" key={step?.key}>
-                {step?.body}
+        </div>
+        <div
+          className="protein-text"
+          ref={panelRef}
+          tabIndex={0}
+          role="region"
+          aria-label="Rational design of SnoopLigase2"
+        >
+          <div className="protein-text-stack">
+            {transition.outgoing && (
+              <div className="protein-text-out" aria-hidden="true">
+                {transition.outgoing.body}
               </div>
+            )}
+            <div className="protein-text-inner" key={step?.key}>
+              {step?.body}
             </div>
           </div>
+        </div>
+        <div className="protein-nav" aria-label="Protein navigation">
+          <button
+            type="button"
+            className="protein-nav-button"
+            onClick={() => goTo(index - 1)}
+            disabled={index === 0}
+          >
+            Previous
+          </button>
+          <button
+            type="button"
+            className="protein-nav-button"
+            onClick={() => goTo(index + 1)}
+            disabled={index === steps.length - 1}
+          >
+            Next
+          </button>
         </div>
       </div>
     </div>
