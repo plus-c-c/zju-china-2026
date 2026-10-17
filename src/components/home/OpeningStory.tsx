@@ -13,7 +13,6 @@ import "./OpeningStory.css";
 const staticRoot = "https://static.igem.wiki/teams/6102/wiki";
 const staticHome = `${staticRoot}/images/home`;
 const staticGif = `${staticRoot}/gif`;
-const localHome = `${import.meta.env.BASE_URL}images/home`;
 
 const statementBubbleNames = [
   "osteoarthritis",
@@ -139,7 +138,7 @@ export function OpeningStatement() {
             >
               <div className="opening-bubble__float">
                 <img
-                  src={`${localHome}/opening-bubble-osteoarthritis.svg`}
+                  src={`${staticHome}/opening-bubble-osteoarthritis.svg`}
                   alt=""
                 />
                 <span>osteoarthritis</span>
@@ -150,7 +149,7 @@ export function OpeningStatement() {
               style={bubbleStyle("hyaline")}
             >
               <div className="opening-bubble__float">
-                <img src={`${localHome}/opening-bubble-hyaline.svg`} alt="" />
+                <img src={`${staticHome}/opening-bubble-hyaline.svg`} alt="" />
                 <span>
                   hyaline
                   <br />
@@ -165,7 +164,7 @@ export function OpeningStatement() {
               style={bubbleStyle("focal")}
             >
               <div className="opening-bubble__float">
-                <img src={`${localHome}/opening-bubble-focal.svg`} alt="" />
+                <img src={`${staticHome}/opening-bubble-focal.svg`} alt="" />
                 <span>
                   focal traumatic
                   <br />
@@ -178,7 +177,7 @@ export function OpeningStatement() {
               style={bubbleStyle("gout")}
             >
               <div className="opening-bubble__float">
-                <img src={`${localHome}/opening-bubble-gout.svg`} alt="" />
+                <img src={`${staticHome}/opening-bubble-gout.svg`} alt="" />
                 <span>chronic gout</span>
               </div>
             </div>
@@ -187,7 +186,7 @@ export function OpeningStatement() {
               style={bubbleStyle("patellae")}
             >
               <div className="opening-bubble__float">
-                <img src={`${localHome}/opening-bubble-patellae.svg`} alt="" />
+                <img src={`${staticHome}/opening-bubble-patellae.svg`} alt="" />
                 <span>
                   chondromalacia
                   <br />
@@ -200,7 +199,7 @@ export function OpeningStatement() {
               style={bubbleStyle("acl")}
             >
               <div className="opening-bubble__float">
-                <img src={`${localHome}/opening-bubble-acl.svg`} alt="" />
+                <img src={`${staticHome}/opening-bubble-acl.svg`} alt="" />
                 <span>
                   status post ACL
                   <br />
@@ -214,7 +213,10 @@ export function OpeningStatement() {
               style={bubbleStyle("decorTop")}
             >
               <div className="opening-bubble__float">
-                <img src={`${localHome}/opening-bubble-decor-top.svg`} alt="" />
+                <img
+                  src={`${staticHome}/opening-bubble-decor-top.svg`}
+                  alt=""
+                />
               </div>
             </div>
             <div
@@ -224,7 +226,7 @@ export function OpeningStatement() {
             >
               <div className="opening-bubble__float">
                 <img
-                  src={`${localHome}/opening-bubble-decor-left.svg`}
+                  src={`${staticHome}/opening-bubble-decor-left.svg`}
                   alt=""
                 />
               </div>
@@ -236,7 +238,7 @@ export function OpeningStatement() {
             >
               <div className="opening-bubble__float">
                 <img
-                  src={`${localHome}/opening-bubble-decor-right.svg`}
+                  src={`${staticHome}/opening-bubble-decor-right.svg`}
                   alt=""
                 />
               </div>
