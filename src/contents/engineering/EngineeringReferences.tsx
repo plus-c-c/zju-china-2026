@@ -27,6 +27,30 @@ export function EngineeringReferences() {
             https://pubmed.ncbi.nlm.nih.gov/26896661/
           </a>
         </li>
+        <li id="ref-gag-1">
+          Charge-based drug delivery to cartilage: Hydrophobic and not
+          electrostatic interactions are the dominant cause of competitive
+          binding of cationic carriers in synovial fluid.{" "}
+          <a
+            href="https://doi.org/10.1016/j.actbio.2022.08.010"
+            target="_blank"
+            rel="noreferrer"
+          >
+            https://doi.org/10.1016/j.actbio.2022.08.010
+          </a>
+        </li>
+        <li id="ref-gag-2">
+          Isolation and characterization of a heparin with low antithrombin
+          activity from the body of Styela plicata (Chordata-Tunicata). Distinct
+          effects on venous and arterial models of thrombosis.{" "}
+          <a
+            href="https://doi.org/10.1016/j.thromres.2007.03.025"
+            target="_blank"
+            rel="noreferrer"
+          >
+            https://doi.org/10.1016/j.thromres.2007.03.025
+          </a>
+        </li>
       </ol>
     </>
   );

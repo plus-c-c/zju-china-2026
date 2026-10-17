@@ -157,7 +157,11 @@ const App = () => {
                       {!isLoading && <Component />}
                     </div>
                   ) : (
-                    <Toc key={path} title={title || ""}>
+                    <Toc
+                      key={path}
+                      title={title || ""}
+                      hideToc={path === "/engineering"}
+                    >
                       <Component />
                     </Toc>
                   )

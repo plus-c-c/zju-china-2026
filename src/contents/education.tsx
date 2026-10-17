@@ -1,4 +1,5 @@
 import { Inspirations, InspirationLink } from "../components/Inspirations";
+import { FlappyInjection } from "../components/FlappyInjection";
 
 export function Education() {
   const links: InspirationLink[] = [
@@ -37,6 +38,18 @@ export function Education() {
               for more information.
             </p>
           </div>
+        </div>
+      </div>
+
+      <div className="row mt-4">
+        <div className="col">
+          <h2 className="mt-4">Mini game: inject the cartilage</h2>
+          <p>
+            Fly the NEST bird between healthy bones and complete the injection —
+            a playful take on our cartilage-repair idea. Passing each bone pair
+            advances the syringe; fill the injection to win.
+          </p>
+          <FlappyInjection />
         </div>
       </div>
 

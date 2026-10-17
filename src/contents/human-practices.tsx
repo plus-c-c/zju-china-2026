@@ -3,6 +3,7 @@ import {
   type TimelineDetail,
   type TimelineItem,
 } from "../components/Timeline";
+import { StakeholderChain } from "../components/StakeholderChain";
 
 /**
  * Placeholder timeline entries.
@@ -93,6 +94,14 @@ export function HumanPractices() {
             beyond the lab and why that engagement matters. Replace with the
             final introduction.
           </p>
+          <h3 className="mt-5 mb-3">Map of stakeholders</h3>
+          <p>
+            Placeholder text — introduce the stakeholder map: the lifecycle
+            stages of the solution, whom we engaged at each stage, and what we
+            learned. Hover (or tap) a stage to see its content. Replace with the
+            final content.
+          </p>
+          <StakeholderChain />
           <h3 className="mt-5 mb-3">Engagement timeline</h3>
           <p>
             Placeholder text — one sentence introducing the timeline. The

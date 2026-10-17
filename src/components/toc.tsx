@@ -7,9 +7,11 @@ type Heading = { id: string; text: string; level: number };
 export function Toc({
   title,
   children,
+  hideToc = false,
 }: {
   title: string;
   children: ReactNode;
+  hideToc?: boolean;
 }) {
   const headerRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -24,37 +26,64 @@ export function Toc({
     const content = contentRef.current;
     const header = headerRef.current;
     const footer = document.querySelector("footer.footer");
-    if (!content || !header) return;
+    if (!content || !header || hideToc) return;
 
-    const elements = Array.from(
-      content.querySelectorAll<HTMLElement>("h2, h3, h4"),
-    );
-    const usedIds = new Set(
-      Array.from(document.querySelectorAll("[id]"), (node) => node.id),
-    );
-    elements.forEach((element, index) => {
-      if (element.id) return;
-      const slug =
-        (element.textContent || "section")
-          .trim()
-          .toLowerCase()
-          .replace(/[^\p{L}\p{N}]+/gu, "-")
-          .replace(/^-|-$/g, "") || "section";
-      let id = slug;
-      let suffix = index + 1;
-      while (usedIds.has(id)) id = `${slug}-${suffix++}`;
-      element.id = id;
-      usedIds.add(id);
-    });
-    setHeadings(
-      elements.map((element) => ({
+    let elements: HTMLElement[] = [];
+    let frame = 0;
+    let collectFrame = 0;
+    const isExpanded = (element: HTMLElement) =>
+      !element.closest("[hidden], details:not([open])") &&
+      element.dataset.tocCollapsed !== "true" &&
+      !element.classList.contains("visually-hidden");
+
+    const collectHeadings = () => {
+      collectFrame = 0;
+      elements = Array.from(
+        content.querySelectorAll<HTMLElement>(
+          'h2, h3, h4[data-toc="include"], h5[data-toc="include"]',
+        ),
+      ).filter(
+        (element) =>
+          element.dataset.toc !== "exclude" &&
+          !element.closest("[hidden], details:not([open])"),
+      );
+      const usedIds = new Set(
+        Array.from(document.querySelectorAll("[id]"), (node) => node.id),
+      );
+      elements.forEach((element, index) => {
+        if (element.id) return;
+        const slug =
+          (element.textContent || "section")
+            .trim()
+            .toLowerCase()
+            .replace(/[^\p{L}\p{N}]+/gu, "-")
+            .replace(/^-|-$/g, "") || "section";
+        let id = slug;
+        let suffix = index + 1;
+        while (usedIds.has(id)) id = `${slug}-${suffix++}`;
+        element.id = id;
+        usedIds.add(id);
+      });
+      const next = elements.map((element) => ({
         id: element.id,
         text: element.textContent || "",
-        level: element.tagName === "H2" ? 1 : 2,
-      })),
-    );
+        level:
+          element.tagName === "H2" ? 1 : Number(element.dataset.tocDepth) || 2,
+      }));
+      setHeadings((previous) =>
+        previous.length === next.length &&
+        previous.every(
+          (heading, index) =>
+            heading.id === next[index].id &&
+            heading.text === next[index].text &&
+            heading.level === next[index].level,
+        )
+          ? previous
+          : next,
+      );
+      scheduleUpdate();
+    };
 
-    let frame = 0;
     const update = () => {
       frame = 0;
       const footerRect = footer?.getBoundingClientRect();
@@ -65,8 +94,9 @@ export function Toc({
       setFooterInView(footerVisible);
       setVisible(header.getBoundingClientRect().bottom <= 0 && !footerVisible);
       const viewportCenter = window.innerHeight / 2;
-      let current = elements[0]?.id || "";
-      for (const element of elements) {
+      const expandedElements = elements.filter(isExpanded);
+      let current = expandedElements[0]?.id || "";
+      for (const element of expandedElements) {
         if (element.getBoundingClientRect().top <= viewportCenter)
           current = element.id;
         else break;
@@ -76,7 +106,7 @@ export function Toc({
     const scheduleUpdate = () => {
       if (!frame) frame = window.requestAnimationFrame(update);
     };
-    update();
+    collectHeadings();
     window.addEventListener("scroll", scheduleUpdate, { passive: true });
     window.addEventListener("resize", scheduleUpdate);
     const observer = new ResizeObserver(scheduleUpdate);
@@ -84,7 +114,28 @@ export function Toc({
     observer.observe(header);
     if (footer) observer.observe(footer);
 
-    // Support opening a direct link to a section after its generated ID exists.
+    const mutations = new MutationObserver(() => {
+      if (!collectFrame)
+        collectFrame = window.requestAnimationFrame(collectHeadings);
+    });
+    mutations.observe(content, {
+      childList: true,
+      subtree: true,
+      characterData: true,
+      attributes: true,
+      attributeFilter: ["hidden", "open", "class", "data-toc-collapsed"],
+    });
+
+    const hashTimers: number[] = [];
+    let hashScrollCancelled = false;
+    const cancelHashScroll = () => {
+      hashScrollCancelled = true;
+      hashTimers.forEach((timer) => window.clearTimeout(timer));
+    };
+
+    // Re-align deep links after lazy content has settled. The Design page has
+    // many images above its module headings, so a single early scroll can drift.
+
     if (window.location.hash) {
       let id = window.location.hash.slice(1);
       try {
@@ -92,28 +143,51 @@ export function Toc({
       } catch {
         /* Ignore malformed URL escapes. */
       }
-      elements.find((element) => element.id === id)?.scrollIntoView();
+      const target = elements.find((element) => element.id === id);
+      const scrollToTarget = () => {
+        if (!hashScrollCancelled) target?.scrollIntoView();
+      };
+      scrollToTarget();
+      [750, 2000].forEach((delay) =>
+        hashTimers.push(window.setTimeout(scrollToTarget, delay)),
+      );
+      void document.fonts?.ready.then(scrollToTarget);
+      window.addEventListener("wheel", cancelHashScroll, {
+        once: true,
+        passive: true,
+      });
+      window.addEventListener("touchstart", cancelHashScroll, {
+        once: true,
+        passive: true,
+      });
+      window.addEventListener("keydown", cancelHashScroll, { once: true });
     }
     return () => {
       window.removeEventListener("scroll", scheduleUpdate);
       window.removeEventListener("resize", scheduleUpdate);
+      window.removeEventListener("wheel", cancelHashScroll);
+      window.removeEventListener("touchstart", cancelHashScroll);
+      window.removeEventListener("keydown", cancelHashScroll);
+      hashTimers.forEach((timer) => window.clearTimeout(timer));
       observer.disconnect();
+      mutations.disconnect();
       window.cancelAnimationFrame(frame);
+      window.cancelAnimationFrame(collectFrame);
     };
-  }, []);
+  }, [hideToc]);
 
   useEffect(() => {
     const nav = tocRef.current;
     const active = nav?.querySelector<HTMLElement>('[aria-current="location"]');
     const list = nav?.querySelector<HTMLElement>(".page-toc-list");
-    if (!active || !list || !visible) return;
+    if (!active || !list || (!visible && !mobileOpen)) return;
     const itemRect = active.getBoundingClientRect();
     const listRect = list.getBoundingClientRect();
     if (itemRect.top < listRect.top)
       list.scrollTop -= listRect.top - itemRect.top;
     else if (itemRect.bottom > listRect.bottom)
       list.scrollTop += itemRect.bottom - listRect.bottom;
-  }, [activeId, visible]);
+  }, [activeId, visible, mobileOpen]);
 
   // 页脚出现时收起移动端目录，避免悬浮按钮/面板遮挡页脚
   useEffect(() => {
@@ -157,21 +231,19 @@ export function Toc({
     return parentId === activeTopLevelId;
   });
 
+  const showToc = !hideToc && headings.length > 0;
+
   return (
     <>
       <div ref={headerRef}>
         <Header title={title} />
       </div>
-      <div
-        className={`page-layout ${headings.length > 0 ? "page-layout-with-toc" : ""}`}
-      >
-        {headings.length > 0 && (
+      <div className={`page-layout ${showToc ? "page-layout-with-toc" : ""}`}>
+        {showToc && (
           <nav
             ref={tocRef}
             aria-label="On this page"
-            className={`page-toc ${visible ? "page-toc-visible" : ""}${
-              mobileOpen ? " page-toc-open" : ""
-            }`}
+            className={`page-toc ${visible ? "page-toc-visible" : ""}${mobileOpen ? " page-toc-open" : ""}`}
           >
             <h2 className="page-toc-title">{title || "On this page"}</h2>
             <ul
@@ -201,7 +273,7 @@ export function Toc({
             </ul>
           </nav>
         )}
-        {headings.length > 0 && (
+        {showToc && (
           <button
             type="button"
             className={`page-toc-toggle${

@@ -45,3 +45,499 @@
     padding: 0.8rem 1.5rem;
   }
 }
+
+/* Collapsible Design–Build–Test–Learn cycles — expand/collapse pattern
+   referenced from the 2025 ZJU-China engineering page, adapted to the
+   2026 palette. */
+.collapsible-container {
+  margin-top: 2.5rem;
+}
+
+.collapsible-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  margin: 0;
+  padding: 0 0 0.6rem;
+  background: none;
+  border: none;
+  border-bottom: 2px solid #e0e0e0;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.collapsible-header h4 {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border-bottom: none;
+  color: #223c81;
+}
+
+.collapsible-header:focus-visible {
+  outline: 2px solid #365dc9;
+  outline-offset: 2px;
+}
+
+.collapsible-icon {
+  flex-shrink: 0;
+  margin-left: 1rem;
+  font-size: 2rem;
+  font-weight: 300;
+  line-height: 1;
+  color: #365dc9;
+}
+
+.collapsible-content {
+  padding: 0;
+}
+
+/* Long repository/service URLs in the reference list must wrap on narrow
+   screens instead of pushing the page into horizontal overflow. */
+.references-list a {
+  overflow-wrap: anywhere;
+}
+
+/* Secondary module navigation (appears under Wet Lab / Dry Lab). */
+.eng-subnav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 1.25rem;
+}
+
+.eng-subnav-button {
+  padding: 0.5rem 1.1rem;
+  border-radius: 50px;
+  border: 1px solid #d6e0f5;
+  background-color: #f7faff;
+  color: #223c81;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.eng-subnav-button:hover {
+  border-color: #365dc9;
+  transform: translateY(-1px);
+}
+
+.eng-subnav-button.active {
+  background-color: #365dc9;
+  border-color: #365dc9;
+  color: #fff;
+  box-shadow: 0 4px 10px rgba(54, 93, 201, 0.35);
+}
+
+/* Part tabs inside a group (e.g. Hydrogel scaffold / Ligation system). */
+.eng-partnav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.35rem 1.6rem;
+  margin: 0.5rem 0 0.75rem;
+}
+
+.eng-partnav-button {
+  padding: 0.4rem 0.2rem;
+  border: none;
+  border-bottom: 3px solid transparent;
+  background: none;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #8697b5;
+  cursor: pointer;
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.eng-partnav-button:hover {
+  color: #365dc9;
+}
+
+.eng-partnav-button.active {
+  color: #223c81;
+  border-bottom-color: #365dc9;
+}
+
+/* DBTL stepper — ring on the left, step text on the right, cycle buttons
+   below. The page-level runway pins the whole cluster (nav rows, tabs,
+   ring, panel, cycle buttons) to the middle of the viewport while the page
+   scroll advances the Design–Build–Test–Learn steps (the same pattern as
+   the home page story sections). */
+.dbtl {
+  --dbtl-stack-h: clamp(380px, calc(90vh - 12rem), 700px);
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: clamp(1.5rem, 3vw, 3rem);
+  align-items: center;
+  margin-top: 1.5rem;
+}
+
+.dbtl-ring-wrap {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.dbtl-ring {
+  width: min(100%, 620px);
+  max-width: 100%;
+  height: auto;
+  margin: 0;
+}
+
+.dbtl-ring svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Highlighting: the base copy renders the artwork exactly as the SVG defines
+   it; the active segment is shown by a masked copy in a "150% opacity"
+   colour. Plain opacity cannot exceed 1 (and opacity() clamps too), so the
+   exact meaning is applied directly: C' = 1.5·C − 0.5·background over the
+   page background (#EBF1FA), which in turn boosts the segment colours. The
+   masks keep the original stacking of the four interlocking segments. */
+.dbtl-ring [data-seg] {
+  cursor: pointer;
+}
+
+.dbtl-ring .dbtl-hi {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.dbtl-ring .dbtl-hi-design path[stroke] {
+  stroke: #136aee;
+}
+
+.dbtl-ring .dbtl-hi-build path[stroke] {
+  stroke: #0043bb;
+}
+
+.dbtl-ring .dbtl-hi-test path[stroke] {
+  stroke: #0768df;
+}
+
+.dbtl-ring .dbtl-hi-test circle {
+  fill: #0768df;
+}
+
+.dbtl-ring .dbtl-hi-learn path[stroke] {
+  stroke: #64b4ff;
+}
+
+/* The highlighted segment flips its white letters to black to keep contrast
+   against the boosted colour. */
+.dbtl-ring .dbtl-hi path[fill="white"] {
+  fill: #000;
+}
+
+.dbtl-ring[data-active="design"] .dbtl-hi-design,
+.dbtl-ring[data-active="build"] .dbtl-hi-build,
+.dbtl-ring[data-active="test"] .dbtl-hi-test,
+.dbtl-ring[data-active="learn"] .dbtl-hi-learn {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.dbtl-main {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  height: var(--dbtl-stack-h);
+}
+
+.dbtl-panel {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  min-height: 0;
+  background: #fff;
+  border: 2px solid #e3e8f4;
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(34, 60, 129, 0.08);
+  overflow: hidden;
+}
+
+.dbtl-panel-head {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 3.4rem;
+  padding: 0.9rem 1.4rem;
+  border-bottom: 1px solid #edf1f9;
+  background: #f7faff;
+}
+
+.dbtl-phase {
+  flex-shrink: 0;
+  padding: 0.15rem 0.7rem;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: #fff;
+  background: #365dc9;
+}
+
+.dbtl-phase-Build {
+  background: #4c93e0;
+}
+
+.dbtl-phase-Test {
+  background: #7fb2e9;
+}
+
+.dbtl-phase-Learn {
+  background: #223c81;
+}
+
+.dbtl-caption {
+  overflow: hidden;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #223c81;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dbtl-panel-body {
+  flex: 1;
+  padding: 1.25rem 1.5rem 1.5rem;
+  overflow-y: auto;
+  outline: none;
+}
+
+.dbtl-panel-body:focus-visible {
+  box-shadow: inset 0 0 0 2px #365dc9;
+}
+
+.dbtl .dbtl-panel-inner {
+  animation: dbtl-step-in 0.26s ease;
+}
+
+.dbtl .dbtl-panel-inner p,
+.dbtl .dbtl-panel-inner li {
+  font-size: 1.25rem;
+  line-height: 1.7;
+}
+
+.dbtl .dbtl-panel-inner p {
+  margin-bottom: 0.9rem;
+}
+
+.dbtl .dbtl-panel-inner .table {
+  font-size: 0.93rem;
+}
+
+@keyframes dbtl-step-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dbtl .dbtl-panel-inner {
+    animation: none;
+  }
+}
+
+.dbtl-cycles {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.35rem 1.4rem;
+  margin-top: 1.1rem;
+}
+
+/* Level-3 tab row above the panel; shares the cycle-button styling and
+   centring. */
+.dbtl-subnav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.35rem 1.4rem;
+  margin-bottom: 0.8rem;
+}
+
+/* The cluster (nav rows + level-3 tabs + stepper) is engaged as one scroll
+   segment by the stepper; tune its vertical rhythm so the cluster fills the
+   page while stepping. */
+.eng-aggregate {
+  display: flex;
+  flex-direction: column;
+}
+
+.eng-aggregate .eng-module-nav {
+  margin-top: 0;
+  margin-bottom: 0.6vh;
+}
+
+.eng-aggregate .eng-subnav {
+  margin-bottom: 0.35rem;
+}
+
+.eng-aggregate .dbtl {
+  margin-top: 0.2rem;
+}
+
+/* The whole cluster pins to the middle of the viewport and the page scroll
+   drives the steps. */
+.eng-runway {
+  position: relative;
+}
+
+.eng-pin {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100dvh;
+}
+
+.eng-pin > .eng-aggregate {
+  width: 100%;
+}
+
+/* Lead / outlook views (no sequence to step through): the same cluster,
+   centred and static instead of pinned. */
+.eng-static {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100dvh;
+}
+
+.eng-static > .eng-aggregate {
+  width: 100%;
+}
+
+/* In-panel section headings for the group lead and sub-module leads. */
+.dbtl .dbtl-panel-inner .dbtl-section-title {
+  margin: 1.3rem 0 0.7rem;
+  font-size: 1.3rem;
+  line-height: 1.45;
+  color: #223c81;
+}
+
+.dbtl .dbtl-panel-inner .dbtl-section-title:first-child {
+  margin-top: 0;
+}
+
+/* Figures inside a DBTL panel: images stack in the reading order, with the
+   caption below the (last) image. */
+.dbtl .dbtl-panel-inner .dbtl-figure {
+  margin: 1.3rem 0;
+}
+
+.dbtl .dbtl-panel-inner .dbtl-figure img {
+  display: block;
+  width: 100%;
+  margin-right: auto;
+  margin-bottom: 0.7rem;
+  margin-left: auto;
+  border: 1px solid #e3e8f4;
+  border-radius: 12px;
+  background: #fbfcfe;
+}
+
+.dbtl .dbtl-panel-inner .dbtl-figure img:last-of-type {
+  margin-bottom: 0;
+}
+
+.dbtl .dbtl-panel-inner .dbtl-figure figcaption {
+  margin-top: 0.7rem;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #5c6f96;
+}
+
+.dbtl-subnav-button {
+  padding: 0.45rem 0.2rem;
+  border: none;
+  border-bottom: 3px solid #e0e6f3;
+  background: none;
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: #8697b5;
+  cursor: pointer;
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.dbtl-subnav-button:hover {
+  color: #365dc9;
+}
+
+.dbtl-subnav-button.active {
+  color: #223c81;
+  border-bottom-color: #365dc9;
+}
+
+.dbtl-cycle-button {
+  padding: 0.45rem 0.2rem;
+  border: none;
+  border-bottom: 3px solid #e0e6f3;
+  background: none;
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: #8697b5;
+  cursor: pointer;
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.dbtl-cycle-button:hover {
+  color: #365dc9;
+}
+
+.dbtl-cycle-button.active {
+  color: #223c81;
+  border-bottom-color: #365dc9;
+}
+
+@media (max-width: 991.98px) {
+  .dbtl {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.25rem;
+  }
+
+  .dbtl-ring-wrap {
+    justify-content: center;
+  }
+
+  .dbtl-ring {
+    width: min(100%, 300px);
+    height: auto;
+    margin: 0 auto;
+  }
+
+  .dbtl-main {
+    height: auto;
+  }
+
+  .dbtl-panel {
+    height: clamp(260px, 54vh, 480px);
+  }
+
+  .dbtl-subnav {
+    margin-top: 0.2rem;
+  }
+}

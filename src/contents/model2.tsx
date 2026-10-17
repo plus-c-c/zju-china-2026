@@ -1,0 +1,609 @@
+import { useEffect, useRef, useState, type ReactNode } from "react";
+import { MathFormula } from "../components/MathFormula";
+import "./model.css";
+
+/** Scroll distance per protein step, in vh. */
+const STEP_DVH = 40;
+
+interface ProteinStep {
+  key: string;
+  /** Left column: the structure rendering of this protein. */
+  figure: ReactNode;
+  /** Figure caption, under the structure. */
+  caption: ReactNode;
+  /** Right column: the design text shown for this protein. */
+  body: ReactNode;
+}
+
+interface StructureFigureProps {
+  src: string;
+  alt: string;
+  /** Crop rectangle of the wide source sheet (see ModelFigure in model.tsx). */
+  bounds: readonly [number, number, number, number];
+}
+
+/** Structure crop — the source images are wide multi-panel sheets; the
+ *  bounds pick the visible region (same arrangement as ModelFigure). */
+function StructureFigure({ src, alt, bounds }: StructureFigureProps) {
+  const [left, top, right, bottom] = bounds;
+  const contentWidth = right - left;
+  const contentHeight = bottom - top;
+  return (
+    <div className="protein-structure">
+      <div
+        className="protein-structure-frame"
+        style={{ aspectRatio: `${contentWidth} / ${contentHeight}` }}
+      >
+        <img
+          src={src}
+          alt={alt}
+          loading="lazy"
+          style={{
+            width: `${(3000 / contentWidth) * 100}%`,
+            left: `${(-left / contentWidth) * 100}%`,
+            top: `${(-top / contentHeight) * 100}%`,
+          }}
+        />
+      </div>
+    </div>
+  );
+}
+
+/**
+ * Protein stepper — the same scroll pattern as the home-page story sections
+ * and the Engineering DBTL cluster: the two-column cluster (structure +
+ * caption + Previous/Next on the left, design text on the right) pins to the
+ * middle of the viewport, and the page scroll advances one protein per step.
+ * The wheel over the right-hand text scrolls that text first; the page — and
+ * therefore the protein — only moves once the text reaches its end.
+ */
+function ProteinStepper({ steps }: { steps: ProteinStep[] }) {
+  const [index, setIndex] = useState(0);
+  const runwayRef = useRef<HTMLDivElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
+  const indexRef = useRef(0);
+  const stepsRef = useRef(steps);
+  indexRef.current = index;
+  stepsRef.current = steps;
+
+  // The right-hand text starts at the top whenever the protein switches.
+  useEffect(() => {
+    panelRef.current?.scrollTo({ top: 0 });
+  }, [index]);
+
+  // Map the scroll progress through the runway to the protein index.
+  useEffect(() => {
+    const runway = runwayRef.current;
+    if (!runway) return;
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const rect = runway.getBoundingClientRect();
+      const total = runway.offsetHeight - window.innerHeight;
+      if (total <= 0) return;
+      const progress = Math.min(1, Math.max(0, -rect.top / total));
+      const target = Math.round(progress * (stepsRef.current.length - 1));
+      if (target !== indexRef.current) setIndex(target);
+    };
+    const schedule = () => {
+      if (!frame) frame = window.requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule);
+    return () => {
+      window.removeEventListener("scroll", schedule);
+      window.removeEventListener("resize", schedule);
+      window.cancelAnimationFrame(frame);
+    };
+  }, []);
+
+  /** Jump to a protein and keep the page scroll in sync (the pinned view
+   *  does not move; only the scrollbar does). */
+  const goTo = (target: number) => {
+    if (target < 0 || target > stepsRef.current.length - 1) return;
+    setIndex(target);
+    const runway = runwayRef.current;
+    if (!runway) return;
+    const total = runway.offsetHeight - window.innerHeight;
+    if (total <= 0) return;
+    const top = runway.getBoundingClientRect().top + window.scrollY;
+    window.scrollTo({
+      top: top + (total * target) / Math.max(1, stepsRef.current.length - 1),
+      behavior: "instant",
+    });
+  };
+
+  const step = steps[index] ?? steps[0];
+
+  return (
+    <div
+      className="protein-runway"
+      ref={runwayRef}
+      style={{
+        height: `calc(${100 + Math.max(0, steps.length - 1) * STEP_DVH}dvh)`,
+      }}
+    >
+      <div className="protein-pin">
+        <div className="protein-cluster">
+          <figure className="protein-figure">
+            {step?.figure}
+            <figcaption className="protein-caption">{step?.caption}</figcaption>
+            <div className="protein-nav">
+              <button
+                type="button"
+                className="protein-nav-button"
+                onClick={() => goTo(index - 1)}
+                disabled={index === 0}
+              >
+                Previous
+              </button>
+              <button
+                type="button"
+                className="protein-nav-button"
+                onClick={() => goTo(index + 1)}
+                disabled={index === steps.length - 1}
+              >
+                Next
+              </button>
+            </div>
+          </figure>
+          <div
+            className="protein-text"
+            ref={panelRef}
+            tabIndex={0}
+            role="region"
+            aria-label="Rational design of SnoopLigase2"
+          >
+            <div className="protein-text-inner" key={step?.key}>
+              {step?.body}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+const SNOOP_STEPS: ProteinStep[] = [
+  {
+    key: "template",
+    figure: (
+      <StructureFigure
+        src="https://static.igem.wiki/teams/6102/wiki/images/model/snoopligase/1.avif"
+        alt="Ligase template structure and catalytic residues"
+        bounds={[731, 280, 1926, 1569]}
+      />
+    ),
+    caption: (
+      <p>
+        <em>
+          {"Figure 1 | Local structure of residues 734–860 in chain A of 2WW8"}
+        </em>
+      </p>
+    ),
+    body: (
+      <>
+        <h3 className="mt-5 mb-3">{"1 Research Background"}</h3>
+        <p>
+          {
+            "SnoopLigase2 catalyzes the formation of a covalent isopeptide bond between SnoopTag2 and DogTag, providing a short peptide-based ligation interface for different protein modules. Previous research has also shown that SnoopLigase2 binds strongly and noncovalently to the ligated product, limiting product release and catalyst recycling. "
+          }
+          <strong>
+            {
+              "This led us to recognize that completion of the ligation reaction and release of the ligase are two processes that must be evaluated separately."
+            }
+          </strong>
+          {"[1]"}
+        </p>
+        <p>
+          {"We therefore proposed a stepwise design hypothesis: "}
+          <strong>
+            {
+              "first, identify stabilization candidates with favorable structural compatibility"
+            }
+          </strong>
+          {
+            " to establish a foundation for subsequent engineering; then, on this background, "
+          }
+          <strong>
+            {
+              "screen for mutations that have a substantial effect on product-interface interactions while minimally affecting the unbound-state structure."
+            }
+          </strong>
+          {
+            " The purpose of the modeling was to identify candidates worth experimental validation, rather than to infer turnover directly from structural scores alone."
+          }
+        </p>
+      </>
+    ),
+  },
+  {
+    key: "parental",
+    figure: (
+      <StructureFigure
+        src="https://static.igem.wiki/teams/6102/wiki/images/model/snoopligase/2.avif"
+        alt="Representative parental ligase structure"
+        bounds={[1097, 287, 1945, 1585]}
+      />
+    ),
+    caption: (
+      <p>
+        <em>
+          {"Figure 2 | Representative conformation of the parental model"}
+        </em>
+      </p>
+    ),
+    body: (
+      <>
+        <h3 className="mt-5 mb-3">{"2 Model Construction"}</h3>
+        <p>
+          {
+            "We used the crystal structure of RrgA, 2WW8, as a template to construct a ligase core model containing 104 amino acids.[2]"
+          }
+        </p>
+        <p>
+          <strong>
+            {
+              "Based on previous engineering work, we introduced nine mutations to construct the initial model."
+            }
+          </strong>
+          {
+            " Using coordinate-constrained FastRelax in PyRosetta, we generated 20 parental models and selected several representative conformations. These models have identical sequences but represent different optimized conformations, reducing the dependence of subsequent screening on a single starting structure.[1, 3]"
+          }
+        </p>
+      </>
+    ),
+  },
+  {
+    key: "sites",
+    figure: (
+      <StructureFigure
+        src="https://static.igem.wiki/teams/6102/wiki/images/model/snoopligase/3.avif"
+        alt="Five candidate stabilizing substitution sites"
+        bounds={[884, 312, 2073, 1573]}
+      />
+    ),
+    caption: (
+      <p>
+        <em>
+          {
+            "Figure 3 | Distribution of the five initial screening sites in the original representative conformation"
+          }
+        </em>
+      </p>
+    ),
+    body: (
+      <>
+        <h3 className="mt-5 mb-3">{"3 Stability Screening"}</h3>
+        <p>
+          <strong>
+            {
+              "Based on the literature, we adopted a strategy of introducing proline substitutions  in loop regions."
+            }
+          </strong>
+          {
+            " Proline restricts the conformational freedom of the backbone and may therefore provide a favorable stabilizing effect when the original local geometry is compatible with the substitution.[4]"
+          }
+        </p>
+        <p>
+          {
+            "By jointly analyzing backbone dihedral angles, secondary structure, solvent exposure, and distance from key functional regions, we selected five candidates: A771P, N775P, E785P, S795P, and D796P. We then constructed mutants and matched controls for the representative conformations and performed repeated calculations using the same ref2015 scoring function, side-chain optimization scope, and FastRelax workflow.[5, 6]"
+          }
+        </p>
+        <p>{"The primary evaluation metric for the unbound state was:"}</p>
+        <MathFormula display>{"S_{mutant}-S_{control}"}</MathFormula>
+        <p>
+          {
+            "A negative value indicates that the mutant has a lower Rosetta score under the current computational protocol. Screening also considered consistency across calculations, backbone displacement, steric clashes, and changes in local interactions."
+          }
+        </p>
+      </>
+    ),
+  },
+  {
+    key: "construct1",
+    figure: (
+      <StructureFigure
+        src="https://static.igem.wiki/teams/6102/wiki/images/model/snoopligase/4.avif"
+        alt="Double mutant superimposed on its control"
+        bounds={[852, 352, 1905, 1518]}
+      />
+    ),
+    caption: (
+      <p>
+        <em>
+          {
+            "Figure 4 | Superposition of the double mutant and its matched control. The double mutant is shown in blue, and the control in gray."
+          }
+        </em>
+      </p>
+    ),
+    body: (
+      <>
+        <p>
+          {
+            "Following single-mutation screening, A771P and E785P proceeded to combination assessment. Across three starting conformations, we performed 30 quartets of comparisons comprising the original structure, A771P, E785P, and the double mutant. The double mutant outperformed the corresponding original-structure control in all 30 calculations, with a median score difference across all quartets of approximately −9.24 REU. In 25 quartets, "
+          }
+          <strong>
+            {"adding E785P to the A771P background provided a further benefit"}
+          </strong>
+          {
+            ". Together with inspection of representative structures, these results led us to define the original structure carrying A771P and E785P as Construct1."
+          }
+        </p>
+      </>
+    ),
+  },
+  {
+    key: "c1-product",
+    figure: (
+      <StructureFigure
+        src="https://static.igem.wiki/teams/6102/wiki/images/model/snoopligase/5.avif"
+        alt="Construct1 product-like structure"
+        bounds={[620, 261, 2033, 1546]}
+      />
+    ),
+    caption: (
+      <p>
+        <em>
+          {
+            "Figure 5 | Example of a C1 product-like structure containing the non-overlapping Tag2 background mutations"
+          }
+        </em>
+      </p>
+    ),
+    body: (
+      <>
+        <h3 className="mt-5 mb-3">
+          {"4 Effects of Stabilization on the Catalytic Region。"}
+        </h3>
+        <p>
+          {
+            "An improved unbound-state score does not directly demonstrate that ligation function is retained. "
+          }
+          <strong>
+            {
+              "We therefore constructed a single-chain product model containing the K742–N854 isopeptide bond and introduced SnoopTag2 mutations in the corresponding regions to examine the behavior of Construct1 in this structural context."
+            }
+          </strong>
+        </p>
+        <p>
+          {
+            "The evaluation included retention of the isopeptide linkage, changes in key distances around E803, overall conformational displacement, and an interaction proxy between the ligase core and the Tag/tail regions. However, the core–tail interactions of Construct1 were slightly more favorable in eight calculations, suggesting that the stabilization design may also have an enhancing effect."
+          }
+        </p>
+      </>
+    ),
+  },
+  {
+    key: "turnover",
+    figure: (
+      <StructureFigure
+        src="https://static.igem.wiki/teams/6102/wiki/images/model/snoopligase/6.avif"
+        alt="Six candidate product-interface sites"
+        bounds={[851, 339, 2039, 1448]}
+      />
+    ),
+    caption: (
+      <p>
+        <em>{"Figure 6 | The six sites selected through screening"}</em>
+      </p>
+    ),
+    body: (
+      <>
+        <h3 className="mt-5 mb-3">{"5 Turnover Optimization"}</h3>
+        <p>
+          {
+            "We performed a per-residue analysis of the 104 ligase core residues in 20 single-chain product models. Based on interface distances, contact extent, and structural protection criteria, we selected six sites—K792, N793, S795, E827, V828, and V831—and designed 12 substitutions comprising alanine-scanning mutations or more conservative replacements."
+          }
+        </p>
+        <p>
+          {
+            "Each candidate was compared with its control in both the unbound and product-like states. In addition to the unbound-state score penalty, we calculated:"
+          }
+        </p>
+        <MathFormula display>
+          {"I_{\\mathrm{mutant}}-I_{\\mathrm{control}}"}
+        </MathFormula>
+        <p>
+          {"Here, "}
+          <MathFormula>{"I"}</MathFormula>
+          {
+            " is the Rosetta-calculated core–Tag/tail interaction value. A positive value indicates weakening of this interface interaction and serves as a metric for screening potential product-release candidates. Candidates must also satisfy checks of the overall structure and key functional geometry.[7]"
+          }
+        </p>
+      </>
+    ),
+  },
+  {
+    key: "e827q",
+    figure: (
+      <>
+        <StructureFigure
+          src="https://static.igem.wiki/teams/6102/wiki/images/model/snoopligase/7.avif"
+          alt="E827 control and local interface detail"
+          bounds={[72, 39, 2913, 1713]}
+        />
+        <StructureFigure
+          src="https://static.igem.wiki/teams/6102/wiki/images/model/snoopligase/8.avif"
+          alt="Q827 mutant and local interface detail"
+          bounds={[72, 39, 2913, 1713]}
+        />
+      </>
+    ),
+    caption: (
+      <p>
+        <em>
+          {
+            "Figure 7 | Local comparison of representative product-like structures. The E827 control is shown on the left, and the Q827 mutant on the right."
+          }
+        </em>{" "}
+        <em>
+          {
+            "The dashed lines indicate the measured distances between K734 NZ and E827 OE2 (2.80 Å) and between K734 NZ and Q827 OE1 (5.87 Å), respectively."
+          }
+        </em>
+      </p>
+    ),
+    body: (
+      <>
+        <p>
+          <strong>
+            {"Based on the combined analysis, we prioritized E827Q."}
+          </strong>
+          {
+            " Its median unbound-state score difference was −0.138 REU, and its median product-interface interaction difference was +1.386 REU."
+          }
+        </p>
+      </>
+    ),
+  },
+  {
+    key: "zju",
+    figure: (
+      <StructureFigure
+        src="https://static.igem.wiki/teams/6102/wiki/images/model/snoopligase/9.avif"
+        alt="SnoopLigase2-ZJU mutation overview"
+        bounds={[552, 344, 2025, 1537]}
+      />
+    ),
+    caption: (
+      <p>
+        <em>{"Figure 8 | The overview of SnoopLigase2-ZJU."}</em>
+      </p>
+    ),
+    body: (
+      <>
+        <h3 className="mt-5 mb-3">{"6 Conclusion"}</h3>
+        <p>
+          <strong>
+            {
+              "Through rational engineering of SnoopLigase2, we introduced three cumulative mutations—A771P, E785P, and E827Q—improving its stability and turnover at the theoretical level."
+            }
+          </strong>
+          {
+            " We have now completed the modeling work, and wet-lab validation is proceeding in parallel."
+          }
+        </p>
+      </>
+    ),
+  },
+];
+
+/** Model module 2 — rational design of SnoopLigase2 (design content). */
+export function SnoopLigase2Design() {
+  return (
+    <>
+      <h2 className="mt-5 mb-3">{"Rational Engineering of SnoopLigase2"}</h2>
+      <h3 className="mt-5 mb-3">{"Overview"}</h3>
+      <p>
+        {
+          "Modular protein assembly requires efficient and reliable ligation tools. We use the SnoopTag2–DogTag ligation system in our protein ligation module, with SnoopLigase2 catalyzing the reaction. However, during our experiments, we found that the stability and turnover of SnoopLigase2 were suboptimal. "
+        }
+        <strong>
+          {
+            "To make our ligation module more efficient and enable faster, broader, and lower-cost ligation, we rationally engineered SnoopLigase2."
+          }
+        </strong>
+      </p>
+      <p>
+        {
+          "Our engineering efforts focused on two objectives: first, maintaining the structural stability of SnoopLigase2 in the working solution; and second, improving its turnover."
+        }
+      </p>
+      <ProteinStepper steps={SNOOP_STEPS} />
+      <h3 className="mt-5 mb-3">{"References"}</h3>
+      <p>
+        {
+          "[1] Keeble, A. H., Wood, D. P., & Howarth, M. (2023). Design and Evolution of Enhanced Peptide–Peptide Ligation for Modular Transglutaminase Assembly. "
+        }
+        <em>{"Bioconjugate Chemistry"}</em>
+        {", "}
+        <strong>{"34"}</strong>
+        {"(6), 1019–1036. "}
+        <a href="https://doi.org/10.1021/acs.bioconjchem.3c00122">
+          {"https://doi.org/10.1021/acs.bioconjchem.3c00122"}
+        </a>
+      </p>
+      <p>
+        {
+          "[2] Izoré, T., Contreras-Martel, C., El Mortaji, L., Manzano, C., Terrasse, R., Vernet, T., Di Guilmi, A. M., & Dessen, A. (2010). Structural Basis of Host Cell Recognition by the Pilus Adhesin from "
+        }
+        <em>{"Streptococcus pneumoniae"}</em>
+        {". "}
+        <em>{"Structure"}</em>
+        {", "}
+        <strong>{"18"}</strong>
+        {"(1), 106–115. "}
+        <a href="https://doi.org/10.1016/j.str.2009.10.019">
+          {"https://doi.org/10.1016/j.str.2009.10.019"}
+        </a>
+      </p>
+      <p>
+        {
+          "[3] Buldun, C. M., Jean, J. X., Bedford, M. R., & Howarth, M. (2018). SnoopLigase Catalyzes Peptide–Peptide Locking and Enables Solid-Phase Conjugate Isolation. "
+        }
+        <em>{"Journal of the American Chemical Society"}</em>
+        {", "}
+        <strong>{"140"}</strong>
+        {"(8), 3008–3018."}
+        <a href="https://doi.org/10.1021/jacs.7b13237">
+          {"https://doi.org/10.1021/jacs.7b13237"}
+        </a>
+      </p>
+      <p>
+        {
+          "[4] Matthews, B. W., Nicholson, H., & Becktel, W. J. (1987). Enhanced protein thermostability from site-directed mutations that decrease the entropy of unfolding. "
+        }
+        <em>
+          {
+            "Proceedings of the National Academy of Sciences of the United States of America"
+          }
+        </em>
+        {", "}
+        <strong>{"84"}</strong>
+        {"(19), 6663–6667. "}
+        <a href="https://doi.org/10.1073/pnas.84.19.6663">
+          {"https://doi.org/10.1073/pnas.84.19.6663"}
+        </a>
+      </p>
+      <p>
+        {
+          "[5] Chaudhury, S., Lyskov, S., & Gray, J. J. (2010). PyRosetta: A script-based interface for implementing molecular modeling algorithms using Rosetta. "
+        }
+        <em>{"Bioinformatics"}</em>
+        {", "}
+        <strong>{"26"}</strong>
+        {"(5), 689–691. "}
+        <a href="https://doi.org/10.1093/bioinformatics/btq007">
+          {"https://doi.org/10.1093/bioinformatics/btq007"}
+        </a>
+      </p>
+      <p>
+        {
+          "[6] Park, H., Bradley, P., Greisen, P., Jr., Liu, Y., Mulligan, V. K., Kim, D. E., Baker, D., & DiMaio, F. (2016). Simultaneous Optimization of Biomolecular Energy Functions on Features from Small Molecules and Macromolecules. "
+        }
+        <em>{"Journal of Chemical Theory and Computation"}</em>
+        {", "}
+        <strong>{"12"}</strong>
+        {"(12), 6201–6212. "}
+        <a href="https://doi.org/10.1021/acs.jctc.6b00819">
+          {"https://doi.org/10.1021/acs.jctc.6b00819"}
+        </a>
+      </p>
+      <p>
+        {
+          "[7] Alford, R. F., Leaver-Fay, A., Jeliazkov, J. R., et al. (2017). The Rosetta All-Atom Energy Function for Macromolecular Modeling and Design. "
+        }
+        <em>{"Journal of Chemical Theory and Computation"}</em>
+        {", "}
+        <strong>{"13"}</strong>
+        {"(6), 3031–3048. "}
+        <a href="https://doi.org/10.1021/acs.jctc.7b00125">
+          {"https://doi.org/10.1021/acs.jctc.7b00125"}
+        </a>
+      </p>
+    </>
+  );
+}
