@@ -89,6 +89,15 @@ export function Toc({
     observer.observe(header);
     if (footer) observer.observe(footer);
 
+    const contentObserver = new MutationObserver(() => {
+      collect();
+      scheduleUpdate();
+    });
+    contentObserver.observe(content, {
+      childList: true,
+      subtree: true,
+    });
+
     const hashTimers: number[] = [];
     let hashScrollCancelled = false;
     const cancelHashScroll = () => {
@@ -98,7 +107,7 @@ export function Toc({
 
     // Re-align deep links after lazy content has settled. The Design page has
     // many images above its module headings, so a single early scroll can drift.
-    
+
     if (window.location.hash) {
       let id = window.location.hash.slice(1);
       try {
