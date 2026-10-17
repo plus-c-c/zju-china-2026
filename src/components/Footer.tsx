@@ -94,11 +94,17 @@ export function Footer({ story = false }: { story?: boolean }) {
         <h4 className="footer__supporters-title">WE THANK OUR SUPPORTERS:</h4>
         <div className="sponsors-container">
           <div className="sponsors-track">
-            {[...sponsorLogos, ...sponsorLogos].map((logo, index) => (
-              <div className="sponsor-slide" key={`${logo.alt}-${index}`}>
-                <img src={logo.src} alt={logo.alt} loading="lazy" />
-              </div>
-            ))}
+            {Array.from({ length: 5 }, () => sponsorLogos)
+              .flat()
+              .map((logo, index) => (
+                <div className="sponsor-slide" key={`${logo.alt}-${index}`}>
+                  <img
+                    src={logo.src}
+                    alt={index < sponsorLogos.length ? logo.alt : ""}
+                    loading="lazy"
+                  />
+                </div>
+              ))}
           </div>
         </div>
       </div>
