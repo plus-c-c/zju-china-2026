@@ -1,11 +1,16 @@
 // Keep the supplied filenames unchanged; encode spaces only for the URL.
 const uploadedIconBase = (
   import.meta.env.VITE_NAV_ICON_BASE_URL ||
-  "https://static.igem.wiki/teams/6102/wiki/title"
+  "https://static.igem.wiki/teams/6102/wiki/header/title"
 ).replace(/\/$/, "");
 
 export function navigationIcon(filename: string) {
-  return `${uploadedIconBase}/${encodeURIComponent(filename)}`;
+  // iGEM converts uploaded PNGs to AVIF and normalizes underscores/spaces.
+  const hostedFilename = filename
+    .replace(/_/g, "-")
+    .replace(/ /g, "-")
+    .replace(/\.png$/, ".avif");
+  return `${uploadedIconBase}/${encodeURIComponent(hostedFilename)}`;
 }
 
 export const pageDetails: Record<

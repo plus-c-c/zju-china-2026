@@ -209,12 +209,12 @@
 }
 
 /* Preserve the original files while matching their visible icon sizes. */
-.nest-tile-icon[src$="/04-design.png"] {
+.nest-tile-icon[src$="/04-design.avif"] {
   scale: 1.44;
   translate: -12% 2%;
 }
 
-.nest-tile-icon[src$="/07-future%20plan.png"] {
+.nest-tile-icon[src$="/07-future-plan.avif"] {
   scale: 1.44;
   translate: 0 2%;
 }
