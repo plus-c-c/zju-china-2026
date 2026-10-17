@@ -22,7 +22,8 @@
 }
 
 .page-article .wetlab-results h2 {
-  font-size: 2rem;
+  font-size: 1.5rem;
+  font-weight: 700;
 }
 
 .page-article .wetlab-results h3 {
@@ -31,10 +32,29 @@
 
 .page-article .wetlab-results h4 {
   font-size: 1.375rem;
+  font-weight: 600;
+}
+
+.page-article .wetlab-results h4#wetlab-scaffold-02 {
+  font-size: 1.25rem;
 }
 
 .page-article .wetlab-results h5 {
   font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.page-article .wetlab-results h6 {
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.page-article
+  .wetlab-results
+  :is(.wetlab-results__introduction, .wetlab-results__conclusion)
+  > h2 {
+  margin: 0 0 12px;
+  color: #223c81;
 }
 
 .wetlab-results .wetlab-results__eyebrow {
@@ -101,6 +121,13 @@
 
 .wetlab-results__module h2.visually-hidden::after {
   display: none;
+}
+
+.page-article .wetlab-results__module > h2:not(.visually-hidden) {
+  margin: 24px 0 14px;
+  font-size: 2.25rem;
+  font-weight: 800;
+  line-height: 1.25;
 }
 
 .wetlab-results button {
@@ -191,6 +218,13 @@
 
 .wetlab-results .section-heading {
   margin: 36px 0 20px;
+}
+
+.wetlab-results__module
+  > div
+  > .wetlab-results__original
+  > .section-heading:first-child {
+  margin-top: 0;
 }
 
 .wetlab-results .section-heading > :last-child {
@@ -290,7 +324,8 @@
 }
 
 .page-article .wetlab-results .summary h3 {
-  font-size: 1.3rem;
+  font-size: 1.25rem;
+  font-weight: 600;
 }
 
 .wetlab-results .added {
@@ -343,6 +378,10 @@
 .wetlab-results__function-original :is(h4, h5, h6) {
   margin-top: 28px;
   margin-bottom: 16px;
+}
+
+.wetlab-results__function-original :is(h3, h4, h5) + :is(h4, h5, h6) {
+  margin-top: 14px;
 }
 
 .wetlab-results__function-original .column > :nth-child(2) {
@@ -415,7 +454,7 @@
 
 .wetlab-results__references summary {
   cursor: pointer;
-  font-size: 1.15rem;
+  font-size: 1.25rem;
   font-weight: 600;
 }
 
@@ -451,6 +490,14 @@
 }
 
 @media (max-width: 575px) {
+  .page-article .wetlab-results h3 {
+    font-size: 1.5rem;
+  }
+
+  .page-article .wetlab-results__module > h2:not(.visually-hidden) {
+    font-size: 2rem;
+  }
+
   .wetlab-results__function-module {
     padding: 14px;
   }
