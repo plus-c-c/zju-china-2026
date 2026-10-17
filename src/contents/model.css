@@ -79,22 +79,16 @@
 }
 
 .protein-pin--wide .protein-text {
-  /* Wide steps: the card starts exactly at the image's bottom edge and
-     keeps the same bottom coordinate as every other step; the tighter
-     padding lets the short paragraph fit the fixed height. */
-  top: calc(40dvh + var(--protein-figure-h, 466px) / 2);
+  /* Wide steps: the card keeps the same bottom coordinate and grows
+     upwards to hold its text completely (same typography as every other
+     card, no scrolling). It sits above the structure so the overlap over
+     the image's lower corner stays a clean card edge. */
+  z-index: 3;
+  top: auto;
   bottom: 8dvh;
   height: auto;
-  padding: 0.9rem 1.3rem;
-}
-
-/* The short wide-step texts fit the fixed card height without scrolling:
-   a slightly tighter typography inside these two cards only. */
-.protein-pin--wide .protein-text p,
-.protein-pin--wide .protein-text li {
-  margin-bottom: 0;
-  font-size: 1.02rem;
-  line-height: 1.55;
+  max-height: none;
+  overflow-y: hidden;
 }
 
 /* Smooth swap: the incoming structure slides in from one side while the
@@ -195,6 +189,8 @@
   top: 0;
   left: 0;
   width: 100%;
+  max-height: 100%;
+  overflow: hidden;
   pointer-events: none;
 }
 
@@ -253,9 +249,11 @@
 
 /* Right-hand text: fills the column, scrolls on its own wheel. */
 .protein-text {
+  /* Centred between the pinned view's edges: the distance from the top
+     edge equals the distance from the bottom edge. */
   position: absolute;
   right: 0;
-  bottom: 8dvh;
+  top: calc(50dvh - clamp(380px, 66vh, 680px) / 2);
   width: calc((100% - var(--protein-gap)) * 0.55);
   height: clamp(380px, 66vh, 680px);
   padding: 1.5rem 1.6rem;
