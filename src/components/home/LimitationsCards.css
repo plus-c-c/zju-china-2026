@@ -82,8 +82,8 @@
 
 .limitations-layer__shadow {
   position: absolute;
-  left: 15px;
-  top: 12px;
+  left: 8px;
+  top: 8px;
   display: block;
   width: 352px;
   height: 549px;
@@ -91,8 +91,8 @@
 }
 
 .limitations-layer--yellow .limitations-layer__shadow {
-  background: #0341c8;
-  box-shadow: 8px 8px 0 #79b8e8;
+  background: #79b8e8;
+  box-shadow: 8px 8px 0 #9ed2f5;
 }
 
 .limitations-layer--blue .limitations-layer__shadow {
@@ -333,17 +333,13 @@
   text-align: left;
 }
 
-.limitations-card:nth-child(3)
-  .limitations-layer--blue
-  .limitations-card-body {
+.limitations-card:nth-child(3) .limitations-layer--blue .limitations-card-body {
   left: 29px;
   width: 300px;
   text-align: center;
 }
 
-.limitations-card:nth-child(2)
-  .limitations-layer--blue
-  .limitations-card-body {
+.limitations-card:nth-child(2) .limitations-layer--blue .limitations-card-body {
   left: 53px;
   width: 277px;
   font-size: 22px;
@@ -458,8 +454,7 @@
   background:
     radial-gradient(circle at 37% 35%, #45a9f5 0 5px, transparent 6px),
     radial-gradient(circle at 61% 61%, #198ee5 0 4px, transparent 5px),
-    radial-gradient(circle at 42% 76%, #6bc4ff 0 3px, transparent 4px),
-    #eef8ff;
+    radial-gradient(circle at 42% 76%, #6bc4ff 0 3px, transparent 4px), #eef8ff;
 }
 
 .limitations-art--nucleus {
@@ -475,8 +470,7 @@
   background:
     radial-gradient(circle at 66% 24%, #55b542 0 3px, transparent 4px),
     radial-gradient(circle at 78% 37%, #df4b3f 0 3px, transparent 4px),
-    radial-gradient(circle at 34% 35%, #fac300 0 2px, transparent 3px),
-    #f6f5ee;
+    radial-gradient(circle at 34% 35%, #fac300 0 2px, transparent 3px), #f6f5ee;
   box-sizing: border-box;
 }
 
@@ -497,76 +491,78 @@
 }
 
 .limitations-art--blue-organism {
-  left: 110px;
-  top: 253px;
-  width: 132px;
-  height: 179px;
+  left: 55px;
+  top: 177px;
+  width: 335px;
+  height: 275px;
+  transform: rotate(12.51deg) skewX(1.23deg);
 }
 
 .limitations-art--blue-selp {
-  left: 72px;
-  top: 283px;
-  width: 264px;
-  height: 95px;
+  left: 10px;
+  top: 253px;
+  width: 326px;
+  height: 141px;
+  transform: rotate(-25deg) skewX(-1.18deg);
 }
 
 .limitations-art--blue-gag {
-  left: 49px;
-  top: 261px;
-  width: 92px;
-  height: 76px;
+  left: 20px;
+  top: 250px;
+  width: 146px;
+  height: 99px;
 }
 
 .limitations-art--blue-liposome {
-  left: 144px;
-  top: 339px;
-  width: 87px;
-  height: 97px;
+  left: 119px;
+  top: 324px;
+  width: 126px;
+  height: 127px;
 }
 
 .limitations-art--blue-magnetic {
-  left: 212px;
-  top: 269px;
-  width: 115px;
-  height: 107px;
+  left: 198px;
+  top: 252px;
+  width: 147px;
+  height: 137px;
 }
 
 .limitations-art--blue-back-organism {
-  left: 207px;
-  top: 327px;
-  width: 92px;
-  height: 174px;
+  left: 162px;
+  top: 292px;
+  width: 283px;
+  height: 277px;
   transform: rotate(12.51deg) skewX(1.23deg);
 }
 
 .limitations-art--blue-back-selp {
-  left: 154px;
-  top: 343px;
-  width: 252px;
-  height: 112px;
+  left: 108px;
+  top: 309px;
+  width: 273px;
+  height: 182px;
   transform: rotate(-58.24deg) skewX(-1.18deg);
 }
 
 .limitations-art--blue-back-gag {
-  left: 4px;
-  top: 424px;
-  width: 100px;
-  height: 82px;
+  left: -3px;
+  top: 400px;
+  width: 141px;
+  height: 108px;
 }
 
 .limitations-art--blue-back-liposome {
-  left: 117px;
-  top: 432px;
-  width: 107px;
-  height: 92px;
+  left: 120px;
+  top: 437px;
+  width: 117px;
+  height: 122px;
   transform: rotate(-90deg);
 }
 
 .limitations-art--blue-back-magnetic {
-  left: 215px;
-  top: 429px;
-  width: 131px;
-  height: 109px;
+  left: 210px;
+  top: 400px;
+  width: 150px;
+  height: 143px;
   transform: rotate(-33.3deg);
 }
 

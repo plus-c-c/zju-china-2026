@@ -1,8 +1,6 @@
 import { useStory } from "./StoryContext";
 import "./HydrogelMaterialsPage.css";
 
-const imageRoot = `${import.meta.env.BASE_URL}images/home`;
-
 export function HydrogelMaterialsPage() {
   const { next, settled } = useStory();
 

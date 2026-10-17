@@ -95,9 +95,6 @@ export function GlobalBurdenScene({ play }: { play: boolean }) {
               </div>
             </div>
           </div>
-          <p className="opening-burden__source">
-            25,293 knee arthroscopies · China
-          </p>
         </div>
       </div>
     </div>
@@ -117,7 +114,7 @@ export function SportsTraumaScene({ play }: { play: boolean }) {
           <div className="opening-sports__score" data-node-id="1009:29">
             <strong>27.5</strong>
             <span>OUT OF 100</span>
-            <small>(higher is better)</small>
+            <small>(lower is worse)</small>
           </div>
           <p className="opening-sports__body" data-node-id="1009:28">
             Quality of life score

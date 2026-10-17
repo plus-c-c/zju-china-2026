@@ -35,21 +35,21 @@ const yellowCards: CardCopy[] = [
     ),
     frontArt: [
       {
-        name: "home-06-card-art-01.png",
+        name: "home-06-card-art-01.avif",
         className: "limitations-art--yellow-scalability",
       },
     ],
     backArt: [
       {
-        name: "home-limit-back-cell-a.png",
+        name: "home-limit-back-cell-a.avif",
         className: "limitations-art--cell-a",
       },
       {
-        name: "home-limit-back-cell-b.png",
+        name: "home-limit-back-cell-b.avif",
         className: "limitations-art--cell-b",
       },
       {
-        name: "home-limit-back-cell-c.png",
+        name: "home-limit-back-cell-c.avif",
         className: "limitations-art--cell-c",
       },
     ],
@@ -81,13 +81,13 @@ const yellowCards: CardCopy[] = [
     ),
     frontArt: [
       {
-        name: "home-06-card-art-02.png",
+        name: "home-06-card-art-02.avif",
         className: "limitations-art--yellow-mechanical",
       },
     ],
     backArt: [
       {
-        name: "home-limit-back-patient.png",
+        name: "home-limit-back-patient.avif",
         className: "limitations-art--patient",
       },
     ],
@@ -115,21 +115,21 @@ const yellowCards: CardCopy[] = [
     ),
     frontArt: [
       {
-        name: "home-06-card-art-03-new.png",
+        name: "home-06-card-art-03-new.avif",
         className: "limitations-art--yellow-dynamic",
       },
     ],
     backArt: [
       {
-        name: "home-limit-back-dna.png",
+        name: "home-limit-back-dna.avif",
         className: "limitations-art--dna",
       },
       {
-        name: "home-limit-back-cell-outline.png",
+        name: "home-limit-back-cell-outline.avif",
         className: "limitations-art--cell-outline",
       },
       {
-        name: "home-limit-back-nucleus.png",
+        name: "home-limit-back-nucleus.avif",
         className: "limitations-art--nucleus",
       },
     ],
@@ -160,13 +160,13 @@ const blueCards: CardCopy[] = [
     ),
     frontArt: [
       {
-        name: "home-07-card-art-01-trimmed.png",
+        name: "home-07-card-art-01.avif",
         className: "limitations-art--blue-organism",
       },
     ],
     backArt: [
       {
-        name: "home-07-card-art-01-trimmed.png",
+        name: "home-07-card-art-01.avif",
         className: "limitations-art--blue-back-organism",
       },
     ],
@@ -197,13 +197,13 @@ const blueCards: CardCopy[] = [
     ),
     frontArt: [
       {
-        name: "home-07-card-art-02-trimmed.png",
+        name: "home-07-card-art-02.avif",
         className: "limitations-art--blue-selp",
       },
     ],
     backArt: [
       {
-        name: "home-07-card-art-02-trimmed.png",
+        name: "home-07-card-art-02.avif",
         className: "limitations-art--blue-back-selp",
       },
     ],
@@ -229,29 +229,29 @@ const blueCards: CardCopy[] = [
     ),
     frontArt: [
       {
-        name: "home-07-card-art-03b-trimmed.png",
+        name: "home-07-card-art-03b.avif",
         className: "limitations-art--blue-gag",
       },
       {
-        name: "home-07-card-art-03c-trimmed.png",
+        name: "home-07-card-art-03c.avif",
         className: "limitations-art--blue-liposome",
       },
       {
-        name: "home-07-card-art-03a-trimmed.png",
+        name: "home-07-card-art-03a.avif",
         className: "limitations-art--blue-magnetic",
       },
     ],
     backArt: [
       {
-        name: "home-07-card-art-03b-trimmed.png",
+        name: "home-07-card-art-03b.avif",
         className: "limitations-art--blue-back-gag",
       },
       {
-        name: "home-07-card-art-03c-trimmed.png",
+        name: "home-07-card-art-03c.avif",
         className: "limitations-art--blue-back-liposome",
       },
       {
-        name: "home-07-card-art-03a-trimmed.png",
+        name: "home-07-card-art-03a.avif",
         className: "limitations-art--blue-back-magnetic",
       },
     ],
@@ -260,10 +260,7 @@ const blueCards: CardCopy[] = [
 
 function Artwork({ art }: { art: CardArtwork }) {
   return (
-    <span
-      aria-hidden="true"
-      className={`limitations-art ${art.className}`}
-    >
+    <span aria-hidden="true" className={`limitations-art ${art.className}`}>
       <img alt="" decoding="async" src={`${LOCAL}/${art.name}`} />
     </span>
   );

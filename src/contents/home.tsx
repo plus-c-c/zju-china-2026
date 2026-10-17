@@ -218,13 +218,15 @@ export function Home() {
                     : {}),
                   ...(index === 5
                     ? {
-                        "--hydrogel-background-image": `url("${import.meta.env.BASE_URL}images/home/hydrogel-materials-background.png")`,
+                        "--hydrogel-background-image":
+                          "radial-gradient(circle at 50% 50%, #eef6ff 0%, #d7eaff 48%, #afd6f8 100%)",
                         "--hydrogel-exit": hydrogelExit,
                       }
                     : {}),
                   ...(index === 6
                     ? {
-                        "--hydrogel-background-image": `url("${import.meta.env.BASE_URL}images/home/hydrogel-materials-background.png")`,
+                        "--hydrogel-background-image":
+                          "radial-gradient(circle at 50% 50%, #eef6ff 0%, #d7eaff 48%, #afd6f8 100%)",
                         ...(crossfade?.incoming === index
                           ? {
                               backgroundColor: "transparent",

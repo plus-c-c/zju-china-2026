@@ -1,7 +1,7 @@
-const assetPathPrefix = `${import.meta.env.BASE_URL}images/home`;
+const assetPathPrefix = "https://static.igem.wiki/teams/6102/wiki/images/home";
 import { WaterSurface } from "./WaterSurface";
 
-const imgImageNestBlueBirdMascot = `${assetPathPrefix}/58a94.png`;
+const imgImageNestBlueBirdMascot = `${assetPathPrefix}/58a94.avif`;
 const imgEllipse1 = `${assetPathPrefix}/7d0c2.svg`;
 
 export default function HeroSection() {
