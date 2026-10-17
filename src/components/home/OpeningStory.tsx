@@ -1,6 +1,5 @@
 import {
   useEffect,
-  useMemo,
   useRef,
   useState,
   type CSSProperties,
@@ -13,20 +12,6 @@ import "./OpeningStory.css";
 const staticRoot = "https://static.igem.wiki/teams/6102/wiki";
 const staticHome = `${staticRoot}/images/home`;
 const staticGif = `${staticRoot}/gif`;
-
-const statementBubbleNames = [
-  "osteoarthritis",
-  "hyaline",
-  "focal",
-  "gout",
-  "patellae",
-  "acl",
-  "decorTop",
-  "decorLeft",
-  "decorRight",
-] as const;
-
-type StatementBubbleName = (typeof statementBubbleNames)[number];
 
 const openingLineStyle = (index: number, side: "left" | "right" = "left") =>
   ({
@@ -71,34 +56,29 @@ function PlayOnceGif({
 }
 
 export function OpeningStatement() {
-  const { active, settled } = useStory();
-  const [bubblesRevealed, setBubblesRevealed] = useState(false);
-
-  useEffect(() => {
-    if (settled) {
-      setBubblesRevealed(true);
-    } else if (!active) {
-      setBubblesRevealed(false);
-    }
-  }, [active, settled]);
-
-  const bubbleOrder = useMemo(() => {
-    const shuffled = [...statementBubbleNames];
-    for (let index = shuffled.length - 1; index > 0; index -= 1) {
-      const swapIndex = Math.floor(Math.random() * (index + 1));
-      [shuffled[index], shuffled[swapIndex]] = [
-        shuffled[swapIndex],
-        shuffled[index],
-      ];
-    }
-    return Object.fromEntries(
-      shuffled.map((name, index) => [name, index]),
-    ) as Record<StatementBubbleName, number>;
-  }, []);
-  const bubbleStyle = (name: StatementBubbleName) =>
-    ({
-      "--bubble-enter-delay": `${100 + bubbleOrder[name] * 105}ms`,
-    }) as CSSProperties;
+  const { active } = useStory();
+  const [selected, setSelected] = useState<string | null>(null);
+  const descriptions: Record<string, string> = {
+    osteoarthritis: "Osteoarthritis gradually wears down joint cartilage, causing pain and stiffness.",
+    hyaline: "Damage to smooth hyaline cartilage reduces cushioning and makes joint movement painful.",
+    focal: "A localized cartilage defect can follow an injury and may struggle to heal on its own.",
+    gout: "Urate crystals trigger joint inflammation. Repeated attacks can damage cartilage.",
+    patellae: "Softening of cartilage beneath the kneecap can cause pain when climbing stairs or bending.",
+    acl: "Even after ACL reconstruction, changes in joint mechanics can increase the risk of cartilage damage.",
+  };
+  const bubbleProps = (name: string) => ({
+    role: "button",
+    tabIndex: 0,
+    "aria-pressed": selected === name,
+    "data-selected": selected === name,
+    onClick: () => setSelected(name),
+    onKeyDown: (event: React.KeyboardEvent<HTMLDivElement>) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        setSelected(name);
+      }
+    },
+  });
 
   return (
     <div
@@ -128,13 +108,20 @@ export function OpeningStatement() {
             </span>
           </h1>
 
+          <div className="opening-bubble-hint" aria-hidden="true">
+            <span>Click here</span>
+            <svg className="opening-bubble-hint__arrow" viewBox="0 0 220 130" preserveAspectRatio="none" fill="none" aria-hidden="true">
+              <path d="M25 15C25 90 145 20 198 100" stroke="currentColor" strokeWidth="2.5" strokeDasharray="7 7" strokeLinecap="round" />
+              <path d="m184 94 14 6 1-15" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </div>
           <div
-            className={`opening-bubbles${bubblesRevealed ? " opening-bubbles--active" : ""}`}
+            className={`opening-bubbles${active ? " opening-bubbles--active" : ""}`}
             aria-label="Types of cartilage damage"
           >
             <div
               className="opening-bubble opening-bubble--osteoarthritis"
-              style={bubbleStyle("osteoarthritis")}
+              {...bubbleProps("osteoarthritis")}
             >
               <div className="opening-bubble__float">
                 <img
@@ -142,11 +129,12 @@ export function OpeningStatement() {
                   alt=""
                 />
                 <span>osteoarthritis</span>
+              <span className="opening-bubble__description">{descriptions.osteoarthritis}</span>
               </div>
             </div>
             <div
               className="opening-bubble opening-bubble--hyaline"
-              style={bubbleStyle("hyaline")}
+              {...bubbleProps("hyaline")}
             >
               <div className="opening-bubble__float">
                 <img src={`${staticHome}/opening-bubble-hyaline.svg`} alt="" />
@@ -157,11 +145,12 @@ export function OpeningStatement() {
                   <br />
                   injury
                 </span>
+              <span className="opening-bubble__description">{descriptions.hyaline}</span>
               </div>
             </div>
             <div
               className="opening-bubble opening-bubble--focal"
-              style={bubbleStyle("focal")}
+              {...bubbleProps("focal")}
             >
               <div className="opening-bubble__float">
                 <img src={`${staticHome}/opening-bubble-focal.svg`} alt="" />
@@ -170,20 +159,22 @@ export function OpeningStatement() {
                   <br />
                   cartilage defect
                 </span>
+              <span className="opening-bubble__description">{descriptions.focal}</span>
               </div>
             </div>
             <div
               className="opening-bubble opening-bubble--gout"
-              style={bubbleStyle("gout")}
+              {...bubbleProps("gout")}
             >
               <div className="opening-bubble__float">
                 <img src={`${staticHome}/opening-bubble-gout.svg`} alt="" />
                 <span>chronic gout</span>
+              <span className="opening-bubble__description">{descriptions.gout}</span>
               </div>
             </div>
             <div
               className="opening-bubble opening-bubble--patellae"
-              style={bubbleStyle("patellae")}
+              {...bubbleProps("patellae")}
             >
               <div className="opening-bubble__float">
                 <img src={`${staticHome}/opening-bubble-patellae.svg`} alt="" />
@@ -192,11 +183,12 @@ export function OpeningStatement() {
                   <br />
                   patellae
                 </span>
+              <span className="opening-bubble__description">{descriptions.patellae}</span>
               </div>
             </div>
             <div
               className="opening-bubble opening-bubble--acl"
-              style={bubbleStyle("acl")}
+              {...bubbleProps("acl")}
             >
               <div className="opening-bubble__float">
                 <img src={`${staticHome}/opening-bubble-acl.svg`} alt="" />
@@ -205,12 +197,12 @@ export function OpeningStatement() {
                   <br />
                   reconstruction
                 </span>
+              <span className="opening-bubble__description">{descriptions.acl}</span>
               </div>
             </div>
             <div
               className="opening-bubble opening-bubble--decor-top"
               aria-hidden="true"
-              style={bubbleStyle("decorTop")}
             >
               <div className="opening-bubble__float">
                 <img
@@ -222,7 +214,6 @@ export function OpeningStatement() {
             <div
               className="opening-bubble opening-bubble--decor-left"
               aria-hidden="true"
-              style={bubbleStyle("decorLeft")}
             >
               <div className="opening-bubble__float">
                 <img
@@ -234,7 +225,6 @@ export function OpeningStatement() {
             <div
               className="opening-bubble opening-bubble--decor-right"
               aria-hidden="true"
-              style={bubbleStyle("decorRight")}
             >
               <div className="opening-bubble__float">
                 <img
@@ -250,7 +240,7 @@ export function OpeningStatement() {
   );
 }
 
-export function GlobalBurdenScene({ play }: { play: boolean }) {
+export function GlobalBurdenScene() {
   return (
     <div className="opening-scene opening-scene--burden" data-node-id="967:10">
       <div className="opening-content">
@@ -263,18 +253,11 @@ export function GlobalBurdenScene({ play }: { play: boolean }) {
               A need for repair.
             </span>
           </h2>
-          <PlayOnceGif
-            alt="A person experiencing knee pain while using stairs"
-            className="opening-burden__person"
-            gif={`https://static.igem.wiki/teams/6102/wiki/gif/going-up-the-stairs/stairs-pain-compressed.webp`}
-            play={play}
-            poster={`${staticGif}/knee-pain-first.avif`}
-          />
+
         </div>
 
         <div className="opening-side opening-side--right">
           <div className="opening-burden__visual">
-            <div className="opening-burden__card" aria-hidden="true" />
             <div className="opening-burden__map">
               <InteractiveWorldMap />
               <div className="opening-burden__stat">
@@ -401,6 +384,27 @@ export function RehabilitationScene({ play }: { play: boolean }) {
           </div>
         </div>
       </div>
+    </div>
+  );
+}
+
+export function ImpactScene({ play }: { play: boolean }) {
+  return (
+    <div className="opening-scene opening-scene--impact">
+      <div className="opening-impact__map-background opening-scene--burden" aria-hidden="true">
+        <div className="opening-burden__map">
+          <InteractiveWorldMap interactive={false} />
+        </div>
+      </div>
+      <SportsTraumaScene play={play} />
+      <RehabilitationScene play={play} />
+      <PlayOnceGif
+        alt="A person experiencing knee pain while using stairs"
+        className="opening-impact__stairs"
+        gif={`${staticGif}/going-up-the-stairs/stairs-pain-compressed.webp`}
+        play={play}
+        poster={`${staticGif}/knee-pain-first.avif`}
+      />
     </div>
   );
 }

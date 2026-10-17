@@ -1,9 +1,10 @@
+import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import "./SELP.css";
 
 const STATIC_HOME = "https://static.igem.wiki/teams/6102/wiki/images/home";
 
-function DashedArrow({ className }: { className: string }) {
+export function DashedArrow({ className }: { className: string }) {
   return (
     <svg
       aria-hidden="true"
@@ -57,7 +58,7 @@ export function SelpAndSnoopLigaseScene() {
         </article>
 
         <article className="nest-solution-card nest-solution-card--ligase">
-          <h2 className="nest-solution-ligase-title">SnoopLigase-ZJU</h2>
+          <h2 className="nest-solution-ligase-title">Link system</h2>
           <p className="nest-solution-ligase-copy">
             Engineered enzymatic ligation enables modular functionalization of
             SELP for targeted cartilage repair.
@@ -151,8 +152,105 @@ function PipelinePill({ label }: { label: string }) {
 }
 
 export function SelpPipeline() {
+  const pipelineRef = useRef<HTMLElement>(null);
+  useEffect(() => {
+    const root = pipelineRef.current;
+    if (!root) return;
+    let frame = 0;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => {
+      frame = 0;
+      root.querySelectorAll<HTMLElement>(".selp-pipeline__stage").forEach((stage) => {
+        const bounds = stage.getBoundingClientRect();
+        const progress = reduced.matches ? 1 : Math.max(0, Math.min(1, (innerHeight * 0.8 - bounds.top) / (bounds.height * 1.25)));
+        stage.style.setProperty("--pipeline-reveal", String(progress));
+        const connector = stage.querySelector<HTMLElement>(".selp-pipeline__connector");
+        if (connector) {
+          const lineBounds = connector.getBoundingClientRect();
+          const lineProgress = reduced.matches ? 1 : Math.max(0, Math.min(1, (innerHeight * 0.8 - lineBounds.top) / Math.max(1, lineBounds.height * 1.5)));
+          connector.style.clipPath = `inset(0 0 ${(1 - lineProgress) * 100}% 0)`;
+        }
+      });
+    };
+    const schedule = () => { if (!frame) frame = requestAnimationFrame(update); };
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule);
+    update();
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", schedule);
+      window.removeEventListener("resize", schedule);
+    };
+  }, []);
+  useEffect(() => {
+    let animation = 0;
+    let target = window.scrollY;
+    let previousTime = 0;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const animate = (time: number) => {
+      const pipeline = pipelineRef.current;
+      const boundary = pipeline ? pipeline.getBoundingClientRect().top + window.scrollY - innerHeight + 2 : Infinity;
+      if (window.scrollY < boundary - 2) { stop(); return; }
+      const elapsed = previousTime ? Math.min(50, time - previousTime) : 16;
+      previousTime = time;
+      const distance = target - window.scrollY;
+      if (Math.abs(distance) < 0.8) {
+        window.scrollTo({ top: target, behavior: "instant" });
+        animation = 0;
+        previousTime = 0;
+        return;
+      }
+      const step = Math.sign(distance) * Math.min(Math.abs(distance), Math.max(1, Math.abs(distance) * (1 - Math.exp(-elapsed / 230))));
+      window.scrollTo({ top: window.scrollY + step, behavior: "instant" });
+      animation = requestAnimationFrame(animate);
+    };
+    const onWheel = (event: WheelEvent) => {
+      if (event.defaultPrevented) {
+        stop();
+        return;
+      }
+      if (event.ctrlKey || reduced.matches || Math.abs(event.deltaX) > Math.abs(event.deltaY)) return;
+      if (event.target instanceof Element && event.target.closest("nav, input, textarea, select, [role=dialog]")) return;
+      const root = pipelineRef.current;
+      if (!root) return;
+      const bounds = root.getBoundingClientRect();
+      const start = bounds.top + window.scrollY - innerHeight + 2;
+      if (window.scrollY < start || bounds.bottom <= 0) { stop(); return; }
+      if (window.scrollY <= start + 2 && event.deltaY < 0) return;
+      event.preventDefault();
+      const delta = event.deltaY * (event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? innerHeight : 1);
+      const limit = document.documentElement.scrollHeight - innerHeight;
+      if (!animation) target = window.scrollY;
+      // Small wheel impulses accumulate, then settle instead of jumping ahead.
+      const proposed = target + delta * 0.28;
+      // Cap accumulated inertia so a long wheel burst cannot skip a whole module.
+      const lead = innerHeight * 0.22;
+      target = Math.max(start, Math.min(limit, Math.max(window.scrollY - lead, Math.min(window.scrollY + lead, proposed))));
+      if (!animation) animation = requestAnimationFrame(animate);
+    };
+    const stop = () => {
+      cancelAnimationFrame(animation);
+      animation = 0;
+      previousTime = 0;
+      target = window.scrollY;
+    };
+    window.addEventListener("wheel", onWheel, { passive: false });
+    window.addEventListener("pointerdown", stop, { passive: true });
+    window.addEventListener("touchstart", stop, { passive: true });
+    window.addEventListener("keydown", stop);
+    window.addEventListener("home-story-seek", stop);
+    return () => {
+      stop();
+      window.removeEventListener("wheel", onWheel);
+      window.removeEventListener("pointerdown", stop);
+      window.removeEventListener("touchstart", stop);
+      window.removeEventListener("keydown", stop);
+      window.removeEventListener("home-story-seek", stop);
+    };
+  }, []);
   return (
     <main
+      ref={pipelineRef}
       className="selp-pipeline"
       data-node-id="985:5"
       aria-label="NEST therapeutic modules"

@@ -96,9 +96,7 @@
   z-index: 2;
   opacity: 0;
   cursor: pointer;
-  transition:
-    transform 240ms ease,
-    z-index 0s 240ms;
+  transition: transform 160ms ease;
   transform-origin: center;
 }
 
@@ -110,9 +108,7 @@
 .opening-bubble:hover {
   z-index: 12;
   transform: scale(1.13);
-  transition:
-    transform 240ms ease,
-    z-index 0s;
+  transition: transform 160ms ease;
 }
 
 .opening-bubble__float {
@@ -799,3 +795,194 @@
     transform: none;
   }
 }
+
+/* Full-width map, followed by the combined human impact scene. */
+.opening-scene--burden .opening-burden__title {
+  left: 32px;
+  top: 20px;
+  width: 1216px;
+  color: #173b64;
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+  align-items: baseline;
+  font-size: 48px;
+  line-height: 1.2;
+}
+.opening-scene--burden .opening-burden__map {
+  left: -96px;
+  top: 78px;
+  width: 1472px;
+  height: 642px;
+}
+.opening-scene--burden .opening-burden__world {
+  left: 0;
+  top: 0;
+  width: 1472px !important;
+  height: 625px !important;
+}
+.opening-scene--burden .opening-burden__stat {
+  left: 286px;
+  top: 155px;
+  width: 900px;
+}
+.opening-scene--burden .opening-burden__stat strong { font-size: 190px; }
+.opening-scene--burden .opening-burden__stat p { font-size: 40px; }
+.opening-scene--burden .opening-burden__legend {
+  left: 50%;
+  transform: translateX(-50%);
+  top: 590px;
+  width: 440px;
+  height: 48px;
+  font-size: 12px;
+  line-height: 14px;
+}
+.opening-scene--burden .opening-burden__legend strong {
+  font-size: 14px;
+  line-height: 16px;
+  margin-bottom: 5px;
+}
+.opening-scene--burden .opening-burden__legend img {
+  width: 440px !important;
+  height: 10px !important;
+  margin-bottom: 2px;
+}
+
+/* Two aligned text columns above a smaller row of characters. */
+.opening-scene--impact > .opening-scene { position: absolute; inset: 0; }
+.opening-scene--impact .opening-sports__decor,
+.opening-scene--impact .opening-rehab__decor { display: none; }
+.opening-scene--impact .opening-sports__title,
+.opening-scene--impact .opening-rehab__title {
+  top: 28px;
+  width: 576px;
+  font-size: 34px;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+.opening-scene--impact .opening-sports__title,
+.opening-scene--impact .opening-sports__score,
+.opening-scene--impact .opening-sports__body { left: 48px; }
+.opening-scene--impact .opening-rehab__title,
+.opening-scene--impact .opening-rehab__cost {
+  left: 656px;
+  width: 576px;
+  text-align: center;
+}
+.opening-scene--impact .opening-rehab__title { color: #173b64; }
+.opening-scene--impact .opening-sports__title strong,
+.opening-scene--impact .opening-rehab__title strong { font-size: 38px; }
+.opening-scene--impact :is(.opening-sports__title, .opening-rehab__title, .opening-sports__body) .opening-text-line {
+  display: inline-block;
+}
+.opening-scene--impact :is(.opening-sports__title, .opening-rehab__title, .opening-sports__body) .opening-text-line + .opening-text-line {
+  margin-left: 0.22em;
+}
+.opening-scene--impact .opening-sports__score,
+.opening-scene--impact .opening-rehab__cost {
+  top: 124px;
+  width: 576px;
+  line-height: 1.1;
+}
+.opening-scene--impact .opening-sports__score strong,
+.opening-scene--impact .opening-rehab__cost strong {
+  font-size: 104px;
+  line-height: 1.1;
+  letter-spacing: 0;
+}
+.opening-scene--impact .opening-sports__score strong,
+.opening-scene--impact .opening-sports__score span { display: inline-block; }
+.opening-scene--impact .opening-sports__score span {
+  margin-left: 18px;
+  font-size: 30px;
+  letter-spacing: 0.04em;
+}
+.opening-scene--impact .opening-sports__score small {
+  margin-top: 10px;
+  font-size: 24px;
+  letter-spacing: 0;
+}
+.opening-scene--impact .opening-sports__body {
+  top: 304px;
+  width: 576px;
+  font-size: 25px;
+  line-height: 1.25;
+  white-space: nowrap;
+}
+.opening-scene--impact .opening-rehab__cost b { font-size: 34px; }
+.opening-scene--impact .opening-rehab__cost-note {
+  margin-top: 10px;
+  font-size: 25px;
+  line-height: 1.25;
+}
+.opening-scene--impact .opening-sports__person {
+  left: 470px; top: 412px; width: 340px; height: 285px; object-fit: contain;
+}
+.opening-scene--impact .opening-rehab__person {
+  left: 840px; top: 412px; width: 310px; height: 285px; object-fit: contain;
+}
+.opening-impact__stairs {
+  position: absolute; left: 145px; top: 412px; width: 285px; height: 285px;
+  object-fit: contain; opacity: var(--opening-person, 1);
+}
+
+.opening-scene--impact :is(.opening-sports__title, .opening-sports__score, .opening-sports__body) {
+  text-align: center;
+}
+.opening-impact__map-background {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  --burden-map-opacity: 0.16;
+}
+
+/* Bubbles enter with the title and retain clicked descriptions above siblings. */
+.opening-bubbles--active .opening-bubble {
+  animation: none;
+  opacity: var(--opening-text, 1);
+}
+.opening-bubble[role="button"]:is(:hover, :focus-visible, [data-selected="true"]) {
+  z-index: 20;
+  transform: scale(1.13);
+}
+.opening-bubble[data-selected="true"] { z-index: 30 !important; transition: transform 160ms ease; }
+.opening-bubble .opening-bubble__description {
+  display: none;
+  padding: 18%;
+  font-size: 19px;
+  line-height: 1.2;
+  font-weight: 500;
+}
+.opening-bubble[role="button"]:is(:hover, :focus-visible, [data-selected="true"]) .opening-bubble__float > span:not(.opening-bubble__description) { display: none; }
+.opening-bubble[role="button"]:is(:hover, :focus-visible, [data-selected="true"]) .opening-bubble__description { display: grid; }
+.opening-bubble--gout .opening-bubble__description { font-size: 12px; padding: 14%; }
+.opening-bubble--patellae .opening-bubble__description { font-size: 14px; }
+.opening-bubble--hyaline .opening-bubble__description { font-size: 25px; }
+.opening-bubble-hint {
+  position: absolute;
+  left: 458px;
+  top: 28px;
+  width: 160px;
+  height: 170px;
+  color: #173b64;
+  opacity: var(--opening-text, 1);
+  pointer-events: none;
+}
+.opening-bubble-hint > span { position: absolute; left: 18px; top: 0; transform: translateX(-50%); width: 180px; text-align: center; font-size: 25px; line-height: 30px; white-space: nowrap; }
+.opening-bubble-hint__arrow { position: absolute; left: 0; top: 40px; width: 160px; height: 130px; }
+.opening-scene--impact .opening-sports__title strong { color: #e30c00; }
+
+.opening-scene--burden .opening-burden__legend strong { text-align: center; }
+.opening-scene--burden .opening-burden__legend > span {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+.opening-scene--burden .opening-burden__legend > span:last-child {
+  left: auto;
+  right: 0;
+  float: none;
+}
+
+.opening-scene--burden .opening-burden__stat strong { color: #004aad; }
+.opening-scene--impact .opening-rehab__cost-note { color: var(--homepage-ink); }

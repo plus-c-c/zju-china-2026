@@ -1,4 +1,4 @@
-import { motion, useReducedMotion } from "motion/react";
+import { useReducedMotion } from "motion/react";
 import { useStory } from "./StoryContext";
 const staticHome = "https://static.igem.wiki/teams/6102/wiki/images/home";
 const imgFlyingBirdFrame1 = `${staticHome}/home-08-bird-flight-01.avif`;
@@ -11,7 +11,6 @@ const imgAccentYellowOrbit = `https://static.igem.wiki/teams/6102/wiki/images/ho
 export default function BirdReturnsToNest() {
   const { birdProgress, birdStage, birdLandingProgress } = useStory();
   const reduced = useReducedMotion();
-  const quick = reduced ? { duration: 0.01 } : undefined;
   const landing = reduced ? Number(birdStage >= 2) : birdLandingProgress;
   const landingEase = landing * landing * (3 - 2 * landing);
   const rawFlight = Math.max(0, Math.min(1, birdProgress));
@@ -74,9 +73,6 @@ export default function BirdReturnsToNest() {
       </div>
       <p className="home-layer-52" data-node-id="227:12">
         NEST
-      </p>
-      <p className="home-layer-53" data-node-id="227:13">
-        RETURN TO NEST
       </p>
       <div
         className="home-layer-57"
@@ -148,27 +144,7 @@ export default function BirdReturnsToNest() {
           />
         </div>
       </div>
-      <motion.div
-        className="home-layer-61"
-        data-node-id="227:19"
-        data-name="Badge / Welcome Home"
-        initial={false}
-        animate={{
-          opacity: birdStage >= 2 ? 1 : 0,
-          y: birdStage >= 2 ? 0 : 12,
-        }}
-        transition={
-          quick ?? {
-            duration: 0.38,
-            ease: "easeOut",
-            delay: birdStage >= 2 ? 0.22 : 0,
-          }
-        }
-      >
-        <p className="home-layer-62" data-node-id="227:20">
-          HOME, AT LAST
-        </p>
-      </motion.div>
+
     </div>
   );
 }

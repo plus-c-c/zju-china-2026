@@ -5,12 +5,13 @@ import {
   type ReactNode,
   type CSSProperties,
 } from "react";
+import { PipelineBird } from "../components/home/PipelineBird";
+import { StoryBird } from "../components/home/StoryBird";
 import { HomeIntro } from "../components/home/HomeIntro";
 import {
   GlobalBurdenScene,
   OpeningStatement,
-  RehabilitationScene,
-  SportsTraumaScene,
+  ImpactScene,
 } from "../components/home/OpeningStory";
 import BirdReturnsToNest from "../components/home/BirdReturnsToNest";
 import {
@@ -23,10 +24,12 @@ import { MaterialLimitations } from "../components/home/LimitationsCards";
 import { Footer } from "../components/Footer";
 import "../components/home/Layers.css";
 import "./home.css";
+import { MobileHome } from "../components/home/MobileHome";
 
 import { StoryContext } from "../components/home/StoryContext";
 import {
   STORY_STOPS,
+  STORY_SCROLL_RATIO,
   useStoryNavigation,
 } from "../components/home/UseStoryNavigation";
 
@@ -79,8 +82,10 @@ function Scene({
     </section>
   );
 }
-export function Home() {
+function DesktopHome() {
   const {
+    position,
+    direction,
     stop,
     page,
     settledPage,
@@ -99,6 +104,7 @@ export function Home() {
     openingTextExit,
     openingPersonExit,
     burdenStatReveal,
+    hydrogelEntry,
     hydrogelExit,
     limitationsEntry,
     cardTransition,
@@ -135,15 +141,11 @@ export function Home() {
     },
     {
       name: "Global burden",
-      content: <GlobalBurdenScene play={openingPerson[2] > 0.96} />,
+      content: <GlobalBurdenScene />,
     },
     {
-      name: "Sports trauma",
-      content: <SportsTraumaScene play={openingPerson[3] > 0.96} />,
-    },
-    {
-      name: "Post-operative rehabilitation",
-      content: <RehabilitationScene play={openingPerson[4] > 0.96} />,
+      name: "Pain and recovery",
+      content: <ImpactScene play={openingPerson[3] > 0.96} />,
     },
     { name: "Hydrogel materials", content: <HydrogelMaterialsPage /> },
     {
@@ -169,10 +171,11 @@ export function Home() {
   } as CSSProperties;
   return (
     <>
+      <div className="home-shared-background" aria-hidden="true" />
       <div
         className="home-scroll-space"
         style={{
-          height: STORY_STOPS.length * size.height,
+          height: ((STORY_STOPS.length - 1) * STORY_SCROLL_RATIO + 1) * size.height,
         }}
       >
         <div
@@ -196,24 +199,22 @@ export function Home() {
                 index={index}
                 style={
                   {
+                    "--scene-content-scale": index === 2 || index === 3 ? 1 : 0.89,
                     ...(crossfade?.incoming === index
                       ? {
                           transform: "translateY(-100%)",
-                          opacity: crossfade.opacity,
+                          opacity: index === 4 ? 1 : index === 8 ? Math.max(0, (crossfade.opacity - 0.5) * 2) : crossfade.opacity,
                           zIndex: 2,
                         }
                       : {}),
-                    ...(index >= 1 && index <= 4
+                    ...(crossfade && page === index && index !== 0 && index !== 2 && index !== 4
+                      ? { opacity: 1 - Math.min(1, crossfade.opacity * 2) }
+                      : {}),
+                    ...(index === 0 ? {
+                      opacity: page === 0 ? (crossfade?.incoming === 1 ? 1 - Math.min(1, crossfade.opacity * 2) : 1) : 0,
+                    } : {}),
+                    ...(index >= 1 && index <= 3
                       ? {
-                          ...(index === 1
-                            ? {
-                                backgroundColor: "#bdd8fb",
-                                backgroundImage: `url("${import.meta.env.BASE_URL}images/home/opening-bubbles-background.png")`,
-                                backgroundPosition: "center",
-                                backgroundRepeat: "no-repeat",
-                                backgroundSize: "cover",
-                              }
-                            : {}),
                           "--opening-content": openingContent[index],
                           "--opening-enter-left": `${(1 - openingText[index]) * -110}px`,
                           "--opening-enter-right": `${(1 - openingText[index]) * 110}px`,
@@ -238,17 +239,21 @@ export function Home() {
                             : {}),
                         }
                       : {}),
+                    ...(index === 4
+                      ? {
+                          "--hydrogel-background-image":
+                            "var(--homepage-background)",
+                          "--hydrogel-exit": hydrogelExit,
+                          "--hydrogel-entry": hydrogelEntry,
+                          "--hydrogel-background-entry": crossfade?.incoming === index ? crossfade.opacity : 1,
+                          backgroundColor: "transparent",
+                          backgroundImage: "none",
+                        }
+                      : {}),
                     ...(index === 5
                       ? {
                           "--hydrogel-background-image":
-                            "radial-gradient(circle at 50% 50%, #eef6ff 0%, #d7eaff 48%, #afd6f8 100%)",
-                          "--hydrogel-exit": hydrogelExit,
-                        }
-                      : {}),
-                    ...(index === 6
-                      ? {
-                          "--hydrogel-background-image":
-                            "radial-gradient(circle at 50% 50%, #eef6ff 0%, #d7eaff 48%, #afd6f8 100%)",
+                            "var(--homepage-background)",
                           ...(crossfade?.incoming === index
                             ? {
                                 backgroundColor: "transparent",
@@ -266,12 +271,12 @@ export function Home() {
                             cardTransition.resultTextEntry,
                         }
                       : {}),
-                    ...(index === 7 ? { "--nest-title": nestTitle } : {}),
+                    ...(index === 6 ? { "--nest-title": nestTitle } : {}),
                   } as CSSProperties
                 }
                 active={page === index || crossfade?.incoming === index}
                 settled={
-                  index === 5 ? scenePosition >= index : settledPage === index
+                  index === 4 ? scenePosition >= index : settledPage === index
                 }
                 birdProgress={birdProgress}
                 birdStage={birdStage}
@@ -282,10 +287,23 @@ export function Home() {
               </Scene>
             ))}
           </div>
+          <StoryBird position={position} direction={direction} scale={Math.min(size.width / 1280, size.height / 720)} />
         </div>
       </div>
       <SelpPipeline />
       <Footer />
+      <PipelineBird />
     </>
   );
+}
+
+export function Home() {
+  const [mobile, setMobile] = useState(() => window.matchMedia("(max-width: 991.98px)").matches);
+  useEffect(() => {
+    const media = window.matchMedia("(max-width: 991.98px)");
+    const update = () => setMobile(media.matches);
+    media.addEventListener("change", update);
+    return () => media.removeEventListener("change", update);
+  }, []);
+  return mobile ? <MobileHome /> : <DesktopHome />;
 }

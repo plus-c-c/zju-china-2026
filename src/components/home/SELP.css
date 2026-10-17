@@ -55,8 +55,8 @@
   position: absolute;
   z-index: 2;
   color: #054db0;
-  font-family: "Silkscreen", monospace;
-  font-weight: 700;
+  font-family: "Seymour One", sans-serif;
+  font-weight: 400;
 }
 
 .nest-solution-selp-title {
@@ -93,7 +93,9 @@
 }
 
 .nest-solution-ligase-title {
-  left: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
   top: -20px;
   width: 500px;
   font-size: 40px;
@@ -320,8 +322,8 @@
   z-index: 1;
   width: 44.33%;
   border-radius: 2.49cqw;
-  background: #ffeda1;
-  box-shadow: 0 0.88cqw 4.98cqw rgb(64 82 97 / 11%);
+  background: transparent;
+  box-shadow: none;
   color: #000;
 }
 
@@ -525,4 +527,25 @@
     width: 136.6%;
     margin-left: -18.3%;
   }
+}
+
+/* Follow the blue connectors as the modules unfold into view. */
+.selp-pipeline__stage > :not(.selp-pipeline__connector) {
+  opacity: var(--pipeline-reveal, 0);
+  translate: 0 calc((1 - var(--pipeline-reveal, 0)) * 64px);
+  will-change: opacity, translate;
+}
+.selp-pipeline__stage--gag > :not(.selp-pipeline__connector) {
+  translate: calc((1 - var(--pipeline-reveal, 0)) * 40px) calc((1 - var(--pipeline-reveal, 0)) * 64px);
+}
+.selp-pipeline__stage--mitochondrial > :not(.selp-pipeline__connector) {
+  translate: calc((1 - var(--pipeline-reveal, 0)) * -40px) calc((1 - var(--pipeline-reveal, 0)) * 64px);
+}
+
+.selp-pipeline__stage > :not(.selp-pipeline__connector) {
+  transition: opacity 180ms ease-out, translate 180ms ease-out;
+}
+.selp-pipeline__connector { transition: clip-path 180ms ease-out; }
+@media (prefers-reduced-motion: reduce) {
+  .selp-pipeline__stage > * { transition: none; }
 }
