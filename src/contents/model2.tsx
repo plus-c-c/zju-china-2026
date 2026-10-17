@@ -1,4 +1,10 @@
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import {
+  useEffect,
+  useRef,
+  useState,
+  type CSSProperties,
+  type ReactNode,
+} from "react";
 import { MathFormula } from "../components/MathFormula";
 import "./model.css";
 
@@ -20,19 +26,33 @@ interface StructureFigureProps {
   alt: string;
   /** Crop rectangle of the wide source sheet (see ModelFigure in model.tsx). */
   bounds: readonly [number, number, number, number];
+  /** x-position (fraction of the crop width) of the protein's geometric
+   *  centre. When set, the figure is shown at full stage height and the
+   *  zoom inset on its right spills over the text column, so the protein
+   *  itself keeps the same on-screen centre as every other step. */
+  focusX?: number;
 }
 
 /** Structure crop — the source images are wide multi-panel sheets; the
  *  bounds pick the visible region (same arrangement as ModelFigure). */
-function StructureFigure({ src, alt, bounds }: StructureFigureProps) {
+function StructureFigure({ src, alt, bounds, focusX }: StructureFigureProps) {
   const [left, top, right, bottom] = bounds;
   const contentWidth = right - left;
   const contentHeight = bottom - top;
   return (
-    <div className="protein-structure">
+    <div
+      className={`protein-structure${
+        focusX !== undefined ? " protein-structure--wide" : ""
+      }`}
+    >
       <div
         className="protein-structure-frame"
-        style={{ aspectRatio: `${contentWidth} / ${contentHeight}` }}
+        style={
+          {
+            "--protein-ratio": contentWidth / contentHeight,
+            ...(focusX !== undefined ? { "--protein-focus-x": focusX } : {}),
+          } as CSSProperties
+        }
       >
         <img
           src={src}
@@ -417,31 +437,52 @@ const SNOOP_STEPS: ProteinStep[] = [
     ),
   },
   {
-    key: "e827q",
+    key: "e827",
     figure: (
-      <>
-        <StructureFigure
-          src="https://static.igem.wiki/teams/6102/wiki/images/model/snoopligase/7.avif"
-          alt="E827 control and local interface detail"
-          bounds={[72, 39, 2913, 1713]}
-        />
-        <StructureFigure
-          src="https://static.igem.wiki/teams/6102/wiki/images/model/snoopligase/8.avif"
-          alt="Q827 mutant and local interface detail"
-          bounds={[72, 39, 2913, 1713]}
-        />
-      </>
+      <StructureFigure
+        src="https://static.igem.wiki/teams/6102/wiki/images/model/snoopligase/7.avif"
+        alt="E827 control and local interface detail"
+        bounds={[72, 39, 2913, 1713]}
+        focusX={0.21}
+      />
     ),
     caption: (
       <p>
         <em>
           {
-            "Figure 7 | Local comparison of representative product-like structures. The E827 control is shown on the left, and the Q827 mutant on the right."
+            "Figure 7 | Representative product-like structure of the E827 control. The dashed line indicates the measured distance between K734 NZ and E827 OE2 (2.80 Å)."
           }
-        </em>{" "}
+        </em>
+      </p>
+    ),
+    body: (
+      <>
+        <p>
+          <strong>
+            {"Based on the combined analysis, we prioritized E827Q."}
+          </strong>
+          {
+            " Its median unbound-state score difference was −0.138 REU, and its median product-interface interaction difference was +1.386 REU."
+          }
+        </p>
+      </>
+    ),
+  },
+  {
+    key: "q827",
+    figure: (
+      <StructureFigure
+        src="https://static.igem.wiki/teams/6102/wiki/images/model/snoopligase/8.avif"
+        alt="Q827 mutant and local interface detail"
+        bounds={[72, 39, 2913, 1713]}
+        focusX={0.21}
+      />
+    ),
+    caption: (
+      <p>
         <em>
           {
-            "The dashed lines indicate the measured distances between K734 NZ and E827 OE2 (2.80 Å) and between K734 NZ and Q827 OE1 (5.87 Å), respectively."
+            "Figure 8 | The Q827 mutant in the same representation. The dashed line indicates the measured distance between K734 NZ and Q827 OE1 (5.87 Å)."
           }
         </em>
       </p>
@@ -470,7 +511,7 @@ const SNOOP_STEPS: ProteinStep[] = [
     ),
     caption: (
       <p>
-        <em>{"Figure 8 | The overview of SnoopLigase2-ZJU."}</em>
+        <em>{"Figure 9 | The overview of SnoopLigase2-ZJU."}</em>
       </p>
     ),
     body: (
