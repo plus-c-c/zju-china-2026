@@ -40,7 +40,7 @@ export function Design() {
           </p>
           <figure className="figure d-block my-4 text-center">
             <img
-              src="https://static.igem.wiki/teams/6102/wiki/images/design/01/001.avif"
+              src="https://static.igem.wiki/teams/6102/wiki/images/design/01/00001.avif"
               alt="Overview of the NEST platform design."
               className="figure-img img-fluid rounded"
               style={{ width: "100%" }}
