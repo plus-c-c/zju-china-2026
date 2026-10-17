@@ -57,7 +57,10 @@ export function Design() {
               to improve batch-to-batch reproducibility and programmability.
             </figcaption>
           </figure>
-          <h2 className="mt-5 mb-4">
+          <h2
+            id="1-programmable-material-foundation-the-selp-scaffold"
+            className="mt-5 mb-4"
+          >
             1 Programmable Material Foundation: The SELP Scaffold
           </h2>
           <p>
@@ -435,7 +438,10 @@ export function Design() {
             error, and progressively builds a sequence–structure–property map,
             yielding a standardized design process.
           </p>
-          <h2 className="mt-5 mb-4">
+          <h2
+            id="2-standardized-interface-decoupling-functional-assembly-from-scaffold-design"
+            className="mt-5 mb-4"
+          >
             2 Standardized Interface: Decoupling Functional Assembly from
             Scaffold Design
           </h2>
@@ -675,7 +681,10 @@ export function Design() {
             degenerative microenvironment. The design rationale, implementation,
             and validation boundaries of each module are described below.
           </p>
-          <h3 className="mt-5 mb-3">
+          <h3
+            id="3-2-module-1-magnetically-responsive-anisotropy-directional-load-bearing"
+            className="mt-5 mb-3"
+          >
             3.2 Module 1 | Magnetically Responsive Anisotropy: Directional Load
             Bearing
           </h3>
@@ -833,7 +842,10 @@ export function Design() {
               and aqueous-phase flow.
             </figcaption>
           </figure>
-          <h3 className="mt-5 mb-3">
+          <h3
+            id="3-3-module-2-cpc-link-n-maintaining-matrix-retention-and-renewal"
+            className="mt-5 mb-3"
+          >
             3.3 Module 2 | CPC/Link-N: Maintaining Matrix Retention and Renewal
           </h3>
           <h4 className="mt-4 mb-3">3.3.1 GAG Loss and Fixed Charge Density</h4>
@@ -1056,7 +1068,10 @@ export function Design() {
               retention and matrix synthesis.
             </figcaption>
           </figure>
-          <h3 className="mt-5 mb-3">
+          <h3
+            id="3-4-module-3-mmp-13-responsive-mitochondrial-delivery-linking-local-response-to-cellular-support"
+            className="mt-5 mb-3"
+          >
             3.4 Module 3 | MMP-13-Responsive Mitochondrial Delivery: Linking
             Local Response to Cellular Support
           </h3>

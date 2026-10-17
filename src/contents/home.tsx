@@ -12,7 +12,6 @@ import {
   RehabilitationScene,
   SportsTraumaScene,
 } from "../components/home/OpeningStory";
-import BirdReturnsToNest from "../components/home/BirdReturnsToNest";
 import {
   OsteoarthritisTargetScene,
   SelpAndSnoopLigaseScene,
@@ -36,9 +35,6 @@ function Scene({
   index,
   active,
   settled,
-  birdProgress,
-  birdStage,
-  birdLandingProgress,
   next,
   footer = false,
   style,
@@ -48,9 +44,6 @@ function Scene({
   index: number;
   active: boolean;
   settled: boolean;
-  birdProgress: number;
-  birdStage: number;
-  birdLandingProgress: number;
   next: () => void;
   footer?: boolean;
   style?: CSSProperties;
@@ -68,9 +61,6 @@ function Scene({
         value={{
           active,
           settled,
-          birdProgress,
-          birdStage,
-          birdLandingProgress,
           next,
         }}
       >
@@ -84,9 +74,6 @@ export function Home() {
     stop,
     page,
     settledPage,
-    birdProgress,
-    birdStage,
-    birdLandingProgress,
     next,
     nextScene,
     scenePosition,
@@ -100,9 +87,10 @@ export function Home() {
     openingPersonExit,
     burdenStatReveal,
     hydrogelExit,
+    hydrogelEntry,
     limitationsEntry,
     cardTransition,
-    nestTitle,
+    ourSolutionExit,
   } = useStoryNavigation();
   const viewport = useRef<HTMLDivElement>(null);
   const [size, setSize] = useState({ width: 1280, height: 720 });
@@ -152,7 +140,6 @@ export function Home() {
         <MaterialLimitations yellowRemoved={cardTransition.yellowExit > 0.98} />
       ),
     },
-    { name: "Return to NEST", content: <BirdReturnsToNest /> },
     {
       name: "SELP and SnoopLigase-ZJU",
       content: <SelpAndSnoopLigaseScene />,
@@ -181,7 +168,6 @@ export function Home() {
           style={style}
           data-story-stop={stop}
           data-story-page={page + 1}
-          data-bird-progress={birdProgress}
         >
           <div
             className="story-track"
@@ -242,7 +228,10 @@ export function Home() {
                       ? {
                           "--hydrogel-background-image":
                             "radial-gradient(circle at 50% 50%, #eef6ff 0%, #d7eaff 48%, #afd6f8 100%)",
-                          "--hydrogel-exit": hydrogelExit,
+                          "--hydrogel-exit":
+                            crossfade?.incoming === index
+                              ? 1 - hydrogelEntry
+                              : hydrogelExit,
                         }
                       : {}),
                     ...(index === 6
@@ -264,18 +253,21 @@ export function Home() {
                           "--limitations-title-y": `${(1 - limitationsEntry.title) * 18}px`,
                           "--solution-title-opacity":
                             cardTransition.resultTextEntry,
+                          "--our-solution-exit": ourSolutionExit,
                         }
                       : {}),
-                    ...(index === 7 ? { "--nest-title": nestTitle } : {}),
+                    ...(index === 7 && crossfade?.incoming === index
+                      ? {
+                          backgroundColor: "transparent",
+                          backgroundImage: "none",
+                        }
+                      : {}),
                   } as CSSProperties
                 }
                 active={page === index || crossfade?.incoming === index}
                 settled={
                   index === 5 ? scenePosition >= index : settledPage === index
                 }
-                birdProgress={birdProgress}
-                birdStage={birdStage}
-                birdLandingProgress={birdLandingProgress}
                 next={next}
               >
                 {scene.content}
