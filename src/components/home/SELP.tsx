@@ -4,7 +4,6 @@ import "./SELP.css";
 
 const STATIC_HOME = "https://static.igem.wiki/teams/6102/wiki/images/home";
 const STATIC_GIF = "https://static.igem.wiki/teams/6102/wiki/gif";
-const LOCAL_GIF = `${import.meta.env.BASE_URL}GIF`;
 
 function DashedArrow({ className }: { className: string }) {
   return (
