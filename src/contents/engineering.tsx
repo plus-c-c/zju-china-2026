@@ -1,6 +1,7 @@
 import { useLayoutEffect, useRef, useState } from "react";
 import type { Group, Part } from "./engineering/group";
-import { buildSteps, DbtlStepper, STEP_DVH } from "./engineering/DbtlStepper";
+import { DbtlStepper } from "./engineering/DbtlStepper";
+import { buildSteps, STEP_DVH } from "./engineering/steps";
 import { EngineeringReferences } from "./engineering/EngineeringReferences";
 import { gagRetentionGroup } from "./engineering/groups/gag-retention";
 import { mitochondrialTherapyGroup } from "./engineering/groups/mitochondrial-therapy";
@@ -186,7 +187,7 @@ export function Engineering() {
         behavior: "instant",
       });
     }
-  }, [activeKey, groupIndex, tabIndex]);
+  }, [activeKey, groupIndex, tabIndex, startIndex, steps.length]);
 
   const tabNav = tabs.map((tab, index) => (
     <button
