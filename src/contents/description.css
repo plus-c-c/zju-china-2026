@@ -28,6 +28,7 @@
 
 .description-card-grid--treatments {
   grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
 }
 
 .description-card {
@@ -188,5 +189,23 @@
   .description-expandable__body,
   .description-expandable__icon {
     transition: none;
+  }
+}
+
+/* Three compact options above two wider cards for the longer explanations. */
+@media (min-width: 992px) {
+  .description-card-grid--treatments {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+  .description-card-grid--treatments > .description-card {
+    grid-column: span 2;
+    padding: 1.25rem;
+  }
+  .description-card-grid--treatments > .description-card:nth-child(n + 4) {
+    grid-column: span 3;
+  }
+  .page-article .description-card-grid--treatments h3 {
+    margin-bottom: 1rem !important;
   }
 }
