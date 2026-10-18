@@ -11,6 +11,7 @@ import { Footer } from "../../components/Footer";
 import { Toc } from "../../components/toc";
 import { BackToTop } from "../../components/BackToTop";
 import { LoadingScreen } from "../../components/LoadingScreen";
+import "./Mobile.css";
 
 const MINIMUM_LOADING_TIME = 600;
 const MAXIMUM_LOADING_TIME = 8000;
