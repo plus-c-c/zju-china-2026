@@ -8,6 +8,7 @@ import {
   type PageSwipeDirection,
 } from "./pageSwipe";
 import { observeAndWhitenImages } from "./whitenImages";
+import { subscribeTocVisible } from "./tocState";
 import "./sectionJump.css";
 import "./pageSwipe.css";
 
@@ -37,9 +38,14 @@ export function SectionJump({
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const activeId = useActiveSectionId();
+  const [controlsVisible, setControlsVisible] = useState(false);
   const latest = useRef({ activeId, resolveTarget, pathname });
   latest.current = { activeId, resolveTarget, pathname };
   const flightRef = useRef<HTMLSpanElement>(null);
+
+  // The jump control mirrors the TOC's visibility, so both appear once the
+  // page header scrolls out of view and disappear again over the footer.
+  useEffect(() => subscribeTocVisible(setControlsVisible), []);
 
   // The arrow artwork ships on a light-blue sheet; the shared whitening pass
   // keys the sheet out. The button is portalled outside the page article, so
@@ -103,7 +109,9 @@ export function SectionJump({
       type="button"
       data-page-swipe-stage
       aria-label={`Jump to ${target}`}
-      className={`page-jump page-jump--${side}`}
+      className={`page-jump page-jump--${side}${
+        controlsVisible ? " page-jump--visible" : ""
+      }`}
       onClick={jump}
     >
       <span className="page-jump__flight" ref={flightRef}>

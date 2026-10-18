@@ -11,6 +11,7 @@ import {
   isHashScrollSuppressed,
   PAGE_SWIPE_DURATION,
   readPageSwipeEntry,
+  setTocVisible,
 } from "./tocState";
 import "./toc.css";
 
@@ -134,7 +135,9 @@ export function Toc({
         footerRect.top < window.innerHeight &&
         footerRect.bottom > 0;
       setFooterInView(footerVisible);
-      setVisible(header.getBoundingClientRect().bottom <= 0 && !footerVisible);
+      const nextVisible = header.getBoundingClientRect().bottom <= 0 && !footerVisible;
+      setVisible(nextVisible);
+      setTocVisible(nextVisible);
       /* Deck step anchors (data-toc-track) sit one step apart (40dvh) and the
          deck's scroll mapping flips at half a step; half a step as the anchor
          threshold makes the highlighted heading change exactly when the

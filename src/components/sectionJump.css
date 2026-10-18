@@ -22,6 +22,18 @@
   translate: 0 -50%;
   filter: drop-shadow(0 8px 10px rgb(23 60 100 / 20%));
   -webkit-tap-highlight-color: transparent;
+  /* Hidden until the TOC appears (and hidden again over the footer); the
+     timing mirrors the TOC's own fade. */
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 240ms ease,
+    visibility 240ms ease;
+}
+
+.page-jump--visible {
+  opacity: 1;
+  visibility: visible;
 }
 
 .page-jump__flight {
