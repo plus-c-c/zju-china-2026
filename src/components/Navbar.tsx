@@ -2,6 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useEffect, useRef, useState, type HTMLAttributes } from "react";
 import Pages from "../pages.ts";
 import { navigationIcon, pageDetails } from "./navigationIcons";
+import { NavIcon } from "./NavIcon";
 import "./Navbar.css";
 
 const desktopNavigation = () => window.matchMedia("(min-width: 992px)").matches;
@@ -429,17 +430,19 @@ export function Navbar({ introEntrance = false }: { introEntrance?: boolean }) {
                                   aria-current={active ? "page" : undefined}
                                   onClick={closeMenus}
                                 >
-                                  <img
-                                    className="nest-tile-icon"
-                                    src={
-                                      details
-                                        ? navigationIcon(details.icon)
-                                        : undefined
-                                    }
-                                    alt=""
-                                    width="72"
-                                    height="72"
-                                  />
+                                  {details ? (
+                                    <NavIcon
+                                      className="nest-tile-icon"
+                                      src={navigationIcon(details.icon)}
+                                    />
+                                  ) : (
+                                    <img
+                                      className="nest-tile-icon"
+                                      alt=""
+                                      width="72"
+                                      height="72"
+                                    />
+                                  )}
                                   <span className="nest-tile-copy">
                                     <span className="nest-tile-title">
                                       {page.name}

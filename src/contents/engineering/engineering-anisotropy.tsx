@@ -55,7 +55,7 @@ export const anisotropyModule: DbtlModule = {
   ),
   cycles: [
     {
-      title: "Cycle 1｜Electric-field versus magnetic-field alignment",
+      title: "Cycle 1 — Electric-field versus magnetic-field alignment",
       content: {
         Design: (
           <>
@@ -114,7 +114,7 @@ export const anisotropyModule: DbtlModule = {
       },
     },
     {
-      title: "Cycle 2｜Magnetically responsive composite fibers",
+      title: "Cycle 2 — Magnetically responsive composite fibers",
       content: {
         Design: (
           <>
@@ -172,7 +172,7 @@ export const anisotropyModule: DbtlModule = {
       },
     },
     {
-      title: "Cycle 3｜Direct coupling of nanoparticles to SELP",
+      title: "Cycle 3 — Direct coupling of nanoparticles to SELP",
       content: {
         Design: (
           <>
@@ -221,7 +221,7 @@ export const anisotropyModule: DbtlModule = {
       },
     },
     {
-      title: "Cycle 1｜Comparison of particle–protein coupling strategies",
+      title: "Cycle 1 — Comparison of particle–protein coupling strategies",
       content: {
         Design: (
           <>
@@ -305,7 +305,7 @@ export const anisotropyModule: DbtlModule = {
       },
     },
     {
-      title: "Cycle 2｜Design of the TVN–DogTag module",
+      title: "Cycle 2 — Design of the TVN–DogTag module",
       content: {
         Design: (
           <>
@@ -365,7 +365,7 @@ export const anisotropyModule: DbtlModule = {
       },
     },
     {
-      title: "Cycle 1｜Peptide-binding detection and condition optimization",
+      title: "Cycle 1 — Peptide-binding detection and condition optimization",
       content: {
         Design: (
           <>
@@ -419,7 +419,7 @@ export const anisotropyModule: DbtlModule = {
       },
     },
     {
-      title: "Cycle 2｜Expression and purification of TVN–DogTag",
+      title: "Cycle 2 — Expression and purification of TVN–DogTag",
       content: {
         Design: (
           <>
@@ -476,7 +476,7 @@ export const anisotropyModule: DbtlModule = {
       },
     },
     {
-      title: "Cycle 3｜Ligation testing with a GFP model substrate",
+      title: "Cycle 3 — Ligation testing with a GFP model substrate",
       content: {
         Design: (
           <>
@@ -537,7 +537,7 @@ export const anisotropyModule: DbtlModule = {
       },
     },
     {
-      title: "Cycle 4｜Fluorescence detection in nanoparticle samples",
+      title: "Cycle 4 — Fluorescence detection in nanoparticle samples",
       content: {
         Design: (
           <>

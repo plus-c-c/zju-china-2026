@@ -51,7 +51,7 @@ export const mitochondriaModule: DbtlModule = {
   ),
   cycles: [
     {
-      title: "Cycle 1｜From mitochondrial delivery to functionalized liposomes",
+      title: "Cycle 1 — From mitochondrial delivery to functionalized liposomes",
       content: {
         Design: (
           <>
@@ -120,7 +120,7 @@ export const mitochondriaModule: DbtlModule = {
       },
     },
     {
-      title: "Cycle 2｜From local anchoring to a cleavable linker",
+      title: "Cycle 2 — From local anchoring to a cleavable linker",
       content: {
         Design: (
           <>
@@ -189,7 +189,7 @@ export const mitochondriaModule: DbtlModule = {
       },
     },
     {
-      title: "Cycle 1｜From fusion expression to detectable peptides",
+      title: "Cycle 1 — From fusion expression to detectable peptides",
       content: {
         Design: (
           <>
@@ -252,7 +252,7 @@ export const mitochondriaModule: DbtlModule = {
     },
     {
       title:
-        "Cycle 2｜From a complex conjugation system to a GFP ligation model",
+        "Cycle 2 — From a complex conjugation system to a GFP ligation model",
       content: {
         Design: (
           <>
@@ -312,7 +312,7 @@ export const mitochondriaModule: DbtlModule = {
       },
     },
     {
-      title: "Cycle 3｜From ligation activity to responsive cleavage",
+      title: "Cycle 3 — From ligation activity to responsive cleavage",
       content: {
         Design: (
           <>
@@ -378,7 +378,7 @@ export const mitochondriaModule: DbtlModule = {
     },
     {
       title:
-        "Cycle 1｜From complex formation to preliminary evidence of cellular delivery",
+        "Cycle 1 — From complex formation to preliminary evidence of cellular delivery",
       content: {
         Design: (
           <>
@@ -438,7 +438,7 @@ export const mitochondriaModule: DbtlModule = {
     },
     {
       title:
-        "Cycle 2｜From delivery observations to defining cytocompatibility limits",
+        "Cycle 2 — From delivery observations to defining cytocompatibility limits",
       content: {
         Design: (
           <>

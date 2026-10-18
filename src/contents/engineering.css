@@ -274,10 +274,16 @@
 }
 
 .dbtl-phase {
+  display: inline-flex;
   flex-shrink: 0;
-  padding: 0.15rem 0.7rem;
+  align-items: center;
+  justify-content: center;
+  /* Fixed width for every phase so the title never shifts between
+     Design / Build / Test / Learn; text matches the card title size. */
+  min-width: 7.2rem;
+  padding: 0.2rem 0.75rem;
   border-radius: 50px;
-  font-size: 0.85rem;
+  font-size: 1.5rem;
   font-weight: 700;
   letter-spacing: 0.03em;
   color: #fff;
@@ -297,12 +303,12 @@
 }
 
 .dbtl-caption {
-  overflow: hidden;
-  font-size: 0.95rem;
-  font-weight: 600;
+  /* Card title: stays clearly above the 1.25rem body text and wraps
+     instead of truncating when the title is long. */
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.35;
   color: #223c81;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
 .dbtl-panel-body {
@@ -437,11 +443,12 @@
   width: 100%;
 }
 
-/* In-panel section headings for the group lead and sub-module leads. */
+/* In-panel section headings for the group lead and sub-module leads.
+   Kept in the same title tier as the card caption, above the body text. */
 .dbtl .dbtl-panel-inner .dbtl-section-title {
   margin: 1.3rem 0 0.7rem;
-  font-size: 1.3rem;
-  line-height: 1.45;
+  font-size: 1.5rem;
+  line-height: 1.4;
   color: #223c81;
 }
 

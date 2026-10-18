@@ -1,3 +1,5 @@
+import { TransparentImage } from "../components/TransparentImage";
+
 export function Design() {
   return (
     <div className="row mt-4 mb-5">
@@ -39,13 +41,11 @@ export function Design() {
             0.1).
           </p>
           <figure className="figure d-block my-4 text-center">
-            <img
+            <TransparentImage
               src="https://static.igem.wiki/teams/6102/wiki/images/design/01/00001.avif"
               alt="Overview of the NEST platform design."
               className="figure-img img-fluid rounded"
               style={{ width: "100%" }}
-              loading="lazy"
-              decoding="async"
             />
             <figcaption className="figure-caption">
               Figure 0.1. Comparison between traditional blending design and
@@ -262,13 +262,12 @@ export function Design() {
             with 20 repeats (Figure 1.1).
           </p>
           <figure className="figure d-block my-4 text-center">
-            <img
+            <TransparentImage
               src="https://static.igem.wiki/teams/6102/wiki/images/design/01/01-02.avif"
               alt="SELP scaffold sequence design and nomenclature."
               className="figure-img img-fluid rounded"
               style={{ width: "100%" }}
-              loading="lazy"
-              decoding="async"
+              cropTop={0.152}
             />
             <figcaption className="figure-caption">
               Figure 1.1. Domain composition and sequence nomenclature of SELPs.
@@ -325,13 +324,11 @@ export function Design() {
             triggering gelation.
           </p>
           <figure className="figure d-block my-4 text-center">
-            <img
+            <TransparentImage
               src="https://static.igem.wiki/teams/6102/wiki/images/design/01/32.avif"
               alt="Ru/SPS-mediated visible-light crosslinking of the SELP scaffold."
               className="figure-img img-fluid rounded"
               style={{ width: "100%" }}
-              loading="lazy"
-              decoding="async"
             />
             <figcaption className="figure-caption">
               Figure 1.2. Ru/SPS-mediated visible-light crosslinking and in situ
@@ -367,13 +364,11 @@ export function Design() {
             quality control and later formulation adjustment.
           </p>
           <figure className="figure d-block my-4 text-center">
-            <img
+            <TransparentImage
               src="https://static.igem.wiki/teams/6102/wiki/images/design/01/01-03.avif"
               alt="SELP expression and purification by inverse transition cycling."
               className="figure-img img-fluid rounded"
               style={{ width: "100%" }}
-              loading="lazy"
-              decoding="async"
             />
             <figcaption className="figure-caption">
               Figure 1.3. Purification of SELPs by inverse transition cycling
@@ -486,13 +481,11 @@ export function Design() {
             assembly (Figure 2.1).
           </p>
           <figure className="figure d-block my-4 text-center">
-            <img
+            <TransparentImage
               src="https://static.igem.wiki/teams/6102/wiki/images/design/01/01-04.avif"
               alt="SnoopLigase-mediated ligation between the SELP scaffold and functional components."
               className="figure-img img-fluid rounded"
               style={{ width: "75%" }}
-              loading="lazy"
-              decoding="async"
             />
             <figcaption className="figure-caption">
               Figure 2.1. Structural origin of the Snoop ligation system.
@@ -582,13 +575,11 @@ export function Design() {
             </li>
           </ol>
           <figure className="figure d-block my-4 text-center">
-            <img
+            <TransparentImage
               src="https://static.igem.wiki/teams/6102/wiki/images/design/01/01-05.avif"
               alt="Interface placement and functional assembly designs for the SELP scaffold."
               className="figure-img img-fluid rounded"
               style={{ width: "100%" }}
-              loading="lazy"
-              decoding="async"
             />
             <figcaption className="figure-caption">
               Figure 2.2. Placement of standardized interfaces and strategies
@@ -718,7 +709,12 @@ export function Design() {
             subsequent matrix tissue formation.
           </p>
           <figure className="figure d-block my-4 text-center">
-            {/* TODO: Figure 3.2.1 — insert image here when the asset is available. */}
+            <TransparentImage
+              src="https://static.igem.wiki/teams/6102/wiki/images/design/02/01.avif"
+              alt="Native articular cartilage architecture and the directional organization of collagen bundles."
+              className="figure-img img-fluid rounded"
+              style={{ width: "100%" }}
+            />
             <figcaption className="figure-caption">
               Figure 3.2.1 | Native articular cartilage architecture and the
               directional organization that serves as the biomimetic reference.
@@ -744,13 +740,11 @@ export function Design() {
             whereas crosslinking fixes the anisotropy (Figure 3.2.2).
           </p>
           <figure className="figure d-block my-4 text-center">
-            <img
-              src="https://static.igem.wiki/teams/6102/wiki/images/design/02/2.avif"
+            <TransparentImage
+              src="https://static.igem.wiki/teams/6102/wiki/images/design/02/02.avif"
               alt="Magnetically guided orientation and visible-light gelation of the SELP scaffold."
               className="figure-img img-fluid rounded"
               style={{ width: "100%" }}
-              loading="lazy"
-              decoding="async"
             />
             <figcaption className="figure-caption">
               Figure 3.2.2 | Design schematic of how the magnetically responsive
@@ -799,13 +793,11 @@ export function Design() {
             structures on motif exposure and target access (Figure 3.2.3).
           </p>
           <figure className="figure d-block my-4 text-center">
-            <img
-              src="https://static.igem.wiki/teams/6102/wiki/images/design/02/3.avif"
+            <TransparentImage
+              src="https://static.igem.wiki/teams/6102/wiki/images/design/02/03.avif"
               alt="Molecular coupling of magnetic particles to the SELP scaffold."
               className="figure-img img-fluid rounded"
               style={{ width: "100%" }}
-              loading="lazy"
-              decoding="async"
             />
             <figcaption className="figure-caption">
               Figure 3.2.3 | Molecular design for coupling magnetic
@@ -825,13 +817,11 @@ export function Design() {
             the illumination protocol (Figure 3.2.4).
           </p>
           <figure className="figure d-block my-4 text-center">
-            <img
-              src="https://static.igem.wiki/teams/6102/wiki/images/design/02/4.avif"
+            <TransparentImage
+              src="https://static.igem.wiki/teams/6102/wiki/images/design/02/04.avif"
               alt="Magneto-mechanical coupling model of the magnetic nanoparticle-containing hydrogel."
               className="figure-img img-fluid rounded"
               style={{ width: "100%" }}
-              loading="lazy"
-              decoding="async"
             />
             <figcaption className="figure-caption">
               Figure 3.2.4 | Magneto-mechanical coupling model: multiscale
@@ -886,13 +876,12 @@ export function Design() {
             .
           </p>
           <figure className="figure d-block my-4 text-center">
-            <img
+            <TransparentImage
               src="https://static.igem.wiki/teams/6102/wiki/images/design/03/01.avif"
               alt="Glycosaminoglycan loss and fixed charge density in cartilage."
               className="figure-img img-fluid rounded"
               style={{ width: "100%" }}
-              loading="lazy"
-              decoding="async"
+              cropTop={0.138}
             />
             <figcaption className="figure-caption">
               Figure 3.3.1 | Mechanism of CPC-associated water retention and
@@ -961,13 +950,12 @@ export function Design() {
             of the network.
           </p>
           <figure className="figure d-block my-4 text-center">
-            <img
+            <TransparentImage
               src="https://static.igem.wiki/teams/6102/wiki/images/design/03/02.avif"
               alt="Reversible binding of scaffold-anchored CPC to sulfated glycosaminoglycans."
               className="figure-img img-fluid rounded"
               style={{ width: "100%" }}
-              loading="lazy"
-              decoding="async"
+              cropTop={0.102}
             />
             <figcaption className="figure-caption">
               Figure 3.3.2 | Electrostatic interaction between CPC and GAG and
@@ -1051,13 +1039,11 @@ export function Design() {
             reduced load bearing, and aggravated damage.
           </p>
           <figure className="figure d-block my-4 text-center">
-            <img
+            <TransparentImage
               src="https://static.igem.wiki/teams/6102/wiki/images/design/03/04.avif"
               alt="Assembly of the CPC and Link-N dual-function module onto the SELP scaffold."
               className="figure-img img-fluid rounded"
               style={{ width: "75%" }}
-              loading="lazy"
-              decoding="async"
             />
             <figcaption className="figure-caption">
               Figure 3.3.3 | Design of the CPC/Link-N dual-function module
@@ -1141,13 +1127,11 @@ export function Design() {
             explore its potential to promote cartilage repair (Figure 3.4.1).
           </p>
           <figure className="figure d-block my-4 text-center">
-            <img
+            <TransparentImage
               src="https://static.igem.wiki/teams/6102/wiki/images/design/04/01.avif"
               alt="Design concept for locally anchored, enzyme-responsive mitochondrial delivery."
               className="figure-img img-fluid rounded"
               style={{ width: "100%" }}
-              loading="lazy"
-              decoding="async"
             />
             <figcaption className="figure-caption">
               Figure 3.4.1 | Overall design of the MMP-13-responsive
@@ -1260,13 +1244,11 @@ export function Design() {
             attachment and responsive release.
           </p>
           <figure className="figure d-block my-4 text-center">
-            <img
+            <TransparentImage
               src="https://static.igem.wiki/teams/6102/wiki/images/design/04/02.avif"
               alt="Responsive peptide design linking liposome attachment, enzyme-sensitive cleavage, and scaffold anchoring."
               className="figure-img img-fluid rounded"
               style={{ width: "75%" }}
-              loading="lazy"
-              decoding="async"
             />
             <figcaption className="figure-caption">
               Figure 3.4.2 | Expression precursor and control design of the
@@ -1340,13 +1322,11 @@ export function Design() {
             3.4.3B).
           </p>
           <figure className="figure d-block my-4 text-center">
-            <img
+            <TransparentImage
               src="https://static.igem.wiki/teams/6102/wiki/images/design/04/03.avif"
               alt="Liposomal mitochondrial delivery system showing scaffold anchoring and enzyme-responsive detachment."
               className="figure-img img-fluid rounded"
               style={{ width: "75%" }}
-              loading="lazy"
-              decoding="async"
             />
             <figcaption className="figure-caption">
               Figure 3.4.3 | Assembly interface between liposome and scaffold,
