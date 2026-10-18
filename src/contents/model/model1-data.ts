@@ -7,7 +7,7 @@ export interface M1Part {
 }
 
 export interface M1Block {
-  t: "h3" | "h4" | "p" | "display" | "figure" | "table";
+  t: "h3" | "h4" | "p" | "display" | "figure" | "table" | "video";
   v?: string;
   parts?: M1Part[];
   src?: string;
@@ -95,6 +95,11 @@ export const m1Steps: M1Step[] = [
             v: "Video: | 2KY5 100 ns FAMD",
           },
         ],
+      },
+      {
+        t: "video",
+        src: "https://video.igem.org/videos/embed/4DDTAPWsa9bm3ZLk1KQ3yB?start=0s",
+        alt: "ZJU-China: 100ns FAMD (2026) [English]",
       },
       {
         t: "p",
