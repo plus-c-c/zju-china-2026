@@ -110,6 +110,35 @@ function Blocks({ blocks }: { blocks: M1Block[] }) {
             </figure>
           );
         }
+        if (block.t === "video") {
+          return (
+            <div
+              key={index}
+              className="my-4"
+              style={{ maxWidth: 840, marginInline: "auto" }}
+            >
+              <div className="ratio ratio-16x9">
+                <iframe
+                  src={block.src}
+                  title={block.alt ?? "2KY5 100 ns FAMD"}
+                  allow="fullscreen"
+                  allowFullScreen
+                  sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
+                  style={{ border: 0 }}
+                />
+              </div>
+              <p className="small mt-2 mb-0">
+                <a
+                  href={block.src?.replace("/videos/embed/", "/w/")}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Open video on iGEM Video Universe
+                </a>
+              </p>
+            </div>
+          );
+        }
         if (block.t === "table") {
           return (
             <DataTable
@@ -248,7 +277,12 @@ export function SelpHydrogelModeling() {
   /* 左右方向键与滚轮等效：切换上一步 / 下一步 */
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.defaultPrevented || event.metaKey || event.ctrlKey || event.altKey)
+      if (
+        event.defaultPrevented ||
+        event.metaKey ||
+        event.ctrlKey ||
+        event.altKey
+      )
         return;
       const forward = event.key === "ArrowRight" || event.key === "ArrowDown";
       const backward = event.key === "ArrowLeft" || event.key === "ArrowUp";
