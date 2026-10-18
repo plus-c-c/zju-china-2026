@@ -12,6 +12,7 @@ export function PipelineBird() {
     let lastX: number | null = null;
     let lastY: number | null = null;
     let wasMoving = false;
+    let lastScrollTime = -Infinity;
     let previousScroll = window.scrollY;
     let routeDirection = 1;
     let activeBefore = false;
@@ -26,7 +27,10 @@ export function PipelineBird() {
       const canvas = bird.parentElement;
       if (!root || !footer || !canvas) return;
       const scroll = window.scrollY;
-      if (Math.abs(scroll - previousScroll) > 1.5) routeDirection = scroll > previousScroll ? 1 : -1;
+      if (Math.abs(scroll - previousScroll) > 0.1) {
+        routeDirection = scroll > previousScroll ? 1 : -1;
+        lastScrollTime = time;
+      }
       previousScroll = scroll;
       const c = canvas.getBoundingClientRect();
       const scale = c.width / 1280;
@@ -63,9 +67,9 @@ export function PipelineBird() {
         angle = parseFloat(bird.style.getPropertyValue("--bird-flight-angle")) || 0;
       }
       activeBefore = true;
-      routeY = reduced ? requestedY : routeY! + (requestedY - routeY!) * (1 - Math.exp(-dt / 0.16));
+      routeY = reduced ? requestedY : routeY! + (requestedY - routeY!) * (1 - Math.exp(-dt / 0.065));
       // Never overshoot the landing surface, including while reversing direction.
-      routeY = Math.min(landingY, Math.max(points[0].y, routeY));
+      routeY = Math.min(landingY, Math.max(points[0].y, scroll + c.top + 80 * scale, routeY));
       let i = points.findIndex((_point, index) => index < points.length - 1 && routeY! <= points[index + 1].y);
       if (i < 0) i = points.length - 2;
       const a = points[i], b = points[i + 1];
@@ -73,7 +77,7 @@ export function PipelineBird() {
       const ease = t*t*t*(10 + t*(-15 + 6*t));
       const x = a.x + (b.x - a.x) * ease;
       const y = Math.min(routeY - scroll, landingY - scroll);
-      const moving = Math.abs(requestedY - routeY) > 0.8;
+      const moving = time - lastScrollTime < 140 || Math.abs(requestedY - routeY) > 0.15;
       bird.dataset.pipelineControlled = "true";
       bird.style.left = `${(x - c.left) / scale}px`;
       bird.style.top = `${(y - c.top) / scale}px`;
@@ -93,8 +97,8 @@ export function PipelineBird() {
       lastX = x; lastY = y;
       wasMoving = moving;
       document.body.classList.add("pipeline-bird-active");
-      if (moving) frame = requestAnimationFrame(tick);
-      else previousTime = 0;
+      // Keep one clock alive while active; wheel bursts no longer restart the flight.
+      frame = requestAnimationFrame(tick);
     };
     const wake = () => { if (!frame) frame = requestAnimationFrame(tick); };
     window.addEventListener("scroll", wake, { passive: true });

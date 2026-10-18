@@ -29,11 +29,11 @@ const stops = [
 /** Resolve perches from the illustration they belong to, including its content scale. */
 export function perch(stop: typeof stops[number]) {
   const anchors: Record<number, [string, number, number]> = {
-    2: [".opening-bubble--hyaline", 0.28, 0.08],
-    3: [".opening-bubble--hyaline", 0.28, 0.08],
+    2: [".opening-bubble--hyaline", 0.23, 0.08],
+    3: [".opening-bubble--hyaline", 0.23, 0.08],
     4: ["#home-3 .opening-burden__world", 0.76, 0.4],
-    4.8: [".opening-burden__stat strong", 0.83, 0],
-    5: [".opening-burden__stat strong", 0.83, 0],
+    4.8: [".opening-burden__stat strong", 0.70, 0.1],
+    5: [".opening-burden__stat strong", 0.70, 0.1],
     6: [".opening-impact__stairs", -0.35, 1],
     7: [".opening-impact__stairs", -0.35, 1],
     8: [".hydrogel-materials-page__button", 1.22, 1],
@@ -42,10 +42,10 @@ export function perch(stop: typeof stops[number]) {
     13: [".limitations-card:last-child", 0.9, 0],
     14: [".home-layer-57", 0.5, 0.25],
     18: [".home-layer-57", 0.5, 0.25],
-    19: [".nest-solution-card--ligase", 0.07, 0],
-    20: [".nest-solution-card--ligase", 0.07, 0],
-    21: [".oa-panel", 0.98, 0.98],
-    22: [".oa-panel", 0.98, 0.98],
+    19: [".nest-solution-card--ligase", 0.07, 0.02],
+    20: [".nest-solution-card--ligase", 0.07, 0.02],
+    21: [".oa-panel", 0.955, 0.98],
+    22: [".oa-panel", 0.955, 0.98],
   };
   const anchor = anchors[stop.beat];
   const element = anchor && document.querySelector<HTMLElement>(anchor[0]);
@@ -107,6 +107,7 @@ export function StoryBird({ position, direction, scale }: { position: number; di
     return () => cancelAnimationFrame(frame);
   }, [atHome]);
   useEffect(() => {
+    if (document.body.classList.contains("pipeline-bird-active") && destinationStop.beat >= 21) return;
     if (atHome && poseRef.current.beat === 0) return;
     const destination = { ...perch({ ...destinationStop, x: targetX, y: targetY, size: targetSize }), beat: atHome ? 0 : 2 };
     if (atHome) {
@@ -162,6 +163,7 @@ export function StoryBird({ position, direction, scale }: { position: number; di
     let previousTime = began;
     let heading = Math.atan2(dy - Math.PI * height, dx) * 180 / Math.PI;
     const tick = (time: number) => {
+      if (destinationStop.beat >= 21 && document.body.classList.contains("pipeline-bird-active")) return;
       const dt = Math.min(0.05, (time - previousTime) / 1000);
       previousTime = time;
       const elapsed = Math.min(1, (time - began) / duration);
@@ -172,10 +174,11 @@ export function StoryBird({ position, direction, scale }: { position: number; di
       const desiredHeading = Math.atan2(dy - Math.PI * height * Math.cos(Math.PI * t), dx) * 180 / Math.PI;
       const headingDifference = ((desiredHeading - heading + 540) % 360 + 360) % 360 - 180;
       heading += headingDifference * (1 - Math.exp(-dt / 0.18));
+      const liveTarget = atHome ? destination : perch(destinationStop);
       const next = {
         ...destination,
-        x: start.x + dx * t,
-        y: start.y + dy * t - Math.sin(Math.PI * t) * height,
+        x: start.x + (liveTarget.x - start.x) * t,
+        y: start.y + (liveTarget.y - start.y) * t - Math.sin(Math.PI * t) * height,
         size: start.size + (destination.size - start.size) * (t * t * (3 - 2 * t)),
         moving: elapsed < 1,
         angle: heading,
@@ -196,7 +199,7 @@ export function StoryBird({ position, direction, scale }: { position: number; di
         const target = perch(destinationStop);
         const current = poseRef.current;
         if (Math.hypot(current.x - target.x, current.y - target.y) > 0.2) {
-          const next = { ...current, x: target.x, y: target.y };
+          const next = { ...current, x: current.x + (target.x - current.x) * 0.18, y: current.y + (target.y - current.y) * 0.18 };
           poseRef.current = next;
           setPose(next);
         }
@@ -206,6 +209,28 @@ export function StoryBird({ position, direction, scale }: { position: number; di
     frame = requestAnimationFrame(follow);
     return () => cancelAnimationFrame(frame);
   }, [atHome, destinationStop]);
+  useEffect(() => {
+    if (destinationStop.beat !== 19 && destinationStop.beat !== 20) return;
+    const title = document.querySelector<HTMLElement>(".nest-solution-ligase-title");
+    if (!title) return;
+    const overlay = title.cloneNode(true) as HTMLElement;
+    overlay.setAttribute("aria-hidden", "true");
+    overlay.removeAttribute("id");
+    document.body.appendChild(overlay);
+    let frame = 0;
+    const follow = () => {
+      const bounds = title.getBoundingClientRect();
+      const computed = getComputedStyle(title);
+      Object.assign(overlay.style, { position: "fixed", left: `${bounds.left}px`, top: `${bounds.top}px`,
+        width: `${bounds.width}px`, height: `${bounds.height}px`, transform: "none", margin: "0",
+        fontSize: `${parseFloat(computed.fontSize) * bounds.width / title.offsetWidth}px`,
+        lineHeight: `${bounds.height}px`, zIndex: "9", pointerEvents: "none",
+        opacity: poseRef.current.moving ? "0" : "1" });
+      frame = requestAnimationFrame(follow);
+    };
+    frame = requestAnimationFrame(follow);
+    return () => { cancelAnimationFrame(frame); overlay.remove(); };
+  }, [destinationStop]);
   const { x, y, size, moving, angle: flightAngle } = pose;
   return createPortal(<div className="story-bird-canvas" style={{ opacity: atHome && pose.beat === 0 && !pose.moving ? introOpacity : 1, "--scene-scale": scale } as CSSProperties}>
     <div role="button" tabIndex={0} aria-label="Make the NEST bird hop"

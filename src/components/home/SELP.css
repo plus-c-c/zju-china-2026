@@ -910,3 +910,6 @@
   width: 100%;
   height: 100%;
 }
+
+/* The ending shares the same stationary sky as the story and the modules. */
+.selp-after-pipeline { background: transparent; }

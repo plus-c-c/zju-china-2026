@@ -151,7 +151,7 @@ function DesktopHome() {
     {
       name: "Material limitations",
       content: (
-        <MaterialLimitations yellowRemoved={cardTransition.yellowExit > 0.98} />
+        <MaterialLimitations drawProgress={Math.max(0, Math.min(1, (position - 11) / 2))} />
       ),
     },
     { name: "Return to NEST", content: <BirdReturnsToNest /> },
