@@ -212,7 +212,7 @@ export function useStoryNavigation() {
       }
       if (!reversed && quiet && now - settledAt < 100) { event.preventDefault(); return; }
       if (!deliberateInput) { event.preventDefault(); return; }
-      wheelDistance += Math.sign(wheelDelta) * Math.min(48, Math.abs(wheelDelta));
+      wheelDistance += Math.sign(wheelDelta) * Math.min(80, Math.abs(wheelDelta));
       if (Math.abs(wheelDistance) < 64) { event.preventDefault(); return; }
       chaining.current = sustained;
       if (turn(wheelDistance > 0 ? 1 : -1, current.value)) {
