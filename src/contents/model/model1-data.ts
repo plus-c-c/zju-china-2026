@@ -88,6 +88,11 @@ export const m1Steps: M1Step[] = [
         ],
       },
       {
+        t: "video",
+        src: "https://video.igem.org/videos/embed/4DDTAPWsa9bm3ZLk1KQ3yB?start=0s",
+        alt: "ZJU-China: 100ns FAMD (2026) [English]",
+      },
+      {
         t: "p",
         parts: [
           {
@@ -95,11 +100,6 @@ export const m1Steps: M1Step[] = [
             v: "Video: | 2KY5 100 ns FAMD",
           },
         ],
-      },
-      {
-        t: "video",
-        src: "https://video.igem.org/videos/embed/4DDTAPWsa9bm3ZLk1KQ3yB?start=0s",
-        alt: "ZJU-China: 100ns FAMD (2026) [English]",
       },
       {
         t: "p",
