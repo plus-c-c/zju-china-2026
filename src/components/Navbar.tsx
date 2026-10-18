@@ -65,6 +65,7 @@ export function Navbar({ introEntrance = false }: { introEntrance?: boolean }) {
     let frame = 0;
     let pointer: { x: number; y: number } | null = null;
     const canHover = () => desktopMedia.matches && hoverMedia.matches;
+    const atPageTop = () => window.scrollY <= 2;
     const hasKeyboardFocus = () =>
       navRef.current?.contains(document.activeElement) &&
       document.activeElement?.matches(":focus-visible");
@@ -85,7 +86,9 @@ export function Navbar({ introEntrance = false }: { introEntrance?: boolean }) {
     };
     const update = () => {
       frame = 0;
-      if (!canHover()) {
+      if (!canHover() || atPageTop()) {
+        window.clearTimeout(showTimer);
+        showTimer = undefined;
         show();
         return;
       }
@@ -136,7 +139,7 @@ export function Navbar({ introEntrance = false }: { introEntrance?: boolean }) {
         if (visible && hideTimer === undefined) {
           hideTimer = window.setTimeout(() => {
             hideTimer = undefined;
-            if (!hasKeyboardFocus() && !openMenuRef.current) hide();
+            if (!atPageTop() && !hasKeyboardFocus() && !openMenuRef.current) hide();
           }, 220);
         }
       }
@@ -163,8 +166,7 @@ export function Navbar({ introEntrance = false }: { introEntrance?: boolean }) {
       window.clearTimeout(showTimer);
       window.clearTimeout(hideTimer);
       showTimer = hideTimer = undefined;
-      if (canHover()) hide();
-      else update();
+      update();
     };
     resetMode();
     window.addEventListener("pointermove", move, { passive: true });
