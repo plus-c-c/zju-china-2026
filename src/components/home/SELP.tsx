@@ -237,7 +237,7 @@ const quickLinks = [
   {
     label: "Integrated Human Practice",
     to: "/human-practices",
-    icon: `${STATIC_HOME}/shortcut-icons/human-practices.avif`,
+    icon: `${STATIC_HOME}/shortcut-icons/human-practices.svg`,
   },
 ] as const;
 

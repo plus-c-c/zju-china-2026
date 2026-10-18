@@ -14,8 +14,8 @@
       transparent 22% 78%,
       rgb(226 237 255 / 46%)
     ),
-    url("../../assets/home/bubble-awareness/background.png") center top / cover
-      no-repeat;
+    url("https://static.igem.wiki/teams/6102/wiki/images/home/background.avif")
+      center top / cover no-repeat;
 }
 
 .bubble-awareness h1,
