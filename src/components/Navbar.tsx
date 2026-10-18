@@ -11,7 +11,6 @@ export function Navbar({ introEntrance = false }: { introEntrance?: boolean }) {
   const navRef = useRef<HTMLElement>(null);
   const leaveTimer = useRef<number | undefined>(undefined);
   const focusFrame = useRef(0);
-  const hoverOpened = useRef<string | null>(null);
   const pointerInNavigation = useRef(false);
   const [expanded, setExpanded] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
@@ -21,7 +20,6 @@ export function Navbar({ introEntrance = false }: { introEntrance?: boolean }) {
   const cancelLeave = () => window.clearTimeout(leaveTimer.current);
   const closeMenus = () => {
     cancelLeave();
-    hoverOpened.current = null;
     setOpenDropdown(null);
     setExpanded(false);
   };
@@ -36,7 +34,9 @@ export function Navbar({ introEntrance = false }: { introEntrance?: boolean }) {
     const updateNavbar = () => {
       frame = 0;
       const atTop = window.scrollY < 10;
-      setNavbarVisible(atTop || !desktopNavigation() || pointerInNavigation.current);
+      setNavbarVisible(
+        atTop || !desktopNavigation() || pointerInNavigation.current,
+      );
 
       if (!atTop && !pointerInNavigation.current) {
         setOpenDropdown(null);
@@ -52,7 +52,8 @@ export function Navbar({ introEntrance = false }: { introEntrance?: boolean }) {
       if (event.pointerType !== "mouse") return;
       const overNavigation =
         event.clientY <= (navRef.current?.offsetHeight ?? 88) ||
-        (event.target instanceof Node && navRef.current?.contains(event.target));
+        (event.target instanceof Node &&
+          navRef.current?.contains(event.target));
       pointerInNavigation.current = Boolean(overNavigation);
       window.clearTimeout(hideTimer);
       if (overNavigation) {
@@ -65,7 +66,9 @@ export function Navbar({ introEntrance = false }: { introEntrance?: boolean }) {
 
     updateNavbar();
     window.addEventListener("scroll", handleScroll, { passive: true });
-    window.addEventListener("pointermove", handlePointerMove, { passive: true });
+    window.addEventListener("pointermove", handlePointerMove, {
+      passive: true,
+    });
     return () => {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("pointermove", handlePointerMove);
@@ -227,21 +230,7 @@ export function Navbar({ introEntrance = false }: { introEntrance?: boolean }) {
                 );
 
                 return (
-                  <li
-                    key={item.name}
-                    className="nest-nav-group"
-                    onPointerEnter={(event) => {
-                      if (
-                        event.pointerType === "mouse" &&
-                        desktopNavigation() &&
-                        window.matchMedia("(hover: hover)").matches
-                      ) {
-                        cancelLeave();
-                        if (!isOpen) hoverOpened.current = dropdownId;
-                        setOpenDropdown(dropdownId);
-                      }
-                    }}
-                  >
+                  <li key={item.name} className="nest-nav-group">
                     <button
                       id={`${dropdownId}-trigger`}
                       type="button"
@@ -250,12 +239,7 @@ export function Navbar({ introEntrance = false }: { introEntrance?: boolean }) {
                       aria-controls={dropdownId}
                       onClick={() => {
                         cancelLeave();
-                        setOpenDropdown(
-                          isOpen && hoverOpened.current !== dropdownId
-                            ? null
-                            : dropdownId,
-                        );
-                        hoverOpened.current = null;
+                        setOpenDropdown(isOpen ? null : dropdownId);
                       }}
                       onKeyDown={(event) => {
                         if (
@@ -265,7 +249,6 @@ export function Navbar({ introEntrance = false }: { introEntrance?: boolean }) {
                           return;
                         event.preventDefault();
                         cancelLeave();
-                        hoverOpened.current = null;
                         setOpenDropdown(dropdownId);
                         const focusLast = event.key === "ArrowUp";
                         window.cancelAnimationFrame(focusFrame.current);
