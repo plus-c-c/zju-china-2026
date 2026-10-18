@@ -14,6 +14,8 @@ import { LoadingScreen } from "../../components/LoadingScreen";
 import "./Mobile.css";
 import { BirdCursorProvider } from "../../components/BirdCursor";
 
+import { waitForHomeAssets } from "../../utils/homeAssetReadiness";
+
 const MINIMUM_LOADING_TIME = 600;
 const MAXIMUM_LOADING_TIME = 8000;
 
@@ -21,6 +23,7 @@ const App = () => {
   const location = useLocation();
   const previousScrollPath = useRef<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [loadingFailed, setLoadingFailed] = useState(false);
   const [homeIntroReady, setHomeIntroReady] = useState(false);
   const [isMobileNavigation, setIsMobileNavigation] = useState(
     () => window.matchMedia("(max-width: 991.98px)").matches,
@@ -86,6 +89,7 @@ const App = () => {
     let cancelled = false;
     const startedAt = performance.now();
     setIsLoading(true);
+    setLoadingFailed(false);
     if (currentPath === "/") {
       setHomeIntroReady(false);
     }
@@ -119,7 +123,10 @@ const App = () => {
         window.setTimeout(resolve, MAXIMUM_LOADING_TIME),
       );
 
-      await Promise.all([Promise.race([assetsReady, timeout]), openingReady]);
+      await Promise.all([
+        currentPath === "/" ? waitForHomeAssets() : Promise.race([assetsReady, timeout]),
+        openingReady,
+      ]);
       const remainingTime = Math.max(
         0,
         MINIMUM_LOADING_TIME - (performance.now() - startedAt),
@@ -129,7 +136,9 @@ const App = () => {
       if (!cancelled) setIsLoading(false);
     };
 
-    void waitForPageAssets();
+    void waitForPageAssets().catch(() => {
+      if (!cancelled) setLoadingFailed(true);
+    });
 
     return () => {
       cancelled = true;
@@ -144,7 +153,7 @@ const App = () => {
   return (
     <BirdCursorProvider enabled={!isLoading && !isHome}>
       <div className="app">
-        <LoadingScreen visible={isLoading} />
+        <LoadingScreen visible={isLoading} failed={loadingFailed} />
 
         {/* Navigation */}
         {(!isHome || homeIntroReady || isMobileNavigation) && (

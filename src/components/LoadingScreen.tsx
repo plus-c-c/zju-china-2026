@@ -3,17 +3,19 @@ import "./LoadingScreen.css";
 
 type LoadingScreenProps = {
   visible: boolean;
+  failed?: boolean;
 };
 
-export function LoadingScreen({ visible }: LoadingScreenProps) {
+export function LoadingScreen({ visible, failed = false }: LoadingScreenProps) {
   useLayoutEffect(() => {
     if (!visible) return;
     // The page underneath may not be mounted yet. Consume input here rather
     // than letting native scrolling race the homepage's initial positioning.
-    const blockScroll = (event: Event) => event.preventDefault();
+    const blockScroll = (event: Event) => { event.preventDefault(); event.stopImmediatePropagation(); };
     const blockKey = (event: KeyboardEvent) => {
       if (["ArrowUp", "ArrowDown", "PageUp", "PageDown", "Home", "End", " "].includes(event.key)) {
         event.preventDefault();
+        event.stopImmediatePropagation();
       }
     };
     const root = document.documentElement;
@@ -55,6 +57,7 @@ export function LoadingScreen({ visible }: LoadingScreenProps) {
             <span>.</span>
           </span>
         </div>
+        {failed && <button type="button" onClick={() => window.location.reload()}>资源加载失败，点击重新加载</button>}
       </div>
     </div>
   );

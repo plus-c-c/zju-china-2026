@@ -320,7 +320,7 @@ function PipelineAnimation({
 
 
   return (
-    <div ref={containerRef} className={`${className} selp-pipeline__animation`} data-paused={finished ? stopAtFirstFrame : paused || !started} data-finished={finished} role="img" aria-label={alt}>
+    <div ref={containerRef} data-home-preload-src={src} className={`${className} selp-pipeline__animation`} data-paused={finished ? stopAtFirstFrame : paused || !started} data-finished={finished} role="img" aria-label={alt}>
       <img ref={imageRef} src={started && playbackSrc ? playbackSrc : undefined} alt="" onLoad={() => {
         freeze();
         window.clearTimeout(finishTimer.current);

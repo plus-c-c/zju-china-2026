@@ -1,12 +1,12 @@
 import { useReducedMotion } from "motion/react";
 import { useStory } from "./StoryContext";
 const staticHome = "https://static.igem.wiki/teams/6102/wiki/images/home";
-const imgFlyingBirdFrame1 = `${staticHome}/home-08-bird-flight-01.avif`;
-const imgFlyingBirdFrame2 = `${staticHome}/home-08-bird-flight-02.avif`;
+const imgFlyingBirdFrame1 = "https://static.igem.wiki/teams/6102/wiki/home-opening/guide-bird-flight-01.avif";
+const imgFlyingBirdFrame2 = "https://static.igem.wiki/teams/6102/wiki/home-opening/guide-bird-flight-02.avif";
 const imgBoneNest = `https://static.igem.wiki/teams/6102/wiki/images/home/bird-return-bone-2.avif`;
 const imgBirdRestingOnBone = `${staticHome}/home-08-bird-landed-2.avif`;
-const imgAccentBlushGlow = `https://static.igem.wiki/teams/6102/wiki/images/home/c207d.svg`;
-const imgAccentYellowOrbit = `https://static.igem.wiki/teams/6102/wiki/images/home/55f95.svg`;
+const imgAccentBlushGlow = "data:image/svg+xml," + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"><circle cx="100" cy="100" r="100" fill="#ffcfdb"/></svg>');
+const imgAccentYellowOrbit = "data:image/svg+xml," + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"><circle cx="100" cy="100" r="96" fill="none" stroke="#ffe783" stroke-width="8"/></svg>');
 
 export default function BirdReturnsToNest() {
   const { birdProgress, birdStage, birdLandingProgress } = useStory();
