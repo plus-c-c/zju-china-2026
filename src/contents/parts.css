@@ -17,54 +17,17 @@
   height: auto;
   overflow: visible;
 }
-.parts-map figcaption {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 7px 13px;
-  font-size: 0.75rem;
-  line-height: 1.4;
-  color: #48607f;
-}
-.parts-map figcaption > span {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-}
-.parts-map figcaption b {
-  display: inline-grid;
-  place-items: center;
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  color: #fff;
-  font-size: 10px;
-  font-weight: 500;
-  flex-shrink: 0;
-}
-.parts-map-unmapped {
-  width: 12px;
-  height: 9px;
-  border-radius: 2px;
-  background: #dce4ed;
-}
-.page-article .parts-catalogue-lead {
-  margin-bottom: 1.5rem;
-}
 .parts-toolbar {
   display: grid;
   grid-template-columns: minmax(180px, 1fr) minmax(160px, 0.65fr) auto;
   align-items: end;
   gap: 14px;
+  margin: 24px 0 36px;
 }
 .parts-toolbar label {
   display: grid;
   gap: 7px;
   min-width: 0;
-}
-.parts-toolbar label > span {
-  font-size: 0.85rem;
-  font-weight: 600;
 }
 .parts-toolbar input,
 .parts-toolbar select {
@@ -86,7 +49,7 @@
   border-radius: 8px;
   background: #365dc9;
   color: #fff;
-  font-size: 0.85rem;
+  font-size: 1rem;
   font-weight: 500;
 }
 .parts-toolbar button:hover {
@@ -100,7 +63,7 @@
   align-items: center;
   gap: 16px;
   margin: 14px 0 28px;
-  font-size: 0.85rem;
+  font-size: 1rem;
   color: var(--parts-muted);
 }
 .parts-results-line button {
@@ -115,25 +78,18 @@
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid #d5e0ed;
-  padding-bottom: 12px;
+  padding-bottom: 18px;
+  margin-bottom: 24px;
   gap: 12px;
 }
 .page-article .parts-group-heading h2 {
   margin: 0 !important;
 }
-.parts-group-heading > span {
-  color: #62748b;
-  font-size: 0.9rem;
-}
-.page-article .parts-group > p {
-  font-size: 1.05rem;
-  margin: 16px 0 22px;
-}
 .parts-group + .parts-group {
   margin-top: 3rem;
 }
 .parts-basic-list {
-  border-top: 1px solid #d5e0ed;
+  border-top: 0;
 }
 .parts-card.parts-card-basic {
   display: grid;
@@ -147,47 +103,19 @@
 }
 .parts-card-basic .parts-card-meta {
   grid-column: 1;
-  grid-row: 1 / 6;
+  grid-row: 1 / 3;
   align-self: start;
   flex-direction: column;
   align-items: flex-start;
   gap: 10px;
-  font-size: 0.9rem;
+  font-size: 1rem;
 }
 .parts-card-basic > :not(.parts-card-meta) {
   grid-column: 2;
 }
 .page-article .parts-card.parts-card-basic h4 {
   margin: 0 0 5px;
-  font-size: 1.2rem;
-}
-.parts-card-basic .parts-category {
-  justify-self: start;
-  padding: 0;
-  border-radius: 0;
-  background: none;
-  color: var(--parts-muted);
-  font-size: 0.8rem;
-}
-.page-article .parts-card-basic .parts-card-summary {
-  min-height: 0;
-  margin: 10px 0;
-}
-.parts-dna-preview {
-  display: flex;
-  align-items: baseline;
-  flex-wrap: wrap;
-  gap: 6px 12px;
-  margin-bottom: 8px;
-  color: var(--parts-muted);
-  font-size: 0.75rem;
-}
-.parts-dna-preview code {
-  color: #526079;
-  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
-  font-size: 0.78rem;
-  line-height: 1.7;
-  overflow-wrap: anywhere;
+  font-size: 1.35rem;
 }
 .parts-card-basic .parts-details {
   border-top: 0;
@@ -195,7 +123,7 @@
 .parts-card-basic .parts-details > summary {
   justify-content: flex-start;
   padding: 6px 0;
-  font-size: 0.82rem;
+  font-size: 1rem;
 }
 .parts-card-basic .parts-details-body {
   padding-top: 14px;
@@ -222,7 +150,7 @@
   align-items: center;
   flex-wrap: wrap;
   gap: 8px;
-  font-size: 0.8rem;
+  font-size: 1rem;
 }
 .parts-card-meta a {
   color: #3b67a7;
@@ -238,26 +166,11 @@
 }
 .page-article .parts-card h4 {
   color: var(--parts-navy);
-  font-size: 1.25rem;
-  line-height: 1.3;
+  font-size: 1.35rem;
+  line-height: 1.4;
   margin: 13px 0 9px;
   font-weight: 600;
   overflow-wrap: anywhere;
-}
-.parts-category {
-  display: inline-block;
-  padding: 3px 9px;
-  border-radius: 5px;
-  background: #edf3fb;
-  color: #496080;
-  font-size: 0.72rem;
-}
-.page-article .parts-card-summary {
-  margin: 13px 0 0;
-  color: #4b607e;
-  font-size: 0.98rem;
-  line-height: 1.65;
-  min-height: 4.8em;
 }
 .parts-details {
   border-top: 1px solid #e0e8f2;
@@ -268,7 +181,7 @@
   justify-content: space-between;
   gap: 12px;
   padding: 15px 0;
-  font-size: 0.88rem;
+  font-size: 1rem;
   font-weight: 500;
   color: #365f9e;
   cursor: pointer;
@@ -292,14 +205,10 @@
   line-height: 1.75;
   margin-bottom: 16px;
 }
-.page-article .parts-original-title {
-  font-weight: 600;
-  color: var(--parts-navy);
-}
 .parts-components,
 .parts-feature-list {
   margin: 20px 0;
-  font-size: 0.85rem;
+  font-size: 1rem;
 }
 .parts-components strong,
 .parts-feature-list > strong {
@@ -316,7 +225,7 @@
   padding: 4px 7px;
   border: 1px solid #d9e4f1;
   border-radius: 5px;
-  font-size: 0.74rem;
+  font-size: 1rem;
   text-decoration: none;
   overflow-wrap: anywhere;
 }
@@ -326,7 +235,7 @@
 }
 .page-article .parts-feature-list li {
   color: #496080;
-  font-size: 0.85rem;
+  font-size: 1rem;
   line-height: 1.6;
   margin-bottom: 8px;
 }
@@ -336,7 +245,7 @@
   display: block;
 }
 .page-article .parts-feature-list p {
-  font-size: 0.8rem;
+  font-size: 1rem;
   color: #62748b;
   margin-top: 10px;
 }
@@ -346,7 +255,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 10px;
-  font-size: 0.85rem;
+  font-size: 1rem;
 }
 .parts-sequence-heading strong {
   font-weight: 500;
@@ -361,11 +270,11 @@
   border-radius: 5px;
   background: #fff;
   color: #365f9e;
-  font-size: 0.75rem;
+  font-size: 1rem;
 }
 .parts-copy-status {
   display: block;
-  font-size: 0.8rem;
+  font-size: 1rem;
   color: #3b6d67;
   margin-top: 5px;
 }
@@ -381,7 +290,7 @@
   background: #f3f6fa;
   color: #3d5679;
   font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
-  font-size: 0.73rem;
+  font-size: 0.9rem;
   line-height: 1.9;
   white-space: pre-wrap;
   overflow-wrap: anywhere;
@@ -389,7 +298,7 @@
   user-select: all;
 }
 .parts-registry-cta {
-  font-size: 0.85rem;
+  font-size: 1rem;
 }
 .parts-empty {
   padding: 20px;
@@ -419,9 +328,6 @@
   }
   .parts-card {
     padding: 20px 19px 0;
-  }
-  .page-article .parts-card-summary {
-    min-height: 0;
   }
   .parts-card.parts-card-basic {
     grid-template-columns: minmax(0, 1fr);

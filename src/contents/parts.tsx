@@ -133,22 +133,6 @@ function SequenceMap({ part }: { part: Part }) {
           </g>
         ))}
       </svg>
-      <figcaption>
-        {part.features.map((feature, index) => (
-          <span key={`${feature.sourceId}-${feature.start}`}>
-            <b style={{ backgroundColor: colors[feature.color] }}>
-              {index + 1}
-            </b>
-            {feature.label}
-          </span>
-        ))}
-        {part.kind === "composite" && (
-          <span>
-            <i className="parts-map-unmapped" />
-            Other sequence
-          </span>
-        )}
-      </figcaption>
     </figure>
   );
 }
@@ -199,30 +183,12 @@ function PartCard({ part }: { part: Part }) {
         <span>{part.sequence.length.toLocaleString()} bp</span>
       </div>
       <h4>{part.title}</h4>
-      <span className="parts-category">{part.category}</span>
-      <p className="parts-card-summary">
-        <SourceText text={part.summary} />
-      </p>
-      {part.kind === "basic" ? (
-        <div className="parts-dna-preview">
-          <span>{part.sequence.length > 50 ? "First 50 bp" : "DNA"}</span>
-          <code>
-            {part.sequence
-              .slice(0, 50)
-              .match(/.{1,10}/g)
-              ?.join(" ")}
-            {part.sequence.length > 50 ? " …" : ""}
-          </code>
-        </div>
-      ) : (
-        <SequenceMap part={part} />
-      )}
+      {part.kind === "composite" && <SequenceMap part={part} />}
       <details className="parts-details">
         <summary>
-          Full description &amp; sequence<span aria-hidden="true">＋</span>
+          Details<span aria-hidden="true">＋</span>
         </summary>
         <div className="parts-details-body">
-          <p className="parts-original-title">{part.title}</p>
           <p>
             <SourceText text={part.description} />
           </p>
@@ -249,11 +215,6 @@ function PartCard({ part }: { part: Part }) {
                   </li>
                 ))}
               </ol>
-              <p>
-                Gray regions are outside the mapped components. The map does not
-                imply that every expression or processing element has been
-                annotated.
-              </p>
             </div>
           )}
           <div className="parts-sequence-heading">
@@ -309,23 +270,19 @@ export function Parts() {
     <div className="parts-page">
       <section className="parts-catalogue" aria-labelledby="parts-browse">
         <h2 id="parts-browse">Browse the collection</h2>
-        <p className="parts-catalogue-lead">
-          Find a part by name, Registry ID or function. Open any entry for its
-          complete English description and downloadable DNA sequence.
-        </p>
         <div className="parts-toolbar">
           <label>
-            <span>Search parts</span>
             <input
+              aria-label="Search parts"
               type="search"
               value={query}
               onChange={(event) => setQuery(event.target.value)}
-              placeholder="e.g. DogTag, SELP or BBa_…"
+              placeholder="Search parts…"
             />
           </label>
           <label>
-            <span>Function</span>
             <select
+              aria-label="Function"
               value={category}
               onChange={(event) => setCategory(event.target.value)}
             >
@@ -342,27 +299,27 @@ export function Parts() {
             }
             disabled={filtered.length === 0}
           >
-            Download{" "}
-            {filtered.length === collection.parts.length ? "all" : "selected"}{" "}
             FASTA ↓
           </button>
         </div>
-        <div className="parts-results-line">
-          <span role="status">
-            Showing {filtered.length} of {collection.parts.length} parts
-          </span>
-          {(query || category) && (
-            <button
-              type="button"
-              onClick={() => {
-                setQuery("");
-                setCategory("");
-              }}
-            >
-              Clear filters ×
-            </button>
-          )}
-        </div>
+        {(query || category) && (
+          <div className="parts-results-line">
+            <span role="status">
+              Showing {filtered.length} of {collection.parts.length} parts
+            </span>
+            {(query || category) && (
+              <button
+                type="button"
+                onClick={() => {
+                  setQuery("");
+                  setCategory("");
+                }}
+              >
+                Clear filters ×
+              </button>
+            )}
+          </div>
+        )}
       </section>
       {(["composite", "basic"] as const).map((kind) => {
         const parts = filtered.filter((part) => part.kind === kind);
@@ -376,15 +333,7 @@ export function Parts() {
               <h2 id={`${kind}-parts`}>
                 {kind === "basic" ? "Basic Parts" : "Composite Parts"}
               </h2>
-              <span>
-                {parts.length} / {kind === "basic" ? 18 : 12}
-              </span>
             </div>
-            <p>
-              {kind === "basic"
-                ? "Individual coding regions, peptide motifs and protein modules for modular assembly."
-                : "Combined modules that connect scaffold architecture with ligation, retention, magnetic response or protease-responsive disconnection."}
-            </p>
             <div
               className={kind === "basic" ? "parts-basic-list" : "parts-grid"}
             >
