@@ -55,8 +55,8 @@
   position: absolute;
   z-index: 2;
   color: #054db0;
-  font-family: "Silkscreen", monospace;
-  font-weight: 700;
+  font-family: "Seymour One", sans-serif;
+  font-weight: 400;
 }
 
 .nest-solution-selp-title {
@@ -93,7 +93,9 @@
 }
 
 .nest-solution-ligase-title {
-  left: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
   top: -20px;
   width: 500px;
   font-size: 44px;
@@ -300,10 +302,10 @@
 .selp-pipeline__card {
   position: absolute;
   z-index: 1;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+  width: 44.33%;
+  border-radius: 2.49cqw;
   background: transparent;
+  box-shadow: none;
   color: #000;
 }
 
@@ -882,3 +884,75 @@
     text-shadow: 0 1px 0 #5c9ff0;
   }
 }
+
+/* Follow the blue connectors as the modules unfold into view. */
+.selp-pipeline__stage > :not(.selp-pipeline__connector) {
+  opacity: var(--pipeline-reveal, 0);
+  translate: 0 calc((1 - var(--pipeline-reveal, 0)) * 64px);
+  will-change: opacity, translate;
+}
+.selp-pipeline__stage--gag > :not(.selp-pipeline__connector) {
+  translate: calc((1 - var(--pipeline-reveal, 0)) * 40px) calc((1 - var(--pipeline-reveal, 0)) * 64px);
+}
+.selp-pipeline__stage--mitochondrial > :not(.selp-pipeline__connector) {
+  translate: calc((1 - var(--pipeline-reveal, 0)) * -40px) calc((1 - var(--pipeline-reveal, 0)) * 64px);
+}
+
+.selp-pipeline__stage > :not(.selp-pipeline__connector) {
+  transition: opacity 180ms ease-out, translate 180ms ease-out;
+}
+.selp-pipeline__connector { transition: clip-path 180ms ease-out; }
+@media (prefers-reduced-motion: reduce) {
+  .selp-pipeline__stage > * { transition: none; }
+}
+
+/* Text coordinates are percentages of the full module, not a narrow nested card. */
+.selp-pipeline__stage .selp-pipeline__card {
+  width: 100%;
+  height: 100%;
+}
+
+/* The ending shares the same stationary sky as the story and the modules. */
+.selp-after-pipeline { background: transparent; }
+
+/* Use the NEST typeface with the original promotion title colors. */
+.selp-promotion > h2 {
+  width: 84%;
+  font-family: "Seymour One", sans-serif;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: #ffbc05;
+  -webkit-text-stroke: 2px #5c9ff0;
+  text-shadow: 0 2px 0 #5c9ff0;
+}
+
+.selp-pipeline__connector {
+  filter: none;
+  overflow: visible;
+}
+
+.selp-pipeline__animation > img,
+.selp-pipeline__animation > canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.selp-pipeline__animation > canvas { visibility: hidden; }
+.selp-pipeline__animation[data-paused="true"] > img { visibility: hidden; }
+.selp-pipeline__animation[data-paused="true"] > canvas { visibility: visible; }
+
+/* Shared centerline for each solution card's heading, copy box and action. */
+.story-viewport .nest-solution-card > :is(
+  .nest-solution-selp-title,
+  .nest-solution-selp-subtitle,
+  .nest-solution-selp-copy,
+  .nest-solution-ligase-copy,
+  .nest-solution-button
+) {
+  left: 50%;
+  transform: translateX(-50%);
+}
+.story-viewport .nest-solution-selp-copy { width: calc(100% - 72px); }
+.story-viewport .nest-solution-ligase-copy { width: calc(100% - 72px); }

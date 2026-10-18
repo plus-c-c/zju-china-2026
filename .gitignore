@@ -11,7 +11,10 @@ node_modules
 dist
 dist-ssr
 *.local
-/public/
+/public/*
+!/public/home-opening/
+/public/home-opening/*
+!/public/home-opening/index.html
 .github/
 
 # Editor directories and files

@@ -121,16 +121,8 @@ const yellowCards: CardCopy[] = [
     ],
     backArt: [
       {
-        name: "home-limit-back-dna.avif",
-        className: "limitations-art--dna",
-      },
-      {
-        name: "home-limit-back-cell-outline.avif",
-        className: "limitations-art--cell-outline",
-      },
-      {
-        name: "home-limit-back-nucleus.avif",
-        className: "limitations-art--nucleus",
+        name: "home/group-1.avif",
+        className: "limitations-art--dynamic-back-group",
       },
     ],
   },
@@ -327,26 +319,28 @@ function CardLayer({
 
 export function MaterialLimitations({
   drawProgress,
+  yellowRemoved: removed,
 }: {
-  drawProgress: number;
+  drawProgress?: number;
+  yellowRemoved?: boolean;
 }) {
   const [yellowFlipped, setYellowFlipped] = useState([false, false, false]);
   const [blueFlipped, setBlueFlipped] = useState([false, false, false]);
   const reducedMotion =
     typeof window !== "undefined" &&
     window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const progress = reducedMotion ? 1 : drawProgress;
+  const progress = reducedMotion ? 1 : (drawProgress ?? (removed ? 1 : 0));
   const yellowRemoved = progress >= 0.72;
   const clamp = (value: number) => Math.min(1, Math.max(0, value));
-  const drawEase = (value: number) => value * value;
+  const drawEase = (value: number) => value * value * (3 - 2 * value);
   const pageStyle = {
     "--limitations-title-opacity": 1 - clamp((progress - 0.5) / 0.08),
     "--solution-title-opacity": clamp((progress - 0.62) / 0.08),
   } as CSSProperties;
 
   const cardMotion = (index: number) => {
-    const start = 0.22 + index * 0.12;
-    const amount = drawEase(clamp((progress - start) / 0.24));
+    const start = 0;
+    const amount = drawEase(clamp((progress - start) / 0.96));
     const direction = index - 1;
     return {
       "--card-draw-x": `${direction * 84 * amount}px`,
