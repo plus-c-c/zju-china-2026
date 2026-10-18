@@ -101,6 +101,20 @@
   background: #ffffff18;
 }
 
+.nest-nav-trigger > span {
+  transition: translate 200ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.nest-nav-trigger[aria-expanded="true"] > span,
+.nest-nav-trigger:active > span {
+  animation: nest-title-bounce 320ms ease-out;
+}
+
+@keyframes nest-title-bounce {
+  0%, 100% { translate: 0 0; }
+  40% { translate: 0 -4px; }
+}
+
 .nest-nav-chevron {
   flex-shrink: 0;
   width: 6px;
@@ -188,18 +202,8 @@
   width: 60px;
   height: 60px;
   object-fit: contain;
+  object-position: center;
   transition: transform 180ms ease;
-}
-
-/* Preserve the original files while matching their visible icon sizes. */
-.nest-tile-icon[src$="/04-design.avif"] {
-  scale: 1.44;
-  translate: -12% 2%;
-}
-
-.nest-tile-icon[src$="/07-future-plan.avif"] {
-  scale: 1.44;
-  translate: 0 2%;
 }
 
 .nest-tile-copy {
@@ -408,7 +412,8 @@
 @media (prefers-reduced-motion: reduce) {
   .nest-navbar,
   .nest-navbar *,
-  .nest-navbar *::after {
+  .nest-navbar *::after,
+  .nest-nav-trigger > span {
     animation: none;
     transition: none;
   }
