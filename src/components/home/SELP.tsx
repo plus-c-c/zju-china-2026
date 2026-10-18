@@ -4,6 +4,7 @@ import "./SELP.css";
 
 const STATIC_HOME = "https://static.igem.wiki/teams/6102/wiki/images/home";
 const STATIC_GIF = "https://static.igem.wiki/teams/6102/wiki/gif";
+const LOCAL_HOME = `${import.meta.env.BASE_URL}images/home`;
 
 function DashedArrow({ className }: { className: string }) {
   return (
@@ -180,42 +181,51 @@ function LoopingPipelineGif({
 }
 
 const quickLinks = [
-  { label: "Description", to: "/description", icon: "document" },
-  { label: "Design", to: "/design", icon: "design" },
+  {
+    label: "Description",
+    to: "/description",
+    icon: "description.png",
+  },
+  {
+    label: "Design",
+    to: "/design",
+    icon: "design.png",
+  },
   {
     label: "Proof of Concept",
     to: "/proof-of-concept",
-    icon: "proof",
+    icon: "proof-of-concept.png",
   },
-  { label: "Model", to: "/model", icon: "model" },
+  {
+    label: "Model",
+    to: "/model",
+    icon: "model.png",
+  },
   {
     label: "Entrepreneurship",
     to: "/entrepreneurship",
-    icon: "business",
+    icon: "entrepreneurship.png",
   },
   {
     label: "Integrated Human Practice",
     to: "/human-practices",
-    icon: "people",
+    icon: "human-practices.svg",
   },
 ] as const;
 
-function ShortcutIcon({ type }: { type: (typeof quickLinks)[number]["icon"] }) {
-  const paths = {
-    document: <path d="M7 3h8l4 4v14H7zM15 3v5h5M10 12h6m-6 4h6m-6 4h4" />,
-    design: <path d="m4 19 4-1 10-10-3-3L5 15l-1 4Zm9-12 3 3M12 21h9M5 5l3 3" />,
-    proof: <path d="M4 5h16v15H4zM8 5V2m8 3V2M8 9h3v3H8zm5 0h3v3h-3zm-5 5h3v3H8zm5 0h3v3h-3z" />,
-    model: <path d="m12 3 8 4.5v9L12 21l-8-4.5v-9L12 3Zm0 0v9m8-4.5-8 4.5-8-4.5m8 4.5v9" />,
-    business: <path d="M4 10h16v10H4zM9 10V7h6v3M4 14h16M10 14v2h4v-2" />,
-    people: <path d="M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm7-1a3 3 0 1 0 0-6M2 21v-3c0-3 3-5 7-5s7 2 7 5v3m1-8c3 0 5 2 5 4v3" />,
-  } as const;
-
-  return (
-    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none">
-      {paths[type]}
-    </svg>
-  );
-}
+const promotionDecorations = [
+  ["orange-cell-lower-right", "orange-cell-lower-right.png"],
+  ["orange-molecule-upper-left", "orange-molecule-upper-left.png"],
+  ["cyan-particle-top", "cyan-particle-top.png"],
+  ["blue-bird-lower-left", "blue-bird-lower-left.png"],
+  ["blue-bird-top", "blue-bird-top.png"],
+  ["dna-left", "dna-left.png"],
+  ["white-cell-lower-right", "white-cell-lower-right.png"],
+  ["orange-cell-left", "orange-cell-left.png"],
+  ["green-cell-right", "green-cell-right.png"],
+  ["cyan-gear-upper-right", "cyan-gear-upper-right.png"],
+  ["cyan-gear-middle-right", "cyan-gear-middle-right.png"],
+] as const;
 
 export function SelpPipeline() {
   return (
@@ -341,24 +351,19 @@ export function SelpPipeline() {
           <nav className="selp-shortcuts" aria-label="Project shortcuts">
             {quickLinks.map((item) => (
               <Link className="selp-shortcut" key={item.to} to={item.to}>
-                <ShortcutIcon type={item.icon} />
+                <img
+                  aria-hidden="true"
+                  alt=""
+                  src={`${LOCAL_HOME}/shortcut-icons/${item.icon}`}
+                />
                 <span>{item.label}</span>
               </Link>
             ))}
           </nav>
 
           <section className="selp-promotion" aria-labelledby="promotion-video-title">
-            <div className="selp-promotion__heading">
-              <span aria-hidden="true" className="selp-promotion__line" />
-              <h2 id="promotion-video-title">Promotion Video</h2>
-              <span aria-hidden="true" className="selp-promotion__line" />
-            </div>
-            <div className="selp-promotion__bird" aria-hidden="true">
-              <img src="/images/home/home-heading-bird.png" alt="" />
-            </div>
-            <span className="selp-promotion__ornament selp-promotion__ornament--one" aria-hidden="true" />
-            <span className="selp-promotion__ornament selp-promotion__ornament--two" aria-hidden="true" />
-            <span className="selp-promotion__ornament selp-promotion__ornament--three" aria-hidden="true" />
+            <div className="selp-promotion__depth" aria-hidden="true" />
+            <div className="selp-promotion__border" aria-hidden="true" />
             <div className="selp-promotion__frame">
               <iframe
                 src="https://video.igem.org/videos/embed/6626b25e-37f5-4fbc-8f49-a9897496b6b0"
@@ -368,6 +373,16 @@ export function SelpPipeline() {
                 allowFullScreen
               />
             </div>
+            <h2 id="promotion-video-title">Promotion Video</h2>
+            {promotionDecorations.map(([className, fileName]) => (
+              <img
+                alt=""
+                aria-hidden="true"
+                className={`selp-promotion__decoration selp-promotion__decoration--${className}`}
+                key={fileName}
+                src={`${LOCAL_HOME}/promotion/${fileName}`}
+              />
+            ))}
           </section>
         </section>
       </div>
