@@ -61,7 +61,7 @@ export const pageDetails: Record<
     icon: "25_notebook.png",
     description: "Follow our work in the lab",
   },
-  "/safety": {
+  "/safety-and-security": {
     icon: "14_safety.png",
     description: "Responsible work in the laboratory",
   },

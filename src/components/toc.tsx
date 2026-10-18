@@ -233,14 +233,10 @@ export function Toc({
           .reverse()
           .find((heading) => heading.level === 1)?.id || ""
       : "";
-  const visibleHeadings = headings.filter((heading, index) => {
-    if (heading.level === 1) return true;
-    const parentId = headings
-      .slice(0, index)
-      .reverse()
-      .find((candidate) => candidate.level === 1)?.id;
-    return parentId === activeTopLevelId;
-  });
+  /* Show the complete hierarchy: the nested levels stay visible while the
+     page scrolls instead of appearing only under the active top-level
+     section (the active one is still marked with page-toc-section-current). */
+  const visibleHeadings = headings;
 
   const showToc = !hideToc && headings.length > 0;
 

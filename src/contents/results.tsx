@@ -4,17 +4,39 @@ import scaffold from "./results/scaffold-content.json";
 import "./results/results.css";
 
 const functionModules = [
-  { id: "anisotropy", label: "4 Magnetically responsive anisotropy" },
-  { id: "gag", label: "5 GAG retention" },
-  { id: "delivery", label: "6 Delivery" },
+  {
+    id: "anisotropy",
+    number: "4",
+    label: "Magnetically responsive anisotropy",
+  },
+  { id: "gag", number: "5", label: "GAG retention" },
+  { id: "delivery", number: "6", label: "Delivery" },
 ] as const;
 
 type FunctionModuleId = (typeof functionModules)[number]["id"];
 
+function ResultsChevron({ className = "" }: { className?: string }) {
+  return (
+    <svg
+      className={`wetlab-results__chevron ${className}`.trim()}
+      viewBox="0 0 24 24"
+      width="20"
+      height="20"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <path d="m6 9 6 6 6-6" />
+    </svg>
+  );
+}
+
 export function Results() {
   const [activeModule, setActiveModule] = useState<
     "platform" | "function" | null
-  >(null);
+  >("platform");
   const platformOpen = activeModule === "platform";
   const functionOpen = activeModule === "function";
   const [activeFunction, setActiveFunction] = useState<FunctionModuleId | null>(
@@ -124,7 +146,7 @@ export function Results() {
               }}
             >
               {module === "platform" ? "Platform" : "Function"}
-              <span className="wetlab-results__chevron" aria-hidden="true" />
+              <ResultsChevron />
             </button>
           ))}
         </nav>
@@ -169,15 +191,20 @@ export function Results() {
                 <button
                   key={module.id}
                   id={`wetlab-${module.id}-button`}
+                  className="wetlab-results__function-entry"
                   type="button"
+                  aria-label={`${module.number} ${module.label}`}
                   aria-expanded={activeFunction === module.id}
                   aria-controls={`wetlab-${module.id}-content`}
                   onClick={() => toggleFunction(module.id)}
                 >
-                  {module.label}
-                  <span aria-hidden="true">
-                    {activeFunction === module.id ? "−" : "+"}
+                  <span className="wetlab-results__function-number">
+                    {module.number}
                   </span>
+                  <span className="wetlab-results__function-title">
+                    {module.label}
+                  </span>
+                  <ResultsChevron className="wetlab-results__function-arrow" />
                 </button>
               ))}
             </div>

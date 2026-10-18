@@ -4,7 +4,7 @@ import "./App.css";
 import "../../components/table.css";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { getPathMapping, stringToSlug } from "../../utils";
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Navbar } from "../../components/Navbar";
 import { NotFound } from "../../components/NotFound";
 import { Footer } from "../../components/Footer";
@@ -12,12 +12,14 @@ import { Toc } from "../../components/toc";
 import { BackToTop } from "../../components/BackToTop";
 import { LoadingScreen } from "../../components/LoadingScreen";
 import "./Mobile.css";
+import { BirdCursorProvider } from "../../components/BirdCursor";
 
 const MINIMUM_LOADING_TIME = 600;
 const MAXIMUM_LOADING_TIME = 8000;
 
 const App = () => {
   const location = useLocation();
+  const previousScrollPath = useRef<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [homeIntroReady, setHomeIntroReady] = useState(false);
   const [isMobileNavigation, setIsMobileNavigation] = useState(
@@ -30,10 +32,12 @@ const App = () => {
       .pop() || "/";
 
   useLayoutEffect(() => {
+    if (previousScrollPath.current === location.pathname) return;
+    previousScrollPath.current = location.pathname;
     if (!location.hash) {
       window.scrollTo({ top: 0, left: 0, behavior: "instant" });
     }
-  }, [location.pathname]);
+  }, [location.pathname, location.hash]);
 
   // Set Page Title
   const currentPage =
@@ -127,60 +131,62 @@ const App = () => {
   }, [currentPath, location.key]);
 
   return (
-    <div className="app">
-      <LoadingScreen visible={isLoading} />
+    <BirdCursorProvider enabled={!isLoading && !isHome}>
+      <div className="app">
+        <LoadingScreen visible={isLoading} />
 
-      {/* Navigation */}
-      {(!isHome || homeIntroReady || isMobileNavigation) && (
-        <Navbar
-          introEntrance={isHome && homeIntroReady && !isMobileNavigation}
-        />
-      )}
+        {/* Navigation */}
+        {(!isHome || homeIntroReady || isMobileNavigation) && (
+          <Navbar
+            introEntrance={isHome && homeIntroReady && !isMobileNavigation}
+          />
+        )}
 
-      {/* Header and PageContent */}
-      <main
-        className={`content ${
-          currentPath === "/"
-            ? "content-home"
-            : isNotFound
-              ? "content-not-found"
-              : "content-page"
-        }`}
-      >
-        <Routes>
-          {Object.entries(pathMapping).map(
-            ([path, { title, component: Component }]) => (
-              <Route
-                key={path}
-                path={path}
-                element={
-                  path === "/" ? (
-                    <div className="home-container">
-                      {!isLoading && <Component />}
-                    </div>
-                  ) : (
-                    <Toc
-                      key={path}
-                      title={title || ""}
-                      hideToc={path === "/engineering"}
-                    >
-                      <Component />
-                    </Toc>
-                  )
-                }
-              />
-            ),
-          )}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </main>
+        {/* Header and PageContent */}
+        <main
+          className={`content ${
+            currentPath === "/"
+              ? "content-home"
+              : isNotFound
+                ? "content-not-found"
+                : "content-page"
+          }`}
+        >
+          <Routes>
+            {Object.entries(pathMapping).map(
+              ([path, { title, component: Component }]) => (
+                <Route
+                  key={path}
+                  path={path}
+                  element={
+                    path === "/" ? (
+                      <div className="home-container">
+                        {!isLoading && <Component />}
+                      </div>
+                    ) : (
+                      <Toc
+                        key={path}
+                        title={title || ""}
+                        hideToc={path === "/engineering"}
+                      >
+                        <Component />
+                      </Toc>
+                    )
+                  }
+                />
+              ),
+            )}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </main>
 
-      {!isNotFound && <BackToTop />}
+        {!isNotFound && <BackToTop />}
 
-      {/* Footer */}
-      {/* MUST mention license AND have a link to team wiki's repository on gitlab.igem.org */}
-      {currentPath !== "/" && !isNotFound && <Footer />}
-    </div>
+        {/* Footer */}
+        {/* MUST mention license AND have a link to team wiki's repository on gitlab.igem.org */}
+        {currentPath !== "/" && !isNotFound && <Footer />}
+      </div>
+    </BirdCursorProvider>
   );
 };
 

@@ -17,7 +17,7 @@ const headerImages: Record<string, string> = {
   "/results": "09-wetlab-experiment-and-result.avif",
   "/protocol": "10-wetlab-protocol.avif",
   "/parts": "11-wetlab-parts.avif",
-  "/safety": "12-wetlab-safety.avif",
+  "/safety-and-security": "12-wetlab-safety.avif",
   "/hardware": "13-drylab-hardware.avif",
   "/software": "14-drylab-software.avif",
   "/model": "15-drylab-model.avif",

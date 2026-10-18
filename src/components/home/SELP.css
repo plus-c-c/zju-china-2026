@@ -406,7 +406,6 @@
   width: 10.39%;
   height: 20.64%;
   transform: rotate(-11.75deg);
-
 }
 
 .selp-pipeline__art--purple-vial {
@@ -588,7 +587,8 @@
   box-shadow: 0 10px 22px rgb(58 109 164 / 18%);
 }
 
-.selp-shortcut img {
+.selp-shortcut img,
+.selp-shortcut canvas {
   width: clamp(34px, 3.37cqw, 46px) !important;
   height: clamp(34px, 3.37cqw, 46px) !important;
   flex: 0 0 auto;
@@ -868,7 +868,8 @@
     font-size: 12px;
   }
 
-  .selp-shortcut img {
+  .selp-shortcut img,
+  .selp-shortcut canvas {
     width: 30px !important;
     height: 30px !important;
   }

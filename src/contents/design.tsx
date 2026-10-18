@@ -28,17 +28,19 @@ export function Design() {
             populations differs in strength, toughness, and local
             microenvironment, so an ideal material should retain a common
             material basis while allowing properties to be tuned and functions
-            combined on demand. We therefore designed the{" "}
-            <strong>NEST platform</strong>, built on a{" "}
+            combined on demand. We therefore designed{" "}
+            <strong>the NEST platform</strong>, built on a{" "}
             <strong>
               programmable silk–elastin-like polypeptide (SELP) scaffold
             </strong>{" "}
-            and
-            <strong>standardized peptide interfaces</strong> that assemble
-            functional modules. Unlike conventional designs that rely on
-            blending components, NEST encodes material composition, crosslinking
-            sites, and functional interfaces in a single DNA sequence (Figure
-            0.1).
+            and <strong>standardized peptide interfaces</strong> that assemble{" "}
+            <strong>functional modules</strong>. Unlike conventional designs
+            that rely on blending components,{" "}
+            <strong>
+              NEST encodes material composition, crosslinking sites, and
+              functional interfaces in a single DNA sequence
+            </strong>{" "}
+            (Figure 0.1).
           </p>
           <figure className="figure d-block my-4 text-center">
             <TransparentImage
@@ -64,21 +66,30 @@ export function Design() {
             1 Programmable Material Foundation: The SELP Scaffold
           </h2>
           <p>
-            NEST (a SELP-based Modular and Programmable Biomimetic Cartilage
-            Hydrogel Platform) comprises two core elements: a programmable
-            silk–elastin-like polypeptide (SELP) scaffold and standardized
-            peptide ligation interfaces for assembling functional units. SELP
-            provides support, elasticity, crosslinkable sites, and a basis for
-            displaying functions; the interface relatively decouples the
-            material body from external functions, so that functional modules
-            can be assembled, replaced, and iterated. This part first describes
-            the scaffold.
+            <strong>
+              NEST (a SELP-based Modular and Programmable Biomimetic Cartilage
+              Hydrogel Platform)
+            </strong>{" "}
+            comprises two core elements: a{" "}
+            <strong>
+              programmable silk–elastin-like polypeptide (SELP) scaffold
+            </strong>{" "}
+            and <strong>standardized peptide ligation interfaces</strong> for
+            assembling functional units. SELP provides support, elasticity,
+            crosslinkable sites, and a basis for displaying functions; the
+            interface relatively decouples the material body from external
+            functions, so that functional modules can be{" "}
+            <strong>assembled</strong>, <strong>replaced</strong>, and{" "}
+            <strong>iterated</strong>. This part first describes the scaffold.
           </p>
           <h3 className="mt-5 mb-3">1.1 Sequence Design and Nomenclature</h3>
           <p>
             NEST uses SELP as its scaffold. SELPs are genetically engineered
-            chimeric polypeptides that combine silk-like (GAGAGS) and
-            elastin-like (GXGVP, where X is any amino acid except proline)
+            chimeric polypeptides that combine{" "}
+            <strong>silk-like (GAGAGS)</strong> and{" "}
+            <strong>
+              elastin-like (GXGVP, where X is any amino acid except proline)
+            </strong>{" "}
             repeats and can be produced recombinantly in <em>E. coli</em>
             <sup>
               [
@@ -143,10 +154,10 @@ export function Design() {
               ]
             </sup>
             . <strong>Tyrosine (Y)</strong> serves as the photocrosslinking
-            site, enabling protein chains to be joined into a network through
-            dityrosine bonds. The <strong>RGD sequence (GRGDS)</strong> provides
-            a recognition site for cell-surface integrins and supports cell
-            adhesion
+            site, enabling protein chains to be joined into a network through{" "}
+            <strong>dityrosine bonds</strong>. The{" "}
+            <strong>RGD sequence (GRGDS)</strong> provides a recognition site
+            for cell-surface integrins and supports cell adhesion
             <sup>
               [
               <a
@@ -243,7 +254,7 @@ export function Design() {
             </table>
           </div>
           <p>
-            We follow the 2X-m naming convention
+            We follow the <strong>2X-m</strong> naming convention
             <sup>
               [
               <a
@@ -255,11 +266,15 @@ export function Design() {
               </a>
               ]
             </sup>
-            : “2” denotes the fixed ratio of silk-like (S) to elastin-like (E)
-            motifs in each repeat unit, “X” denotes the signature residue(s)
-            written into the elastin-like domain, and “m” denotes the number of
-            repeat units. For example, 2KY-20 carries K and Y signature residues
-            with 20 repeats (Figure 1.1).
+            : “2” denotes the{" "}
+            <strong>
+              fixed ratio of silk-like (S) to elastin-like (E) motifs
+            </strong>{" "}
+            in each repeat unit, “X” denotes the{" "}
+            <strong>signature residue(s)</strong> written into the elastin-like
+            domain, and “m” denotes the <strong>number of repeat units</strong>.
+            For example, 2KY-20 carries K and Y signature residues with 20
+            repeats (Figure 1.1).
           </p>
           <figure className="figure d-block my-4 text-center">
             <TransparentImage
@@ -289,10 +304,11 @@ export function Design() {
             synovial fluid continuously washes the joint cavity, slow
             solidification could allow the precursor solution to be diluted and
             lost before gelation; gelation therefore needs to be completed
-            within seconds. We use a ruthenium/sodium persulfate (Ru/SPS)
-            visible-light initiating system: photoexcited Ru(II)bpy₃²⁺ transfers
-            an electron to persulfate, generating Ru(III), a strong one-electron
-            oxidant that oxidizes tyrosine and mediates dityrosine crosslinking
+            within seconds. We use a{" "}
+            <strong>ruthenium/sodium persulfate (Ru/SPS)</strong> visible-light
+            initiating system: photoexcited Ru(II)bpy₃²⁺ transfers an electron
+            to persulfate, generating Ru(III), a strong one-electron oxidant
+            that oxidizes tyrosine and mediates dityrosine crosslinking
             <sup>
               [
               <a
@@ -344,10 +360,11 @@ export function Design() {
           <p>
             Production of the scaffold also exploits its sequence features. We
             use <em>E. coli</em> BL21(DE3) as the expression host and purify
-            SELPs by inverse transition cycling (ITC), which takes advantage of
-            their aggregation on heating and redissolution on cooling to
-            separate the target protein from contaminants by temperature cycling
-            and centrifugation, reducing the reliance on chromatography
+            SELPs by <strong>inverse transition cycling (ITC)</strong>, which
+            takes advantage of their aggregation on heating and redissolution on
+            cooling to separate the target protein from contaminants by
+            temperature cycling and centrifugation, reducing the reliance on
+            chromatography
             <sup>
               [
               <a
@@ -380,17 +397,17 @@ export function Design() {
             </figcaption>
           </figure>
           <p>
-            Regarding degradation, the SELP scaffold can degrade naturally in
-            vivo, and its degradation rate slows as the number of repeat units
-            increases; the repeat number m can therefore tune both mechanical
-            properties and degradation rate, allowing design adjustment
-            according to the rate of articular cartilage regeneration. The rate
-            at which the material disappears must match the rate of new
-            cartilage deposition, whereas a long-term non-degradable implant
-            would continuously activate M1 macrophages and prevent cartilage
-            regeneration. Degradability is thus precisely the functional
-            property that allows the material to be progressively replaced by
-            new tissue.
+            Regarding degradation, the SELP scaffold can{" "}
+            <strong>degrade naturally in vivo</strong>, and its degradation rate
+            slows as the number of repeat units increases; the repeat number m
+            can therefore tune both mechanical properties and degradation rate,
+            allowing design adjustment according to the rate of articular
+            cartilage regeneration. The rate at which the material disappears
+            must match the rate of new cartilage deposition, whereas a long-term
+            non-degradable implant would continuously activate M1 macrophages
+            and prevent cartilage regeneration. Degradability is thus precisely
+            the functional property that allows the material to be progressively
+            replaced by new tissue.
           </p>
           <h3 className="mt-5 mb-3">
             1.4 Sequence–Structure–Property Modeling
@@ -398,24 +415,31 @@ export function Design() {
           <p>
             A sequence specifies composition but does not by itself describe how
             multiple crosslinked chains bear load. We therefore simulate five
-            variables: (1) the effect of repeat number on chain length and
-            mechanical strength; (2) the effect of the silk-to-elastin ratio on
-            the transition temperature (<em>T</em>t); (3) the effect of
-            substituting the X residue on the hydrophilic–hydrophobic balance
-            and structural stability; (4) the effect of the number and exposure
-            of crosslinking sites on gelation rate and network formation; and
-            (5) the reverse regulation of material behavior by the insertion
-            position of functional sites.
+            variables: (1) the effect of repeat number on{" "}
+            <strong>chain length and mechanical strength</strong>; (2) the
+            effect of the silk-to-elastin ratio on the{" "}
+            <strong>
+              transition temperature (<em>T</em>t)
+            </strong>
+            ; (3) the effect of substituting the X residue on the{" "}
+            <strong>
+              hydrophilic–hydrophobic balance and structural stability
+            </strong>
+            ; (4) the effect of the number and exposure of crosslinking sites on{" "}
+            <strong>gelation rate and network formation</strong>; and (5) the{" "}
+            <strong>reverse regulation of material behavior</strong> by the
+            insertion position of functional sites.
           </p>
           <p>
-            The computational pipeline has two steps. All-atom molecular
-            dynamics (MD) simulations track chain conformations, segment
-            interactions, and the spatial state of functional sites;
-            representative conformations are then converted into a
-            coarse-grained (CG) model and extended to multi-chain crosslinked
-            networks, in which small deformations are applied and the stress
-            response is analyzed, linking the structural behavior of single
-            chains to the mechanical properties of the network
+            The computational pipeline has two steps.{" "}
+            <strong>All-atom molecular dynamics (MD) simulations</strong> track
+            chain conformations, segment interactions, and the spatial state of
+            functional sites; representative conformations are then converted
+            into a <strong>coarse-grained (CG) model</strong> and extended to{" "}
+            <strong>multi-chain crosslinked networks,</strong> in which small
+            deformations are applied and the stress response is analyzed,
+            linking the structural behavior of single chains to the mechanical
+            properties of the network
             <sup>
               [
               <a
@@ -427,11 +451,12 @@ export function Design() {
               </a>
               ]
             </sup>
-            . Rheological and other wet-lab data are used to calibrate and test
-            the model. This workflow allows representative candidate sequences
-            to be screened before experiments, reduces unproductive trial and
-            error, and progressively builds a sequence–structure–property map,
-            yielding a standardized design process.
+            . Rheological and other wet-lab data are used to{" "}
+            <strong>calibrate and test the model</strong>. This workflow allows
+            representative candidate sequences to be screened before
+            experiments, reduces unproductive trial and error, and progressively
+            builds a sequence–structure–property map, yielding a standardized
+            design process.
           </p>
           <h2
             id="2-standardized-interface-decoupling-functional-assembly-from-scaffold-design"
@@ -445,15 +470,21 @@ export function Design() {
           </h3>
           <p>
             If SELP addresses how the scaffold supports load and responds to its
-            environment, the interface addresses how functional units are
-            connected to the scaffold in a controllable, reproducible, and
-            extensible way. In NEST the interface is not an accessory
-            modification but the key to modularity: the material body stays
-            constant while external functions are changed according to the task.
+            environment, the interface addresses how functional units are{" "}
+            <strong>
+              connected to the scaffold in a controllable, reproducible, and
+              extensible way
+            </strong>
+            . In NEST the interface is not an accessory modification but the key
+            to <strong>modularity</strong>: the material body stays constant
+            while external functions are changed according to the task.
           </p>
           <p>
-            We use the SnoopLigase2/SnoopTag2/DogTag peptide–peptide ligation
-            system. It derives from the domain split of the{" "}
+            We use the{" "}
+            <strong>
+              SnoopLigase2/SnoopTag2/DogTag peptide–peptide ligation system
+            </strong>
+            . It derives from the domain split of the{" "}
             <em>Streptococcus pneumoniae</em> adhesin RrgA; SELP carries
             SnoopTag2, functional components carry DogTag, and SnoopLigase2
             catalyzes the formation of a stable covalent isopeptide bond
@@ -496,15 +527,14 @@ export function Design() {
           <p>
             Building on the first-generation system, we performed directed
             evolution and rational design to obtain the{" "}
-            <strong>SnoopLigase-ZJU system</strong>, whose ligation rate is{" "}
-            <strong>more than three orders of magnitude higher</strong>
-            than that of the first generation; coupling is completed within
-            minutes at room temperature in standard PBS (pH 7.4), and activity
-            is retained at 4–45 °C, pH 4–10, and up to 1 M NaCl. This allows
-            interface assembly to be embedded directly in the main process flow
-            of “expression, ITC purification, assembly, precursor formulation,
-            injection, and photocrosslinking” without a separately designed
-            buffer system.
+            <strong>SnoopLigase-ZJU system</strong>, whose ligation rate is more
+            than three orders of magnitude higher than that of the first
+            generation; coupling is completed within minutes at room temperature
+            in standard PBS (pH 7.4), and activity is retained at 4–45 °C, pH
+            4–10, and up to 1 M NaCl. This allows interface assembly to be
+            embedded directly in the main process flow of "expression, ITC
+            purification, assembly, precursor formulation, injection, and
+            photocrosslinking" without a separately designed buffer system.
           </p>
           <p>
             After ligation, the product reconstitutes a conformation resembling
@@ -523,16 +553,21 @@ export function Design() {
               ]
             </sup>
             . Notably, we have overcome this inherent limitation and achieved
-            <strong>multiple turnovers of SnoopLigase</strong>, converting it
-            from a stoichiometric reagent into a true multi-turnover catalyst.
+            multiple turnovers of SnoopLigase,{" "}
+            <strong>
+              converting it from a stoichiometric reagent into a true
+              multi-turnover catalyst
+            </strong>
+            .
           </p>
           <h3 className="mt-5 mb-3">
             2.2 Interface Placement and Functional Assembly
           </h3>
           <p>
             Interface position determines loading mode: terminal interfaces are
-            convenient to construct and characterize, whereas interfaces between
-            repeat units make loading density a programmable parameter.
+            convenient to <strong>construct and characterize</strong>, whereas
+            interfaces between repeat units{" "}
+            <strong>make loading density a programmable parameter</strong>.
             Functional assembly is completed before injection, and
             photocrosslinking then fixes the whole network; the former
             determines which functions the scaffold carries, and the latter
@@ -543,17 +578,18 @@ export function Design() {
           </p>
           <ol className="mb-4">
             <li className="mb-3">
-              SnoopTag2 is placed at the N terminus or the C terminus of SELP;
-              with a single interface per chain, coupling efficiency is
+              SnoopTag2 is placed{" "}
+              <strong>at the N terminus or the C terminus</strong> of SELP; with
+              a single interface per chain, coupling efficiency is
               straightforward to quantify;
             </li>
             <li className="mb-3">
-              SnoopTag2 is inserted between repeat units, so that the loading
-              density of functional modules becomes a programmable parameter set
-              by the insertion spacing;
+              SnoopTag2 is inserted <strong>between repeat units</strong>, so
+              that the loading density of functional modules becomes a
+              programmable parameter set by the insertion spacing;
             </li>
             <li className="mb-3">
-              A second orthogonal channel, the SpyLigase system
+              A second <strong>orthogonal channel</strong>, the SpyLigase system
               <sup>
                 [
                 <a
@@ -593,9 +629,10 @@ export function Design() {
           </figure>
           <p>
             The properties of the scaffold and the assembly of its functions are
-            thereby decoupled: the scaffold remains stable and computable,
-            whereas functions are added afterwards, replaced, and iterated as
-            standardized units.
+            thereby decoupled: the scaffold remains{" "}
+            <strong>stable and computable</strong>, whereas functions are added
+            afterwards, replaced, and iterated as{" "}
+            <strong>standardized units</strong>.
           </p>
           <h2 className="mt-5 mb-4">
             3 Our Solution to the Vicious Cycle of Osteoarthritis
@@ -654,23 +691,21 @@ export function Design() {
             but mechanistically distinct design goals:
           </p>
           <p>
-            <strong>Module 1</strong> uses a{" "}
-            <strong>magnetically responsive component</strong>
+            <strong>Module 1</strong> uses a magnetically responsive component
             to guide the formation of directional structure in the scaffold,
-            addressing mechanical imbalance;
+            addressing mechanical imbalance;{" "}
           </p>
           <p>
-            <strong>Module 2</strong> combines <strong>CPC and Link-N</strong>{" "}
-            to regulate local retention and renewal of GAG/hyaluronan-related
-            matrix;
+            <strong>Module 2</strong> combines CPC and Link-N to regulate local
+            retention and renewal of GAG/hyaluronan-related matrix;{" "}
           </p>
           <p>
-            <strong>Module 3</strong> uses an{" "}
-            <strong>enzyme-responsive linker</strong> to control the attachment
-            of <strong>mitochondria-loaded liposomes</strong> to the scaffold,
-            exploring the delivery of cellular metabolic support in the
-            degenerative microenvironment. The design rationale, implementation,
-            and validation boundaries of each module are described below.
+            <strong>Module 3</strong> uses an enzyme-responsive linker to
+            control the attachment of mitochondria-loaded liposomes to the
+            scaffold, exploring the delivery of cellular metabolic support in
+            the degenerative microenvironment. The design rationale,
+            implementation, and validation boundaries of each module are
+            described below.
           </p>
           <h3
             id="3-2-module-1-magnetically-responsive-anisotropy-directional-load-bearing"
@@ -684,9 +719,12 @@ export function Design() {
           </h4>
           <p>
             The collagen fibrils of native articular cartilage are organized in
-            zones: fibrils in the superficial zone run largely parallel to the
-            joint surface, those in the deep zone tend to be perpendicular to
-            it, and the middle zone provides a transition
+            zones:{" "}
+            <strong>
+              fibrils in the superficial zone run largely parallel to the joint
+              surface, those in the deep zone tend to be perpendicular to it,
+              and the middle zone provides a transition
+            </strong>
             <sup>
               [
               <a
@@ -703,10 +741,11 @@ export function Design() {
             water- and proteoglycan-rich matrix, bears load. Cartilage function
             therefore depends not only on what the tissue is made of but also on
             how its components are arranged. Through biomimicry of the internal
-            structure, we aim to introduce controllable alignment into the
-            material, investigate whether it can improve direction-dependent
-            mechanical performance, and provide spatial guidance for cells and
-            subsequent matrix tissue formation.
+            structure, we aim to
+            <strong> introduce controllable alignment into the material</strong>
+            , investigate whether it can improve direction-dependent mechanical
+            performance, and provide spatial guidance for cells and subsequent
+            matrix tissue formation.
           </p>
           <figure className="figure d-block my-4 text-center">
             <TransparentImage
@@ -729,15 +768,20 @@ export function Design() {
           <h4 className="mt-4 mb-3">3.2.2 Magnetically Guided Gelation</h4>
           <p>
             Accordingly, building on the three-dimensional support provided by
-            the SELP scaffold, we introduce a magnetically responsive module
-            consisting of Fe₃O₄ magnetic nanoparticles (MNPs) and a binding
-            peptide. First, the SELP precursor solution, already conjugated with
-            the magnetic component, is injected into the defect. While the
-            network is still flowable, a magnetic field is applied to guide the
-            orientation of the MNPs and SELP structures. Visible-light
-            crosslinking is then performed while the target orientation is
-            maintained: the magnetic field provides the alignment direction,
-            whereas crosslinking fixes the anisotropy (Figure 3.2.2).
+            the SELP scaffold, we introduce{" "}
+            <strong>
+              a magnetically responsive module consisting of Fe₃O₄ magnetic
+              nanoparticles (MNPs) and a binding peptide.
+            </strong>{" "}
+            First, the SELP precursor solution, already conjugated with the
+            magnetic component, is injected into the defect. While the network
+            is still flowable, a magnetic field is applied to{" "}
+            <strong>
+              guide the orientation of the MNPs and SELP structures
+            </strong>
+            . Visible-light crosslinking is then performed while the target
+            orientation is maintained: the magnetic field provides the alignment
+            direction, whereas crosslinking fixes the anisotropy (Figure 3.2.2).
           </p>
           <figure className="figure d-block my-4 text-center">
             <TransparentImage
@@ -786,8 +830,12 @@ export function Design() {
           </p>
           <p>
             We integrate TVNFKLY and DogTag into a single fusion protein with
-            two linking tasks: the TVNFKLY end binds Fe₃O₄ particles, and the
-            dogtag end forms a covalent isopeptide bond with SnoopTag2 on SELP
+            two linking tasks:{" "}
+            <strong>the TVNFKLY end binds Fe₃O₄ particles</strong>, and the{" "}
+            <strong>
+              dogtag end forms a covalent isopeptide bond with SnoopTag2 on
+              SELP{" "}
+            </strong>
             via the SnoopLigase system of this project. A flexible linker
             provides spacing, intended to reduce the influence of neighboring
             structures on motif exposure and target access (Figure 3.2.3).
@@ -899,9 +947,12 @@ export function Design() {
           <p>
             To protect this load-bearing foundation, we attach a cationic
             peptide carrier (CPC) and Link-N to SELP. The two have complementary
-            roles: CPC focuses on interaction with sulfated GAG, whereas Link-N
-            focuses on HA-related matrix retention and support of matrix
-            synthesis.
+            roles:{" "}
+            <strong>
+              CPC focuses on interaction with sulfated GAG, whereas Link-N
+              focuses on HA-related matrix retention and support of matrix
+              synthesis.
+            </strong>
           </p>
           <p>
             CPCs are short arginine-rich peptides that exploit the high fixed
@@ -1008,23 +1059,26 @@ export function Design() {
               </a>
               ]
             </sup>
-            , providing a biological basis for supporting matrix renewal.
-            Studies of immobilized Link-N provide a basis for local retention:
-            in poly(ethylene glycol) (PEG) hydrogels, covalently tethered Link-N
-            reduced the loss of entrapped hyaluronan under dynamic compression
-            by about 60%
-            <sup>
-              [
-              <a
-                href="#design-reference-19"
-                aria-label="Reference 19"
-                className="text-decoration-none"
-              >
-                19
-              </a>
-              ]
-            </sup>
-            . We therefore configure Link-N as an HA-related matrix-regulating
+            , providing a biological basis for supporting matrix renewal.{" "}
+            <strong>
+              Studies of immobilized Link-N provide a basis for local retention:
+              in poly(ethylene glycol) (PEG) hydrogels, covalently tethered
+              Link-N reduced the loss of entrapped hyaluronan under dynamic
+              compression by about 60%
+              <sup>
+                [
+                <a
+                  href="#design-reference-19"
+                  aria-label="Reference 19"
+                  className="text-decoration-none"
+                >
+                  19
+                </a>
+                ]
+              </sup>
+              .
+            </strong>{" "}
+            We therefore configure Link-N as an HA-related matrix-regulating
             component that complements CPC, which focuses on sulfated GAG.
           </p>
           <p>
@@ -1369,7 +1423,7 @@ export function Design() {
             delivery. At this stage, the temporarily stored material is the
             precursor solution before photocrosslinking: its flowability allows
             it to adapt to the defect, whereas network fixation is deferred
-            until the material reaches the target site。
+            until the material reaches the target site.
           </p>
           <h4 className="mt-4 mb-3">
             3.5.2 Delivery, Positioning, and Gelation: Continuous Shape
@@ -1388,17 +1442,25 @@ export function Design() {
             crosslinking, fixing the material into a network.
           </p>
           <p>
-            The workflow proceeds as{" "}
-            <strong>
-              formulation, delivery, observation and filling, magnetic
-              orientation, and blue-light crosslinking
-            </strong>
-            : the formulation determines the functions the material carries,
-            injection accomplishes shape matching, the magnetic field helps
-            establish the internal structure, and photocrosslinking preserves
-            the formed state. Each step creates the conditions for the next and
-            together they determine the final state of the scaffold.
+            The workflow proceeds as formulation, delivery, observation and
+            filling, magnetic orientation, and blue-light crosslinking: the
+            formulation determines the functions the material carries, injection
+            accomplishes shape matching, the magnetic field helps establish the
+            internal structure, and photocrosslinking preserves the formed
+            state. Each step creates the conditions for the next and together
+            they determine the final state of the scaffold.
           </p>
+          <figure className="figure d-block my-4 text-center">
+            <TransparentImage
+              src="https://static.igem.wiki/teams/6102/wiki/images/hardware/hardware-overview-diagram.avif"
+              alt="Hardware overview diagram."
+              className="figure-img img-fluid rounded"
+              style={{ width: "100%" }}
+            />
+            <figcaption className="figure-caption">
+              Figure 3.5.2 | Hardware overview diagram.
+            </figcaption>
+          </figure>
           <h4 className="mt-4 mb-3">
             3.5.3 Software and Modeling: Using One Logic for Parameter Selection
             and Operation
@@ -1442,154 +1504,156 @@ export function Design() {
           </p>
           <h2 className="mt-5 mb-4">References</h2>
           <div className="references-list references-list--paragraphs">
-          <p id="design-reference-1" style={{ scrollMarginTop: "112px" }}>
-            [1] Huang W, Tarakanova A, Dinjaski N, Wang Q, Xia X, Chen Y, Wong
-            JY, Buehler MJ, Kaplan DL. Design of multistimuli responsive
-            hydrogels using integrated modeling and genetically engineered
-            silk–elastin-like proteins. <em>Adv Funct Mater</em>.
-            2016;26(23):4113–4123. doi:10.1002/adfm.201600236.
-          </p>
-          <p id="design-reference-2" style={{ scrollMarginTop: "112px" }}>
-            [2] Gonzalez-Obeso C, Backlund FG, Kaplan DL. Charge-modulated
-            accessibility of tyrosine residues for silk-elastin copolymers
-            cross-linking. <em>Biomacromolecules</em>. 2022;23(3):760–765.
-            doi:10.1021/acs.biomac.1c01192.
-          </p>
-          <p id="design-reference-3" style={{ scrollMarginTop: "112px" }}>
-            [3] Ruoslahti E. RGD and other recognition sequences for integrins.{" "}
-            <em>Annu Rev Cell Dev Biol</em>. 1996;12:697–715.
-            doi:10.1146/annurev.cellbio.12.1.697.
-          </p>
-          <p id="design-reference-4" style={{ scrollMarginTop: "112px" }}>
-            [4] Nie et al., 2026.
-          </p>
-          <p id="design-reference-5" style={{ scrollMarginTop: "112px" }}>
-            [5] Fancy DA, Kodadek T. Chemistry for the analysis of
-            protein–protein interactions: rapid and efficient cross-linking
-            triggered by long wavelength light. <em>Proc Natl Acad Sci USA</em>.
-            1999;96(11):6020–6024. doi:10.1073/pnas.96.11.6020.
-          </p>
-          <p id="design-reference-6" style={{ scrollMarginTop: "112px" }}>
-            [6] Cui X, Soliman BG, Alcala-Orozco CR, Li J, Vis MAM, Santos M,
-            Wise SG, Levato R, Malda J, Woodfield TBF, Rnjak-Kovacina J, Lim KS.
-            Rapid photocrosslinking of silk hydrogels with high cell density and
-            enhanced shape fidelity. <em>Adv Healthc Mater</em>.
-            2020;9(4):e1901667. doi:10.1002/adhm.201901667.
-          </p>
-          <p id="design-reference-7" style={{ scrollMarginTop: "112px" }}>
-            [7] Meyer DE, Chilkoti A. Purification of recombinant proteins by
-            fusion with thermally-responsive polypeptides.{" "}
-            <em>Nat Biotechnol</em>. 1999;17(11):1112–1115. doi:10.1038/15100.
-          </p>
-          <p id="design-reference-8" style={{ scrollMarginTop: "112px" }}>
-            [8] Buldun CM, Jean JX, Bedford MR, Howarth M. SnoopLigase catalyzes
-            peptide–peptide locking and enables solid-phase conjugate isolation.{" "}
-            <em>J Am Chem Soc</em>. 2018;140(8):3008–3018.
-            doi:10.1021/jacs.7b13237.
-          </p>
-          <p id="design-reference-9" style={{ scrollMarginTop: "112px" }}>
-            [9] Keeble AH, Wood DP, Howarth M. Design and evolution of enhanced
-            peptide–peptide ligation for modular transglutaminase assembly.{" "}
-            <em>Bioconjug Chem</em>. 2023;34.
-            doi:10.1021/acs.bioconjchem.3c00122.
-          </p>
-          <p id="design-reference-10" style={{ scrollMarginTop: "112px" }}>
-            [10] Fierer JO, Veggiani G, Howarth M. SpyLigase peptide–peptide
-            ligation polymerizes affibodies to enhance magnetic cancer cell
-            capture. <em>Proc Natl Acad Sci USA</em>. 2014;111(13):E1176–E1181.
-            doi:10.1073/pnas.1315776111.
-          </p>
-          <p id="design-reference-11" style={{ scrollMarginTop: "112px" }}>
-            [11] Chen M, Chen S, Xie C, Li F, Tao C, Gong W, Qu M, Lin S, Shao
-            Z, Xiao G. Global prevalence, incidence, and years lived with
-            disability (YLDs) of osteoarthritis: trends from 1990 to 2021 and
-            projections to 2050. <em>J Orthop Translat</em>. 2026;56:101029.
-            doi:10.1016/j.jot.2025.11.005.
-          </p>
-          <p id="design-reference-12" style={{ scrollMarginTop: "112px" }}>
-            [12] Medvedeva EV, Grebenik EA, Gornostaeva SN, Telpuhov VI,
-            Lychagin AV, Timashev PS, Chagin AS. Repair of damaged articular
-            cartilage: current approaches and future directions.{" "}
-            <em>Int J Mol Sci</em>. 2018;19(8):2366. doi:10.3390/ijms19082366.
-          </p>
-          <p id="design-reference-13" style={{ scrollMarginTop: "112px" }}>
-            [13] Li Y, Yin G, Pu X, Chen X, Liao X, Huang Z. Novel bi-functional
-            14-mer peptides with both ovarian carcinoma cells targeting and
-            magnetic Fe₃O₄ nanoparticles affinity. <em>Materials (Basel)</em>.
-            2019;12(5):755. doi:10.3390/ma12050755.
-          </p>
-          <p id="design-reference-14" style={{ scrollMarginTop: "112px" }}>
-            [14] Horkay F, et al. Cartilage extracellular matrix polymers:
-            hierarchical structure, osmotic properties, and function.{" "}
-            <em>Soft Matter</em>. 2024;20:6033–6043. doi:10.1039/D4SM00617H.
-          </p>
-          <p id="design-reference-15" style={{ scrollMarginTop: "112px" }}>
-            [15] Vedadghavami A, Wagner EK, Mehta S, He T, Zhang C, Bajpayee AG.
-            Cartilage penetrating cationic peptide carriers for applications in
-            drug delivery to avascular negatively charged tissues.{" "}
-            <em>Acta Biomater</em>. 2019;93:258–269.
-            doi:10.1016/j.actbio.2018.12.004.
-          </p>
-          <p id="design-reference-16" style={{ scrollMarginTop: "112px" }}>
-            [16] McKenna LA, Liu H, Sansom PA, Dean MF. An N-terminal peptide
-            from link protein stimulates proteoglycan biosynthesis in human
-            articular cartilage in vitro. <em>Arthritis Rheum</em>.
-            1998;41(1):157–162.
-          </p>
-          <p id="design-reference-17" style={{ scrollMarginTop: "112px" }}>
-            [17] Liu H, McKenna LA, Dean MF. An N-terminal peptide from link
-            protein can stimulate biosynthesis of collagen by human articular
-            cartilage. <em>Arch Biochem Biophys</em>. 2000.
-            doi:10.1006/abbi.2000.1758.
-          </p>
-          <p id="design-reference-18" style={{ scrollMarginTop: "112px" }}>
-            [18] He R, Wang B, Cui M, Xiong Z, Lin H, Zhao L, et al. Link
-            protein N-terminal peptide as a potential stimulating factor for
-            stem cell-based cartilage regeneration. <em>Stem Cells Int</em>.
-            2018;2018:3217895. doi:10.1155/2018/3217895.
-          </p>
-          <p id="design-reference-19" style={{ scrollMarginTop: "112px" }}>
-            [19] Roberts JJ, Nicodemus GD, Giunta S, Bryant SJ. Incorporation of
-            biomimetic matrix molecules in PEG hydrogels enhances matrix
-            deposition and reduces load-induced loss of chondrocyte-secreted
-            matrix. <em>J Biomed Mater Res A</em>. 2011;97(3):281–291.
-            doi:10.1002/jbm.a.33057.
-          </p>
-          <p id="design-reference-20" style={{ scrollMarginTop: "112px" }}>
-            [20] Maneiro E, Martín MA, de Andres MC, López-Armada MJ,
-            Fernández-Sueiro JL, del Hoyo P, Galdo F, Arenas J, Blanco FJ.
-            Mitochondrial respiratory activity is altered in osteoarthritic
-            human articular chondrocytes. <em>Arthritis Rheum</em>.
-            2003;48(3):700–708. doi:10.1002/art.10837.
-          </p>
-          <p id="design-reference-21" style={{ scrollMarginTop: "112px" }}>
-            [21] Lee RA, Woo JS, Lee SY, Na HS, Cho KH, Lee YS, Lee JS, Kim SA,
-            Park SH, Kim SJ, Cho ML. Mitochondrial transplantation ameliorates
-            the development and progression of osteoarthritis.{" "}
-            <em>Immune Netw</em>. 2022;22(2):e14. PMID:35573148.
-          </p>
-          <p id="design-reference-22" style={{ scrollMarginTop: "112px" }}>
-            [22] Kim et al. Fusogenic liposomes encapsulating mitochondria as a
-            promising delivery system for osteoarthritis therapy.{" "}
-            <em>Biomaterials</em>. 2023. PMID:37864947.
-          </p>
-          <p id="design-reference-23" style={{ scrollMarginTop: "112px" }}>
-            [23] Nobs L, Buchegger F, Gurny R, Allémann E. Current methods for
-            attaching targeting ligands to liposomes and nanoparticles.{" "}
-            <em>J Pharm Sci</em>. 2004;93(8):1980–1992. doi:10.1002/jps.20098.
-          </p>
-          <p id="design-reference-24" style={{ scrollMarginTop: "112px" }}>
-            [24] Mitchell PG, et al. Cloning, expression, and type II
-            collagenolytic activity of matrix metalloproteinase-13 from human
-            osteoarthritic cartilage. <em>J Clin Invest</em>.
-            1996;97(3):761–768.
-          </p>
-          <p id="design-reference-25" style={{ scrollMarginTop: "112px" }}>
-            [25] Marblestone JG, Edavettal SC, Lim Y, Lim P, Zuo X, Butt TR.
-            Comparison of SUMO fusion technology with traditional gene fusion
-            systems: enhanced expression and solubility with SUMO.{" "}
-            <em>Protein Sci</em>. 2006;15(1):182–189.
-          </p>
+            <p id="design-reference-1" style={{ scrollMarginTop: "112px" }}>
+              [1] Huang W, Tarakanova A, Dinjaski N, Wang Q, Xia X, Chen Y, Wong
+              JY, Buehler MJ, Kaplan DL. Design of multistimuli responsive
+              hydrogels using integrated modeling and genetically engineered
+              silk–elastin-like proteins. <em>Adv Funct Mater</em>.
+              2016;26(23):4113–4123. doi:10.1002/adfm.201600236.
+            </p>
+            <p id="design-reference-2" style={{ scrollMarginTop: "112px" }}>
+              [2] Gonzalez-Obeso C, Backlund FG, Kaplan DL. Charge-modulated
+              accessibility of tyrosine residues for silk-elastin copolymers
+              cross-linking. <em>Biomacromolecules</em>. 2022;23(3):760–765.
+              doi:10.1021/acs.biomac.1c01192.
+            </p>
+            <p id="design-reference-3" style={{ scrollMarginTop: "112px" }}>
+              [3] Ruoslahti E. RGD and other recognition sequences for
+              integrins. <em>Annu Rev Cell Dev Biol</em>. 1996;12:697–715.
+              doi:10.1146/annurev.cellbio.12.1.697.
+            </p>
+            <p id="design-reference-4" style={{ scrollMarginTop: "112px" }}>
+              [4] Nie et al., 2026.
+            </p>
+            <p id="design-reference-5" style={{ scrollMarginTop: "112px" }}>
+              [5] Fancy DA, Kodadek T. Chemistry for the analysis of
+              protein–protein interactions: rapid and efficient cross-linking
+              triggered by long wavelength light.{" "}
+              <em>Proc Natl Acad Sci USA</em>. 1999;96(11):6020–6024.
+              doi:10.1073/pnas.96.11.6020.
+            </p>
+            <p id="design-reference-6" style={{ scrollMarginTop: "112px" }}>
+              [6] Cui X, Soliman BG, Alcala-Orozco CR, Li J, Vis MAM, Santos M,
+              Wise SG, Levato R, Malda J, Woodfield TBF, Rnjak-Kovacina J, Lim
+              KS. Rapid photocrosslinking of silk hydrogels with high cell
+              density and enhanced shape fidelity. <em>Adv Healthc Mater</em>.
+              2020;9(4):e1901667. doi:10.1002/adhm.201901667.
+            </p>
+            <p id="design-reference-7" style={{ scrollMarginTop: "112px" }}>
+              [7] Meyer DE, Chilkoti A. Purification of recombinant proteins by
+              fusion with thermally-responsive polypeptides.{" "}
+              <em>Nat Biotechnol</em>. 1999;17(11):1112–1115. doi:10.1038/15100.
+            </p>
+            <p id="design-reference-8" style={{ scrollMarginTop: "112px" }}>
+              [8] Buldun CM, Jean JX, Bedford MR, Howarth M. SnoopLigase
+              catalyzes peptide–peptide locking and enables solid-phase
+              conjugate isolation. <em>J Am Chem Soc</em>.
+              2018;140(8):3008–3018. doi:10.1021/jacs.7b13237.
+            </p>
+            <p id="design-reference-9" style={{ scrollMarginTop: "112px" }}>
+              [9] Keeble AH, Wood DP, Howarth M. Design and evolution of
+              enhanced peptide–peptide ligation for modular transglutaminase
+              assembly. <em>Bioconjug Chem</em>. 2023;34.
+              doi:10.1021/acs.bioconjchem.3c00122.
+            </p>
+            <p id="design-reference-10" style={{ scrollMarginTop: "112px" }}>
+              [10] Fierer JO, Veggiani G, Howarth M. SpyLigase peptide–peptide
+              ligation polymerizes affibodies to enhance magnetic cancer cell
+              capture. <em>Proc Natl Acad Sci USA</em>.
+              2014;111(13):E1176–E1181. doi:10.1073/pnas.1315776111.
+            </p>
+            <p id="design-reference-11" style={{ scrollMarginTop: "112px" }}>
+              [11] Chen M, Chen S, Xie C, Li F, Tao C, Gong W, Qu M, Lin S, Shao
+              Z, Xiao G. Global prevalence, incidence, and years lived with
+              disability (YLDs) of osteoarthritis: trends from 1990 to 2021 and
+              projections to 2050. <em>J Orthop Translat</em>. 2026;56:101029.
+              doi:10.1016/j.jot.2025.11.005.
+            </p>
+            <p id="design-reference-12" style={{ scrollMarginTop: "112px" }}>
+              [12] Medvedeva EV, Grebenik EA, Gornostaeva SN, Telpuhov VI,
+              Lychagin AV, Timashev PS, Chagin AS. Repair of damaged articular
+              cartilage: current approaches and future directions.{" "}
+              <em>Int J Mol Sci</em>. 2018;19(8):2366. doi:10.3390/ijms19082366.
+            </p>
+            <p id="design-reference-13" style={{ scrollMarginTop: "112px" }}>
+              [13] Li Y, Yin G, Pu X, Chen X, Liao X, Huang Z. Novel
+              bi-functional 14-mer peptides with both ovarian carcinoma cells
+              targeting and magnetic Fe₃O₄ nanoparticles affinity.{" "}
+              <em>Materials (Basel)</em>. 2019;12(5):755.
+              doi:10.3390/ma12050755.
+            </p>
+            <p id="design-reference-14" style={{ scrollMarginTop: "112px" }}>
+              [14] Horkay F, et al. Cartilage extracellular matrix polymers:
+              hierarchical structure, osmotic properties, and function.{" "}
+              <em>Soft Matter</em>. 2024;20:6033–6043. doi:10.1039/D4SM00617H.
+            </p>
+            <p id="design-reference-15" style={{ scrollMarginTop: "112px" }}>
+              [15] Vedadghavami A, Wagner EK, Mehta S, He T, Zhang C, Bajpayee
+              AG. Cartilage penetrating cationic peptide carriers for
+              applications in drug delivery to avascular negatively charged
+              tissues. <em>Acta Biomater</em>. 2019;93:258–269.
+              doi:10.1016/j.actbio.2018.12.004.
+            </p>
+            <p id="design-reference-16" style={{ scrollMarginTop: "112px" }}>
+              [16] McKenna LA, Liu H, Sansom PA, Dean MF. An N-terminal peptide
+              from link protein stimulates proteoglycan biosynthesis in human
+              articular cartilage in vitro. <em>Arthritis Rheum</em>.
+              1998;41(1):157–162.
+            </p>
+            <p id="design-reference-17" style={{ scrollMarginTop: "112px" }}>
+              [17] Liu H, McKenna LA, Dean MF. An N-terminal peptide from link
+              protein can stimulate biosynthesis of collagen by human articular
+              cartilage. <em>Arch Biochem Biophys</em>. 2000.
+              doi:10.1006/abbi.2000.1758.
+            </p>
+            <p id="design-reference-18" style={{ scrollMarginTop: "112px" }}>
+              [18] He R, Wang B, Cui M, Xiong Z, Lin H, Zhao L, et al. Link
+              protein N-terminal peptide as a potential stimulating factor for
+              stem cell-based cartilage regeneration. <em>Stem Cells Int</em>.
+              2018;2018:3217895. doi:10.1155/2018/3217895.
+            </p>
+            <p id="design-reference-19" style={{ scrollMarginTop: "112px" }}>
+              [19] Roberts JJ, Nicodemus GD, Giunta S, Bryant SJ. Incorporation
+              of biomimetic matrix molecules in PEG hydrogels enhances matrix
+              deposition and reduces load-induced loss of chondrocyte-secreted
+              matrix. <em>J Biomed Mater Res A</em>. 2011;97(3):281–291.
+              doi:10.1002/jbm.a.33057.
+            </p>
+            <p id="design-reference-20" style={{ scrollMarginTop: "112px" }}>
+              [20] Maneiro E, Martín MA, de Andres MC, López-Armada MJ,
+              Fernández-Sueiro JL, del Hoyo P, Galdo F, Arenas J, Blanco FJ.
+              Mitochondrial respiratory activity is altered in osteoarthritic
+              human articular chondrocytes. <em>Arthritis Rheum</em>.
+              2003;48(3):700–708. doi:10.1002/art.10837.
+            </p>
+            <p id="design-reference-21" style={{ scrollMarginTop: "112px" }}>
+              [21] Lee RA, Woo JS, Lee SY, Na HS, Cho KH, Lee YS, Lee JS, Kim
+              SA, Park SH, Kim SJ, Cho ML. Mitochondrial transplantation
+              ameliorates the development and progression of osteoarthritis.{" "}
+              <em>Immune Netw</em>. 2022;22(2):e14. PMID:35573148.
+            </p>
+            <p id="design-reference-22" style={{ scrollMarginTop: "112px" }}>
+              [22] Kim et al. Fusogenic liposomes encapsulating mitochondria as
+              a promising delivery system for osteoarthritis therapy.{" "}
+              <em>Biomaterials</em>. 2023. PMID:37864947.
+            </p>
+            <p id="design-reference-23" style={{ scrollMarginTop: "112px" }}>
+              [23] Nobs L, Buchegger F, Gurny R, Allémann E. Current methods for
+              attaching targeting ligands to liposomes and nanoparticles.{" "}
+              <em>J Pharm Sci</em>. 2004;93(8):1980–1992. doi:10.1002/jps.20098.
+            </p>
+            <p id="design-reference-24" style={{ scrollMarginTop: "112px" }}>
+              [24] Mitchell PG, et al. Cloning, expression, and type II
+              collagenolytic activity of matrix metalloproteinase-13 from human
+              osteoarthritic cartilage. <em>J Clin Invest</em>.
+              1996;97(3):761–768.
+            </p>
+            <p id="design-reference-25" style={{ scrollMarginTop: "112px" }}>
+              [25] Marblestone JG, Edavettal SC, Lim Y, Lim P, Zuo X, Butt TR.
+              Comparison of SUMO fusion technology with traditional gene fusion
+              systems: enhanced expression and solubility with SUMO.{" "}
+              <em>Protein Sci</em>. 2006;15(1):182–189.
+            </p>
           </div>
         </article>
       </div>

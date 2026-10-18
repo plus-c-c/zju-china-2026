@@ -20,7 +20,7 @@ export function Software() {
           <p>
             This project focuses on an injectable SELP hydrogel delivery system.
             SELP combines the mechanical support of silk-like blocks with the
-            flexibility of elastin-like blocks; crosslinked by the Ru/SPS
+            flexibility of elastin-like blocks. Crosslinked by the Ru/SPS
             (ruthenium/sodium persulfate) visible-light initiating system and
             assembled with functional modules through standardized peptide
             interfaces, it forms a modular, tunable, injectable material system
@@ -30,10 +30,14 @@ export function Software() {
           <p>
             Within NEST, the material defines the repair function, models
             support design choices, hardware establishes gelation conditions,
-            and the software organizes the formulation, status, and operating
-            information along the workflow, carrying the design and modeling
-            rationale into the operating steps (see the Model page for the
-            modeling part). Two groups of users each have one central question:
+            and the software{" "}
+            <strong>
+              organizes the formulation, status, and operating information along
+              the workflow
+            </strong>
+            , carrying the design and modeling rationale into the operating
+            steps (see the Model page for the modeling part). Two groups of
+            users each have one central question:
           </p>
           <ul>
             <li>
@@ -69,18 +73,20 @@ export function Software() {
             The SELP molecular dynamics simulation platform is built for
             researchers and material developers. It organizes the modeling
             workflow described on the Model page into a pipeline (Flow) that can
-            be inspected, modified, and re-run at any time, supporting
-            researchers in predicting material behavior and explaining its
-            causes.
+            be <strong>inspected, modified, and re-run at any time</strong>,
+            supporting researchers in predicting material behavior and
+            explaining its causes.
           </p>
 
           <h3 className="mt-5 mb-3">1.1 The Three-Step Simulation Pipeline</h3>
           <p>
             A complete analysis consists of three computational steps, with
             products passed automatically along the pipeline — each step&rsquo;s
-            output is the next step&rsquo;s input, with no manual file handling.
-            The three steps correspond one-to-one to the modeling workflow on
-            the Model page (see the Model page for method details):
+            output is the next step&rsquo;s input,{" "}
+            <strong>with no manual file handling</strong>. The three steps
+            correspond to the three computational stages of the modeling
+            workflow described on the Model page (see that page for method
+            details):
           </p>
           <p>
             <strong>Table 1</strong>: Task types, purpose, and interface of the
@@ -106,7 +112,7 @@ export function Software() {
                   <td>
                     Single-chain conformations (all-atom enhanced sampling)
                   </td>
-                  <td>TIGER2 (all-atom MD)</td>
+                  <td>TIGER2 FAMD (all-atom MD)</td>
                 </tr>
                 <tr>
                   <td>Step 2</td>
@@ -139,9 +145,9 @@ export function Software() {
             />
             <figcaption className="figure-caption">
               Figure 1: Pipeline overview — ① flow name and the three-step chain
-              (TIGER2 → GROMACS → Magnetomech, with products passed along the
-              chain); ② completion (2 / 3 steps complete); ③ each step card with
-              its run status.
+              (TIGER2 FAMD → GROMACS → Magnetomech, with products passed along
+              the chain); ② completion (2 / 3 steps complete); ③ each step card
+              with its run status.
             </figcaption>
           </figure>
 
@@ -210,8 +216,8 @@ export function Software() {
                 <tr>
                   <td>Simulation &amp; analysis</td>
                   <td>
-                    NAMD (TIGER2 all-atom), GROMACS (Martini coarse-grained),
-                    Python
+                    NAMD (TIGER2 FAMD all-atom), GROMACS (Martini 3
+                    coarse-grained), Python
                   </td>
                 </tr>
                 <tr>
@@ -256,8 +262,8 @@ export function Software() {
             filling them in from top to bottom is the correct execution order.
             Steps that need SSH (the first and second) have an additional{" "}
             <strong>Where this step runs</strong> sub-panel for the remote
-            working directory and log prefix; it concerns execution location
-            rather than physical parameters, the paths must be absolute, and the
+            working directory and log prefix. It concerns execution location
+            rather than physical parameters: the paths must be absolute, and the
             step can only start once both fields are filled in and show
             configured.
           </p>
@@ -441,10 +447,10 @@ export function Software() {
             turn <strong>Done</strong>.
           </p>
           <p>
-            Input checks run before saving: Stretch must be a number greater
-            than 0 and not exceeding 1, comma-separated and without unit
-            symbols; Temperature must not be below 10 K; Chains, Steps / cycle
-            and Cycles must be integers of at least 1.
+            <strong>Input checks run before saving</strong>: Stretch must be a
+            number greater than 0 and not exceeding 1, comma-separated and
+            without unit symbols; Temperature must not be below 10 K; Chains,
+            Steps / cycle and Cycles must be integers of at least 1.
           </p>
 
           <h5 className="mt-4 mb-2">
@@ -529,7 +535,7 @@ export function Software() {
               </thead>
               <tbody>
                 <tr>
-                  <td>Step 1 TIGER2</td>
+                  <td>Step 1 TIGER2 FAMD</td>
                   <td>Start / Stop / Restart / Pause / Continue</td>
                   <td>Temperature / Convergence / Structure</td>
                 </tr>
@@ -550,9 +556,12 @@ export function Software() {
             The <strong>Start / Restart</strong> buttons of the second step
             launch GROMACS from within the application: with SLURM on the server
             the job is submitted via sbatch, and without SLURM it is started
-            detached (setsid) — no need to log into the server and submit jobs
-            by hand. <strong>Pause</strong> genuinely pauses the simulation
-            (SIGSTOP for the first step, scontrol suspend for the second), and{" "}
+            detached (setsid) —{" "}
+            <strong>
+              no need to log into the server and submit jobs by hand
+            </strong>
+            . <strong>Pause</strong> genuinely pauses the simulation (SIGSTOP
+            for the first step, scontrol suspend for the second), and{" "}
             <strong>Continue</strong> resumes from where it stopped without
             recomputing; if the simulation is not actually running, the
             interface says so explicitly instead of falsely reporting a
@@ -565,7 +574,7 @@ export function Software() {
             returns a result figure. After clicking, the button briefly shows a
             running state and then reports success or failure. The bottom of the
             panel shows the step&rsquo;s working directory, with locally run
-            steps labelled runs locally on the backend host; the{" "}
+            steps labelled &ldquo;runs locally on the backend host&rdquo;; the{" "}
             <strong>Execution</strong> section below shows the execution
             location (local / ssh), input and output directories, and the
             resolution of external programs such as gmx and matlab, so
@@ -586,9 +595,11 @@ export function Software() {
           </h4>
           <p>
             Results groups output by category and shows only the result tabs a
-            step actually produces; steps that are not finished yet state what
-            is missing instead of showing an empty panel. The result types
-            presented by different steps are as follows:
+            step actually produces; steps that are not finished yet{" "}
+            <strong>
+              state what is missing instead of showing an empty panel
+            </strong>
+            . The result types presented by different steps are as follows:
           </p>
           <p>
             <strong>Table 6</strong>: Result categories in Results and the steps
@@ -669,17 +680,20 @@ export function Software() {
             wizard).
           </p>
           <p>
-            The current version focuses on the preparation stage: the
-            application does not communicate with hardware devices, and its
-            guidance ends at premixing; injection, magnetic orientation and
-            photocrosslinking are carried out by the hardware devices and their
-            operating procedures (see the Hardware page).
+            <strong>
+              The current version focuses on the preparation stage
+            </strong>
+            : the application does not communicate with hardware devices, and
+            its guidance <strong>ends at premixing</strong>; injection, magnetic
+            orientation and photocrosslinking are carried out by the hardware
+            devices and their operating procedures (see the Hardware page).
           </p>
 
           <h3 className="mt-5 mb-3">2.1 Formulation Selection: Ordering</h3>
           <p>
             Ordering is how clinicians enter the material system: first select a
-            Preconditioned SELP Scaffold (2KY-5-Tag / 2KY-10-Tag), then a
+            Preconditioned SELP Scaffold (2KY-5-Tag / 2KY-10-Tag — the
+            corresponding 2KY-5 / 2KY-10 scaffolds with SnoopTag2 added), then a
             Functional Module (Mitochondrial Therapy / Magnetically Responsive
             Anisotropy / GAG Retention), and fill in the order quantity (vials);
             a summary of the order is shown live at the bottom of the page. Both
@@ -702,9 +716,10 @@ export function Software() {
             />
             <figcaption className="figure-caption">
               Figure 4: Ordering screen — ① select the preconditioned SELP
-              scaffold (2KY-5-Tag / 2KY-10-Tag); ② select the functional module
-              (Mitochondrial Therapy / Magnetically Responsive Anisotropy / GAG
-              Retention); ③ enter the order quantity (vials); ④ live order
+              scaffold (2KY-5-Tag / 2KY-10-Tag — the corresponding 2KY-5 /
+              2KY-10 scaffolds with SnoopTag2 added); ② select the functional
+              module (Mitochondrial Therapy / Magnetically Responsive Anisotropy
+              / GAG Retention); ③ enter the order quantity (vials); ④ live order
               summary.
             </figcaption>
           </figure>

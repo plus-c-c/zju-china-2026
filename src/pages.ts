@@ -134,7 +134,7 @@ const Pages: (Page | Folder)[] = [
       {
         name: "Safety",
         title: "Safety",
-        path: "/safety",
+        path: "/safety-and-security",
         component: SafetyAndSecurity,
       },
     ],

@@ -314,11 +314,6 @@ body {
   background-size: 100% 95%;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .page-article :is(p, li, td, th, blockquote) :is(strong, b) {
-    transition: none;
-  }
-}
 
 html,
 body,
