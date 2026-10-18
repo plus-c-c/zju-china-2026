@@ -16,6 +16,18 @@ import "./model.css";
 /** Scroll distance per protein step, in vh. */
 const STEP_DVH = 40;
 
+/** Section headings of the module and the protein step each belongs to.
+ *  Rendered as hidden anchors so the left TOC lists every heading and a
+ *  click scrolls to the matching step (the figure switches with it). */
+const STEP_HEADINGS = [
+  { step: 0, title: "1 Research Background" },
+  { step: 1, title: "2 Model Construction" },
+  { step: 2, title: "3 Stability Screening" },
+  { step: 4, title: "4 Effects of Stabilization on the Catalytic Region" },
+  { step: 5, title: "5 Turnover Optimization" },
+  { step: 8, title: "6 Conclusion" },
+];
+
 /** On-screen width of the main protein, in px — kept identical across all
  *  figures so switching steps does not resize the subject. */
 const PROTEIN_PX = 170;
@@ -207,6 +219,31 @@ function ProteinStepper({ steps }: { steps: ProteinStep[] }) {
     onAdvance: (target) => goTo(target, "smooth"),
   });
 
+  // Bottom-anchored text card: regular steps stretch until the top gap
+  // equals the bottom gap (CSS default height); wide steps fit their
+  // content (measured height, set inline). Either way the bottom stays
+  // fixed and only the top edge moves, animated by the CSS transition.
+  useLayoutEffect(() => {
+    const panel = panelRef.current;
+    if (!panel) return;
+    const apply = () => {
+      const wide = Boolean(stepsRef.current[indexRef.current]?.figureHeight);
+      if (!wide) {
+        panel.style.height = "";
+        return;
+      }
+      const inner = panel.querySelector<HTMLElement>(".protein-text-inner");
+      if (!inner) return;
+      const styles = window.getComputedStyle(panel);
+      const padding =
+        parseFloat(styles.paddingTop) + parseFloat(styles.paddingBottom);
+      panel.style.height = `${inner.offsetHeight + padding}px`;
+    };
+    apply();
+    window.addEventListener("resize", apply);
+    return () => window.removeEventListener("resize", apply);
+  }, [index]);
+
   // The right-hand text resets whenever the protein switches: forward lands
   // at the top, backward at the bottom (continuing an upward read).
   const entryDirectionRef = useRef<"forward" | "backward">("forward");
@@ -366,6 +403,17 @@ function ProteinStepper({ steps }: { steps: ProteinStep[] }) {
           </button>
         </div>
       </div>
+      {/* Hidden TOC anchors: every section heading, at its protein's scroll position. */}
+      {STEP_HEADINGS.map(({ step, title }) => (
+        <h3
+          key={title}
+          className="visually-hidden protein-anchor"
+            data-toc-track="true"
+          style={{ "--protein-step": step } as CSSProperties}
+        >
+          {title}
+        </h3>
+      ))}
     </div>
   );
 }
@@ -392,7 +440,7 @@ const SNOOP_STEPS: ProteinStep[] = [
     ),
     body: (
       <>
-        <h3 className="mt-5 mb-3">{"1 Research Background"}</h3>
+        <h3 className="mt-5 mb-3" data-toc="exclude">{"1 Research Background"}</h3>
         <p>
           {
             "SnoopLigase2 catalyzes the formation of a covalent isopeptide bond between SnoopTag2 and DogTag, providing a short peptide-based ligation interface for different protein modules. Previous research has also shown that SnoopLigase2 binds strongly and noncovalently to the ligated product, limiting product release and catalyst recycling. "
@@ -447,7 +495,7 @@ const SNOOP_STEPS: ProteinStep[] = [
     ),
     body: (
       <>
-        <h3 className="mt-5 mb-3">{"2 Model Construction"}</h3>
+        <h3 className="mt-5 mb-3" data-toc="exclude">{"2 Model Construction"}</h3>
         <p>
           {
             "We used the crystal structure of RrgA, 2WW8, as a template to construct a ligase core model containing 104 amino acids.[2]"
@@ -489,7 +537,7 @@ const SNOOP_STEPS: ProteinStep[] = [
     ),
     body: (
       <>
-        <h3 className="mt-5 mb-3">{"3 Stability Screening"}</h3>
+        <h3 className="mt-5 mb-3" data-toc="exclude">{"3 Stability Screening"}</h3>
         <p>
           <strong>
             {
@@ -575,8 +623,8 @@ const SNOOP_STEPS: ProteinStep[] = [
     ),
     body: (
       <>
-        <h3 className="mt-5 mb-3">
-          {"4 Effects of Stabilization on the Catalytic Region。"}
+        <h3 className="mt-5 mb-3" data-toc="exclude">
+          {"4 Effects of Stabilization on the Catalytic Region."}
         </h3>
         <p>
           {
@@ -615,7 +663,7 @@ const SNOOP_STEPS: ProteinStep[] = [
     ),
     body: (
       <>
-        <h3 className="mt-5 mb-3">{"5 Turnover Optimization"}</h3>
+        <h3 className="mt-5 mb-3" data-toc="exclude">{"5 Turnover Optimization"}</h3>
         <p>
           {
             "We performed a per-residue analysis of the 104 ligase core residues in 20 single-chain product models. Based on interface distances, contact extent, and structural protection criteria, we selected six sites—K792, N793, S795, E827, V828, and V831—and designed 12 substitutions comprising alanine-scanning mutations or more conservative replacements."
@@ -730,7 +778,7 @@ const SNOOP_STEPS: ProteinStep[] = [
     ),
     body: (
       <>
-        <h3 className="mt-5 mb-3">{"6 Conclusion"}</h3>
+        <h3 className="mt-5 mb-3" data-toc="exclude">{"6 Conclusion"}</h3>
         <p>
           <strong>
             {

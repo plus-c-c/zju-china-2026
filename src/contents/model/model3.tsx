@@ -373,6 +373,7 @@ export function Model3() {
           <h3
             key={s.num}
             className="visually-hidden m3-anchor"
+            data-toc-track="true"
             style={{ "--m3-seg": s.num - 1 } as CSSProperties}
           >
             {s.num}. {s.title}

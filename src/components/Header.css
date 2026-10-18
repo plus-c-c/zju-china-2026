@@ -22,7 +22,9 @@
   border: 0;
   border-radius: clamp(30px, 5vw, 78px);
   background: #dceafa;
-  box-shadow: 12px 14px 0 #709bda, 23px 26px 0 #a5c2e7;
+  box-shadow:
+    12px 14px 0 #709bda,
+    23px 26px 0 #a5c2e7;
 }
 
 .header-image {
@@ -45,7 +47,12 @@
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  background: linear-gradient(180deg, #173c6400 35%, #173c641a 65%, #173c6452 100%);
+  background: linear-gradient(
+    180deg,
+    #173c6400 35%,
+    #173c641a 65%,
+    #173c6452 100%
+  );
 }
 
 .header-title {
@@ -56,7 +63,10 @@
   padding: 0 clamp(22px, 3vw, 48px) 8px;
   color: #fff;
   font-family: "Seymour One", sans-serif;
-  font-size: var(--header-title-size, min(clamp(3.3rem, 7.6vw, 7.3rem), 9.090909cqw));
+  font-size: var(
+    --header-title-size,
+    min(clamp(3.3rem, 7.6vw, 7.3rem), 9.090909cqw)
+  );
   overflow-wrap: break-word;
   font-weight: 400;
   line-height: 1.08;
@@ -73,7 +83,6 @@
     3px 3px 0 #709bda,
     4px 4px 0 #709bda,
     5px 5px 0 #a5c2e7;
-
 }
 
 @media (max-width: 600px) {
@@ -84,13 +93,18 @@
   .header-card {
     height: 175px;
     border-radius: 32px;
-    box-shadow: 7px 9px 0 #709bda, 13px 17px 0 #a5c2e7;
+    box-shadow:
+      7px 9px 0 #709bda,
+      13px 17px 0 #a5c2e7;
   }
   .header-title {
     padding: 0 18px 12px;
     font-size: var(--header-title-size, min(3.5rem, 9.090909cqw));
     -webkit-text-stroke: 0;
-    text-shadow: 1px 1px 0 #709bda, 2px 2px 0 #709bda, 3px 3px 0 #a5c2e7;
+    text-shadow:
+      1px 1px 0 #709bda,
+      2px 2px 0 #709bda,
+      3px 3px 0 #a5c2e7;
   }
 }
 

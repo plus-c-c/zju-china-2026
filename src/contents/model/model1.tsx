@@ -109,6 +109,32 @@ function Blocks({ blocks }: { blocks: M1Block[] }) {
             </figure>
           );
         }
+        if (block.t === "table") {
+          return (
+            <div key={index} className="table-responsive mb-4">
+              <table className="m1-three-line">
+                <thead>
+                  <tr>
+                    {(block.head ?? []).map((cell, i) => (
+                      <th key={i} scope="col">
+                        {cell}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {(block.rows ?? []).map((row, r) => (
+                    <tr key={r}>
+                      {row.map((cell, c) => (
+                        <td key={c}>{cell}</td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          );
+        }
         return (
           <p key={index}>
             <Parts parts={block.parts ?? []} />
@@ -379,6 +405,7 @@ export function SelpHydrogelModeling() {
           <h3
             key={s.num}
             className="visually-hidden m1-anchor"
+            data-toc-track="true"
             style={{ "--m1-seg": s.num - 1 } as CSSProperties}
           >
             {s.num}. {s.title}

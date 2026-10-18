@@ -555,5 +555,7 @@
     justify-content: flex-start;
     padding-top: 12px;
   }
-  .eng-static { min-height: 0; }
+  .eng-static {
+    min-height: 0;
+  }
 }

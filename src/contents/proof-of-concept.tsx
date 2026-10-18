@@ -1,3 +1,4 @@
+import { TransparentImage } from "../components/TransparentImage";
 import "./proof-of-concept.css";
 
 export function ProofOfConcept() {
@@ -28,13 +29,11 @@ export function ProofOfConcept() {
             performs in practice.
           </p>
           <figure className="my-4 text-center">
-            <img
+            <TransparentImage
               src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/schematic-01.avif"
               alt="Figure 1: Overview of proof-of-concept validation"
               className="img-fluid rounded"
               style={{ width: "100%" }}
-              loading="lazy"
-              decoding="async"
             />
             <figcaption className="figure-caption mt-2">
               <strong>
@@ -92,13 +91,11 @@ export function ProofOfConcept() {
             configurations (Figures 2 and 3).
           </p>
           <figure className="my-4 text-center">
-            <img
+            <TransparentImage
               src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-01.avif"
               alt="Figure 2: Production of scaffolds with different repeat numbers"
               className="img-fluid rounded"
               style={{ width: "100%" }}
-              loading="lazy"
-              decoding="async"
             />
             <figcaption className="figure-caption mt-2">
               <strong>
@@ -111,13 +108,11 @@ export function ProofOfConcept() {
             </figcaption>
           </figure>
           <figure className="my-4 text-center">
-            <img
+            <TransparentImage
               src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-02.avif"
               alt="Figure 3: Expression and recovery of SnoopTag2-bearing scaffolds"
               className="img-fluid rounded"
               style={{ width: "100%" }}
-              loading="lazy"
-              decoding="async"
             />
             <figcaption className="figure-caption mt-2">
               <strong>
@@ -140,13 +135,11 @@ export function ProofOfConcept() {
             transformation from a protein precursor into a material (Figure 4).
           </p>
           <figure className="my-4 text-center">
-            <img
+            <TransparentImage
               src="https://static.igem.wiki/teams/6102/wiki/images/result/01/10.avif"
               alt="Figure 4: Rapid gelation of SELP"
               className="img-fluid rounded"
               style={{ width: "100%" }}
-              loading="lazy"
-              decoding="async"
             />
             <figcaption className="figure-caption mt-2">
               <strong>Figure 4 | Rapid Gelation of SELP.</strong> After 2 s of
@@ -182,13 +175,11 @@ export function ProofOfConcept() {
             behavior, validating the tunability of the SELP scaffold (Figure 5).
           </p>
           <figure className="my-4 text-center">
-            <img
+            <TransparentImage
               src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-04.avif"
               alt="Figure 5: Porous elastic network and sequence-tunable mechanical properties"
               className="img-fluid rounded"
               style={{ width: "100%" }}
-              loading="lazy"
-              decoding="async"
             />
             <figcaption className="figure-caption mt-2">
               <strong>
@@ -211,13 +202,11 @@ export function ProofOfConcept() {
             applications (Figure 6).
           </p>
           <figure className="my-4 text-center">
-            <img
+            <TransparentImage
               src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-05-v2.avif"
               alt="Figure 6: Cartilage-related gene expression associated with the 2KY scaffold"
               className="img-fluid rounded"
               style={{ width: "100%" }}
-              loading="lazy"
-              decoding="async"
             />
             <figcaption className="figure-caption mt-2">
               <strong>
@@ -258,13 +247,11 @@ export function ProofOfConcept() {
             (Figure 7).
           </p>
           <figure className="my-4 text-center">
-            <img
+            <TransparentImage
               src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-06.avif"
               alt="Figure 7: SnoopLigase2-mediated formation of the expected ligation product"
               className="img-fluid rounded"
               style={{ width: "100%" }}
-              loading="lazy"
-              decoding="async"
             />
             <figcaption className="figure-caption mt-2">
               <strong>
@@ -310,13 +297,11 @@ export function ProofOfConcept() {
             intended functions could be achieved.
           </p>
           <figure className="my-4 text-center">
-            <img
+            <TransparentImage
               src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/schematic-02.avif"
               alt="Figure 8: OA needs mapped to functional modules"
               className="img-fluid rounded"
               style={{ width: "100%" }}
-              loading="lazy"
-              decoding="async"
             />
             <figcaption className="figure-caption mt-2">
               <strong>
@@ -355,13 +340,11 @@ export function ProofOfConcept() {
             components available for experimental testing (Figure 9).
           </p>
           <figure className="my-4 text-center">
-            <img
+            <TransparentImage
               src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-07.avif"
               alt="Figure 9: Key components for the functional modules"
               className="img-fluid rounded"
               style={{ width: "100%" }}
-              loading="lazy"
-              decoding="async"
             />
             <figcaption className="figure-caption mt-2">
               <strong>
@@ -392,13 +375,11 @@ export function ProofOfConcept() {
             mechanism (Figure 10).
           </p>
           <figure className="my-4 text-center">
-            <img
+            <TransparentImage
               src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-08.avif"
               alt="Figure 10: Shared ligation activity across three functional modules"
               className="img-fluid rounded"
               style={{ width: "100%" }}
-              loading="lazy"
-              decoding="async"
             />
             <figcaption className="figure-caption mt-2">
               <strong>
@@ -438,13 +419,11 @@ export function ProofOfConcept() {
             TVN-mediated particle binding (Figures 11 and 12).
           </p>
           <figure className="my-4 text-center">
-            <img
+            <TransparentImage
               src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-09.avif"
               alt="Figure 11: Control group for magnetic particle binding"
               className="img-fluid rounded"
               style={{ width: "100%" }}
-              loading="lazy"
-              decoding="async"
             />
             <figcaption className="figure-caption mt-2">
               <strong>
@@ -456,13 +435,11 @@ export function ProofOfConcept() {
             </figcaption>
           </figure>
           <figure className="my-4 text-center">
-            <img
+            <TransparentImage
               src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-10.avif"
               alt="Figure 12: TVN-particle fluorescence and magnetic alignment"
               className="img-fluid rounded"
               style={{ width: "100%" }}
-              loading="lazy"
-              decoding="async"
             />
             <figcaption className="figure-caption mt-2">
               <strong>
@@ -487,13 +464,11 @@ export function ProofOfConcept() {
             response to an external field (Figures 13 and 14).
           </p>
           <figure className="my-4 text-center">
-            <img
+            <TransparentImage
               src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-11.webp"
               alt="Figure 13: Bright-field recording of magnetic particle aggregates reorienting"
               className="img-fluid rounded"
               style={{ width: "100%" }}
-              loading="lazy"
-              decoding="async"
             />
             <figcaption className="figure-caption mt-2">
               <strong>
@@ -503,13 +478,11 @@ export function ProofOfConcept() {
             </figcaption>
           </figure>
           <figure className="my-4 text-center">
-            <img
+            <TransparentImage
               src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-12.webp"
               alt="Figure 14: Fluorescence recording of protein-labeled complexes reorienting"
               className="img-fluid rounded"
               style={{ width: "100%" }}
-              loading="lazy"
-              decoding="async"
             />
             <figcaption className="figure-caption mt-2">
               <strong>
@@ -540,13 +513,11 @@ export function ProofOfConcept() {
             and 16).
           </p>
           <figure className="my-4 text-center">
-            <img
+            <TransparentImage
               src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-13.avif"
               alt="Figure 15: Biotinylation and immobilization interface for GAG constructs"
               className="img-fluid rounded"
               style={{ width: "100%" }}
-              loading="lazy"
-              decoding="async"
             />
             <figcaption className="figure-caption mt-2">
               <strong>
@@ -558,13 +529,11 @@ export function ProofOfConcept() {
             </figcaption>
           </figure>
           <figure className="my-4 text-center">
-            <img
+            <TransparentImage
               src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-14.avif"
               alt="Figure 16: Residual CS-A in the supernatant after CPC-mediated retention"
               className="img-fluid rounded"
               style={{ width: "100%" }}
-              loading="lazy"
-              decoding="async"
             />
             <figcaption className="figure-caption mt-2">
               <strong>
@@ -600,13 +569,11 @@ export function ProofOfConcept() {
             complex (Figures 17 and 18).
           </p>
           <figure className="my-4 text-center">
-            <img
+            <TransparentImage
               src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-15.avif"
               alt="Figure 17: Fluorescence colocalization of liposomes and mitochondria"
               className="img-fluid rounded"
               style={{ width: "100%" }}
-              loading="lazy"
-              decoding="async"
             />
             <figcaption className="figure-caption mt-2">
               <strong>
@@ -618,13 +585,11 @@ export function ProofOfConcept() {
             </figcaption>
           </figure>
           <figure className="my-4 text-center">
-            <img
+            <TransparentImage
               src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-16.avif"
               alt="Figure 18: TEM visualization of encapsulation"
               className="img-fluid rounded"
               style={{ width: "100%" }}
-              loading="lazy"
-              decoding="async"
             />
             <figcaption className="figure-caption mt-2">
               <strong>
@@ -644,13 +609,11 @@ export function ProofOfConcept() {
             19).
           </p>
           <figure className="my-4 text-center">
-            <img
+            <TransparentImage
               src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-17.avif"
               alt="Figure 19: MMP-13-responsive cleavage"
               className="img-fluid rounded"
               style={{ width: "100%" }}
-              loading="lazy"
-              decoding="async"
             />
             <figcaption className="figure-caption mt-2">
               <strong>Figure 19 | MMP-13-Responsive Cleavage.</strong> Pep
@@ -668,13 +631,11 @@ export function ProofOfConcept() {
             consistent with cellular delivery (Figure 20).
           </p>
           <figure className="my-4 text-center">
-            <img
+            <TransparentImage
               src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-18.avif"
               alt="Figure 20: Mitochondrial labeling in recipient-cell regions"
               className="img-fluid rounded"
               style={{ width: "100%" }}
-              loading="lazy"
-              decoding="async"
             />
             <figcaption className="figure-caption mt-2">
               <strong>
@@ -729,13 +690,11 @@ export function ProofOfConcept() {
             viability at multiple time points (Figure 21).
           </p>
           <figure className="my-4 text-center">
-            <img
+            <TransparentImage
               src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-19.avif"
               alt="Figure 21: CCK-8 cytocompatibility of the scaffold and functional modules"
               className="img-fluid rounded"
               style={{ width: "100%" }}
-              loading="lazy"
-              decoding="async"
             />
             <figcaption className="figure-caption mt-2">
               <strong>

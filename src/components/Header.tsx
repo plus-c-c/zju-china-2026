@@ -57,16 +57,25 @@ export function Header({ title }: HeaderProps) {
     const fitTitle = () => {
       heading.style.removeProperty("--header-title-size");
       const style = getComputedStyle(heading);
-      const available = heading.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight) - 6;
+      const available =
+        heading.clientWidth -
+        parseFloat(style.paddingLeft) -
+        parseFloat(style.paddingRight) -
+        6;
       const width = text.getBoundingClientRect().width;
       if (width > available && available > 0) {
-        heading.style.setProperty("--header-title-size", `${parseFloat(style.fontSize) * available / width}px`);
+        heading.style.setProperty(
+          "--header-title-size",
+          `${(parseFloat(style.fontSize) * available) / width}px`,
+        );
       }
     };
     const observer = new ResizeObserver(fitTitle);
     observer.observe(heading.parentElement!);
     let active = true;
-    void document.fonts.ready.then(() => { if (active) fitTitle(); });
+    void document.fonts.ready.then(() => {
+      if (active) fitTitle();
+    });
     document.fonts.addEventListener("loadingdone", fitTitle);
     fitTitle();
     return () => {
@@ -89,7 +98,9 @@ export function Header({ title }: HeaderProps) {
             decoding="async"
           />
         )}
-        <h1 className="header-title" ref={titleRef}><span ref={textRef}>{title}</span></h1>
+        <h1 className="header-title" ref={titleRef}>
+          <span ref={textRef}>{title}</span>
+        </h1>
       </div>
     </header>
   );

@@ -3,12 +3,9 @@ import "./StakeholderChain.css";
 
 /**
  * Stakeholder map: the five lifecycle stages form a horizontal chain; hovering
- * (or tapping / focusing) any stage drops down one full-width card holding a
- * short card with each stage's content. Replace the placeholder text with the
- * final content.
+ * (or tapping / focusing) any stage drops down one full-width card holding the
+ * stage content areas (text to be filled in later).
  */
-const placeholderText = "Placeholder text — replace with the final content.";
-
 const stages = [
   { id: "rd", label: "R&D" },
   { id: "manufacturing", label: "Manufacturing" },
@@ -67,10 +64,7 @@ export function StakeholderChain() {
           <div className="chain__long-card">
             <div className="chain__mini-row">
               {stages.map((stage) => (
-                <div className="chain__mini-card" key={stage.id}>
-                  <p className="chain__mini-card-title">{stage.label}</p>
-                  <p>{placeholderText}</p>
-                </div>
+                <div className="chain__mini-card" key={stage.id} />
               ))}
             </div>
           </div>

@@ -4,9 +4,9 @@ import scaffold from "./results/scaffold-content.json";
 import "./results/results.css";
 
 const functionModules = [
-  { id: "anisotropy", label: "Magnetically responsive anisotropy" },
-  { id: "gag", label: "GAG retention" },
-  { id: "delivery", label: "Delivery" },
+  { id: "anisotropy", label: "4 Magnetically responsive anisotropy" },
+  { id: "gag", label: "5 GAG retention" },
+  { id: "delivery", label: "6 Delivery" },
 ] as const;
 
 type FunctionModuleId = (typeof functionModules)[number]["id"];
