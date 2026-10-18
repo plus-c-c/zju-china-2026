@@ -36,7 +36,7 @@ function ResultsChevron({ className = "" }: { className?: string }) {
 export function Results() {
   const [activeModule, setActiveModule] = useState<
     "platform" | "function" | null
-  >(null);
+  >("platform");
   const platformOpen = activeModule === "platform";
   const functionOpen = activeModule === "function";
   const [activeFunction, setActiveFunction] = useState<FunctionModuleId | null>(
