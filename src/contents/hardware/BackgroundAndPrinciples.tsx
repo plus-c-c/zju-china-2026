@@ -1,73 +1,147 @@
 export function BackgroundAndPrinciples() {
   return (
     <>
-      <h2 className="mb-4">Background</h2>
+      <h2 className="mt-5 mb-3">Background</h2>
       <p>
-        As a functional material with a complex internal structure, hydrogel
-        combines high viscosity with strong temperature sensitivity, which poses
-        significant challenges for precise transport and targeted delivery. In
-        practice, several raw components must be mixed in specified ratios, and
-        both preparation and storage require careful temperature control, since
-        a deviation from the target temperature causes premature gelation or
-        inactivation of the active components. The administration stage
-        additionally demands a steady output rate, visualization of the target
-        region, in situ photocrosslinking, and an applied magnetic field that
-        tunes the anisotropic structure inside the material. If these steps were
-        performed entirely by hand, output stability and reproducibility could
-        not be guaranteed.
+        Hydrogels are functional materials with complex structures. Their{" "}
+        <strong>high viscosity and temperature sensitivity</strong> present
+        significant challenges for precise delivery and site-specific
+        administration. In our experiments, multiple hydrogel ingredients must
+        be mixed in specific proportions, while preparation and storage
+        temperatures must be carefully controlled. Deviations from the required
+        temperature may cause premature gelation or inactivate bioactive
+        components. During administration, the system must also provide steady
+        delivery, visualization of the target site, and in situ
+        photocrosslinking, together with an external magnetic field to regulate
+        anisotropic structures within the material. Achieving consistent and
+        reproducible performance across these steps is difficult when relying
+        entirely on manual operation.
       </p>
       <p>
-        To address these problems, the system adopts a split architecture that
-        separates hydrogel preparation from administration into two independent
-        units. The formulation unit handles raw-material proportioning, mixing,
-        and thermostatic storage; the administration unit delivers the gel
-        precisely and integrates imaging, photocrosslinking, and magnetic-field
-        control. The two units are interconnected through fluidic tubing and
-        circuit design, and cooperate to complete the entire delivery workflow.
+        To address these challenges, our system uses a{" "}
+        <strong>two-module architecture</strong> that separates hydrogel
+        preparation from administration, while integrating the necessary
+        functions within each module. The preparation module handles{" "}
+        <strong>
+          ingredient proportioning, mixing, and temperature-controlled storage
+        </strong>
+        . The administration module provides precise hydrogel delivery and
+        integrates{" "}
+        <strong>imaging, photocrosslinking, and magnetic field control</strong>.
+        The two modules are interconnected through fluidic tubing and electrical
+        circuitry to support the complete administration workflow.
       </p>
-      {/* Draft placeholder: overview figure (the magnetic coil may or may not be included; the first figure is still to be revised) */}
-      <h2 className="mt-5 mb-3">Core design principles</h2>
-      <h3 className="mt-5 mb-3">Modular design</h3>
+      <figure className="my-4 text-center">
+        <img
+          src="https://static.igem.wiki/teams/6102/wiki/images/hardware/figure0-1-1.avif"
+          alt="Hardware diagram 0-1-1"
+          className="img-fluid rounded"
+          style={{ width: "75%" }}
+          loading="lazy"
+          decoding="async"
+        />
+        <figcaption className="figure-caption mt-2">
+          Figure 0.1.1 | Overall view of the hardware.
+        </figcaption>
+      </figure>
+      <div className="d-flex justify-content-center align-items-start gap-3 my-4">
+        <figure className="text-center mb-0" style={{ width: "45%" }}>
+          <img
+            src="https://static.igem.wiki/teams/6102/wiki/images/hardware/figure0-1-2a.avif"
+            alt="Magnetic leg band."
+            className="img-fluid rounded"
+            style={{ width: "100%" }}
+            loading="lazy"
+            decoding="async"
+          />
+          <figcaption className="figure-caption mt-2">
+            Figure 0.1.2a | Magnetic leg band.
+          </figcaption>
+        </figure>
+        <figure className="text-center mb-0" style={{ width: "45%" }}>
+          <img
+            src="https://static.igem.wiki/teams/6102/wiki/images/hardware/figure0-1-2b.avif"
+            alt="Transparent schematic view of the magnetic leg band."
+            className="img-fluid rounded"
+            style={{ width: "100%" }}
+            loading="lazy"
+            decoding="async"
+          />
+          <figcaption className="figure-caption mt-2">
+            Figure 0.1.2b | Transparent schematic view of the magnetic leg band.
+          </figcaption>
+        </figure>
+      </div>
+      <figure className="my-4 text-center">
+        <img
+          src="https://static.igem.wiki/teams/6102/wiki/images/hardware/figure0-1-3.avif"
+          alt="Photograph of the assembled hardware."
+          className="img-fluid rounded"
+          style={{ width: "75%" }}
+          loading="lazy"
+          decoding="async"
+        />
+        <figcaption className="figure-caption mt-2">
+          Figure 0.1.3 | Photograph of the assembled hardware.
+        </figcaption>
+      </figure>
+      <h2 className="mt-5 mb-3">1 Core Design Principles</h2>
+      <h3 className="mt-5 mb-3">1.1 Modular Design</h3>
       <p>
-        The system is built on a modular architecture in which the formulation
-        and administration units are independent of each other, and the
-        subsystems within each unit are likewise independent. The propulsion
-        mechanism, fluidic paths, temperature sensing, and human–machine
-        interface panel are all designed as individually replaceable modules; on
-        the administration side, the injection assembly, optical unit, and
-        magnetic band can each be removed and installed separately. This design
-        allows the system to be flexibly adapted to experimental needs and
-        facilitates subsequent iterative upgrades of individual modules.
+        The system uses a modular architecture consisting of two main units:
+        preparation and administration. Each unit and its internal subsystems
+        can be{" "}
+        <strong>disassembled and serviced relatively independently</strong>. The
+        actuation mechanisms, fluidic pathways, temperature control and sensing
+        modules, and user interface panel are all designed as modules. On the
+        administration side, the injection assembly, optical unit, and magnetic
+        leg band can also be installed and removed separately. This modular
+        design allows the system configuration to be adjusted to suit different
+        experiments and supports maintenance and future upgrades of individual
+        modules.
       </p>
-      <h3 className="mt-5 mb-3">Designed for laboratory and application use</h3>
+      <h3 className="mt-5 mb-3">
+        1.2 Designed for Laboratory and Practical Use
+      </h3>
       <p>
-        The hardware design takes full account of real usage scenarios in both
-        the wet lab and future clinical practice. Addressing practical problems
-        that arise easily — frequent consumable replacement, difficulty in
-        observing tubing anomalies, and backflow caused by misoperation — the
-        system incorporates corresponding structural optimizations: all fluidic
-        consumables support quick removal and replacement, reducing maintenance
-        costs during experiments; the enclosure is made of transparent material
-        so that the fluid state inside the tubing can be observed directly,
-        making it easy to identify bubbles or blockages in time; and a three-way
-        valve physically isolates different fluid circuits, suppressing the risk
-        of reagent backflow at the structural level. In addition, the main
-        controls are concentrated on a single operation panel, so the system is
-        simple to operate and does not require trained personnel.
+        The hardware design takes into account the practical requirements of
+        laboratory work and potential downstream applications. Several
+        structural features address frequent consumable replacement, difficulty
+        observing fluid conditions inside tubing, and the risk of formulation
+        backflow caused by operating errors. Fluid-contact consumables can be{" "}
+        <strong>quickly installed and removed</strong>, simplifying sample
+        changes and maintenance. A transparent enclosure allows users to observe
+        fluid conditions in the tubing and promptly identify bubbles, blockages,
+        and other abnormalities. Three-way valves{" "}
+        <strong>switch between and isolate fluidic pathways</strong>, reducing
+        the risk of backflow caused by incorrect operation.
       </p>
-      <h3 className="mt-5 mb-3">Adapted to the material&rsquo;s properties</h3>
       <p>
-        In response to the temperature sensitivity of the hydrogel, the
-        reservoir integrates bidirectional heating and cooling to keep the
-        physicochemical state of the gel stable. The administration plunger uses
-        a damping structure formed by wrapped tape, whose controlled mechanical
-        resistance buffers the instantaneous impulse of injection and reduces
-        mechanical disturbance to the target tissue.
+        Most functions are accessible from a centralized control panel and can
+        also be operated through a web interface, simplifying the workflow and
+        reducing operational complexity.
       </p>
-      <h3 className="mt-5 mb-3">Open source and reproducible</h3>
+      <h3 className="mt-5 mb-3">1.3 Design Adapted to Material Properties</h3>
       <p>
-        All mechanical drawings and PCB engineering files related to the system
-        are open-sourced for reuse and secondary development by future teams.
+        To accommodate the temperature sensitivity of hydrogels, the reservoir
+        integrates <strong>both heating and cooling</strong> to regulate and
+        maintain its internal temperature, helping preserve the hydrogel’s
+        physicochemical stability.
+      </p>
+      <p>
+        At the administration end, needles with different internal diameters can
+        be exchanged to <strong>adjust flow resistance</strong>. This helps
+        smooth hydrogel delivery and reduce transient surges during injection,
+        thereby limiting mechanical disturbance to the target tissue and
+        enabling more precise handling by physicians. Users can compare the
+        delivery performance and tactile feedback of different needle sizes in
+        person to select a suitable option.
+      </p>
+      <h3 className="mt-5 mb-3">1.4 Open Source and Reproducibility</h3>
+      <p>
+        All <strong>mechanical drawings and PCB project files</strong> for the
+        system are <strong>open source</strong>, allowing future teams to
+        reference, reuse, and further develop the design.
       </p>
     </>
   );

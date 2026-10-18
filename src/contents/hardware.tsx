@@ -1,10 +1,11 @@
+import "./hardware.css";
 /**
  * Hardware page — composed from per-module components in `./hardware/`:
  *
  *   BackgroundAndPrinciples  Background and core design principles
- *   FormulationUnit          Formulation unit (architecture, propulsion, mixing, electronics)
+ *   FormulationUnit          Preparation unit (architecture, dispensing, mixing, electronics)
  *   AdministrationUnit       Administration unit (injection assembly, arthroscopy, magnetic band)
- *   WorkflowAndOutlook       Complete workflow, future outlook, BOM, engineering draft
+ *   WorkflowAndOutlook       Complete workflow and future outlook
  */
 import { BackgroundAndPrinciples } from "./hardware/BackgroundAndPrinciples";
 import { FormulationUnit } from "./hardware/FormulationUnit";

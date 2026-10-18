@@ -1,0 +1,23 @@
+.hardware-video-placeholder {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  border: 1px dashed #a7bbde;
+  border-radius: 4px;
+  color: #223c81;
+  background-color: #e0eafa;
+  font-size: 1.25rem;
+}
+
+.hardware-electronics-pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+.hardware-electronics-image {
+  display: block;
+  width: 100%;
+  height: clamp(140px, 24vw, 320px);
+  object-fit: contain;
+}
