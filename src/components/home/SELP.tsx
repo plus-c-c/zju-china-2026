@@ -161,7 +161,9 @@ function PipelineConnector({ variant }: { variant: "first" | "second" }) {
     <svg
       aria-hidden="true"
       className={`selp-pipeline__connector selp-pipeline__connector--${variant}`}
-      viewBox={variant === "first" ? "0 0 542.793 352.729" : "0 0 546.788 356.937"}
+      viewBox={
+        variant === "first" ? "0 0 542.793 352.729" : "0 0 546.788 356.937"
+      }
       preserveAspectRatio="none"
     >
       <path
@@ -211,32 +213,32 @@ const quickLinks = [
   {
     label: "Description",
     to: "/description",
-    icon: "description.png",
+    icon: `${STATIC_HOME}/shortcut-icons/description.avif`,
   },
   {
     label: "Design",
     to: "/design",
-    icon: "design.png",
+    icon: `${LOCAL_HOME}/shortcut-icons/design.png`,
   },
   {
     label: "Proof of Concept",
     to: "/proof-of-concept",
-    icon: "proof-of-concept.png",
+    icon: `${LOCAL_HOME}/shortcut-icons/proof-of-concept.png`,
   },
   {
     label: "Model",
     to: "/model",
-    icon: "model.png",
+    icon: `${LOCAL_HOME}/shortcut-icons/model.png`,
   },
   {
     label: "Entrepreneurship",
     to: "/entrepreneurship",
-    icon: "entrepreneurship.png",
+    icon: `${LOCAL_HOME}/shortcut-icons/entrepreneurship.png`,
   },
   {
     label: "Integrated Human Practice",
     to: "/human-practices",
-    icon: "human-practices.svg",
+    icon: `${LOCAL_HOME}/shortcut-icons/human-practices.svg`,
   },
 ] as const;
 
@@ -244,7 +246,10 @@ const promotionDecorations = [
   ["orange-cell-lower-right", "orange-cell-lower-right.png"],
   ["orange-molecule-upper-left", "orange-molecule-upper-left.png"],
   ["cyan-particle-top", "cyan-particle-top.png"],
-  ["blue-bird-lower-left", "blue-bird-lower-left.png"],
+  [
+    "blue-bird-lower-left",
+    `${STATIC_HOME}/promotion/blue-bird-lower-left.avif`,
+  ],
   ["blue-bird-top", "blue-bird-top.png"],
   ["dna-left", "dna-left.png"],
   ["white-cell-lower-right", "white-cell-lower-right.png"],
@@ -366,21 +371,23 @@ export function SelpPipeline() {
           />
         </section>
 
-        <section className="selp-after-pipeline" aria-label="Explore the NEST project">
+        <section
+          className="selp-after-pipeline"
+          aria-label="Explore the NEST project"
+        >
           <nav className="selp-shortcuts" aria-label="Project shortcuts">
             {quickLinks.map((item) => (
               <Link className="selp-shortcut" key={item.to} to={item.to}>
-                <img
-                  aria-hidden="true"
-                  alt=""
-                  src={`${LOCAL_HOME}/shortcut-icons/${item.icon}`}
-                />
+                <img aria-hidden="true" alt="" src={item.icon} />
                 <span>{item.label}</span>
               </Link>
             ))}
           </nav>
 
-          <section className="selp-promotion" aria-labelledby="promotion-video-title">
+          <section
+            className="selp-promotion"
+            aria-labelledby="promotion-video-title"
+          >
             <div className="selp-promotion__depth" aria-hidden="true" />
             <div className="selp-promotion__border" aria-hidden="true" />
             <div className="selp-promotion__frame">
@@ -399,7 +406,11 @@ export function SelpPipeline() {
                 aria-hidden="true"
                 className={`selp-promotion__decoration selp-promotion__decoration--${className}`}
                 key={fileName}
-                src={`${LOCAL_HOME}/promotion/${fileName}`}
+                src={
+                  fileName.startsWith("https://")
+                    ? fileName
+                    : `${LOCAL_HOME}/promotion/${fileName}`
+                }
               />
             ))}
           </section>
