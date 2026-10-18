@@ -27,6 +27,12 @@ const App = () => {
       .split(`${stringToSlug(import.meta.env.VITE_TEAM_NAME)}`)
       .pop() || "/";
 
+  useLayoutEffect(() => {
+    if (!location.hash) {
+      window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+    }
+  }, [location.pathname]);
+
   // Set Page Title
   const currentPage =
     currentPath in pathMapping ? pathMapping[currentPath] : undefined;
