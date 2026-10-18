@@ -53,6 +53,7 @@
 }
 /* Native document scrolling drives the fixed story viewport. */
 html.home-story-open {
+  scrollbar-gutter: stable;
   overflow-y: scroll;
   scroll-behavior: auto;
 }

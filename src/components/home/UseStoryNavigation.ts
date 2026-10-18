@@ -161,6 +161,8 @@ export function useStoryNavigation() {
       const arrival = direction < 0 && nextScene !== currentScene
         ? STORY_STOPS.lastIndexOf(nextScene)
         : target;
+      wheelDistance = 0;
+      settledAt = performance.now();
       continuationDistance = 0;
       seek(arrival, duration, transitionStart);
       return true;
@@ -172,7 +174,7 @@ export function useStoryNavigation() {
       // The lower document route owns scrolling after the OA arrival.
       if (current.value >= 21 && event.deltaY > 0 && !animationActive.current) return;
       const now = performance.now();
-      const quiet = now - lastWheelAt > 260;
+      const quiet = now - lastWheelAt > 420;
       lastWheelAt = now;
       const inputDirection = Math.sign(event.deltaY);
       const reversed = gestureDirection !== 0 && inputDirection !== gestureDirection;
@@ -186,9 +188,9 @@ export function useStoryNavigation() {
       }
       const wheelDelta = event.deltaY * (event.deltaMode === 0 ? 1 : 16);
       // Small trackpad momentum tails must not request another scene.
-      const deliberateInput = Math.abs(wheelDelta) >= 4;
+      const deliberateInput = Math.abs(wheelDelta) >= 12;
       if (deliberateInput) lastIntentAt = now;
-      sustained = !quiet && now - gestureStartedAt > 240;
+      sustained = !quiet && now - gestureStartedAt > 650;
       if (sustained) {
         chaining.current = true;
         setContinuousMotion(true);
@@ -210,6 +212,13 @@ export function useStoryNavigation() {
         }
         return;
       }
+      // A completed turn consumes the gesture. Only a substantial stream of
+      // fresh input may chain; its decaying momentum cannot start another turn.
+      if (!quiet && !reversed && settledAt >= gestureStartedAt &&
+          !(sustained && continuationDistance >= 480 && now - lastIntentAt <= 90)) {
+        event.preventDefault();
+        return;
+      }
       if (!reversed && quiet && now - settledAt < 100) { event.preventDefault(); return; }
       if (!deliberateInput) { event.preventDefault(); return; }
       wheelDistance += Math.sign(wheelDelta) * Math.min(80, Math.abs(wheelDelta));
@@ -220,7 +229,7 @@ export function useStoryNavigation() {
       }
     };
     const continueStory = () => {
-      if (!sustained || continuationDistance < 160 || performance.now() - lastIntentAt > 90 || animationActive.current) return;
+      if (!sustained || continuationDistance < 480 || performance.now() - lastIntentAt > 90 || animationActive.current) return;
       if (document.querySelector(".story-guide-bird--flying")) return;
       const current = readPosition();
       if (!current || (current.value >= 21 && gestureDirection > 0)) return;
