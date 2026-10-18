@@ -750,13 +750,17 @@ export function Description() {
           </p>
 
           <h2>References</h2>
-          <ol className="references-list">
+          <div className="references-list references-list--paragraphs">
             {references.map((reference, index) => (
-              <li id={`description-reference-${index + 1}`} key={index}>
-                {reference}
-              </li>
+              <p
+                id={`description-reference-${index + 1}`}
+                key={index}
+                style={{ scrollMarginTop: "112px" }}
+              >
+                [{index + 1}] {reference}
+              </p>
             ))}
-          </ol>
+          </div>
 
           <h2>Figure Sources and Credits</h2>
           <div className="description-credits">

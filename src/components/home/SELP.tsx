@@ -4,7 +4,6 @@ import "./SELP.css";
 
 const STATIC_HOME = "https://static.igem.wiki/teams/6102/wiki/images/home";
 const STATIC_GIF = "https://static.igem.wiki/teams/6102/wiki/gif";
-const LOCAL_HOME = `${import.meta.env.BASE_URL}images/home`;
 
 function DashedArrow({ className }: { className: string }) {
   return (
@@ -149,6 +148,35 @@ function PipelinePill({ label, to }: { label: string; to: string }) {
   );
 }
 
+function PipelineConnector({ variant }: { variant: "first" | "second" }) {
+  const paths = {
+    first:
+      "M3.99805 0V159.302C3.99805 172.552 14.7376 183.292 27.9876 183.292H514.805C528.055 183.292 538.795 194.031 538.795 207.276V352.729",
+    second:
+      "M542.79 0V171.328C542.79 184.578 532.05 195.318 518.805 195.318H27.9876C14.7376 195.318 3.99805 206.057 3.99805 219.302V356.937",
+  } as const;
+
+  return (
+    <svg
+      aria-hidden="true"
+      className={`selp-pipeline__connector selp-pipeline__connector--${variant}`}
+      viewBox={
+        variant === "first" ? "0 0 542.793 352.729" : "0 0 546.788 356.937"
+      }
+      preserveAspectRatio="none"
+    >
+      <path
+        d={paths[variant]}
+        fill="none"
+        stroke="#7eb5ff"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="8"
+      />
+    </svg>
+  );
+}
+
 function LoopingPipelineGif({
   alt,
   className,
@@ -184,47 +212,47 @@ const quickLinks = [
   {
     label: "Description",
     to: "/description",
-    icon: "description.png",
+    icon: `${STATIC_HOME}/shortcut-icons/description.avif`,
   },
   {
     label: "Design",
     to: "/design",
-    icon: "design.png",
+    icon: `${STATIC_HOME}/shortcut-icons/design.avif`,
   },
   {
     label: "Proof of Concept",
     to: "/proof-of-concept",
-    icon: "proof-of-concept.png",
+    icon: `${STATIC_HOME}/shortcut-icons/proof-of-concept.avif`,
   },
   {
     label: "Model",
     to: "/model",
-    icon: "model.png",
+    icon: `${STATIC_HOME}/shortcut-icons/model.avif`,
   },
   {
     label: "Entrepreneurship",
     to: "/entrepreneurship",
-    icon: "entrepreneurship.png",
+    icon: `${STATIC_HOME}/shortcut-icons/entrepreneurship.avif`,
   },
   {
     label: "Integrated Human Practice",
     to: "/human-practices",
-    icon: "human-practices.svg",
+    icon: `${STATIC_HOME}/shortcut-icons/human-practices.avif`,
   },
 ] as const;
 
 const promotionDecorations = [
-  ["orange-cell-lower-right", "orange-cell-lower-right.png"],
-  ["orange-molecule-upper-left", "orange-molecule-upper-left.png"],
-  ["cyan-particle-top", "cyan-particle-top.png"],
-  ["blue-bird-lower-left", "blue-bird-lower-left.png"],
-  ["blue-bird-top", "blue-bird-top.png"],
-  ["dna-left", "dna-left.png"],
-  ["white-cell-lower-right", "white-cell-lower-right.png"],
-  ["orange-cell-left", "orange-cell-left.png"],
-  ["green-cell-right", "green-cell-right.png"],
-  ["cyan-gear-upper-right", "cyan-gear-upper-right.png"],
-  ["cyan-gear-middle-right", "cyan-gear-middle-right.png"],
+  ["orange-cell-lower-right", "orange-cell-lower-right.avif"],
+  ["orange-molecule-upper-left", "orange-molecule-upper-left.avif"],
+  ["cyan-particle-top", "cyan-particle-top.avif"],
+  ["blue-bird-lower-left", "blue-bird-lower-left.avif"],
+  ["blue-bird-top", "blue-bird-top.avif"],
+  ["dna-left", "dna-left.avif"],
+  ["white-cell-lower-right", "white-cell-lower-right.avif"],
+  ["orange-cell-left", "orange-cell-left.avif"],
+  ["green-cell-right", "green-cell-right.avif"],
+  ["cyan-gear-upper-right", "cyan-gear-upper-right.avif"],
+  ["cyan-gear-middle-right", "cyan-gear-middle-right.avif"],
 ] as const;
 
 export function SelpPipeline() {
@@ -266,11 +294,7 @@ export function SelpPipeline() {
             label="About Anisotropy"
             to="/design#3-2-module-1-magnetically-responsive-anisotropy-directional-load-bearing"
           />
-          <img
-            className="selp-pipeline__connector selp-pipeline__connector--first"
-            src={`${PIPELINE_ASSETS}/pipeline-02-03.svg`}
-            alt=""
-          />
+          <PipelineConnector variant="first" />
         </section>
 
         <section
@@ -305,11 +329,7 @@ export function SelpPipeline() {
             label="About GAG"
             to="/design#3-3-module-2-cpc-link-n-maintaining-matrix-retention-and-renewal"
           />
-          <img
-            className="selp-pipeline__connector selp-pipeline__connector--second"
-            src={`${PIPELINE_ASSETS}/pipeline-03-04.svg`}
-            alt=""
-          />
+          <PipelineConnector variant="second" />
         </section>
 
         <section
@@ -347,21 +367,23 @@ export function SelpPipeline() {
           />
         </section>
 
-        <section className="selp-after-pipeline" aria-label="Explore the NEST project">
+        <section
+          className="selp-after-pipeline"
+          aria-label="Explore the NEST project"
+        >
           <nav className="selp-shortcuts" aria-label="Project shortcuts">
             {quickLinks.map((item) => (
               <Link className="selp-shortcut" key={item.to} to={item.to}>
-                <img
-                  aria-hidden="true"
-                  alt=""
-                  src={`${LOCAL_HOME}/shortcut-icons/${item.icon}`}
-                />
+                <img aria-hidden="true" alt="" src={item.icon} />
                 <span>{item.label}</span>
               </Link>
             ))}
           </nav>
 
-          <section className="selp-promotion" aria-labelledby="promotion-video-title">
+          <section
+            className="selp-promotion"
+            aria-labelledby="promotion-video-title"
+          >
             <div className="selp-promotion__depth" aria-hidden="true" />
             <div className="selp-promotion__border" aria-hidden="true" />
             <div className="selp-promotion__frame">
@@ -380,7 +402,7 @@ export function SelpPipeline() {
                 aria-hidden="true"
                 className={`selp-promotion__decoration selp-promotion__decoration--${className}`}
                 key={fileName}
-                src={`${LOCAL_HOME}/promotion/${fileName}`}
+                src={`${STATIC_HOME}/promotion/${fileName}`}
               />
             ))}
           </section>

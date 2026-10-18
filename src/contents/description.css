@@ -78,9 +78,9 @@
 
 .description-expandable__trigger {
   display: grid;
-  grid-template-columns: 2rem minmax(0, 1fr);
+  grid-template-columns: 1.5rem minmax(0, 1fr);
   width: 100%;
-  gap: 0.75rem;
+  gap: 0rem;
   align-items: flex-start;
   padding: 1.4rem;
   border: 0;
@@ -106,6 +106,7 @@
   line-height: 1;
   text-align: center;
   transition: color 260ms ease;
+  transform: translateX(-0.8rem);
 }
 
 .description-expandable__trigger:hover .description-expandable__icon {
@@ -313,6 +314,7 @@
 }
 .description-expandable__icon {
   width: 1.5rem;
+  transform: none;
 }
 .description-card-grid--barriers {
   grid-template-columns: minmax(0, 1fr);

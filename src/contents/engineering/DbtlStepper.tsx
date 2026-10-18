@@ -1,4 +1,11 @@
-import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  type ReactNode,
+} from "react";
 import {
   STEP_ADVANCE_ENABLED,
   useBoundaryStepAdvance,
@@ -10,6 +17,15 @@ import { DbtlRing } from "./DbtlRing";
 interface DbtlStepperProps {
   /** Sub-module view: the DBTL module whose cycles drive the sequence. */
   module?: DbtlModule;
+  /** Pre-built sequence spanning several parts; takes precedence over
+   *  `module` (used when one runway covers a whole group). */
+  steps?: Step[];
+  /** Module that owns a given step — drives the cycle buttons, ring badge
+   *  and captions in multi-part sequences. */
+  moduleForStep?: (step: Step) => DbtlModule | undefined;
+  /** Reports the step shown while the page scrolls, so the parent can keep
+   *  the level-3 tabs in sync with the runway. */
+  onStepChange?: (step: Step, index: number) => void;
   /** Part-level lead (引导段) — first step and "Introduction" button. */
   lead?: ReactNode;
   /** Part-level outlook (展望段) — last step and "Conclusion" button. */
@@ -32,15 +48,19 @@ interface DbtlStepperProps {
  */
 export function DbtlStepper({
   module,
+  steps: stepsProp,
+  moduleForStep,
+  onStepChange,
   lead,
   outlook,
   content,
   topNav,
 }: DbtlStepperProps) {
-  const steps = useMemo(
+  const builtSteps = useMemo(
     () => (module ? buildSteps(module, lead, outlook) : []),
     [module, lead, outlook],
   );
+  const steps = stepsProp && stepsProp.length ? stepsProp : builtSteps;
   const [index, setIndex] = useState(0);
 
   const rootRef = useRef<HTMLDivElement>(null);
@@ -53,27 +73,47 @@ export function DbtlStepper({
   /** Scroll the page to the progress position of a step, so the scroll
    *  mapping and the sequence state stay in sync (the pinned view does not
    *  move; only the scrollbar does). */
-  const scrollToStep = (
-    target: number,
-    behavior: ScrollBehavior = "instant",
-  ) => {
-    const runway = rootRef.current?.closest(
-      ".eng-runway",
-    ) as HTMLElement | null;
-    if (!runway) return;
-    const total = runway.offsetHeight - window.innerHeight;
-    if (total <= 0) return;
-    const runwayTop = runway.getBoundingClientRect().top + window.scrollY;
-    const y =
-      runwayTop + (total * target) / Math.max(1, stepsRef.current.length - 1);
-    window.scrollTo({ top: y, behavior });
-  };
+  const scrollToStep = useCallback(
+    (target: number, behavior: ScrollBehavior = "instant") => {
+      const runway = rootRef.current?.closest(
+        ".eng-runway",
+      ) as HTMLElement | null;
+      if (!runway) return;
+      const total = runway.offsetHeight - window.innerHeight;
+      if (total <= 0) return;
+      const runwayTop = runway.getBoundingClientRect().top + window.scrollY;
+      const y =
+        runwayTop + (total * target) / Math.max(1, stepsRef.current.length - 1);
+      window.scrollTo({ top: y, behavior });
+    },
+    [],
+  );
 
-  const goToStep = (target: number) => {
-    if (target < 0) return;
-    setIndex(target);
-    scrollToStep(target);
-  };
+  const goToStep = useCallback(
+    (target: number) => {
+      if (target < 0 || target >= stepsRef.current.length) return;
+      setIndex(target);
+      scrollToStep(target);
+    },
+    [scrollToStep],
+  );
+
+  /* Left/right arrow keys drive the same step switching as the wheel. */
+  useEffect(() => {
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.defaultPrevented || event.metaKey || event.ctrlKey || event.altKey)
+        return;
+      const forward = event.key === "ArrowRight" || event.key === "ArrowDown";
+      const backward = event.key === "ArrowLeft" || event.key === "ArrowUp";
+      if (!forward && !backward) return;
+      const target = forward ? indexRef.current + 1 : indexRef.current - 1;
+      if (target < 0 || target >= stepsRef.current.length) return;
+      event.preventDefault();
+      goToStep(target);
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [goToStep]);
 
   /** Boundary stepping: the wheel / touch advances one step per gesture once
    *  the text panel reaches its bottom (or its top, scrolling up). */
@@ -130,20 +170,38 @@ export function DbtlStepper({
   }, [suppressUntilRef]);
 
   const step = steps[index];
+  /** Module owning the shown step (multi-part sequences switch parts). */
+  const stepModule = step
+    ? (moduleForStep ? moduleForStep(step) : module)
+    : module;
   const currentCycleIndex = useMemo(() => {
-    if (!module || !step || step.kind === "lead" || step.kind === "outlook") {
+    if (!stepModule || !step || step.kind === "lead" || step.kind === "outlook") {
       return -1;
     }
     if (step.kind === "phase") return step.cycleIndex ?? 0;
     const next = steps.slice(index).find((entry) => entry.kind === "phase");
-    return next?.cycleIndex ?? Math.max(module.cycles.length - 1, 0);
-  }, [module, step, steps, index]);
+    return next?.cycleIndex ?? Math.max(stepModule.cycles.length - 1, 0);
+  }, [stepModule, step, steps, index]);
+
+  /** Keeps cycle jumps inside the current part. */
+  const belongsToCurrentPart = (entry: Step) =>
+    (moduleForStep ? moduleForStep(entry) : module) === stepModule;
+
+  /** Introduction / Conclusion buttons follow the current part's own lead
+   *  and outlook steps (multi-part sequences never pass the props). */
+  const leadIndex = steps.findIndex(
+    (entry) => entry.kind === "lead" && belongsToCurrentPart(entry),
+  );
+  const outlookIndex = steps.findIndex(
+    (entry) => entry.kind === "outlook" && belongsToCurrentPart(entry),
+  );
 
   const goToPhase = (phase: DbtlPhase) => {
     if (currentCycleIndex < 0) return;
     goToStep(
       steps.findIndex(
         (entry) =>
+          belongsToCurrentPart(entry) &&
           entry.kind === "phase" &&
           entry.cycleIndex === currentCycleIndex &&
           entry.phase === phase,
@@ -154,16 +212,26 @@ export function DbtlStepper({
   const goToCycle = (cycleIndex: number) => {
     goToStep(
       steps.findIndex(
-        (entry) => entry.kind === "phase" && entry.cycleIndex === cycleIndex,
+        (entry) =>
+          belongsToCurrentPart(entry) &&
+          entry.kind === "phase" &&
+          entry.cycleIndex === cycleIndex,
       ),
     );
   };
 
+  /* Report the shown step so the parent can sync the level-3 tabs. */
+  const onStepChangeRef = useRef(onStepChange);
+  onStepChangeRef.current = onStepChange;
+  useEffect(() => {
+    if (step) onStepChangeRef.current?.(step, index);
+  }, [step, index]);
+
   const phaseBadge =
-    module && step?.kind === "phase" && step.phase ? step.phase : null;
+    stepModule && step?.kind === "phase" && step.phase ? step.phase : null;
   const caption =
-    module && step?.kind === "phase" && step.cycleIndex !== undefined
-      ? module.cycles[step.cycleIndex].title
+    stepModule && step?.kind === "phase" && step.cycleIndex !== undefined
+      ? stepModule.cycles[step.cycleIndex]?.title
       : step?.kind === "info"
         ? (step.title ?? "")
         : "";
@@ -196,15 +264,23 @@ export function DbtlStepper({
             ref={panelRef}
             tabIndex={0}
             role="region"
-            aria-label={caption || module?.title || "Lead or outlook"}
+            aria-label={caption || stepModule?.title || "Lead or outlook"}
             onKeyDown={(event) => {
               if (!stepsRef.current.length) return;
-              if (event.key === "ArrowDown" || event.key === "PageDown") {
+              if (
+                event.key === "ArrowDown" ||
+                event.key === "PageDown" ||
+                event.key === "ArrowRight"
+              ) {
                 event.preventDefault();
                 goToStep(
                   Math.min(indexRef.current + 1, stepsRef.current.length - 1),
                 );
-              } else if (event.key === "ArrowUp" || event.key === "PageUp") {
+              } else if (
+                event.key === "ArrowUp" ||
+                event.key === "PageUp" ||
+                event.key === "ArrowLeft"
+              ) {
                 event.preventDefault();
                 goToStep(Math.max(indexRef.current - 1, 0));
               }
@@ -215,21 +291,21 @@ export function DbtlStepper({
             </div>
           </div>
         </div>
-        {module && (
+        {stepModule && (
           <div className="dbtl-cycles" role="group" aria-label="Steps">
-            {lead && (
+            {leadIndex >= 0 && (
               <button
                 type="button"
                 className={`dbtl-cycle-button${
                   step?.kind === "lead" ? " active" : ""
                 }`}
                 aria-pressed={step?.kind === "lead"}
-                onClick={() => goToStep(0)}
+                onClick={() => goToStep(leadIndex)}
               >
                 Introduction
               </button>
             )}
-            {module.cycles.map((cycle, cycleIndex) => (
+            {stepModule.cycles.map((cycle, cycleIndex) => (
               <button
                 key={cycle.title}
                 type="button"
@@ -242,14 +318,14 @@ export function DbtlStepper({
                 Cycle {cycleIndex + 1}
               </button>
             ))}
-            {outlook && (
+            {outlookIndex >= 0 && (
               <button
                 type="button"
                 className={`dbtl-cycle-button${
                   step?.kind === "outlook" ? " active" : ""
                 }`}
                 aria-pressed={step?.kind === "outlook"}
-                onClick={() => goToStep(stepsRef.current.length - 1)}
+                onClick={() => goToStep(outlookIndex)}
               >
                 Conclusion
               </button>

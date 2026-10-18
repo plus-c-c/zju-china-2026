@@ -169,7 +169,7 @@
   --dbtl-stack-h: clamp(380px, calc(90vh - 12rem), 700px);
   display: grid;
   grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.28fr);
-  gap: clamp(1.5rem, 3vw, 3rem);
+  gap: clamp(2.25rem, 4.5vw, 4.5rem);
   align-items: center;
   margin-top: 1.5rem;
 }
@@ -231,10 +231,9 @@
   stroke: #64b4ff;
 }
 
-/* The highlighted segment flips its white letters to the site's yellow,
-   matching the boosted colour. */
+/* The highlighted segment flips its white letters to the navbar's yellow. */
 .dbtl-ring .dbtl-hi path[fill="white"] {
-  fill: #ffd452;
+  fill: #ffe39a;
 }
 
 .dbtl-ring[data-active="design"] .dbtl-hi-design,
@@ -275,10 +274,16 @@
 }
 
 .dbtl-phase {
+  display: inline-flex;
   flex-shrink: 0;
-  padding: 0.15rem 0.7rem;
+  align-items: center;
+  justify-content: center;
+  /* Fixed width for every phase so the title never shifts between
+     Design / Build / Test / Learn; text matches the card title size. */
+  min-width: 7.2rem;
+  padding: 0.2rem 0.75rem;
   border-radius: 50px;
-  font-size: 0.85rem;
+  font-size: 1.5rem;
   font-weight: 700;
   letter-spacing: 0.03em;
   color: #fff;
@@ -298,16 +303,18 @@
 }
 
 .dbtl-caption {
-  overflow: hidden;
-  font-size: 0.95rem;
-  font-weight: 600;
+  /* Card title: stays clearly above the 1.25rem body text and wraps
+     instead of truncating when the title is long. */
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.35;
   color: #223c81;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
 .dbtl-panel-body {
+  display: flex;
   flex: 1;
+  flex-direction: column;
   padding: 1.25rem 1.5rem 1.5rem;
   overflow-y: auto;
   overscroll-behavior: contain;
@@ -325,6 +332,9 @@
 }
 
 .dbtl .dbtl-panel-inner {
+  /* Auto margins centre the step content while it fits the card; once it
+     overflows they collapse to zero and the card scrolls from the top. */
+  margin: auto 0;
   animation: dbtl-step-in 0.26s ease;
 }
 
@@ -433,11 +443,12 @@
   width: 100%;
 }
 
-/* In-panel section headings for the group lead and sub-module leads. */
+/* In-panel section headings for the group lead and sub-module leads.
+   Kept in the same title tier as the card caption, above the body text. */
 .dbtl .dbtl-panel-inner .dbtl-section-title {
   margin: 1.3rem 0 0.7rem;
-  font-size: 1.3rem;
-  line-height: 1.45;
+  font-size: 1.5rem;
+  line-height: 1.4;
   color: #223c81;
 }
 

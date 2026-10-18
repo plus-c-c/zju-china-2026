@@ -1,19 +1,20 @@
 .entrepreneurship-article {
-  --entre-border: #9ebfe4;
+  --entre-border: #e2ebf8;
   --entre-header: #dce9ff;
-  --entre-header-hover: #c9dcf8;
-  --entre-header-open: #cfe0fa;
-  --entre-content: #eef4fd;
-  --entre-title: #223c81;
+  --entre-header-hover: #cfe0fa;
+  --entre-header-open: #c2d8f8;
+  --entre-content: #fff;
+  --entre-title: #365dc9;
   --entre-body: #233d5c;
 }
 
 .entre-card {
+  border: 0;
+  border-radius: var(--article-card-radius, 22px);
   overflow: hidden;
-  margin: 1.1rem 0;
-  border: 2px solid var(--entre-border);
-  border-radius: 16px;
-  background: #fff;
+  background: var(--article-card-background, #fff);
+  box-shadow: var(--article-card-shadow, 4px 4px #a9c8ed);
+  margin: 1.4rem 0;
   font-family: "Outfit", sans-serif;
 }
 
@@ -23,14 +24,14 @@
   justify-content: space-between;
   gap: 1rem;
   width: 100%;
-  padding: 0.95rem 1.3rem;
+  padding: 1.05rem 1.4rem;
   border: 0;
   background: var(--entre-header);
   color: var(--entre-title);
   cursor: pointer;
-  font-size: 1.5rem;
-  font-weight: 600;
-  line-height: 1.35;
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.4;
   text-align: left;
   transition: background-color 0.25s ease;
 }
@@ -85,8 +86,8 @@
 }
 
 .entre-card-pad {
-  padding: 1rem 1.3rem 1.1rem;
-  border-top: 2px solid var(--entre-border);
+  padding: 1rem 1.4rem 1.15rem;
+  border-top: 1px solid var(--entre-border);
 }
 
 .entre-card-pad p {

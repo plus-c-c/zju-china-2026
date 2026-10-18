@@ -1,7 +1,8 @@
 import { useLayoutEffect, useRef, useState } from "react";
 import type { Group, Part } from "./engineering/group";
 import { DbtlStepper } from "./engineering/DbtlStepper";
-import { buildSteps, STEP_DVH } from "./engineering/steps";
+import { buildSteps, STEP_DVH, type Step } from "./engineering/steps";
+import type { DbtlModule } from "./engineering/dbtl";
 import { EngineeringReferences } from "./engineering/EngineeringReferences";
 import { gagRetentionGroup } from "./engineering/groups/gag-retention";
 import { hardwareGroup } from "./engineering/groups/hardware";
@@ -72,6 +73,12 @@ export function Engineering() {
   const activeGroup =
     activeSection.groups[groupIndex] ?? activeSection.groups[0];
 
+  /* Scroll-driven step changes switch the level-3 tab without scrolling the
+     page back to the part's start (that jump is only for tab clicks). */
+  const autoTabRef = useRef(false);
+  const tabIndexRef = useRef(tabIndex);
+  tabIndexRef.current = tabIndex;
+
   const selectSection = (key: string) => {
     setActiveKey(key);
     setGroupIndex(0);
@@ -112,46 +119,107 @@ export function Engineering() {
         ...(hasConclusion ? [{ kind: "conclusion" } as Tab] : []),
       ]
     : [];
-  const activeTab = tabs[tabIndex] ?? tabs[0];
-  const activePart = activeTab?.kind === "part" ? activeTab.part : undefined;
+  const introContent = (
+    <>
+      {introModule?.introTitle && (
+        <h3 className="dbtl-section-title">{introModule.introTitle}</h3>
+      )}
+      {introModule?.intro}
+      {activeGroup?.heading && (
+        <h3 className="dbtl-section-title">{activeGroup.heading}</h3>
+      )}
+      {activeGroup?.lead}
+    </>
+  );
 
-  // A part shows only its own cycles, numbered from 1 again; its lead and
-  // outlook become the boundary steps of the sequence.
-  const stepperModule = activePart
-    ? activePart.cycleSlice
+  // The whole group is one runway: the Introduction tab, every part (with or
+  // without its own cycle steps) and the Conclusion tab form a single
+  // sequence, so the page scroll drives both the level-3 tabs and the
+  // level-4 cycle steps.
+  const partSequences = (activeGroup?.parts ?? []).map((part) => {
+    const module = part.cycleSlice
       ? {
-          ...activePart.module,
-          cycles: activePart.module.cycles.slice(
-            activePart.cycleSlice[0],
-            activePart.cycleSlice[1],
+          ...part.module,
+          cycles: part.module.cycles.slice(
+            part.cycleSlice[0],
+            part.cycleSlice[1],
           ),
           infos: [],
         }
-      : activePart.module
-    : undefined;
-  const partHasStepper = Boolean(
-    stepperModule && stepperModule.cycles.length > 0,
-  );
-  const partLead =
-    activePart && (activePart.heading || activePart.lead) ? (
-      <>
-        {activePart.heading && (
-          <h3 className="dbtl-section-title">{activePart.heading}</h3>
-        )}
-        {activePart.lead}
-      </>
-    ) : undefined;
-  const steps =
-    stepperModule && partHasStepper
-      ? buildSteps(stepperModule, partLead, activePart?.outlook)
-      : [];
+      : part.module;
+    const lead =
+      part.heading || part.lead ? (
+        <>
+          {part.heading && (
+            <h3 className="dbtl-section-title">{part.heading}</h3>
+          )}
+          {part.lead}
+        </>
+      ) : undefined;
+    const built = buildSteps(module, lead, part.outlook);
+    const steps: Step[] = built.length
+      ? built
+      : [{ key: "part", kind: "info", title: part.label, content: lead }];
+    return { part, module, steps };
+  });
+
+  interface SeqEntry {
+    step: Step;
+    module?: DbtlModule;
+    tab: number;
+  }
+  const sequence: SeqEntry[] = [];
+  if (hasIntro) {
+    sequence.push({
+      step: {
+        key: "intro",
+        kind: "info",
+        title: "Introduction",
+        content: introContent,
+      },
+      tab: 0,
+    });
+  }
+  partSequences.forEach((entry, partIndex) => {
+    const tab = (hasIntro ? 1 : 0) + partIndex;
+    entry.steps.forEach((step) =>
+      sequence.push({
+        step: { ...step, key: `p${partIndex}-${step.key}` },
+        module: entry.module,
+        tab,
+      }),
+    );
+  });
+  if (hasConclusion) {
+    sequence.push({
+      step: {
+        key: "conclusion",
+        kind: "info",
+        title: "Conclusion",
+        content: conclusionContent,
+      },
+      tab: (hasIntro ? 1 : 0) + partSequences.length,
+    });
+  }
+  const steps = sequence.map((entry) => entry.step);
   const stepCount = steps.length;
-  const startIndex = steps.findIndex(
-    (entry) =>
-      entry.kind === "phase" &&
-      entry.cycleIndex === 0 &&
-      entry.phase === "Design",
-  );
+  const metaByKey = new Map(sequence.map((entry) => [entry.step.key, entry]));
+  const moduleForStep = (step: Step) => metaByKey.get(step.key)?.module;
+  /* Where a tab starts in the sequence (its Cycle 1 Design when available). */
+  const startIndexForTab = (tab: number) => {
+    const first = sequence.findIndex((entry) => entry.tab === tab);
+    if (first < 0) return -1;
+    const design = sequence.findIndex(
+      (entry, index) =>
+        index >= first &&
+        entry.tab === tab &&
+        entry.step.kind === "phase" &&
+        entry.step.cycleIndex === 0 &&
+        entry.step.phase === "Design",
+    );
+    return design >= 0 ? design : first;
+  };
+  const startIndex = startIndexForTab(tabIndex);
 
   // Any level switch returns to the top of the sequence — Cycle 1 Design for
   // sub-module views (skipping the lead step when there is one), the top of
@@ -168,6 +236,10 @@ export function Engineering() {
       prev.tabIndex !== tabIndex;
     prevNavRef.current = { activeKey, groupIndex, tabIndex };
     if (!changed) return;
+    if (autoTabRef.current) {
+      autoTabRef.current = false;
+      return;
+    }
     const runway = document.querySelector(".eng-runway") as HTMLElement | null;
     if (runway && startIndex >= 0 && steps.length > 1) {
       const total = runway.offsetHeight - window.innerHeight;
@@ -203,19 +275,6 @@ export function Engineering() {
     </button>
   ));
 
-  const introContent = (
-    <>
-      {introModule?.introTitle && (
-        <h3 className="dbtl-section-title">{introModule.introTitle}</h3>
-      )}
-      {introModule?.intro}
-      {activeGroup?.heading && (
-        <h3 className="dbtl-section-title">{activeGroup.heading}</h3>
-      )}
-      {activeGroup?.lead}
-    </>
-  );
-
   const content = (
     <>
       <div className="eng-module-nav">
@@ -247,31 +306,22 @@ export function Engineering() {
         </div>
       )}
       {activeGroup &&
-        (activeTab?.kind === "part" && activePart && stepperModule ? (
-          partHasStepper ? (
-            <DbtlStepper
-              key={`${activePart.module.title}-${activePart.label}`}
-              module={stepperModule}
-              lead={partLead}
-              outlook={activePart.outlook}
-              topNav={<>{tabNav}</>}
-            />
-          ) : (
-            <div className="eng-partnav">{tabNav}</div>
-          )
-        ) : activeTab?.kind === "intro" ? (
+        (stepCount > 0 ? (
           <DbtlStepper
-            key={`${activeGroup.label}-intro`}
-            content={introContent}
+            key={activeGroup.label}
+            steps={steps}
+            moduleForStep={moduleForStep}
+            onStepChange={(step) => {
+              const tab = metaByKey.get(step.key)?.tab;
+              if (tab === undefined || tab === tabIndexRef.current) return;
+              autoTabRef.current = true;
+              setTabIndex(tab);
+            }}
             topNav={<>{tabNav}</>}
           />
-        ) : activeTab?.kind === "conclusion" ? (
-          <DbtlStepper
-            key={`${activeGroup.label}-conclusion`}
-            content={conclusionContent}
-            topNav={<>{tabNav}</>}
-          />
-        ) : null)}
+        ) : (
+          <div className="eng-partnav">{tabNav}</div>
+        ))}
     </>
   );
 

@@ -1,5 +1,7 @@
 .nest-navbar {
   --nest-nav-height: 88px;
+  /* Single size parameter for every navbar icon (see NavIcon). */
+  --nest-icon-size: 60px;
   position: fixed;
   inset: 0 0 auto;
   z-index: 1100;
@@ -197,9 +199,9 @@
 
 .nest-tile-icon {
   display: block;
-  flex: 0 0 60px;
-  width: 60px;
-  height: 60px;
+  flex: 0 0 var(--nest-icon-size);
+  width: var(--nest-icon-size);
+  height: var(--nest-icon-size);
   object-fit: contain;
   object-position: center;
   transition: transform 180ms ease;
@@ -402,10 +404,8 @@
     gap: 8px;
     padding: 5px 6px;
   }
-  .nest-tile-icon {
-    flex-basis: 32px;
-    width: 32px;
-    height: 32px;
+  .nest-navbar {
+    --nest-icon-size: 32px;
   }
   .nest-tile-title {
     font-size: 14px;
@@ -469,10 +469,8 @@
     padding: 6px;
     gap: 8px;
   }
-  .nest-tile-icon {
-    flex-basis: 38px;
-    width: 38px;
-    height: 38px;
+  .nest-navbar {
+    --nest-icon-size: 38px;
   }
   .nest-tile-title {
     font-size: 16px;
