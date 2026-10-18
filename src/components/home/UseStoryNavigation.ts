@@ -127,7 +127,8 @@ export function useStoryNavigation() {
               (presentScene === 2 && value > 4.1 && beat === 4) ||
               (presentScene === 5 && value > 11 && beat === 10)));
       if (target === undefined) return false;
-      const duration = 1500;
+      const drawingCards = presentScene === 5 && (target === 12.8 || (direction < 0 && value > 11));
+      const duration = drawingCards ? 2800 : 1500;
       const nextScene = STORY_STOPS[Math.floor(target)];
       const currentScene = STORY_STOPS[Math.max(0, Math.min(STORY_STOPS.length - 1, Math.floor(value)))];
       const transitionStart = nextScene !== currentScene

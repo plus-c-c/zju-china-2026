@@ -151,7 +151,7 @@ function DesktopHome() {
     {
       name: "Material limitations",
       content: (
-        <MaterialLimitations drawProgress={Math.max(0, Math.min(1, (position - 11) / 2))} />
+        <MaterialLimitations drawProgress={Math.max(0, Math.min(1, (position - 10) / 2.8))} />
       ),
     },
     { name: "Return to NEST", content: <BirdReturnsToNest /> },

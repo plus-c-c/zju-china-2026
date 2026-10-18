@@ -12,9 +12,10 @@ export function PipelineBird() {
     let lastX: number | null = null;
     let lastY: number | null = null;
     let wasMoving = false;
-    let lastScrollTime = -Infinity;
     let previousScroll = window.scrollY;
+    let lastScrollTime = -Infinity;
     let routeDirection = 1;
+    let reversalDistance = 0;
     let activeBefore = false;
     const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
     const clamp = (n: number) => Math.max(0, Math.min(1, n));
@@ -28,7 +29,12 @@ export function PipelineBird() {
       if (!root || !footer || !canvas) return;
       const scroll = window.scrollY;
       if (Math.abs(scroll - previousScroll) > 0.1) {
-        routeDirection = scroll > previousScroll ? 1 : -1;
+        const delta = scroll - previousScroll;
+        if (Math.sign(delta) === routeDirection) reversalDistance = 0;
+        else {
+          reversalDistance += Math.abs(delta);
+          if (reversalDistance >= 18) { routeDirection *= -1; reversalDistance = 0; }
+        }
         lastScrollTime = time;
       }
       previousScroll = scroll;
@@ -67,9 +73,9 @@ export function PipelineBird() {
         angle = parseFloat(bird.style.getPropertyValue("--bird-flight-angle")) || 0;
       }
       activeBefore = true;
-      routeY = reduced ? requestedY : routeY! + (requestedY - routeY!) * (1 - Math.exp(-dt / 0.065));
-      // Never overshoot the landing surface, including while reversing direction.
-      routeY = Math.min(landingY, Math.max(points[0].y, scroll + c.top + 80 * scale, routeY));
+      // Scroll already supplies a continuous timeline. Filtering document Y and
+      // then subtracting unfiltered scroll made the bird bounce and catch up.
+      routeY = requestedY;
       let i = points.findIndex((_point, index) => index < points.length - 1 && routeY! <= points[index + 1].y);
       if (i < 0) i = points.length - 2;
       const a = points[i], b = points[i + 1];
@@ -77,12 +83,14 @@ export function PipelineBird() {
       const ease = t*t*t*(10 + t*(-15 + 6*t));
       const x = a.x + (b.x - a.x) * ease;
       const y = Math.min(routeY - scroll, landingY - scroll);
-      const moving = time - lastScrollTime < 140 || Math.abs(requestedY - routeY) > 0.15;
+      const onRoute = routeY > points[0].y + 0.5 && routeY < landingY - 0.5;
+      const moving = onRoute && time - lastScrollTime < 350;
       bird.dataset.pipelineControlled = "true";
       bird.style.left = `${(x - c.left) / scale}px`;
       bird.style.top = `${(y - c.top) / scale}px`;
       bird.style.setProperty("--bird-size", "0.4");
       bird.classList.toggle("story-guide-bird--flying", moving && !reduced);
+      if (!moving) bird.style.setProperty("--bird-flight-angle", "0deg");
       if (moving && lastX !== null && lastY !== null) {
         const dx = (b.x - a.x) * 30*t*t*(1-t)*(1-t) * routeDirection;
         const dy = Math.max(1, b.y - a.y) * routeDirection;
@@ -100,7 +108,12 @@ export function PipelineBird() {
       // Keep one clock alive while active; wheel bursts no longer restart the flight.
       frame = requestAnimationFrame(tick);
     };
-    const wake = () => { if (!frame) frame = requestAnimationFrame(tick); };
+    const wake = () => {
+      // Apply the latest scroll position in the scroll event itself, so the
+      // fixed bird cannot lag a frame behind the document near the video.
+      cancelAnimationFrame(frame);
+      tick(performance.now());
+    };
     window.addEventListener("scroll", wake, { passive: true });
     window.addEventListener("resize", wake);
     wake();

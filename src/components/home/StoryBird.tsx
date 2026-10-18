@@ -10,7 +10,7 @@ const stops = [
   { beat: 1, x: 452, y: 575, size: 0.4 },
   { beat: 2, x: 784, y: 233, size: 0.4 },
   { beat: 3, x: 784, y: 233, size: 0.4 },
-  { beat: 4, x: 1022, y: 328, size: 0.5 },
+  { beat: 4, x: 1022, y: 328, size: 0.4 },
   { beat: 4.8, x: 825, y: 250, size: 0.5 },
   { beat: 5, x: 825, y: 250, size: 0.5 },
   { beat: 6, x: 75, y: 685, size: 0.4 },
@@ -31,7 +31,7 @@ export function perch(stop: typeof stops[number]) {
   const anchors: Record<number, [string, number, number]> = {
     2: [".opening-bubble--hyaline", 0.23, 0.08],
     3: [".opening-bubble--hyaline", 0.23, 0.08],
-    4: ["#home-3 .opening-burden__world", 0.76, 0.4],
+    4: ["#home-3 .opening-burden__world", 0.756, 0.4],
     4.8: [".opening-burden__stat strong", 0.70, 0.1],
     5: [".opening-burden__stat strong", 0.70, 0.1],
     6: [".opening-impact__stairs", -0.35, 1],
@@ -163,7 +163,12 @@ export function StoryBird({ position, direction, scale }: { position: number; di
     let previousTime = began;
     let heading = Math.atan2(dy - Math.PI * height, dx) * 180 / Math.PI;
     const tick = (time: number) => {
-      if (destinationStop.beat >= 21 && document.body.classList.contains("pipeline-bird-active")) return;
+      if (document.body.classList.contains("pipeline-bird-active")) {
+        // The document route owns this same bird now, regardless of which
+        // earlier scene flight was interrupted by a fast scroll.
+        poseRef.current = { ...poseRef.current, moving: false };
+        return;
+      }
       const dt = Math.min(0.05, (time - previousTime) / 1000);
       previousTime = time;
       const elapsed = Math.min(1, (time - began) / duration);

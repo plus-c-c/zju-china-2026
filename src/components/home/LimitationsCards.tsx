@@ -347,8 +347,8 @@ export function MaterialLimitations({
   } as CSSProperties;
 
   const cardMotion = (index: number) => {
-    const start = 0.08 + index * 0.06;
-    const amount = drawEase(clamp((progress - start) / 0.72));
+    const start = 0;
+    const amount = drawEase(clamp((progress - start) / 0.96));
     const direction = index - 1;
     return {
       "--card-draw-x": `${direction * 84 * amount}px`,
