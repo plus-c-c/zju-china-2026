@@ -42,6 +42,7 @@ export function Navbar({ introEntrance = false }: { introEntrance?: boolean }) {
   const location = useLocation();
   const navRef = useRef<HTMLElement>(null);
   const focusFrame = useRef(0);
+  const scheduleVisibilityUpdate = useRef<(() => void) | null>(null);
   const [expanded, setExpanded] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const openMenuRef = useRef<string | null>(null);
@@ -139,7 +140,8 @@ export function Navbar({ introEntrance = false }: { introEntrance?: boolean }) {
         if (visible && hideTimer === undefined) {
           hideTimer = window.setTimeout(() => {
             hideTimer = undefined;
-            if (!atPageTop() && !hasKeyboardFocus() && !openMenuRef.current) hide();
+            if (!atPageTop() && !hasKeyboardFocus() && !openMenuRef.current)
+              hide();
           }, 220);
         }
       }
@@ -166,8 +168,12 @@ export function Navbar({ introEntrance = false }: { introEntrance?: boolean }) {
       window.clearTimeout(showTimer);
       window.clearTimeout(hideTimer);
       showTimer = hideTimer = undefined;
+      // Initialize both visibility states when restoring a scrolled page or
+      // switching from touch navigation to desktop hover navigation.
+      if (canHover() && !atPageTop() && !hasKeyboardFocus()) hide();
       update();
     };
+    scheduleVisibilityUpdate.current = scheduleUpdate;
     resetMode();
     window.addEventListener("pointermove", move, { passive: true });
     document.addEventListener("pointerout", leaveWindow);
@@ -178,6 +184,7 @@ export function Navbar({ introEntrance = false }: { introEntrance?: boolean }) {
     desktopMedia.addEventListener("change", resetMode);
     window.addEventListener("resize", scheduleUpdate);
     return () => {
+      scheduleVisibilityUpdate.current = null;
       window.removeEventListener("pointermove", move);
       document.removeEventListener("pointerout", leaveWindow);
       document.removeEventListener("focusin", focus);
@@ -192,6 +199,11 @@ export function Navbar({ introEntrance = false }: { introEntrance?: boolean }) {
       window.cancelAnimationFrame(focusFrame.current);
     };
   }, [location.pathname]);
+
+  useEffect(() => {
+    // Closing a menu must recheck visibility even if the pointer stays still.
+    scheduleVisibilityUpdate.current?.();
+  }, [openDropdown]);
 
   useEffect(() => {
     const handleOutsidePointer = (event: PointerEvent) => {
@@ -428,17 +440,23 @@ export function Navbar({ introEntrance = false }: { introEntrance?: boolean }) {
                                   aria-current={active ? "page" : undefined}
                                   onClick={closeMenus}
                                 >
-                                  <img
-                                    className="nest-tile-icon"
-                                    src={
-                                      details
-                                        ? navigationIcon(details.icon)
-                                        : undefined
-                                    }
-                                    alt=""
-                                    width="72"
-                                    height="72"
-                                  />
+                                  <span className="nest-tile-icon">
+                                    <img
+                                      src={
+                                        details
+                                          ? navigationIcon(details.icon)
+                                          : undefined
+                                      }
+                                      style={
+                                        details?.iconTransform
+                                          ? { transform: details.iconTransform }
+                                          : undefined
+                                      }
+                                      alt=""
+                                      width="72"
+                                      height="72"
+                                    />
+                                  </span>
                                   <span className="nest-tile-copy">
                                     <span className="nest-tile-title">
                                       {page.name}

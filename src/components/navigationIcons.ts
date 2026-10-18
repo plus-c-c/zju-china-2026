@@ -15,7 +15,7 @@ export function navigationIcon(filename: string) {
 
 export const pageDetails: Record<
   string,
-  { icon: string; description: string }
+  { icon: string; description: string; iconTransform?: string }
 > = {
   "/description": {
     icon: "03_description.png",
@@ -24,6 +24,9 @@ export const pageDetails: Record<
   "/design": {
     icon: "04-design.png",
     description: "How our system is designed",
+    // Match the other Project hexagons using the visible artwork bounds;
+    // this source image has additional, asymmetric transparent padding.
+    iconTransform: "translate(-11.41%, 1.77%) scale(1.419)",
   },
   "/proof-of-concept": {
     icon: "05_proof_of_concept.png",
@@ -36,6 +39,7 @@ export const pageDetails: Record<
   "/future-plan": {
     icon: "07-future plan.png",
     description: "The next steps for our project",
+    iconTransform: "translate(-0.13%, 2.32%) scale(1.416)",
   },
   "/contribution": {
     icon: "08_contribution.png",
