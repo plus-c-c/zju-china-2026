@@ -997,3 +997,18 @@
   height: 543px !important;
 }
 .story-viewport .opening-scene--burden .opening-burden__stat { left: 190px; }
+
+/* Keep visible content inside the same inset as the cards in later chapters. */
+.story-viewport .opening-scene--burden .opening-burden__map {
+  left: 100px;
+  width: 1080px;
+}
+.story-viewport .opening-scene--burden .opening-burden__world {
+  width: 1080px !important;
+  height: 459px !important;
+}
+.story-viewport .opening-scene--burden .opening-burden__stat { left: 90px; }
+.story-viewport .opening-scene--impact {
+  transform: scale(0.88);
+  transform-origin: center;
+}
