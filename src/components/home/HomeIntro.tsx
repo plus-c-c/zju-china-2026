@@ -74,7 +74,7 @@ export function HomeIntro({ onEnter }: HomeIntroProps) {
           </span>
         </div>
         <p className="home-intro__tagline" data-node-id="741:5">
-          <span className="home-intro__initial">N</span>ative-like programmabl<span className="home-intro__initial">E</span> cartilage <span className="home-intro__initial">S</span>caffold<br />for <span className="home-intro__initial">T</span>issue repair
+          Native-like programmablE cartilage Scaffold for Tissue repair
         </p>
         <button
           className="home-intro__next"
@@ -83,7 +83,6 @@ export function HomeIntro({ onEnter }: HomeIntroProps) {
           tabIndex={finished ? 0 : -1}
           onClick={onEnter}
         >
-          <span className="home-intro__bird-anchor" aria-hidden="true" />
           <span data-node-id="644:25">NEXT</span>
         </button>
       </div>

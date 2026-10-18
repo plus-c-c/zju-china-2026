@@ -1,354 +1,89 @@
-.home-container,
 .nest-home {
+  min-height: 100dvh;
+  overflow: clip;
   background: #f6faff;
-}
-.nest-home {
   font-family: "Outfit", sans-serif;
 }
-.nest-home p {
-  margin: 0;
+
+.nest-home p { margin: 0; }
+.nest-home button { padding: 0; border: 0; }
+.nest-home button:focus-visible { outline: 4px solid #0341c8; outline-offset: -6px; }
+.nest-home img[src$=".svg"] { width: auto; height: auto; }
+
+.home-intro-section {
+  position: relative;
+  width: 100%;
+  height: 100dvh;
+  min-height: 640px;
+  overflow: hidden;
 }
-.home-scene {
+
+.home-flow-scene {
   position: relative;
   width: 100%;
   overflow: hidden;
-  scroll-margin-top: 0;
+  background: radial-gradient(circle at 50% 50%, #eef6ff 0%, #d7eaff 48%, #afd6f8 100%);
 }
-.home-scene:focus {
-  outline: none;
-}
-.home-scene-canvas {
+
+.home-flow-scene__canvas {
+  position: absolute;
+  left: 50%;
+  top: 0;
   width: 1280px;
+  height: 720px;
+  transform-origin: top center;
+}
+
+.home-flow-scene--hydrogel,
+.home-flow-scene--limitations {
+  background-color: #ddecff;
+  background-image: radial-gradient(circle at 50% 50%, #eef6ff 0%, #d7eaff 48%, #afd6f8 100%);
+}
+
+.home-flow-scene--limitations .limitations-page { background: transparent; }
+
+.home-card-draw {
   position: relative;
-  transform-origin: top left;
+  height: 300dvh;
+  min-height: 1900px;
+  background-color: #ddecff;
+  background-image: radial-gradient(circle at 50% 50%, #eef6ff 0%, #d7eaff 48%, #afd6f8 100%);
 }
-.nest-home button {
-  padding: 0;
-  border: 0;
-}
-.nest-home button:focus-visible {
-  outline: 4px solid #0341c8;
-  outline-offset: -6px;
-}
-/* The Figma scenes are illustrations; scaling their shared coordinate space keeps pipes and the two knee halves continuous. */
-@media (prefers-reduced-motion: reduce) {
-  .nest-home {
-    scroll-behavior: auto;
-  }
-}
-/* Keep exported SVG root geometry, including the original filter padding. */
-.nest-home img[src$=".svg"] {
-  width: auto;
-  height: auto;
-}
-.home-story-mobile {
-  height: auto;
-}
-.home-story-mobile .home-scene-canvas {
-  width: 100%;
-  transform: none !important;
-}
-.home-story-mobile .home-scene-canvas > div {
-  min-height: 820px;
-}
-/* Native document scrolling drives the fixed story viewport. */
-html.home-story-open {
-  overflow-y: scroll;
-  scroll-behavior: auto;
-}
-body.home-story-open {
-  overflow: visible;
-}
-body.home-story-open .app {
-  min-height: 100dvh;
-}
-.story-viewport {
+
+.home-card-draw__sticky {
   position: sticky;
-  z-index: 1;
   top: 0;
   width: 100%;
   height: 100dvh;
+  min-height: 560px;
   overflow: hidden;
-  touch-action: pan-y;
+  background: radial-gradient(circle at 50% 50%, #eef6ff 0%, #d7eaff 48%, #afd6f8 100%);
 }
-.story-track {
-  transition: none;
-  will-change: transform;
-}
-.story-track[data-transition="instant"] {
-  transition: none;
-}
-.home-story-scrollbar {
-  position: absolute;
-  z-index: 10;
-  right: 0;
-  top: 0;
-  width: 16px;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  appearance: none;
-  writing-mode: vertical-lr;
-  direction: ltr;
-  background: transparent;
-  cursor: pointer;
-  touch-action: none;
-}
-.home-story-scrollbar::-webkit-slider-runnable-track {
-  width: 6px;
-  height: 100%;
+
+.home-card-draw .limitations-page {
   background: transparent;
 }
-.home-story-scrollbar::-webkit-slider-thumb {
-  appearance: none;
-  width: 6px;
-  height: 44px;
-  border-radius: 8px;
-  background: var(--scrollbar-thumb-color, #006cd1);
-}
-.home-story-scrollbar::-moz-range-track {
-  width: 6px;
-  height: 100%;
-  background: transparent;
-}
-.home-story-scrollbar::-moz-range-thumb {
-  width: 6px;
-  height: 44px;
-  border: 0;
-  border-radius: 8px;
-  background: var(--scrollbar-thumb-color, #006cd1);
-}
-.home-story-scrollbar:focus-visible {
-  outline: 2px solid #006cd1;
-  outline-offset: -2px;
-}
-.story-viewport .home-scene {
-  height: var(--screen-height);
-  overflow: hidden;
-  background: #f6faff;
-}
-.story-viewport #home-2 {
-  background-color: #bdd8fb;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-.story-viewport #home-4 {
-  background: linear-gradient(90deg, #5987bf 0%, #c4dbf5 52%, #f6faff 100%);
-}
-.story-viewport #home-3 {
-  background: linear-gradient(90deg, #5987bf 0%, #c4dbf5 52%, #f6faff 100%);
-}
-.story-viewport #home-5 {
-  background-color: #ddecff;
-  background-image: var(--hydrogel-background-image);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-.story-viewport #home-4 .home-scene-canvas {
-  z-index: 2;
-}
-.story-viewport #home-6 {
-  background-color: #ddecff;
-  background-image: var(--hydrogel-background-image);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-.story-viewport #home-6 .limitations-page {
-  background: transparent;
-}
-.story-viewport .home-scene-canvas {
+
+.home-card-draw__canvas {
   position: absolute;
   left: 50%;
   top: 50%;
   width: 1280px;
   height: 720px;
-  transform: translate(-50%, -50%) scale(var(--scene-scale));
   transform-origin: center;
 }
-.story-viewport #home-7 {
-  background: linear-gradient(180deg, #f4f9ff 0%, #fffcf1 15%, #ffde70 100%);
-}
-.story-viewport :is(#home-8, #home-9) {
-  background: radial-gradient(
-    circle at 50% 48%,
-    #eef8ff 0%,
-    #cfe9ff 45%,
-    #a9d7ff 100%
-  );
-}
-.story-viewport #home-7 :is(.home-layer-52, .home-layer-53) {
-  opacity: var(--nest-title, 1);
-  translate: -50% calc((1 - var(--nest-title, 1)) * -42px);
-}
+
 @media (prefers-reduced-motion: reduce) {
-  .story-viewport #home-7 {
-    --nest-title: 1 !important;
+  .home-card-draw {
+    height: 100dvh;
+    min-height: 640px;
   }
 
-  .opening-bubble__float {
-    animation: none;
+  .home-card-draw__sticky {
+    position: relative;
   }
 }
-.story-viewport .home-footer-scene {
-  background: #f6faff;
-}
-.story-viewport #home-1 .home-scene-canvas {
-  width: 100%;
-  height: 100%;
-  left: 0;
-  top: 0;
-  transform: none;
-}
-.story-viewport .home-footer-scene .home-scene-canvas {
-  width: 100%;
-  height: 100%;
-  left: 0;
-  top: 0;
-  transform: none;
-}
+
 @media (prefers-reduced-motion: reduce) {
-  .story-track {
-    transition: none;
-  }
+  html:focus-within { scroll-behavior: auto; }
 }
-.story-viewport #home-7 [data-node-id="186:313"] {
-  background: transparent;
-}
-
-/* The hydrogel background blends independently from its entering content. */
-.story-viewport #home-5::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: var(--hydrogel-background-image);
-  opacity: var(--hydrogel-background-entry, 1);
-  pointer-events: none;
-}
-.story-viewport #home-5 .home-scene-canvas { z-index: 1; }
-
-/* Shared blue atmosphere keeps every chapter in the same visual space. */
-:root {
-  --homepage-base: #d5e5f6;
-  --homepage-background: radial-gradient(ellipse at 50% 38%, #edf5fd 0%, #d5e5f6 58%, #bcd5ef 100%);
-  --homepage-ink: #173b64;
-}
-.home-scroll-space,
-.nest-home,
-.selp-pipeline,
-.home-intro {
-  background-color: var(--homepage-base);
-  background-image: var(--homepage-background);
-}
-.story-viewport :is(#home-1, #home-2, #home-3, #home-4, #home-6, #home-7, #home-8, #home-9) {
-  background-color: var(--homepage-base);
-  background-image: var(--homepage-background);
-}
-.home-intro--ready .home-intro__video {
-  opacity: 0.3;
-  transition: opacity 800ms ease;
-}
-.story-viewport #home-7 :is(.home-layer-47, .home-layer-50) { opacity: 0.25; }
-.opening-statement__title,
-.opening-scene--impact .opening-sports__title,
-.opening-scene--impact .opening-sports__body {
-  color: var(--homepage-ink);
-}
-.opening-scene--impact .opening-sports__title strong,
-.opening-scene--impact .opening-rehab__title strong { color: #e30c00; }
-.opening-scene--impact .opening-sports__score strong { color: #004aad; }
-.opening-scene--impact .opening-sports__score :is(span, small) { color: #38618d; }
-
-/* A single stationary gradient stays continuous while scene content moves. */
-.story-viewport { background: var(--homepage-background); }
-.story-viewport :is(#home-1, #home-2, #home-3, #home-4, #home-5, #home-6, #home-7, #home-8, #home-9),
-.story-viewport #home-5::before,
-.home-intro {
-  background-color: transparent;
-  background-image: none;
-}
-
-/* Story and modules reveal one viewport-sized background, with no restart. */
-.home-shared-background {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  background: var(--homepage-background);
-  pointer-events: none;
-}
-.home-scroll-space {
-  position: relative;
-  z-index: 1;
-}
-.home-scroll-space,
-.story-viewport,
-.selp-pipeline {
-  background: transparent;
-}
-.home-scroll-space ~ footer {
-  position: relative;
-  z-index: 1;
-}
-
-/* Keep the two map scenes full size; give other chapters more breathing room. */
-.story-viewport .home-scene-canvas {
-  transform: translate(-50%, -50%) scale(calc(var(--scene-scale) * var(--scene-content-scale, 1)));
-}
-.story-viewport #home-1 .home-scene-canvas { transform: none; }
-.home-intro__landing { scale: 0.89; transform-origin: center; }
-.selp-pipeline__canvas { width: min(89%, 1216px); }
-@media (max-width: 700px) {
-  .selp-pipeline__canvas { width: 121.6%; margin-left: -10.8%; }
-}
-
-.story-bird-canvas {
-  position: fixed;
-  z-index: 8;
-  left: 50%; top: 50%; width: 1280px; height: 720px;
-  transform: translate(-50%, -50%) scale(var(--scene-scale));
-  pointer-events: none;
-}
-.story-guide-bird {
-  position: absolute;
-  width: 160px; height: 150px;
-  transform: translate(-50%, -100%) scale(var(--bird-size, 0.4)) rotate(var(--bird-bank, 0deg));
-  transform-origin: center bottom;
-  overflow: visible;
-  pointer-events: none;
-  filter: drop-shadow(0 4px 3px rgb(23 59 100 / 10%));
-}
-.story-guide-bird img {
-  position: absolute; width: 420px; height: auto; max-width: none;
-  left: -43px; top: -63px;
-}
-.story-guide-bird--flying img { animation: story-bird-flutter 280ms ease-in-out infinite alternate; }
-@keyframes story-bird-flutter { to { transform: translateY(-5px) rotate(4deg); } }
-/* One continuous guide replaces the duplicate bird in the original nest scene. */
-.story-viewport :is(.home-layer-59, .home-layer-60) { visibility: hidden; }
-@media (prefers-reduced-motion: reduce) { .story-guide-bird--flying img { animation: none; } }
-
-.story-guide-bird__flight { display: none; position: absolute; inset: 0; transform: rotate(var(--bird-flight-angle, 0deg)) rotate(-135deg); }
-.story-guide-bird--flying .story-guide-bird__flight { display: block; }
-.story-guide-bird--flying .story-guide-bird__rest { visibility: hidden; }
-.story-guide-bird--flying .story-guide-bird__flight img { animation-duration: 360ms; }
-.story-guide-bird--flying .story-guide-bird__flight .home-flying-bird-frame--1 { animation-name: home-bird-frame-1; animation-timing-function: steps(1,end); }
-.story-guide-bird--flying .story-guide-bird__flight .home-flying-bird-frame--2 { animation-name: home-bird-frame-2; animation-timing-function: steps(1,end); }
-
-/* Clip only unused source padding before rotation, leaving every wing frame free. */
-.story-guide-bird__flight img { clip-path: inset(8% 38% 17% 4%); }
-.story-guide-bird__rest { clip-path: inset(10% 40% 12% 4%); }
-
-.pipeline-guide-bird { position: fixed; z-index: 12; --bird-size: 0.4; visibility: hidden; }
-
-
-.story-guide-bird { pointer-events: auto; cursor: pointer; }
-.story-guide-bird > img, .story-guide-bird__flight { pointer-events: none; }
-
-/* Change facing with a small bank rather than accumulating full rotations. */
-.story-guide-bird__flight { transition: transform 220ms ease-out; }
-@media (prefers-reduced-motion: reduce) { .story-guide-bird__flight { transition: none; } }
-
-/* The module route already filters its tangent; avoid a second delayed rotation. */
-.pipeline-bird-active .story-guide-bird__flight { transition: none; }

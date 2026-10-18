@@ -10,7 +10,6 @@ import { Footer } from "../../components/Footer";
 import { Toc } from "../../components/toc";
 import { BackToTop } from "../../components/BackToTop";
 import { LoadingScreen } from "../../components/LoadingScreen";
-import "./Mobile.css";
 
 const MINIMUM_LOADING_TIME = 600;
 const MAXIMUM_LOADING_TIME = 8000;
@@ -36,11 +35,6 @@ const App = () => {
   const navigationTitle = currentPage
     ? currentPage.navigationTitle
     : "Not Found";
-
-  useLayoutEffect(() => {
-    // Reset before painting a new route; same-page anchor navigation is untouched.
-    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
-  }, [location.pathname]);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(max-width: 991.98px)");

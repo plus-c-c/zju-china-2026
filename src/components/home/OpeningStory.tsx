@@ -1,410 +1,181 @@
-import {
-  useEffect,
-  useRef,
-  useState,
-  type CSSProperties,
-} from "react";
-import { useReducedMotion } from "motion/react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { InteractiveWorldMap } from "./InteractiveWorldMap";
-import { useStory } from "./StoryContext";
+import bubbleAcl from "../../assets/home/bubble-awareness/bubble-acl.svg";
+import bubbleDecorLeft from "../../assets/home/bubble-awareness/bubble-decor-left.svg";
+import bubbleDecorRight from "../../assets/home/bubble-awareness/bubble-decor-right.svg";
+import bubbleDecorTop from "../../assets/home/bubble-awareness/bubble-decor-top.svg";
+import bubbleFocal from "../../assets/home/bubble-awareness/bubble-focal.svg";
+import bubbleGout from "../../assets/home/bubble-awareness/bubble-gout.svg";
+import bubbleHyaline from "../../assets/home/bubble-awareness/bubble-hyaline.svg";
+import bubbleOsteoarthritis from "../../assets/home/bubble-awareness/bubble-osteoarthritis.svg";
+import bubblePatellae from "../../assets/home/bubble-awareness/bubble-patellae.svg";
+import postOpRehabilitation from "../../assets/home/bubble-awareness/post-op-rehabilitation.png";
+import sportsKneeTrauma from "../../assets/home/bubble-awareness/sports-knee-trauma.png";
+import stairKneePain from "../../assets/home/bubble-awareness/stair-knee-pain.png";
 import "./OpeningStory.css";
 
-const staticRoot = "https://static.igem.wiki/teams/6102/wiki";
-const staticHome = `${staticRoot}/images/home`;
-const staticGif = `${staticRoot}/gif`;
+const bubbles = [
+  { className: "osteoarthritis", image: bubbleOsteoarthritis, label: "osteoarthritis" },
+  { className: "hyaline", image: bubbleHyaline, label: <>hyaline<br />cartilage<br />injury</> },
+  { className: "focal", image: bubbleFocal, label: <>focal traumatic<br />cartilage defect</> },
+  { className: "gout", image: bubbleGout, label: "chronic gout" },
+  { className: "patellae", image: bubblePatellae, label: <>chondromalacia<br />patellae</> },
+  { className: "acl", image: bubbleAcl, label: <>status post ACL<br />reconstruction</> },
+] as const;
 
-const openingLineStyle = (index: number, side: "left" | "right" = "left") =>
-  ({
-    "--opening-line-offset": index * 0.055,
-    "--opening-line-x": `${(side === "left" ? -1 : 1) * (18 + Math.min(index, 6) * 1.2)}px`,
-  }) as CSSProperties;
+const decorativeBubbles = [
+  ["top", bubbleDecorTop],
+  ["left", bubbleDecorLeft],
+  ["right", bubbleDecorRight],
+] as const;
 
-function PlayOnceGif({
-  alt,
-  className,
-  gif,
-  play,
-  poster,
-}: {
-  alt: string;
-  className: string;
-  gif: string;
-  play: boolean;
-  poster: string;
-}) {
-  const reducedMotion = useReducedMotion();
-  const wasPlayingRef = useRef(false);
-  const [playbackId, setPlaybackId] = useState(0);
+const statementLines = [
+  "Cartilage",
+  "damage is",
+  "widespread—",
+  "yet lasting",
+  "repair remains",
+  "elusive.",
+] as const;
+
+function useRevealOnScroll<T extends HTMLElement>(threshold = 0.18) {
+  const ref = useRef<T>(null);
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    if (play && !wasPlayingRef.current && !reducedMotion) {
-      setPlaybackId((current) => current + 1);
-    }
-    wasPlayingRef.current = play;
-  }, [play, reducedMotion]);
+    const element = ref.current;
+    if (!element) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setVisible(entry.isIntersecting),
+      { threshold },
+    );
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, [threshold]);
 
-  const isPlaying = play && playbackId > 0 && !reducedMotion;
-
-  return (
-    <img
-      alt={alt}
-      className={className}
-      decoding="async"
-      src={isPlaying ? `${gif}?run=${playbackId}` : poster}
-    />
-  );
+  return { ref, visible };
 }
 
-export function OpeningStatement() {
-  const { active } = useStory();
-  const [selected, setSelected] = useState<string | null>(null);
-  const descriptions: Record<string, string> = {
-    osteoarthritis: "Osteoarthritis gradually wears down joint cartilage, causing pain and stiffness.",
-    hyaline: "Damage to smooth hyaline cartilage reduces cushioning and makes joint movement painful.",
-    focal: "A localized cartilage defect can follow an injury and may struggle to heal on its own.",
-    gout: "Urate crystals trigger joint inflammation. Repeated attacks can damage cartilage.",
-    patellae: "Softening of cartilage beneath the kneecap can cause pain when climbing stairs or bending.",
-    acl: "Even after ACL reconstruction, changes in joint mechanics can increase the risk of cartilage damage.",
-  };
-  const bubbleProps = (name: string) => ({
-    role: "button",
-    tabIndex: 0,
-    "aria-pressed": selected === name,
-    "data-selected": selected === name,
-    onClick: () => setSelected(name),
-    onKeyDown: (event: React.KeyboardEvent<HTMLDivElement>) => {
-      if (event.key === "Enter" || event.key === " ") {
-        event.preventDefault();
-        setSelected(name);
-      }
-    },
-  });
+export function BubbleAwareness() {
+  const introReveal = useRevealOnScroll<HTMLDivElement>(0.22);
+  const figureOneReveal = useRevealOnScroll<HTMLDivElement>(0.2);
 
   return (
-    <div
-      className="opening-scene opening-scene--statement"
-      data-node-id="1123:5"
+    <section
+      id="bubble-awareness"
+      className="bubble-awareness"
+      aria-label="The global burden of cartilage damage"
+      data-node-id="1226:1877"
     >
-      <div className="opening-statement__design">
-        <div className="opening-content">
-          <h1 className="opening-statement__title" data-node-id="1134:20">
-            <span className="opening-text-line" style={openingLineStyle(0)}>
-              Cartilage
-            </span>
-            <span className="opening-text-line" style={openingLineStyle(1)}>
-              damage is
-            </span>
-            <span className="opening-text-line" style={openingLineStyle(2)}>
-              widespread—
-            </span>
-            <span className="opening-text-line" style={openingLineStyle(3)}>
-              yet lasting
-            </span>
-            <span className="opening-text-line" style={openingLineStyle(4)}>
-              repair remains
-            </span>
-            <span className="opening-text-line" style={openingLineStyle(5)}>
-              elusive.
-            </span>
+      <div className="bubble-awareness__inner">
+        <div
+          ref={introReveal.ref}
+          className="bubble-awareness__intro"
+          data-visible={introReveal.visible}
+        >
+          <h1 className="bubble-awareness__statement">
+            {statementLines.map((line, index) => (
+              <span
+                key={line}
+                style={{ "--reveal-order": index } as CSSProperties}
+              >
+                {line}
+              </span>
+            ))}
           </h1>
 
-          <div className="opening-bubble-hint" aria-hidden="true">
-            <span>Click here</span>
-            <svg className="opening-bubble-hint__arrow" viewBox="0 0 220 130" preserveAspectRatio="none" fill="none" aria-hidden="true">
-              <path d="M25 15C25 90 145 20 198 100" stroke="currentColor" strokeWidth="2.5" strokeDasharray="7 7" strokeLinecap="round" />
-              <path d="m184 94 14 6 1-15" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </div>
-          <div
-            className={`opening-bubbles${active ? " opening-bubbles--active" : ""}`}
-            aria-label="Types of cartilage damage"
-          >
-            <div
-              className="opening-bubble opening-bubble--osteoarthritis"
-              {...bubbleProps("osteoarthritis")}
-            >
-              <div className="opening-bubble__float">
-                <img
-                  src={`${staticHome}/opening-bubble-osteoarthritis.svg`}
-                  alt=""
-                />
-                <span>osteoarthritis</span>
-              <span className="opening-bubble__description">{descriptions.osteoarthritis}</span>
+          <div className="bubble-cluster" aria-label="Types of cartilage damage">
+            {bubbles.map((bubble, index) => (
+              <div
+                className={`bubble-cluster__item bubble-cluster__item--${bubble.className}`}
+                key={bubble.className}
+                style={{ "--bubble-order": index } as CSSProperties}
+              >
+                <img src={bubble.image} alt="" />
+                <span>{bubble.label}</span>
               </div>
-            </div>
-            <div
-              className="opening-bubble opening-bubble--hyaline"
-              {...bubbleProps("hyaline")}
-            >
-              <div className="opening-bubble__float">
-                <img src={`${staticHome}/opening-bubble-hyaline.svg`} alt="" />
-                <span>
-                  hyaline
-                  <br />
-                  cartilage
-                  <br />
-                  injury
-                </span>
-              <span className="opening-bubble__description">{descriptions.hyaline}</span>
-              </div>
-            </div>
-            <div
-              className="opening-bubble opening-bubble--focal"
-              {...bubbleProps("focal")}
-            >
-              <div className="opening-bubble__float">
-                <img src={`${staticHome}/opening-bubble-focal.svg`} alt="" />
-                <span>
-                  focal traumatic
-                  <br />
-                  cartilage defect
-                </span>
-              <span className="opening-bubble__description">{descriptions.focal}</span>
-              </div>
-            </div>
-            <div
-              className="opening-bubble opening-bubble--gout"
-              {...bubbleProps("gout")}
-            >
-              <div className="opening-bubble__float">
-                <img src={`${staticHome}/opening-bubble-gout.svg`} alt="" />
-                <span>chronic gout</span>
-              <span className="opening-bubble__description">{descriptions.gout}</span>
-              </div>
-            </div>
-            <div
-              className="opening-bubble opening-bubble--patellae"
-              {...bubbleProps("patellae")}
-            >
-              <div className="opening-bubble__float">
-                <img src={`${staticHome}/opening-bubble-patellae.svg`} alt="" />
-                <span>
-                  chondromalacia
-                  <br />
-                  patellae
-                </span>
-              <span className="opening-bubble__description">{descriptions.patellae}</span>
-              </div>
-            </div>
-            <div
-              className="opening-bubble opening-bubble--acl"
-              {...bubbleProps("acl")}
-            >
-              <div className="opening-bubble__float">
-                <img src={`${staticHome}/opening-bubble-acl.svg`} alt="" />
-                <span>
-                  status post ACL
-                  <br />
-                  reconstruction
-                </span>
-              <span className="opening-bubble__description">{descriptions.acl}</span>
-              </div>
-            </div>
-            <div
-              className="opening-bubble opening-bubble--decor-top"
-              aria-hidden="true"
-            >
-              <div className="opening-bubble__float">
-                <img
-                  src={`${staticHome}/opening-bubble-decor-top.svg`}
-                  alt=""
-                />
-              </div>
-            </div>
-            <div
-              className="opening-bubble opening-bubble--decor-left"
-              aria-hidden="true"
-            >
-              <div className="opening-bubble__float">
-                <img
-                  src={`${staticHome}/opening-bubble-decor-left.svg`}
-                  alt=""
-                />
-              </div>
-            </div>
-            <div
-              className="opening-bubble opening-bubble--decor-right"
-              aria-hidden="true"
-            >
-              <div className="opening-bubble__float">
-                <img
-                  src={`${staticHome}/opening-bubble-decor-right.svg`}
-                  alt=""
-                />
-              </div>
-            </div>
+            ))}
+            {decorativeBubbles.map(([name, image], index) => (
+              <img
+                className={`bubble-cluster__decor bubble-cluster__decor--${name}`}
+                src={image}
+                alt=""
+                aria-hidden="true"
+                key={name}
+                style={{ "--bubble-order": bubbles.length + index } as CSSProperties}
+              />
+            ))}
           </div>
         </div>
-      </div>
-    </div>
-  );
-}
 
-export function GlobalBurdenScene() {
-  return (
-    <div className="opening-scene opening-scene--burden" data-node-id="967:10">
-      <div className="opening-content">
-        <div className="opening-side opening-side--left">
-          <h2 className="opening-burden__title" data-node-id="967:11">
-            <span className="opening-text-line" style={openingLineStyle(0)}>
-              A world in <strong>PAIN</strong>.
-            </span>
-            <span className="opening-text-line" style={openingLineStyle(1)}>
-              A need for repair.
-            </span>
-          </h2>
+        <div
+          ref={figureOneReveal.ref}
+          className="bubble-awareness__burden"
+          data-visible={figureOneReveal.visible}
+        >
+          <div className="bubble-awareness__burden-copy">
+            <h2>A world in <strong>PAIN</strong>.<br />A need for repair.</h2>
+            <div
+              className="bubble-awareness__stair-person"
+              data-node-id="1226:1722"
+            >
+              <img
+                src={stairKneePain}
+                alt="A person experiencing knee pain while using stairs"
+              />
+            </div>
+          </div>
 
-        </div>
-
-        <div className="opening-side opening-side--right">
-          <div className="opening-burden__visual">
+          <div className="bubble-awareness__map-card">
+            <div className="bubble-awareness__stat">
+              <strong>2 in 3</strong>
+              <span>Knees examined had cartilage damage.</span>
+            </div>
             <div className="opening-burden__map">
               <InteractiveWorldMap />
-              <div className="opening-burden__stat">
-                <strong>2 in 3</strong>
-                <p>Knees examined had cartilage damage.</p>
-              </div>
               <div className="opening-burden__legend" aria-hidden="true">
                 <strong>OA PATIENT COUNTS</strong>
-                <img src={`${staticHome}/490d7.svg`} alt="" />
+                <img src={`${import.meta.env.BASE_URL}images/home/490d7.svg`} alt="" />
                 <span>&lt;100k</span>
                 <span>50m+</span>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  );
-}
 
-export function SportsTraumaScene({ play }: { play: boolean }) {
-  return (
-    <div className="opening-scene opening-scene--sports" data-node-id="1009:23">
-      <div className="opening-content">
-        <div className="opening-side opening-side--left">
-          <h2 className="opening-sports__title" data-node-id="1009:27">
-            <span className="opening-text-line" style={openingLineStyle(0)}>
-              Pain <strong>takes more</strong>
-            </span>
-            <span className="opening-text-line" style={openingLineStyle(1)}>
-              than movement.
-            </span>
-          </h2>
-          <div className="opening-sports__score" data-node-id="1009:29">
-            <strong className="opening-text-line" style={openingLineStyle(2)}>
-              27.5
-            </strong>
-            <span className="opening-text-line" style={openingLineStyle(3)}>
-              OUT OF 100
-            </span>
-            <small className="opening-text-line" style={openingLineStyle(4)}>
-              (lower is worse)
-            </small>
+        <div className="bubble-awareness__sports">
+          <div className="bubble-awareness__sports-copy">
+            <h2>Pain <strong>takes more</strong><br />than movement.</h2>
+            <div className="bubble-awareness__score">
+              <strong>27.5</strong>
+              <span>OUT OF 100</span>
+              <small>(higher is better)</small>
+            </div>
+            <p>Quality of life score<br />prior to cartilage repair</p>
           </div>
-          <p className="opening-sports__body" data-node-id="1009:28">
-            <span className="opening-text-line" style={openingLineStyle(5)}>
-              Quality of life score
-            </span>
-            <span className="opening-text-line" style={openingLineStyle(6)}>
-              prior to cartilage repair
-            </span>
-          </p>
-        </div>
-
-        <div className="opening-side opening-side--right">
-          <div className="opening-sports__decor" aria-hidden="true">
-            <div className="opening-sports__disc" />
-            <div className="opening-sports__accent" />
-            <div className="opening-sports__stage" />
-            <div className="opening-sports__spark" />
-          </div>
-          <PlayOnceGif
+          <img
+            className="bubble-awareness__sports-person"
+            src={sportsKneeTrauma}
             alt="A boy holding his knee after a sports injury"
-            className="opening-sports__person"
-            gif={`${staticGif}/boy-sports-injury-once.webp`}
-            play={play}
-            poster={`${staticGif}/boy-sports-injury-first.avif`}
           />
         </div>
-      </div>
-    </div>
-  );
-}
 
-export function RehabilitationScene({ play }: { play: boolean }) {
-  return (
-    <div className="opening-scene opening-scene--rehab" data-node-id="967:876">
-      <div className="opening-content">
-        <div className="opening-side opening-side--left">
-          <div className="opening-rehab__decor" aria-hidden="true">
-            <div className="opening-rehab__stage" />
-            <div className="opening-rehab__pink" />
-            <div className="opening-rehab__yellow" />
-            <div className="opening-rehab__dot" />
-          </div>
-          <PlayOnceGif
+        <div className="bubble-awareness__rehab">
+          <img
+            className="bubble-awareness__rehab-person"
+            src={postOpRehabilitation}
             alt="A young patient recovering after knee surgery"
-            className="opening-rehab__person"
-            gif={`${staticGif}/post-op-rehab-once.webp`}
-            play={play}
-            poster={`${staticGif}/post-op-rehab-first.avif`}
           />
-        </div>
-
-        <div className="opening-side opening-side--right">
-          <h2 className="opening-rehab__title" data-node-id="967:881">
-            <span
-              className="opening-text-line"
-              style={openingLineStyle(0, "right")}
-            >
-              Getting life back
-            </span>
-            <span
-              className="opening-text-line"
-              style={openingLineStyle(1, "right")}
-            >
-              comes at a <strong>COST</strong>.
-            </span>
-          </h2>
-          <div className="opening-rehab__cost" data-node-id="967:882">
-            <div
-              className="opening-text-line"
-              style={openingLineStyle(2, "right")}
-            >
+          <div className="bubble-awareness__rehab-copy">
+            <h2>Getting life back<br />comes at a <strong>COST</strong>.</h2>
+            <div className="bubble-awareness__cost">
               <strong>~£2</strong>
               <b>billion/yr.</b>
+              <span>Treatment-spending scenario.</span>
             </div>
-            <span
-              className="opening-text-line opening-rehab__cost-note"
-              style={openingLineStyle(3, "right")}
-            >
-              Treatment-spending scenario.
-            </span>
           </div>
         </div>
       </div>
-    </div>
-  );
-}
-
-export function ImpactScene({ play }: { play: boolean }) {
-  return (
-    <div className="opening-scene opening-scene--impact">
-      <div className="opening-impact__map-background opening-scene--burden" aria-hidden="true">
-        <div className="opening-burden__map">
-          <InteractiveWorldMap interactive={false} />
-        </div>
-      </div>
-      <SportsTraumaScene play={play} />
-      <RehabilitationScene play={play} />
-      <PlayOnceGif
-        alt="A person experiencing knee pain while using stairs"
-        className="opening-impact__stairs"
-        gif={`${staticGif}/going-up-the-stairs/stairs-pain-compressed.webp`}
-        play={play}
-        poster={`${staticGif}/knee-pain-first.avif`}
-      />
-    </div>
+    </section>
   );
 }
