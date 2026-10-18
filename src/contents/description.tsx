@@ -1,4 +1,5 @@
 import { useState, type ReactNode } from "react";
+import { BirdLanding } from "../components/BirdCursor";
 import "./description.css";
 
 const IMAGE_ROOT =
@@ -356,9 +357,9 @@ export function Description() {
             alt="Three-panel illustrative collage showing knee taping for a young adult, an adult holding a knee, and an older adult resting a hand on a knee"
           >
             An illustrative collage of knee support and discomfort across life
-            stages: knee taping for a young adult (left), an adult holding a knee
-            (center), and an older adult resting a hand on a knee (right). The
-            images do not establish a diagnosis of cartilage damage in any
+            stages: knee taping for a young adult (left), an adult holding a
+            knee (center), and an older adult resting a hand on a knee (right).
+            The images do not establish a diagnosis of cartilage damage in any
             individual shown. Source photographs and AI-assisted compositing
             credits are provided below.
           </DescriptionFigure>
@@ -592,7 +593,7 @@ export function Description() {
             <Citation refs={[14]} />
           </DescriptionFigure>
 
-          <div className="description-card-grid">
+          <div className="description-card-grid description-card-grid--barriers">
             <ExpandableCard
               number="01"
               title="Site-Adapted Load Bearing and Stable Fixation"
@@ -645,16 +646,6 @@ export function Description() {
             complexity.
             <Citation refs={[18, 19, 20]} />
           </p>
-          <DescriptionFigure
-            number={7}
-            title="Pathological Factors and Corresponding Hydrogel Intervention Strategies"
-            alt="Pathological factors in osteoarthritis and corresponding hydrogel intervention strategies"
-          >
-            Panel A illustrates mechanical and inflammatory pathological
-            processes; panel B presents forms of hydrogel-based intervention.
-            Reproduced from Gan et al. (2024), Figure 1.
-            <Citation refs={[18]} />
-          </DescriptionFigure>
           <p>
             If every new form of cartilage damage requires an entirely new
             material formulation, diverse clinical needs will continually become
@@ -667,17 +658,36 @@ export function Description() {
           </p>
 
           <div className="description-platform-heading">
+            <span className="description-platform-watermark" aria-hidden="true">
+              <img
+                src="https://static.igem.wiki/teams/6102/wiki/team-logo.avif"
+                alt=""
+                loading="lazy"
+              />
+            </span>
             <h2 className="description-platform-title">
-              NEST: A Programmable Platform
-              <br />
-              for Hyaline Cartilage Repair
+              <span className="description-platform-title-text">
+                NEST:{" "}
+                <span className="description-platform-word">
+                  <span className="description-platform-initial">N</span>
+                  ative-like
+                </span>{" "}
+                <span className="description-platform-word">
+                  programmabl
+                  <span className="description-platform-initial">E</span>
+                </span>{" "}
+                cartilage{" "}
+                <span className="description-platform-word">
+                  <span className="description-platform-initial">S</span>
+                  caffold&nbsp;for
+                </span>{" "}
+                <span className="description-platform-ending">
+                  <span className="description-platform-initial">T</span>issue
+                  repair
+                  <BirdLanding />
+                </span>
+              </span>
             </h2>
-            <img
-              className="description-platform-logo"
-              src="https://static.igem.wiki/teams/6102/wiki/team-logo.avif"
-              alt="NEST project logo"
-              loading="lazy"
-            />
           </div>
           <p>
             A nest is built to suit its environment, providing a space in which
@@ -754,17 +764,16 @@ export function Description() {
               <h3>Figure 1 | Knee Support and Discomfort Across Life Stages</h3>
               <p>
                 Source photographs: young adult, cottonbro studio / Pexels,
-                photo 7339492; adult, Towfiqu barbhuiya / Pexels, photo 11349880;
-                older adult, Αλεξανδρος Μαμουνης / Pexels, photo 18851495.
-                The collage was adapted from these photographs using AI-assisted
-                compositing (OpenAI imagegen). It is illustrative and should not
-                be presented as clinical evidence or confirmation of a diagnosis.
+                photo 7339492; adult, Towfiqu barbhuiya / Pexels, photo
+                11349880; older adult, Αλεξανδρος Μαμουνης / Pexels, photo
+                18851495. The collage was adapted from these photographs using
+                AI-assisted compositing (OpenAI imagegen). It is illustrative
+                and should not be presented as clinical evidence or confirmation
+                of a diagnosis.
               </p>
               <p className="description-credit-links">
                 <a href="https://www.pexels.com/photo/7339492/">Young adult</a>
-                <a href="https://www.pexels.com/photo/11349880/">
-                  Adult
-                </a>
+                <a href="https://www.pexels.com/photo/11349880/">Adult</a>
                 <a href="https://www.pexels.com/photo/18851495/">Older adult</a>
                 <a href="https://www.pexels.com/license/">Pexels License</a>
               </p>
@@ -824,19 +833,15 @@ export function Description() {
               </p>
             </section>
             <section>
-              <h3>Figures 6–7 | Hydrogel Strategies</h3>
+              <h3>Figure 6 | Hydrogel Strategies</h3>
               <p>
-                Figure 6: Cavallo et al. (2026), Figure 1, CC BY 4.0. Figure 7:
-                Gan et al. (2024), Figure 1, CC BY 4.0. Credit the authors and
-                sources and indicate modifications. Included third-party
+                Cavallo et al. (2026), Figure 1, CC BY 4.0. Credit the authors
+                and source and indicate modifications. Included third-party
                 graphics may require separate permission.
               </p>
               <p className="description-credit-links">
                 <a href="https://doi.org/10.3390/gels12050350">
                   Figure 6 source
-                </a>
-                <a href="https://doi.org/10.3390/biomedicines12040923">
-                  Figure 7 source
                 </a>
                 <a href="https://creativecommons.org/licenses/by/4.0/">
                   CC BY 4.0

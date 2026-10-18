@@ -10,6 +10,7 @@ import { Footer } from "../../components/Footer";
 import { Toc } from "../../components/toc";
 import { BackToTop } from "../../components/BackToTop";
 import { LoadingScreen } from "../../components/LoadingScreen";
+import { BirdCursorProvider } from "../../components/BirdCursor";
 
 const MINIMUM_LOADING_TIME = 600;
 const MAXIMUM_LOADING_TIME = 8000;
@@ -125,60 +126,62 @@ const App = () => {
   }, [currentPath, location.key]);
 
   return (
-    <div className="app">
-      <LoadingScreen visible={isLoading} />
+    <BirdCursorProvider enabled={!isLoading && !isHome}>
+      <div className="app">
+        <LoadingScreen visible={isLoading} />
 
-      {/* Navigation */}
-      {(!isHome || homeIntroReady || isMobileNavigation) && (
-        <Navbar
-          introEntrance={isHome && homeIntroReady && !isMobileNavigation}
-        />
-      )}
+        {/* Navigation */}
+        {(!isHome || homeIntroReady || isMobileNavigation) && (
+          <Navbar
+            introEntrance={isHome && homeIntroReady && !isMobileNavigation}
+          />
+        )}
 
-      {/* Header and PageContent */}
-      <main
-        className={`content ${
-          currentPath === "/"
-            ? "content-home"
-            : isNotFound
-              ? "content-not-found"
-              : "content-page"
-        }`}
-      >
-        <Routes>
-          {Object.entries(pathMapping).map(
-            ([path, { title, component: Component }]) => (
-              <Route
-                key={path}
-                path={path}
-                element={
-                  path === "/" ? (
-                    <div className="home-container">
-                      {!isLoading && <Component />}
-                    </div>
-                  ) : (
-                    <Toc
-                      key={path}
-                      title={title || ""}
-                      hideToc={path === "/engineering"}
-                    >
-                      <Component />
-                    </Toc>
-                  )
-                }
-              />
-            ),
-          )}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </main>
+        {/* Header and PageContent */}
+        <main
+          className={`content ${
+            currentPath === "/"
+              ? "content-home"
+              : isNotFound
+                ? "content-not-found"
+                : "content-page"
+          }`}
+        >
+          <Routes>
+            {Object.entries(pathMapping).map(
+              ([path, { title, component: Component }]) => (
+                <Route
+                  key={path}
+                  path={path}
+                  element={
+                    path === "/" ? (
+                      <div className="home-container">
+                        {!isLoading && <Component />}
+                      </div>
+                    ) : (
+                      <Toc
+                        key={path}
+                        title={title || ""}
+                        hideToc={path === "/engineering"}
+                      >
+                        <Component />
+                      </Toc>
+                    )
+                  }
+                />
+              ),
+            )}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </main>
 
-      {!isNotFound && <BackToTop />}
+        {!isNotFound && <BackToTop />}
 
-      {/* Footer */}
-      {/* MUST mention license AND have a link to team wiki's repository on gitlab.igem.org */}
-      {currentPath !== "/" && !isNotFound && <Footer />}
-    </div>
+        {/* Footer */}
+        {/* MUST mention license AND have a link to team wiki's repository on gitlab.igem.org */}
+        {currentPath !== "/" && !isNotFound && <Footer />}
+      </div>
+    </BirdCursorProvider>
   );
 };
 
