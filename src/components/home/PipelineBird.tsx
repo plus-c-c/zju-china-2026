@@ -53,7 +53,11 @@ export function PipelineBird() {
       const c = canvas.getBoundingClientRect();
       const scale = c.width / 1280;
       const pipelineTop = root.getBoundingClientRect().top + scroll;
-      const start = pipelineTop - innerHeight;
+      // Keep ownership at the OA story endpoint even when the module overlaps
+      // the outgoing viewport to reduce the visual gap.
+      const story = document.querySelector(".home-scroll-space");
+      const storyBottom = story ? story.getBoundingClientRect().bottom + scroll : pipelineTop;
+      const start = storyBottom - innerHeight;
       const foot = footer.getBoundingClientRect();
       const active = scroll >= start - 1 && foot.bottom > 0;
       if (!active) {

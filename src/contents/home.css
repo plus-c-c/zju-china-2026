@@ -379,3 +379,8 @@ body.home-story-open .app {
 @media (prefers-reduced-motion: reduce) {
   .pipeline-bird-active :is(.story-guide-bird__flight, .story-guide-bird__rest) { transition: none; }
 }
+
+/* Pull the first module toward OA without changing the story scroll range. */
+@media (min-width: 992px) {
+  .home-scroll-space + .selp-pipeline { margin-top: -24vh; }
+}
