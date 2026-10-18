@@ -301,7 +301,7 @@
 .opening-burden__map {
   position: absolute;
   inset: 0 24px 24px;
-  transform: translateY(-24px) scale(1.48);
+  transform: translateY(-4px) scale(1.48);
   transform-origin: center center;
 }
 .opening-burden__world {

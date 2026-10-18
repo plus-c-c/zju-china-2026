@@ -149,6 +149,33 @@ function PipelinePill({ label, to }: { label: string; to: string }) {
   );
 }
 
+function PipelineConnector({ variant }: { variant: "first" | "second" }) {
+  const paths = {
+    first:
+      "M3.99805 0V159.302C3.99805 172.552 14.7376 183.292 27.9876 183.292H514.805C528.055 183.292 538.795 194.031 538.795 207.276V352.729",
+    second:
+      "M542.79 0V171.328C542.79 184.578 532.05 195.318 518.805 195.318H27.9876C14.7376 195.318 3.99805 206.057 3.99805 219.302V356.937",
+  } as const;
+
+  return (
+    <svg
+      aria-hidden="true"
+      className={`selp-pipeline__connector selp-pipeline__connector--${variant}`}
+      viewBox={variant === "first" ? "0 0 542.793 352.729" : "0 0 546.788 356.937"}
+      preserveAspectRatio="none"
+    >
+      <path
+        d={paths[variant]}
+        fill="none"
+        stroke="#7eb5ff"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="8"
+      />
+    </svg>
+  );
+}
+
 function LoopingPipelineGif({
   alt,
   className,
@@ -266,11 +293,7 @@ export function SelpPipeline() {
             label="About Anisotropy"
             to="/design#3-2-module-1-magnetically-responsive-anisotropy-directional-load-bearing"
           />
-          <img
-            className="selp-pipeline__connector selp-pipeline__connector--first"
-            src={`${PIPELINE_ASSETS}/pipeline-02-03.svg`}
-            alt=""
-          />
+          <PipelineConnector variant="first" />
         </section>
 
         <section
@@ -305,11 +328,7 @@ export function SelpPipeline() {
             label="About GAG"
             to="/design#3-3-module-2-cpc-link-n-maintaining-matrix-retention-and-renewal"
           />
-          <img
-            className="selp-pipeline__connector selp-pipeline__connector--second"
-            src={`${PIPELINE_ASSETS}/pipeline-03-04.svg`}
-            alt=""
-          />
+          <PipelineConnector variant="second" />
         </section>
 
         <section

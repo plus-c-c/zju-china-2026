@@ -1,14 +1,11 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import "./HomeIntro.css";
-
-const homepageVideo = `${import.meta.env.BASE_URL}videos/homepage.mp4`;
 
 type HomeIntroProps = {
   onEnter: () => void;
 };
 
 export function HomeIntro({ onEnter }: HomeIntroProps) {
-  const videoRef = useRef<HTMLVideoElement>(null);
   const [finished, setFinished] = useState(false);
 
   const finishIntro = useCallback(() => {
@@ -17,10 +14,8 @@ export function HomeIntro({ onEnter }: HomeIntroProps) {
   }, []);
 
   useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    void video.play().catch(() => finishIntro());
+    const frame = window.requestAnimationFrame(finishIntro);
+    return () => window.cancelAnimationFrame(frame);
   }, [finishIntro]);
 
   useEffect(() => {
@@ -40,19 +35,6 @@ export function HomeIntro({ onEnter }: HomeIntroProps) {
         finished ? "NEST homepage introduction" : "Homepage animation playing"
       }
     >
-      <video
-        ref={videoRef}
-        className="home-intro__video"
-        src={homepageVideo}
-        autoPlay
-        muted
-        playsInline
-        preload="auto"
-        disablePictureInPicture
-        controlsList="nodownload nofullscreen noremoteplayback"
-        onEnded={finishIntro}
-        onError={finishIntro}
-      />
       <div className="home-intro__landing" aria-hidden={!finished}>
         <div className="home-intro__brand" aria-label="NEST">
           <span

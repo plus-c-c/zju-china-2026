@@ -39,15 +39,15 @@
 .nest-solution-card--selp {
   left: 726.67px;
   top: 58px;
-  width: 566.67px;
-  height: 306.67px;
+  width: 500px;
+  height: 260px;
 }
 
 .nest-solution-card--ligase {
-  left: 123px;
+  left: 153px;
   top: 433px;
-  width: 568px;
-  height: 286.67px;
+  width: 470px;
+  height: 230px;
 }
 
 .nest-solution-selp-title,
@@ -60,7 +60,7 @@
 }
 
 .nest-solution-selp-title {
-  left: 107px;
+  left: 77px;
   top: -36px;
   width: 350px;
   font-size: 60px;
@@ -72,7 +72,7 @@
 .nest-solution-selp-subtitle {
   position: absolute;
   z-index: 2;
-  left: 161px;
+  left: 129px;
   top: 44px;
   color: rgb(0 0 0 / 67%);
   font-size: 23px;
@@ -84,16 +84,16 @@
 .nest-solution-selp-copy {
   position: absolute;
   z-index: 2;
-  left: 99px;
+  left: 59px;
   top: 95px;
   width: 455px;
   color: #05080d;
-  font-size: 26px;
+  font-size: 22px;
   line-height: 38px;
 }
 
 .nest-solution-ligase-title {
-  left: 60px;
+  left: 10px;
   top: -20px;
   width: 500px;
   font-size: 44px;
@@ -103,11 +103,11 @@
 .nest-solution-ligase-copy {
   position: absolute;
   z-index: 2;
-  left: 80px;
-  top: 70px;
+  left: 60px;
+  top: 60px;
   width: 400px;
   color: #05080d;
-  font-size: 26px;
+  font-size: 22px;
   line-height: 38px;
 }
 
@@ -115,14 +115,14 @@
   position: absolute;
   z-index: 5;
   display: grid;
-  width: 230px;
-  height: 70px;
+  width: 210px;
+  height: 60px;
   place-items: center;
   border: 4px solid #facf8c;
   border-radius: 35px;
   background: #fafbfe;
   color: #1f2126;
-  font-size: 28px;
+  font-size: 25px;
   font-weight: 600;
   line-height: 36px;
   text-decoration: none;
@@ -130,13 +130,13 @@
 }
 
 .nest-solution-button--selp {
-  left: 157px;
-  top: 271px;
+  left: 137px;
+  top: 231px;
 }
 
 .nest-solution-button--ligase {
-  left: 157px;
-  top: 249px;
+  left: 127px;
+  top: 200px;
 }
 
 .nest-solution-selp-chain {
@@ -200,31 +200,31 @@
 .oa-intro {
   position: absolute;
   z-index: 2;
-  left: 116px;
+  left: 156px;
   top: 79px;
-  width: 1180px;
+  width: 1080px;
   color: #05080d;
-  font-size: 28px;
+  font-size: 26px;
   line-height: 50px;
 }
 
 .oa-intro strong {
-  font-size: 36px;
+  font-size: 32px;
   font-weight: 700;
 }
 
 .oa-intro .oa-intro__target {
   color: #054db0;
-  font-size: 48px;
+  font-size: 40px;
   font-weight: 800;
 }
 
 .oa-panel {
   position: absolute;
-  left: 101.39px;
+  left: 156px;
   top: 260px;
-  width: 1191.1px;
-  height: 450px;
+  width: 1080px;
+  height: 370px;
   border-radius: 35px;
   background: linear-gradient(180deg, rgb(244 249 255 / 94%) 0%, #E7F1FE 100%);
   box-shadow:
@@ -234,11 +234,11 @@
 
 .oa-panel-copy {
   position: absolute;
-  left: 522.61px;
-  top: 65px;
+  left: 450px;
+  top: 49px;
   width: 576px;
   color: #05080d;
-  font-size: 28px;
+  font-size: 24px;
   line-height: 40px;
 }
 
@@ -252,9 +252,9 @@
 
 .oa-cycle-image {
   position: absolute;
-  left: 80px;
-  top: 70px;
-  width: 390px;
+  left: 50px;
+  top: 50px;
+  width: 360px;
   height: auto;
   max-width: none;
 }
@@ -316,14 +316,14 @@
 .selp-pipeline__card h2 {
   width: 34.26%;
   color: #173b64;
-  font-size: 2.34cqw;
+  font-size: 2.94cqw;
   font-weight: 700;
   line-height: 1.16;
 }
 
 .selp-pipeline__card p {
-  width: 35.29%;
-  font-size: 1.17cqw;
+  width: 36%;
+  font-size: 1.77cqw;
   font-weight: 400;
   line-height: 1.35;
 }
@@ -336,11 +336,14 @@
   left: 16.76%;
   top: 30.26%;
   color: #001082;
+  line-height: 60px;
 }
 
 .selp-pipeline__stage--magnetic .selp-pipeline__card p {
   left: 16.76%;
   top: 46.88%;
+  line-height: 45px;
+
 }
 
 .selp-pipeline__stage--gag .selp-pipeline__card {
@@ -351,11 +354,13 @@
   left: 50%;
   top: 34.36%;
   color: #6b005f;
+  line-height: 60px;
 }
 
 .selp-pipeline__stage--gag .selp-pipeline__card p {
   left: 50%;
   top: 43.21%;
+  line-height: 45px;
 }
 
 .selp-pipeline__stage--mitochondrial .selp-pipeline__card {
@@ -368,12 +373,14 @@
   left: 18.59%;
   top: 27.68%;
   color: #8a4b00;
+  line-height: 60px;
 }
 
 .selp-pipeline__stage--mitochondrial .selp-pipeline__card p {
   left: 18.74%;
   top: 44.52%;
   width: 35.29%;
+  line-height: 45px;
 }
 
 .selp-pipeline__art,
@@ -463,6 +470,7 @@
 
 .selp-pipeline__pill {
   position: absolute;
+  z-index: 3;
   display: grid;
   width: 16.98%;
   height: 9.35%;
@@ -470,6 +478,7 @@
   border-radius: 999px;
   background: #fff;
   color: #173b64;
+  cursor: pointer;
   font-family: "Outfit", sans-serif;
   font-size: 1.6cqw;
   font-weight: 600;
@@ -517,6 +526,7 @@
 .selp-pipeline__connector {
   z-index: 0;
   left: 33.2%;
+  overflow: visible;
   width: 39.45%;
   height: auto;
 }
@@ -546,6 +556,7 @@
 
 .selp-shortcut {
   display: flex;
+  height: 73px;
   min-height: 73px;
   align-items: center;
   justify-content: center;
@@ -575,8 +586,8 @@
 }
 
 .selp-shortcut img {
-  width: 46px;
-  height: 46px;
+  width: 46px !important;
+  height: 46px !important;
   flex: 0 0 auto;
   object-fit: contain;
 }
@@ -633,23 +644,26 @@
   margin: 0;
   color: #ffbc05;
   font-size: clamp(25px, 3.2vw, 40px);
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 2px;
   line-height: 1;
   text-align: center;
   transform: translateX(-50%);
+  -webkit-text-stroke: 2px #5c9ff0;
+  paint-order: stroke fill;
   text-shadow:
-    -3px -3px 0 #5c9ff0,
-    3px -3px 0 #5c9ff0,
-    -3px 3px 0 #5c9ff0,
-    3px 3px 0 #5c9ff0;
+    0 2px 0 #5c9ff0;
 }
 
 .selp-promotion__frame iframe {
+  position: absolute;
+  top: 50%;
+  left: 50%;
   display: block;
-  width: 100%;
-  height: 100%;
+  width: 103%;
+  height: 103%;
   border: 0;
+  transform: translate(-50%, -50%);
 }
 
 .selp-promotion__decoration {
@@ -732,14 +746,15 @@
   }
 
   .selp-shortcut {
+    height: 54px;
     min-height: 54px;
     padding: 8px 10px;
     font-size: 14px;
   }
 
   .selp-shortcut img {
-    width: 34px;
-    height: 34px;
+    width: 34px !important;
+    height: 34px !important;
   }
 
   .selp-promotion {
@@ -748,10 +763,7 @@
 
   .selp-promotion > h2 {
     font-size: clamp(14px, 5vw, 25px);
-    text-shadow:
-      -2px -2px 0 #5c9ff0,
-      2px -2px 0 #5c9ff0,
-      -2px 2px 0 #5c9ff0,
-      2px 2px 0 #5c9ff0;
+    -webkit-text-stroke-width: 1px;
+    text-shadow: 0 1px 0 #5c9ff0;
   }
 }

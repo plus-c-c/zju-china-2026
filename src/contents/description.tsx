@@ -356,9 +356,9 @@ export function Description() {
             alt="Three-panel illustrative collage showing knee taping for a young adult, an adult holding a knee, and an older adult resting a hand on a knee"
           >
             An illustrative collage of knee support and discomfort across life
-            stages: knee taping for a young adult (left), an adult holding a knee
-            (center), and an older adult resting a hand on a knee (right). The
-            images do not establish a diagnosis of cartilage damage in any
+            stages: knee taping for a young adult (left), an adult holding a
+            knee (center), and an older adult resting a hand on a knee (right).
+            The images do not establish a diagnosis of cartilage damage in any
             individual shown. Source photographs and AI-assisted compositing
             credits are provided below.
           </DescriptionFigure>
@@ -732,13 +732,17 @@ export function Description() {
           </p>
 
           <h2>References</h2>
-          <ol className="references-list">
+          <div className="references-list references-list--paragraphs">
             {references.map((reference, index) => (
-              <li id={`description-reference-${index + 1}`} key={index}>
-                {reference}
-              </li>
+              <p
+                id={`description-reference-${index + 1}`}
+                key={index}
+                style={{ scrollMarginTop: "112px" }}
+              >
+                [{index + 1}] {reference}
+              </p>
             ))}
-          </ol>
+          </div>
 
           <h2>Figure Sources and Credits</h2>
           <div className="description-credits">
@@ -746,17 +750,16 @@ export function Description() {
               <h3>Figure 1 | Knee Support and Discomfort Across Life Stages</h3>
               <p>
                 Source photographs: young adult, cottonbro studio / Pexels,
-                photo 7339492; adult, Towfiqu barbhuiya / Pexels, photo 11349880;
-                older adult, Αλεξανδρος Μαμουνης / Pexels, photo 18851495.
-                The collage was adapted from these photographs using AI-assisted
-                compositing (OpenAI imagegen). It is illustrative and should not
-                be presented as clinical evidence or confirmation of a diagnosis.
+                photo 7339492; adult, Towfiqu barbhuiya / Pexels, photo
+                11349880; older adult, Αλεξανδρος Μαμουνης / Pexels, photo
+                18851495. The collage was adapted from these photographs using
+                AI-assisted compositing (OpenAI imagegen). It is illustrative
+                and should not be presented as clinical evidence or confirmation
+                of a diagnosis.
               </p>
               <p className="description-credit-links">
                 <a href="https://www.pexels.com/photo/7339492/">Young adult</a>
-                <a href="https://www.pexels.com/photo/11349880/">
-                  Adult
-                </a>
+                <a href="https://www.pexels.com/photo/11349880/">Adult</a>
                 <a href="https://www.pexels.com/photo/18851495/">Older adult</a>
                 <a href="https://www.pexels.com/license/">Pexels License</a>
               </p>
