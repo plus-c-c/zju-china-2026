@@ -199,7 +199,7 @@ function DesktopHome() {
                 index={index}
                 style={
                   {
-                    "--scene-content-scale": index === 2 || index === 3 ? 1 : 0.89,
+                    "--scene-content-scale": 0.89,
                     ...(crossfade?.incoming === index
                       ? {
                           transform: "translateY(-100%)",

@@ -26,6 +26,41 @@ const stops = [
   { beat: 21, x: 1092, y: 590, size: 0.4 },
   { beat: 22, x: 1092, y: 590, size: 0.4 },
 ];
+/** Resolve perches from the illustration they belong to, including its content scale. */
+export function perch(stop: typeof stops[number]) {
+  const anchors: Record<number, [string, number, number]> = {
+    2: [".opening-bubble--hyaline", 0.28, 0.08],
+    3: [".opening-bubble--hyaline", 0.28, 0.08],
+    4: ["#home-3 .opening-burden__world", 0.76, 0.4],
+    4.8: [".opening-burden__stat strong", 0.83, 0],
+    5: [".opening-burden__stat strong", 0.83, 0],
+    6: [".opening-impact__stairs", -0.35, 1],
+    7: [".opening-impact__stairs", -0.35, 1],
+    8: [".hydrogel-materials-page__button", 1.2, 0.4],
+    9: [".hydrogel-materials-page__button", 1.2, 0.4],
+    10: [".limitations-card:last-child", 0.9, 0],
+    13: [".limitations-card:last-child", 0.9, 0],
+    14: [".home-layer-57", 0.5, 0.25],
+    18: [".home-layer-57", 0.5, 0.25],
+    19: [".nest-solution-card--ligase", 0.07, 0],
+    20: [".nest-solution-card--ligase", 0.07, 0],
+    21: [".oa-panel", 0.98, 0.98],
+    22: [".oa-panel", 0.98, 0.98],
+  };
+  const anchor = anchors[stop.beat];
+  const element = anchor && document.querySelector<HTMLElement>(anchor[0]);
+  const canvas = element?.closest<HTMLElement>(".home-scene-canvas");
+  if (!element || !canvas) {
+    return { ...stop, x: 640 + (stop.x - 640) * 0.89, y: 360 + (stop.y - 360) * 0.89 };
+  }
+  const bounds = element.getBoundingClientRect();
+  const scene = canvas.getBoundingClientRect();
+  const unit = scene.width / 1280;
+  return { ...stop,
+    x: 640 + ((bounds.left + bounds.width * anchor[1] - scene.left) / unit - 640) * 0.89,
+    y: 360 + ((bounds.top + bounds.height * anchor[2] - scene.top) / unit - 360) * 0.89,
+  };
+}
 export function StoryBird({ position, direction, scale }: { position: number; direction: number; scale: number }) {
   const index = Math.max(0, stops.findIndex((stop) => stop.beat > position) - 1);
   const from = position >= 22 ? stops[stops.length - 1] : stops[index];
@@ -41,6 +76,7 @@ export function StoryBird({ position, direction, scale }: { position: number; di
       { translate: "0 0", offset: 0.85 }, { translate: "0 -3px", offset: 0.93 }, { translate: "0 0" },
     ], { duration: 520, easing: "ease-out" });
   };
+  const destinationStop = destination;
   const targetX = destination.x, targetY = destination.y, targetSize = destination.size;
   const atHome = targetX === stops[0].x && targetY === stops[0].y;
   const [introOpacity, setIntroOpacity] = useState(0);
@@ -72,7 +108,7 @@ export function StoryBird({ position, direction, scale }: { position: number; di
   }, [atHome]);
   useEffect(() => {
     if (atHome && poseRef.current.beat === 0) return;
-    const destination = { x: targetX, y: targetY, size: targetSize, beat: atHome ? 0 : 2 };
+    const destination = { ...perch({ ...destinationStop, x: targetX, y: targetY, size: targetSize }), beat: atHome ? 0 : 2 };
     if (atHome) {
       const anchor = document.querySelector(".home-intro__bird-anchor")?.getBoundingClientRect();
       const canvas = document.querySelector(".story-bird-canvas")?.getBoundingClientRect();
@@ -151,7 +187,25 @@ export function StoryBird({ position, direction, scale }: { position: number; di
     };
     frame = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(frame);
-  }, [targetX, targetY, targetSize, atHome]);
+  }, [targetX, targetY, targetSize, atHome, scale]);
+  useEffect(() => {
+    if (atHome) return;
+    let frame = 0;
+    const follow = () => {
+      if (!poseRef.current.moving && !document.body.classList.contains("pipeline-bird-active")) {
+        const target = perch(destinationStop);
+        const current = poseRef.current;
+        if (Math.hypot(current.x - target.x, current.y - target.y) > 0.2) {
+          const next = { ...current, x: target.x, y: target.y };
+          poseRef.current = next;
+          setPose(next);
+        }
+      }
+      frame = requestAnimationFrame(follow);
+    };
+    frame = requestAnimationFrame(follow);
+    return () => cancelAnimationFrame(frame);
+  }, [atHome, destinationStop]);
   const { x, y, size, moving, angle: flightAngle } = pose;
   return createPortal(<div className="story-bird-canvas" style={{ opacity: atHome && pose.beat === 0 && !pose.moving ? introOpacity : 1, "--scene-scale": scale } as CSSProperties}>
     <div role="button" tabIndex={0} aria-label="Make the NEST bird hop"

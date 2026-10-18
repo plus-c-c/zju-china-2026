@@ -904,3 +904,9 @@
 @media (prefers-reduced-motion: reduce) {
   .selp-pipeline__stage > * { transition: none; }
 }
+
+/* Text coordinates are percentages of the full module, not a narrow nested card. */
+.selp-pipeline__stage .selp-pipeline__card {
+  width: 100%;
+  height: 100%;
+}

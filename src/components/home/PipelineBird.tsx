@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { perch } from "./StoryBird";
 
 /** A reversible document-space route, shared with the OA bird. */
 export function PipelineBird() {
@@ -43,8 +44,9 @@ export function PipelineBird() {
         document.body.classList.remove("pipeline-bird-active");
         return;
       }
-      const oaX = c.left + 1092 * scale;
-      const oaScreenY = c.top + 590 * scale;
+      const oaPerch = perch({ beat: 21, x: 1092, y: 590, size: 0.4 });
+      const oaX = c.left + oaPerch.x * scale;
+      const oaScreenY = c.top + oaPerch.y * scale;
       const arch = Math.min(104, Math.max(64, innerWidth * 0.07));
       const landingY = foot.top + scroll + arch * 0.35 - 3;
       const stages = [...root.querySelectorAll(".selp-pipeline__stage")].map(e => e.getBoundingClientRect());

@@ -986,3 +986,14 @@
 
 .opening-scene--burden .opening-burden__stat strong { color: #004aad; }
 .opening-scene--impact .opening-rehab__cost-note { color: var(--homepage-ink); }
+
+/* Match the shared chapter canvas instead of extending beyond its gutters. */
+.story-viewport .opening-scene--burden .opening-burden__map {
+  left: 0;
+  width: 1280px;
+}
+.story-viewport .opening-scene--burden .opening-burden__world {
+  width: 1280px !important;
+  height: 543px !important;
+}
+.story-viewport .opening-scene--burden .opening-burden__stat { left: 190px; }
