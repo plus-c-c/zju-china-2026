@@ -22,6 +22,8 @@ export type TimelineItem = {
   /** Optional photo shown inside the rail dot (falls back to a gradient). */
   image?: string;
   imageAlt?: string;
+  /** Optional focal point used when the photo is cropped into an avatar. */
+  imagePosition?: string;
   /** Optional sections rendered in the "Read more" dialog. */
   details?: TimelineDetail[];
 };
@@ -143,6 +145,7 @@ export function Timeline({ items }: { items: TimelineItem[] }) {
                     className="timeline-dot-img"
                     src={item.image}
                     alt={item.imageAlt || ""}
+                    style={{ objectPosition: item.imagePosition }}
                     loading="lazy"
                     decoding="async"
                   />
@@ -195,6 +198,7 @@ export function Timeline({ items }: { items: TimelineItem[] }) {
                   <img
                     src={openItem.image}
                     alt={openItem.imageAlt || openItem.title}
+                    style={{ objectPosition: openItem.imagePosition }}
                   />
                 ) : (
                   <div

@@ -139,7 +139,8 @@ export function Navbar({ introEntrance = false }: { introEntrance?: boolean }) {
         if (visible && hideTimer === undefined) {
           hideTimer = window.setTimeout(() => {
             hideTimer = undefined;
-            if (!atPageTop() && !hasKeyboardFocus() && !openMenuRef.current) hide();
+            if (!atPageTop() && !hasKeyboardFocus() && !openMenuRef.current)
+              hide();
           }, 220);
         }
       }
@@ -227,7 +228,7 @@ export function Navbar({ introEntrance = false }: { introEntrance?: boolean }) {
   }, [expanded]);
 
   const navbarHidden = !navbarVisible;
-  const pages = Pages.filter((item) => !("path" in item && item.path === "/"));
+  const pages = Pages;
 
   return (
     <>

@@ -83,6 +83,12 @@ const timelineItems: TimelineItem[] = timelineImageIds.map(
       ? {
           image: `https://static.igem.wiki/teams/6102/wiki/images/engagement/ihp/ihp-${imageId}.avif`,
           imageAlt: `Human practices activity ${index + 1}`,
+          imagePosition:
+            imageId === "15"
+              ? "84% 50%"
+              : imageId === "37"
+                ? "65% 50%"
+                : undefined,
         }
       : {}),
     summary: placeholderSummary,

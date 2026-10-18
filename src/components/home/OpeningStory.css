@@ -530,7 +530,8 @@
     background-size: auto 100%;
   }
   .bubble-awareness__intro {
-    min-height: 940px;
+    min-height: 0;
+    padding-bottom: 36px;
   }
   .bubble-awareness__statement {
     position: relative;
@@ -541,12 +542,16 @@
     font-size: clamp(36px, 7vw, 48px);
   }
   .bubble-cluster {
-    top: 300px;
+    position: relative;
+    top: auto;
     left: 50%;
-    width: 720px;
-    height: 620px;
-    transform: translateX(-50%) scale(0.78);
-    transform-origin: top center;
+    width: 1366px;
+    height: 720px;
+    margin-top: 24px;
+    margin-bottom: -202px;
+    margin-left: -650px;
+    transform: scale(0.72);
+    transform-origin: top left;
   }
   .bubble-awareness__burden,
   .bubble-awareness__sports,
@@ -583,11 +588,14 @@
 
 @media (max-width: 560px) {
   .bubble-awareness__intro {
-    min-height: 800px;
+    min-height: 0;
+    padding-bottom: 28px;
   }
   .bubble-cluster {
-    top: 300px;
-    transform: translateX(-50%) scale(0.54);
+    margin-top: 18px;
+    margin-bottom: -360px;
+    margin-left: -451px;
+    transform: scale(0.5);
   }
   .bubble-awareness__burden-copy h2,
   .bubble-awareness__sports-copy h2,
