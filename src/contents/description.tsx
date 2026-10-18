@@ -124,16 +124,6 @@ const treatmentCards = [
     ),
   },
   {
-    title: "Joint Replacement",
-    body: (
-      <>
-        Provides an important option for some patients with end-stage joint
-        destruction, but replaces native articular surfaces with artificial
-        components rather than regenerating natural cartilage.
-        <Citation refs={[12]} />
-      </>
-    ),
-  },  {
     title: "Microfracture",
     body: (
       <>
@@ -156,7 +146,17 @@ const treatmentCards = [
       </>
     ),
   },
-
+  {
+    title: "Joint Replacement",
+    body: (
+      <>
+        Provides an important option for some patients with end-stage joint
+        destruction, but replaces native articular surfaces with artificial
+        components rather than regenerating natural cartilage.
+        <Citation refs={[12]} />
+      </>
+    ),
+  },
 ];
 
 const references = [
