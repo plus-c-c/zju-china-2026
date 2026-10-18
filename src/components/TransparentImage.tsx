@@ -1,9 +1,4 @@
-import {
-  useEffect,
-  useRef,
-  useState,
-  type CSSProperties,
-} from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 
 /**
  * General white-background removal for static images.
@@ -53,6 +48,9 @@ interface TransparentImageProps {
   /** Fraction (0–1) of the source height cut from the top before
    *  processing — removes baked-in titles and their gradient bands. */
   cropTop?: number;
+  /** Mark the image as decorative: no role/label is exposed to assistive
+   *  technology (the adjacent text already names it). */
+  ariaHidden?: boolean;
   /** Pixels whose smallest channel reaches this value become transparent. */
   whiteThreshold?: number;
   /** Pixels at or below this value stay fully opaque (a ramp in between). */
@@ -88,6 +86,7 @@ export function TransparentImage({
   loading = "lazy",
   rootMargin = "600px",
   cropTop = 0,
+  ariaHidden = false,
   whiteThreshold = 250,
   opaqueThreshold = 240,
 }: TransparentImageProps) {
@@ -175,7 +174,8 @@ export function TransparentImage({
     return (
       <img
         src={src}
-        alt={alt}
+        alt={ariaHidden ? "" : alt}
+        aria-hidden={ariaHidden || undefined}
         className={className}
         style={style}
         width={width}
@@ -189,8 +189,9 @@ export function TransparentImage({
   return (
     <canvas
       ref={canvasRef}
-      role="img"
-      aria-label={alt}
+      role={ariaHidden ? "presentation" : "img"}
+      aria-hidden={ariaHidden || undefined}
+      aria-label={ariaHidden ? undefined : alt}
       className={className}
       width={width}
       height={height}
@@ -199,7 +200,9 @@ export function TransparentImage({
           ? style
           : {
               ...style,
-              ...(width && height ? { aspectRatio: `${width} / ${height}` } : null),
+              ...(width && height
+                ? { aspectRatio: `${width} / ${height}` }
+                : null),
               visibility: "hidden",
             }
       }

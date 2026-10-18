@@ -12,7 +12,7 @@ export const softwareIModule: DbtlModule = {
   intro: (
     <p>
       Research on SELP hydrogels relies on a cross-software molecular simulation
-      chain: all-atom TIGER2 (NAMD) → coarse-grained CG (GROMACS) →
+      chain: all-atom TIGER2 FAMD (NAMD) → coarse-grained CG (GROMACS) →
       magneto-mechanical composite modulus (MATLAB). Making this chain viewable,
       adjustable, and re-runnable is itself an engineering problem, which we
       advanced through DBTL cycles, passing through four framework-level stages.
@@ -25,26 +25,26 @@ export const softwareIModule: DbtlModule = {
       content: {
         Design: (
           <p>
-            The team ran NAMD TIGER2 replica-exchange simulations on the iGEM
-            local server and the ZJU cluster. Progress could previously only be
-            checked by grepping logs command by command over SSH, with no way to
-            tell how far a run had progressed. We therefore planned a Web
-            interface that shows the key status of remote tasks (progress,
-            temperature, convergence) across SSH, replacing manual log-watching
-            in a terminal.
+            The team ran NAMD TIGER2 FAMD replica-exchange simulations on the
+            iGEM local server and the ZJU cluster. Progress could previously
+            only be checked by grepping logs command by command over SSH, with
+            no way to tell how far a run had progressed. We therefore planned a
+            Web interface that shows the key status of remote tasks (progress,
+            temperature, convergence) across SSH,{" "}
+            <strong>replacing manual log-watching in a terminal</strong>.
           </p>
         ),
         Build: (
           <p>
             Built the frontend/backend scaffold: an Express backend with a React
-            + Vite frontend; introduced the TIGER2 task type, connected the iGEM
-            local server, and implemented the task-monitoring interface.
+            + Vite frontend; introduced the TIGER2 FAMD task type, connected the
+            iGEM local server, and implemented the task-monitoring interface.
           </p>
         ),
         Test: (
           <p>
             Verified log-prefix recognition, replica-count recognition, and
-            progress display on real TIGER2 tasks, then added convergence
+            progress display on real TIGER2 FAMD tasks, then added convergence
             detection and progress synchronisation.
           </p>
         ),
@@ -54,9 +54,9 @@ export const softwareIModule: DbtlModule = {
             every additional simulation tool required changing the entire
             monitoring logic. New needs appeared at the same time — GROMACS CG
             also needed monitoring, and trajectories were expected to be
-            viewable directly in the browser. The conclusion: task types must
-            become plugins, with the monitoring logic described by the task
-            types themselves.
+            viewable directly in the browser. The conclusion:{" "}
+            <strong>task types must become plugins</strong>, with the monitoring
+            logic described by the task types themselves.
           </p>
         ),
       },
@@ -68,10 +68,11 @@ export const softwareIModule: DbtlModule = {
           <p>
             Move where a task runs, how it is detected, and what it produces
             into each task type&rsquo;s own configuration, with the backend
-            dispatching by type instead of hard-coding TIGER2. Two sub-goals:
-            first, visibility — a trajectory viewer merging multi-segment DCD
-            files, sequence annotation, and server-side MP4/GIF rendering;
-            second, chaining — tasks pass products through next links (an output
+            dispatching by type instead of hard-coding TIGER2 FAMD. Two
+            sub-goals: first, visibility — a trajectory viewer merging
+            multi-segment DCD files, sequence annotation, and server-side
+            MP4/GIF rendering; second, chaining —{" "}
+            <strong>tasks pass products through next links</strong> (an output
             directory points to the downstream input directory), and a
             conversion task (DCD → CG, turning all-atom trajectories into
             coarse-grained starting structures) bridges the two.
@@ -90,21 +91,26 @@ export const softwareIModule: DbtlModule = {
         ),
         Test: (
           <p>
-            Verified end-to-end with a real full chain (2KY-10: TIGER2 →
+            Verified end-to-end with a real full chain (2KY-10: TIGER2 FAMD →
             conversion → CG), confirming one-click sequential launch and
             automatic product passing.
           </p>
         ),
         Learn: (
           <p>
-            The pipeline turned manual file passing into automatic passing, but
-            scientific parameters still lived in configuration files: changing
-            one value required logging into the server and editing files, and a
-            change could leave results unchanged in ways that were hard to
-            explain; runs could also fail midway and go unnoticed for hours.
-            Parameter editing and unattended monitoring were left for later
-            cycles, while research itself set a new requirement — the next round
-            had to bring the complete sequence-to-properties chain onto the
+            <strong>
+              scientific parameters still lived in configuration files
+            </strong>
+            : changing one value required logging into the server and editing
+            files, and a change could leave results unchanged in ways that were
+            hard to explain; runs could also fail midway and go unnoticed for
+            hours.
+            <strong>
+              Parameter editing and unattended monitoring were left for later
+              cycles
+            </strong>
+            , while research itself set a new requirement — the next round had
+            to bring the complete sequence-to-properties chain onto the
             platform.
           </p>
         ),
@@ -151,9 +157,12 @@ export const softwareIModule: DbtlModule = {
             parameters still had to be set by editing configuration files — no
             essential difference from the monitoring era — and better graphics
             did not solve the core problem of letting users change parameters
-            and re-run. The conclusion: a parameter-driven interactive platform
-            was required, turning each step&rsquo;s scientific inputs into
-            editable forms and passing parameters from top to bottom.
+            and re-run. The conclusion:{" "}
+            <strong>
+              a parameter-driven interactive platform was required
+            </strong>
+            , turning each step&rsquo;s scientific inputs into editable forms
+            and passing parameters from top to bottom.
           </p>
         ),
       },
@@ -165,13 +174,14 @@ export const softwareIModule: DbtlModule = {
           <p>
             A pipeline consists of several sequential steps (flow_tiger2,
             flow_gromacs_cg, flow_magnetomech), each with a parameter panel, run
-            controls, and result charts. Three key decisions: parameter-driven
-            rather than file-driven — the panel saves the user&rsquo;s intent
-            and inputs are regenerated at launch, so results can never lag
-            behind the configuration; four tabbed sections (Dashboard,
-            Parameters, Results, Control) carrying the whole chain in a single
-            page; and template creation — one click generates a fully ordered,
-            automatically chained pipeline from a template.
+            controls, and result charts. Three key decisions:{" "}
+            <strong>parameter-driven rather than file-driven</strong> — the
+            panel saves the user&rsquo;s intent and inputs are regenerated at
+            launch, so results can never lag behind the configuration; four
+            tabbed sections (Dashboard, Parameters, Results, Control) carrying
+            the whole chain in a single page; and template creation — one click
+            generates a fully ordered, automatically chained pipeline from a
+            template.
           </p>
         ),
         Build: (
@@ -193,19 +203,22 @@ export const softwareIModule: DbtlModule = {
             Added a launch regression suite covering starting, liveness checks,
             completion detection, and the no-SLURM path; ran a real end-to-end
             smoke test on the iGEM server, completing the full simulation from
-            within the application at about 894 ns/day, and confirmed that a
-            quickly finished smoke test is judged a success rather than a
-            failure; frontend type checks and builds and all backend unit tests
-            passed.
+            within the application at about <strong>894 ns/day</strong>, and
+            confirmed that a quickly finished smoke test is judged a success
+            rather than a failure; frontend type checks and builds and all
+            backend unit tests passed.
           </p>
         ),
         Learn: (
           <p>
-            The frontend finally converged from single-task monitoring into a
-            pipeline console. Several design trade-offs were fixed in place:
-            parameter-driven inputs, immediate validation on save, run location
-            configured separately and required to be absolute, and explicit
-            input units. These trade-offs are summarised below.
+            <strong>
+              The frontend finally converged from single-task monitoring into a
+              pipeline console.
+            </strong>{" "}
+            Several design trade-offs were fixed in place: parameter-driven
+            inputs, immediate validation on save, run location configured
+            separately and required to be absolute, and explicit input units.
+            These trade-offs are summarised below.
           </p>
         ),
       },
@@ -237,7 +250,7 @@ export const softwareIModule: DbtlModule = {
               <td>C1</td>
               <td>Remote simulations invisible</td>
               <td>Single-task monitoring platform</td>
-              <td>TIGER2 progress and convergence</td>
+              <td>TIGER2 FAMD progress and convergence</td>
               <td>Need for plugins</td>
             </tr>
             <tr>
@@ -319,10 +332,13 @@ export const softwareIIModule: DbtlModule = {
       content: {
         Design: (
           <p>
-            Replace the paper instructions with a step-by-step wizard driven by
-            workflow state, and provide two entry points matching the two stages
-            of the clinical workflow: Ordering (selecting the scaffold and
-            functional modules) and Operating Instructions.
+            <strong>
+              Replace the paper instructions with a step-by-step wizard driven
+              by workflow state
+            </strong>
+            , and provide two entry points matching the two stages of the
+            clinical workflow: Ordering (selecting the scaffold and functional
+            modules) and Operating Instructions.
           </p>
         ),
         Build: (
@@ -342,10 +358,13 @@ export const softwareIIModule: DbtlModule = {
         ),
         Learn: (
           <p>
-            The value of a wizard lies in making each step&rsquo;s purpose
-            clearly recognisable; purely decorative schematics only add noise,
-            and giving each hardware action its own screen creates repetition
-            that must be solved in the next cycle.
+            <strong>
+              The value of a wizard lies in making each step&rsquo;s purpose
+              clearly recognisable
+            </strong>
+            ; purely decorative schematics only add noise, and giving each
+            hardware action its own screen creates repetition that must be
+            solved in the next cycle.
           </p>
         ),
       },
@@ -355,9 +374,12 @@ export const softwareIIModule: DbtlModule = {
       content: {
         Design: (
           <p>
-            Merge the repetitive hardware-step screens into one unified chain
-            screen: switching the operation row by step, with the camera preview
-            and timer staying persistent across switches.
+            <strong>
+              Merge the repetitive hardware-step screens into one unified chain
+              screen
+            </strong>
+            : switching the operation row by step, with the camera preview and
+            timer staying persistent across switches.
           </p>
         ),
         Build: (
@@ -391,10 +413,11 @@ export const softwareIIModule: DbtlModule = {
       content: {
         Design: (
           <p>
-            Let information travel with the material: every dispensed vial
-            carries a QR code that, when scanned, loads that formulation&rsquo;s
-            instructions directly on the device, with live camera view and
-            on-device decoding, and manual entry kept as a fallback.
+            <strong>Let information travel with the material</strong>: every
+            dispensed vial carries a QR code that, when scanned, loads that
+            formulation&rsquo;s instructions directly on the device, with live
+            camera view and on-device decoding, and manual entry kept as a
+            fallback.
           </p>
         ),
         Build: (
@@ -418,11 +441,11 @@ export const softwareIIModule: DbtlModule = {
             The emulator camera is unstable, so a manual fallback is a
             prerequisite for a clinical-grade tool; Compose camera previews need
             correct cropping and compatible render modes or the image overflows;
-            and copy is an engineering output too — every user-visible string
-            deserves review. With scanning, the app gained formulation
-            information; the next round therefore put that advantage to work for
-            operating safety and narrowed the scope together with the hardware
-            team.
+            and <strong>copy is an engineering output too</strong> — every
+            user-visible string deserves review. With scanning, the app gained
+            formulation information; the next round therefore put that advantage
+            to work for operating safety and narrowed the scope together with
+            the hardware team.
           </p>
         ),
       },
@@ -469,9 +492,10 @@ export const softwareIIModule: DbtlModule = {
           <p>
             The premixing step ultimately shows only one operating instruction
             (wait for the premixer&rsquo;s green light), and the operator judges
-            completion from it — the software does not read device status;
-            removing hardware-related steps was a decision made together with
-            the hardware team, focusing effort on the confirmed app workflow.
+            completion from it —{" "}
+            <strong>the software does not read device status</strong>; removing
+            hardware-related steps was a decision made together with the
+            hardware team, focusing effort on the confirmed app workflow.
           </p>
         ),
       },

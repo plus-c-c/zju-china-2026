@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { TransparentImage } from "../TransparentImage";
 import "./SELP.css";
 
 const STATIC_HOME = "https://static.igem.wiki/teams/6102/wiki/images/home";
@@ -374,7 +375,13 @@ export function SelpPipeline() {
           <nav className="selp-shortcuts" aria-label="Project shortcuts">
             {quickLinks.map((item) => (
               <Link className="selp-shortcut" key={item.to} to={item.to}>
-                <img aria-hidden="true" alt="" src={item.icon} />
+                <TransparentImage
+                  alt=""
+                  ariaHidden
+                  src={item.icon}
+                  whiteThreshold={240}
+                  opaqueThreshold={222}
+                />
                 <span>{item.label}</span>
               </Link>
             ))}

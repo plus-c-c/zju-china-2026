@@ -83,7 +83,7 @@ export const m1Steps: M1Step[] = [
           },
           {
             t: "text",
-            v: " The initial single-chain simulations started from extended structures constructed in UCSF ChimeraX. Simulations were performed in NAMD using the CHARMM36m force field, generalized Born implicit solvent (GBIS), and TIGER2 enhanced sampling. Four replicas covered a temperature range of 280–400 K, with each replica simulated for 100 ns.[1, 2]",
+            v: " The initial single-chain simulations started from extended structures constructed in UCSF ChimeraX. Simulations were performed in NAMD using the CHARMM36m force field, generalized Born implicit solvent (GBIS), and TIGER2 FAMD enhanced sampling. Four replicas covered a temperature range of 280–400 K, with each replica simulated for 100 ns.[1, 2]",
           },
         ],
       },
