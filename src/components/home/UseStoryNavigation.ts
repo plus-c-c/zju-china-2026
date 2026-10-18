@@ -293,12 +293,13 @@ export function useStoryNavigation() {
   const smoothstep = (value: number) => value * value * (3 - 2 * value);
   const clamp = (value: number) => Math.max(0, Math.min(1, value));
   const scenePosition = cut ? from : from + (to - from) * smoothstep(fraction);
-  const backgroundProgress = continuousMotion ? clamp(fraction / 0.9) : smoothstep(clamp((fraction - 0.02) / 0.9));
+  const reversingOpening = direction < 0 && openingCut;
+  const backgroundProgress = reversingOpening ? smoothstep(fraction) : continuousMotion ? clamp(fraction / 0.9) : smoothstep(clamp((fraction - 0.02) / 0.9));
   const statementBackgroundProgress = backgroundProgress;
-  const decorProgress = continuousMotion ? clamp(fraction / 0.9) : smoothstep(clamp((fraction - 0.38) / 0.6));
-  const textProgress = continuousMotion ? clamp(fraction / 0.95) : smoothstep(clamp((fraction - 0.42) / 0.56));
+  const decorProgress = reversingOpening ? smoothstep(fraction) : continuousMotion ? clamp(fraction / 0.9) : smoothstep(clamp((fraction - 0.38) / 0.6));
+  const textProgress = reversingOpening ? smoothstep(fraction) : continuousMotion ? clamp(fraction / 0.95) : smoothstep(clamp((fraction - 0.42) / 0.56));
   const statementTextProgress = textProgress;
-  const personProgress = continuousMotion ? clamp(fraction / 0.95) : smoothstep(clamp((fraction - 0.46) / 0.52));
+  const personProgress = reversingOpening ? smoothstep(fraction) : continuousMotion ? clamp(fraction / 0.95) : smoothstep(clamp((fraction - 0.46) / 0.52));
   const hydrogelCrossfade = smoothstep(clamp((fraction - 0.04) / 0.92));
   const hydrogelExit = limitationsCut
     ? smoothstep(clamp((fraction - 0.04) / 0.4))

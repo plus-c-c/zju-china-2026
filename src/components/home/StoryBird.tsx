@@ -119,8 +119,11 @@ export function StoryBird({ position, direction, scale }: { position: number; di
         const scale = canvas.width / 1280;
         const next = { ...stops[0], x: (anchor.left + anchor.width / 2 - canvas.left) / scale,
           y: (anchor.bottom - canvas.top) / scale, moving: false, angle: 0, facing: 1 };
-        poseRef.current = next;
-        setPose(next);
+        const current = poseRef.current;
+        if (Math.hypot(next.x - current.x, next.y - current.y) > 0.05 || current.moving) {
+          poseRef.current = next;
+          setPose(next);
+        }
         setIntroOpacity(ready ? Number(getComputedStyle(copy).opacity) : 0);
       }
       frame = requestAnimationFrame(followButton);
