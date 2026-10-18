@@ -166,46 +166,168 @@ function PipelineConnector({ variant }: { variant: "first" | "second" }) {
       }
       preserveAspectRatio="none"
     >
-      <path
-        d={paths[variant]}
-        fill="none"
-        stroke="#7eb5ff"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="8"
-      />
+      <path d={paths[variant]} transform="translate(12 12)" fill="none" stroke="#aac8ec"
+        strokeLinecap="round" strokeLinejoin="round" strokeWidth="10" />
+      <path d={paths[variant]} transform="translate(6 6)" fill="none" stroke="#6d9bd5"
+        strokeLinecap="round" strokeLinejoin="round" strokeWidth="10" />
+      <path d={paths[variant]} fill="none" stroke="#7eb5ff"
+        strokeLinecap="round" strokeLinejoin="round" strokeWidth="8" />
     </svg>
   );
 }
 
-function LoopingPipelineGif({
+function PipelineAnimation({
   alt,
   className,
-  duration,
   src,
+  stopAtFirstFrame = false,
 }: {
   alt: string;
   className: string;
-  duration: number;
   src: string;
+  stopAtFirstFrame?: boolean;
 }) {
-  const [cycle, setCycle] = useState(0);
+  const [started, setStarted] = useState(false);
+  const wasVisible = useRef(false);
+  const [finished, setFinished] = useState(false);
+  const durationRef = useRef(4800);
+  const finishTimer = useRef(0);
+  const [animationBlob, setAnimationBlob] = useState<Blob | null>(null);
+  const [playbackSrc, setPlaybackSrc] = useState("");
+  const [scrolling, setScrolling] = useState(false);
+  const [visible, setVisible] = useState(false);
+  const imageRef = useRef<HTMLImageElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const frozenRef = useRef(false);
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const paused = scrolling || !visible || reduced;
+  const freeze = () => {
+    const image = imageRef.current, canvas = canvasRef.current;
+    if (!image?.complete || !image.naturalWidth || !canvas) return;
+    canvas.width = image.naturalWidth;
+    canvas.height = image.naturalHeight;
+    canvas.getContext("2d")?.drawImage(image, 0, 0);
+  };
+
+  // Preserve a single playback and read its duration from the frame metadata.
+  useEffect(() => {
+    const controller = new AbortController();
+    fetch(src, { signal: controller.signal })
+      .then(response => {
+        if (!response.ok) throw new Error("Animation could not be loaded");
+        return response.arrayBuffer();
+      })
+      .then(buffer => {
+        const bytes = new Uint8Array(buffer);
+        const view = new DataView(buffer);
+        let duration = 0;
+        for (let offset = 12; offset + 8 <= bytes.length;) {
+          const size = view.getUint32(offset + 4, true);
+          if (offset + 8 + size > bytes.length) break;
+          if (String.fromCharCode(...bytes.subarray(offset, offset + 4)) === "ANIM" && size >= 6) {
+            view.setUint16(offset + 12, 1, true);
+          }
+          if (String.fromCharCode(...bytes.subarray(offset, offset + 4)) === "ANMF" && size >= 16) {
+            duration += bytes[offset + 20] + bytes[offset + 21] * 256 + bytes[offset + 22] * 65536;
+          }
+          offset += 8 + size + (size % 2);
+        }
+        durationRef.current = duration || 4800;
+        const blob = new Blob([buffer], { type: "image/webp" });
+        setAnimationBlob(blob);
+        createImageBitmap(blob).then(image => {
+          const canvas = canvasRef.current;
+          if (canvas) {
+            canvas.width = image.width; canvas.height = image.height;
+            canvas.getContext("2d")?.drawImage(image, 0, 0);
+          }
+          image.close();
+        }).catch(() => {});
+      })
+      .catch(() => { /* Keep the original image available if fetching fails. */ });
+    return () => controller.abort();
+  }, [src]);
 
   useEffect(() => {
-    const timer = window.setInterval(
-      () => setCycle((current) => (current + 1) % 2),
-      duration,
-    );
-    return () => window.clearInterval(timer);
-  }, [duration]);
+    if (!animationBlob || !started) return;
+    const url = URL.createObjectURL(animationBlob);
+    setPlaybackSrc(url);
+    return () => URL.revokeObjectURL(url);
+  }, [animationBlob, src, started]);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+    // Activate only the module nearest the viewport center, rather than every
+    // illustration that happens to intersect the screen at the same time.
+    const stage = container.closest(".selp-pipeline__stage");
+    const update = () => {
+      const stages = [...document.querySelectorAll(".selp-pipeline__stage")];
+      const center = innerHeight * 0.5;
+      const nearest = stages.reduce<Element | null>((best, candidate) => {
+        const bounds = candidate.getBoundingClientRect();
+        if (bounds.bottom <= innerHeight * 0.15 || bounds.top >= innerHeight * 0.85) return best;
+        if (!best) return candidate;
+        const previous = best.getBoundingClientRect();
+        return Math.abs(bounds.top + bounds.height / 2 - center)
+          < Math.abs(previous.top + previous.height / 2 - center) ? candidate : best;
+      }, null);
+      setVisible(stage === nearest);
+    };
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    return () => {
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (wasVisible.current && !visible) {
+      // Re-arm only when leaving the active module, not on every scroll pause.
+      window.clearTimeout(finishTimer.current);
+      setStarted(false);
+      setPlaybackSrc("");
+      setFinished(false);
+    }
+    wasVisible.current = visible;
+  }, [visible]);
+
+  useEffect(() => {
+    if (!visible || scrolling || reduced || !animationBlob || started) return;
+    const timer = window.setTimeout(() => setStarted(true), 120);
+    return () => window.clearTimeout(timer);
+  }, [visible, scrolling, reduced, animationBlob, started]);
+
+  useEffect(() => () => window.clearTimeout(finishTimer.current), []);
+
+  useEffect(() => {
+    let timer = 0;
+    const onScroll = () => {
+      if (!frozenRef.current) { freeze(); frozenRef.current = true; }
+      setScrolling(true);
+      window.clearTimeout(timer);
+      timer = window.setTimeout(() => {
+        frozenRef.current = false;
+        setScrolling(false);
+      }, 350);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => { window.clearTimeout(timer); window.removeEventListener("scroll", onScroll); };
+  }, []);
+
 
   return (
-    <img
-      key={cycle}
-      className={className}
-      src={`${src}?cycle=${cycle}`}
-      alt={alt}
-    />
+    <div ref={containerRef} className={`${className} selp-pipeline__animation`} data-paused={finished ? stopAtFirstFrame : paused || !started} data-finished={finished} role="img" aria-label={alt}>
+      <img ref={imageRef} src={started && playbackSrc ? playbackSrc : undefined} alt="" onLoad={() => {
+        freeze();
+        window.clearTimeout(finishTimer.current);
+        finishTimer.current = window.setTimeout(() => setFinished(true), durationRef.current + 80);
+      }} />
+      <canvas ref={canvasRef} aria-hidden="true" />
+    </div>
   );
 }
 
@@ -246,8 +368,6 @@ const promotionDecorations = [
   ["orange-cell-lower-right", "orange-cell-lower-right.avif"],
   ["orange-molecule-upper-left", "orange-molecule-upper-left.avif"],
   ["cyan-particle-top", "cyan-particle-top.avif"],
-  ["blue-bird-lower-left", "blue-bird-lower-left.avif"],
-  ["blue-bird-top", "blue-bird-top.avif"],
   ["dna-left", "dna-left.avif"],
   ["white-cell-lower-right", "white-cell-lower-right.avif"],
   ["orange-cell-left", "orange-cell-left.avif"],
@@ -273,7 +393,7 @@ export function SelpPipeline() {
         if (connector) {
           const lineBounds = connector.getBoundingClientRect();
           const lineProgress = reduced.matches ? 1 : Math.max(0, Math.min(1, (innerHeight * 0.8 - lineBounds.top) / Math.max(1, lineBounds.height * 1.5)));
-          connector.style.clipPath = `inset(0 0 ${(1 - lineProgress) * 100}% 0)`;
+          connector.style.clipPath = `inset(-18px -18px calc(${(1 - lineProgress) * 100}% - 18px) -18px)`;
         }
       });
     };
@@ -290,12 +410,21 @@ export function SelpPipeline() {
   useEffect(() => {
     let animation = 0;
     let target = window.scrollY;
+    let appliedScroll = window.scrollY;
     let previousTime = 0;
+    let wheelDirection = 0;
+    let reverseImpulse = 0;
+    let lastWheelTime = 0;
+    let initialImpulse = 0;
+    const desktop = window.matchMedia("(min-width: 992px) and (pointer: fine)");
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
     const animate = (time: number) => {
       const pipeline = pipelineRef.current;
-      const boundary = pipeline ? pipeline.getBoundingClientRect().top + window.scrollY - innerHeight + 2 : Infinity;
+      const boundary = pipeline ? pipeline.getBoundingClientRect().top + window.scrollY - innerHeight * 1.6 + 2 : Infinity;
       if (window.scrollY < boundary - 2) { stop(); return; }
+      // Native wheel/iframe/scrollbar movement owns the new position. Never
+      // pull it back toward a target from a previous intercepted gesture.
+      if (Math.abs(window.scrollY - appliedScroll) > 2) { stop(); return; }
       const elapsed = previousTime ? Math.min(50, time - previousTime) : 16;
       previousTime = time;
       const distance = target - window.scrollY;
@@ -305,8 +434,9 @@ export function SelpPipeline() {
         previousTime = 0;
         return;
       }
-      const step = Math.sign(distance) * Math.min(Math.abs(distance), Math.max(1, Math.abs(distance) * (1 - Math.exp(-elapsed / 230))));
+      const step = Math.sign(distance) * Math.min(Math.abs(distance), Math.max(1, Math.abs(distance) * (1 - Math.exp(-elapsed / 210))));
       window.scrollTo({ top: window.scrollY + step, behavior: "instant" });
+      appliedScroll = window.scrollY;
       animation = requestAnimationFrame(animate);
     };
     const onWheel = (event: WheelEvent) => {
@@ -314,22 +444,56 @@ export function SelpPipeline() {
         stop();
         return;
       }
-      if (event.ctrlKey || reduced.matches || Math.abs(event.deltaX) > Math.abs(event.deltaY)) return;
-      if (event.target instanceof Element && event.target.closest("nav, input, textarea, select, [role=dialog]")) return;
+      if (!desktop.matches || event.ctrlKey || reduced.matches || Math.abs(event.deltaX) > Math.abs(event.deltaY)) return;
+      if (event.target instanceof Element && event.target.closest(".nest-navbar, input, textarea, select, [role=dialog]")) {
+        stop();
+        return;
+      }
       const root = pipelineRef.current;
       if (!root) return;
       const bounds = root.getBoundingClientRect();
-      const start = bounds.top + window.scrollY - innerHeight + 2;
-      if (window.scrollY < start || bounds.bottom <= 0) { stop(); return; }
+      const start = bounds.top + window.scrollY - innerHeight * 1.6 + 2;
+      const inEntry = bounds.top > innerHeight * 0.25;
+      if (window.scrollY < start - 2 || bounds.bottom <= 0) { stop(); return; }
       if (window.scrollY <= start + 2 && event.deltaY < 0) return;
       event.preventDefault();
-      const delta = event.deltaY * (event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? innerHeight : 1);
+      let delta = event.deltaY * (event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? innerHeight : 1);
       const limit = document.documentElement.scrollHeight - innerHeight;
-      if (!animation) target = window.scrollY;
-      // Small wheel impulses accumulate, then settle instead of jumping ahead.
-      const proposed = target + delta * 0.28;
-      // Cap accumulated inertia so a long wheel burst cannot skip a whole module.
-      const lead = innerHeight * 0.22;
+      if (!delta) return;
+      const closingTop = root.querySelector(".selp-after-pipeline")?.getBoundingClientRect().top;
+      const inClosing = closingTop !== undefined && closingTop < innerHeight * 0.85;
+      const now = performance.now();
+      const direction = Math.sign(delta);
+      const freshGesture = now - lastWheelTime > 280;
+      lastWheelTime = now;
+      if (!animation) {
+        if (freshGesture || Math.sign(initialImpulse) !== direction) initialImpulse = 0;
+        initialImpulse += delta;
+        // A resting section needs intentional input before starting to move.
+        if (Math.abs(initialImpulse) < (inClosing ? 40 : 20)) return;
+        delta = initialImpulse;
+        initialImpulse = 0;
+      }
+      if (freshGesture || !wheelDirection) {
+        wheelDirection = direction;
+        reverseImpulse = 0;
+      } else if (direction !== wheelDirection) {
+        reverseImpulse += Math.abs(delta);
+        // Ignore tiny opposite impulses at the tail of a trackpad gesture.
+        if (reverseImpulse < (inClosing ? 88 : 32)) return;
+        wheelDirection = direction;
+        reverseImpulse = 0;
+        target = window.scrollY;
+      } else reverseImpulse = 0;
+      if (!animation || Math.abs(window.scrollY - appliedScroll) > 2) {
+        target = window.scrollY;
+        appliedScroll = window.scrollY;
+      }
+      // Do not let an old inertia target pull against the accepted wheel intent.
+      target = direction > 0 ? Math.max(target, window.scrollY) : Math.min(target, window.scrollY);
+      const proposed = target + delta * (inEntry ? 0.22 : inClosing ? 0.23 : 0.32);
+      // Keep closing links/video deliberate without changing the module scroll.
+      const lead = innerHeight * (inEntry ? 0.14 : inClosing ? 0.16 : 0.22);
       target = Math.max(start, Math.min(limit, Math.max(window.scrollY - lead, Math.min(window.scrollY + lead, proposed))));
       if (!animation) animation = requestAnimationFrame(animate);
     };
@@ -338,6 +502,8 @@ export function SelpPipeline() {
       animation = 0;
       previousTime = 0;
       target = window.scrollY;
+      appliedScroll = window.scrollY;
+      initialImpulse = 0;
     };
     window.addEventListener("wheel", onWheel, { passive: false });
     window.addEventListener("pointerdown", stop, { passive: true });
@@ -372,11 +538,11 @@ export function SelpPipeline() {
               form anisotropic structures, helping restore mechanical balance.
             </p>
           </article>
-          <LoopingPipelineGif
+          <PipelineAnimation
+            stopAtFirstFrame
             className="selp-pipeline__art selp-pipeline__art--magnetic-network"
             src={`${STATIC_GIF}/magnetic-nanoparticle-chain-assembly.webp`}
             alt="Magnetically aligned SELP network"
-            duration={4800}
           />
           <img
             className="selp-pipeline__art selp-pipeline__art--purple-flask"
@@ -407,11 +573,10 @@ export function SelpPipeline() {
               addressing matrix depletion.
             </p>
           </article>
-          <LoopingPipelineGif
+          <PipelineAnimation
             className="selp-pipeline__art selp-pipeline__art--gag-chain"
             src={`${STATIC_GIF}/selp-chain-original-pink-zoom.webp`}
             alt="GAG-binding SELP peptide chain"
-            duration={5600}
           />
           <img
             className="selp-pipeline__art selp-pipeline__art--pink-vial"
@@ -453,11 +618,10 @@ export function SelpPipeline() {
             src={`${PIPELINE_ASSETS}/pipeline-fabb3.avif`}
             alt=""
           />
-          <LoopingPipelineGif
+          <PipelineAnimation
             className="selp-pipeline__art selp-pipeline__art--liposome"
             src={`${STATIC_GIF}/selp-liposome-zoom-blue-elements.webp`}
             alt="Mitochondria-loaded liposome"
-            duration={4640}
           />
           <PipelinePill
             label="About Delivery"

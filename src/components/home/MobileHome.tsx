@@ -13,7 +13,7 @@ import {
 } from "./SELP";
 import { StoryContext } from "./StoryContext";
 import { Footer } from "../Footer";
-import bird from "../../assets/home/guide-bird-rest.avif";
+const bird = "https://static.igem.wiki/teams/6102/wiki/home-opening/guide-bird-rest.avif";
 import "./MobileHome.css";
 
 // Mobile uses the same content and controls in a readable, native scroll layout.

@@ -11,9 +11,11 @@ export const STORY_SCROLL_RATIO = 0.6;
 export function useStoryNavigation() {
   const [position, setPosition] = useState(0);
   const [direction, setDirection] = useState(1);
+  const [continuousMotion, setContinuousMotion] = useState(false);
   const scrollAnimation = useRef(0);
   const animationActive = useRef(false);
   const animationRate = useRef(1);
+  const chaining = useRef(false);
   useEffect(() => {
     let frame = 0;
     let previousUnits = 0;
@@ -57,7 +59,8 @@ export function useStoryNavigation() {
 
       cancelAnimationFrame(scrollAnimation.current);
       animationActive.current = false;
-      animationRate.current = 1;
+      if (!chaining.current) animationRate.current = 1;
+      window.dispatchEvent(new CustomEvent("home-story-speed", { detail: animationRate.current }));
       if (!duration || reducedMotion) {
         window.scrollTo({
           top: targetTop,
@@ -76,9 +79,11 @@ export function useStoryNavigation() {
         window.scrollTo({ top: startTop, behavior: "instant" });
       }
       const distance = targetTop - startTop;
+      const continuousTurn = chaining.current;
       let previousTime = performance.now();
       let elapsed = 0;
-      let rate = 1;
+      let rate = animationRate.current;
+      let continuation: { progress: number; eased: number } | null = null;
       animationActive.current = true;
       const animate = (time: number) => {
         const delta = Math.max(0, time - previousTime);
@@ -86,10 +91,22 @@ export function useStoryNavigation() {
         rate += (animationRate.current - rate) * (1 - Math.exp(-delta / 130));
         elapsed += delta * rate;
         const progress = Math.min(1, elapsed / duration);
-        const eased = (1 - Math.cos(Math.PI * progress)) / 2;
+        const ordinaryEased = (1 - Math.cos(Math.PI * progress)) / 2;
+        if (!continuousTurn && chaining.current && !continuation) {
+          continuation = { progress, eased: ordinaryEased };
+        }
+        // Continue from the current pose without a positional jump or the
+        // end-of-page braking used for a single deliberate gesture.
+        const eased = continuousTurn ? progress : continuation
+          ? continuation.eased + (1 - continuation.eased) *
+            (progress - continuation.progress) / Math.max(0.0001, 1 - continuation.progress)
+          : ordinaryEased;
         window.scrollTo(0, startTop + distance * eased);
         if (progress < 1) scrollAnimation.current = requestAnimationFrame(animate);
-        else animationActive.current = false;
+        else {
+          animationActive.current = false;
+          window.dispatchEvent(new Event("home-story-arrived"));
+        }
       };
       scrollAnimation.current = requestAnimationFrame(animate);
     },
@@ -97,9 +114,14 @@ export function useStoryNavigation() {
   );
   useEffect(() => {
     let lastWheelAt = 0;
+    let gestureStartedAt = 0;
+    let sustained = false;
+    let inputEndTimer = 0;
     let gestureDirection = 0;
     let settledAt = 0;
     let wheelDistance = 0;
+    let continuationDistance = 0;
+    let lastIntentAt = 0;
     let touchY: number | null = null;
     let touchX = 0;
     let touchConsumed = false;
@@ -128,7 +150,7 @@ export function useStoryNavigation() {
               (presentScene === 5 && value > 11 && beat === 10)));
       if (target === undefined) return false;
       const drawingCards = presentScene === 5 && (target === 12.8 || (direction < 0 && value > 11));
-      const duration = drawingCards ? 2800 : 1500;
+      const duration = drawingCards ? 2000 : 1500;
       const nextScene = STORY_STOPS[Math.floor(target)];
       const currentScene = STORY_STOPS[Math.max(0, Math.min(STORY_STOPS.length - 1, Math.floor(value)))];
       const transitionStart = nextScene !== currentScene
@@ -139,6 +161,7 @@ export function useStoryNavigation() {
       const arrival = direction < 0 && nextScene !== currentScene
         ? STORY_STOPS.lastIndexOf(nextScene)
         : target;
+      continuationDistance = 0;
       seek(arrival, duration, transitionStart);
       return true;
     };
@@ -146,30 +169,63 @@ export function useStoryNavigation() {
       if (event.ctrlKey || Math.abs(event.deltaX) > Math.abs(event.deltaY) || (event.target instanceof Element && !!event.target.closest("nav, input, textarea, select, [role=dialog]"))) return;
       const current = readPosition();
       if (!current || window.scrollY < current.top - 1 || window.scrollY > current.end + 1) return;
+      // The lower document route owns scrolling after the OA arrival.
+      if (current.value >= 21 && event.deltaY > 0 && !animationActive.current) return;
       const now = performance.now();
       const quiet = now - lastWheelAt > 260;
       lastWheelAt = now;
       const inputDirection = Math.sign(event.deltaY);
       const reversed = gestureDirection !== 0 && inputDirection !== gestureDirection;
       if (quiet || reversed) {
+        gestureStartedAt = now;
+        sustained = false;
+        chaining.current = false;
+        setContinuousMotion(false);
         wheelDistance = 0;
+        continuationDistance = 0;
       }
+      const wheelDelta = event.deltaY * (event.deltaMode === 0 ? 1 : 16);
+      // Small trackpad momentum tails must not request another scene.
+      const deliberateInput = Math.abs(wheelDelta) >= 4;
+      if (deliberateInput) lastIntentAt = now;
+      sustained = !quiet && now - gestureStartedAt > 240;
+      if (sustained) {
+        chaining.current = true;
+        setContinuousMotion(true);
+      }
+      clearTimeout(inputEndTimer);
+      inputEndTimer = window.setTimeout(() => {
+        if (!animationActive.current) setContinuousMotion(false);
+      }, 280);
       gestureDirection = inputDirection;
-      if (animationActive.current) {
+      const birdFlying = !!document.querySelector(".story-guide-bird--flying");
+      if (animationActive.current || birdFlying) {
         wheelDistance = 0;
         settledAt = now;
         event.preventDefault();
-        if (animationActive.current && Math.abs(event.deltaY) > 2) {
-          animationRate.current = Math.min(1.45, animationRate.current + 0.12);
+        if (deliberateInput) continuationDistance += Math.min(32, Math.abs(wheelDelta));
+        if (deliberateInput && !quiet && !reversed) {
+          animationRate.current = Math.min(1.25, animationRate.current + 0.05);
+          window.dispatchEvent(new CustomEvent("home-story-speed", { detail: animationRate.current }));
         }
         return;
       }
-      if (!reversed && now - settledAt < 100) { event.preventDefault(); return; }
-      wheelDistance += event.deltaY * (event.deltaMode === 0 ? 1 : 16);
-      if (Math.abs(wheelDistance) < 42) { event.preventDefault(); return; }
+      if (!reversed && quiet && now - settledAt < 100) { event.preventDefault(); return; }
+      if (!deliberateInput) { event.preventDefault(); return; }
+      wheelDistance += Math.sign(wheelDelta) * Math.min(48, Math.abs(wheelDelta));
+      if (Math.abs(wheelDistance) < 64) { event.preventDefault(); return; }
+      chaining.current = sustained;
       if (turn(wheelDistance > 0 ? 1 : -1, current.value)) {
         event.preventDefault();
       }
+    };
+    const continueStory = () => {
+      if (!sustained || continuationDistance < 160 || performance.now() - lastIntentAt > 90 || animationActive.current) return;
+      if (document.querySelector(".story-guide-bird--flying")) return;
+      const current = readPosition();
+      if (!current || (current.value >= 21 && gestureDirection > 0)) return;
+      chaining.current = true;
+      turn(gestureDirection, current.value);
     };
     const onTouchStart = (event: TouchEvent) => {
       if (event.touches.length !== 1 || isControl(event.target)) return;
@@ -196,16 +252,21 @@ export function useStoryNavigation() {
       }
     };
     const onTouchEnd = () => { touchY = null; touchConsumed = false; };
+    window.addEventListener("home-story-arrived", continueStory);
+    window.addEventListener("home-bird-landed", continueStory);
     window.addEventListener("wheel", onWheel, { passive: false });
     window.addEventListener("touchstart", onTouchStart, { passive: true });
     window.addEventListener("touchmove", onTouchMove, { passive: false });
     window.addEventListener("touchend", onTouchEnd);
     return () => {
+      window.removeEventListener("home-story-arrived", continueStory);
+      window.removeEventListener("home-bird-landed", continueStory);
       window.removeEventListener("wheel", onWheel);
       window.removeEventListener("touchstart", onTouchStart);
       window.removeEventListener("touchmove", onTouchMove);
       window.removeEventListener("touchend", onTouchEnd);
       cancelAnimationFrame(scrollAnimation.current);
+      clearTimeout(inputEndTimer);
     };
   }, [seek]);
   const stop = Math.floor(position);
@@ -223,14 +284,12 @@ export function useStoryNavigation() {
   const smoothstep = (value: number) => value * value * (3 - 2 * value);
   const clamp = (value: number) => Math.max(0, Math.min(1, value));
   const scenePosition = cut ? from : from + (to - from) * smoothstep(fraction);
-  const backgroundProgress = smoothstep(clamp((fraction - 0.02) / 0.9));
-  const statementBackgroundProgress = smoothstep(
-    clamp((fraction - 0.02) / 0.9),
-  );
-  const decorProgress = smoothstep(clamp((fraction - 0.38) / 0.6));
-  const textProgress = smoothstep(clamp((fraction - 0.42) / 0.56));
-  const statementTextProgress = smoothstep(clamp((fraction - 0.42) / 0.56));
-  const personProgress = smoothstep(clamp((fraction - 0.46) / 0.52));
+  const backgroundProgress = continuousMotion ? clamp(fraction / 0.9) : smoothstep(clamp((fraction - 0.02) / 0.9));
+  const statementBackgroundProgress = backgroundProgress;
+  const decorProgress = continuousMotion ? clamp(fraction / 0.9) : smoothstep(clamp((fraction - 0.38) / 0.6));
+  const textProgress = continuousMotion ? clamp(fraction / 0.95) : smoothstep(clamp((fraction - 0.42) / 0.56));
+  const statementTextProgress = textProgress;
+  const personProgress = continuousMotion ? clamp(fraction / 0.95) : smoothstep(clamp((fraction - 0.46) / 0.52));
   const hydrogelCrossfade = smoothstep(clamp((fraction - 0.04) / 0.92));
   const hydrogelExit = limitationsCut
     ? smoothstep(clamp((fraction - 0.04) / 0.4))

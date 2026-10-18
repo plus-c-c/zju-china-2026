@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 
 import { createPortal } from "react-dom";
-import restBird from "../../assets/home/guide-bird-rest.avif";
-import flightOne from "../../assets/home/guide-bird-flight-01.avif";
-import flightTwo from "../../assets/home/guide-bird-flight-02.avif";
+const restBird = "https://static.igem.wiki/teams/6102/wiki/home-opening/guide-bird-rest.avif";
+const flightOne = "https://static.igem.wiki/teams/6102/wiki/home-opening/guide-bird-flight-01.avif";
+const flightTwo = "https://static.igem.wiki/teams/6102/wiki/home-opening/guide-bird-flight-02.avif";
 // Feet positions in the shared 1280 × 720 illustration space.
 const stops = [
   { beat: 0, x: 452, y: 575, size: 0.4 },
@@ -69,6 +69,28 @@ export function StoryBird({ position, direction, scale }: { position: number; di
   const destination = direction < 0 ? (raw < 0.985 ? from : to) : (raw > 0.015 ? to : from);
   const [pose, setPose] = useState({ ...stops[0], moving: false, angle: 0, facing: 1 });
   const poseRef = useRef(pose);
+  const flightRate = useRef(1);
+  useEffect(() => {
+    const updateRate = (event: Event) => {
+      flightRate.current = Math.max(1, Math.min(1.25, (event as CustomEvent<number>).detail || 1));
+    };
+    window.addEventListener("home-story-speed", updateRate);
+    return () => window.removeEventListener("home-story-speed", updateRate);
+  }, []);
+  const [handoffRevision, setHandoffRevision] = useState(0);
+  useEffect(() => {
+    const resume = (event: Event) => {
+      const anchor = (event as CustomEvent<{ x: number; y: number }>).detail;
+      if (anchor) {
+        const restored = { ...poseRef.current, ...anchor, size: 0.4, moving: false, angle: 0, facing: 1 };
+        poseRef.current = restored;
+        setPose(restored);
+      }
+      setHandoffRevision(current => current + 1);
+    };
+    window.addEventListener("home-bird-handoff", resume);
+    return () => window.removeEventListener("home-bird-handoff", resume);
+  }, []);
   const jump = (element: HTMLElement) => {
     element.getAnimations().forEach(animation => animation.cancel());
     element.animate([
@@ -114,8 +136,11 @@ export function StoryBird({ position, direction, scale }: { position: number; di
       const anchor = document.querySelector(".home-intro__bird-anchor")?.getBoundingClientRect();
       const canvas = document.querySelector(".story-bird-canvas")?.getBoundingClientRect();
       if (anchor && canvas) {
-        destination.x = (anchor.left + anchor.width / 2 - canvas.left) / (canvas.width / 1280);
-        destination.y = (anchor.bottom - canvas.top) / (canvas.width / 1280);
+        const introScene = document.querySelector("#home-1")?.getBoundingClientRect();
+        // The intro may still be translated offscreen during a reverse turn.
+        // Its destination belongs to the settled viewport, not that transient rect.
+        destination.x = (anchor.left + anchor.width / 2 - (introScene?.left || 0) - canvas.left) / (canvas.width / 1280);
+        destination.y = (anchor.bottom - (introScene?.top || 0) - canvas.top) / (canvas.width / 1280);
       }
     }
     let start = poseRef.current;
@@ -157,10 +182,12 @@ export function StoryBird({ position, direction, scale }: { position: number; di
     // Longer routes accelerate smoothly; short hops stay gentle.
     const distanceRatio = Math.max(0, Math.min(1, (length - 120) / 780));
     const speed = 340 + 460 * distanceRatio;
-    const duration = reduced ? 1 : Math.max(450, length / speed * 1000);
+    const duration = reduced ? 1 : Math.min(1350, Math.max(450, length / speed * 1000));
     const began = performance.now();
     let frame = 0;
     let previousTime = began;
+    let flightElapsed = 0;
+    let rate = 1;
     let heading = Math.atan2(dy - Math.PI * height, dx) * 180 / Math.PI;
     const tick = (time: number) => {
       if (document.body.classList.contains("pipeline-bird-active")) {
@@ -169,9 +196,11 @@ export function StoryBird({ position, direction, scale }: { position: number; di
         poseRef.current = { ...poseRef.current, moving: false };
         return;
       }
-      const dt = Math.min(0.05, (time - previousTime) / 1000);
+      const dt = Math.max(0, (time - previousTime) / 1000);
       previousTime = time;
-      const elapsed = Math.min(1, (time - began) / duration);
+      rate += (flightRate.current - rate) * (1 - Math.exp(-dt / 0.13));
+      flightElapsed += dt * 1000 * rate;
+      const elapsed = Math.min(1, flightElapsed / duration);
       const traveled = length * elapsed;
       let segment = samples.findIndex(value => value >= traveled);
       segment = Math.max(1, segment);
@@ -192,10 +221,14 @@ export function StoryBird({ position, direction, scale }: { position: number; di
       poseRef.current = next;
       setPose(next);
       if (elapsed < 1) frame = requestAnimationFrame(tick);
+      else {
+        element?.classList.remove("story-guide-bird--flying");
+        window.dispatchEvent(new Event("home-bird-landed"));
+      }
     };
     frame = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(frame);
-  }, [targetX, targetY, targetSize, atHome, scale]);
+  }, [targetX, targetY, targetSize, atHome, scale, handoffRevision]);
   useEffect(() => {
     if (atHome) return;
     let frame = 0;

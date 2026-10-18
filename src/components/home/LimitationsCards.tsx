@@ -121,16 +121,8 @@ const yellowCards: CardCopy[] = [
     ],
     backArt: [
       {
-        name: "home-limit-back-dna.avif",
-        className: "limitations-art--dna",
-      },
-      {
-        name: "home-limit-back-cell-outline.avif",
-        className: "limitations-art--cell-outline",
-      },
-      {
-        name: "home-limit-back-nucleus.avif",
-        className: "limitations-art--nucleus",
+        name: "home/group-1.avif",
+        className: "limitations-art--dynamic-back-group",
       },
     ],
   },

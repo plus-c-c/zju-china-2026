@@ -925,3 +925,34 @@
   -webkit-text-stroke: 2px #5c9ff0;
   text-shadow: 0 2px 0 #5c9ff0;
 }
+
+.selp-pipeline__connector {
+  filter: none;
+  overflow: visible;
+}
+
+.selp-pipeline__animation > img,
+.selp-pipeline__animation > canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.selp-pipeline__animation > canvas { visibility: hidden; }
+.selp-pipeline__animation[data-paused="true"] > img { visibility: hidden; }
+.selp-pipeline__animation[data-paused="true"] > canvas { visibility: visible; }
+
+/* Shared centerline for each solution card's heading, copy box and action. */
+.story-viewport .nest-solution-card > :is(
+  .nest-solution-selp-title,
+  .nest-solution-selp-subtitle,
+  .nest-solution-selp-copy,
+  .nest-solution-ligase-copy,
+  .nest-solution-button
+) {
+  left: 50%;
+  transform: translateX(-50%);
+}
+.story-viewport .nest-solution-selp-copy { width: calc(100% - 72px); }
+.story-viewport .nest-solution-ligase-copy { width: calc(100% - 72px); }

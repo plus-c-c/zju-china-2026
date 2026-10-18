@@ -80,7 +80,7 @@
   height: 85px;
   color: #054db0;
   font-size: 62px;
-  font-weight: 600;
+  font-weight: 700;
   line-height: 83px;
   opacity: calc(1 - var(--hydrogel-item-exit));
   translate: calc(var(--hydrogel-item-exit) * -180px) 0;

@@ -12,10 +12,12 @@ export function PipelineBird() {
     let lastX: number | null = null;
     let lastY: number | null = null;
     let wasMoving = false;
+    let displayedX: number | null = null;
     let previousScroll = window.scrollY;
     let lastScrollTime = -Infinity;
     let routeDirection = 1;
     let reversalDistance = 0;
+    let reversalStarted = 0;
     let activeBefore = false;
     const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
     const clamp = (n: number) => Math.max(0, Math.min(1, n));
@@ -28,12 +30,22 @@ export function PipelineBird() {
       const canvas = bird.parentElement;
       if (!root || !footer || !canvas) return;
       const scroll = window.scrollY;
+      const closingTop = root.querySelector(".selp-after-pipeline")?.getBoundingClientRect().top;
+      const inClosing = closingTop !== undefined && closingTop < innerHeight * 0.85;
       if (Math.abs(scroll - previousScroll) > 0.1) {
         const delta = scroll - previousScroll;
-        if (Math.sign(delta) === routeDirection) reversalDistance = 0;
-        else {
+        if (Math.sign(delta) === routeDirection) {
+          reversalDistance = 0;
+          reversalStarted = 0;
+        } else {
+          if (!reversalStarted) reversalStarted = time;
           reversalDistance += Math.abs(delta);
-          if (reversalDistance >= 18) { routeDirection *= -1; reversalDistance = 0; }
+          // Require deliberate, sustained reverse travel, not trackpad rebound.
+          if (reversalDistance >= (inClosing ? 88 : 48) && time - reversalStarted >= (inClosing ? 140 : 90)) {
+            routeDirection *= -1;
+            reversalDistance = 0;
+            reversalStarted = 0;
+          }
         }
         lastScrollTime = time;
       }
@@ -48,9 +60,16 @@ export function PipelineBird() {
         if (activeBefore) {
           bird.classList.remove("story-guide-bird--flying");
           bird.style.setProperty("--bird-flight-angle", "0deg");
+          // Restore the shared OA perch before returning ownership. A fast
+          // reverse scroll may otherwise leave the fixed bird below the screen.
+          const anchor = perch({ beat: 21, x: 1092, y: 590, size: 0.4 });
+          bird.style.left = `${anchor.x}px`;
+          bird.style.top = `${anchor.y}px`;
+          document.body.classList.remove("pipeline-bird-active");
+          window.dispatchEvent(new CustomEvent("home-bird-handoff", { detail: { x: anchor.x, y: anchor.y } }));
         }
         routeY = null; activeBefore = false; previousTime = 0;
-        lastX = null; lastY = null; wasMoving = false;
+        lastX = null; lastY = null; wasMoving = false; displayedX = null;
         document.body.classList.remove("pipeline-bird-active");
         return;
       }
@@ -81,7 +100,13 @@ export function PipelineBird() {
       const a = points[i], b = points[i + 1];
       const t = clamp((routeY - a.y) / Math.max(1, b.y - a.y));
       const ease = t*t*t*(10 + t*(-15 + 6*t));
-      const x = a.x + (b.x - a.x) * ease;
+      const targetX = a.x + (b.x - a.x) * ease;
+      // A short horizontal catch-up prevents wheel bursts or layout updates
+      // from teleporting the bird across the long video-to-footer arc. Keep
+      // document Y exact so scrolling cannot introduce vertical catch-up hops.
+      displayedX = displayedX === null || reduced ? targetX
+        : displayedX + (targetX - displayedX) * (1 - Math.exp(-dt / 0.065));
+      const x = displayedX;
       const y = Math.min(routeY - scroll, landingY - scroll);
       const onRoute = routeY > points[0].y + 0.5 && routeY < landingY - 0.5;
       const moving = onRoute && time - lastScrollTime < 350;

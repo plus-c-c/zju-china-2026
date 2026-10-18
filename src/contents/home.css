@@ -352,3 +352,29 @@ body.home-story-open .app {
 
 /* The module route already filters its tangent; avoid a second delayed rotation. */
 .pipeline-bird-active .story-guide-bird__flight { transition: none; }
+
+/* Center the story and its shared bird in the full viewport, independently of navigation. */
+.home-story-open { --story-center-lift: 0px; }
+.story-viewport .home-scene-canvas {
+  top: calc(50% - var(--story-center-lift));
+}
+.story-viewport #home-1 .home-scene-canvas { top: 0; }
+.home-intro__landing { translate: 0 calc(-1 * var(--story-center-lift)); }
+.story-viewport .home-intro__landing { padding: 0 4vw; }
+.story-bird-canvas { top: calc(50% - var(--story-center-lift, 0px)); }
+
+/* Keep the silhouette continuous when scroll flight settles into a front pose. */
+.pipeline-bird-active .story-guide-bird__flight {
+  display: block;
+  opacity: 0;
+  transition: opacity 160ms ease;
+}
+.pipeline-bird-active .story-guide-bird__rest {
+  visibility: visible;
+  transition: opacity 160ms ease;
+}
+.pipeline-bird-active .story-guide-bird--flying .story-guide-bird__flight { opacity: 1; }
+.pipeline-bird-active .story-guide-bird--flying .story-guide-bird__rest { opacity: 0; }
+@media (prefers-reduced-motion: reduce) {
+  .pipeline-bird-active :is(.story-guide-bird__flight, .story-guide-bird__rest) { transition: none; }
+}

@@ -90,6 +90,12 @@ const App = () => {
       setHomeIntroReady(false);
     }
 
+    let onOpeningReady: (() => void) | undefined;
+    const openingReady = currentPath === "/" ? new Promise<void>((resolve) => {
+      onOpeningReady = () => resolve();
+      window.addEventListener("home-opening-assets-ready", onOpeningReady, { once: true });
+    }) : Promise.resolve();
+
     const waitForPageAssets = async () => {
       await new Promise<void>((resolve) =>
         requestAnimationFrame(() => requestAnimationFrame(() => resolve())),
@@ -113,7 +119,7 @@ const App = () => {
         window.setTimeout(resolve, MAXIMUM_LOADING_TIME),
       );
 
-      await Promise.race([assetsReady, timeout]);
+      await Promise.all([Promise.race([assetsReady, timeout]), openingReady]);
       const remainingTime = Math.max(
         0,
         MINIMUM_LOADING_TIME - (performance.now() - startedAt),
@@ -127,8 +133,13 @@ const App = () => {
 
     return () => {
       cancelled = true;
+      if (onOpeningReady) window.removeEventListener("home-opening-assets-ready", onOpeningReady);
     };
   }, [currentPath, location.key]);
+
+  useEffect(() => {
+    if (!isLoading) window.dispatchEvent(new Event("page-loading-complete"));
+  }, [isLoading]);
 
   return (
     <BirdCursorProvider enabled={!isLoading && !isHome}>
@@ -160,8 +171,8 @@ const App = () => {
                   path={path}
                   element={
                     path === "/" ? (
-                      <div className="home-container">
-                        {!isLoading && <Component />}
+                      <div className="home-container" key={location.key}>
+                        <Component />
                       </div>
                     ) : (
                       <Toc

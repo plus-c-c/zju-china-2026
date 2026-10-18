@@ -71,7 +71,7 @@
   width: 360px;
   color: #f6faff;
   font-size: 51px;
-  font-weight: 500;
+  font-weight: 700;
   line-height: normal;
   opacity: var(--opening-text, 1);
   transform: translateX(
@@ -1012,3 +1012,29 @@
   transform: scale(0.88);
   transform-origin: center;
 }
+
+/* The impact headings share a larger type scale; both captions share a baseline. */
+.opening-scene--impact :is(.opening-sports__title, .opening-rehab__title) {
+  font-size: 38px;
+  letter-spacing: -0.6px;
+}
+.opening-scene--impact :is(.opening-sports__title, .opening-rehab__title) strong {
+  font-size: 42px;
+}
+.opening-scene--impact .opening-rehab__cost-note {
+  position: absolute;
+  left: 0;
+  top: 180px;
+  width: 100%;
+  margin-top: 0;
+}
+
+/* Align visible feet, accounting for each source image's transparent padding. */
+.opening-scene--impact .opening-sports__person { top: 432px; }
+.opening-scene--impact .opening-rehab__person {
+  left: 805px;
+  top: 408px;
+  width: 380px;
+  height: 342px;
+}
+.opening-impact__stairs { top: 429px; }

@@ -1,0 +1,362 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>NEST · 水凝胶动画</title><style>
+:root{--duration:18s;color-scheme:light;font-family:Arial,sans-serif}
+*{box-sizing:border-box}html{background:transparent}body{margin:0;min-height:100svh;display:grid;place-items:center;background:transparent}
+.player{width:min(100%,1280px);margin:auto}.viewport{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;background:transparent}
+.stage{position:absolute;width:1280px;height:720px;transform-origin:0 0;transform:scale(var(--stage-scale,1));overflow:hidden;isolation:isolate}
+.anim{animation-duration:var(--duration);animation-timing-function:linear;animation-iteration-count:1;animation-fill-mode:both}
+.layer,.scene-svg{position:absolute;inset:0;width:1280px;height:720px;pointer-events:none;user-select:none}
+.hardware-scene,.clinical-scene,.clinical-camera,.injection-camera,.scope-camera{position:absolute;inset:0}
+.hardware-scene{animation-name:hardware-scene;contain:layout paint}
+.hardware-camera{position:absolute;left:0;top:0;width:3180px;height:720px;transform-origin:0 0;animation-name:hardware-camera;will-change:transform}
+.pump-raster{position:absolute;left:58px;top:177px;width:773px;height:417px;overflow:hidden;contain:paint;pointer-events:none}.pump-raster-frames{position:absolute;left:0;top:0;width:6184px;height:5004px;max-width:none;animation-name:pump-raster-frames;animation-timing-function:steps(1,end);will-change:transform}
+.gel-film{position:absolute;left:530px;top:275px;width:210px;height:100px;overflow:hidden;pointer-events:none}.gel-film-frames{position:absolute;left:0;top:0;width:1680px;height:800px;max-width:none;animation-name:gel-film-frames;animation-timing-function:steps(1,end);will-change:transform}
+.gel-main{position:absolute;inset:0;mask-image:linear-gradient(to right,#000 650px,transparent 679px);pointer-events:none}
+.gel-fit{position:absolute;inset:0;clip-path:path("M640 300 C656 290 666 289 680 291 C699 292 713 306 728 319 C719 325 710 331 712 347 C689 343 669 345 640 348Z");mask-image:linear-gradient(to right,transparent 640px,#000 650px);pointer-events:none}
+.gel-fit>.gel-film{transform-origin:135px 17px;transform:matrix(1.23,-.0354,.2,1.2744,0,-9.54)}
+.fermenter-art{position:absolute;left:-560px;top:-150px;width:420px;height:900px;object-fit:contain}
+.hardware-hose{position:absolute;left:0;top:0;width:3180px;height:720px;overflow:visible}
+.feed-hose{position:absolute;left:-600px;top:0;width:1000px;height:720px;overflow:visible}
+.feed-fill{stroke-dasharray:1;animation-name:feed-fill}
+.syringe-fixed{position:absolute;left:1900px;top:0;width:1280px;height:720px}
+.syringe-fixed>img{position:absolute;inset:0;width:1280px;height:720px}
+.syringe-fixed>img:first-child{clip-path:polygon(0 0,100% 0,100% 100%,390px 720px,390px 335px,0 335px)}
+.player[data-loading] *{animation-play-state:paused}
+.controls{display:flex;align-items:center;justify-content:center;gap:14px;padding:18px 20px;min-height:72px;background:transparent}
+button{display:grid;place-items:center;flex:none;width:36px;height:36px;padding:8px;border:1px solid #a3c4eb80;border-radius:50%;background:transparent;color:#4c78b5;cursor:pointer}
+button:hover{background:transparent;color:#223c81}button svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+button:focus-visible,input:focus-visible{outline:3px solid #63a0ff;outline-offset:4px}
+#toggle .pause-symbol{display:none}.player.is-playing #toggle .play-symbol{display:none}.player.is-playing #toggle .pause-symbol{display:block}
+input[type=range]{appearance:none;-webkit-appearance:none;flex:1;max-width:620px;min-width:45px;background:transparent;cursor:pointer;height:18px}
+input[type=range]::-webkit-slider-runnable-track{height:3px;background:#c4d6ed;border-radius:3px}
+input[type=range]::-webkit-slider-thumb{appearance:none;-webkit-appearance:none;width:11px;height:11px;margin-top:-4px;border:2px solid white;border-radius:50%;background:#63a0ff;box-shadow:0 0 0 1px #a3c4eb}
+.player:fullscreen{width:100%;height:100%;background:transparent;display:flex;flex-direction:column;justify-content:center;align-items:center}
+.player:fullscreen::backdrop{background:transparent}
+.player:fullscreen .viewport{width:min(100vw,calc((100vh - 72px)*16/9))}.player:fullscreen .controls{width:min(100%,1280px)}
+body.clean .controls{display:none}body.clean .player{width:100%}
+.debug-panel{display:block;font:12px ui-monospace,monospace;color:#49698f;text-align:center;padding:8px}
+@media(max-width:520px){.controls{gap:10px;padding:18px 12px}button{width:32px;height:32px}}
+@media(prefers-reduced-motion:reduce){.anim{animation-play-state:paused}}
+.reservoir { position:absolute; left:535px; top:284px; width:177px; height:53px; overflow:hidden; background:linear-gradient(#151e25,#060b0f 50%,#21303a); }
+.reservoir-liquid { position:absolute; inset:0; transform-origin:0 50%; background:linear-gradient(#61bee5 0%,#187fb0 25%,#056398 75%,#124e75); animation-name:reservoir-fill; }
+.reservoir-glass { position:absolute; inset:0; background:linear-gradient(#fff5,transparent 12%,transparent 47%,#9ce7ff18 54%,transparent 60%,#46b2e255); }
+.clinical-scene { animation-name:clinical-scene; }
+.clinical-camera { transform-origin:700px 340px; animation-name:clinical-camera; will-change:transform; }
+.shaft {position:absolute;pointer-events:none;user-select:none}
+.shaft-upper {left:620px;top:-720px;width:240px;height:756px}
+.shaft-lower {left:530px;top:684px;width:264px;height:820px}
+.shaft-fibula {left:400px;top:684px;width:115px;height:820px}
+.injection-camera { animation-name:inject; will-change:transform; }
+.scope-camera { animation-name:scope; will-change:transform; }
+.gel-growth { transform-origin:667px 319px; animation-name:gel-growth; }
+.cure-light {  animation-name:cure-light; }
+.gel-blue { animation-name:gel-blue; }
+.gel-white { animation-name:gel-white; }
+
+@keyframes cure-light {0%, 35.83333%,75.27567%{opacity:0} 76.94450%{opacity:.8} 79.72417%{opacity:1} 81.94583%{opacity:.3} 84.72033%,87.50000%, 100%{opacity:0}}
+@keyframes hardware-scene {
+ 0.00000% {opacity:0;visibility:visible}
+ 2.50000% {opacity:1;visibility:visible}
+ 54.16667% {opacity:1;visibility:visible}
+ 56.94444% {opacity:0;visibility:hidden}
+ 100.00000% {opacity:0;visibility:hidden}
+}
+@keyframes hardware-camera {
+ 0.00000%, 18.88889% {transform:translate(480px,150px) scale(.62);animation-timing-function:cubic-bezier(.45,0,.25,1)}
+ 47.22222% {transform:translate(-1392px,72px) scale(.8)}
+ 100.00000% {transform:translate(-1392px,72px) scale(.8)}
+}
+@keyframes feed-fill {
+ 0.00000%, 3.33333% {stroke-dashoffset:1}
+ 15.00000% {stroke-dashoffset:0}
+ 100.00000% {stroke-dashoffset:0}
+}
+@keyframes pump-raster-frames {
+ 0.00000% {transform:translate(0,0)}
+ 7.77778% {transform:translate(0,0)}
+ 7.88889% {transform:translate(-773px,-0px)}
+ 8.00000% {transform:translate(-1546px,-0px)}
+ 8.11111% {transform:translate(-2319px,-0px)}
+ 8.22222% {transform:translate(-3092px,-0px)}
+ 8.33333% {transform:translate(-3865px,-0px)}
+ 8.44444% {transform:translate(-4638px,-0px)}
+ 8.55556% {transform:translate(-5411px,-0px)}
+ 8.66667% {transform:translate(-0px,-417px)}
+ 8.77778% {transform:translate(-773px,-417px)}
+ 8.88889% {transform:translate(-1546px,-417px)}
+ 9.00000% {transform:translate(-2319px,-417px)}
+ 9.11111% {transform:translate(-3092px,-417px)}
+ 9.22222% {transform:translate(-3865px,-417px)}
+ 9.33333% {transform:translate(-4638px,-417px)}
+ 9.44444% {transform:translate(-5411px,-417px)}
+ 9.55556% {transform:translate(-0px,-834px)}
+ 9.66667% {transform:translate(-773px,-834px)}
+ 9.77778% {transform:translate(-1546px,-834px)}
+ 9.88889% {transform:translate(-2319px,-834px)}
+ 10.00000% {transform:translate(-3092px,-834px)}
+ 10.11111% {transform:translate(-3865px,-834px)}
+ 10.22222% {transform:translate(-4638px,-834px)}
+ 10.33333% {transform:translate(-5411px,-834px)}
+ 10.44444% {transform:translate(-0px,-1251px)}
+ 10.55556% {transform:translate(-773px,-1251px)}
+ 10.66667% {transform:translate(-1546px,-1251px)}
+ 10.77778% {transform:translate(-2319px,-1251px)}
+ 10.88889% {transform:translate(-3092px,-1251px)}
+ 11.00000% {transform:translate(-3865px,-1251px)}
+ 11.11111% {transform:translate(-4638px,-1251px)}
+ 11.22222% {transform:translate(-5411px,-1251px)}
+ 11.33333% {transform:translate(-0px,-1668px)}
+ 11.44444% {transform:translate(-773px,-1668px)}
+ 11.55556% {transform:translate(-1546px,-1668px)}
+ 11.66667% {transform:translate(-2319px,-1668px)}
+ 11.77778% {transform:translate(-3092px,-1668px)}
+ 11.88889% {transform:translate(-3865px,-1668px)}
+ 12.00000% {transform:translate(-4638px,-1668px)}
+ 12.11111% {transform:translate(-5411px,-1668px)}
+ 12.22222% {transform:translate(-0px,-2085px)}
+ 12.33333% {transform:translate(-773px,-2085px)}
+ 12.44444% {transform:translate(-1546px,-2085px)}
+ 12.55556% {transform:translate(-2319px,-2085px)}
+ 12.66667% {transform:translate(-3092px,-2085px)}
+ 12.77778% {transform:translate(-3865px,-2085px)}
+ 12.88889% {transform:translate(-4638px,-2085px)}
+ 13.00000% {transform:translate(-5411px,-2085px)}
+ 13.11111% {transform:translate(-0px,-2502px)}
+ 13.22222% {transform:translate(-773px,-2502px)}
+ 13.33333% {transform:translate(-1546px,-2502px)}
+ 13.44444% {transform:translate(-2319px,-2502px)}
+ 13.55556% {transform:translate(-3092px,-2502px)}
+ 13.66667% {transform:translate(-3865px,-2502px)}
+ 13.77778% {transform:translate(-4638px,-2502px)}
+ 13.88889% {transform:translate(-5411px,-2502px)}
+ 14.00000% {transform:translate(-0px,-2919px)}
+ 14.11111% {transform:translate(-773px,-2919px)}
+ 14.22222% {transform:translate(-1546px,-2919px)}
+ 14.33333% {transform:translate(-2319px,-2919px)}
+ 14.44444% {transform:translate(-3092px,-2919px)}
+ 14.55556% {transform:translate(-3865px,-2919px)}
+ 14.66667% {transform:translate(-4638px,-2919px)}
+ 14.77778% {transform:translate(-5411px,-2919px)}
+ 14.88889% {transform:translate(-0px,-3336px)}
+ 15.00000% {transform:translate(-773px,-3336px)}
+ 15.11111% {transform:translate(-1546px,-3336px)}
+ 15.22222% {transform:translate(-2319px,-3336px)}
+ 15.33333% {transform:translate(-3092px,-3336px)}
+ 15.44444% {transform:translate(-3865px,-3336px)}
+ 15.55556% {transform:translate(-4638px,-3336px)}
+ 15.66667% {transform:translate(-5411px,-3336px)}
+ 15.77778% {transform:translate(-0px,-3753px)}
+ 15.88889% {transform:translate(-773px,-3753px)}
+ 16.00000% {transform:translate(-1546px,-3753px)}
+ 16.11111% {transform:translate(-2319px,-3753px)}
+ 16.22222% {transform:translate(-3092px,-3753px)}
+ 16.33333% {transform:translate(-3865px,-3753px)}
+ 16.44444% {transform:translate(-4638px,-3753px)}
+ 16.55556% {transform:translate(-5411px,-3753px)}
+ 16.66667% {transform:translate(-0px,-4170px)}
+ 16.77778% {transform:translate(-773px,-4170px)}
+ 16.88889% {transform:translate(-1546px,-4170px)}
+ 17.00000% {transform:translate(-2319px,-4170px)}
+ 17.11111% {transform:translate(-3092px,-4170px)}
+ 17.22222% {transform:translate(-3865px,-4170px)}
+ 17.33333% {transform:translate(-4638px,-4170px)}
+ 17.44444% {transform:translate(-5411px,-4170px)}
+ 17.55556% {transform:translate(-0px,-4587px)}
+ 17.66667% {transform:translate(-773px,-4587px)}
+ 17.77778% {transform:translate(-1546px,-4587px)}
+ 17.88889% {transform:translate(-2319px,-4587px)}
+ 18.00000% {transform:translate(-3092px,-4587px)}
+ 18.11111% {transform:translate(-3865px,-4587px)}
+ 18.22222% {transform:translate(-4638px,-4587px)}
+ 18.33333% {transform:translate(-5411px,-4587px)}
+ 100.00000% {transform:translate(-5411px,-4587px)}
+}
+@keyframes reservoir-fill {
+ 0.00000%, 43.33333% {transform:scaleX(0)}
+ 46.11111% {transform:scaleX(.38)}
+ 48.33333% {transform:scaleX(.72)}
+ 50.55556%, 100.00000% {transform:scaleX(1)}
+}
+@keyframes clinical-scene {
+ 0.00000%, 54.16667% {opacity:0;visibility:hidden}
+ 56.94444% {opacity:1;visibility:visible}
+ 100.00000% {opacity:1;visibility:visible}
+}
+@keyframes clinical-camera {
+ 0.00000%, 100.00000% {transform:translate(0,0) scale(1)}
+}
+@keyframes inject {
+ 0.00000%, 57.50000% {transform:translate(-12px,-2px);opacity:1}
+ 60.00000% {transform:translate(0,0);opacity:1}
+ 68.05556% {transform:translate(0,0);opacity:1}
+ 69.44444% {transform:translate(-90px,-16px);opacity:1}
+ 71.94444% {transform:translate(-330px,-63px);opacity:1}
+ 73.61111%, 100.00000% {transform:translate(-760px,-146px);opacity:0}
+}
+@keyframes gel-film-frames {
+ 0.00000% {transform:translate(0,0)}
+ 58.05556% {transform:translate(-0px,-0px)}
+ 58.51852% {transform:translate(-210px,-0px)}
+ 58.98148% {transform:translate(-420px,-0px)}
+ 59.44444% {transform:translate(-630px,-0px)}
+ 59.90741% {transform:translate(-840px,-0px)}
+ 60.37037% {transform:translate(-1050px,-0px)}
+ 60.83333% {transform:translate(-1260px,-0px)}
+ 61.29630% {transform:translate(-1470px,-0px)}
+ 61.75926% {transform:translate(-0px,-100px)}
+ 62.22222% {transform:translate(-210px,-100px)}
+ 62.68519% {transform:translate(-420px,-100px)}
+ 63.14815% {transform:translate(-630px,-100px)}
+ 63.61111% {transform:translate(-840px,-100px)}
+ 64.07407% {transform:translate(-1050px,-100px)}
+ 64.53704% {transform:translate(-1260px,-100px)}
+ 65.00000% {transform:translate(-1470px,-100px)}
+ 65.46296% {transform:translate(-0px,-200px)}
+ 65.92593% {transform:translate(-210px,-200px)}
+ 66.38889% {transform:translate(-420px,-200px)}
+ 66.85185% {transform:translate(-630px,-200px)}
+ 67.31481% {transform:translate(-840px,-200px)}
+ 67.77778% {transform:translate(-1050px,-200px)}
+ 68.24074% {transform:translate(-1260px,-200px)}
+ 68.70370% {transform:translate(-1470px,-200px)}
+ 69.16667% {transform:translate(-0px,-300px)}
+ 69.62963% {transform:translate(-210px,-300px)}
+ 70.09259% {transform:translate(-420px,-300px)}
+ 70.55556% {transform:translate(-630px,-300px)}
+ 71.01852% {transform:translate(-840px,-300px)}
+ 71.48148% {transform:translate(-1050px,-300px)}
+ 71.94444% {transform:translate(-1260px,-300px)}
+ 72.40741% {transform:translate(-1470px,-300px)}
+ 72.87037% {transform:translate(-0px,-400px)}
+ 73.33333% {transform:translate(-210px,-400px)}
+ 73.79630% {transform:translate(-420px,-400px)}
+ 74.25926% {transform:translate(-630px,-400px)}
+ 74.72222% {transform:translate(-840px,-400px)}
+ 75.18519% {transform:translate(-1050px,-400px)}
+ 75.64815% {transform:translate(-1260px,-400px)}
+ 76.11111% {transform:translate(-1470px,-400px)}
+ 76.57407% {transform:translate(-0px,-500px)}
+ 77.03704% {transform:translate(-210px,-500px)}
+ 77.50000% {transform:translate(-420px,-500px)}
+ 77.96296% {transform:translate(-630px,-500px)}
+ 78.42593% {transform:translate(-840px,-500px)}
+ 78.88889% {transform:translate(-1050px,-500px)}
+ 79.35185% {transform:translate(-1260px,-500px)}
+ 79.81481% {transform:translate(-1470px,-500px)}
+ 80.27778% {transform:translate(-0px,-600px)}
+ 80.74074% {transform:translate(-210px,-600px)}
+ 81.20370% {transform:translate(-420px,-600px)}
+ 81.66667% {transform:translate(-630px,-600px)}
+ 82.12963% {transform:translate(-840px,-600px)}
+ 82.59259% {transform:translate(-1050px,-600px)}
+ 83.05556% {transform:translate(-1260px,-600px)}
+ 83.51852% {transform:translate(-1470px,-600px)}
+ 83.98148% {transform:translate(-0px,-700px)}
+ 84.44444% {transform:translate(-210px,-700px)}
+ 84.90741% {transform:translate(-420px,-700px)}
+ 85.37037% {transform:translate(-630px,-700px)}
+ 85.83333% {transform:translate(-840px,-700px)}
+ 100.00000% {transform:translate(-840px,-700px)}
+}
+@keyframes scope {
+ 0.00000%, 69.72222% {transform:translate(720px,480px);opacity:1}
+ 71.94444% {transform:translate(150px,70px);opacity:1}
+ 74.72222%, 85.83333% {transform:translate(0,0);opacity:1}
+ 93.05556% {transform:translate(720px,480px);opacity:0}
+ 100.00000% {transform:translate(720px,480px);opacity:0}
+}
+</style><style>
+html,body{width:100%;height:100%;min-height:0;overflow:hidden;background:#d4e7fb}
+.player{width:100%;height:100%}.viewport{width:100%;height:100%;aspect-ratio:auto;background:#d4e7fb}
+.stage{left:50%;top:50%;transform:translate(-50%,-50%)}
+.controls,.debug-panel{display:none!important}
+</style></head><body><main class="player" data-loading><div class="viewport" role="img" aria-label="发酵罐直接输出水凝胶，进入透明泵、注射器和膝关节，经蓝光固化后停留在修复后的骨头画面"><div class="stage" id="stage">
+<div class="hardware-scene anim"><div class="hardware-camera anim">
+ <svg class="hardware-hose" viewBox="0 0 3180 720" aria-hidden="true"><defs><linearGradient id="hose-fill" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#b4f1ff"/><stop offset=".4" stop-color="#49ceee"/><stop offset="1" stop-color="#65d7f0"/></linearGradient></defs>
+  <path d="M815 354 C1280 275 2025 517 2248 435 Q2303 408 2303 366" fill="none" stroke="#7bbcdc" stroke-width="15" stroke-linecap="round"/>
+  <path d="M815 354 C1280 275 2025 517 2248 435 Q2303 408 2303 366" fill="none" stroke="url(#hose-fill)" stroke-width="10" stroke-linecap="round"/>
+  <path d="M815 351 C1280 272 2025 514 2248 432 Q2300 407 2300 367" fill="none" stroke="#d8fbff" stroke-width="2" stroke-linecap="round" opacity=".7"/>
+ </svg>
+ <svg class="feed-hose" viewBox="-600 0 1000 720" aria-hidden="true">
+  <path d="M-196 550 C-82 580 80 506 342 477" fill="none" stroke="#8fc7df" stroke-width="12" stroke-linecap="round"/>
+  <path d="M-196 550 C-82 580 80 506 342 477" fill="none" stroke="#d1eef8" stroke-width="8" stroke-linecap="round"/>
+  <path class="feed-fill anim" pathLength="1" d="M-196 550 C-82 580 80 506 342 477" fill="none" stroke="#65c9ed" stroke-width="5" stroke-linecap="round"/>
+  <path d="M-196 550 C-82 580 80 506 342 477" transform="translate(0,-2)" fill="none" stroke="#f0fcff" stroke-width="1.5" stroke-linecap="round" opacity=".65"/>
+ </svg>
+ <img class="fermenter-art" src="https://static.igem.wiki/teams/6102/wiki/home-opening/layer-04149fee26de.avif" alt="">
+ <div class="pump-raster"><img class="pump-raster-frames anim" src="https://static.igem.wiki/teams/6102/wiki/home-opening/layer-f97ac2a29f11.avif" alt=""></div>
+ <div class="syringe-fixed"><img src="https://static.igem.wiki/teams/6102/wiki/home-opening/layer-18bb786bf708.avif" alt=""><img src="https://static.igem.wiki/teams/6102/wiki/home-opening/layer-3d78ee4ddcf7.avif" alt=""><div class="reservoir"><div class="reservoir-liquid anim"></div><div class="reservoir-glass"></div></div></div>
+</div></div>
+<div class="clinical-scene anim">
+          <div class="clinical-camera anim">
+
+
+
+            <img class="layer bone" src="https://static.igem.wiki/teams/6102/wiki/home-opening/layer-a501a81a82b1.avif" alt="">
+
+            <div class="gel-fit"><div class="gel-film"><img class="gel-film-frames anim" src="https://static.igem.wiki/teams/6102/wiki/home-opening/layer-ad5892505ad1.avif" alt=""></div></div><div class="gel-main"><div class="gel-film"><img class="gel-film-frames anim" src="https://static.igem.wiki/teams/6102/wiki/home-opening/layer-ad5892505ad1.avif" alt=""></div></div><svg class="scene-svg joint" viewBox="0 0 1280 720" aria-hidden="true">
+              <defs>
+
+
+
+
+                <radialGradient id="light-halo"><stop stop-color="#41d6ff" stop-opacity=".7"/><stop offset=".5" stop-color="#19bdff" stop-opacity=".25"/><stop offset="1" stop-color="#008fff" stop-opacity="0"/></radialGradient>
+
+
+
+              </defs>
+
+              <g class="cure-light anim"><ellipse cx="665" cy="324" rx="150" ry="125" fill="url(#light-halo)"/></g>
+
+
+
+            </svg>
+
+            <div class="injection-camera anim"><img class="layer" src="https://static.igem.wiki/teams/6102/wiki/home-opening/layer-fdd2f606100a.avif" alt=""></div>
+            <div class="scope-camera anim"><img class="layer" src="https://static.igem.wiki/teams/6102/wiki/home-opening/layer-11faf34702d9.avif" alt=""></div>
+
+          </div>
+        </div>
+        </div></div>
+<div class="controls" aria-label="播放控制">
+ <button id="toggle" type="button" aria-label="播放动画"><svg class="play-symbol" viewBox="0 0 24 24"><path d="M8 5 19 12 8 19Z" fill="currentColor" stroke="none"/></svg><svg class="pause-symbol" viewBox="0 0 24 24"><path d="M8 5V19M16 5V19" stroke-width="3"/></svg></button>
+ <button id="restart" type="button" aria-label="重播"><svg viewBox="0 0 24 24"><path d="M4 10a8 8 0 1 1 1 7 M4 4v6h6"/></svg></button>
+ <input id="timeline" type="range" min="0" max="18" step="0.01" value="0" aria-label="动画进度">
+ <button id="fullscreen" type="button" aria-label="全屏"><svg viewBox="0 0 24 24"><path d="M9 4H4v5M15 4h5v5M4 15v5h5M20 15v5h-5"/></svg></button>
+</div>
+<script>
+(() => {
+ const stage=document.querySelector('#stage');
+ const player=document.querySelector('.player');
+ const duration=16750;
+ let tracks=[],clock,done=false,rate=1,ready=false,started=false,revealed=false;
+ const send=type=>parent.postMessage({source:'nest-opening',type},location.origin);
+ window.addEventListener('message',event=>{
+  if(event.source!==parent||event.origin!==location.origin||event.data?.source!=='nest-home')return;
+  if(event.data.type==='start')start();
+  if(event.data.type==='speed'&&!done){rate=Math.max(1,Math.min(2,event.data.rate||1));tracks.forEach(a=>a.updatePlaybackRate(rate));}
+ });
+ function start(){
+  if(!ready||started)return;
+  started=true;
+  player.removeAttribute('data-loading');
+  tracks.forEach(a=>{a.playbackRate=rate;a.play();a.startTime=document.timeline.currentTime;});
+  send('playing');
+  const tick=()=>{
+   // Reveal the homepage when the updated curing instrument has left (16.75 s).
+   if(!revealed && Number(clock?.currentTime)>=16750){revealed=true;send('complete');}
+   if(Number(clock?.currentTime)>=duration){
+    done=true;tracks.forEach(a=>{a.pause();a.currentTime=duration;});if(!revealed)send('complete');return;
+   }
+   requestAnimationFrame(tick);
+  };
+  requestAnimationFrame(tick);
+ }
+ Promise.all([...document.images].map(image=>image.decode().catch(()=>{}))).then(()=>{
+  tracks=stage.getAnimations({subtree:true});
+  clock=tracks.find(a=>a.effect?.getTiming().duration===18000);
+  tracks.forEach(a=>{a.pause();a.currentTime=0;});
+  ready=true;
+  send('ready');
+ });
+})();
+</script></body></html>
