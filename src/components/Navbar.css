@@ -456,3 +456,23 @@
     transition: none;
   }
 }
+
+/* Click-open menus stay anchored to their own top-level heading. */
+@media (min-width: 992px) {
+  .nest-nav-group { position: relative; }
+  .nest-mega-panel {
+    inset: 100% auto auto 0;
+    width: 280px;
+    padding: 6px;
+    border: 1px solid #ffffff8c;
+    border-radius: 0 0 16px 16px;
+    box-shadow: 0 12px 28px rgb(23 60 100 / 16%);
+    background: linear-gradient(180deg, rgb(242 248 255 / 94%), rgb(229 240 253 / 86%));
+  }
+  .nest-nav-group:nth-last-child(-n + 3) .nest-mega-panel { left: auto; right: 0; }
+  .nest-mega-grid { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+  .nest-nav-tile { min-height: 56px; padding: 6px; gap: 8px; }
+  .nest-tile-icon { flex-basis: 38px; width: 38px; height: 38px; }
+  .nest-tile-title { font-size: 16px; }
+  .nest-tile-description { font-size: 11px; }
+}
