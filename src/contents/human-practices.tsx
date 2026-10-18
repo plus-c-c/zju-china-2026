@@ -73,6 +73,8 @@ const timelineImageIds: Array<string | null> = [
   "30",
   "32",
   "40",
+  "41",
+  "42",
 ];
 
 const timelineItems: TimelineItem[] = timelineImageIds.map(
@@ -85,10 +87,11 @@ const timelineItems: TimelineItem[] = timelineImageIds.map(
           imageAlt: `Human practices activity ${index + 1}`,
           imagePosition:
             imageId === "15"
-              ? "84% 50%"
+              ? "90% 28%"
               : imageId === "37"
                 ? "65% 50%"
                 : undefined,
+          imageScale: imageId === "15" ? 2 : undefined,
         }
       : {}),
     summary: placeholderSummary,

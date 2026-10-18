@@ -24,6 +24,8 @@ export type TimelineItem = {
   imageAlt?: string;
   /** Optional focal point used when the photo is cropped into an avatar. */
   imagePosition?: string;
+  /** Optional zoom used to isolate one person in a group photo. */
+  imageScale?: number;
   /** Optional sections rendered in the "Read more" dialog. */
   details?: TimelineDetail[];
 };
@@ -145,7 +147,13 @@ export function Timeline({ items }: { items: TimelineItem[] }) {
                     className="timeline-dot-img"
                     src={item.image}
                     alt={item.imageAlt || ""}
-                    style={{ objectPosition: item.imagePosition }}
+                    style={{
+                      objectPosition: item.imagePosition,
+                      transform: item.imageScale
+                        ? `scale(${item.imageScale})`
+                        : undefined,
+                      transformOrigin: item.imagePosition,
+                    }}
                     loading="lazy"
                     decoding="async"
                   />
@@ -198,7 +206,13 @@ export function Timeline({ items }: { items: TimelineItem[] }) {
                   <img
                     src={openItem.image}
                     alt={openItem.imageAlt || openItem.title}
-                    style={{ objectPosition: openItem.imagePosition }}
+                    style={{
+                      objectPosition: openItem.imagePosition,
+                      transform: openItem.imageScale
+                        ? `scale(${openItem.imageScale})`
+                        : undefined,
+                      transformOrigin: openItem.imagePosition,
+                    }}
                   />
                 ) : (
                   <div
