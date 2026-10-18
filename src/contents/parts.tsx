@@ -364,7 +364,7 @@ export function Parts() {
           )}
         </div>
       </section>
-      {(["basic", "composite"] as const).map((kind) => {
+      {(["composite", "basic"] as const).map((kind) => {
         const parts = filtered.filter((part) => part.kind === kind);
         return (
           <section
