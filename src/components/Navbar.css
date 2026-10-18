@@ -438,3 +438,36 @@
   .nest-tile-title { font-size: 16px; }
   .nest-tile-description { font-size: 11px; }
 }
+
+/* Keyboard entry point only; no invisible pointer layer covers page controls. */
+.nest-nav__reveal {
+  position: fixed;
+  top: 8px;
+  left: 12px;
+  z-index: 1110;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.nest-nav__reveal:focus-visible {
+  width: auto;
+  height: auto;
+  padding: 10px 16px;
+  clip-path: none;
+  border: 2px solid #245ca5;
+  border-radius: 6px;
+  background: #f9fcff;
+  color: #203d64;
+  pointer-events: auto;
+}
+
+@media (max-width: 991.98px) {
+  .nest-nav__reveal {
+    display: none;
+  }
+}
