@@ -31,10 +31,13 @@ export function Toc({
     let elements: HTMLElement[] = [];
     let frame = 0;
     let collectFrame = 0;
+    /* Step anchors (data-toc-track) mark each deck step; they are tracked by
+       the scroll spy even though they are visually hidden. */
     const isExpanded = (element: HTMLElement) =>
-      !element.closest("[hidden], details:not([open])") &&
-      element.dataset.tocCollapsed !== "true" &&
-      !element.classList.contains("visually-hidden");
+      element.dataset.tocTrack === "true" ||
+      (!element.closest("[hidden], details:not([open])") &&
+        element.dataset.tocCollapsed !== "true" &&
+        !element.classList.contains("visually-hidden"));
 
     const collectHeadings = () => {
       collectFrame = 0;
@@ -94,11 +97,19 @@ export function Toc({
       setFooterInView(footerVisible);
       setVisible(header.getBoundingClientRect().bottom <= 0 && !footerVisible);
       const viewportCenter = window.innerHeight / 2;
+      /* Deck step anchors sit one step apart (40dvh) and the deck's scroll
+         mapping flips at half a step; using half a step as the anchor
+         threshold makes the highlighted heading change exactly when the
+         figure switches. */
+      const anchorThreshold = window.innerHeight * 0.2;
       const expandedElements = elements.filter(isExpanded);
       let current = expandedElements[0]?.id || "";
       for (const element of expandedElements) {
-        if (element.getBoundingClientRect().top <= viewportCenter)
-          current = element.id;
+        const threshold =
+          element.dataset.tocTrack === "true"
+            ? anchorThreshold
+            : viewportCenter;
+        if (element.getBoundingClientRect().top <= threshold) current = element.id;
         else break;
       }
       setActiveId(current);

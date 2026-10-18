@@ -55,34 +55,34 @@ export function Entrepreneurship() {
             Placeholder text — one sentence introducing this section. Each card
             expands when its header is clicked. Replace with the final content.
           </p>
-          <ExtendCard title="Criterion 1 — customers and unmet needs (placeholder question)">
+          <ExtendCard title="Criterion 1 — Has the team discovered their first potential customers and identified any unmet needs not yet covered by other existing solutions?">
             <p>
               Placeholder text — answer this criterion here: which potential
               customers were discovered, which unmet needs they described, and
               how this shaped the solution. Replace with the final content.
             </p>
           </ExtendCard>
-          <ExtendCard title="Criterion 2 — feasibility and scalability (placeholder question)">
+          <ExtendCard title="Criterion 2 — Has the team shown that their solution is possible, scalable and inventive?">
             <p>
               Placeholder text — show how the solution is possible, scalable,
               and inventive, and describe the evidence that supports it. Replace
               with the final content.
             </p>
           </ExtendCard>
-          <ExtendCard title="Criterion 3 — product development plan (placeholder question)">
+          <ExtendCard title="Criterion 3 — Has the team presented logical product development plans with realistic milestones, timelines, resources and risks?">
             <p>
               Placeholder text — lay out realistic milestones, timelines, and
               resources for product development. Replace with the final content.
             </p>
           </ExtendCard>
-          <ExtendCard title="Criterion 4 — team, skills, and stakeholders (placeholder question)">
+          <ExtendCard title="Criterion 4 — Has the team outlined the skills, capabilities, and stakeholders required to be credible in developing their solution further?">
             <p>
               Placeholder text — outline the skills, capabilities, and
               stakeholders required to develop the solution credibly. Replace
               with the final content.
             </p>
           </ExtendCard>
-          <ExtendCard title="Criterion 5 — long-term impact (placeholder question)">
+          <ExtendCard title="Criterion 5 — Has the team considered the positive and negative long-term impacts of their fully developed solution?">
             <p>
               Placeholder text — discuss the positive and negative long-term
               impacts of the fully developed solution. Replace with the final

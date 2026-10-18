@@ -17,8 +17,8 @@
   gap: 1rem;
   width: 100%;
   text-align: left;
-  background: #0c4dc6;
-  color: #fff;
+  background: #dce9ff;
+  color: #223c81;
   border: 0;
   padding: 0.95rem 1.3rem;
   font-size: 1.5rem;
@@ -29,7 +29,7 @@
 }
 
 .entre-card-header:hover {
-  background: #0a3ea0;
+  background: #c9dcf8;
 }
 
 .entre-card-title {
@@ -45,6 +45,10 @@
   border-bottom: 2.5px solid currentColor;
   transform: rotate(45deg);
   transition: transform 0.3s ease;
+}
+
+.entre-card--open .entre-card-header {
+  background: #cfe0fa;
 }
 
 .entre-card--open .entre-card-chevron {

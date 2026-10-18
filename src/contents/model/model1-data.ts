@@ -7,12 +7,14 @@ export interface M1Part {
 }
 
 export interface M1Block {
-  t: "h3" | "h4" | "p" | "display" | "figure";
+  t: "h3" | "h4" | "p" | "display" | "figure" | "table";
   v?: string;
   parts?: M1Part[];
   src?: string;
   alt?: string;
   width?: number;
+  head?: string[];
+  rows?: string[][];
 }
 
 export interface M1Step {
@@ -559,6 +561,42 @@ export const m1Steps: M1Step[] = [
             t: "em",
             v: "Table 1 | Comparison of wet-lab and modeling conditions.",
           },
+        ],
+      },
+      {
+        t: "table",
+        head: ["Condition", "Wet lab", "Modeling"],
+        rows: [
+          [
+            "Concentration",
+            "≈ 100 mg/mL",
+            "≈ 100 mg/mL (100.017–100.066 mg/mL)",
+          ],
+          [
+            "System",
+            "Hydrated cylindrical specimens, ≈ 10 mm in height",
+            "32-chain coarse-grained network with explicit solvent and ions",
+          ],
+          [
+            "Crosslinking",
+            "Photochemical crosslinking between tyrosine residues",
+            "Covalent tyrosine crosslinks, 0.295–0.470 nm",
+          ],
+          [
+            "Deformation",
+            "Uniaxial compression to 30% strain",
+            "Hencky strain ±0.20 in increments of ±0.05; infinitesimal compression for the elastic network",
+          ],
+          [
+            "Loading / relaxation",
+            "Crosshead speed 1 mm/min",
+            "0.5 ns relaxation after each strain increment",
+          ],
+          [
+            "Modulus fitting",
+            "Fitting over the 5–15% strain interval",
+            "Energy-curvature stiffness calibrated to the measured moduli (a = 1.895, b = 19.793 kPa)",
+          ],
         ],
       },
       {
