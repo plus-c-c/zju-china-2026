@@ -666,7 +666,11 @@ export function Description() {
             </strong>
           </p>
 
-          <h2>NEST: A Programmable Platform for Hyaline Cartilage Repair</h2>
+          <h2 className="description-platform-title">
+            NEST: A Programmable Platform
+            <br />
+            for Hyaline Cartilage Repair
+          </h2>
           <p>
             A nest is built to suit its environment, providing a space in which
             life can grow. Inspired by this idea, we designed{" "}
