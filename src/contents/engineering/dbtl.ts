@@ -5,7 +5,7 @@ export type DbtlPhase = "Design" | "Build" | "Test" | "Learn";
 export const DBTL_PHASES: DbtlPhase[] = ["Design", "Build", "Test", "Learn"];
 
 export interface DbtlCycle {
-  /** Cycle heading, e.g. "Cycle 1｜Electric-field versus magnetic-field alignment". */
+  /** Cycle heading, e.g. "Cycle 1 — Electric-field versus magnetic-field alignment". */
   title: string;
   /** One entry per Design–Build–Test–Learn phase. */
   content: Record<DbtlPhase, ReactNode>;

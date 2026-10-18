@@ -5,7 +5,6 @@ import { navigationIcon, pageDetails } from "../navigationIcons";
 
 const STATIC_HOME = "https://static.igem.wiki/teams/6102/wiki/images/home";
 const STATIC_GIF = "https://static.igem.wiki/teams/6102/wiki/gif";
-const LOCAL_HOME = `${import.meta.env.BASE_URL}images/home`;
 
 export function DashedArrow({ className }: { className: string }) {
   return (
@@ -219,45 +218,42 @@ const quickLinks = [
   {
     label: "Design",
     to: "/design",
-    icon: `${LOCAL_HOME}/shortcut-icons/design.png`,
+    icon: `${STATIC_HOME}/shortcut-icons/design.avif`,
   },
   {
     label: "Proof of Concept",
     to: "/proof-of-concept",
-    icon: `${LOCAL_HOME}/shortcut-icons/proof-of-concept.png`,
+    icon: `${STATIC_HOME}/shortcut-icons/proof-of-concept.avif`,
   },
   {
     label: "Model",
     to: "/model",
-    icon: `${LOCAL_HOME}/shortcut-icons/model.png`,
+    icon: `${STATIC_HOME}/shortcut-icons/model.avif`,
   },
   {
     label: "Entrepreneurship",
     to: "/entrepreneurship",
-    icon: `${LOCAL_HOME}/shortcut-icons/entrepreneurship.png`,
+    icon: `${STATIC_HOME}/shortcut-icons/entrepreneurship.avif`,
   },
   {
     label: "Integrated Human Practice",
     to: "/human-practices",
-    icon: `${LOCAL_HOME}/shortcut-icons/human-practices.svg`,
+    icon: `${STATIC_HOME}/shortcut-icons/human-practices.svg`,
   },
 ] as const;
 
 const promotionDecorations = [
-  ["orange-cell-lower-right", "orange-cell-lower-right.png"],
-  ["orange-molecule-upper-left", "orange-molecule-upper-left.png"],
-  ["cyan-particle-top", "cyan-particle-top.png"],
-  [
-    "blue-bird-lower-left",
-    `${STATIC_HOME}/promotion/blue-bird-lower-left.avif`,
-  ],
-  ["blue-bird-top", "blue-bird-top.png"],
-  ["dna-left", "dna-left.png"],
-  ["white-cell-lower-right", "white-cell-lower-right.png"],
-  ["orange-cell-left", "orange-cell-left.png"],
-  ["green-cell-right", "green-cell-right.png"],
-  ["cyan-gear-upper-right", "cyan-gear-upper-right.png"],
-  ["cyan-gear-middle-right", "cyan-gear-middle-right.png"],
+  ["orange-cell-lower-right", "orange-cell-lower-right.avif"],
+  ["orange-molecule-upper-left", "orange-molecule-upper-left.avif"],
+  ["cyan-particle-top", "cyan-particle-top.avif"],
+  ["blue-bird-lower-left", "blue-bird-lower-left.avif"],
+  ["blue-bird-top", "blue-bird-top.avif"],
+  ["dna-left", "dna-left.avif"],
+  ["white-cell-lower-right", "white-cell-lower-right.avif"],
+  ["orange-cell-left", "orange-cell-left.avif"],
+  ["green-cell-right", "green-cell-right.avif"],
+  ["cyan-gear-upper-right", "cyan-gear-upper-right.avif"],
+  ["cyan-gear-middle-right", "cyan-gear-middle-right.avif"],
 ] as const;
 
 export function SelpPipeline() {
@@ -510,11 +506,7 @@ export function SelpPipeline() {
                 aria-hidden="true"
                 className={`selp-promotion__decoration selp-promotion__decoration--${className}`}
                 key={fileName}
-                src={
-                  fileName.startsWith("https://")
-                    ? fileName
-                    : `${LOCAL_HOME}/promotion/${fileName}`
-                }
+                src={`${STATIC_HOME}/promotion/${fileName}`}
               />
             ))}
           </section>

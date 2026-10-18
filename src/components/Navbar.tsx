@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import Pages from "../pages.ts";
 import { navigationIcon, pageDetails } from "./navigationIcons";
 import "./Navbar.css";
+import { NavIcon } from "./NavIcon";
 
 const desktopNavigation = () => window.matchMedia("(min-width: 992px)").matches;
 
@@ -314,17 +315,9 @@ export function Navbar({ introEntrance = false }: { introEntrance?: boolean }) {
                                 aria-current={active ? "page" : undefined}
                                 onClick={closeMenus}
                               >
-                                <img
-                                  className="nest-tile-icon"
-                                  src={
-                                    details
-                                      ? navigationIcon(details.icon)
-                                      : undefined
-                                  }
-                                  alt=""
-                                  width="72"
-                                  height="72"
-                                />
+                                {details && (
+                                  <NavIcon className="nest-tile-icon" src={navigationIcon(details.icon)} />
+                                )}
                                 <span className="nest-tile-copy">
                                   <span className="nest-tile-title">
                                     {page.name}
