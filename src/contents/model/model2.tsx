@@ -1,4 +1,5 @@
 import {
+  useCallback,
   useEffect,
   useLayoutEffect,
   useRef,
@@ -195,19 +196,39 @@ function ProteinStepper({ steps }: { steps: ProteinStep[] }) {
 
   /** Jump to a protein and keep the page scroll in sync (the pinned view
    *  does not move; only the scrollbar does). */
-  const goTo = (target: number, behavior: ScrollBehavior = "instant") => {
-    if (target < 0 || target > stepsRef.current.length - 1) return;
-    setIndex(target);
-    const runway = runwayRef.current;
-    if (!runway) return;
-    const total = runway.offsetHeight - window.innerHeight;
-    if (total <= 0) return;
-    const top = runway.getBoundingClientRect().top + window.scrollY;
-    window.scrollTo({
-      top: top + (total * target) / Math.max(1, stepsRef.current.length - 1),
-      behavior,
-    });
-  };
+  const goTo = useCallback(
+    (target: number, behavior: ScrollBehavior = "instant") => {
+      if (target < 0 || target > stepsRef.current.length - 1) return;
+      setIndex(target);
+      const runway = runwayRef.current;
+      if (!runway) return;
+      const total = runway.offsetHeight - window.innerHeight;
+      if (total <= 0) return;
+      const top = runway.getBoundingClientRect().top + window.scrollY;
+      window.scrollTo({
+        top: top + (total * target) / Math.max(1, stepsRef.current.length - 1),
+        behavior,
+      });
+    },
+    [],
+  );
+
+  /* 左右方向键与滚轮等效：切换上一步 / 下一步 */
+  useEffect(() => {
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.defaultPrevented || event.metaKey || event.ctrlKey || event.altKey)
+        return;
+      const forward = event.key === "ArrowRight" || event.key === "ArrowDown";
+      const backward = event.key === "ArrowLeft" || event.key === "ArrowUp";
+      if (!forward && !backward) return;
+      const target = forward ? indexRef.current + 1 : indexRef.current - 1;
+      if (target < 0 || target >= stepsRef.current.length) return;
+      event.preventDefault();
+      goTo(target);
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [goTo]);
 
   /** Boundary stepping: the wheel / touch advances one protein per gesture
    *  once the text panel reaches its bottom (or its top, scrolling up). */

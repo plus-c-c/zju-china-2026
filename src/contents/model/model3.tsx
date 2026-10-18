@@ -179,7 +179,11 @@ export function Model3() {
   const lastStepRef = useRef(1);
   /* 当前步（供边界步进读取） */
   const stepRef = useRef(1);
-  const total = m3Steps.length;
+  /* The deck holds all but the last step; the final step is rendered as a
+     regular section between the deck and the references. */
+  const deckSteps = m3Steps.slice(0, -1);
+  const finalStep = m3Steps[m3Steps.length - 1];
+  const total = deckSteps.length;
 
   useEffect(() => {
     stepRef.current = activeStep;
@@ -231,6 +235,23 @@ export function Model3() {
     [total],
   );
 
+  /* 左右方向键与滚轮等效：切换上一步 / 下一步 */
+  useEffect(() => {
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.defaultPrevented || event.metaKey || event.ctrlKey || event.altKey)
+        return;
+      const forward = event.key === "ArrowRight" || event.key === "ArrowDown";
+      const backward = event.key === "ArrowLeft" || event.key === "ArrowUp";
+      if (!forward && !backward) return;
+      const target = forward ? currentNum : currentNum - 2;
+      if (target < 0 || target > total - 1) return;
+      event.preventDefault();
+      scrollToStep(target, "smooth");
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [currentNum, total, scrollToStep]);
+
   /* 内容滚到边界后的滚轮/触摸：一次手势步进一格（首/末步交给页面） */
   const suppressUntilRef = useBoundaryStepAdvance({
     stageRef,
@@ -276,7 +297,7 @@ export function Model3() {
     };
   }, [total, suppressUntilRef]);
 
-  const step = m3Steps.find((s) => s.num === view.current) ?? m3Steps[0];
+  const step = deckSteps.find((s) => s.num === view.current) ?? deckSteps[0];
   const prevStep =
     view.prev !== null
       ? (m3Steps.find((s) => s.num === view.prev) ?? null)
@@ -320,7 +341,7 @@ export function Model3() {
               })}
             </div>
             <div className="m3-dots" role="navigation" aria-label="Model steps">
-              {m3Steps.map((s) => (
+              {deckSteps.map((s) => (
                 <button
                   key={s.num}
                   type="button"
@@ -369,7 +390,7 @@ export function Model3() {
         </div>
 
         {/* 目录锚点：每步滚动进度位置处的隐藏标题 */}
-        {m3Steps.map((s) => (
+        {deckSteps.map((s) => (
           <h3
             key={s.num}
             className="visually-hidden m3-anchor"
@@ -380,6 +401,15 @@ export function Model3() {
           </h3>
         ))}
       </div>
+
+      {/* 第 10 步移到卡片之外：卡片与 references 之间 */}
+      <h3 className="mt-5 mb-3">
+        {finalStep.num}. {finalStep.title}
+      </h3>
+      <p className="m3-final-goal">
+        <em>{finalStep.goal}</em>
+      </p>
+      <Blocks blocks={finalStep.blocks} />
 
       <h3 className="mt-5 mb-3">References</h3>
       <Blocks blocks={m3References} />

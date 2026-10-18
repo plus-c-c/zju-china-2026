@@ -222,6 +222,6 @@ const hydrogelModelingModule: DbtlModule = {
   ],
 };
 export const proteinHydrogelModelingGroup: Group = {
-  label: "Protein Hydrogel Modeling",
+  label: "Model",
   parts: [{ label: "DBTL cycles", module: hydrogelModelingModule }],
 };

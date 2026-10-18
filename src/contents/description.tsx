@@ -666,19 +666,11 @@ export function Description() {
             </strong>
           </p>
 
-          <div className="description-platform-heading">
-            <h2 className="description-platform-title">
-              NEST: A Programmable Platform
-              <br />
-              for Hyaline Cartilage Repair
-            </h2>
-            <img
-              className="description-platform-logo"
-              src="https://static.igem.wiki/teams/6102/wiki/team-logo.avif"
-              alt="NEST project logo"
-              loading="lazy"
-            />
-          </div>
+          <h2 className="description-platform-title">
+            NEST: A Programmable Platform
+            <br />
+            for Hyaline Cartilage Repair
+          </h2>
           <p>
             A nest is built to suit its environment, providing a space in which
             life can grow. Inspired by this idea, we designed{" "}

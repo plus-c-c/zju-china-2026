@@ -11,6 +11,7 @@ import {
   useBoundaryStepAdvance,
 } from "../../components/useBoundaryStepAdvance";
 import { MathFormula } from "../../components/MathFormula";
+import { DataTable } from "../../components/table";
 import {
   m1Overview,
   m1References,
@@ -111,28 +112,11 @@ function Blocks({ blocks }: { blocks: M1Block[] }) {
         }
         if (block.t === "table") {
           return (
-            <div key={index} className="table-responsive mb-4">
-              <table className="m1-three-line">
-                <thead>
-                  <tr>
-                    {(block.head ?? []).map((cell, i) => (
-                      <th key={i} scope="col">
-                        {cell}
-                      </th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {(block.rows ?? []).map((row, r) => (
-                    <tr key={r}>
-                      {row.map((cell, c) => (
-                        <td key={c}>{cell}</td>
-                      ))}
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+            <DataTable
+              key={index}
+              head={block.head ?? []}
+              rows={block.rows ?? []}
+            />
           );
         }
         return (
@@ -260,6 +244,23 @@ export function SelpHydrogelModeling() {
     },
     [total],
   );
+
+  /* 左右方向键与滚轮等效：切换上一步 / 下一步 */
+  useEffect(() => {
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.defaultPrevented || event.metaKey || event.ctrlKey || event.altKey)
+        return;
+      const forward = event.key === "ArrowRight" || event.key === "ArrowDown";
+      const backward = event.key === "ArrowLeft" || event.key === "ArrowUp";
+      if (!forward && !backward) return;
+      const target = forward ? currentNum : currentNum - 2;
+      if (target < 0 || target > total - 1) return;
+      event.preventDefault();
+      scrollToStep(target, "smooth");
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [currentNum, total, scrollToStep]);
 
   /* 内容滚到边界后的滚轮/触摸：一次手势步进一格（首/末步交给页面） */
   const suppressUntilRef = useBoundaryStepAdvance({

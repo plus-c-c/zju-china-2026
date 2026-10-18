@@ -194,16 +194,9 @@
 
 /* Keep large figures and treatment comparisons comfortably within the article. */
 .page-article .description-article > .article-figure {
-  width: 100%;
+  width: min(100%, 780px);
   margin-left: auto !important;
   margin-right: auto !important;
-}
-.page-article .description-article > .article-figure > .article-figure__image {
-  max-width: 780px;
-}
-.page-article .description-article .article-figure__caption {
-  max-width: none;
-  width: 100%;
 }
 .page-article .description-article .article-figure__image {
   max-height: 560px;
@@ -214,30 +207,10 @@
   margin-left: auto;
   margin-right: auto;
 }
-.description-platform-heading {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: clamp(16px, 3vw, 40px);
-  margin: 3rem 0 1.5rem;
-}
 .page-article .description-platform-title {
-  margin: 0 !important;
-  text-align: left;
-  font-size: clamp(1.65rem, 2.5vw, 2.5rem);
+  text-align: center;
   font-weight: 800;
-  line-height: 1.3;
-}
-.description-platform-logo {
-  flex: 0 0 auto;
-  width: clamp(80px, 11vw, 145px);
-  height: auto;
-  object-fit: contain;
-}
-@media (max-width: 575.98px) {
-  .description-platform-heading { gap: 12px; }
-  .page-article .description-platform-title { font-size: 1.5rem; }
-  .description-platform-logo { width: 64px; }
+  line-height: 1.35;
 }
 @media (max-width: 767.98px) {
   .page-article .description-article .article-figure__image {
