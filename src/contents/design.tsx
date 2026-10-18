@@ -1461,6 +1461,7 @@ export function Design() {
             protection, and cellular support.
           </p>
           <h2 className="mt-5 mb-4">References</h2>
+          <div className="references-list references-list--paragraphs">
           <p id="design-reference-1" style={{ scrollMarginTop: "112px" }}>
             [1] Huang W, Tarakanova A, Dinjaski N, Wang Q, Xia X, Chen Y, Wong
             JY, Buehler MJ, Kaplan DL. Design of multistimuli responsive
@@ -1609,6 +1610,7 @@ export function Design() {
             systems: enhanced expression and solubility with SUMO.{" "}
             <em>Protein Sci</em>. 2006;15(1):182–189.
           </p>
+          </div>
         </article>
       </div>
     </div>

@@ -18,7 +18,7 @@ export function SoftwareReferences() {
       <h4 className="mt-4 mb-3">
         1. All-atom simulation and enhanced sampling
       </h4>
-      <ol>
+      <ol className="references-list">
         <li>
           Phillips, J. C.; Hardy, D. J.; Maia, J. D. C.; et al.{" "}
           <strong>
@@ -140,7 +140,7 @@ export function SoftwareReferences() {
         </li>
       </ol>
       <h4 className="mt-4 mb-3">2. Coarse-graining and network simulation</h4>
-      <ol start={8}>
+      <ol className="references-list" start={8}>
         <li>
           Souza, P. C. T.; Alessandri, R.; Barnoud, J.; et al.{" "}
           <strong>
@@ -182,7 +182,7 @@ export function SoftwareReferences() {
       <h4 className="mt-4 mb-3">
         3. Network elasticity and modulus estimation
       </h4>
-      <ol start={10}>
+      <ol className="references-list" start={10}>
         <li>
           James, H. M.; Guth, E.{" "}
           <strong>
@@ -288,7 +288,7 @@ export function SoftwareReferences() {
         </li>
       </ol>
       <h4 className="mt-4 mb-3">4. Magnetomechanics and poroelasticity</h4>
-      <ol start={16}>
+      <ol className="references-list" start={16}>
         <li>
           Rosensweig, R. E. <strong>Ferrohydrodynamics</strong>; Cambridge
           University Press: Cambridge, 1985 (Dover reprint 1997).
@@ -339,7 +339,7 @@ export function SoftwareReferences() {
         biological basis comes from the wet-lab modules. Listed below are the
         technical standards and tools that the application directly involves:
       </p>
-      <ol start={19}>
+      <ol className="references-list" start={19}>
         <li>
           ISO/IEC 18004:2024,{" "}
           <strong>

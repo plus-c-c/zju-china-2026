@@ -205,7 +205,7 @@ export function Results() {
           </div>
         </section>
       </div>
-      <details className="wetlab-results__references">
+      <details className="wetlab-results__references references-list">
         <summary>References</summary>
         <div dangerouslySetInnerHTML={{ __html: scaffold.referencesHtml }} />
       </details>

@@ -95,12 +95,6 @@
   padding: 0;
 }
 
-/* Long repository/service URLs in the reference list must wrap on narrow
-   screens instead of pushing the page into horizontal overflow. */
-.references-list a {
-  overflow-wrap: anywhere;
-}
-
 /* Secondary module navigation (appears under Wet Lab / Dry Lab). */
 .eng-subnav {
   display: flex;

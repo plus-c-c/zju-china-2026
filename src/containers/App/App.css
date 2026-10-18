@@ -46,7 +46,7 @@ body {
 
 /* Shared typography for Design and all other article-style content pages. */
 .page-article {
-  --article-heading-color: #365dc9;
+  --article-heading-color: #63A0FF;
   --article-subheading-color: #223c81;
   --article-body-color: #263552;
   --article-heading-top-space: 3rem;
@@ -59,6 +59,12 @@ body {
 
   --article-emphasis-color: rgb(169 204 251 / 62%);
   --article-emphasis-hover-color: rgb(169 204 251 / 34%);
+
+  /* Shared appearance for references and other article cards. */
+  --article-card-background: #fff;
+  --article-card-radius: 22px;
+  --article-card-shadow: 4px 4px #a9c8ed;
+  --article-reference-shadow: 8px 8px #a9c8ed;
   font-family: "Outfit", sans-serif;
 }
 
@@ -84,7 +90,7 @@ body {
   margin-top: var(--article-heading-top-space) !important;
   margin-bottom: var(--article-heading-bottom-space) !important;
   color: var(--article-heading-color);
-  font-size: clamp(2.25rem, 3vw, 2.65rem);
+  font-size: clamp(2.2rem, 3vw, 2.5rem);
   font-weight: 800;
   line-height: 1.12;
 }
@@ -120,40 +126,181 @@ body {
   font-size: 1.5rem;
 }
 
+/* Shared white callout card for Markdown blockquotes and emphasis panels. */
+.page-article :is(
+    blockquote,
+    .bd-callout,
+    .description-question,
+    .description-closing
+  ) {
+  margin: 2rem 0;
+  padding: 1.5rem 1.75rem;
+  border: 0;
+  border-left: 0 !important;
+  border-radius: var(--article-card-radius);
+  background: var(--article-card-background);
+  box-shadow: var(--article-card-shadow);
+  color: var(--article-body-color) !important;
+  font-size: 1.2rem !important;
+  line-height: 1.7;
+}
+
+.page-article :is(
+    blockquote,
+    .bd-callout,
+    .description-question,
+    .description-closing
+  ) > :last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 767.98px) {
+  .page-article :is(
+      blockquote,
+      .bd-callout,
+      .description-question,
+      .description-closing
+    ) {
+    padding: 1.1rem 1.2rem;
+    font-size: 1.08rem !important;
+  }
+}
+
+/*
+ * Shared references card used by every article page.
+ * Adjust the card color, border, radius and shadow here.
+ */
+.page-article .references-list {
+  margin: 1.5rem 14px 2.75rem;
+  padding: 1.5rem 1.75rem 1.5rem 3.25rem;
+  border-radius: var(--article-card-radius);
+  background: var(--article-card-background);
+  box-shadow: var(--article-reference-shadow);
+}
+
+.page-article .references-list--paragraphs {
+  padding-left: 1.75rem;
+}
+
+.page-article .references-list > :last-child {
+  margin-bottom: 0;
+}
+
+.page-article .references-list > li + li {
+  margin-top: 1rem;
+}
+
+.page-article .references-list a {
+  overflow-wrap: anywhere;
+  font-weight: inherit;
+}
+
+/* References use the normal body weight without the body emphasis highlight. */
+.page-article .references-list :is(strong, b) {
+  background: none !important;
+  font-weight: inherit;
+}
+
+.page-article details.references-list {
+  padding-left: 1.75rem;
+}
+
+.page-article details.references-list summary {
+  cursor: pointer;
+  color: var(--article-subheading-color);
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.page-article details.references-list > div {
+  padding-top: 1.25rem;
+}
+
+.page-article details.references-list .source-block p {
+  padding-left: 1.75em;
+  text-indent: -1.75em;
+}
+
+/* Shared article figures: use these classes for photos and scientific figures. */
+.page-article .article-figure {
+  width: 100%;
+}
+
+.page-article .article-figure__link {
+  display: block;
+}
+
+.page-article .article-figure__image {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.page-article .article-figure__caption {
+  max-width: 920px;
+  margin: 0.75rem auto 0;
+  color: #52617f;
+  font-size: 1rem;
+  line-height: 1.55;
+}
+
+.page-article .article-figure-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.page-article .article-figure-grid .article-figure {
+  display: flex !important;
+  flex-direction: column;
+}
+
+.page-article .article-figure-grid .article-figure__link {
+  display: grid;
+  flex: 1;
+  place-items: center;
+}
+
+@media (max-width: 767.98px) {
+  .page-article .article-figure-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 /*
  * Body emphasis follows the 2025 wiki treatment: a short color stroke at rest
  * expands into a full-height highlight on hover. Figure captions and headings
  * are intentionally excluded so this remains a body-copy effect.
  */
 .page-article :is(p, li, td, th, blockquote) :is(strong, b) {
-  position: relative;
-  z-index: 0;
-  isolation: isolate;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  background-image: linear-gradient(
+    var(--article-emphasis-color),
+    var(--article-emphasis-color)
+  );
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  background-size: 100% 30%;
   font-weight: 700;
   text-decoration: none;
-}
-
-.page-article :is(p, li, td, th, blockquote) :is(strong, b)::after {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: -1;
-  height: 30%;
-  background-color: var(--article-emphasis-color);
-  content: "";
   transition:
-    height 300ms ease-in-out,
-    background-color 300ms ease-in-out;
+    background-size 300ms ease-in-out,
+    background-image 300ms ease-in-out;
 }
 
-.page-article :is(p, li, td, th, blockquote) :is(strong, b):hover::after {
-  height: 95%;
-  background-color: var(--article-emphasis-hover-color);
+.page-article :is(p, li, td, th, blockquote) :is(strong, b):hover {
+  background-image: linear-gradient(
+    var(--article-emphasis-hover-color),
+    var(--article-emphasis-hover-color)
+  );
+  background-size: 100% 95%;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .page-article :is(p, li, td, th, blockquote) :is(strong, b)::after {
+  .page-article :is(p, li, td, th, blockquote) :is(strong, b) {
     transition: none;
   }
 }
@@ -161,11 +308,11 @@ body {
 html,
 body,
 #root {
-  background-color: #D9EBFC !important;
+  background-color: #F5FAFF !important;
 }
 
 .app {
-  background-color: #D9EBFC;
+  background-color: #F5FAFF;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -177,21 +324,21 @@ body,
 }
 
 .content-page {
-  background-color: #EDF4FF;
+  background-color: #F5FAFF;
 }
 
 .content-home {
-  background-color: #EDF4FF;
+  background-color: #F5FAFF;
   padding-top: 0;
 }
 
 .content-not-found {
-  background-color: #EDF4FF;
+  background-color: #F5FAFF;
 }
 
 html.scrollbar,
 body.scrollbar {
-  --scrollbar-thumb-color: #006cd1;
+  --scrollbar-thumb-color: #E3EEFF;
   --scrollbar-track-color: transparent;
   scrollbar-color: var(--scrollbar-thumb-color) var(--scrollbar-track-color);
   scrollbar-width: thin;

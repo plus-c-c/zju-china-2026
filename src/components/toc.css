@@ -61,11 +61,11 @@
   display: block;
   box-sizing: border-box;
   /* Vertical padding controls the space above and below every TOC entry. */
-  padding: 10px 12px;
-  border-left: 5px solid transparent;
+  padding: 5px 12px;
+  border-left: 3px solid transparent;
   color: #595959;
   /* Default font size for first-level TOC entries generated from h2 headings. */
-  font-size: 20px;
+  font-size: 16px;
   /* Controls the spacing between wrapped lines inside a TOC entry. */
   line-height: 1.5;
   overflow-wrap: anywhere;
@@ -77,32 +77,20 @@
   margin-left: 23px;
   padding-left: 13px;
   /* Font size for second-level entries generated from h3 and h4 headings. */
-  font-size: 18px;
-}
-
-.page-toc-level-3 a {
-  margin-left: 30px;
-  padding-left: 10px;
-  font-size: 16px;
-}
-
-.page-toc-level-4 a {
-  margin-left: 40px;
-  padding-left: 8px;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .page-toc-level-1.page-toc-section-current > a {
   border-left-color: currentColor;
-  color: #365dc9;
+  color: #78A1FF;
 }
 
 .page-toc-list a:hover {
-  background: #d3e2f4;
+  background: #DEECFF;
 }
 .page-toc-list a[aria-current="location"] {
   border-left-color: currentColor;
-  color: #365dc9;
+  color: #78A1FF;
 }
 .page-toc-list a:focus-visible {
   outline: 2px solid currentColor;
