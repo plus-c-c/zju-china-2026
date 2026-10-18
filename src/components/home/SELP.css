@@ -399,10 +399,12 @@
 }
 
 .selp-pipeline__art--purple-flask {
-  left: 5.38%;
+  left: 9.38%;
   top: 58.94%;
   width: 10.39%;
   height: 20.64%;
+  transform: rotate(-11.75deg);
+
 }
 
 .selp-pipeline__art--purple-vial {
@@ -414,9 +416,9 @@
 }
 
 .selp-pipeline__art--gag-chain {
-  left: 4.78%;
+  left: 14.78%;
   top: 24.5%;
-  width: 41.49%;
+  width: 30.49%;
   height: 42.59%;
   transform: rotate(-11.75deg);
 }
@@ -430,17 +432,17 @@
 }
 
 .selp-pipeline__art--gag-reactor {
-  left: 85.73%;
+  left: 80.73%;
   top: 51.45%;
-  width: 10.39%;
-  height: 27.3%;
+  width: 13.39%;
+  height: 30.3%;
 }
 
 .selp-pipeline__art--mito-reactor {
-  left: 6.64%;
+  left: 4.64%;
   top: 56.89%;
-  width: 12%;
-  height: 23.07%;
+  width: 17%;
+  height: 27.07%;
 }
 
 .selp-pipeline__art--yellow-vial {
@@ -461,9 +463,9 @@
 }
 
 .selp-pipeline__art--liposome {
-  left: 68.96%;
-  top: 26.15%;
-  width: 20.71%;
+  left: 58.96%;
+  top: 36.15%;
+  width: 30.71%;
   height: 30.85%;
 }
 
