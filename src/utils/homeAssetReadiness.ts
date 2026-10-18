@@ -25,6 +25,7 @@ export async function waitForHomeAssets() {
     ...images.map(decode),
     ...backgroundImages,
     ...['Outfit', 'Rubik Maps', 'Seymour One', 'Mansalva'].map(font => document.fonts.load(`16px "${font}"`)),
+    ...[500, 600, 700, 800, 900].map(weight => document.fonts.load(`${weight} 16px "Outfit"`)),
     document.fonts.ready,
   ]);
 }

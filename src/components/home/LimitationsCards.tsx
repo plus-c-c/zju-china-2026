@@ -132,22 +132,12 @@ const blueCards: CardCopy[] = [
   {
     title: (
       <>
-        Synthetic
-        <br />
-        Biology
+        Synthetic<br />Biology
       </>
     ),
     body: (
       <>
-        Complex fabrication
-        <br />
-        limits batch
-        <br />
-        consistency and
-        <br />
-        large-scale
-        <br />
-        production.
+        Complex fabrication limits batch consistency and large-scale production.
       </>
     ),
     frontArt: [
@@ -172,19 +162,7 @@ const blueCards: CardCopy[] = [
     ),
     body: (
       <>
-        SELP offers tunable stiffness
-        <br />
-        and toughness, while RGD
-        <br />
-        motifs within its chains
-        <br />
-        promote
-        <br />
-        adhesion
-        <br />
-        and tissue
-        <br />
-        integration.
+        SELP offers tunable stiffness and toughness, while RGD motifs within its chains promote adhesion and tissue integration.
       </>
     ),
     frontArt: [
@@ -203,20 +181,12 @@ const blueCards: CardCopy[] = [
   {
     title: (
       <>
-        Modular
-        <br />
-        Design
+        Modular<br />Design
       </>
     ),
     body: (
       <>
-        Matrix loss, degradation,
-        <br />
-        and inflammation
-        <br />
-        demand adaptable
-        <br />
-        repair strategies.
+        Matrix loss, degradation, and inflammation demand adaptable repair strategies.
       </>
     ),
     frontArt: [

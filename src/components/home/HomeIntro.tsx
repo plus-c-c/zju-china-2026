@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import "./HomeIntro.css";
 const openingAnimationUrl = `${import.meta.env.BASE_URL}home-opening/index.html`;
 
@@ -15,7 +15,8 @@ export function HomeIntro({ onEnter }: HomeIntroProps) {
     window.dispatchEvent(new Event("home-intro-ready"));
   }, []);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
+    window.scrollTo({ top: 0, behavior: "instant" });
     const start = () => openingFrame.current?.contentWindow?.postMessage(
       { source: "nest-home", type: "start" }, location.origin,
     );
@@ -104,6 +105,7 @@ export function HomeIntro({ onEnter }: HomeIntroProps) {
       }
     >
       <iframe ref={openingFrame} className="home-intro__animation" src={openingAnimationUrl}
+        onLoad={() => openingFrame.current?.contentWindow?.postMessage({ source: "nest-home", type: "status" }, location.origin)}
         title="NEST hydrogel opening animation" tabIndex={-1} aria-hidden="true" />
       <div className="home-intro__landing" aria-hidden={!finished}>
         <div className="home-intro__brand" aria-label="NEST">

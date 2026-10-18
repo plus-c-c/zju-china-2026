@@ -204,3 +204,18 @@ body.home-intro-open {
   border: 0;
   pointer-events: none;
 }
+
+/* Reveal over the stationary final bone frame, with no layout or scale change. */
+.home-intro__brand,
+.home-intro--ready .home-intro__brand {
+  transform: translateY(var(--intro-brand-y));
+}
+.home-intro--ready .home-intro__brand,
+.home-intro--ready .home-intro__tagline,
+.home-intro--ready .home-intro__next {
+  animation-name: home-intro-fade-in;
+  animation-duration: 1400ms;
+  animation-delay: 0ms;
+  animation-timing-function: ease;
+}
+@keyframes home-intro-fade-in { from { opacity: 0; } to { opacity: 1; } }

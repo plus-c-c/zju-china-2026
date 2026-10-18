@@ -668,3 +668,29 @@
     translate: -5.505px -8.415px;
   }
 }
+
+/* Separate the reverse face into title, copy and illustration bands. */
+.limitations-page .limitations-card .limitations-layer--blue .limitations-card-body {
+  top: 224px;
+  width: 306px;
+  font-size: 21px;
+  line-height: 29px;
+  text-align: center;
+}
+.limitations-art--blue-back-organism {
+  left: calc(50% - 100px);
+  top: 372px;
+  width: 200px;
+  height: 174px;
+  transform: none;
+}
+.limitations-art--blue-back-selp {
+  left: calc(50% - 110px);
+  top: 409px;
+  width: 220px;
+  height: 125px;
+  transform: rotate(-18deg);
+}
+.limitations-art--blue-back-gag { top: 418px; }
+.limitations-art--blue-back-liposome { top: 435px; height: 110px; }
+.limitations-art--blue-back-magnetic { top: 420px; }
