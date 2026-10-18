@@ -2,6 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "katex/dist/katex.min.css";
 import "./App.css";
 import "../../components/table.css";
+import "../../components/figureCaption.css";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { getPathMapping, stringToSlug } from "../../utils";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
@@ -19,11 +20,14 @@ import { waitForHomeAssets } from "../../utils/homeAssetReadiness";
 const MINIMUM_LOADING_TIME = 600;
 const MAXIMUM_LOADING_TIME = 8000;
 
+const SHARED_WETLAB_PAGES = ["/experiments", "/results"];
+
 const App = () => {
   const location = useLocation();
   const previousScrollPath = useRef<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [loadingFailed, setLoadingFailed] = useState(false);
+  const loadedWetlabPages = useRef<Set<string>>(new Set());
   const [homeIntroReady, setHomeIntroReady] = useState(false);
   const [isMobileNavigation, setIsMobileNavigation] = useState(
     () => window.matchMedia("(max-width: 991.98px)").matches,
@@ -88,6 +92,18 @@ const App = () => {
   useLayoutEffect(() => {
     let cancelled = false;
     const startedAt = performance.now();
+    const isSharedWetlabPage = SHARED_WETLAB_PAGES.includes(currentPath);
+
+    // Experiments and Results stay loaded together: entering either page keeps
+    // both available, so switching between them skips the loading screen.
+    if (
+      isSharedWetlabPage &&
+      SHARED_WETLAB_PAGES.every((path) => loadedWetlabPages.current.has(path))
+    ) {
+      setIsLoading(false);
+      return;
+    }
+
     setIsLoading(true);
     setLoadingFailed(false);
     if (currentPath === "/") {
@@ -133,7 +149,13 @@ const App = () => {
       );
       await new Promise((resolve) => window.setTimeout(resolve, remainingTime));
 
-      if (!cancelled) setIsLoading(false);
+      if (!cancelled) {
+        if (isSharedWetlabPage)
+          SHARED_WETLAB_PAGES.forEach((path) =>
+            loadedWetlabPages.current.add(path),
+          );
+        setIsLoading(false);
+      }
     };
 
     void waitForPageAssets().catch(() => {
@@ -188,6 +210,7 @@ const App = () => {
                         key={path}
                         title={title || ""}
                         hideToc={path === "/engineering"}
+                        tocSide={path === "/results" ? "right" : "left"}
                       >
                         <Component />
                       </Toc>

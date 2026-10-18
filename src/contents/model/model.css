@@ -1,11 +1,3 @@
-/* Keep figure and video captions centered across all Model modules. */
-.m1-figure + p:has(> em:only-child),
-.m3-figure + p:has(> em:only-child),
-.m1-slide__content > div:has(iframe) + p:has(> em:only-child),
-.protein-caption p {
-  text-align: center;
-}
-
 /* Rational design of SnoopLigase2 — pinned protein stepper (Model module 2).
    Layout: structure figure + caption + Previous/Next on the left, the
    design text on the right; the page scroll advances one protein per step
@@ -212,16 +204,6 @@
   display: block;
   max-width: none;
   height: auto;
-}
-
-.protein-caption {
-  max-width: 560px;
-  margin: 0.7rem 0 0;
-  text-align: center;
-  /* Same font size as the description text in the card (.protein-text p). */
-  font-size: 1.15rem;
-  line-height: 1.6;
-  color: #5c6f96;
 }
 
 .protein-caption p {
@@ -472,7 +454,14 @@
 }
 
 /* Hidden TOC anchors: one per section heading, placed at its protein's
-   scroll position so the TOC lists every heading and a click scrolls to it. */
+   scroll position so the TOC lists every heading and a click scrolls to it.
+   margin: 0 !important beats the .page-article h3 !important heading spacing:
+   the inherited 48px would offset every anchor and make the highlight lag the
+   figure switching. */
+.page-article .protein-anchor {
+  margin: 0 !important;
+}
+
 .protein-anchor {
   top: calc(var(--protein-step) * 40dvh);
 }

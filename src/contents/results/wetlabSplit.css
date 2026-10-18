@@ -1,0 +1,348 @@
+.wetlab-split {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  padding: 8px 0 56px;
+  color: #263b58;
+  overflow-wrap: anywhere;
+}
+
+.page-article .wetlab-split {
+  font-size: 18px;
+}
+
+.page-article .wetlab-split :where(p, li) {
+  font-size: inherit;
+  line-height: 1.7;
+}
+
+.page-article .wetlab-split :is(h2, h3, h4, h5, h6) {
+  line-height: 1.35;
+  text-wrap: pretty;
+  /* Landings and the TOC/jump activation line sit on the first text line of
+     the page (one 18px/1.7 body line below the top edge), not on line 0. */
+  scroll-margin-top: 31px;
+}
+
+.page-article .wetlab-split h2 {
+  font-size: 1.625rem;
+  font-weight: 700;
+}
+
+.page-article .wetlab-split h3 {
+  font-size: 1.375rem;
+  font-weight: 600;
+}
+
+.page-article .wetlab-split h4 {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.page-article .wetlab-split h5 {
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.page-article .wetlab-split h6 {
+  font-size: 1.0625rem;
+  font-weight: 600;
+}
+
+.page-article .wetlab-split h3#wetlab-scaffold-02 {
+  font-size: 1.25rem;
+}
+
+.wetlab-split > div > :first-child {
+  margin-top: 0;
+}
+
+.wetlab-split .section-heading {
+  margin: 36px 0 20px;
+}
+
+.wetlab-split .section-heading > :last-child {
+  margin-bottom: 0;
+}
+
+.wetlab-split .section-heading > * + * {
+  margin-top: 16px;
+}
+
+/* Paired blocks keep their label strip but show a single column. */
+.wetlab-split .pair {
+  margin: 20px 0;
+  overflow: hidden;
+  border: 1px solid #cfdbeb;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.page-article .wetlab-split .pair-label {
+  margin: 0;
+  padding: 14px 20px;
+  border-bottom: 1px solid #cfdbeb;
+  background: #edf3fc;
+  color: #2e527f;
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.wetlab-split .columns {
+  display: block;
+}
+
+.wetlab-split .column {
+  min-width: 0;
+  padding: 20px;
+}
+
+.wetlab-split .source-block p {
+  margin: 0 0 16px;
+}
+
+.wetlab-split .figure-block {
+  margin: 16px 0 8px;
+}
+
+/* Paired figures sit side by side. The images share one grid row and are
+   bottom-aligned (their x-axes line up); the captions share the next row
+   and start on the same line. The images shrink to the column width. */
+.wetlab-split .figure-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px 20px;
+  margin: 16px 0;
+}
+
+.wetlab-split .figure-row > .figure-unit {
+  display: grid;
+  align-content: end;
+  min-width: 0;
+}
+
+.wetlab-split .figure-row > .figure-unit--caption {
+  align-content: start;
+}
+
+.wetlab-split .figure-row .figure-block {
+  margin: 0;
+}
+
+/* The paired charts are aligned by their bottom x-axis, not by the image's
+   bottom edge: each image whose axis sits closer to its bottom edge gets a
+   bottom margin equal to the gap difference, so both axes land on one line.
+   Measured from the rendered figures (gap below each axis, % of the image
+   width): 1.2.11 18.32 / 1.2.12 15.35, 1.2.13A 16.34 / 1.2.14A 12.38,
+   1.2.13B 9.28 / 1.2.14B 12.38. */
+.wetlab-split img[src$="/01-skeleton/21.avif"] {
+  margin-bottom: 2.97%;
+}
+
+.wetlab-split img[src$="/01-skeleton/25.avif"] {
+  margin-bottom: 3.96%;
+}
+
+.wetlab-split img[src$="/01-skeleton/23.avif"] {
+  margin-bottom: 3.1%;
+}
+
+@media (max-width: 767.98px) {
+  .wetlab-split .figure-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.wetlab-split .figure-block p {
+  margin: 0;
+}
+
+.wetlab-split .figure-caption strong {
+  font-weight: 600;
+}
+
+.wetlab-split .figure-link {
+  display: block;
+  margin: 0;
+  padding: 8px;
+  border-radius: 4px;
+  background: #fff;
+}
+
+.wetlab-split img {
+  display: block;
+  width: auto;
+  /* Every figure is capped so the images stay clearly smaller than the text
+     column (and the culture-plate photos all match each other); a few
+     artworks whose labels would still outgrow the caption get a tighter
+     cap below. */
+  max-width: min(100%, 560px);
+  height: auto;
+  margin: 0 auto;
+  object-fit: contain;
+  /* The figures sit on the white card; transparent PNG/AVIF assets (plasmid
+     maps, schematics) must show the white page, not a tinted loading tone. */
+  background: #fff;
+}
+
+/* Tighter caps where the artwork's own text sets the scale (largest label
+   renders at roughly the caption size or a little below). */
+.wetlab-split img[src$="/01-skeleton/12.avif"] {
+  max-width: 531px;
+}
+
+.wetlab-split img[src$="/01-skeleton/14.avif"] {
+  max-width: 490px;
+}
+
+.wetlab-split img[src$="/02/anisotropy-v2-02-008d394b.avif"] {
+  max-width: 440px;
+}
+
+.wetlab-split img[src$="/02/anisotropy-v2-04-5bef46b7.avif"] {
+  max-width: 530px;
+}
+
+.wetlab-split img[src$="/02/anisotropy-v2-07-b6c92224.avif"] {
+  max-width: 530px;
+}
+
+/* Figure 5.2.2: the gel is small enough that a tighter cap still reads. */
+.wetlab-split img[src$="/03/09.avif"] {
+  max-width: 420px;
+}
+
+/* Whitening in progress: show nothing rather than the original sheet (a
+   failed pass keeps the original visible as a fallback). The rule is global
+   because the jump button is portalled outside the article. */
+img[data-whiten][data-whiten-state="pending"] {
+  opacity: 0;
+}
+
+.wetlab-split .summary {
+  margin: 28px 0;
+  padding: 24px 28px;
+  border-left: 4px solid #8caad0;
+  border-radius: 8px;
+  background: #e7effa;
+}
+
+.page-article .wetlab-split .summary h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.wetlab-split .added {
+  padding: 12px;
+  background: #f6f9fd;
+}
+
+.wetlab-split .table-scroll {
+  overflow-x: auto;
+}
+
+.wetlab-split table {
+  width: 100%;
+  margin: 16px 0;
+  border-collapse: collapse;
+  font-size: 1rem;
+  line-height: 1.5;
+  min-width: 540px;
+}
+
+.wetlab-split td,
+.wetlab-split th {
+  padding: 10px;
+  border: 1px solid #cad8ea;
+  vertical-align: top;
+}
+
+.wetlab-split thead {
+  background: #edf3fb;
+}
+
+.wetlab-split table caption {
+  caption-side: top;
+  color: #4d617c;
+}
+
+.wetlab-split .wetlab-results__table-notes {
+  margin: 10px 0 16px;
+  font-size: 0.875rem;
+}
+
+.wetlab-split .wetlab-results__table-notes p {
+  margin-bottom: 6px;
+}
+
+.wetlab-split .wetlab-results__video {
+  margin: 20px 0;
+}
+
+.wetlab-split .wetlab-results__video iframe {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  background: #f0f4f9;
+}
+
+.wetlab-split .wetlab-results__video figcaption {
+  margin-top: 10px;
+}
+
+.wetlab-split .wetlab-results__video-pending {
+  padding: 14px;
+  border: 1px dashed #c7d6ea;
+  border-radius: 10px;
+  background: #f8fbff;
+}
+
+.wetlab-split .source-math--display {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  padding: 8px 0;
+}
+
+.wetlab-split .source-math .katex {
+  font-size: 1em;
+}
+
+.wetlab-split .source-math--display .katex-display {
+  margin: 8px 0;
+  text-align: left;
+}
+
+.wetlab-split .badge {
+  display: inline-block;
+  margin-bottom: 12px;
+  padding: 4px 8px;
+  border: 1px solid #cbd9e9;
+  border-radius: 4px;
+  background: #edf3fb;
+  color: #5c6d83;
+  font-size: 0.75rem;
+  font-weight: 400;
+  white-space: normal;
+}
+
+.wetlab-split .wetlab-results__references {
+  margin-top: 28px;
+}
+
+.wetlab-split :is(a, summary):focus-visible {
+  outline: 3px solid #446fa6;
+  outline-offset: 4px;
+}
+
+@media (max-width: 575px) {
+  .page-article .wetlab-split h2 {
+    font-size: 1.5rem;
+  }
+
+  .wetlab-split .column,
+  .wetlab-split .summary {
+    padding: 18px;
+  }
+}

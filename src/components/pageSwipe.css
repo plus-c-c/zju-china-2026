@@ -1,0 +1,61 @@
+/* Cross-page swipe between the Experiments and Results pages (the animation
+   of the jump; the TOC's stage styles live in toc.css). */
+
+/* Jump navigations position the destination with instant scrolls, so nothing
+   moves after the swap (Bootstrap enables smooth scrolling globally). */
+html.wetlab-jump-scroll,
+html.wetlab-jump-scroll body {
+  scroll-behavior: auto !important;
+}
+
+/* View Transitions path: the browser holds the current frame and the already
+   rendered destination, so both glide as a single motion. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  mix-blend-mode: normal;
+}
+
+::view-transition-group(root) {
+  animation-duration: 500ms;
+  animation-timing-function: cubic-bezier(0.32, 0.72, 0.28, 1);
+}
+
+html[data-wetlab-swipe="left"]::view-transition-old(root) {
+  animation: 500ms cubic-bezier(0.32, 0.72, 0.28, 1) both wetlab-swipe-out-left;
+}
+
+html[data-wetlab-swipe="left"]::view-transition-new(root) {
+  animation: 500ms cubic-bezier(0.32, 0.72, 0.28, 1) both wetlab-swipe-in-right;
+}
+
+html[data-wetlab-swipe="right"]::view-transition-old(root) {
+  animation: 500ms cubic-bezier(0.32, 0.72, 0.28, 1) both wetlab-swipe-out-right;
+}
+
+html[data-wetlab-swipe="right"]::view-transition-new(root) {
+  animation: 500ms cubic-bezier(0.32, 0.72, 0.28, 1) both wetlab-swipe-in-left;
+}
+
+@keyframes wetlab-swipe-out-left {
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes wetlab-swipe-in-right {
+  from {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes wetlab-swipe-out-right {
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes wetlab-swipe-in-left {
+  from {
+    transform: translateX(-100%);
+  }
+}
