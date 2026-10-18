@@ -512,12 +512,18 @@ export function Description() {
           <DescriptionFigure
             number={5}
             title="Current Treatment Pathways for Cartilage Damage"
-            alt="Collage of current treatment pathways for cartilage damage"
+            src={`${IMAGE_ROOT}/description5-v3.avif`}
+            alt="Cartilage repair procedures on the left, physiotherapy at the upper right, and illustrations of damaged knee cartilage and an artificial knee joint side by side at the lower right"
           >
-            Cartilage repair procedures including osteochondral transplantation,
-            microfracture, ACI, and MACI; a rehabilitation setting; and an
-            illustration of joint replacement.
-            <Citation refs={[11]} />
+            Cartilage repair procedures including mosaicplasty, microfracture,
+            ACI, and MACI (left); physiotherapy (upper right); and knee
+            replacement (lower right). The lower-right pair contrasts damaged
+            cartilage in osteoarthritis with an artificial knee joint; these are
+            separate illustrations, not matched images of a patient before and
+            after surgery. The panels do not show comparative clinical outcomes.
+            The lower-right illustrations are by BruceBlaus, adapted under CC
+            BY-SA 4.0. Full credits and adaptation details are provided in the{" "}
+            <a href="#description-figure-5-sources">image sources below</a>.
           </DescriptionFigure>
           <p>
             Existing treatments have helped many patients relieve pain and
@@ -816,13 +822,18 @@ export function Description() {
                 </a>
               </p>
             </section>
-            <section>
+            <section id="description-figure-5-sources">
               <h3>Figure 5 | Current Treatment Pathways</h3>
               <p>
                 Left: Medvedeva et al. (2018), Figure 3, CC BY 4.0. Upper right:
-                Funkcinės Terapijos Centras / Pexels, photo 20860595. Lower
-                right: AAOS OrthoInfo joint replacement illustration. Confirm
-                permission for the AAOS image or replace it before publication.
+                Funkcinės Terapijos Centras / Pexels, photo 20860595, under the
+                Pexels License. Lower right: “Osteoarthritis” and “Knee
+                Replacement” by BruceBlaus (2015), via Wikimedia Commons, CC
+                BY-SA 4.0. ZJU-China cropped the illustrations, resized them
+                without changing their aspect ratios, and added labels. The
+                adapted lower-right panel is licensed under CC BY-SA 4.0; the
+                other panels retain their respective licenses. The composite
+                layout was arranged by ZJU-China.
               </p>
               <p className="description-credit-links">
                 <a href="https://doi.org/10.3390/ijms19082366">
@@ -831,9 +842,19 @@ export function Description() {
                 <a href="https://www.pexels.com/photo/20860595/">
                   Rehabilitation photo
                 </a>
-                <a href="https://orthoinfo.aaos.org/en/treatment/total-knee-replacement/">
-                  AAOS source
+                <a href="https://commons.wikimedia.org/wiki/File:Osteoarthritis.png">
+                  BruceBlaus: Osteoarthritis
                 </a>
+                <a href="https://commons.wikimedia.org/wiki/File:Knee_Replacement.png">
+                  BruceBlaus: Knee Replacement
+                </a>
+                <a href="https://creativecommons.org/licenses/by-sa/4.0/">
+                  CC BY-SA 4.0 (lower-right panel)
+                </a>
+                <a href="https://creativecommons.org/licenses/by/4.0/">
+                  CC BY 4.0
+                </a>
+                <a href="https://www.pexels.com/license/">Pexels License</a>
               </p>
             </section>
             <section>

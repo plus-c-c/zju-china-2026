@@ -88,7 +88,8 @@ export function Footer({ story = false }: { story?: boolean }) {
 
       <div className="footer__legal" data-node-id="192:316">
         <p>
-          © 2026 - Content on this site is licensed under a{" "}
+          © 2026 - Except where otherwise noted, content on this site is
+          licensed under a{" "}
           <a href="https://creativecommons.org/licenses/by/4.0/" rel="license">
             Creative Commons Attribution 4.0 International license
           </a>
