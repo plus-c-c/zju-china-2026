@@ -728,15 +728,99 @@
 
 @media (max-width: 700px) {
   .selp-pipeline__canvas {
-    width: 136.6%;
-    margin-left: -18.3%;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    overflow: hidden;
+  }
+
+  .selp-pipeline__stage,
+  .selp-pipeline__stage--gag,
+  .selp-pipeline__stage--mitochondrial {
+    width: 100%;
+    height: clamp(470px, 140vw, 560px);
+    margin-top: 0;
+    aspect-ratio: auto;
+  }
+
+  .selp-pipeline__card h2 {
+    left: 7%;
+    top: 7%;
+    width: 86%;
+    font-size: clamp(20px, 5.6vw, 24px);
+    line-height: 1.15;
+  }
+
+  .selp-pipeline__card p {
+    left: 7%;
+    top: 23%;
+    width: 86%;
+    font-size: clamp(13px, 3.6vw, 15px);
+    line-height: 1.35;
+  }
+
+  .selp-pipeline__stage--magnetic .selp-pipeline__card h2,
+  .selp-pipeline__stage--gag .selp-pipeline__card h2,
+  .selp-pipeline__stage--mitochondrial .selp-pipeline__card h2 {
+    left: 7%;
+    top: 7%;
+    line-height: 1.15;
+  }
+
+  .selp-pipeline__stage--magnetic .selp-pipeline__card p,
+  .selp-pipeline__stage--gag .selp-pipeline__card p,
+  .selp-pipeline__stage--mitochondrial .selp-pipeline__card p {
+    left: 7%;
+    top: 23%;
+    width: 86%;
+    line-height: 1.35;
+  }
+
+  .selp-pipeline__connector,
+  .selp-pipeline__art--purple-flask,
+  .selp-pipeline__art--purple-vial,
+  .selp-pipeline__art--pink-vial,
+  .selp-pipeline__art--gag-reactor,
+  .selp-pipeline__art--mito-reactor,
+  .selp-pipeline__art--yellow-vial {
+    display: none;
+  }
+
+  .selp-pipeline__art--magnetic-network {
+    left: 10%;
+    top: 42%;
+    width: 80%;
+    height: 32%;
+  }
+
+  .selp-pipeline__art--gag-chain {
+    left: 6%;
+    top: 45%;
+    width: 88%;
+    height: 30%;
+  }
+
+  .selp-pipeline__art--liposome {
+    left: 25%;
+    top: 49%;
+    width: 50%;
+    height: 28%;
+  }
+
+  .selp-pipeline__pill {
+    left: 23% !important;
+    top: 82% !important;
+    width: 54%;
+    height: 56px !important;
+    font-size: 14px;
   }
 
   .selp-after-pipeline {
-    width: 73.21%;
+    width: 100%;
     min-height: auto;
-    margin-left: 13.4%;
-    padding: 46px 7% 88px;
+    margin-left: 0;
+    padding: 46px 20px 88px;
+    box-sizing: border-box;
   }
 
   .selp-shortcuts {

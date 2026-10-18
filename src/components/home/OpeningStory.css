@@ -600,7 +600,21 @@
     font-size: 46px;
   }
   .bubble-awareness__stair-person {
-    width: min(100%, 329px);
+    width: min(62vw, 220px);
+    height: auto;
+    aspect-ratio: 329 / 364;
+  }
+  .bubble-awareness__sports-person,
+  .bubble-awareness__rehab-person {
+    justify-self: center;
+    width: min(74vw, 280px);
+    max-height: 300px;
+  }
+  .bubble-awareness__sports-person {
+    margin-top: 24px;
+  }
+  .bubble-awareness__rehab-person {
+    margin-top: 22px;
   }
   .bubble-awareness__map-card {
     min-height: 390px;
