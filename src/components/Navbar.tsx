@@ -335,12 +335,6 @@ export function Navbar({ introEntrance = false }: { introEntrance?: boolean }) {
                                     </span>
                                   )}
                                 </span>
-                                <span
-                                  className="nest-tile-arrow"
-                                  aria-hidden="true"
-                                >
-                                  ↗
-                                </span>
                               </Link>
                             </li>
                           );
