@@ -63,17 +63,6 @@ function MemberCard({ member, index }: { member: Member; index: number }) {
 export function Members() {
   return (
     <div className="members-page">
-      <figure className="members-photo">
-        <img
-          src="https://static.igem.wiki/teams/6102/wiki/images/member/team.avif"
-          alt="ZJU-China 2026 team gathered together outdoors"
-          width={3000}
-          height={2000}
-          decoding="async"
-        />
-        <figcaption>ZJU-China · iGEM 2026</figcaption>
-      </figure>
-
       {[
         { id: "leaders", title: "Student Leaders" },
         { id: "students", title: "Students" },

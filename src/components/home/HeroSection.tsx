@@ -1,5 +1,4 @@
 const assetPathPrefix = "https://static.igem.wiki/teams/6102/wiki/images/home";
-import { WaterSurface } from "./WaterSurface";
 
 const imgImageNestBlueBirdMascot = `${assetPathPrefix}/58a94.avif`;
 const imgEllipse1 = `${assetPathPrefix}/7d0c2.svg`;
@@ -13,7 +12,6 @@ export default function HeroSection() {
     >
       <div aria-hidden className="home-layer-2">
         <div className="home-layer-3" />
-        <WaterSurface />
       </div>
       <p className="home-layer-5" data-node-id="211:297">
         NEST
