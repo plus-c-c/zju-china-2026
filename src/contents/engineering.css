@@ -547,3 +547,13 @@
     margin-top: 0.2rem;
   }
 }
+
+/* Follow the shorter mobile header without vertically centring the first content. */
+@media (max-width: 600px) {
+  .eng-pin,
+  .eng-static {
+    justify-content: flex-start;
+    padding-top: 12px;
+  }
+  .eng-static { min-height: 0; }
+}

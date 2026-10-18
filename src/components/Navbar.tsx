@@ -1,31 +1,61 @@
 import { Link, useLocation } from "react-router-dom";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type HTMLAttributes } from "react";
 import Pages from "../pages.ts";
 import { navigationIcon, pageDetails } from "./navigationIcons";
 import "./Navbar.css";
 
 const desktopNavigation = () => window.matchMedia("(min-width: 992px)").matches;
 
+function NavigationPanel({
+  isOpen,
+  allowExit,
+  children,
+  ...props
+}: HTMLAttributes<HTMLDivElement> & { isOpen: boolean; allowExit: boolean }) {
+  const [present, setPresent] = useState(isOpen);
+  useEffect(() => {
+    if (isOpen) {
+      setPresent(true);
+      return;
+    }
+    if (!allowExit) {
+      setPresent(false);
+      return;
+    }
+    const timer = window.setTimeout(() => setPresent(false), 120);
+    return () => window.clearTimeout(timer);
+  }, [isOpen, allowExit]);
+  return (
+    <div
+      {...props}
+      hidden={!isOpen && (!present || !allowExit)}
+      inert={!isOpen}
+      aria-hidden={!isOpen}
+      data-state={isOpen ? "open" : "closing"}
+    >
+      {children}
+    </div>
+  );
+}
+
 export function Navbar({ introEntrance = false }: { introEntrance?: boolean }) {
   const location = useLocation();
   const navRef = useRef<HTMLElement>(null);
-  const leaveTimer = useRef<number | undefined>(undefined);
   const focusFrame = useRef(0);
   const pointerInNavigation = useRef(false);
   const [expanded, setExpanded] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const openMenuRef = useRef<string | null>(null);
+  openMenuRef.current = openDropdown;
   const [navbarVisible, setNavbarVisible] = useState(true);
   const [introPlaying, setIntroPlaying] = useState(introEntrance);
 
-  const cancelLeave = () => window.clearTimeout(leaveTimer.current);
   const closeMenus = () => {
-    cancelLeave();
     setOpenDropdown(null);
     setExpanded(false);
   };
 
   useEffect(() => {
-    window.clearTimeout(leaveTimer.current);
     setOpenDropdown(null);
     setExpanded(false);
     let frame = 0;
@@ -35,10 +65,13 @@ export function Navbar({ introEntrance = false }: { introEntrance?: boolean }) {
       frame = 0;
       const atTop = window.scrollY < 10;
       setNavbarVisible(
-        atTop || !desktopNavigation() || pointerInNavigation.current,
+        atTop ||
+          !desktopNavigation() ||
+          pointerInNavigation.current ||
+          Boolean(openMenuRef.current),
       );
 
-      if (!atTop && !pointerInNavigation.current) {
+      if (!atTop && !pointerInNavigation.current && !openMenuRef.current) {
         setOpenDropdown(null);
         setExpanded(false);
         setIntroPlaying(false);
@@ -75,7 +108,6 @@ export function Navbar({ introEntrance = false }: { introEntrance?: boolean }) {
       window.clearTimeout(hideTimer);
       window.cancelAnimationFrame(frame);
       window.cancelAnimationFrame(focusFrame.current);
-      window.clearTimeout(leaveTimer.current);
     };
   }, [location.pathname]);
 
@@ -121,18 +153,6 @@ export function Navbar({ introEntrance = false }: { introEntrance?: boolean }) {
       aria-label="Main navigation"
       aria-hidden={navbarHidden}
       inert={navbarHidden}
-      onPointerEnter={cancelLeave}
-      onPointerLeave={(event) => {
-        if (event.pointerType === "mouse" && desktopNavigation()) {
-          cancelLeave();
-          leaveTimer.current = window.setTimeout(() => {
-            const panel = openDropdown
-              ? document.getElementById(openDropdown)
-              : null;
-            if (!panel?.contains(document.activeElement)) setOpenDropdown(null);
-          }, 180);
-        }
-      }}
       onBlur={(event) => {
         // Switching panels can hide the focused link and send focus to the body.
         // Only a real focus destination outside this navigation should close it.
@@ -161,7 +181,6 @@ export function Navbar({ introEntrance = false }: { introEntrance?: boolean }) {
           }
         }
         if (event.key !== "Escape") return;
-        cancelLeave();
         event.preventDefault();
         if (openDropdown) {
           document.getElementById(`${openDropdown}-trigger`)?.focus();
@@ -238,7 +257,6 @@ export function Navbar({ introEntrance = false }: { introEntrance?: boolean }) {
                       aria-expanded={isOpen}
                       aria-controls={dropdownId}
                       onClick={() => {
-                        cancelLeave();
                         setOpenDropdown(isOpen ? null : dropdownId);
                       }}
                       onKeyDown={(event) => {
@@ -248,7 +266,6 @@ export function Navbar({ introEntrance = false }: { introEntrance?: boolean }) {
                         )
                           return;
                         event.preventDefault();
-                        cancelLeave();
                         setOpenDropdown(dropdownId);
                         const focusLast = event.key === "ArrowUp";
                         window.cancelAnimationFrame(focusFrame.current);
@@ -267,11 +284,12 @@ export function Navbar({ introEntrance = false }: { introEntrance?: boolean }) {
                       <span className="nest-nav-chevron" aria-hidden="true" />
                     </button>
 
-                    <div
+                    <NavigationPanel
+                      isOpen={isOpen}
+                      allowExit={openDropdown === null}
                       id={dropdownId}
                       className="nest-mega-panel"
                       aria-labelledby={`${dropdownId}-trigger`}
-                      hidden={!isOpen}
                       onKeyDown={(event) => {
                         if (
                           !["ArrowDown", "ArrowUp", "Home", "End"].includes(
@@ -340,7 +358,7 @@ export function Navbar({ introEntrance = false }: { introEntrance?: boolean }) {
                           );
                         })}
                       </ul>
-                    </div>
+                    </NavigationPanel>
                   </li>
                 );
               }
@@ -349,10 +367,6 @@ export function Navbar({ introEntrance = false }: { introEntrance?: boolean }) {
                 return (
                   <li
                     key={item.path}
-                    onPointerEnter={(event) => {
-                      if (event.pointerType === "mouse" && desktopNavigation())
-                        setOpenDropdown(null);
-                    }}
                   >
                     <Link
                       className={`nest-nav-trigger${location.pathname === item.path ? " is-active" : ""}`}
