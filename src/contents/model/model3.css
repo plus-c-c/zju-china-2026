@@ -13,6 +13,18 @@
   top: calc(var(--m3-seg) * 45vh);
 }
 
+/* 抵消 .page-article h3 的 !important 标题间距（48px），否则锚点整体下移、
+   TOC 高亮滞后于卡组切换。 */
+.page-article .m3-anchor {
+  margin: 0 !important;
+}
+
+/* 第一步的锚点：TOC 恰好在该步粘滞钉住的那一刻高亮（stage 吸顶 84px，
+   激活阈值为 0.2 视口高）。 */
+.m3-anchor:first-of-type {
+  top: calc(20dvh - 84px);
+}
+
 .m3-deck__stage {
   position: sticky;
   top: 84px;
@@ -318,6 +330,10 @@
 
   .m3-anchor {
     top: calc(var(--m3-seg) * 52vh);
+  }
+
+  .m3-anchor:first-of-type {
+    top: calc(20dvh - 8px);
   }
 
   .m3-deck__stage {

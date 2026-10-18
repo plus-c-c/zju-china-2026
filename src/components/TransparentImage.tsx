@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, type CSSProperties } from "react";
+import { keyOutWhite } from "./whitenImages";
 
 /**
  * General white-background removal for static images.
@@ -7,7 +8,8 @@ import { useEffect, useRef, useState, type CSSProperties } from "react";
  * files on static.igem.wiki stay untouched: the image is fetched unchanged
  * (the CDN sends `access-control-allow-origin: *`, so the canvas stays
  * readable), drawn onto a canvas, and near-white pixels are turned
- * transparent before the result is painted.
+ * transparent before the result is painted. The shared pixel pass and the
+ * raw-HTML variant live in `whitenImages.ts`.
  *
  * Drop-in usage — replace `<img …>` with `<TransparentImage …>`; all common
  * `<img>` props are supported:
@@ -55,24 +57,6 @@ interface TransparentImageProps {
   whiteThreshold?: number;
   /** Pixels at or below this value stay fully opaque (a ramp in between). */
   opaqueThreshold?: number;
-}
-
-/** Shared near-white → transparent pass over an RGBA pixel buffer. */
-function keyOutWhite(
-  data: Uint8ClampedArray,
-  whiteThreshold: number,
-  opaqueThreshold: number,
-): void {
-  const span = Math.max(1, whiteThreshold - opaqueThreshold);
-  for (let i = 0; i < data.length; i += 4) {
-    const min = Math.min(data[i], data[i + 1], data[i + 2]);
-    if (min >= whiteThreshold) {
-      data[i + 3] = 0;
-    } else if (min > opaqueThreshold) {
-      const alpha = ((whiteThreshold - min) * 255) / span;
-      if (alpha < data[i + 3]) data[i + 3] = alpha;
-    }
-  }
 }
 
 export function TransparentImage({

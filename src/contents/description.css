@@ -206,10 +206,6 @@
 .page-article .description-article > .article-figure > .article-figure__image {
   max-width: 780px;
 }
-.page-article .description-article .article-figure__caption {
-  max-width: none;
-  width: 100%;
-}
 .page-article .description-article .article-figure__image {
   max-height: 560px;
   object-fit: contain;
