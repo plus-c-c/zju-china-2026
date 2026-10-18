@@ -48,7 +48,7 @@ export const m1Overview: M1Block[] = [
   },
   {
     t: "figure",
-    src: "https://static.igem.wiki/teams/6102/wiki/images/model/selp/1.avif",
+    src: "https://static.igem.wiki/teams/6102/wiki/images/model/selp/selp-workflow-transparent-20261018.avif",
     alt: "Workflow for SELP hydrogel modeling",
     width: 840,
   },
