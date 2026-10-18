@@ -363,6 +363,7 @@ export function FlappyInjection() {
               src={`${ASSETS}/home-05-solution-syringe.avif`}
               alt=""
             />
+            <div className="inject__syringe-needle" aria-hidden="true" />
           </div>
         </div>
         <div className="inject__bone">
