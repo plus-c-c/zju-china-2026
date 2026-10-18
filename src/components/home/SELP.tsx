@@ -1,11 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import "./SELP.css";
 
 const STATIC_HOME = "https://static.igem.wiki/teams/6102/wiki/images/home";
-const STATIC_GIF = "https://static.igem.wiki/teams/6102/wiki/gif";
 
-function DashedArrow({ className }: { className: string }) {
+export function DashedArrow({ className }: { className: string }) {
   return (
     <svg
       aria-hidden="true"
@@ -52,21 +51,21 @@ export function SelpAndSnoopLigaseScene() {
           </p>
           <Link
             className="nest-solution-button nest-solution-button--selp"
-            to="/design#1-programmable-material-foundation-the-selp-scaffold"
+            to="/design"
           >
             learn more
           </Link>
         </article>
 
         <article className="nest-solution-card nest-solution-card--ligase">
-          <h2 className="nest-solution-ligase-title">Linker System</h2>
+          <h2 className="nest-solution-ligase-title">Link system</h2>
           <p className="nest-solution-ligase-copy">
-            An engineered linker system enables modular functionalization of
+            Engineered enzymatic ligation enables modular functionalization of
             SELP for targeted cartilage repair.
           </p>
           <Link
             className="nest-solution-button nest-solution-button--ligase"
-            to="/design#2-standardized-interface-decoupling-functional-assembly-from-scaffold-design"
+            to="/engineering"
           >
             learn more
           </Link>
@@ -77,7 +76,7 @@ export function SelpAndSnoopLigaseScene() {
           className="nest-solution-selp-chain"
           decoding="async"
           loading="lazy"
-          src={`https://static.igem.wiki/teams/6102/wiki/gif/selp-chain-gentle-wobble.webp`}
+          src={`${STATIC_HOME}/home-09-pipeline-chain.avif`}
         />
         <DashedArrow className="nest-solution-arrow nest-solution-arrow--upper" />
         <DashedArrow className="nest-solution-arrow nest-solution-arrow--lower" />
@@ -87,7 +86,15 @@ export function SelpAndSnoopLigaseScene() {
             alt=""
             decoding="async"
             loading="lazy"
-            src={`${STATIC_GIF}/last-gif.webp`}
+            src={`${STATIC_HOME}/home-07-card-art-02.avif`}
+          />
+        </div>
+        <div className="nest-solution-ligase-connector" aria-hidden="true">
+          <img
+            alt=""
+            decoding="async"
+            loading="lazy"
+            src={`${STATIC_HOME}/home-07-card-art-02.avif`}
           />
         </div>
       </div>
@@ -140,86 +147,110 @@ export function OsteoarthritisTargetScene() {
 
 const PIPELINE_ASSETS = "https://static.igem.wiki/teams/6102/wiki/images/home";
 
-function PipelinePill({ label, to }: { label: string; to: string }) {
-  return (
-    <Link className="selp-pipeline__pill" to={to}>
-      {label}
-    </Link>
-  );
-}
-
-function LoopingPipelineGif({
-  alt,
-  className,
-  duration,
-  src,
-}: {
-  alt: string;
-  className: string;
-  duration: number;
-  src: string;
-}) {
-  const [cycle, setCycle] = useState(0);
-
-  useEffect(() => {
-    const timer = window.setInterval(
-      () => setCycle((current) => (current + 1) % 2),
-      duration,
-    );
-    return () => window.clearInterval(timer);
-  }, [duration]);
-
-  return (
-    <img
-      key={cycle}
-      className={className}
-      src={`${src}?cycle=${cycle}`}
-      alt={alt}
-    />
-  );
-}
-
-const quickLinks = [
-  { label: "Description", to: "/description", icon: "document" },
-  { label: "Design", to: "/design", icon: "design" },
-  {
-    label: "Proof of Concept",
-    to: "/proof-of-concept",
-    icon: "proof",
-  },
-  { label: "Model", to: "/model", icon: "model" },
-  {
-    label: "Entrepreneurship",
-    to: "/entrepreneurship",
-    icon: "business",
-  },
-  {
-    label: "Integrated Human Practice",
-    to: "/human-practices",
-    icon: "people",
-  },
-] as const;
-
-function ShortcutIcon({ type }: { type: (typeof quickLinks)[number]["icon"] }) {
-  const paths = {
-    document: <path d="M7 3h8l4 4v14H7zM15 3v5h5M10 12h6m-6 4h6m-6 4h4" />,
-    design: <path d="m4 19 4-1 10-10-3-3L5 15l-1 4Zm9-12 3 3M12 21h9M5 5l3 3" />,
-    proof: <path d="M4 5h16v15H4zM8 5V2m8 3V2M8 9h3v3H8zm5 0h3v3h-3zm-5 5h3v3H8zm5 0h3v3h-3z" />,
-    model: <path d="m12 3 8 4.5v9L12 21l-8-4.5v-9L12 3Zm0 0v9m8-4.5-8 4.5-8-4.5m8 4.5v9" />,
-    business: <path d="M4 10h16v10H4zM9 10V7h6v3M4 14h16M10 14v2h4v-2" />,
-    people: <path d="M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm7-1a3 3 0 1 0 0-6M2 21v-3c0-3 3-5 7-5s7 2 7 5v3m1-8c3 0 5 2 5 4v3" />,
-  } as const;
-
-  return (
-    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none">
-      {paths[type]}
-    </svg>
-  );
+function PipelinePill({ label }: { label: string }) {
+  return <span className="selp-pipeline__pill" aria-label={label} />;
 }
 
 export function SelpPipeline() {
+  const pipelineRef = useRef<HTMLElement>(null);
+  useEffect(() => {
+    const root = pipelineRef.current;
+    if (!root) return;
+    let frame = 0;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => {
+      frame = 0;
+      root.querySelectorAll<HTMLElement>(".selp-pipeline__stage").forEach((stage) => {
+        const bounds = stage.getBoundingClientRect();
+        const progress = reduced.matches ? 1 : Math.max(0, Math.min(1, (innerHeight * 0.8 - bounds.top) / (bounds.height * 1.25)));
+        stage.style.setProperty("--pipeline-reveal", String(progress));
+        const connector = stage.querySelector<HTMLElement>(".selp-pipeline__connector");
+        if (connector) {
+          const lineBounds = connector.getBoundingClientRect();
+          const lineProgress = reduced.matches ? 1 : Math.max(0, Math.min(1, (innerHeight * 0.8 - lineBounds.top) / Math.max(1, lineBounds.height * 1.5)));
+          connector.style.clipPath = `inset(0 0 ${(1 - lineProgress) * 100}% 0)`;
+        }
+      });
+    };
+    const schedule = () => { if (!frame) frame = requestAnimationFrame(update); };
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule);
+    update();
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", schedule);
+      window.removeEventListener("resize", schedule);
+    };
+  }, []);
+  useEffect(() => {
+    let animation = 0;
+    let target = window.scrollY;
+    let previousTime = 0;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const animate = (time: number) => {
+      const pipeline = pipelineRef.current;
+      const boundary = pipeline ? pipeline.getBoundingClientRect().top + window.scrollY - innerHeight + 2 : Infinity;
+      if (window.scrollY < boundary - 2) { stop(); return; }
+      const elapsed = previousTime ? Math.min(50, time - previousTime) : 16;
+      previousTime = time;
+      const distance = target - window.scrollY;
+      if (Math.abs(distance) < 0.8) {
+        window.scrollTo({ top: target, behavior: "instant" });
+        animation = 0;
+        previousTime = 0;
+        return;
+      }
+      const step = Math.sign(distance) * Math.min(Math.abs(distance), Math.max(1, Math.abs(distance) * (1 - Math.exp(-elapsed / 230))));
+      window.scrollTo({ top: window.scrollY + step, behavior: "instant" });
+      animation = requestAnimationFrame(animate);
+    };
+    const onWheel = (event: WheelEvent) => {
+      if (event.defaultPrevented) {
+        stop();
+        return;
+      }
+      if (event.ctrlKey || reduced.matches || Math.abs(event.deltaX) > Math.abs(event.deltaY)) return;
+      if (event.target instanceof Element && event.target.closest("nav, input, textarea, select, [role=dialog]")) return;
+      const root = pipelineRef.current;
+      if (!root) return;
+      const bounds = root.getBoundingClientRect();
+      const start = bounds.top + window.scrollY - innerHeight + 2;
+      if (window.scrollY < start || bounds.bottom <= 0) { stop(); return; }
+      if (window.scrollY <= start + 2 && event.deltaY < 0) return;
+      event.preventDefault();
+      const delta = event.deltaY * (event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? innerHeight : 1);
+      const limit = document.documentElement.scrollHeight - innerHeight;
+      if (!animation) target = window.scrollY;
+      // Small wheel impulses accumulate, then settle instead of jumping ahead.
+      const proposed = target + delta * 0.28;
+      // Cap accumulated inertia so a long wheel burst cannot skip a whole module.
+      const lead = innerHeight * 0.22;
+      target = Math.max(start, Math.min(limit, Math.max(window.scrollY - lead, Math.min(window.scrollY + lead, proposed))));
+      if (!animation) animation = requestAnimationFrame(animate);
+    };
+    const stop = () => {
+      cancelAnimationFrame(animation);
+      animation = 0;
+      previousTime = 0;
+      target = window.scrollY;
+    };
+    window.addEventListener("wheel", onWheel, { passive: false });
+    window.addEventListener("pointerdown", stop, { passive: true });
+    window.addEventListener("touchstart", stop, { passive: true });
+    window.addEventListener("keydown", stop);
+    window.addEventListener("home-story-seek", stop);
+    return () => {
+      stop();
+      window.removeEventListener("wheel", onWheel);
+      window.removeEventListener("pointerdown", stop);
+      window.removeEventListener("touchstart", stop);
+      window.removeEventListener("keydown", stop);
+      window.removeEventListener("home-story-seek", stop);
+    };
+  }, []);
   return (
     <main
+      ref={pipelineRef}
       className="selp-pipeline"
       data-node-id="985:5"
       aria-label="NEST therapeutic modules"
@@ -236,11 +267,10 @@ export function SelpPipeline() {
               form anisotropic structures, helping restore mechanical balance.
             </p>
           </article>
-          <LoopingPipelineGif
+          <img
             className="selp-pipeline__art selp-pipeline__art--magnetic-network"
-            src={`${STATIC_GIF}/magnetic-nanoparticle-chain-assembly.webp`}
+            src={`${PIPELINE_ASSETS}/pipeline-c45df.avif`}
             alt="Magnetically aligned SELP network"
-            duration={4800}
           />
           <img
             className="selp-pipeline__art selp-pipeline__art--purple-flask"
@@ -252,10 +282,7 @@ export function SelpPipeline() {
             src={`${PIPELINE_ASSETS}/pipeline-98a2f.avif`}
             alt=""
           />
-          <PipelinePill
-            label="About Anisotropy"
-            to="/design#3-2-module-1-magnetically-responsive-anisotropy-directional-load-bearing"
-          />
+          <PipelinePill label="Magnetic module details" />
           <img
             className="selp-pipeline__connector selp-pipeline__connector--first"
             src={`${PIPELINE_ASSETS}/pipeline-02-03.svg`}
@@ -275,11 +302,10 @@ export function SelpPipeline() {
               addressing matrix depletion.
             </p>
           </article>
-          <LoopingPipelineGif
+          <img
             className="selp-pipeline__art selp-pipeline__art--gag-chain"
-            src={`${STATIC_GIF}/selp-chain-original-pink-zoom.webp`}
+            src={`${PIPELINE_ASSETS}/pipeline-9996d.avif`}
             alt="GAG-binding SELP peptide chain"
-            duration={5600}
           />
           <img
             className="selp-pipeline__art selp-pipeline__art--pink-vial"
@@ -291,10 +317,7 @@ export function SelpPipeline() {
             src={`${PIPELINE_ASSETS}/pipeline-b9107.avif`}
             alt=""
           />
-          <PipelinePill
-            label="About GAG"
-            to="/design#3-3-module-2-cpc-link-n-maintaining-matrix-retention-and-renewal"
-          />
+          <PipelinePill label="GAG retention module details" />
           <img
             className="selp-pipeline__connector selp-pipeline__connector--second"
             src={`${PIPELINE_ASSETS}/pipeline-03-04.svg`}
@@ -325,50 +348,12 @@ export function SelpPipeline() {
             src={`${PIPELINE_ASSETS}/pipeline-fabb3.avif`}
             alt=""
           />
-          <LoopingPipelineGif
+          <img
             className="selp-pipeline__art selp-pipeline__art--liposome"
-            src={`${STATIC_GIF}/selp-liposome-zoom-blue-elements.webp`}
+            src={`${PIPELINE_ASSETS}/pipeline-6b438.avif`}
             alt="Mitochondria-loaded liposome"
-            duration={4640}
           />
-          <PipelinePill
-            label="About Delivery"
-            to="/design#3-4-module-3-mmp-13-responsive-mitochondrial-delivery-linking-local-response-to-cellular-support"
-          />
-        </section>
-
-        <section className="selp-after-pipeline" aria-label="Explore the NEST project">
-          <nav className="selp-shortcuts" aria-label="Project shortcuts">
-            {quickLinks.map((item) => (
-              <Link className="selp-shortcut" key={item.to} to={item.to}>
-                <ShortcutIcon type={item.icon} />
-                <span>{item.label}</span>
-              </Link>
-            ))}
-          </nav>
-
-          <section className="selp-promotion" aria-labelledby="promotion-video-title">
-            <div className="selp-promotion__heading">
-              <span aria-hidden="true" className="selp-promotion__line" />
-              <h2 id="promotion-video-title">Promotion Video</h2>
-              <span aria-hidden="true" className="selp-promotion__line" />
-            </div>
-            <div className="selp-promotion__bird" aria-hidden="true">
-              <img src="/images/home/home-heading-bird.png" alt="" />
-            </div>
-            <span className="selp-promotion__ornament selp-promotion__ornament--one" aria-hidden="true" />
-            <span className="selp-promotion__ornament selp-promotion__ornament--two" aria-hidden="true" />
-            <span className="selp-promotion__ornament selp-promotion__ornament--three" aria-hidden="true" />
-            <div className="selp-promotion__frame">
-              <iframe
-                src="https://video.igem.org/videos/embed/6626b25e-37f5-4fbc-8f49-a9897496b6b0"
-                title="ZJU-China NEST promotion video"
-                loading="lazy"
-                allow="fullscreen; picture-in-picture"
-                allowFullScreen
-              />
-            </div>
-          </section>
+          <PipelinePill label="Mitochondrial therapeutic module details" />
         </section>
       </div>
     </main>

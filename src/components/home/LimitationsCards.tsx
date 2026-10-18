@@ -1,4 +1,4 @@
-import { useState, type CSSProperties, type ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 import "./LimitationsCards.css";
 
 const LOCAL = `https://static.igem.wiki/teams/6102/wiki/images/home`;
@@ -115,7 +115,7 @@ const yellowCards: CardCopy[] = [
     ),
     frontArt: [
       {
-        name: "blue-card-3.avif",
+        name: "home-06-card-art-03-new.avif",
         className: "limitations-art--yellow-dynamic",
       },
     ],
@@ -273,7 +273,6 @@ function CardLayer({
   index,
   layer,
   setFlipped,
-  style,
 }: {
   active: boolean;
   card: CardCopy;
@@ -281,14 +280,12 @@ function CardLayer({
   index: number;
   layer: "yellow" | "blue";
   setFlipped: (value: boolean) => void;
-  style?: CSSProperties;
 }) {
   return (
     <div
       className={`limitations-layer limitations-layer--${layer}`}
       data-flipped={flipped}
       aria-hidden={!active}
-      style={style}
     >
       <span className="limitations-layer__shadow" aria-hidden="true" />
       <span className="limitations-layer__flip">
@@ -326,43 +323,18 @@ function CardLayer({
 }
 
 export function MaterialLimitations({
-  drawProgress,
+  yellowRemoved,
 }: {
-  drawProgress: number;
+  yellowRemoved: boolean;
 }) {
   const [yellowFlipped, setYellowFlipped] = useState([false, false, false]);
   const [blueFlipped, setBlueFlipped] = useState([false, false, false]);
-  const reducedMotion =
-    typeof window !== "undefined" &&
-    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const progress = reducedMotion ? 1 : drawProgress;
-  const yellowRemoved = progress >= 0.72;
-  const clamp = (value: number) => Math.min(1, Math.max(0, value));
-  const drawEase = (value: number) => value * value;
-  const pageStyle = {
-    "--limitations-title-opacity": 1 - clamp((progress - 0.5) / 0.08),
-    "--solution-title-opacity": clamp((progress - 0.62) / 0.08),
-  } as CSSProperties;
-
-  const cardMotion = (index: number) => {
-    const start = 0.22 + index * 0.12;
-    const amount = drawEase(clamp((progress - start) / 0.24));
-    const direction = index - 1;
-    return {
-      "--card-draw-x": `${direction * 84 * amount}px`,
-      "--card-draw-y": `${-820 * amount}px`,
-      "--card-draw-rotate": `${direction * 8 * amount}deg`,
-      "--card-draw-opacity": 1 - clamp((amount - 0.72) / 0.28),
-      "--solution-card-reveal": amount,
-    } as CSSProperties;
-  };
 
   return (
     <div
       className="limitations-page"
-      data-node-id="1294:2"
+      data-node-id="909:9"
       data-yellow-removed={yellowRemoved}
-      style={pageStyle}
     >
       <h2 className="limitations-page__heading limitations-page__heading--yellow">
         limitations of the materials
@@ -373,18 +345,13 @@ export function MaterialLimitations({
 
       <div className="limitations-card-row">
         {yellowCards.map((yellowCard, index) => (
-          <article className="limitations-card" key={index} style={cardMotion(index)}>
+          <article className="limitations-card" key={index}>
             <CardLayer
               active={yellowRemoved}
               card={blueCards[index]}
               flipped={blueFlipped[index]}
               index={index}
               layer="blue"
-              style={{
-                opacity: "var(--solution-card-reveal)",
-                transform:
-                  "translateY(calc((1 - var(--solution-card-reveal)) * 24px)) scale(calc(var(--card-scale) * (0.96 + var(--solution-card-reveal) * 0.04)))",
-              }}
               setFlipped={(value) =>
                 setBlueFlipped((current) =>
                   current.map((item, itemIndex) =>

@@ -1,7 +1,9 @@
-import { Link } from "react-router-dom";
+import { useStory } from "./StoryContext";
 import "./HydrogelMaterialsPage.css";
 
 export function HydrogelMaterialsPage() {
+  const { next, settled } = useStory();
+
   return (
     <div
       className="hydrogel-materials-page"
@@ -18,6 +20,7 @@ export function HydrogelMaterialsPage() {
         alt=""
         aria-hidden="true"
         className="hydrogel-materials-page__syringe"
+        data-settled={settled}
         src={`https://static.igem.wiki/teams/6102/wiki/images/home/home-05-solution-syringe.avif`}
       />
 
@@ -40,13 +43,14 @@ export function HydrogelMaterialsPage() {
         <p>filling tissue defects and supporting repair.</p>
       </div>
 
-      <Link
+      <button
         className="hydrogel-materials-page__button"
         data-node-id="912:10"
-        to="/description#hydrogels-what-barriers-remain-on-the-path-to-cartilage-repair"
+        onClick={next}
+        type="button"
       >
         <span data-node-id="912:11">learn more</span>
-      </Link>
+      </button>
     </div>
   );
 }

@@ -48,7 +48,15 @@
   display: inline-flex;
   flex-shrink: 0;
   align-items: center;
+  gap: 16px;
   text-decoration: none;
+}
+
+.nest-navbar .brand-project-logo {
+  display: block;
+  width: 66px;
+  height: 62px;
+  object-fit: contain;
 }
 
 .nest-navbar .brand-team-logo {
@@ -95,10 +103,14 @@
   transition: background-color 180ms ease;
 }
 
-.nest-nav-trigger::after {
+.nest-nav-trigger > span:first-child {
+  position: relative;
+}
+
+.nest-nav-trigger > span:first-child::after {
   content: "";
   position: absolute;
-  inset: auto 14px 17px;
+  inset: auto 0 -12px;
   height: 2px;
   border-radius: 2px;
   background: currentColor;
@@ -112,9 +124,9 @@
   background: #ffffff18;
 }
 
-.nest-nav-trigger:hover::after,
-.nest-nav-trigger[aria-expanded="true"]::after,
-.nest-nav-trigger.is-active::after {
+.nest-nav-trigger:hover > span:first-child::after,
+.nest-nav-trigger[aria-expanded="true"] > span:first-child::after,
+.nest-nav-trigger.is-active > span:first-child::after {
   transform: scaleX(1);
 }
 
@@ -140,14 +152,14 @@
   max-height: calc(100dvh - var(--nest-nav-height));
   overflow-y: auto;
   overscroll-behavior: contain;
-  padding: 14px 32px 28px;
+  padding: 10px 28px 16px;
   isolation: isolate;
   background: linear-gradient(
     180deg,
     rgb(255 255 255 / 50%) 0%,
     rgb(255 255 255 / 35%) 42%,
     rgb(255 255 255 / 18%) 72%,
-    #ffffff00 100%
+    rgb(255 255 255 / 16%) 100%
   );
   border-top: 1px solid #ffffff8c;
 
@@ -162,12 +174,12 @@
   pointer-events: none;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  mask-image: linear-gradient(#000 0%, #000d 42%, #0009 72%, #0000 100%);
+  mask-image: linear-gradient(#000 0%, #000d 42%, #0009 72%, #0007 100%);
   -webkit-mask-image: linear-gradient(
     #000 0%,
     #000d 42%,
     #0009 72%,
-    #0000 100%
+    #0007 100%
   );
 }
 
@@ -178,18 +190,18 @@
 .nest-mega-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 6px 26px;
-  max-width: 1140px;
+  gap: 2px 18px;
+  max-width: 1080px;
   margin: 0 auto;
 }
 
 .nest-nav-tile {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
   height: 100%;
-  min-height: 84px;
-  padding: 8px 10px;
+  min-height: 74px;
+  padding: 6px 8px;
   border: 1px solid transparent;
   border-radius: 12px;
   color: #173c64;
@@ -201,28 +213,17 @@
 
 .nest-tile-icon {
   display: block;
-  flex: 0 0 60px;
-  width: 60px;
-  height: 60px;
+  flex: 0 0 48px;
+  width: 48px;
+  height: 48px;
   object-fit: contain;
   transition: transform 180ms ease;
-}
-
-/* Preserve the original files while matching their visible icon sizes. */
-.nest-tile-icon[src$="/04-design.avif"] {
-  scale: 1.44;
-  translate: -12% 2%;
-}
-
-.nest-tile-icon[src$="/07-future-plan.avif"] {
-  scale: 1.44;
-  translate: 0 2%;
 }
 
 .nest-tile-copy {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 3px;
   min-width: 0;
 }
 .nest-tile-title {
@@ -324,8 +325,13 @@
     width: 86px;
     height: 36px;
   }
+  .nest-navbar .brand-project-logo {
+    width: 56px;
+    height: 54px;
+  }
   .nest-navbar .brand-link {
     height: var(--nest-nav-height);
+    gap: 12px;
   }
 
   .nest-navigation-toggle {
@@ -388,7 +394,7 @@
     border-radius: 8px;
     font-size: 17px;
   }
-  .nest-nav-trigger::after {
+  .nest-nav-trigger > span:first-child::after {
     display: none;
   }
   .nest-nav-trigger.is-active {
@@ -418,9 +424,9 @@
     padding: 8px;
   }
   .nest-tile-icon {
-    flex-basis: 48px;
-    width: 48px;
-    height: 48px;
+    flex-basis: 44px;
+    width: 44px;
+    height: 44px;
   }
   .nest-tile-title {
     font-size: 16px;

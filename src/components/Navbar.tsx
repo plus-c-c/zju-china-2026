@@ -12,6 +12,7 @@ export function Navbar({ introEntrance = false }: { introEntrance?: boolean }) {
   const leaveTimer = useRef<number | undefined>(undefined);
   const focusFrame = useRef(0);
   const hoverOpened = useRef<string | null>(null);
+  const pointerInNavigation = useRef(false);
   const [expanded, setExpanded] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [navbarVisible, setNavbarVisible] = useState(true);
@@ -30,13 +31,14 @@ export function Navbar({ introEntrance = false }: { introEntrance?: boolean }) {
     setOpenDropdown(null);
     setExpanded(false);
     let frame = 0;
+    let hideTimer: number | undefined;
 
     const updateNavbar = () => {
       frame = 0;
       const atTop = window.scrollY < 10;
-      setNavbarVisible(atTop);
+      setNavbarVisible(atTop || !desktopNavigation() || pointerInNavigation.current);
 
-      if (!atTop) {
+      if (!atTop && !pointerInNavigation.current) {
         setOpenDropdown(null);
         setExpanded(false);
         setIntroPlaying(false);
@@ -46,11 +48,28 @@ export function Navbar({ introEntrance = false }: { introEntrance?: boolean }) {
     const handleScroll = () => {
       if (!frame) frame = window.requestAnimationFrame(updateNavbar);
     };
+    const handlePointerMove = (event: PointerEvent) => {
+      if (event.pointerType !== "mouse") return;
+      const overNavigation =
+        event.clientY <= (navRef.current?.offsetHeight ?? 88) ||
+        (event.target instanceof Node && navRef.current?.contains(event.target));
+      pointerInNavigation.current = Boolean(overNavigation);
+      window.clearTimeout(hideTimer);
+      if (overNavigation) {
+        setNavbarVisible(true);
+        setIntroPlaying(false);
+      } else {
+        hideTimer = window.setTimeout(updateNavbar, 220);
+      }
+    };
 
     updateNavbar();
     window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("pointermove", handlePointerMove, { passive: true });
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("pointermove", handlePointerMove);
+      window.clearTimeout(hideTimer);
       window.cancelAnimationFrame(frame);
       window.cancelAnimationFrame(focusFrame.current);
       window.clearTimeout(leaveTimer.current);
@@ -161,6 +180,13 @@ export function Navbar({ introEntrance = false }: { introEntrance?: boolean }) {
           onClick={closeMenus}
           aria-label="ZJU-China home"
         >
+          <img
+            className="brand-project-logo"
+            src="https://static.igem.wiki/teams/6102/wiki/team-logo.avif"
+            alt="NEST project"
+            width="66"
+            height="62"
+          />
           <img
             className="brand-team-logo"
             src="https://static.igem.wiki/teams/6102/wiki/images/team-logo.avif"
