@@ -1,5 +1,4 @@
 const CIF = "https://static.igem.wiki/teams/6102/wiki/images/cif/";
-const BASE = import.meta.env.BASE_URL;
 
 export function Contribution() {
   return (
@@ -9,31 +8,31 @@ export function Contribution() {
         <hr />
         <p>
           NEST&rsquo;s primary contribution to the iGEM community is a
-          protein-material platform that future teams can continue to build on.
-          We have organized SELP length design, linker layout, module ligation,
-          and material validation, and we have released our constructs,
-          operating protocols, and the source code of the clinician-facing
-          application. Future teams can start from the existing parts, replace
-          the functional sequences, repeat key experiments, and continue
-          developing materials suited to their own problems.
+          protein-material platform designed for further development. We have
+          integrated SELP length design, connector placement, module ligation,
+          and material validation, and made our constructs, experimental
+          protocols, and clinician-facing application source code publicly
+          available. Future teams can build on these existing components,
+          replace functional sequences, reproduce key experiments, and further
+          develop materials tailored to their own research questions.
         </p>
 
-        <h3 className="mt-5 mb-3">1. Overview of the Available Resources</h3>
+        <h3 className="mt-5 mb-3">1. Overview of Available Resources</h3>
         <figure className="figure d-block my-4 text-center">
           <img
             src={`${CIF}8.avif`}
-            alt="Community resources organized around a shared material platform."
+            alt="Community resources organized around a shared materials platform."
             className="figure-img img-fluid rounded"
             style={{ width: "100%" }}
             loading="lazy"
             decoding="async"
           />
           <figcaption className="figure-caption">
-            Figure 1. Community resources organized around a shared material
-            platform. Parts, protocols, computational examples, and software
-            and hardware records connect with one another, supporting future
-            teams from material construction through to preparation and use
-            support.
+            Figure 1. Community resources organized around a shared materials
+            platform. Parts, protocols, computational examples, and
+            software/hardware documentation are interconnected, enabling future
+            teams to progress from material construction to preparation and
+            application support.
           </figcaption>
         </figure>
         <div className="table-responsive mb-4">
@@ -44,51 +43,76 @@ export function Contribution() {
             <thead className="table-primary">
               <tr>
                 <th scope="col">Resource</th>
-                <th scope="col">Reusable content</th>
+                <th scope="col">Reusable Content</th>
                 <th scope="col">Access</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>Protein parts</td>
+                <td>Protein Components</td>
                 <td>
-                  Multiple SELP scaffolds, linkers, and functional constructs
+                  Multiple SELP scaffolds, connectors, and functional constructs
                 </td>
                 <td>
-                  <a href={`${BASE}parts`}>Registry part collection</a>
-                </td>
-              </tr>
-              <tr>
-                <td>Preparation and ligation protocols</td>
-                <td>
-                  ITC, ultrafiltration buffer exchange, lyophilization, and
-                  enzymatic ligation
-                </td>
-                <td>
-                  <a href={`${BASE}protocol`}>ITC · Ligation · Buffer exchange
-                  · Lyophilization</a>
+                  <a href="https://registry.igem.org/organisations/904df5d3-aa3d-4428-bc63-61958f3df06a">
+                    Registry Parts
+                  </a>
                 </td>
               </tr>
               <tr>
-                <td>Modeling and computational workflows</td>
+                <td>Preparation and Ligation Protocols</td>
                 <td>
-                  Computational assumptions, parameters, worked examples, and
-                  task pipelines
+                  ITC, ultrafiltration-based buffer exchange, lyophilization,
+                  and enzymatic ligation
                 </td>
                 <td>
-                  <a href={`${BASE}model`}>Model</a> ·{" "}
-                  <a href={`${BASE}software`}>Software</a>
+                  <a href="https://static.igem.wiki/teams/6102/wiki/protocol/purification-by-inverse-transition-cycling-itc.pdf">
+                    ITC
+                  </a>{" "}
+                  ·{" "}
+                  <a href="https://static.igem.wiki/teams/6102/wiki/protocol/ligation-reaction-snoopligase2-mediated-peptide-peptide-ligation.pdf">
+                    Ligation
+                  </a>{" "}
+                  ·{" "}
+                  <a href="https://static.igem.wiki/teams/6102/wiki/protocol/protein-ultrafiltration-concentration-and-buffer-exchange.pdf">
+                    Buffer Exchange
+                  </a>{" "}
+                  ·{" "}
+                  <a href="https://static.igem.wiki/teams/6102/wiki/protocol/protein-lyophilisation-freeze-drying.pdf">
+                    Lyophilization
+                  </a>
                 </td>
               </tr>
               <tr>
-                <td>Application and hardware</td>
+                <td>Models and Computational Workflows</td>
                 <td>
-                  Source code of the clinician-facing guidance app, device
-                  structure, and electronics records
+                  Modeling assumptions, parameters, case studies, and task
+                  workflows
                 </td>
                 <td>
-                  <a href={`${BASE}software`}>App source</a> ·{" "}
-                  <a href={`${BASE}hardware`}>Hardware</a>
+                  <a href="https://rcny9dy1085s.feishu.cn/docx/OYHqdzwwbopzMMxph0OctdWYnkh">
+                    Model
+                  </a>{" "}
+                  ·{" "}
+                  <a href="https://rcny9dy1085s.feishu.cn/docx/SvTSdzlfvoAOZMxMhoWcL3GhnCd">
+                    Software
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td>Application and Hardware</td>
+                <td>
+                  Source code for clinician-facing guidance, device design, and
+                  electronics/control documentation
+                </td>
+                <td>
+                  <a href="https://github.com/plus-c-c/igem-2026-app">
+                    App Source Code
+                  </a>{" "}
+                  ·{" "}
+                  <a href="https://2026.igem.wiki/zju-china/hardware">
+                    Hardware
+                  </a>
                 </td>
               </tr>
             </tbody>
@@ -96,79 +120,111 @@ export function Contribution() {
         </div>
 
         <h3 className="mt-5 mb-3">
-          2. Designing Scaffold Length Together with Linker Layout
+          2. Designing Scaffold Length and Connector Placement Together
         </h3>
         <p>
-          We used PRe-RDL concatemer amplification to build SELPs of different
-          lengths and planned linker positions at the same time. The repeat
-          number determines the chain-length series, while the placement of
-          linkers inside the repeat region or at the protein termini determines
-          how the ligation sites shift during amplification. New teams can use
-          this to arrange how modules connect when selecting a material
+          We used the PRe-RDL repeat-sequence amplification method to generate
+          SELP scaffolds of different lengths while planning connector
+          positions in parallel. The number of repeats determines the
+          chain-length series, whereas placing connectors within the repeat
+          region or at either terminus determines how the ligation sites change
+          during amplification. This provides future teams with a basis for
+          planning module-connection strategies when selecting a material
           scaffold.
         </p>
         <p>
-          We have successfully produced several SELP scaffold constructs,
+          We have successfully produced multiple SELP scaffold constructs,
           translating programmable sequence design into materials that can be
-          prepared and characterized. Together with the construction records
-          and material data, future teams can examine the relationship between
-          scaffold length, linker layout, and material performance, and then
-          choose a configuration suited to their own task based on actual
-          assembly yield and functional readouts.
+          prepared and characterized. By combining construct records with
+          material data, future teams can investigate relationships among
+          scaffold length, connector placement, and material performance, and
+          select configurations for their own applications based on actual
+          assembly yields and functional readouts.
         </p>
 
         <h3 className="mt-5 mb-3">
           3. Providing Ligation Tools and Controls for New Modules
         </h3>
         <p>
-          We applied the established SnoopLigase2 catalytic system to NEST
-          module assembly: the scaffold carries SnoopTag2 and functional
-          constructs carry DogTag. Future teams can add their own functional
-          sequences on the shared interface, first confirming ligation activity
-          and then evaluating the module&rsquo;s function after ligation.
+          We used the established SnoopLigase2 catalytic system to assemble
+          NEST modules: the scaffold carries SnoopTag2, whereas the functional
+          construct carries DogTag. Future teams can introduce their own
+          functional sequences through this shared interface, first verifying
+          ligation activity and then evaluating the function of the ligated
+          modules.
         </p>
         <figure className="figure d-block my-4 text-center">
           <img
             src={`${CIF}9.avif`}
-            alt="Assembly and validation logic for introducing new functions onto the platform."
+            alt="Assembly and validation logic for integrating new functions into the platform."
             className="figure-img img-fluid rounded"
             style={{ width: "100%" }}
             loading="lazy"
             decoding="async"
           />
           <figcaption className="figure-caption">
-            Figure 2. Assembly and validation logic for introducing new
-            functions onto the platform. The shared interface allows functional
+            Figure 2. Assembly and validation logic for integrating new
+            functions into the platform. A shared interface allows functional
             sequences to be replaced, while ligation assays and functional
-            assays answer two distinct questions.
+            assays address two distinct questions.
           </figcaption>
         </figure>
         <p>
-          The ligation tools are available from the SnoopLigase2 and SUMO-DogTag
-          entries. Functional constructs include DogTag-TVN, a matched
-          irrelevant-peptide control, DogTag-CPC, and DogTag-CPC-Link-N.
+          The ligation tools are available through{" "}
+          <a href="https://registry.igem.org/parts/bba-26o4aa95">
+            SnoopLigase2
+          </a>{" "}
+          and{" "}
+          <a href="https://registry.igem.org/parts/bba-26pvprq2">
+            SUMO-DogTag
+          </a>{" "}
+          entries. Functional constructs include{" "}
+          <a href="https://registry.igem.org/parts/bba-26r5qazm">
+            DogTag-TVN
+          </a>
+          ,{" "}
+          <a href="https://registry.igem.org/parts/bba-26oz27mh">
+            a matched irrelevant-peptide control
+          </a>
+          ,{" "}
+          <a href="https://registry.igem.org/parts/bba-267xbqoy">
+            DogTag-CPC
+          </a>{" "}
+          and{" "}
+          <a href="https://registry.igem.org/parts/bba-26zpd683">
+            DogTag-CPC-Link-N
+          </a>
+          .
         </p>
         <p>
-          In our sfGFP reporter ligation, product was visible at 10 min, and by
-          60 min the band of the limiting reactant had disappeared. New modules
-          can use the reporter reaction as an activity reference and include
-          no-enzyme or no-tag controls; TVN and the irrelevant peptide are used
-          to evaluate the specificity of particle binding. See the{" "}
-          <a href={`${BASE}protocol`}>ligation protocol</a> and the{" "}
-          <a href={`${BASE}results`}>Results records</a> for the formulation
-          and readout.
+          In our sfGFP reporter ligation assay, product was detectable after
+          10 min, and the band corresponding to the less abundant reactant
+          disappeared by 60 min. Future modules can use this reporter reaction
+          as a reference for ligation activity and include controls lacking the
+          enzyme or ligation tag. TVN and the irrelevant peptide can be used to
+          assess the specificity of particle binding. Experimental details and
+          interpretation criteria are provided in the{" "}
+          <a href="https://static.igem.wiki/teams/6102/wiki/protocol/ligation-reaction-snoopligase2-mediated-peptide-peptide-ligation.pdf">
+            Ligation Protocol
+          </a>{" "}
+          and{" "}
+          <a href="https://rcny9dy1085s.feishu.cn/docx/AmIPdlRDho8pqaxszM0c16nInHh">
+            Results Record
+          </a>
+          .
         </p>
 
         <h3 className="mt-5 mb-3">
-          4. Sharing an Optimized SELP Phase-Transition Purification Workflow
+          4. Sharing Optimization Insights for SELP Phase-Transition
+          Purification
         </h3>
         <p>
-          We applied the established ITC principle and optimized practical
-          recovery for our scaffolds [1,2]. After comparing 65&nbsp;&deg;C and
-          80&nbsp;&deg;C with 0.5, 1, and 2&nbsp;M NaCl, salt concentration had
-          the more pronounced effect in our current screening; we selected
-          65&nbsp;&deg;C with 2&nbsp;M NaCl and used this route for subsequent
-          scaffold versions.
+          We adapted the established principles of inverse transition cycling
+          (ITC) to optimize recovery of our own scaffolds.[1,2] After comparing
+          65&nbsp;&deg;C and 80&nbsp;&deg;C and NaCl concentrations of 0.5, 1,
+          and 2&nbsp;M, salt concentration had the more pronounced effect in
+          our current screening. We therefore selected 65&nbsp;&deg;C and
+          2&nbsp;M NaCl for subsequent scaffold variants.
         </p>
         <figure className="figure d-block my-4 text-center">
           <img
@@ -180,114 +236,128 @@ export function Contribution() {
             decoding="async"
           />
           <figcaption className="figure-caption">
-            Figure 3. SELP recovery and preparation workflow. The target bands
-            in the heated supernatant (H-Sup) and the cooled supernatant
-            (C-Sup) help locate protein loss during the phase-transition and
-            resolubilization stages, respectively.
+            Figure 3. SELP recovery and preparation workflow. Target-protein
+            bands in the supernatants collected after heating (H-Sup) and
+            cooling (C-Sup) help identify protein loss during phase transition
+            and resolubilization, respectively.
           </figcaption>
         </figure>
         <p>
-          Future teams can use the{" "}
-          <a href={`${BASE}protocol`}>ITC, ultrafiltration buffer-exchange, and
-          lyophilization protocols</a>{" "}
-          to link protein recovery with the preparation of gel-forming
-          material. The non-chromatographic route also provides a process
-          foundation that can be further optimized for scaffold recovery after
-          fermentation scale-up [1,2].
+          Future teams can use{" "}
+          <a href="https://static.igem.wiki/teams/6102/wiki/protocol/purification-by-inverse-transition-cycling-itc.pdf">
+            ITC
+          </a>
+          ,{" "}
+          <a href="https://static.igem.wiki/teams/6102/wiki/protocol/protein-ultrafiltration-concentration-and-buffer-exchange.pdf">
+            ultrafiltration-based buffer exchange
+          </a>{" "}
+          and{" "}
+          <a href="https://static.igem.wiki/teams/6102/wiki/protocol/protein-lyophilisation-freeze-drying.pdf">
+            lyophilization
+          </a>{" "}
+          protocols to link protein recovery with preparation of gel-forming
+          materials. This non-chromatographic workflow also provides a basis
+          for further optimizing scaffold recovery following fermentation
+          scale-up.[1,2]
         </p>
 
         <h3 className="mt-5 mb-3">
-          5. Demonstrating the Computational Design Workflow with a Worked
-          Example
+          5. Demonstrating Computational Design with a Worked Example
         </h3>
         <p>
-          We connected sequence, single-chain conformation, multichain network,
-          and mechanical analysis. For a representative SELP computational
-          case, the maximum internal distance of the conformation was
-          10.30&nbsp;nm; the remaining structural outputs and computational
-          parameters are shown in Figure 4.
+          We connect sequence-level design, single-chain conformations,
+          multichain networks, and mechanical analysis.
         </p>
         <figure className="figure d-block my-4 text-center">
           <img
-            src={`${CIF}11.avif`}
-            alt="Computational workflow and experimental calibration for a representative SELP case."
+            src={`${CIF}contribution-figure-4-new.avif`}
+            alt="Schematic of a representative SELP modeling and computational workflow."
             className="figure-img img-fluid rounded"
             style={{ width: "100%" }}
             loading="lazy"
             decoding="async"
           />
           <figcaption className="figure-caption">
-            Figure 4. Computational workflow and experimental calibration for a
-            representative SELP case. The schematic parameters come from that
-            case record.
+            Figure 4. Schematic of a representative SELP modeling and
+            computational workflow.
           </figcaption>
         </figure>
         <p>
-          The empirical relation E<sub>emp</sub> = 1.895E<sub>0</sub> + 19.793
-          kPa maps model predictions to measured moduli. Teams can replace the
-          sequence and test and calibrate the relation with their own
-          experiments. The <a href={`${BASE}model`}>Model</a> pages provide the
-          assumptions, parameters, and results; the{" "}
-          <a href={`${BASE}software`}>software records</a> describe the task
-          pipeline; and the resource package includes the case parameters.
+          Using wet-lab results as a reference, we calibrated the dry-lab
+          modeling data with a correction function, E<sub>emp</sub> = aE
+          <sub>0</sub> + b where a = 1.895, b = 19.793&nbsp;kPa, achieving an
+          error of less than 5%.{" "}
+          <a href="https://rcny9dy1085s.feishu.cn/docx/OYHqdzwwbopzMMxph0OctdWYnkh">
+            Model
+          </a>{" "}
+          provides the assumptions, parameters, and results;{" "}
+          <a href="https://rcny9dy1085s.feishu.cn/docx/SvTSdzlfvoAOZMxMhoWcL3GhnCd">
+            Software
+          </a>{" "}
+          documentation describes the workflow, and the resource package
+          includes the parameters used in the example.
         </p>
 
         <h3 className="mt-5 mb-3">
-          6. Packaging Material-Use Support as Accessible Software Resources
+          6. Making Material-Use Support Available as a Software Resource
         </h3>
         <p>
-          We released the source code of the clinician-facing Android
-          application, covering material configuration, QR-code recognition,
-          dynamic instructions, and in-order reagent dispensing. Future teams
-          can modify the material catalog and component descriptions and reuse
-          the four-step operating guidance for their own modular products.
+          We have made the{" "}
+          <a href="https://github.com/plus-c-c/igem-2026-app">
+            clinician-facing Android app source code
+          </a>{" "}
+          publicly available. It includes material configuration, QR-code
+          scanning, dynamic instructions, and sequential reagent dispensing.
+          Future teams can modify the material catalog and component
+          descriptions and adapt the four-step guidance workflow for their own
+          modular products.
         </p>
         <figure className="figure d-block my-4 text-center">
           <img
             src={`${CIF}12.avif`}
-            alt="The team's material-preparation unit and the application interface."
+            alt="The reagent-preparation prototype and the application interface."
             className="figure-img img-fluid rounded"
             style={{ width: "100%" }}
             loading="lazy"
             decoding="async"
           />
           <figcaption className="figure-caption">
-            Figure 5. The team&rsquo;s material-preparation unit and the
-            application interface, showing material configuration, step
-            guidance, and material handling.
+            Figure 5. Photograph of our reagent-preparation prototype and
+            screenshots of the application interface, illustrating material
+            configuration, step-by-step guidance, and material handling.
           </figcaption>
         </figure>
         <p>
-          The <a href={`${BASE}hardware`}>Hardware</a> pages provide the device
-          structure, bill of materials, and the STM32&ndash;ESP32&ndash;web
-          interaction records. The app organizes formulation guidance, while
-          independent channels and replaceable consumables support adaptation
-          to new materials.
+          <a href="https://2026.igem.wiki/zju-china/hardware">Hardware</a>{" "}
+          documentation provides the device design, bill of materials, and
+          records of interactions among the STM32, ESP32, and web interface.
+          The app organizes formulation guidance, while independent channels
+          and replaceable consumables support adaptation to new materials.
         </p>
         <p>
-          Teams can start from a single part, a single protocol, or a single
-          tool and continue extending the material capabilities of NEST.
+          Teams can start with a single component, protocol, or tool and
+          continue expanding the material capabilities of NEST.
         </p>
 
         <h3 className="mt-5 mb-3">References</h3>
         <p>
           [1] Meyer DE, Chilkoti A. <em>Nature Biotechnology</em>.
           1999;17:1112&ndash;1115.{" "}
-          <a href="https://doi.org/10.1038/70265">Source</a>
+          <a href="https://doi.org/10.1038/15100">Article</a>
         </p>
         <p>
           [2] Hassouneh W, Christensen T, Chilkoti A.{" "}
           <em>Current Protocols in Protein Science</em>. 2010;61:6.11.1&ndash;16.{" "}
-          <a href="https://doi.org/10.1002/0471140864.ps0611s61">Source</a>
+          <a href="https://doi.org/10.1002/0471140864.ps0611s61">Article</a>
         </p>
         <p>
-          [3] Figure assets from Bioicons. Marcel Tisch, Simon D&uuml;rr,
-          jaiganesh, Daniel-Marcos (CC0); DBCLS (CC BY 4.0); Servier (CC BY
-          3.0). <a href="https://bioicons.com/">Source</a>
+          [3] Icons and illustrations from Bioicons. Marcel Tisch, Simon
+          D&uuml;rr, jaiganesh, and Daniel-Marcos (CC0); DBCLS (CC BY 4.0);
+          Servier (CC BY 3.0). <a href="https://bioicons.com/">Source</a>
         </p>
         <p>
-          [4] Figure assets from Google Noto Emoji (Apache 2.0). Photographs
-          and application interfaces are from project materials.{" "}
+          [4] Illustrations from Google Noto Emoji (Apache 2.0). Photographs
+          and application screenshots are from our team&rsquo;s materials.{" "}
           <a href="https://github.com/googlefonts/noto-emoji">Source</a>
         </p>
       </div>
