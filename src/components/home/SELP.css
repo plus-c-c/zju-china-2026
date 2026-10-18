@@ -30,9 +30,9 @@
   position: absolute;
   overflow: visible;
   border-radius: 35px;
-  background: linear-gradient(180deg, rgb(244 249 255 / 92%) 0%, #ffeca0 100%);
+  background: linear-gradient(180deg, rgb(244 249 255 / 92%) 0%, #E7F1FE 100%);
   box-shadow:
-    6px 6px 0 #9ed2f5,
+    6px 6px 0 #8FBDFA,
     0 14px 28px rgb(34 84 137 / 14%);
 }
 
@@ -226,9 +226,9 @@
   width: 1191.1px;
   height: 450px;
   border-radius: 35px;
-  background: linear-gradient(180deg, rgb(244 249 255 / 94%) 0%, #ffe99a 100%);
+  background: linear-gradient(180deg, rgb(244 249 255 / 94%) 0%, #E7F1FE 100%);
   box-shadow:
-    8px 8px 0 #9ed2f5,
+    8px 8px 0 #8FBDFA,
     0 14px 28px rgb(38 89 141 / 14%);
 }
 
