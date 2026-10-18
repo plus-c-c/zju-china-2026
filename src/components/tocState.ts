@@ -36,21 +36,3 @@ export function suppressHashScroll(ms = 1800) {
 export function isHashScrollSuppressed() {
   return performance.now() < hashScrollSuppressedUntil;
 }
-
-// The TOC publishes its visibility (it appears once the page header scrolls
-// out of view and hides again over the footer). The jump control mirrors it
-// so the two appear and disappear together.
-let tocVisible = false;
-const tocVisibleListeners = new Set<(visible: boolean) => void>();
-
-export function setTocVisible(visible: boolean) {
-  if (visible === tocVisible) return;
-  tocVisible = visible;
-  tocVisibleListeners.forEach((listener) => listener(visible));
-}
-
-export function subscribeTocVisible(listener: (visible: boolean) => void) {
-  tocVisibleListeners.add(listener);
-  listener(tocVisible);
-  return () => tocVisibleListeners.delete(listener);
-}

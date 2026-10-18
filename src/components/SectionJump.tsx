@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { useLocation, useNavigate } from "react-router-dom";
 import {
@@ -8,7 +8,6 @@ import {
   type PageSwipeDirection,
 } from "./pageSwipe";
 import { observeAndWhitenImages } from "./whitenImages";
-import { subscribeTocVisible } from "./tocState";
 import "./sectionJump.css";
 import "./pageSwipe.css";
 
@@ -43,9 +42,37 @@ export function SectionJump({
   latest.current = { activeId, resolveTarget, pathname };
   const flightRef = useRef<HTMLSpanElement>(null);
 
-  // The jump control mirrors the TOC's visibility, so both appear once the
-  // page header scrolls out of view and disappear again over the footer.
-  useEffect(() => subscribeTocVisible(setControlsVisible), []);
+  // The jump control mirrors the TOC: both appear once the page header
+  // scrolls out of view and hide again over the footer. It evaluates the
+  // same rule the TOC uses (header bottom above the viewport top, footer
+  // not in view) itself, so it never depends on load order or shared state.
+  useLayoutEffect(() => {
+    const footer = document.querySelector("footer.footer");
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const layout = document.querySelector(".page-layout");
+      const header = layout?.previousElementSibling as HTMLElement | null;
+      const headerBottom = header ? header.getBoundingClientRect().bottom : 0;
+      const footerRect = footer?.getBoundingClientRect();
+      const footerVisible =
+        !!footerRect &&
+        footerRect.top < window.innerHeight &&
+        footerRect.bottom > 0;
+      setControlsVisible(headerBottom <= 0 && !footerVisible);
+    };
+    const schedule = () => {
+      if (!frame) frame = window.requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule);
+    return () => {
+      window.removeEventListener("scroll", schedule);
+      window.removeEventListener("resize", schedule);
+      if (frame) window.cancelAnimationFrame(frame);
+    };
+  }, []);
 
   // The arrow artwork ships on a light-blue sheet; the shared whitening pass
   // keys the sheet out. The button is portalled outside the page article, so
