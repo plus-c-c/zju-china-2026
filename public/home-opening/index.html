@@ -1,5 +1,5 @@
 <!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>NEST · 水凝胶动画</title><style>
-:root{--duration:18s;color-scheme:light;font-family:Arial,sans-serif}
+:root{--duration:18s;--syringe-liquid:linear-gradient(#86c9df80 0%,#4aa7c86b 25%,#2d91b580 75%,#357e9e75);color-scheme:light;font-family:Arial,sans-serif}
 *{box-sizing:border-box}html{background:transparent}body{margin:0;min-height:100svh;display:grid;place-items:center;background:transparent}
 .player{width:min(100%,1280px);margin:auto}.viewport{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;background:transparent}
 .stage{position:absolute;width:1280px;height:720px;transform-origin:0 0;transform:scale(var(--stage-scale,1));overflow:hidden;isolation:isolate}
@@ -11,9 +11,6 @@
 .pump-raster{position:absolute;left:58px;top:177px;width:773px;height:417px;overflow:hidden;contain:paint;pointer-events:none}.pump-raster-frames{position:absolute;left:0;top:0;width:6184px;height:5004px;max-width:none;animation-name:pump-raster-frames;animation-timing-function:steps(1,end);will-change:transform}
 .gel-film{position:absolute;left:530px;top:275px;width:210px;height:100px;overflow:hidden;pointer-events:none;filter:blur(.3px);animation-name:gel-material-outline}.gel-film-frames{position:absolute;left:0;top:0;width:1680px;height:800px;max-width:none;animation-name:gel-film-frames;animation-timing-function:steps(1,end);will-change:transform}
 .gel-film-frames.gel-film-next{animation-name:gel-film-next-frames,gel-frame-blend;animation-timing-function:steps(1,end),linear;will-change:transform,opacity}
-.injection-tail{clip-path:polygon(0 0,95px 0,-45px 720px,0 720px);transform-origin:0 0;transform:matrix(1.8,.1525,0,1,0,0)}
-.injection-barrel{clip-path:polygon(150px 0,1280px 0,1280px 720px,10px 720px)}
-.injection-piston{clip-path:polygon(0 0,180px 0,40px 720px,0 720px);mask-image:linear-gradient(101deg,#000 148px,transparent 174px);animation-name:injection-piston;will-change:transform}
 .gel-envelope{position:absolute;inset:0;clip-path:path("M530 270H600V316 C616 321 628 308.7 640 301.7 C656 291.7 666 290.4 680 292 C699 293 713 307 728 320 L740 320V375H530Z");pointer-events:none}
 .gel-delivery{position:absolute;inset:0;animation-name:gel-delivery;pointer-events:none}
 .gel-main{position:absolute;inset:0;mask-image:linear-gradient(to right,#000 650px,transparent 679px);pointer-events:none}
@@ -26,8 +23,18 @@
 .feed-hose{position:absolute;left:-600px;top:0;width:1000px;height:720px;overflow:visible}
 .feed-fill{stroke-dasharray:1;animation-name:feed-fill}
 .syringe-fixed{position:absolute;left:1900px;top:0;width:1280px;height:720px}
-.syringe-fixed>img{position:absolute;inset:0;width:1280px;height:720px}
-.syringe-fixed>img:first-child{clip-path:polygon(0 0,100% 0,100% 100%,390px 720px,390px 335px,0 335px)}
+/* One shell and liquid shader for both views. Preserve the original tip. */
+.shared-syringe{position:absolute;inset:0;width:1280px;height:720px;transform-origin:0 0}
+.shared-syringe>img,.syringe-shell{position:absolute;inset:0;width:1280px;height:720px;pointer-events:none}
+.shared-syringe .reservoir-liquid{width:159px;right:auto;box-shadow:inset 0 2px 5px #ffffff45,inset 0 -3px 6px #1949581c}
+.syringe-inner-rod{clip-path:polygon(755px 275px,889px 275px,889px 338px,755px 338px);transform-origin:889px 310px}
+.syringe-piston-ring{clip-path:polygon(694px 272px,756px 272px,756px 338px,694px 338px)}
+.syringe-pushrod{clip-path:polygon(984px 270px,1230px 270px,1230px 350px,984px 350px)}
+.syringe-needle{clip-path:polygon(0 280px,345px 280px,345px 340px,0 340px);transform-origin:345px 313px;transform:scale(.65,.5)}
+.injection-model{transform:matrix(-0.94793078,-0.18069930,-0.18069930,0.94793078,817.05156914,82.69783467)}
+.injection-model .syringe-piston-ring,.injection-model .syringe-pushrod{animation-name:shared-syringe-piston}
+.injection-model .syringe-inner-rod{animation-name:shared-syringe-rod}
+.injection-model .reservoir-liquid{animation-name:injection-liquid}
 .player[data-loading] *{animation-play-state:paused}
 .controls{display:flex;align-items:center;justify-content:center;gap:14px;padding:18px 20px;min-height:72px;background:transparent}
 button{display:grid;place-items:center;flex:none;width:36px;height:36px;padding:8px;border:1px solid #a3c4eb80;border-radius:50%;background:transparent;color:#4c78b5;cursor:pointer}
@@ -44,8 +51,8 @@ body.clean .controls{display:none}body.clean .player{width:100%}
 .debug-panel{display:block;font:12px ui-monospace,monospace;color:#49698f;text-align:center;padding:8px}
 @media(max-width:520px){.controls{gap:10px;padding:18px 12px}button{width:32px;height:32px}}
 @media(prefers-reduced-motion:reduce){.anim{animation-play-state:paused}}
-.reservoir { position:absolute; left:535px; top:284px; width:177px; height:53px; overflow:hidden; background:linear-gradient(#151e25,#060b0f 50%,#21303a); }
-.reservoir-liquid { position:absolute; inset:0; transform-origin:0 50%; background:linear-gradient(#86c9df 0%,#4aa7c8 25%,#2d91b5 75%,#357e9e); animation-name:reservoir-fill; }
+.reservoir { position:absolute; left:535px; top:284px; width:354px; height:53px; overflow:hidden; background:linear-gradient(#b9d4e610,#738d9d12,#b7d8e51c); }
+.reservoir-liquid { position:absolute; inset:0; transform-origin:0 50%; background:var(--syringe-liquid); animation-name:reservoir-fill; }
 .reservoir-glass { position:absolute; inset:0; background:linear-gradient(#fff5,transparent 12%,transparent 47%,#b4e2ef18 54%,transparent 60%,#69b9d455); }
 .clinical-scene { animation-name:clinical-scene; }
 .clinical-camera { transform-origin:700px 340px; animation-name:clinical-camera; will-change:transform; }
@@ -207,10 +214,20 @@ body.clean .controls{display:none}body.clean .player{width:100%}
  71.94444% {transform:translate(-330px,-63px);opacity:1}
  73.61111%, 100.00000% {transform:translate(-760px,-146px);opacity:0}
 }
-@keyframes injection-piston {
- 0.00000%, 60.00000% {transform:translate(0,0)}
- 64.16667% {transform:translate(16px,3.05px)}
- 68.05556%, 100.00000% {transform:translate(32px,6.1px)}
+@keyframes shared-syringe-piston {
+ 0.00000%, 60.00000% {transform:translateX(0px)}
+ 64.16667% {transform:translateX(-16.88px)}
+ 68.05556%, 100.00000% {transform:translateX(-33.76px)}
+}
+@keyframes shared-syringe-rod {
+ 0.00000%, 60.00000% {transform:scaleX(1)}
+ 64.16667% {transform:scaleX(1.126)}
+ 68.05556%, 100.00000% {transform:scaleX(1.252)}
+}
+@keyframes injection-liquid {
+ 0.00000%, 60.00000% {transform:scaleX(1)}
+ 64.16667% {transform:scaleX(.894)}
+ 68.05556%, 100.00000% {transform:scaleX(.788)}
 }
 @keyframes gel-delivery {
  0.00000%, 60.00000% {opacity:0}
@@ -587,7 +604,26 @@ html,body{width:100%;height:100%;min-height:0;overflow:hidden;background:#d4e7fb
   </g></svg>
  </div>
  <div class="pump-raster"><img class="pump-raster-frames anim" src="https://static.igem.wiki/teams/6102/wiki/home-opening/layer-ccbf478f8b2c.avif" alt=""></div>
- <div class="syringe-fixed"><img src="https://static.igem.wiki/teams/6102/wiki/home-opening/layer-18bb786bf708.avif" alt=""><img src="https://static.igem.wiki/teams/6102/wiki/home-opening/layer-3d78ee4ddcf7.avif" alt=""><div class="reservoir"><div class="reservoir-liquid anim"></div><div class="reservoir-glass"></div></div></div>
+ <div class="syringe-fixed"><div class="shared-syringe fill-model">
+      <div class="reservoir"><div class="reservoir-liquid anim"></div><div class="reservoir-glass"></div></div>
+      <img class="syringe-inner-rod anim" src="https://static.igem.wiki/teams/6102/wiki/home-opening/layer-18bb786bf708.avif" alt="">
+      <svg class="syringe-shell" viewBox="0 0 1280 720" aria-hidden="true"><defs>
+        <mask id="syringe-shell-fill" maskUnits="userSpaceOnUse" x="0" y="0" width="1280" height="720">
+         <rect width="1280" height="720" fill="white"/>
+         <rect x="535" y="284" width="354" height="53" fill="black"/>
+         <rect x="694" y="272" width="62" height="66" fill="black"/>
+         <rect x="0" y="280" width="345" height="60" fill="black"/>
+         <rect x="385" y="368" width="42" height="20" fill="black"/>
+         <rect x="984" y="270" width="246" height="80" fill="black"/>
+        </mask>
+      </defs><image href="https://static.igem.wiki/teams/6102/wiki/home-opening/layer-18bb786bf708.avif" width="1280" height="720" mask="url(#syringe-shell-fill)"/>
+      <path d="M535 274H889 M535 337H889" fill="none" stroke="#c1d0d8" stroke-opacity=".7" stroke-width="1.3"/>
+      </svg>
+      <img class="syringe-piston-ring anim" src="https://static.igem.wiki/teams/6102/wiki/home-opening/layer-18bb786bf708.avif" alt="">
+      <img class="syringe-pushrod anim" src="https://static.igem.wiki/teams/6102/wiki/home-opening/layer-18bb786bf708.avif" alt="">
+      <img class="syringe-needle" src="https://static.igem.wiki/teams/6102/wiki/home-opening/layer-18bb786bf708.avif" alt="">
+      <img class="syringe-hook" src="https://static.igem.wiki/teams/6102/wiki/home-opening/layer-3d78ee4ddcf7.avif" alt="">
+    </div></div>
 </div></div>
 <div class="clinical-scene anim">
           <div class="clinical-camera anim">
@@ -614,7 +650,26 @@ html,body{width:100%;height:100%;min-height:0;overflow:hidden;background:#d4e7fb
 
             </svg>
 
-            <div class="injection-camera anim"><img class="layer injection-tail" src="https://static.igem.wiki/teams/6102/wiki/home-opening/layer-fdd2f606100a.avif" alt=""><img class="layer injection-barrel" src="https://static.igem.wiki/teams/6102/wiki/home-opening/layer-fdd2f606100a.avif" alt=""><img class="layer injection-piston anim" src="https://static.igem.wiki/teams/6102/wiki/home-opening/layer-fdd2f606100a.avif" alt=""></div>
+            <div class="injection-camera anim"><div class="shared-syringe injection-model">
+      <div class="reservoir"><div class="reservoir-liquid anim"></div><div class="reservoir-glass"></div></div>
+      <img class="syringe-inner-rod anim" src="https://static.igem.wiki/teams/6102/wiki/home-opening/layer-18bb786bf708.avif" alt="">
+      <svg class="syringe-shell" viewBox="0 0 1280 720" aria-hidden="true"><defs>
+        <mask id="syringe-shell-injection" maskUnits="userSpaceOnUse" x="0" y="0" width="1280" height="720">
+         <rect width="1280" height="720" fill="white"/>
+         <rect x="535" y="284" width="354" height="53" fill="black"/>
+         <rect x="694" y="272" width="62" height="66" fill="black"/>
+         <rect x="0" y="280" width="345" height="60" fill="black"/>
+         <rect x="385" y="368" width="42" height="20" fill="black"/>
+         <rect x="984" y="270" width="246" height="80" fill="black"/>
+        </mask>
+      </defs><image href="https://static.igem.wiki/teams/6102/wiki/home-opening/layer-18bb786bf708.avif" width="1280" height="720" mask="url(#syringe-shell-injection)"/>
+      <path d="M535 274H889 M535 337H889" fill="none" stroke="#c1d0d8" stroke-opacity=".7" stroke-width="1.3"/>
+      </svg>
+      <img class="syringe-piston-ring anim" src="https://static.igem.wiki/teams/6102/wiki/home-opening/layer-18bb786bf708.avif" alt="">
+      <img class="syringe-pushrod anim" src="https://static.igem.wiki/teams/6102/wiki/home-opening/layer-18bb786bf708.avif" alt="">
+      <img class="syringe-needle" src="https://static.igem.wiki/teams/6102/wiki/home-opening/layer-18bb786bf708.avif" alt="">
+      <img class="syringe-hook" src="https://static.igem.wiki/teams/6102/wiki/home-opening/layer-3d78ee4ddcf7.avif" alt="">
+    </div></div>
             <div class="scope-camera anim"><img class="layer" src="https://static.igem.wiki/teams/6102/wiki/home-opening/layer-11faf34702d9.avif" alt=""></div>
 
           </div>
