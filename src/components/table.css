@@ -1,0 +1,69 @@
+/* ------------------------------------------------------------------
+   Unified wiki tables.
+
+   The look is adapted from the 2025 ZJU-China design page's Table 1 and
+   recoloured to the project palette:
+   · filled header row in the site's light blue, heading-blue text;
+   · hairline row separators, no vertical borders, no outer border;
+   · a soft row hover tint;
+   · a rounded, shadowed scroll container (`.table-scroll`) for narrow
+     screens.
+
+   The !important flags neutralise Bootstrap's .table-bordered rules and the
+   legacy per-page table styles so every table matches.
+   ------------------------------------------------------------------ */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  --bs-table-bg: transparent;
+  --bs-table-accent-bg: transparent;
+}
+
+/* Bootstrap also draws a border on the row element itself (a visible top
+   rule above the header) — reset it here. */
+table tr {
+  border: none !important;
+}
+
+table th,
+table td {
+  padding: 1rem 1.25rem;
+  border: none !important;
+  border-bottom: 1px solid #e2ebf8 !important;
+  background: transparent !important;
+  /* Every cell centred both ways. */
+  text-align: center;
+  vertical-align: middle;
+  transition: background-color 0.3s ease;
+}
+
+table thead {
+  background: transparent !important;
+}
+
+table thead th {
+  background: #dce9ff !important;
+  color: #223c81 !important;
+  font-weight: 600;
+}
+
+table > tbody:last-of-type > tr:last-child > td,
+table > tbody:last-of-type > tr:last-child > th {
+  border-bottom: none !important;
+}
+
+table tbody tr:hover td {
+  background: #f2f7ff !important;
+}
+
+/* Rounded, shadowed scroll container used by every table wrapper. */
+.table-scroll,
+.table-responsive {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 2rem 0;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 4px 12px rgb(0 0 0 / 5%);
+}

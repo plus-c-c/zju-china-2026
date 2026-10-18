@@ -198,5 +198,5 @@ const hardwareModule: DbtlModule = {
 
 export const hardwareGroup: Group = {
   label: "Hardware",
-  parts: [{ label: "Hardware", module: hardwareModule }],
+  parts: [{ label: "DBTL Cycles", module: hardwareModule }],
 };

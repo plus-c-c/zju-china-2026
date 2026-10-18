@@ -169,7 +169,7 @@
   --dbtl-stack-h: clamp(380px, calc(90vh - 12rem), 700px);
   display: grid;
   grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.28fr);
-  gap: clamp(1.5rem, 3vw, 3rem);
+  gap: clamp(2.25rem, 4.5vw, 4.5rem);
   align-items: center;
   margin-top: 1.5rem;
 }
@@ -231,10 +231,9 @@
   stroke: #64b4ff;
 }
 
-/* The highlighted segment flips its white letters to the site's yellow,
-   matching the boosted colour. */
+/* The highlighted segment flips its white letters to the navbar's yellow. */
 .dbtl-ring .dbtl-hi path[fill="white"] {
-  fill: #ffd452;
+  fill: #ffe39a;
 }
 
 .dbtl-ring[data-active="design"] .dbtl-hi-design,
@@ -307,7 +306,9 @@
 }
 
 .dbtl-panel-body {
+  display: flex;
   flex: 1;
+  flex-direction: column;
   padding: 1.25rem 1.5rem 1.5rem;
   overflow-y: auto;
   overscroll-behavior: contain;
@@ -325,6 +326,9 @@
 }
 
 .dbtl .dbtl-panel-inner {
+  /* Auto margins centre the step content while it fits the card; once it
+     overflows they collapse to zero and the card scrolls from the top. */
+  margin: auto 0;
   animation: dbtl-step-in 0.26s ease;
 }
 
@@ -545,5 +549,17 @@
 
   .dbtl-subnav {
     margin-top: 0.2rem;
+  }
+}
+
+/* Follow the shorter mobile header without vertically centring the first content. */
+@media (max-width: 600px) {
+  .eng-pin,
+  .eng-static {
+    justify-content: flex-start;
+    padding-top: 12px;
+  }
+  .eng-static {
+    min-height: 0;
   }
 }

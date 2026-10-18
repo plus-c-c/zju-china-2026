@@ -1,0 +1,1033 @@
+{
+  "retrieved": "2026-10-18",
+  "registryOrganisation": "https://registry.igem.org/organisations/904df5d3-aa3d-4428-bc63-61958f3df06a",
+  "parts": [
+    {
+      "kind": "basic",
+      "order": 1,
+      "id": "BBa_261SXVOZ",
+      "title": "TVNFKLY magnetite-binding peptide",
+      "description": "A seven-residue magnetite-binding peptide, TVNFKLY, used to couple Fe3O4 magnetic nanoparticles to a modular protein scaffold. The 21-bp coding region is fused downstream of DogTag through a flexible linker in the magnetic-response module.",
+      "components": [],
+      "shortName": "TVNFKLY",
+      "category": "Magnetic response",
+      "color": "magnet",
+      "sequence": "ACCGTGAACTTTAAACTGTAT",
+      "slug": "bba-261sxvoz",
+      "registryUUID": "014a9a77-075f-4622-9bc5-d776a4e89b26",
+      "features": [
+        {
+          "start": 1,
+          "end": 21,
+          "label": "TVNFKLY",
+          "color": "magnet",
+          "sourceId": "BBa_261SXVOZ",
+          "method": "whole-part",
+          "strand": "forward",
+          "lane": 0
+        }
+      ],
+      "summary": "A seven-residue magnetite-binding peptide, TVNFKLY, used to couple Fe3O4 magnetic nanoparticles to a modular protein scaffold."
+    },
+    {
+      "kind": "basic",
+      "order": 2,
+      "id": "BBa_267QOE6D",
+      "title": "Silk-Elastin-like Protein Hydrogel Scaffold 2KY-10 (CDS encoding a SELP with 10 tandem repeat units)",
+      "description": "This part encodes a silk-elastin-like protein (SELP) designated 2KY-10. In the naming convention, \"2\" denotes the fixed molar ratio of silk-like motifs (S) to elastin-like motifs (E) in each repeat unit; \"K\" and \"Y\" indicate that lysine (K) and tyrosine (Y) are introduced at the engineered X position within the elastin-like GXGVP motif; and \"10\" indicates that this repeat unit is tandemly repeated ten times. The silk-like motifs (GAGAGS) primarily confer mechanical strength, whereas the elastin-like motifs provide elasticity and confer inverse-temperature phase transition behavior, enabling purification by inverse transition cycling (ITC). Compared with the lower-repeat variant 2KY-5, the higher repeat number endows 2KY-10 with greater intermolecular crosslinking capacity and superior mechanical properties, making it suitable as the principal structural framework of the cartilage-repair hydrogel.",
+      "components": [],
+      "shortName": "SELP 2KY-10",
+      "category": "Hydrogel scaffold",
+      "color": "scaffold",
+      "sequence": "ATGGCTAAGACTAAAACCGGTGCTGGTGCCGGTTCGGGCGCCGGTGCGGGCTCAGGCCGTGGGGACTCAGGCAAAGGCGTGCCGGGTGTTGGCGTTCCGGGTGTTGGCGTTCCGGGTGTAGGTGTTCCAGGTTATGGCGTCCCGGGCGTGGGCGTACCAGGTGTGGGAGTTCCGGGTGTTGGCGTTCCAGGTGCAGGTGCAGGCAGTGGCGCGGGCGCGGGTTCCGGTCGTGGGGATTCGGGTAAAGGTGTTCCTGGTGTGGGCGTTCCTGGCGTAGGGGTACCAGGGGTGGGTGTTCCGGGTTATGGGGTACCTGGTGTGGGTGTGCCTGGTGTTGGTGTGCCTGGCGTTGGCGTTCCAGGGGCGGGTGCTGGCTCGGGTGCAGGCGCTGGGTCGGGTCGTGGCGATAGTGGTAAGGGTGTGCCTGGTGTTGGCGTGCCGGGGGTTGGGGTCCCTGGCGTCGGCGTGCCTGGGTACGGTGTGCCTGGTGTGGGCGTTCCTGGTGTTGGTGTGCCTGGTGTGGGCGTTCCGGGCGCAGGTGCGGGTAGCGGTGCTGGGGCTGGTTCTGGCCGTGGCGATTCAGGTAAAGGCGTACCGGGTGTTGGTGTGCCGGGTGTGGGTGTGCCTGGTGTAGGGGTTCCTGGCTATGGCGTACCTGGCGTGGGTGTACCAGGCGTTGGGGTGCCTGGTGTGGGTGTGCCTGGTGCGGGTGCGGGCAGTGGTGCAGGTGCAGGTAGTGGGCGCGGCGACAGCGGGAAGGGTGTTCCTGGTGTGGGCGTGCCAGGGGTTGGTGTTCCTGGTGTTGGTGTGCCTGGTTATGGTGTACCGGGCGTAGGTGTGCCAGGTGTTGGGGTTCCAGGCGTAGGCGTTCCAGGTGCTGGCGCAGGTTCAGGGGCCGGTGCAGGCTCTGGCCGCGGCGATTCGGGCAAGGGCGTTCCGGGCGTTGGCGTTCCGGGTGTTGGCGTTCCGGGTGTTGGCGTTCCAGGCTACGGTGTCCCAGGCGTCGGGGTGCCGGGCGTCGGTGTGCCGGGTGTTGGCGTTCCGGGTGCCGGTGCGGGTTCTGGCGCGGGTGCCGGCAGTGGTCGTGGTGATTCTGGCAAAGGCGTTCCGGGCGTTGGAGTCCCTGGTGTCGGTGTACCTGGGGTTGGCGTCCCTGGCTACGGCGTTCCTGGTGTGGGCGTTCCGGGTGTTGGTGTGCCTGGTGTTGGCGTTCCGGGCGCTGGAGCTGGTTCGGGGGCTGGTGCTGGCAGTGGGCGTGGTGACAGTGGCAAAGGTGTGCCTGGTGTTGGTGTGCCTGGAGTGGGGGTCCCGGGGGTCGGAGTGCCGGGCTATGGTGTCCCTGGGGTCGGTGTCCCGGGTGTTGGTGTGCCTGGTGTGGGTGTGCCGGGTGCCGGTGCTGGTAGTGGCGCCGGCGCGGGTAGTGGCCGTGGTGATAGCGGTAAGGGCGTGCCGGGTGTGGGCGTTCCAGGTGTCGGGGTTCCGGGGGTGGGGGTGCCAGGGTACGGCGTGCCGGGTGTGGGCGTTCCGGGTGTGGGCGTTCCGGGTGTTGGTGTGCCGGGTGCAGGCGCAGGCTCAGGGGCTGGGGCGGGCTCTGGTCGCGGTGATTCCGGCAAAGGCGTTCCGGGTGTCGGCGTTCCGGGTGTCGGCGTTCCGGGTGTTGGAGTACCAGGTTACGGGGTCCCAGGTGTAGGCGTCCCAGGGGTCGGCGTTCCGGGTGTTGGCGTTCCAGGTTAA",
+      "slug": "bba-267qoe6d",
+      "registryUUID": "152c04de-7431-46a9-b94e-30df6f818069",
+      "features": [
+        {
+          "start": 1,
+          "end": 1734,
+          "label": "SELP 2KY-10",
+          "color": "scaffold",
+          "sourceId": "BBa_267QOE6D",
+          "method": "whole-part",
+          "strand": "forward",
+          "lane": 0
+        }
+      ],
+      "summary": "This part encodes a silk-elastin-like protein (SELP) designated 2KY-10."
+    },
+    {
+      "kind": "basic",
+      "order": 3,
+      "id": "BBa_263RONL8",
+      "title": "DogTag ligation handle (CPC-Link-N DNA variant)",
+      "description": "Encodes the 23-residue DogTag peptide DIPATYEFTDGKHYITNEPIPPK, a reusable protein ligation handle for connection to a compatible SnoopTag-bearing partner through SnoopLigase. This Basic part contains only the DogTag coding region, without a start or stop codon, for in-frame assembly into fusion proteins. It preserves the exact DNA variant used in the ZJU-China 2026 CPC-Link-N composite.",
+      "components": [],
+      "shortName": "DogTag · CPC-Link-N variant",
+      "category": "Protein ligation",
+      "color": "tag",
+      "sequence": "GACATCCCGGCTACCTATGAATTCACCGATGGCAAGCACTATATTACCAATGAACCGATTCCGCCTAAA",
+      "slug": "bba-263ronl8",
+      "registryUUID": "1c41bd8d-29e8-41b4-a38c-02519b968f8a",
+      "features": [
+        {
+          "start": 1,
+          "end": 69,
+          "label": "DogTag",
+          "color": "tag",
+          "sourceId": "BBa_263RONL8",
+          "method": "whole-part",
+          "strand": "forward",
+          "lane": 0
+        }
+      ],
+      "summary": "Encodes the 23-residue DogTag peptide DIPATYEFTDGKHYITNEPIPPK, a reusable protein ligation handle for connection to a compatible SnoopTag-bearing partner through SnoopLigase."
+    },
+    {
+      "kind": "basic",
+      "order": 4,
+      "id": "BBa_261WIYFW",
+      "title": "Link-N matrix-associated domain (Link-N DNA variant)",
+      "description": "Encodes the 16-residue Link-N peptide DHLSDNYTLDHDRAIH, derived from the N-terminal region of cartilage link protein HAPLN1. This reusable matrix-associated domain supplies the Link-N function in the GAG retention module and can be combined with the CPC capture domain. This Basic part contains only the Link-N coding region, without a start or stop codon, for in-frame assembly into fusion proteins. It preserves the exact DNA variant used in the ZJU-China 2026 Link-N composite.",
+      "components": [],
+      "shortName": "Link-N · Link-N variant",
+      "category": "Matrix retention",
+      "color": "matrix",
+      "sequence": "GATCACCTCTCCGACAACTATACCCTGGACCACGATCGCGCAATTCAT",
+      "slug": "bba-261wiyfw",
+      "registryUUID": "4fde8ce3-3481-4b00-a808-43218943d90b",
+      "features": [
+        {
+          "start": 1,
+          "end": 48,
+          "label": "Link-N",
+          "color": "matrix",
+          "sourceId": "BBa_261WIYFW",
+          "method": "whole-part",
+          "strand": "forward",
+          "lane": 0
+        }
+      ],
+      "summary": "Encodes the 16-residue Link-N peptide DHLSDNYTLDHDRAIH, derived from the N-terminal region of cartilage link protein HAPLN1."
+    },
+    {
+      "kind": "basic",
+      "order": 5,
+      "id": "BBa_26HEMGR4",
+      "title": "Silk-Elastin-like Protein Hydrogel Scaffold 2KY-5 (CDS encoding a SELP with 5 tandem repeat units)",
+      "description": "This part encodes a silk-elastin-like protein (SELP) designated 2KY-5. In the naming convention, \"2\" denotes the fixed molar ratio of silk-like motifs (S) to elastin-like motifs (E) in each repeat unit; \"K\" and \"Y\" indicate that lysine (K) and tyrosine (Y) are introduced at the engineered X position within the elastin-like GXGVP motif; and \"5\" indicates that this repeat unit is tandemly repeated five times. The silk-like motifs primarily confer mechanical strength to the material, whereas the elastin-like motifs provide elasticity and confer inverse-temperature phase transition behavior, enabling purification of the recombinant protein by inverse transition cycling (ITC). ",
+      "components": [],
+      "shortName": "SELP 2KY-5",
+      "category": "Hydrogel scaffold",
+      "color": "scaffold",
+      "sequence": "ATGGCTAAGACTAAAACCGGTGCAGGTGCAGGTTCAGGTGCAGGTGCAGGTTCAGGTCGTGGTGACTCTGGTAAAGGTGTTCCGGGTGTTGGTGTTCCGGGTGTTGGTGTTCCGGGTGTTGGTGTTCCGGGGTATGGTGTTCCGGGTGTTGGTGTTCCGGGTGTTGGTGTTCCGGGTGTTGGTGTTCCCGGTGCAGGTGCAGGTTCAGGTGCAGGTGCAGGTTCAGGTCGTGGTGACTCTGGTAAAGGTGTTCCGGGTGTTGGTGTTCCGGGTGTTGGTGTTCCGGGTGTTGGTGTTCCGGGGTATGGTGTTCCGGGTGTTGGTGTTCCGGGTGTTGGTGTTCCGGGTGTTGGTGTTCCCGGTGCAGGTGCAGGTTCAGGTGCAGGTGCAGGTTCAGGTCGTGGTGACTCTGGTAAAGGTGTTCCGGGTGTTGGTGTTCCGGGTGTTGGTGTTCCGGGTGTTGGTGTTCCGGGGTATGGTGTTCCGGGTGTTGGTGTTCCGGGTGTTGGTGTTCCGGGTGTTGGTGTTCCCGGTGCAGGTGCAGGTTCAGGTGCAGGTGCAGGTTCAGGTCGTGGTGACTCTGGTAAAGGTGTTCCGGGTGTTGGTGTTCCGGGTGTTGGTGTTCCGGGTGTTGGTGTTCCGGGGTATGGTGTTCCGGGTGTTGGTGTTCCGGGTGTTGGTGTTCCGGGTGTTGGTGTTCCCGGTGCAGGTGCAGGTTCAGGTGCAGGTGCAGGTTCAGGTCGTGGTGACTCTGGTAAAGGTGTTCCGGGTGTTGGTGTTCCGGGTGTTGGTGTTCCGGGTGTTGGTGTTCCGGGGTATGGTGTTCCGGGTGTTGGTGTTCCGGGTGTTGGTGTTCCGGGTGTTGGTGTTCCCGGGTAA",
+      "slug": "bba-26hemgr4",
+      "registryUUID": "5d307913-2625-4ccf-85e8-a24856fe30a4",
+      "features": [
+        {
+          "start": 1,
+          "end": 879,
+          "label": "SELP 2KY-5",
+          "color": "scaffold",
+          "sourceId": "BBa_26HEMGR4",
+          "method": "whole-part",
+          "strand": "forward",
+          "lane": 0
+        }
+      ],
+      "summary": "This part encodes a silk-elastin-like protein (SELP) designated 2KY-5."
+    },
+    {
+      "kind": "basic",
+      "order": 6,
+      "id": "BBa_26EC8O68",
+      "title": "GTWSLLL unrelated peptide control",
+      "description": "A seven-residue unrelated control peptide, GTWSLLL, for evaluating the sequence-dependent contribution of TVNFKLY to Fe3O4 nanoparticle association. This newly designed 21-bp coding region is placed in the same DogTag fusion architecture as TVN, preserving the upstream expression and processing sequence and linker.",
+      "components": [],
+      "shortName": "GTWSLLL control",
+      "category": "Magnetic response",
+      "color": "control",
+      "sequence": "GGCACCTGGAGCCTGCTGCTG",
+      "slug": "bba-26ec8o68",
+      "registryUUID": "6536174e-c486-4686-884d-d684da66b5fe",
+      "features": [
+        {
+          "start": 1,
+          "end": 21,
+          "label": "GTWSLLL control",
+          "color": "control",
+          "sourceId": "BBa_26EC8O68",
+          "method": "whole-part",
+          "strand": "forward",
+          "lane": 0
+        }
+      ],
+      "summary": "A seven-residue unrelated control peptide, GTWSLLL, for evaluating the sequence-dependent contribution of TVNFKLY to Fe3O4 nanoparticle association."
+    },
+    {
+      "kind": "basic",
+      "order": 7,
+      "id": "BBa_26O4AA95",
+      "title": "SnoopLigase2",
+      "description": "This part encodes SnoopLigase2, the catalytic component of the SnoopLigase2 transglutaminase-like peptide–peptide ligation system. SnoopLigase2 exhibits a more-than-1000-fold improvement in reaction rate relative to the first-generation SnoopLigase, together with broader compatibility with reaction buffers. SnoopLigase2 catalyzes transamidation between its two substrates — SnoopTag2 (bearing the reactive lysine) and DogTag (bearing the reactive asparagine) — forming a stable isopeptide bond and thereby mediating a site-specific, highly efficient, covalent linkage between the two fusion partners.",
+      "components": [],
+      "shortName": "SnoopLigase2",
+      "category": "Protein ligation",
+      "color": "enzyme",
+      "sequence": "ATGGGCAGCTGGAGCCATCATCATCATCATCACAGCTCTGGTGGTAGTGGTGTGAATAAGAACGATAAAAAGCCGCTGCGTGGTGCCGTGTTTAGCCTGCAGAAACAGCATCCCGACTATCCCGATATCTATGGCGCGATTGATCAGAATGGGACCTATCAAAATGTGCGTACCGGCGAAGATGGTAAACTGACCTTTAAGAATCTGAGCGATGGCAAATATCGCCTGATTGAAAATAGCGAACCCCCGGGCTATAAACCGGTGCAGAATAAGCCGATTGTGAGCTTTCGTATTGTGGATGGCGAAGTGCGTGATGTGACCAGCATTGTGCCGCCGGGTGTGCCGGCTACATATGAATTTACCTAA",
+      "slug": "bba-26o4aa95",
+      "registryUUID": "6ab7941f-ec54-46de-8b98-9763dd656f65",
+      "features": [
+        {
+          "start": 1,
+          "end": 366,
+          "label": "SnoopLigase2",
+          "color": "enzyme",
+          "sourceId": "BBa_26O4AA95",
+          "method": "whole-part",
+          "strand": "forward",
+          "lane": 0
+        }
+      ],
+      "summary": "This part encodes SnoopLigase2, the catalytic component of the SnoopLigase2 transglutaminase-like peptide–peptide ligation system."
+    },
+    {
+      "kind": "basic",
+      "order": 8,
+      "id": "BBa_2668RPJW",
+      "title": "SUMO solubility tag (pET28a DNA variant)",
+      "description": "A SUMO fusion-tag coding region from the pET28a-SUMO-DogTag expression vector. This 291-bp DNA variant preserves the codons of the supplied TVN construct and encodes the SUMO region from SDSEVNQEAK... to its C-terminal diglycine motif. It provides a soluble-expression and proteolytic-processing interface upstream of DogTag in the TVN and matched GTWSLLL control fusions. The adjacent glycine connecting SUMO to DogTag remains outside this Basic part.",
+      "components": [],
+      "shortName": "SUMO",
+      "category": "Expression & processing",
+      "color": "expression",
+      "sequence": "AGCGATAGCGAAGTGAACCAGGAAGCGAAACCGGAAGTTAAACCGGAAGTGAAACCGGAAACCCATATTAATCTGAAAGTTAGCGACGGCAGCAGCGAAATCTTTTTTAAAATTAAAAAAACCACCCCGCTGCGTCGCCTGATGGAAGCCTTTGCGAAACGTCAGGGTAAAGAAATGGATAGCCTGCGCTTTCTGTATGACGGCATCCGTATTCAGGCCGATCAGACCCCGGAAGACCTGGATATGGAAGACAACGATATTATTGAAGCGCATCGCGAACAGATCGGTGGT",
+      "slug": "bba-2668rpjw",
+      "registryUUID": "7049794b-e486-4887-b89b-367b8d23eefc",
+      "features": [
+        {
+          "start": 1,
+          "end": 291,
+          "label": "SUMO",
+          "color": "expression",
+          "sourceId": "BBa_2668RPJW",
+          "method": "whole-part",
+          "strand": "forward",
+          "lane": 0
+        }
+      ],
+      "summary": "A SUMO fusion-tag coding region from the pET28a-SUMO-DogTag expression vector."
+    },
+    {
+      "kind": "basic",
+      "order": 9,
+      "id": "BBa_26W1WSBA",
+      "title": "CPC GAG capture domain (CPC DNA variant)",
+      "description": "Encodes the 20-residue cationic peptide carrier CPC (RRRRAARRRAARRRAARRRR). Its 14 arginine residues provide a strongly positive domain for electrostatic capture of negatively charged glycosaminoglycans, supporting local GAG enrichment in modular extracellular-matrix scaffolds. This Basic part contains only the CPC coding region, without a start or stop codon, for in-frame assembly into fusion proteins. It preserves the exact DNA variant used in the ZJU-China 2026 CPC composite.",
+      "components": [],
+      "shortName": "CPC · CPC variant",
+      "category": "Matrix retention",
+      "color": "matrix",
+      "sequence": "CGCCGCCGCCGTGCTGCGCGCCGACGTGCGGCGCGTCGTAGAGCCGCTCGCCGCCGTCGT",
+      "slug": "bba-26w1wsba",
+      "registryUUID": "754656ac-5acb-4435-b0c4-ef2d84d30711",
+      "features": [
+        {
+          "start": 1,
+          "end": 60,
+          "label": "CPC",
+          "color": "matrix",
+          "sourceId": "BBa_26W1WSBA",
+          "method": "whole-part",
+          "strand": "forward",
+          "lane": 0
+        }
+      ],
+      "summary": "Encodes the 20-residue cationic peptide carrier CPC (RRRRAARRRAARRRAARRRR)."
+    },
+    {
+      "kind": "basic",
+      "order": 10,
+      "id": "BBa_26CWQQQY",
+      "title": "SnoopTag2",
+      "description": "This part encodes SnoopTag2, a short peptide tag that functions as the lysine-donating component of the SnoopLigase2 transglutaminase-like ligation system. SnoopTag2 was derived by directed evolution of the SnoopTagJr segment within domain 4 of the *Streptococcus pneumoniae* adhesin RrgA, and exhibits higher ligation efficiency than the parental SnoopTagJr. Catalyzed by SnoopLigase2, the reactive lysine residue on SnoopTag2 undergoes transamidation with the reactive asparagine residue on DogTag, forming a stable isopeptide bond that covalently and irreversibly joins a SnoopTag2-fusion protein to a DogTag-fusion protein in a site-specific manner. Because SnoopTag2 contains only 12 amino acids, it minimally perturbs the structure or function of fusion partners and can be appended to either the N- or C-terminus of a target protein, making it well-suited for modular protein assembly.",
+      "components": [],
+      "shortName": "SnoopTag2",
+      "category": "Protein ligation",
+      "color": "tag",
+      "sequence": "AAACTGGGCTATATTGAATTTTATAAAGTGGAAAAA",
+      "slug": "bba-26cwqqqy",
+      "registryUUID": "88b4c4ef-6bfe-4e47-8d0a-be768a7f9271",
+      "features": [
+        {
+          "start": 1,
+          "end": 36,
+          "label": "SnoopTag2",
+          "color": "tag",
+          "sourceId": "BBa_26CWQQQY",
+          "method": "whole-part",
+          "strand": "forward",
+          "lane": 0
+        }
+      ],
+      "summary": "This part encodes SnoopTag2, a short peptide tag that functions as the lysine-donating component of the SnoopLigase2 transglutaminase-like ligation system."
+    },
+    {
+      "kind": "basic",
+      "order": 11,
+      "id": "BBa_2622N6K0",
+      "title": "Link-N matrix-associated domain (CPC-Link-N DNA variant)",
+      "description": "Encodes the 16-residue Link-N peptide DHLSDNYTLDHDRAIH, derived from the N-terminal region of cartilage link protein HAPLN1. This reusable matrix-associated domain supplies the Link-N function in the GAG retention module and can be combined with the CPC capture domain. This Basic part contains only the Link-N coding region, without a start or stop codon, for in-frame assembly into fusion proteins. It preserves the exact DNA variant used in the ZJU-China 2026 CPC-Link-N composite.",
+      "components": [],
+      "shortName": "Link-N · CPC-Link-N variant",
+      "category": "Matrix retention",
+      "color": "matrix",
+      "sequence": "GACCACCTGAGCGACAACTACACCCTGGATCACGATCGTGCAATTCAT",
+      "slug": "bba-2622n6k0",
+      "registryUUID": "892daf14-6f89-4183-b4f4-a64b450759c3",
+      "features": [
+        {
+          "start": 1,
+          "end": 48,
+          "label": "Link-N",
+          "color": "matrix",
+          "sourceId": "BBa_2622N6K0",
+          "method": "whole-part",
+          "strand": "forward",
+          "lane": 0
+        }
+      ],
+      "summary": "Encodes the 16-residue Link-N peptide DHLSDNYTLDHDRAIH, derived from the N-terminal region of cartilage link protein HAPLN1."
+    },
+    {
+      "kind": "basic",
+      "order": 12,
+      "id": "BBa_267Q6XR6",
+      "title": "DogTag ligation handle (Link-N DNA variant)",
+      "description": "Encodes the 23-residue DogTag peptide DIPATYEFTDGKHYITNEPIPPK, a reusable protein ligation handle for connection to a compatible SnoopTag-bearing partner through SnoopLigase. This Basic part contains only the DogTag coding region, without a start or stop codon, for in-frame assembly into fusion proteins. It preserves the exact DNA variant used in the ZJU-China 2026 Link-N composite.",
+      "components": [],
+      "shortName": "DogTag · Link-N variant",
+      "category": "Protein ligation",
+      "color": "tag",
+      "sequence": "GACATCCCGGCTACCTATGAATTTACGGATGGCAAGCACTACATCACCAATGAACCGATCCCGCCTAAA",
+      "slug": "bba-267q6xr6",
+      "registryUUID": "949a8fc9-10c3-40dd-bf7f-fc8a92d58fa6",
+      "features": [
+        {
+          "start": 1,
+          "end": 69,
+          "label": "DogTag",
+          "color": "tag",
+          "sourceId": "BBa_267Q6XR6",
+          "method": "whole-part",
+          "strand": "forward",
+          "lane": 0
+        }
+      ],
+      "summary": "Encodes the 23-residue DogTag peptide DIPATYEFTDGKHYITNEPIPPK, a reusable protein ligation handle for connection to a compatible SnoopTag-bearing partner through SnoopLigase."
+    },
+    {
+      "kind": "basic",
+      "order": 13,
+      "id": "BBa_261FVLIT",
+      "title": "DogTag ligation handle (TVN construct DNA variant)",
+      "description": "A 23-residue DogTag ligation handle (DIPATYEFTDGKHYITNEPIPPK) for SnoopLigase-mediated coupling to a compatible SnoopTag-bearing scaffold. This 69-bp coding region preserves the synonymous codons of the SUMO-DogTag-TVN construct and is used in both the TVN and matched control fusions.",
+      "components": [],
+      "shortName": "DogTag · TVN variant",
+      "category": "Protein ligation",
+      "color": "tag",
+      "sequence": "GATATTCCGGCTACATATGAATTTACCGATGGTAAACATTATATCACCAATGAACCGATACCGCCGAAA",
+      "slug": "bba-261fvlit",
+      "registryUUID": "b0641327-0574-49d6-9d59-4f04138b81f3",
+      "features": [
+        {
+          "start": 1,
+          "end": 69,
+          "label": "DogTag",
+          "color": "tag",
+          "sourceId": "BBa_261FVLIT",
+          "method": "whole-part",
+          "strand": "forward",
+          "lane": 0
+        }
+      ],
+      "summary": "A 23-residue DogTag ligation handle (DIPATYEFTDGKHYITNEPIPPK) for SnoopLigase-mediated coupling to a compatible SnoopTag-bearing scaffold."
+    },
+    {
+      "kind": "basic",
+      "order": 14,
+      "id": "BBa_26AD0E6R",
+      "title": "DogTag ligation handle (CPC DNA variant)",
+      "description": "Encodes the 23-residue DogTag peptide DIPATYEFTDGKHYITNEPIPPK, a reusable protein ligation handle for connection to a compatible SnoopTag-bearing partner through SnoopLigase. This Basic part contains only the DogTag coding region, without a start or stop codon, for in-frame assembly into fusion proteins. It preserves the exact DNA variant used in the ZJU-China 2026 CPC composite.",
+      "components": [],
+      "shortName": "DogTag · CPC variant",
+      "category": "Protein ligation",
+      "color": "tag",
+      "sequence": "GACATCCCGGCAACCTATGAATTCACCGATGGCAAGCATTATATCACCAATGAACCGATTCCACCGAAA",
+      "slug": "bba-26ad0e6r",
+      "registryUUID": "bdf68f8f-12d3-4a26-a993-dbb4714d3440",
+      "features": [
+        {
+          "start": 1,
+          "end": 69,
+          "label": "DogTag",
+          "color": "tag",
+          "sourceId": "BBa_26AD0E6R",
+          "method": "whole-part",
+          "strand": "forward",
+          "lane": 0
+        }
+      ],
+      "summary": "Encodes the 23-residue DogTag peptide DIPATYEFTDGKHYITNEPIPPK, a reusable protein ligation handle for connection to a compatible SnoopTag-bearing partner through SnoopLigase."
+    },
+    {
+      "kind": "basic",
+      "order": 15,
+      "id": "BBa_26N2VUO2",
+      "title": "CPC GAG capture domain (CPC-Link-N DNA variant)",
+      "description": "Encodes the 20-residue cationic peptide carrier CPC (RRRRAARRRAARRRAARRRR). Its 14 arginine residues provide a strongly positive domain for electrostatic capture of negatively charged glycosaminoglycans, supporting local GAG enrichment in modular extracellular-matrix scaffolds. This Basic part contains only the CPC coding region, without a start or stop codon, for in-frame assembly into fusion proteins. It preserves the exact DNA variant used in the ZJU-China 2026 CPC-Link-N composite.",
+      "components": [],
+      "shortName": "CPC · CPC-Link-N variant",
+      "category": "Matrix retention",
+      "color": "matrix",
+      "sequence": "CGTCGCAGACGTGCGGCTCGTCGCCGTGCGGCGCGTCGCCGCGCGGCCCGTCGCCGTCGT",
+      "slug": "bba-26n2vuo2",
+      "registryUUID": "e828e1ea-569b-4528-a426-22702e863708",
+      "features": [
+        {
+          "start": 1,
+          "end": 60,
+          "label": "CPC",
+          "color": "matrix",
+          "sourceId": "BBa_26N2VUO2",
+          "method": "whole-part",
+          "strand": "forward",
+          "lane": 0
+        }
+      ],
+      "summary": "Encodes the 20-residue cationic peptide carrier CPC (RRRRAARRRAARRRAARRRR)."
+    },
+    {
+      "kind": "basic",
+      "order": 16,
+      "id": "BBa_26CJOJD3",
+      "title": "Cys-GGGGS-ScrambledControl-GGGGS",
+      "description": "Encodes the 23-amino-acid module C-GGGGS-RKGLSLGLPGRR-GGGGS. The cysteine provides a thiol handle for conjugation to maleimide (Mal)-functionalized molecules or materials. Two GGGGS flexible linkers flank the scrambled peptide RKGLSLGLPGRR, providing conformational flexibility. This peptide retains the length and amino acid composition of MMP13sp while changing the residue order. The module serves as a sequence control for evaluating protease-dependent cleavage in the assembled fusion protein; resistance to MMP-13 cleavage is not assumed. This internal coding fragment contains neither a start nor a stop codon.",
+      "components": [],
+      "shortName": "Cys–ScrambledControl",
+      "category": "Protease response",
+      "color": "control",
+      "sequence": "TGTGGTGGTGGTGGTTCTCGTAAAGGTCTGTCTCTGGGTCTGCCGGGTCGTCGTGGTGGTGGTGGTTCT",
+      "slug": "bba-26cjojd3",
+      "registryUUID": "5cd10d25-2606-472a-8487-be07dd4c41b7",
+      "features": [
+        {
+          "start": 1,
+          "end": 69,
+          "label": "Cys–ScrambledControl",
+          "color": "control",
+          "sourceId": "BBa_26CJOJD3",
+          "method": "whole-part",
+          "strand": "forward",
+          "lane": 0
+        }
+      ],
+      "summary": "Encodes the 23-amino-acid module C-GGGGS-RKGLSLGLPGRR-GGGGS."
+    },
+    {
+      "kind": "basic",
+      "order": 17,
+      "id": "BBa_26YHJZ36",
+      "title": "Cys-GGGGS-MMP13sp-GGGGS",
+      "description": "Encodes the 23-amino-acid module C-GGGGS-RRGPLGLSLGKR-GGGGS. The cysteine provides a thiol handle for conjugation to maleimide (Mal)-functionalized molecules or materials. Two GGGGS flexible linkers flank the MMP13sp peptide RRGPLGLSLGKR, providing conformational flexibility around the intended protease-responsive segment. Cleavage within this segment by MMP-13 is expected to separate the Cys-containing portion from a downstream fused component. Cleavage efficiency and selectivity depend on the fusion context and require experimental characterization. This internal coding fragment contains neither a start nor a stop codon.",
+      "components": [],
+      "shortName": "Cys–MMP13sp",
+      "category": "Protease response",
+      "color": "protease",
+      "sequence": "TGTGGTGGTGGTGGTTCTCGTCGTGGTCCGCTGGGTCTGTCTCTGGGTAAACGTGGTGGTGGTGGTTCT",
+      "slug": "bba-26yhjz36",
+      "registryUUID": "641db9f7-ff2d-41b7-8679-4f46918f655e",
+      "features": [
+        {
+          "start": 1,
+          "end": 69,
+          "label": "Cys–MMP13sp",
+          "color": "protease",
+          "sourceId": "BBa_26YHJZ36",
+          "method": "whole-part",
+          "strand": "forward",
+          "lane": 0
+        }
+      ],
+      "summary": "Encodes the 23-amino-acid module C-GGGGS-RRGPLGLSLGKR-GGGGS."
+    },
+    {
+      "kind": "basic",
+      "order": 18,
+      "id": "BBa_26W1Y273",
+      "title": "His6-SUMO-TEV",
+      "description": "Encodes an N-terminal fusion module containing a 6×His affinity tag, SUMO, and a C-terminal ENLYFQ protease-recognition motif. The His tag supports immobilized-metal affinity purification, while SUMO is intended to support soluble expression of the downstream fusion protein. When assembled upstream of either Cys-containing middle part, the ENLYFQ motif forms the intended TEV-processing junction ENLYFQ-C. This fragment contains the translation initiation codon and is designed for continuous in-frame fusion to downstream coding parts.",
+      "components": [],
+      "shortName": "His6–SUMO–TEV",
+      "category": "Expression & processing",
+      "color": "expression",
+      "sequence": "ATGGGTAGCTGGAGCCATCACCATCATCATCACGGGAGCGATAGCGAAGTGAACCAGGAAGCGAAACCGGAAGTTAAACCGGAAGTGAAACCGGAAACCCATATTAATCTGAAAGTTAGCGACGGCAGCAGCGAAATCTTTTTTAAAATTAAAAAAACCACCCCGCTGCGTCGCCTGATGGAAGCCTTTGCGAAACGTCAGGGTAAAGAAATGGATAGCCTGCGCTTTCTGTATGACGGCATCCGTATTCAGGCCGATCAGACCCCGGAAGACCTGGATATGGAAGACAACGATATTATTGAAG",
+      "slug": "bba-26w1y273",
+      "registryUUID": "e63a2bfb-29af-40de-a169-c4f1719b67fd",
+      "features": [
+        {
+          "start": 1,
+          "end": 304,
+          "label": "His6–SUMO–TEV",
+          "color": "expression",
+          "sourceId": "BBa_26W1Y273",
+          "method": "whole-part",
+          "strand": "forward",
+          "lane": 0
+        }
+      ],
+      "summary": "Encodes an N-terminal fusion module containing a 6×His affinity tag, SUMO, and a C-terminal ENLYFQ protease-recognition motif."
+    },
+    {
+      "kind": "composite",
+      "order": 1,
+      "id": "BBa_26ZPD683",
+      "title": "DogTag-CPC-Link-N GAG retention module",
+      "description": "A recombinant GAG retention module that combines the 20-residue cationic peptide carrier CPC (RRRRAARRRAARRRAARRRR) with the 16-residue Link-N peptide (DHLSDNYTLDHDRAIH) through a GGSG linker. CPC supplies the positively charged GAG-capture domain; Link-N supplies the complementary matrix-associated domain. Together, these motifs are designed to enrich and retain extracellular-matrix components within a modular cartilage-repair scaffold. DogTag supplies the ligation handle for integration with a compatible SnoopTag-bearing scaffold. The complete expression CDS includes a His-tagged leader, a SUMO region, AviTag, a TEV recognition site and a glycine-rich spacer, supporting recombinant production, processing and biochemical evaluation.",
+      "components": [
+        "BBa_K3716003",
+        "BBa_263RONL8",
+        "BBa_26N2VUO2",
+        "BBa_2622N6K0"
+      ],
+      "shortName": "DogTag–CPC–Link-N",
+      "category": "Matrix retention",
+      "color": "matrix",
+      "sequence": "ATGGGCAGCAGCCATCATCATCATCATCACAGCAGCGGCCTGGTGCCGCGCGGCAGCCATATGGCTAGCATGACTGGTGGACAGCAAATGGGTCGCGGATCCGAATTCGAGGGAAGTGATTCAGAAGTAAATCAAGAGGCTAAGCCGGAGGTGAAGCCGGAGGTTAAACCAGAGACGCACATCAACCTGAAAGTCTCTGACGGCTCGAGCGAAATCTTCTTCAAGATCAAAAAGACGACCCCGCTCCGTCGCCTGATGGAAGCCTTTGCGAAGCGCCAAGGTAAAGAAATGGATAGCCTGCGTTTTCTTTACGATGGTATTCGTATTCAGGCTGATCAAACTCCGGAGGACCTGGACATGGAAGATAACGACATCATCGAGGCACATCGTGAACAAATTGGTGGTGGCGGCTTGAATGACATCTTCGAGGCGCAGAAAATCGAGTGGCATGAAGAGAACTTGTACTTTCAGGGTGGCGGTGGCGGTAGCGACATCCCGGCTACCTATGAATTCACCGATGGCAAGCACTATATTACCAATGAACCGATTCCGCCTAAACGTCGCAGACGTGCGGCTCGTCGCCGTGCGGCGCGTCGCCGCGCGGCCCGTCGCCGTCGTGGTGGCTCCGGTGACCACCTGAGCGACAACTACACCCTGGATCACGATCGTGCAATTCATTAA",
+      "slug": "bba-26zpd683",
+      "registryUUID": "1417cbd8-b0f1-4627-9fa3-8d088ad3420f",
+      "features": [
+        {
+          "start": 1,
+          "end": 102,
+          "label": "ATG-6xHis-thrombin_site-T7_tag",
+          "color": "expression",
+          "sourceId": "BBa_K3716003",
+          "method": "registry-annotation",
+          "strand": "forward",
+          "lane": 0
+        },
+        {
+          "start": 490,
+          "end": 558,
+          "label": "DogTag ligation handle (CPC-Link-N DNA variant)",
+          "color": "tag",
+          "sourceId": "BBa_263RONL8",
+          "method": "registry-annotation",
+          "strand": "forward",
+          "lane": 0
+        },
+        {
+          "start": 559,
+          "end": 618,
+          "label": "CPC GAG capture domain (CPC-Link-N DNA variant)",
+          "color": "matrix",
+          "sourceId": "BBa_26N2VUO2",
+          "method": "registry-annotation",
+          "strand": "forward",
+          "lane": 0
+        },
+        {
+          "start": 631,
+          "end": 678,
+          "label": "Link-N matrix-associated domain (CPC-Link-N DNA variant)",
+          "color": "matrix",
+          "sourceId": "BBa_2622N6K0",
+          "method": "registry-annotation",
+          "strand": "forward",
+          "lane": 0
+        }
+      ],
+      "summary": "A recombinant GAG retention module that combines the 20-residue cationic peptide carrier CPC (RRRRAARRRAARRRAARRRR) with the 16-residue Link-N peptide (DHLSDNYTLDHDRAIH) through a GGSG linker."
+    },
+    {
+      "kind": "composite",
+      "order": 2,
+      "id": "BBa_26OZ27MH",
+      "title": "DogTag-GTWSLLL matched control module",
+      "description": "A newly designed matched control for the DogTag-TVN magnetic-response module. The unrelated peptide GTWSLLL replaces TVNFKLY while the His-SUMO expression region, DogTag, SGGGGS linker and terminal stop codon remain identical. The 441-bp CDS encodes a 146-residue precursor and allows the contribution of the TVN sequence to nanoparticle association to be tested in the same fusion architecture.",
+      "components": ["BBa_2668RPJW", "BBa_261FVLIT", "BBa_26EC8O68"],
+      "shortName": "DogTag–GTWSLLL control",
+      "category": "Magnetic response",
+      "color": "control",
+      "sequence": "ATGGGTAGCTGGAGCCATCACCATCATCATCACGGGAGCGATAGCGAAGTGAACCAGGAAGCGAAACCGGAAGTTAAACCGGAAGTGAAACCGGAAACCCATATTAATCTGAAAGTTAGCGACGGCAGCAGCGAAATCTTTTTTAAAATTAAAAAAACCACCCCGCTGCGTCGCCTGATGGAAGCCTTTGCGAAACGTCAGGGTAAAGAAATGGATAGCCTGCGCTTTCTGTATGACGGCATCCGTATTCAGGCCGATCAGACCCCGGAAGACCTGGATATGGAAGACAACGATATTATTGAAGCGCATCGCGAACAGATCGGTGGTGGCGATATTCCGGCTACATATGAATTTACCGATGGTAAACATTATATCACCAATGAACCGATACCGCCGAAATCTGGCGGCGGCGGCAGCGGCACCTGGAGCCTGCTGCTGTAA",
+      "slug": "bba-26oz27mh",
+      "registryUUID": "1f14f486-f71a-4581-87fb-9ecdd40a883b",
+      "features": [
+        {
+          "start": 37,
+          "end": 327,
+          "label": "SUMO solubility tag (pET28a DNA variant)",
+          "color": "expression",
+          "sourceId": "BBa_2668RPJW",
+          "method": "registry-annotation",
+          "strand": "forward",
+          "lane": 0
+        },
+        {
+          "start": 331,
+          "end": 399,
+          "label": "DogTag ligation handle (TVN construct DNA variant)",
+          "color": "tag",
+          "sourceId": "BBa_261FVLIT",
+          "method": "registry-annotation",
+          "strand": "forward",
+          "lane": 0
+        },
+        {
+          "start": 418,
+          "end": 438,
+          "label": "GTWSLLL unrelated peptide control",
+          "color": "control",
+          "sourceId": "BBa_26EC8O68",
+          "method": "registry-annotation",
+          "strand": "forward",
+          "lane": 0
+        }
+      ],
+      "summary": "A newly designed matched control for the DogTag-TVN magnetic-response module."
+    },
+    {
+      "kind": "composite",
+      "order": 3,
+      "id": "BBa_26RVHX1R",
+      "title": "SnoopTag2-sfGFP",
+      "description": "This part encodes a fusion protein comprising the SnoopTag2 peptide tag linked to superfolder green fluorescent protein (sfGFP) via a short flexible linker, and serves as one of the positive substrates for validating the SnoopLigase2 ligation system. In this fusion protein, SnoopTag2 provides the reactive lysine residue, which undergoes transamidation with the reactive asparagine residue on SUMO-DogTag in the presence of SnoopLigase2, forming a stable isopeptide bond and generating a covalent ligation product of markedly higher molecular weight. Because sfGFP produces a bright fluorescence signal and a well-resolved band on SDS-PAGE, incubation of this part with SUMO-DogTag allows the appearance of the ligation product and the consumption of substrates to be directly monitored by SDS-PAGE, enabling quantitative assessment of the SnoopLigase2 ligation efficiency and providing a basis for optimizing reaction conditions.",
+      "components": ["BBa_M50427"],
+      "shortName": "SnoopTag2–sfGFP",
+      "category": "Protein ligation",
+      "color": "reporter",
+      "sequence": "AAACTGGGCTATATTGAATTTTATAAAGTGGAAAAAATGCGTAAAGGCGAAGAGCTGTTCACTGGTGTCGTCCCTATTCTGGTGGAACTGGATGGTGATGTCAACGGTCATAAGTTTTCCGTGCGTGGCGAGGGTGAAGGTGACGCAACTAATGGTAAACTGACGCTGAAGTTCATCTGTACTACTGGTAAACTGCCGGTACCTTGGCCGACTCTGGTAACGACGCTGACTTATGGTGTTCAGTGCTTTGCTCGTTATCCGGACCATATGAAGCAGCATGACTTCTTCAAGTCCGCCATGCCGGAAGGCTATGTGCAGGAACGCACGATTTCCTTTAAGGATGACGGCACGTACAAAACGCGTGCGGAAGTGAAATTTGAAGGCGATACCCTGGTAAACCGCATTGAGCTGAAAGGCATTGACTTTAAAGAAGACGGCAATATCCTGGGCCATAAGCTGGAATACAATTTTAACAGCCACAATGTTTACATCACCGCCGATAAACAAAAAAATGGCATTAAAGCGAATTTTAAAATTCGCCACAACGTGGAGGATGGCAGCGTGCAGCTGGCTGATCACTACCAGCAAAACACTCCAATCGGTGATGGTCCTGTTCTGCTGCCAGACAATCACTATCTGAGCACGCAAAGCGTTCTGTCTAAAGATCCGAACGAGAAACGCGATCATATGGTTCTGCTGGAGTTCGTAACCGCAGCGGGCATCACGCATGGTATGGATGAACTGTACAAA",
+      "slug": "bba-26rvhx1r",
+      "registryUUID": "3d05a0bb-83f1-4adf-b5ba-ccc3e78aa98e",
+      "features": [
+        {
+          "start": 37,
+          "end": 750,
+          "label": "sfGFP",
+          "color": "reporter",
+          "sourceId": "BBa_M50427",
+          "method": "registry-annotation",
+          "strand": "forward",
+          "lane": 0
+        }
+      ],
+      "summary": "This part encodes a fusion protein comprising the SnoopTag2 peptide tag linked to superfolder green fluorescent protein (sfGFP) via a short flexible linker, and serves as one of the positive substrates for validating the SnoopLigase2 ligation system."
+    },
+    {
+      "kind": "composite",
+      "order": 4,
+      "id": "BBa_266WDNPZ",
+      "title": "DogTag-Link-N matrix retention module",
+      "description": "A recombinant matrix-retention module containing Link-N (DHLSDNYTLDHDRAIH), the 16-residue N-terminal peptide of cartilage link protein. The module is designed to support extracellular-matrix retention and matrix development in a cartilage-repair scaffold. DogTag supplies a ligation handle for integration with a compatible SnoopTag-bearing scaffold. The complete expression CDS includes a His-tagged leader, a SUMO region, AviTag, a TEV recognition site and a glycine-rich spacer. This construct delivers the Link-N component and the Link-N-only comparator for the combined CPC-Link-N GAG retention module.",
+      "components": ["BBa_267Q6XR6", "BBa_261WIYFW"],
+      "shortName": "DogTag–Link-N",
+      "category": "Matrix retention",
+      "color": "matrix",
+      "sequence": "ATGGGCAGCAGCCATCATCATCATCATCACAGCAGCGGCCTGGTGCCGCGCGGCAGCCATATGGCTAGCATGACTGGTGGACAGCAAATGGGTCGCGGATCCGAATTCGAGGGATCAGATAGTGAAGTAAATCAAGAGGCTAAGCCGGAGGTGAAGCCAGAGGTCAAGCCGGAAACCCATATTAACCTGAAAGTTAGCGACGGCTCTAGCGAAATTTTCTTTAAGATCAAGAAAACTACGCCGTTGCGCCGTCTGATGGAGGCGTTCGCCAAACGTCAGGGTAAAGAAATGGATAGCTTACGTTTTCTGTACGACGGTATTCGTATTCAGGCAGATCAGACCCCGGAGGACCTGGATATGGAGGACAACGACATCATCGAGGCGCATAGAGAACAAATTGGTGGCGGTGGCCTGAATGATATCTTCGAGGCGCAAAAAATCGAGTGGCACGAAGAAAACTTGTACTTCCAAGGTGGTGGCGGCGGTTCGGACATCCCGGCTACCTATGAATTTACGGATGGCAAGCACTACATCACCAATGAACCGATCCCGCCTAAAGATCACCTCTCCGACAACTATACCCTGGACCACGATCGCGCAATTCATTAA",
+      "slug": "bba-266wdnpz",
+      "registryUUID": "3e410c00-b883-4040-b854-5d9f29ab470d",
+      "features": [
+        {
+          "start": 490,
+          "end": 558,
+          "label": "DogTag ligation handle (Link-N DNA variant)",
+          "color": "tag",
+          "sourceId": "BBa_267Q6XR6",
+          "method": "registry-annotation",
+          "strand": "forward",
+          "lane": 0
+        },
+        {
+          "start": 559,
+          "end": 606,
+          "label": "Link-N matrix-associated domain (Link-N DNA variant)",
+          "color": "matrix",
+          "sourceId": "BBa_261WIYFW",
+          "method": "registry-annotation",
+          "strand": "forward",
+          "lane": 0
+        }
+      ],
+      "summary": "A recombinant matrix-retention module containing Link-N (DHLSDNYTLDHDRAIH), the 16-residue N-terminal peptide of cartilage link protein."
+    },
+    {
+      "kind": "composite",
+      "order": 5,
+      "id": "BBa_267XBQOY",
+      "title": "DogTag-CPC GAG capture module",
+      "description": "A recombinant GAG-capture module containing the 20-residue arginine-rich cationic peptide carrier CPC (RRRRAARRRAARRRAARRRR; RRRR(AARRR)3R). Its positively charged CPC domain is designed to recruit negatively charged sulfated glycosaminoglycans through electrostatic interactions and concentrate matrix components locally. DogTag supplies a ligation handle for integration with a compatible SnoopTag-bearing scaffold. The complete expression CDS includes a His-tagged leader, a SUMO region, AviTag, a TEV recognition site and a glycine-rich spacer. This construct provides the GAG-capture component and the CPC-only comparator for the combined CPC-Link-N module.",
+      "components": ["BBa_26AD0E6R", "BBa_26W1WSBA"],
+      "shortName": "DogTag–CPC",
+      "category": "Matrix retention",
+      "color": "matrix",
+      "sequence": "ATGGGCAGCAGCCATCATCATCATCATCACAGCAGCGGCCTGGTGCCGCGCGGCAGCCATATGGCTAGCATGACTGGTGGACAGCAAATGGGTCGCGGATCCGAATTCGAGGGAAGTGATTCAGAAGTAAATCAAGAGGCTAAGCCGGAGGTCAAACCGGAGGTTAAGCCGGAGACGCACATTAACCTTAAGGTGAGCGACGGCTCTAGCGAAATTTTTTTCAAAATTAAAAAGACCACTCCGCTGCGTCGCCTGATGGAGGCGTTTGCGAAGCGTCAGGGTAAAGAAATGGATAGCCTGCGTTTTCTGTACGACGGTATTCGTATTCAGGCAGATCAGACCCCTGAGGACCTGGATATGGAAGACAACGACATCATCGAGGCCCATCGTGAACAAATCGGTGGCGGTGGCTTGAATGATATCTTCGAGGCGCAAAAAATCGAGTGGCACGAAGAAAACTTGTACTTCCAAGGTGGCGGTGGCGGTTCCGACATCCCGGCAACCTATGAATTCACCGATGGCAAGCATTATATCACCAATGAACCGATTCCACCGAAACGCCGCCGCCGTGCTGCGCGCCGACGTGCGGCGCGTCGTAGAGCCGCTCGCCGCCGTCGTTAA",
+      "slug": "bba-267xbqoy",
+      "registryUUID": "5ed18586-90cf-435d-ace4-c1d29d1d8676",
+      "features": [
+        {
+          "start": 490,
+          "end": 558,
+          "label": "DogTag ligation handle (CPC DNA variant)",
+          "color": "tag",
+          "sourceId": "BBa_26AD0E6R",
+          "method": "registry-annotation",
+          "strand": "forward",
+          "lane": 0
+        },
+        {
+          "start": 559,
+          "end": 618,
+          "label": "CPC GAG capture domain (CPC DNA variant)",
+          "color": "matrix",
+          "sourceId": "BBa_26W1WSBA",
+          "method": "registry-annotation",
+          "strand": "forward",
+          "lane": 0
+        }
+      ],
+      "summary": "A recombinant GAG-capture module containing the 20-residue arginine-rich cationic peptide carrier CPC (RRRRAARRRAARRRAARRRR; RRRR(AARRR)3R)."
+    },
+    {
+      "kind": "composite",
+      "order": 6,
+      "id": "BBa_26PVPRQ2",
+      "title": "SUMO-DogTag fusion protein",
+      "description": "This part encodes a fusion protein comprising small ubiquitin-like modifier (SUMO) linked to the DogTag peptide tag via a short flexible linker, and serves as one of the positive substrates for validating the SnoopLigase2 ligation system. In this fusion protein, DogTag provides the reactive asparagine residue, which undergoes transamidation with the reactive lysine residue on SnoopTag2-sfGFP in the presence of SnoopLigase2, forming a stable isopeptide bond and generating a covalent ligation product of markedly higher molecular weight. Because SUMO (approximately 11 kDa) and sfGFP (approximately 27 kDa) are well resolved on SDS-PAGE, incubation of this part with SnoopTag2-sfGFP allows formation of the ligation product to be directly monitored by SDS-PAGE, thereby validating the SnoopTag2–DogTag–SnoopLigase2 ligation system and providing a basis for optimizing reaction conditions prior to conjugating functional modules to the hydrogel scaffold.",
+      "components": ["BBa_2668RPJW", "BBa_261FVLIT"],
+      "shortName": "SUMO–DogTag",
+      "category": "Protein ligation",
+      "color": "expression",
+      "sequence": "ATGGGTAGCTGGAGCCATCACCATCATCATCACAGCGATAGCGAAGTGAACCAGGAAGCGAAACCGGAAGTTAAACCGGAAGTGAAACCGGAAACCCATATTAATCTGAAAGTTAGCGACGGCAGCAGCGAAATCTTTTTTAAAATTAAAAAAACCACCCCGCTGCGTCGCCTGATGGAAGCCTTTGCGAAACGTCAGGGTAAAGAAATGGATAGCCTGCGCTTTCTGTATGACGGCATCCGTATTCAGGCCGATCAGACCCCGGAAGACCTGGATATGGAAGACAACGATATTATTGAAGCGCATCGCGAACAGATCGGTGGTGATATTCCGGCTACATATGAATTTACCGATGGTAAACATTATATCACCAATGAACCGATACCGCCGAAATAA",
+      "slug": "bba-26pvprq2",
+      "registryUUID": "8936632f-4bed-43f0-9dba-88970abf3b57",
+      "features": [
+        {
+          "start": 34,
+          "end": 324,
+          "label": "SUMO solubility tag (pET28a DNA variant)",
+          "color": "expression",
+          "sourceId": "BBa_2668RPJW",
+          "method": "registry-annotation",
+          "strand": "forward",
+          "lane": 0
+        },
+        {
+          "start": 325,
+          "end": 393,
+          "label": "DogTag ligation handle (TVN construct DNA variant)",
+          "color": "tag",
+          "sourceId": "BBa_261FVLIT",
+          "method": "registry-annotation",
+          "strand": "forward",
+          "lane": 0
+        }
+      ],
+      "summary": "This part encodes a fusion protein comprising small ubiquitin-like modifier (SUMO) linked to the DogTag peptide tag via a short flexible linker, and serves as one of the positive substrates for validating the SnoopLigase2 ligation system."
+    },
+    {
+      "kind": "composite",
+      "order": 7,
+      "id": "BBa_26HWVIKX",
+      "title": "SnoopTag2-2KY-10-SnoopTag2 (Hydrogel scaffold protein 2KY-10 flanked by SnoopTag2 at both termini)",
+      "description": "This part encodes a fusion protein with the architecture SnoopTag2-2KY-10-SnoopTag2, in which the silk-elastin-like protein (SELP) hydrogel scaffold 2KY-10 is fused at both its N- and C-termini to the SnoopTag2 peptide tag, with short flexible linkers connecting the tags to the scaffold. In this fusion protein, the SnoopTag2 tags at both termini provide reactive lysine residues that, in the presence of SnoopLigase2, undergo site-specific covalent ligation with DogTag-bearing functional modules , forming stable isopeptide bonds and thereby covalently conjugating the functional modules to the hydrogel scaffold. Incubation of this fusion protein with a DogTag-bearing functional module and SnoopLigase2 allows the ligation reaction to be monitored by SDS-PAGE, and is used for the preparation and performance validation of the cartilage-repair hydrogel. ",
+      "components": ["BBa_26CWQQQY", "BBa_26CWQQQY"],
+      "shortName": "SnoopTag2–2KY-10–SnoopTag2",
+      "category": "Hydrogel scaffold",
+      "color": "scaffold",
+      "sequence": "ATGAAACTGGGCTATATTGAATTTTATAAAGTGGAAAAAAAAACGAAAACCGGTGCTGGTGCCGGTTCGGGCGCCGGTGCGGGCTCAGGCCGTGGGGACTCAGGCAAAGGCGTGCCGGGTGTTGGCGTTCCGGGTGTTGGCGTTCCGGGTGTAGGTGTTCCAGGTTATGGCGTCCCGGGCGTGGGCGTACCAGGTGTGGGAGTTCCGGGTGTTGGCGTTCCAGGTGCAGGTGCAGGCAGTGGCGCGGGCGCGGGTTCCGGTCGTGGGGATTCGGGTAAAGGTGTTCCTGGTGTGGGCGTTCCTGGCGTAGGGGTACCAGGGGTGGGTGTTCCGGGTTATGGGGTACCTGGTGTGGGTGTGCCTGGTGTTGGTGTGCCTGGCGTTGGCGTTCCAGGGGCGGGTGCTGGCTCGGGTGCAGGCGCTGGGTCGGGTCGTGGCGATAGTGGTAAGGGTGTGCCTGGTGTTGGCGTGCCGGGGGTTGGGGTCCCTGGCGTCGGCGTGCCTGGGTACGGTGTGCCTGGTGTGGGCGTTCCTGGTGTTGGTGTGCCTGGTGTGGGCGTTCCGGGCGCAGGTGCGGGTAGCGGTGCTGGGGCTGGTTCTGGCCGTGGCGATTCAGGTAAAGGCGTACCGGGTGTTGGTGTGCCGGGTGTGGGTGTGCCTGGTGTAGGGGTTCCTGGCTATGGCGTACCTGGCGTGGGTGTACCAGGCGTTGGGGTGCCTGGTGTGGGTGTGCCTGGTGCGGGTGCGGGCAGTGGTGCAGGTGCAGGTAGTGGGCGCGGCGACAGCGGGAAGGGTGTTCCTGGTGTGGGCGTGCCAGGGGTTGGTGTTCCTGGTGTTGGTGTGCCTGGTTATGGTGTACCGGGCGTAGGTGTGCCAGGTGTTGGGGTTCCAGGCGTAGGCGTTCCAGGTGCTGGCGCAGGTTCAGGGGCCGGTGCAGGCTCTGGCCGCGGCGATTCGGGCAAGGGCGTTCCGGGCGTTGGCGTTCCGGGTGTTGGCGTTCCGGGTGTTGGCGTTCCAGGCTACGGTGTCCCAGGCGTCGGGGTGCCGGGCGTCGGTGTGCCGGGTGTTGGCGTTCCGGGTGCCGGTGCGGGTTCTGGCGCGGGTGCCGGCAGTGGTCGTGGTGATTCTGGCAAAGGCGTTCCGGGCGTTGGAGTCCCTGGTGTCGGTGTACCTGGGGTTGGCGTCCCTGGCTACGGCGTTCCTGGTGTGGGCGTTCCGGGTGTTGGTGTGCCTGGTGTTGGCGTTCCGGGCGCTGGAGCTGGTTCGGGGGCTGGTGCTGGCAGTGGGCGTGGTGACAGTGGCAAAGGTGTGCCTGGTGTTGGTGTGCCTGGAGTGGGGGTCCCGGGGGTCGGAGTGCCGGGCTATGGTGTCCCTGGGGTCGGTGTCCCGGGTGTTGGTGTGCCTGGTGTGGGTGTGCCGGGTGCCGGTGCTGGTAGTGGCGCCGGCGCGGGTAGTGGCCGTGGTGATAGCGGTAAGGGCGTGCCGGGTGTGGGCGTTCCAGGTGTCGGGGTTCCGGGGGTGGGGGTGCCAGGGTACGGCGTGCCGGGTGTGGGCGTTCCGGGTGTGGGCGTTCCGGGTGTTGGTGTGCCGGGTGCAGGCGCAGGCTCAGGGGCTGGGGCGGGCTCTGGTCGCGGTGATTCCGGCAAAGGCGTTCCGGGTGTCGGCGTTCCGGGTGTCGGCGTTCCGGGTGTTGGAGTACCAGGTTACGGGGTCCCAGGTGTAGGCGTCCCAGGGGTCGGCGTTCCGGGTGTTGGCGTTCCAGGTAAACTGGGCTATATTGAATTTTATAAAGTGGAAAAATAA",
+      "slug": "bba-26hwvikx",
+      "registryUUID": "d1eff4db-9b8b-4f62-a20a-4ed265bd629b",
+      "features": [
+        {
+          "start": 4,
+          "end": 39,
+          "label": "SnoopTag2",
+          "color": "tag",
+          "sourceId": "BBa_26CWQQQY",
+          "method": "registry-annotation",
+          "strand": "forward",
+          "lane": 0
+        },
+        {
+          "start": 1765,
+          "end": 1800,
+          "label": "SnoopTag2",
+          "color": "tag",
+          "sourceId": "BBa_26CWQQQY",
+          "method": "registry-annotation",
+          "strand": "forward",
+          "lane": 0
+        }
+      ],
+      "summary": "This part encodes a fusion protein with the architecture SnoopTag2-2KY-10-SnoopTag2, in which the silk-elastin-like protein (SELP) hydrogel scaffold 2KY-10 is fused at both its N- and C-termini to the SnoopTag2 peptide tag, with short flexible linkers connecting the tags to the scaffold."
+    },
+    {
+      "kind": "composite",
+      "order": 8,
+      "id": "BBa_26IPYN3G",
+      "title": "SnoopTag2-2KY-5-SnoopTag2 (Hydrogel scaffold protein 2KY-5 flanked by SnoopTag2 at both termini)",
+      "description": "This part encodes a fusion protein with the architecture SnoopTag2-2KY-5-SnoopTag2, in which the silk-elastin-like protein (SELP) hydrogel scaffold 2KY-5 is fused at both its N- and C-termini to the SnoopTag2 peptide tag, with short flexible linkers connecting the tags to the scaffold. In this fusion protein, the SnoopTag2 tags at both termini provide reactive lysine residues that, in the presence of SnoopLigase2, undergo site-specific covalent ligation with DogTag-bearing functional modules, forming stable isopeptide bonds and thereby covalently conjugating the functional modules to the hydrogel scaffold. Incubation of this fusion protein with a DogTag-bearing functional module and SnoopLigase2 allows the ligation reaction to be monitored by SDS-PAGE, and is used for the preparation and performance validation of the cartilage-repair hydrogel.",
+      "components": ["BBa_26CWQQQY", "BBa_26CWQQQY"],
+      "shortName": "SnoopTag2–2KY-5–SnoopTag2",
+      "category": "Hydrogel scaffold",
+      "color": "scaffold",
+      "sequence": "ATGAAACTGGGCTATATTGAATTTTATAAAGTGGAAAAAAAAACGAAAACCGGCGCTGGTGCGGGCAGCGGCGCAGGTGCGGGTAGCGGTCGCGGTGATTCGGGTAAAGGCGTGCCTGGTGTAGGCGTTCCTGGCGTCGGTGTCCCGGGTGTAGGTGTTCCAGGTTACGGCGTACCAGGTGTGGGTGTGCCAGGTGTGGGTGTGCCGGGCGTTGGTGTCCCTGGTGCCGGTGCCGGTTCCGGCGCGGGTGCCGGTAGTGGTCGTGGTGATTCCGGTAAAGGTGTGCCAGGTGTGGGTGTGCCAGGTGTTGGGGTTCCGGGTGTCGGCGTTCCGGGTTATGGTGTACCTGGCGTGGGCGTCCCAGGTGTCGGTGTGCCGGGCGTTGGTGTGCCAGGTGCGGGTGCTGGTAGTGGCGCGGGCGCAGGTAGTGGCCGCGGTGATTCTGGCAAAGGCGTACCTGGTGTTGGCGTCCCTGGCGTTGGGGTCCCGGGCGTCGGCGTGCCAGGCTACGGTGTTCCTGGTGTGGGTGTGCCAGGTGTTGGTGTGCCAGGTGTGGGCGTACCGGGTGCAGGCGCCGGTAGCGGTGCGGGCGCGGGTTCCGGCCGTGGTGATAGTGGTAAAGGTGTGCCGGGCGTTGGTGTACCGGGGGTCGGTGTTCCGGGCGTGGGTGTACCAGGCTATGGTGTGCCGGGCGTTGGTGTCCCAGGCGTGGGGGTTCCAGGTGTGGGTGTTCCTGGTGCAGGTGCAGGTAGCGGCGCCGGTGCGGGTTCGGGCCGTGGCGATAGCGGCAAAGGTGTGCCTGGCGTAGGGGTGCCAGGCGTAGGCGTGCCGGGTGTGGGGGTGCCGGGTTACGGTGTGCCAGGTGTGGGTGTGCCGGGCGTAGGTGTGCCGGGCGTTGGCGTTCCAGGTAAACTGGGCTATATTGAATTTTATAAAGTGGAAAAATAA",
+      "slug": "bba-26ipyn3g",
+      "registryUUID": "e473f3c7-31de-49e7-b7ba-c4bfd9fb546f",
+      "features": [
+        {
+          "start": 4,
+          "end": 39,
+          "label": "SnoopTag2",
+          "color": "tag",
+          "sourceId": "BBa_26CWQQQY",
+          "method": "registry-annotation",
+          "strand": "forward",
+          "lane": 0
+        },
+        {
+          "start": 910,
+          "end": 945,
+          "label": "SnoopTag2",
+          "color": "tag",
+          "sourceId": "BBa_26CWQQQY",
+          "method": "registry-annotation",
+          "strand": "forward",
+          "lane": 0
+        }
+      ],
+      "summary": "This part encodes a fusion protein with the architecture SnoopTag2-2KY-5-SnoopTag2, in which the silk-elastin-like protein (SELP) hydrogel scaffold 2KY-5 is fused at both its N- and C-termini to the SnoopTag2 peptide tag, with short flexible linkers connecting the tags to the scaffold."
+    },
+    {
+      "kind": "composite",
+      "order": 9,
+      "id": "BBa_26R5QAZM",
+      "title": "DogTag-TVN magnetic-response module",
+      "description": "A recombinant magnetic-response module combining DogTag with the magnetite-binding peptide TVNFKLY through an SGGGGS linker. The 441-bp complete CDS encodes a 146-residue His-SUMO-tagged precursor. DogTag supplies the scaffold-ligation interface, while TVN supplies the Fe3O4-binding motif, enabling integration of magnetic nanoparticles into the scaffold for magnetic alignment studies.",
+      "components": ["BBa_2668RPJW", "BBa_261FVLIT", "BBa_261SXVOZ"],
+      "shortName": "DogTag–TVN",
+      "category": "Magnetic response",
+      "color": "magnet",
+      "sequence": "ATGGGTAGCTGGAGCCATCACCATCATCATCACGGGAGCGATAGCGAAGTGAACCAGGAAGCGAAACCGGAAGTTAAACCGGAAGTGAAACCGGAAACCCATATTAATCTGAAAGTTAGCGACGGCAGCAGCGAAATCTTTTTTAAAATTAAAAAAACCACCCCGCTGCGTCGCCTGATGGAAGCCTTTGCGAAACGTCAGGGTAAAGAAATGGATAGCCTGCGCTTTCTGTATGACGGCATCCGTATTCAGGCCGATCAGACCCCGGAAGACCTGGATATGGAAGACAACGATATTATTGAAGCGCATCGCGAACAGATCGGTGGTGGCGATATTCCGGCTACATATGAATTTACCGATGGTAAACATTATATCACCAATGAACCGATACCGCCGAAATCTGGCGGCGGCGGCAGCACCGTGAACTTTAAACTGTATTAA",
+      "slug": "bba-26r5qazm",
+      "registryUUID": "fa7bb8ab-6c32-44e8-a7fc-a280652a3ceb",
+      "features": [
+        {
+          "start": 37,
+          "end": 327,
+          "label": "SUMO solubility tag (pET28a DNA variant)",
+          "color": "expression",
+          "sourceId": "BBa_2668RPJW",
+          "method": "registry-annotation",
+          "strand": "forward",
+          "lane": 0
+        },
+        {
+          "start": 331,
+          "end": 399,
+          "label": "DogTag ligation handle (TVN construct DNA variant)",
+          "color": "tag",
+          "sourceId": "BBa_261FVLIT",
+          "method": "registry-annotation",
+          "strand": "forward",
+          "lane": 0
+        },
+        {
+          "start": 418,
+          "end": 438,
+          "label": "TVNFKLY magnetite-binding peptide",
+          "color": "magnet",
+          "sourceId": "BBa_261SXVOZ",
+          "method": "registry-annotation",
+          "strand": "forward",
+          "lane": 0
+        }
+      ],
+      "summary": "A recombinant magnetic-response module combining DogTag with the magnetite-binding peptide TVNFKLY through an SGGGGS linker."
+    },
+    {
+      "kind": "composite",
+      "order": 10,
+      "id": "BBa_262T8CY4",
+      "title": "His6-SUMO-Cys-ScrambledControl-DogTag Fusion",
+      "description": "This composite coding sequence assembles His6-SUMO-TEV, Cys-GGGGS-ScrambledControl-GGGGS, and DogTag-Stop to encode a 162-amino-acid fusion protein. It retains the purification module, intended TEV-processing junction, maleimide-reactive cysteine, flexible linkers, and DogTag conjugation handle of the corresponding MMP13sp construct. The central peptide RKGLSLGLPGRR has the same length and amino acid composition as RRGPLGLSLGKR but a different residue order. This construct serves as a scrambled-sequence comparator for evaluating sequence-dependent protease cleavage and disconnection while preserving the surrounding fusion architecture. Its resistance to MMP-13 cleavage requires experimental verification. The sequence includes start and stop codons and requires suitable regulatory elements for expression.",
+      "components": [
+        "BBa_26W1Y273",
+        "BBa_26CJOJD3",
+        "BBa_26DK6GD2",
+        "BBa_261FVLIT",
+        "BBa_26UH7S13"
+      ],
+      "shortName": "His6–SUMO–Cys–Control–DogTag",
+      "category": "Protease response",
+      "color": "control",
+      "sequence": "ATGGGTAGCTGGAGCCATCACCATCATCATCACGGGAGCGATAGCGAAGTGAACCAGGAAGCGAAACCGGAAGTTAAACCGGAAGTGAAACCGGAAACCCATATTAATCTGAAAGTTAGCGACGGCAGCAGCGAAATCTTTTTTAAAATTAAAAAAACCACCCCGCTGCGTCGCCTGATGGAAGCCTTTGCGAAACGTCAGGGTAAAGAAATGGATAGCCTGCGCTTTCTGTATGACGGCATCCGTATTCAGGCCGATCAGACCCCGGAAGACCTGGATATGGAAGACAACGATATTATTGAAGTGTGGTGGTGGTGGTTCTCGTAAAGGTCTGTCTCTGGGTCTGCCGGGTCGTCGTGGTGGTGGTGGTTCTGATATTCCGGCTACATATGAATTTACCGATGGTAAACATTATATCACCAATGAACCGATACCGCCGAAATGA",
+      "slug": "bba-262t8cy4",
+      "registryUUID": "40e99a16-6a78-4df0-84b0-5641dac176d7",
+      "features": [
+        {
+          "start": 1,
+          "end": 304,
+          "label": "His6-SUMO-TEV",
+          "color": "expression",
+          "sourceId": "BBa_26W1Y273",
+          "method": "registry-annotation",
+          "strand": "forward",
+          "lane": 0
+        },
+        {
+          "start": 305,
+          "end": 373,
+          "label": "Cys-GGGGS-ScrambledControl-GGGGS",
+          "color": "control",
+          "sourceId": "BBa_26CJOJD3",
+          "method": "registry-annotation",
+          "strand": "forward",
+          "lane": 0
+        },
+        {
+          "start": 359,
+          "end": 445,
+          "label": "DogTag-tail",
+          "color": "expression",
+          "sourceId": "BBa_26DK6GD2",
+          "method": "registry-annotation",
+          "strand": "forward",
+          "lane": 1
+        },
+        {
+          "start": 374,
+          "end": 445,
+          "label": "DogTag-Stop",
+          "color": "tag",
+          "sourceId": "BBa_26UH7S13",
+          "method": "registry-annotation",
+          "strand": "forward",
+          "lane": 0
+        },
+        {
+          "start": 374,
+          "end": 442,
+          "label": "DogTag ligation handle (TVN construct DNA variant)",
+          "color": "tag",
+          "sourceId": "BBa_261FVLIT",
+          "method": "registry-annotation",
+          "strand": "forward",
+          "lane": 2
+        }
+      ],
+      "summary": "This composite coding sequence assembles His6-SUMO-TEV, Cys-GGGGS-ScrambledControl-GGGGS, and DogTag-Stop to encode a 162-amino-acid fusion protein."
+    },
+    {
+      "kind": "composite",
+      "order": 11,
+      "id": "BBa_26UH7S13",
+      "title": "DogTag-Stop",
+      "description": "Encodes the 23-amino-acid DogTag peptide DIPATYEFTDGKHYITNEPIPPK, followed by a TGA stop codon. DogTag serves as a covalent conjugation handle for SnoopLigase-mediated isopeptide-bond formation with a SnoopTagJr-tagged partner. This enables attachment of the expressed fusion protein to another molecular component. The part is intended as the terminal coding segment of an in-frame fusion, with the stop codon terminating translation immediately after DogTag.",
+      "components": ["BBa_261FVLIT"],
+      "shortName": "DogTag–Stop",
+      "category": "Protein ligation",
+      "color": "tag",
+      "sequence": "GATATTCCGGCTACATATGAATTTACCGATGGTAAACATTATATCACCAATGAACCGATACCGCCGAAATGA",
+      "slug": "bba-26uh7s13",
+      "registryUUID": "9eb6eb80-f8ce-42fe-8f2a-8438e4e088e2",
+      "features": [
+        {
+          "start": 1,
+          "end": 69,
+          "label": "DogTag ligation handle (TVN construct DNA variant)",
+          "color": "tag",
+          "sourceId": "BBa_261FVLIT",
+          "method": "registry-annotation",
+          "strand": "forward",
+          "lane": 0
+        }
+      ],
+      "summary": "Encodes the 23-amino-acid DogTag peptide DIPATYEFTDGKHYITNEPIPPK, followed by a TGA stop codon."
+    },
+    {
+      "kind": "composite",
+      "order": 12,
+      "id": "BBa_26PNHN7J",
+      "title": "His6-SUMO-Cys-MMP13sp-DogTag Fusion",
+      "description": "This composite coding sequence assembles His6-SUMO-TEV, Cys-GGGGS-MMP13sp-GGGGS, and DogTag-Stop to encode a 162-amino-acid fusion protein. The His tag supports affinity purification, and SUMO is intended to support soluble expression. The ENLYFQ-C junction provides an intended TEV-processing site. Cysteine supplies a thiol handle for maleimide conjugation, while DogTag supports SnoopLigase-mediated covalent attachment to a SnoopTagJr-tagged partner. The MMP13sp peptide RRGPLGLSLGKR is flanked by GGGGS flexible linkers. Cleavage within this segment is expected to separate the Cys-containing and DogTag-containing portions, enabling MMP-13-responsive disconnection between attached components. The sequence includes start and stop codons and requires suitable regulatory elements for expression.",
+      "components": [
+        "BBa_26W1Y273",
+        "BBa_26YHJZ36",
+        "BBa_26DK6GD2",
+        "BBa_261FVLIT",
+        "BBa_26UH7S13"
+      ],
+      "shortName": "His6–SUMO–Cys–MMP13sp–DogTag",
+      "category": "Protease response",
+      "color": "protease",
+      "sequence": "ATGGGTAGCTGGAGCCATCACCATCATCATCACGGGAGCGATAGCGAAGTGAACCAGGAAGCGAAACCGGAAGTTAAACCGGAAGTGAAACCGGAAACCCATATTAATCTGAAAGTTAGCGACGGCAGCAGCGAAATCTTTTTTAAAATTAAAAAAACCACCCCGCTGCGTCGCCTGATGGAAGCCTTTGCGAAACGTCAGGGTAAAGAAATGGATAGCCTGCGCTTTCTGTATGACGGCATCCGTATTCAGGCCGATCAGACCCCGGAAGACCTGGATATGGAAGACAACGATATTATTGAAGTGTGGTGGTGGTGGTTCTCGTCGTGGTCCGCTGGGTCTGTCTCTGGGTAAACGTGGTGGTGGTGGTTCTGATATTCCGGCTACATATGAATTTACCGATGGTAAACATTATATCACCAATGAACCGATACCGCCGAAATGA",
+      "slug": "bba-26pnhn7j",
+      "registryUUID": "a656c92f-9708-41b0-9ec7-9db57da15927",
+      "features": [
+        {
+          "start": 1,
+          "end": 304,
+          "label": "His6-SUMO-TEV",
+          "color": "expression",
+          "sourceId": "BBa_26W1Y273",
+          "method": "registry-annotation",
+          "strand": "forward",
+          "lane": 0
+        },
+        {
+          "start": 305,
+          "end": 373,
+          "label": "Cys-GGGGS-MMP13sp-GGGGS",
+          "color": "protease",
+          "sourceId": "BBa_26YHJZ36",
+          "method": "registry-annotation",
+          "strand": "forward",
+          "lane": 0
+        },
+        {
+          "start": 359,
+          "end": 445,
+          "label": "DogTag-tail",
+          "color": "expression",
+          "sourceId": "BBa_26DK6GD2",
+          "method": "registry-annotation",
+          "strand": "forward",
+          "lane": 1
+        },
+        {
+          "start": 374,
+          "end": 445,
+          "label": "DogTag-Stop",
+          "color": "tag",
+          "sourceId": "BBa_26UH7S13",
+          "method": "registry-annotation",
+          "strand": "forward",
+          "lane": 0
+        },
+        {
+          "start": 374,
+          "end": 442,
+          "label": "DogTag ligation handle (TVN construct DNA variant)",
+          "color": "tag",
+          "sourceId": "BBa_261FVLIT",
+          "method": "registry-annotation",
+          "strand": "forward",
+          "lane": 2
+        }
+      ],
+      "summary": "This composite coding sequence assembles His6-SUMO-TEV, Cys-GGGGS-MMP13sp-GGGGS, and DogTag-Stop to encode a 162-amino-acid fusion protein."
+    }
+  ]
+}

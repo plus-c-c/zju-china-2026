@@ -84,12 +84,10 @@
 .protein-pin--wide .protein-text {
   /* Wide steps: the card keeps the same bottom coordinate and grows
      upwards to hold its text completely (same typography as every other
-     card, no scrolling). It sits above the structure so the overlap over
-     the image's lower corner stays a clean card edge. */
+     card, no scrolling). Its height is set inline from the measured content
+     and animates like the regular steps. It sits above the structure so the
+     overlap over the image's lower corner stays a clean card edge. */
   z-index: 3;
-  top: auto;
-  bottom: 8dvh;
-  height: auto;
   max-height: none;
   overflow-y: hidden;
 }
@@ -252,13 +250,18 @@
 
 /* Right-hand text: fills the column, scrolls on its own wheel. */
 .protein-text {
-  /* Centred between the pinned view's edges: the distance from the top
-     edge equals the distance from the bottom edge. */
+  /* Bottom edge flush with the Previous/Next row (both sit 8dvh above the
+     viewport bottom). On regular steps the card stretches until its top gap
+     equals its bottom gap (8dvh); wide steps fit their content instead
+     (height set inline). The height change animates with the bottom fixed,
+     so only the top edge moves. */
   position: absolute;
   right: 0;
-  top: calc(50dvh - clamp(380px, 66vh, 680px) / 2);
+  top: auto;
+  bottom: 8dvh;
   width: calc((100% - var(--protein-gap)) * 0.55);
-  height: clamp(380px, 66vh, 680px);
+  height: calc(100dvh - 16dvh);
+  transition: height 0.4s cubic-bezier(0.22, 1, 0.36, 1);
   padding: 1.5rem 1.6rem;
   overflow-y: auto;
   overscroll-behavior: contain;
@@ -451,4 +454,10 @@
     bottom: auto;
     height: auto;
   }
+}
+
+/* Hidden TOC anchors: one per section heading, placed at its protein's
+   scroll position so the TOC lists every heading and a click scrolls to it. */
+.protein-anchor {
+  top: calc(var(--protein-step) * 40dvh);
 }

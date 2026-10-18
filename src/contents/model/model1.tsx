@@ -11,6 +11,7 @@ import {
   useBoundaryStepAdvance,
 } from "../../components/useBoundaryStepAdvance";
 import { MathFormula } from "../../components/MathFormula";
+import { DataTable } from "../../components/table";
 import {
   m1Overview,
   m1References,
@@ -107,6 +108,44 @@ function Blocks({ blocks }: { blocks: M1Block[] }) {
                 style={block.width ? { maxWidth: block.width } : undefined}
               />
             </figure>
+          );
+        }
+        if (block.t === "video") {
+          return (
+            <div
+              key={index}
+              className="my-4"
+              style={{ maxWidth: 840, marginInline: "auto" }}
+            >
+              <div className="ratio ratio-16x9">
+                <iframe
+                  src={block.src}
+                  title={block.alt ?? "2KY5 100 ns FAMD"}
+                  allow="fullscreen"
+                  allowFullScreen
+                  sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
+                  style={{ border: 0 }}
+                />
+              </div>
+              <p className="small mt-2 mb-0">
+                <a
+                  href={block.src?.replace("/videos/embed/", "/w/")}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Open video on iGEM Video Universe
+                </a>
+              </p>
+            </div>
+          );
+        }
+        if (block.t === "table") {
+          return (
+            <DataTable
+              key={index}
+              head={block.head ?? []}
+              rows={block.rows ?? []}
+            />
           );
         }
         return (
@@ -234,6 +273,28 @@ export function SelpHydrogelModeling() {
     },
     [total],
   );
+
+  /* 左右方向键与滚轮等效：切换上一步 / 下一步 */
+  useEffect(() => {
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (
+        event.defaultPrevented ||
+        event.metaKey ||
+        event.ctrlKey ||
+        event.altKey
+      )
+        return;
+      const forward = event.key === "ArrowRight" || event.key === "ArrowDown";
+      const backward = event.key === "ArrowLeft" || event.key === "ArrowUp";
+      if (!forward && !backward) return;
+      const target = forward ? currentNum : currentNum - 2;
+      if (target < 0 || target > total - 1) return;
+      event.preventDefault();
+      scrollToStep(target, "smooth");
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [currentNum, total, scrollToStep]);
 
   /* 内容滚到边界后的滚轮/触摸：一次手势步进一格（首/末步交给页面） */
   const suppressUntilRef = useBoundaryStepAdvance({
@@ -379,6 +440,7 @@ export function SelpHydrogelModeling() {
           <h3
             key={s.num}
             className="visually-hidden m1-anchor"
+            data-toc-track="true"
             style={{ "--m1-seg": s.num - 1 } as CSSProperties}
           >
             {s.num}. {s.title}
