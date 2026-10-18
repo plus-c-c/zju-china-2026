@@ -41,20 +41,14 @@ function SourceText({ text }: { text: string }) {
     );
 }
 
-function SequenceMap({
-  part,
-  featured = false,
-}: {
-  part: Part;
-  featured?: boolean;
-}) {
+function SequenceMap({ part }: { part: Part }) {
   const length = part.sequence.length;
   const left = 12;
   const width = 496;
   const lanes = Math.max(...part.features.map((feature) => feature.lane)) + 1;
   const extraHeight = (lanes - 1) * 52;
   return (
-    <figure className={`parts-map${featured ? " parts-map-featured" : ""}`}>
+    <figure className="parts-map">
       <svg
         viewBox={`0 0 520 ${94 + extraHeight}`}
         role="img"
@@ -192,9 +186,13 @@ function PartCard({ part }: { part: Part }) {
 
   return (
     <article
-      className="parts-card"
+      className={`parts-card${part.kind === "basic" ? " parts-card-basic" : ""}`}
       id={part.id}
-      style={{ borderTopColor: colors[part.color] }}
+      style={
+        part.kind === "composite"
+          ? { borderTopColor: colors[part.color] }
+          : undefined
+      }
     >
       <div className="parts-card-meta">
         <RegistryLink id={part.id} />
@@ -205,7 +203,20 @@ function PartCard({ part }: { part: Part }) {
       <p className="parts-card-summary">
         <SourceText text={part.summary} />
       </p>
-      <SequenceMap part={part} />
+      {part.kind === "basic" ? (
+        <div className="parts-dna-preview">
+          <span>{part.sequence.length > 50 ? "First 50 bp" : "DNA"}</span>
+          <code>
+            {part.sequence
+              .slice(0, 50)
+              .match(/.{1,10}/g)
+              ?.join(" ")}
+            {part.sequence.length > 50 ? " …" : ""}
+          </code>
+        </div>
+      ) : (
+        <SequenceMap part={part} />
+      )}
       <details className="parts-details">
         <summary>
           Full description &amp; sequence<span aria-hidden="true">＋</span>
@@ -294,63 +305,8 @@ export function Parts() {
       text.includes(query.trim().toLowerCase())
     );
   });
-  const featured = collection.parts.find((part) => part.id === "BBa_26R5QAZM")!;
   return (
     <div className="parts-page">
-      <section className="parts-intro" aria-labelledby="parts-overview">
-        <span className="parts-eyebrow">ZJU-China 2026 · Part collection</span>
-        <h2 id="parts-overview">
-          A modular toolkit, from sequence to scaffold
-        </h2>
-        <p>
-          Explore the building blocks behind our protein-based cartilage-repair
-          scaffold: silk-elastin-like proteins, ligation handles,
-          matrix-retention modules, magnetic-response peptides and
-          protease-responsive constructs.
-        </p>
-        <div className="parts-overview-links">
-          <a href="#basic-parts">
-            <strong>18</strong>
-            <span>
-              Basic Parts <i aria-hidden="true">↗</i>
-            </span>
-          </a>
-          <a href="#composite-parts">
-            <strong>12</strong>
-            <span>
-              Composite Parts <i aria-hidden="true">↗</i>
-            </span>
-          </a>
-          <a
-            href={collection.registryOrganisation}
-            target="_blank"
-            rel="noreferrer"
-          >
-            <strong>↗</strong>
-            <span>Team Registry</span>
-          </a>
-        </div>
-      </section>
-
-      <section
-        className="parts-spotlight"
-        aria-label="Example composite sequence map"
-      >
-        <div className="parts-spotlight-heading">
-          <div>
-            <span className="parts-eyebrow">Inside a composite part</span>
-            <h3 data-toc="exclude">Anatomy of a magnetic-response module</h3>
-          </div>
-          <RegistryLink id={featured.id} />
-        </div>
-        <SequenceMap part={featured} featured />
-        <p>
-          {featured.summary} The map follows the registered{" "}
-          {featured.sequence.length.toLocaleString()}-bp DNA sequence and its
-          Registry component annotations.
-        </p>
-      </section>
-
       <section className="parts-catalogue" aria-labelledby="parts-browse">
         <h2 id="parts-browse">Browse the collection</h2>
         <p className="parts-catalogue-lead">
@@ -407,74 +363,43 @@ export function Parts() {
             </button>
           )}
         </div>
-        {(["basic", "composite"] as const).map((kind) => {
-          const parts = filtered.filter((part) => part.kind === kind);
-          return (
-            <section
-              className="parts-group"
-              key={kind}
-              aria-labelledby={`${kind}-parts`}
+      </section>
+      {(["basic", "composite"] as const).map((kind) => {
+        const parts = filtered.filter((part) => part.kind === kind);
+        return (
+          <section
+            className="parts-group"
+            key={kind}
+            aria-labelledby={`${kind}-parts`}
+          >
+            <div className="parts-group-heading">
+              <h2 id={`${kind}-parts`}>
+                {kind === "basic" ? "Basic Parts" : "Composite Parts"}
+              </h2>
+              <span>
+                {parts.length} / {kind === "basic" ? 18 : 12}
+              </span>
+            </div>
+            <p>
+              {kind === "basic"
+                ? "Individual coding regions, peptide motifs and protein modules for modular assembly."
+                : "Combined modules that connect scaffold architecture with ligation, retention, magnetic response or protease-responsive disconnection."}
+            </p>
+            <div
+              className={kind === "basic" ? "parts-basic-list" : "parts-grid"}
             >
-              <div className="parts-group-heading">
-                <h3 id={`${kind}-parts`}>
-                  {kind === "basic" ? "Basic Parts" : "Composite Parts"}
-                </h3>
-                <span>
-                  {parts.length} / {kind === "basic" ? 18 : 12}
-                </span>
-              </div>
-              <p>
-                {kind === "basic"
-                  ? "Individual coding regions, peptide motifs and protein modules for modular assembly."
-                  : "Combined modules that connect scaffold architecture with ligation, retention, magnetic response or protease-responsive disconnection."}
+              {parts.map((part) => (
+                <PartCard key={part.id} part={part} />
+              ))}
+            </div>
+            {parts.length === 0 && (
+              <p className="parts-empty">
+                No {kind} parts match these filters.
               </p>
-              <div className="parts-grid">
-                {parts.map((part) => (
-                  <PartCard key={part.id} part={part} />
-                ))}
-              </div>
-              {parts.length === 0 && (
-                <p className="parts-empty">
-                  No {kind} parts match these filters.
-                </p>
-              )}
-            </section>
-          );
-        })}
-      </section>
-
-      <section
-        className="parts-reading-guide"
-        aria-labelledby="parts-map-guide"
-      >
-        <h2 id="parts-map-guide">Reading the sequence maps</h2>
-        <p>
-          Each thumbnail is a linear DNA map scaled independently to that part’s
-          sequence length. Numbered colors identify mapped modules; gray shows
-          other sequence. Coordinates are 1-based and inclusive. Maps show
-          sequence organization, rather than plasmid topology or restriction
-          sites.
-        </p>
-        <p>
-          Composite-part diagrams follow the component coordinates recorded in
-          the iGEM Registry. Overlapping annotations appear on separate tracks.
-          The details panel lists the component IDs and their registered
-          coordinates. Basic-part diagrams show the complete registered
-          sequence.
-        </p>
-        <p>
-          Part names, English descriptions, component lists and DNA sequences
-          follow the public iGEM Registry, retrieved on {collection.retrieved}.
-          Follow the Registry links for current records.
-        </p>
-        <a
-          href={collection.registryOrganisation}
-          target="_blank"
-          rel="noreferrer"
-        >
-          Explore ZJU-China’s Registry collection ↗
-        </a>
-      </section>
+            )}
+          </section>
+        );
+      })}
     </div>
   );
 }
