@@ -44,44 +44,60 @@ const placeholderDetails: TimelineDetail[] = [
   },
 ];
 
-const timelineItems: TimelineItem[] = [
-  {
-    date: "Month DD, 2026",
-    title: "Activity title placeholder 1",
-    summary: placeholderSummary,
-    details: placeholderDetails,
-  },
-  {
-    date: "Month DD, 2026",
-    title: "Activity title placeholder 2",
-    summary: placeholderSummary,
-    details: placeholderDetails,
-  },
-  {
-    date: "Month DD, 2026",
-    title: "Activity title placeholder 3",
-    summary: placeholderSummary,
-    details: placeholderDetails,
-  },
-  {
-    date: "Month DD, 2026",
-    title: "Activity title placeholder 4",
-    summary: placeholderSummary,
-    details: placeholderDetails,
-  },
-  {
-    date: "Month DD, 2026",
-    title: "Activity title placeholder 5",
-    summary: placeholderSummary,
-    details: placeholderDetails,
-  },
-  {
-    date: "Month DD, 2026",
-    title: "Activity title placeholder 6",
-    summary: placeholderSummary,
-    details: placeholderDetails,
-  },
+const timelineImageIds: Array<string | null> = [
+  "01",
+  "02",
+  null,
+  "08",
+  "09",
+  "10",
+  "11",
+  "12",
+  "13",
+  "15",
+  "16",
+  "35",
+  "17",
+  "36",
+  "19",
+  "20",
+  "22",
+  "37",
+  "24",
+  "38",
+  "26",
+  "27",
+  "29",
+  "39",
+  "34",
+  "30",
+  "32",
+  "40",
+  "41",
+  "42",
 ];
+
+const timelineItems: TimelineItem[] = timelineImageIds.map(
+  (imageId, index) => ({
+    date: "Month DD, 2026",
+    title: `Activity title placeholder ${index + 1}`,
+    ...(imageId
+      ? {
+          image: `https://static.igem.wiki/teams/6102/wiki/images/engagement/ihp/ihp-${imageId}.avif`,
+          imageAlt: `Human practices activity ${index + 1}`,
+          imagePosition:
+            imageId === "15"
+              ? "90% 28%"
+              : imageId === "37"
+                ? "65% 50%"
+                : undefined,
+          imageScale: imageId === "15" ? 2 : undefined,
+        }
+      : {}),
+    summary: placeholderSummary,
+    details: placeholderDetails,
+  }),
+);
 
 export function HumanPractices() {
   return (

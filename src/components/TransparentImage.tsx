@@ -50,6 +50,9 @@ interface TransparentImageProps {
   loading?: "lazy" | "eager";
   /** Distance ahead of the viewport at which lazy processing starts. */
   rootMargin?: string;
+  /** Fraction (0–1) of the source height cut from the top before
+   *  processing — removes baked-in titles and their gradient bands. */
+  cropTop?: number;
   /** Pixels whose smallest channel reaches this value become transparent. */
   whiteThreshold?: number;
   /** Pixels at or below this value stay fully opaque (a ramp in between). */
@@ -84,6 +87,7 @@ export function TransparentImage({
   decoding = "async",
   loading = "lazy",
   rootMargin = "600px",
+  cropTop = 0,
   whiteThreshold = 250,
   opaqueThreshold = 240,
 }: TransparentImageProps) {
@@ -102,14 +106,25 @@ export function TransparentImage({
       image.decoding = decoding;
       image.onload = () => {
         if (cancelled) return;
+        const sourceY = Math.round(image.naturalHeight * cropTop);
         canvas.width = image.naturalWidth;
-        canvas.height = image.naturalHeight;
+        canvas.height = Math.max(1, image.naturalHeight - sourceY);
         const ctx = canvas.getContext("2d", { willReadFrequently: true });
         if (!ctx) {
           setFailed(true);
           return;
         }
-        ctx.drawImage(image, 0, 0);
+        ctx.drawImage(
+          image,
+          0,
+          sourceY,
+          canvas.width,
+          canvas.height,
+          0,
+          0,
+          canvas.width,
+          canvas.height,
+        );
         try {
           const frame = ctx.getImageData(0, 0, canvas.width, canvas.height);
           keyOutWhite(frame.data, whiteThreshold, opaqueThreshold);
@@ -151,6 +166,7 @@ export function TransparentImage({
     decoding,
     loading,
     rootMargin,
+    cropTop,
     whiteThreshold,
     opaqueThreshold,
   ]);

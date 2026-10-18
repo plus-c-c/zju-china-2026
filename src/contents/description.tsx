@@ -113,6 +113,17 @@ const treatmentCards = [
     ),
   },
   {
+    title: "Osteochondral Transplantation",
+    body: (
+      <>
+        Transfers healthy osteochondral tissue into a defect, but is constrained
+        by donor-site morbidity, graft availability, and the need to match graft
+        dimensions and geometry.
+        <Citation refs={[2, 11]} />
+      </>
+    ),
+  },
+  {
     title: "Microfracture",
     body: (
       <>
@@ -120,17 +131,6 @@ const treatmentCards = [
         into the repair process. The resulting repair tissue is often
         predominantly fibrocartilage, whose long-term load-bearing performance
         differs from native hyaline cartilage.
-        <Citation refs={[2, 11]} />
-      </>
-    ),
-  },
-  {
-    title: "Osteochondral Transplantation",
-    body: (
-      <>
-        Transfers healthy osteochondral tissue into a defect, but is constrained
-        by donor-site morbidity, graft availability, and the need to match graft
-        dimensions and geometry.
         <Citation refs={[2, 11]} />
       </>
     ),
@@ -351,13 +351,16 @@ export function Description() {
 
           <DescriptionFigure
             number={1}
+            src={`${IMAGE_ROOT}/description-figure-01-v3.avif`}
             title="When Pain Shrinks the Radius of Everyday Life"
-            alt="A collage depicting knee discomfort in young, middle-aged, and older adults"
+            alt="Three-panel illustrative collage showing knee taping for a young adult, an adult holding a knee, and an older adult resting a hand on a knee"
           >
-            A collage of photographs depicting knee discomfort in young,
-            middle-aged, and older adults. The images illustrate joint pain and
-            do not imply that the individuals shown have been diagnosed with
-            cartilage damage. Photo credits and sources are provided below.
+            An illustrative collage of knee support and discomfort across life
+            stages: knee taping for a young adult (left), an adult holding a
+            knee (center), and an older adult resting a hand on a knee (right).
+            The images do not establish a diagnosis of cartilage damage in any
+            individual shown. Source photographs and AI-assisted compositing
+            credits are provided below.
           </DescriptionFigure>
 
           <p>
@@ -663,7 +666,11 @@ export function Description() {
             </strong>
           </p>
 
-          <h2>NEST: A Programmable Platform for Hyaline Cartilage Repair</h2>
+          <h2 className="description-platform-title">
+            NEST: A Programmable Platform
+            <br />
+            for Hyaline Cartilage Repair
+          </h2>
           <p>
             A nest is built to suit its environment, providing a space in which
             life can grow. Inspired by this idea, we designed{" "}
@@ -725,30 +732,34 @@ export function Description() {
           </p>
 
           <h2>References</h2>
-          <ol className="references-list">
+          <div className="references-list references-list--paragraphs">
             {references.map((reference, index) => (
-              <li id={`description-reference-${index + 1}`} key={index}>
-                {reference}
-              </li>
+              <p
+                id={`description-reference-${index + 1}`}
+                key={index}
+                style={{ scrollMarginTop: "112px" }}
+              >
+                [{index + 1}] {reference}
+              </p>
             ))}
-          </ol>
+          </div>
 
           <h2>Figure Sources and Credits</h2>
           <div className="description-credits">
             <section>
-              <h3>Figure 1 | Knee Pain Across Age Groups</h3>
+              <h3>Figure 1 | Knee Support and Discomfort Across Life Stages</h3>
               <p>
-                Young adult: Kindel Media / Pexels, photo 7298410; middle-aged
-                adult: Towfiqu barbhuiya / Pexels, photo 11349880; older adult:
-                Αλεξανδρος Μαμουνης / Pexels, photo 18851495. These photographs
-                illustrate knee discomfort and should not be presented as
-                confirmed diagnoses.
+                Source photographs: young adult, cottonbro studio / Pexels,
+                photo 7339492; adult, Towfiqu barbhuiya / Pexels, photo
+                11349880; older adult, Αλεξανδρος Μαμουνης / Pexels, photo
+                18851495. The collage was adapted from these photographs using
+                AI-assisted compositing (OpenAI imagegen). It is illustrative
+                and should not be presented as clinical evidence or confirmation
+                of a diagnosis.
               </p>
               <p className="description-credit-links">
-                <a href="https://www.pexels.com/photo/7298410/">Young adult</a>
-                <a href="https://www.pexels.com/photo/11349880/">
-                  Middle-aged adult
-                </a>
+                <a href="https://www.pexels.com/photo/7339492/">Young adult</a>
+                <a href="https://www.pexels.com/photo/11349880/">Adult</a>
                 <a href="https://www.pexels.com/photo/18851495/">Older adult</a>
                 <a href="https://www.pexels.com/license/">Pexels License</a>
               </p>

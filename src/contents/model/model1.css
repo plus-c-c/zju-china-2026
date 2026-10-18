@@ -273,6 +273,8 @@
   flex: 1 1 auto;
   min-height: 60px;
   margin-top: 12px;
+  /* 永不出现横向滚动条：宽内容自行收缩（图形 width:100%、表格换行） */
+  overflow-x: hidden;
   overflow-y: auto;
   overscroll-behavior: contain;
   padding-right: 2px;
@@ -305,6 +307,8 @@
 }
 
 .m1-figure img {
+  /* width: 100% 使图形不超过卡片宽度（数据里的较大 max-width 也不会溢出） */
+  width: 100%;
   max-width: 100%;
   height: auto;
   border-radius: 10px;
@@ -367,38 +371,4 @@
   .m1-term--new {
     animation: none;
   }
-}
-
-/* ===== 三线表 ===== */
-.m1-three-line {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.95rem;
-}
-
-.m1-three-line th,
-.m1-three-line td {
-  padding: 0.55rem 0.75rem;
-  border: 0;
-  text-align: left;
-  vertical-align: top;
-  line-height: 1.55;
-}
-
-.m1-three-line thead th {
-  border-top: 2px solid #223c81;
-  border-bottom: 1px solid #223c81;
-  color: #223c81;
-  font-weight: 700;
-  white-space: nowrap;
-}
-
-.m1-three-line tbody tr:last-child td {
-  border-bottom: 2px solid #223c81;
-}
-
-.m1-three-line tbody td:first-child {
-  color: #223c81;
-  font-weight: 600;
-  white-space: nowrap;
 }

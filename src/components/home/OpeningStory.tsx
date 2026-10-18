@@ -1,18 +1,20 @@
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { InteractiveWorldMap } from "./InteractiveWorldMap";
-import bubbleAcl from "../../assets/home/bubble-awareness/bubble-acl.svg";
-import bubbleDecorLeft from "../../assets/home/bubble-awareness/bubble-decor-left.svg";
-import bubbleDecorRight from "../../assets/home/bubble-awareness/bubble-decor-right.svg";
-import bubbleDecorTop from "../../assets/home/bubble-awareness/bubble-decor-top.svg";
-import bubbleFocal from "../../assets/home/bubble-awareness/bubble-focal.svg";
-import bubbleGout from "../../assets/home/bubble-awareness/bubble-gout.svg";
-import bubbleHyaline from "../../assets/home/bubble-awareness/bubble-hyaline.svg";
-import bubbleOsteoarthritis from "../../assets/home/bubble-awareness/bubble-osteoarthritis.svg";
-import bubblePatellae from "../../assets/home/bubble-awareness/bubble-patellae.svg";
-import postOpRehabilitation from "../../assets/home/bubble-awareness/post-op-rehabilitation.png";
-import sportsKneeTrauma from "../../assets/home/bubble-awareness/sports-knee-trauma.png";
-import stairKneePain from "../../assets/home/bubble-awareness/stair-knee-pain.png";
 import "./OpeningStory.css";
+
+const STATIC_HOME = "https://static.igem.wiki/teams/6102/wiki/images/home";
+const postOpRehabilitation = `${STATIC_HOME}/post-op-rehabilitation.avif`;
+const sportsKneeTrauma = `${STATIC_HOME}/sports-knee-trauma.avif`;
+const stairKneePain = `${STATIC_HOME}/stair-knee-pain.avif`;
+const bubbleAcl = `${STATIC_HOME}/opening-bubble-acl.svg`;
+const bubbleDecorLeft = `${STATIC_HOME}/opening-bubble-decor-left.svg`;
+const bubbleDecorRight = `${STATIC_HOME}/opening-bubble-decor-right.svg`;
+const bubbleDecorTop = `${STATIC_HOME}/opening-bubble-decor-top.svg`;
+const bubbleFocal = `${STATIC_HOME}/opening-bubble-focal.svg`;
+const bubbleGout = `${STATIC_HOME}/opening-bubble-gout.svg`;
+const bubbleHyaline = `${STATIC_HOME}/opening-bubble-hyaline.svg`;
+const bubbleOsteoarthritis = `${STATIC_HOME}/opening-bubble-osteoarthritis.svg`;
+const bubblePatellae = `${STATIC_HOME}/opening-bubble-patellae.svg`;
 
 const bubbles = [
   {
@@ -152,8 +154,7 @@ function revealStyle(
   );
   const reverseOrder = count - order - 1;
   const exitStart =
-    (bubble ? 0.7 : figure ? 0.67 : slow ? 0.56 : 0.62) +
-    reverseOrder * 0.025;
+    (bubble ? 0.7 : figure ? 0.67 : slow ? 0.56 : 0.62) + reverseOrder * 0.025;
   const exitAmount =
     1 -
     smoothstep(
@@ -190,10 +191,7 @@ export function BubbleAwareness() {
       data-node-id="1226:1877"
     >
       <div className="bubble-awareness__inner">
-        <div
-          ref={intro.ref}
-          className="story-runway story-runway--intro"
-        >
+        <div ref={intro.ref} className="story-runway story-runway--intro">
           <div className="bubble-awareness__intro story-scene">
             <h1 className="bubble-awareness__statement">
               {statementLines.map((line, index) => (
@@ -253,10 +251,7 @@ export function BubbleAwareness() {
           </div>
         </div>
 
-        <div
-          ref={burden.ref}
-          className="story-runway story-runway--burden"
-        >
+        <div ref={burden.ref} className="story-runway story-runway--burden">
           <div className="bubble-awareness__burden story-scene">
             <div className="bubble-awareness__burden-copy">
               <h2>
@@ -285,13 +280,8 @@ export function BubbleAwareness() {
               </div>
             </div>
 
-            <div
-              className="bubble-awareness__map-card"
-              style={burdenStatStyle}
-            >
-              <div
-                className="bubble-awareness__stat burden-stat-reveal"
-              >
+            <div className="bubble-awareness__map-card" style={burdenStatStyle}>
+              <div className="bubble-awareness__stat burden-stat-reveal">
                 <strong>2 in 3</strong>
                 <span>Knees examined had cartilage damage.</span>
               </div>
@@ -299,10 +289,7 @@ export function BubbleAwareness() {
                 <InteractiveWorldMap />
                 <div className="opening-burden__legend" aria-hidden="true">
                   <strong>OA PATIENT COUNTS</strong>
-                  <img
-                    src={`${import.meta.env.BASE_URL}images/home/490d7.svg`}
-                    alt=""
-                  />
+                  <img src={`${STATIC_HOME}/490d7.svg`} alt="" />
                   <div className="opening-burden__legend-labels">
                     <span>&lt;100k</span>
                     <span>50m+</span>
@@ -313,10 +300,7 @@ export function BubbleAwareness() {
           </div>
         </div>
 
-        <div
-          ref={sports.ref}
-          className="story-runway story-runway--sports"
-        >
+        <div ref={sports.ref} className="story-runway story-runway--sports">
           <div className="bubble-awareness__sports story-scene">
             <div className="bubble-awareness__sports-copy">
               <h2>
@@ -377,10 +361,7 @@ export function BubbleAwareness() {
           </div>
         </div>
 
-        <div
-          ref={rehab.ref}
-          className="story-runway story-runway--rehab"
-        >
+        <div ref={rehab.ref} className="story-runway story-runway--rehab">
           <div className="bubble-awareness__rehab story-scene">
             <img
               className="bubble-awareness__rehab-person story-reveal"

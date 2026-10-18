@@ -1,4 +1,5 @@
 import {
+  useCallback,
   useEffect,
   useLayoutEffect,
   useRef,
@@ -195,19 +196,39 @@ function ProteinStepper({ steps }: { steps: ProteinStep[] }) {
 
   /** Jump to a protein and keep the page scroll in sync (the pinned view
    *  does not move; only the scrollbar does). */
-  const goTo = (target: number, behavior: ScrollBehavior = "instant") => {
-    if (target < 0 || target > stepsRef.current.length - 1) return;
-    setIndex(target);
-    const runway = runwayRef.current;
-    if (!runway) return;
-    const total = runway.offsetHeight - window.innerHeight;
-    if (total <= 0) return;
-    const top = runway.getBoundingClientRect().top + window.scrollY;
-    window.scrollTo({
-      top: top + (total * target) / Math.max(1, stepsRef.current.length - 1),
-      behavior,
-    });
-  };
+  const goTo = useCallback(
+    (target: number, behavior: ScrollBehavior = "instant") => {
+      if (target < 0 || target > stepsRef.current.length - 1) return;
+      setIndex(target);
+      const runway = runwayRef.current;
+      if (!runway) return;
+      const total = runway.offsetHeight - window.innerHeight;
+      if (total <= 0) return;
+      const top = runway.getBoundingClientRect().top + window.scrollY;
+      window.scrollTo({
+        top: top + (total * target) / Math.max(1, stepsRef.current.length - 1),
+        behavior,
+      });
+    },
+    [],
+  );
+
+  /* 左右方向键与滚轮等效：切换上一步 / 下一步 */
+  useEffect(() => {
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.defaultPrevented || event.metaKey || event.ctrlKey || event.altKey)
+        return;
+      const forward = event.key === "ArrowRight" || event.key === "ArrowDown";
+      const backward = event.key === "ArrowLeft" || event.key === "ArrowUp";
+      if (!forward && !backward) return;
+      const target = forward ? indexRef.current + 1 : indexRef.current - 1;
+      if (target < 0 || target >= stepsRef.current.length) return;
+      event.preventDefault();
+      goTo(target);
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [goTo]);
 
   /** Boundary stepping: the wheel / touch advances one protein per gesture
    *  once the text panel reaches its bottom (or its top, scrolling up). */
@@ -287,24 +308,37 @@ function ProteinStepper({ steps }: { steps: ProteinStep[] }) {
   }, [suppressUntilRef]);
 
   // Direction of the caption / text slide; the outgoing step stays
-  // rendered until its slide-out finishes.
+  // rendered until its slide-out finishes. When the design text is
+  // identical between the two steps (e.g. 7a / 7b), textChanged is false:
+  // the text card stays static (no slide-out / slide-in) while the figure
+  // and caption still switch.
   const transitionTimerRef = useRef(0);
   const [transition, setTransition] = useState<{
     direction: "forward" | "backward";
     outgoing: ProteinStep | null;
-  }>({ direction: "forward", outgoing: null });
+    textChanged: boolean;
+  }>({ direction: "forward", outgoing: null, textChanged: true });
   const previousIndexRef = useRef(0);
+  const textContentRef = useRef("");
 
   useLayoutEffect(() => {
     const previousIndex = previousIndexRef.current;
     previousIndexRef.current = index;
-    if (previousIndex === index) return;
+    const inner = panelRef.current?.querySelector(".protein-text-inner");
+    const text = (inner?.textContent ?? "").replace(/\s+/g, " ").trim();
+    if (previousIndex === index) {
+      textContentRef.current = text;
+      return;
+    }
+    const textChanged = text !== textContentRef.current;
+    textContentRef.current = text;
     entryDirectionRef.current = index > previousIndex ? "forward" : "backward";
     if (transitionTimerRef.current)
       window.clearTimeout(transitionTimerRef.current);
     setTransition({
       direction: index > previousIndex ? "forward" : "backward",
       outgoing: stepsRef.current[previousIndex] ?? null,
+      textChanged,
     });
     transitionTimerRef.current = window.setTimeout(
       () => setTransition((current) => ({ ...current, outgoing: null })),
@@ -374,12 +408,17 @@ function ProteinStepper({ steps }: { steps: ProteinStep[] }) {
           aria-label="Rational design of SnoopLigase2"
         >
           <div className="protein-text-stack">
-            {transition.outgoing && (
+            {transition.outgoing && transition.textChanged && (
               <div className="protein-text-out" aria-hidden="true">
                 {transition.outgoing.body}
               </div>
             )}
-            <div className="protein-text-inner" key={step?.key}>
+            <div
+              className={`protein-text-inner${
+                transition.textChanged ? "" : " protein-text-inner--static"
+              }`}
+              key={step?.key}
+            >
               {step?.body}
             </div>
           </div>

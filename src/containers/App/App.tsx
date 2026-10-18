@@ -1,9 +1,10 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "katex/dist/katex.min.css";
 import "./App.css";
+import "../../components/table.css";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { getPathMapping, stringToSlug } from "../../utils";
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Navbar } from "../../components/Navbar";
 import { NotFound } from "../../components/NotFound";
 import { Footer } from "../../components/Footer";
@@ -16,6 +17,7 @@ const MAXIMUM_LOADING_TIME = 8000;
 
 const App = () => {
   const location = useLocation();
+  const previousScrollPath = useRef<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [homeIntroReady, setHomeIntroReady] = useState(false);
   const [isMobileNavigation, setIsMobileNavigation] = useState(
@@ -26,6 +28,14 @@ const App = () => {
     location.pathname
       .split(`${stringToSlug(import.meta.env.VITE_TEAM_NAME)}`)
       .pop() || "/";
+
+  useLayoutEffect(() => {
+    if (previousScrollPath.current === location.pathname) return;
+    previousScrollPath.current = location.pathname;
+    if (!location.hash) {
+      window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+    }
+  }, [location.pathname, location.hash]);
 
   // Set Page Title
   const currentPage =

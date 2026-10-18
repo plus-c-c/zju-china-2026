@@ -1,3 +1,11 @@
+/* Keep figure and video captions centered across all Model modules. */
+.m1-figure + p:has(> em:only-child),
+.m3-figure + p:has(> em:only-child),
+.m1-slide__content > div:has(iframe) + p:has(> em:only-child),
+.protein-caption p {
+  text-align: center;
+}
+
 /* Rational design of SnoopLigase2 — pinned protein stepper (Model module 2).
    Layout: structure figure + caption + Previous/Next on the left, the
    design text on the right; the page scroll advances one protein per step
@@ -30,8 +38,10 @@
   --protein-stage-h: clamp(300px, 52vh, 520px);
   position: absolute;
   /* Raised so the black panel border inside the wide figures keeps clear
-     of the text card's top edge. */
-  top: calc(40dvh - var(--protein-stage-h) / 2 - 60px);
+     of the text card's top edge. The extra 2dvh keeps the [figure +
+     caption + Previous/Next] aggregate centred while the buttons sit
+     closer to the caption below. */
+  top: calc(40dvh - var(--protein-stage-h) / 2 - 60px + 2dvh);
   left: 0;
   z-index: 2;
   display: flex;
@@ -77,8 +87,8 @@
 .protein-pin--wide .protein-figure {
   /* The wide frame is taller than the stage: centre it exactly on the same
      line as every other step (identical on-screen centre), raised like the
-     regular steps. */
-  top: calc(40dvh - var(--protein-figure-h, 466px) / 2 - 60px);
+     regular steps (same +2dvh compensation as .protein-figure). */
+  top: calc(40dvh - var(--protein-figure-h, 466px) / 2 - 60px + 2dvh);
 }
 
 .protein-pin--wide .protein-text {
@@ -147,8 +157,10 @@
 }
 
 /* Text panel: the body slides up / down (vertical counterpart of the
-   structure and caption slides). */
-.protein-slide-forward .protein-text-inner {
+   structure and caption slides). Steps that share the same design text
+   (e.g. 7a / 7b) mark the inner as static: the card then stays put while
+   the figure and caption still switch. */
+.protein-slide-forward .protein-text-inner:not(.protein-text-inner--static) {
   animation: protein-rise-in 0.36s ease;
 }
 
@@ -156,7 +168,7 @@
   animation: protein-rise-out 0.36s ease forwards;
 }
 
-.protein-slide-backward .protein-text-inner {
+.protein-slide-backward .protein-text-inner:not(.protein-text-inner--static) {
   animation: protein-sink-in 0.36s ease;
 }
 
@@ -206,7 +218,8 @@
   max-width: 560px;
   margin: 0.7rem 0 0;
   text-align: center;
-  font-size: 1rem;
+  /* Same font size as the description text in the card (.protein-text p). */
+  font-size: 1.15rem;
   line-height: 1.6;
   color: #5c6f96;
 }
@@ -217,7 +230,9 @@
 
 .protein-nav {
   position: absolute;
-  bottom: 8dvh;
+  /* Closer to the figure caption above; the same value shrinks the text
+     card below so the cluster keeps its centred aggregate. */
+  bottom: 10dvh;
   left: 0;
   display: flex;
   gap: 1.6rem;
@@ -250,17 +265,17 @@
 
 /* Right-hand text: fills the column, scrolls on its own wheel. */
 .protein-text {
-  /* Bottom edge flush with the Previous/Next row (both sit 8dvh above the
-     viewport bottom). On regular steps the card stretches until its top gap
-     equals its bottom gap (8dvh); wide steps fit their content instead
-     (height set inline). The height change animates with the bottom fixed,
-     so only the top edge moves. */
+  /* Bottom edge flush with the Previous/Next row (both sit 10dvh above the
+     viewport bottom — raised together with the buttons). On regular steps
+     the card stretches until its top gap is 8dvh; wide steps fit their
+     content instead (height set inline). The height change animates with
+     the bottom fixed, so only the top edge moves. */
   position: absolute;
   right: 0;
   top: auto;
-  bottom: 8dvh;
+  bottom: 10dvh;
   width: calc((100% - var(--protein-gap)) * 0.55);
-  height: calc(100dvh - 16dvh);
+  height: calc(100dvh - 18dvh);
   transition: height 0.4s cubic-bezier(0.22, 1, 0.36, 1);
   padding: 1.5rem 1.6rem;
   overflow-y: auto;

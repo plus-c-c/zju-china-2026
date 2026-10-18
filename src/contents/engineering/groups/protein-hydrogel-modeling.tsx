@@ -15,7 +15,7 @@ const hydrogelModelingModule: DbtlModule = {
   ),
   cycles: [
     {
-      title: "DBTL Cycle 1: Construction of the Initial Crosslinked System",
+      title: "Cycle 1 — Construction of the Initial Crosslinked System",
       content: {
         Design: (
           <p>
@@ -48,7 +48,7 @@ const hydrogelModelingModule: DbtlModule = {
       },
     },
     {
-      title: "DBTL Cycle 2: Optimization of the Percolating Network",
+      title: "Cycle 2 — Optimization of the Percolating Network",
       content: {
         Design: (
           <p>
@@ -82,7 +82,7 @@ const hydrogelModelingModule: DbtlModule = {
     },
     {
       title:
-        "DBTL Cycle 3: Molecular Dynamics Sampling and Stability Assessment",
+        "Cycle 3 — Molecular Dynamics Sampling and Stability Assessment",
       content: {
         Design: (
           <p>
@@ -115,7 +115,7 @@ const hydrogelModelingModule: DbtlModule = {
       },
     },
     {
-      title: "DBTL Cycle 4: Static Modeling and Numerical Verification",
+      title: "Cycle 4 — Static Modeling and Numerical Verification",
       content: {
         Design: (
           <p>
@@ -148,7 +148,7 @@ const hydrogelModelingModule: DbtlModule = {
       },
     },
     {
-      title: "DBTL Cycle 5: Shared Empirical Calibration",
+      title: "Cycle 5 — Shared Empirical Calibration",
       content: {
         Design: (
           <p>
@@ -187,7 +187,7 @@ const hydrogelModelingModule: DbtlModule = {
       },
     },
     {
-      title: "DBTL Cycle 6: Independent Predictive Validation Using 2KY16",
+      title: "Cycle 6 — Independent Predictive Validation Using 2KY16",
       content: {
         Design: (
           <p>
@@ -222,6 +222,6 @@ const hydrogelModelingModule: DbtlModule = {
   ],
 };
 export const proteinHydrogelModelingGroup: Group = {
-  label: "Protein Hydrogel Modeling",
+  label: "Model",
   parts: [{ label: "DBTL cycles", module: hydrogelModelingModule }],
 };

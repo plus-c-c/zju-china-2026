@@ -28,6 +28,7 @@
 
 .description-card-grid--treatments {
   grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
 }
 
 .description-card {
@@ -77,9 +78,9 @@
 
 .description-expandable__trigger {
   display: grid;
-  grid-template-columns: 2rem minmax(0, 1fr);
+  grid-template-columns: 1.5rem minmax(0, 1fr);
   width: 100%;
-  gap: 0.75rem;
+  gap: 0rem;
   align-items: flex-start;
   padding: 1.4rem;
   border: 0;
@@ -105,6 +106,7 @@
   line-height: 1;
   text-align: center;
   transition: color 260ms ease;
+  transform: translateX(-0.8rem);
 }
 
 .description-expandable__trigger:hover .description-expandable__icon {
@@ -113,6 +115,8 @@
 
 .description-expandable__title {
   padding-top: 0.05rem;
+  width: 105%;
+  max-width: 17rem;
 }
 
 .description-expandable__body {
@@ -188,5 +192,31 @@
   .description-expandable__body,
   .description-expandable__icon {
     transition: none;
+  }
+}
+
+/* Keep large figures and treatment comparisons comfortably within the article. */
+.page-article .description-article > .article-figure {
+  width: min(100%, 780px);
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+.page-article .description-article .article-figure__image {
+  max-height: 560px;
+  object-fit: contain;
+}
+.description-card-grid--treatments {
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.page-article .description-platform-title {
+  text-align: center;
+  font-weight: 800;
+  line-height: 1.35;
+}
+@media (max-width: 767.98px) {
+  .page-article .description-article .article-figure__image {
+    max-height: 420px;
   }
 }

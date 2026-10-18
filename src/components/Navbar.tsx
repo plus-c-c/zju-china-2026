@@ -2,6 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useEffect, useRef, useState, type HTMLAttributes } from "react";
 import Pages from "../pages.ts";
 import { navigationIcon, pageDetails } from "./navigationIcons";
+import { NavIcon } from "./NavIcon";
 import "./Navbar.css";
 
 const desktopNavigation = () => window.matchMedia("(min-width: 992px)").matches;
@@ -102,7 +103,14 @@ export function Navbar({ introEntrance = false }: { introEntrance?: boolean }) {
         (navRef.current?.contains(target) ||
           (pointer.y >= 0 &&
             pointer.y <= (navRef.current?.offsetHeight ?? 88)));
-      let overRevealArea = !!pointer && pointer.y >= 0 && pointer.y <= 18;
+      // The wake-up area matches the navigation bar itself: the full page
+      // width across the bar's height, so hovering anywhere over the bar's
+      // resting place brings it back. Interactive controls and the Results
+      // sticky bar stay excluded below.
+      let overRevealArea =
+        !!pointer &&
+        pointer.y >= 0 &&
+        pointer.y <= (navRef.current?.offsetHeight ?? 88);
       if (overRevealArea && pointer) {
         // No overlay intercepts clicks. Exclude the entire Results sticky bar,
         // including its padding, and other interactive controls at the edge.
@@ -239,7 +247,7 @@ export function Navbar({ introEntrance = false }: { introEntrance?: boolean }) {
   }, [expanded]);
 
   const navbarHidden = !navbarVisible;
-  const pages = Pages.filter((item) => !("path" in item && item.path === "/"));
+  const pages = Pages;
 
   return (
     <>
@@ -440,23 +448,19 @@ export function Navbar({ introEntrance = false }: { introEntrance?: boolean }) {
                                   aria-current={active ? "page" : undefined}
                                   onClick={closeMenus}
                                 >
-                                  <span className="nest-tile-icon">
+                                  {details ? (
+                                    <NavIcon
+                                      className="nest-tile-icon"
+                                      src={navigationIcon(details.icon)}
+                                    />
+                                  ) : (
                                     <img
-                                      src={
-                                        details
-                                          ? navigationIcon(details.icon)
-                                          : undefined
-                                      }
-                                      style={
-                                        details?.iconTransform
-                                          ? { transform: details.iconTransform }
-                                          : undefined
-                                      }
+                                      className="nest-tile-icon"
                                       alt=""
                                       width="72"
                                       height="72"
                                     />
-                                  </span>
+                                  )}
                                   <span className="nest-tile-copy">
                                     <span className="nest-tile-title">
                                       {page.name}

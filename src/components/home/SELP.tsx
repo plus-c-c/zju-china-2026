@@ -148,6 +148,35 @@ function PipelinePill({ label, to }: { label: string; to: string }) {
   );
 }
 
+function PipelineConnector({ variant }: { variant: "first" | "second" }) {
+  const paths = {
+    first:
+      "M3.99805 0V159.302C3.99805 172.552 14.7376 183.292 27.9876 183.292H514.805C528.055 183.292 538.795 194.031 538.795 207.276V352.729",
+    second:
+      "M542.79 0V171.328C542.79 184.578 532.05 195.318 518.805 195.318H27.9876C14.7376 195.318 3.99805 206.057 3.99805 219.302V356.937",
+  } as const;
+
+  return (
+    <svg
+      aria-hidden="true"
+      className={`selp-pipeline__connector selp-pipeline__connector--${variant}`}
+      viewBox={
+        variant === "first" ? "0 0 542.793 352.729" : "0 0 546.788 356.937"
+      }
+      preserveAspectRatio="none"
+    >
+      <path
+        d={paths[variant]}
+        fill="none"
+        stroke="#7eb5ff"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="8"
+      />
+    </svg>
+  );
+}
+
 function LoopingPipelineGif({
   alt,
   className,
@@ -180,42 +209,51 @@ function LoopingPipelineGif({
 }
 
 const quickLinks = [
-  { label: "Description", to: "/description", icon: "document" },
-  { label: "Design", to: "/design", icon: "design" },
+  {
+    label: "Description",
+    to: "/description",
+    icon: `${STATIC_HOME}/shortcut-icons/description.avif`,
+  },
+  {
+    label: "Design",
+    to: "/design",
+    icon: `${STATIC_HOME}/shortcut-icons/design.avif`,
+  },
   {
     label: "Proof of Concept",
     to: "/proof-of-concept",
-    icon: "proof",
+    icon: `${STATIC_HOME}/shortcut-icons/proof-of-concept.avif`,
   },
-  { label: "Model", to: "/model", icon: "model" },
+  {
+    label: "Model",
+    to: "/model",
+    icon: `${STATIC_HOME}/shortcut-icons/model.avif`,
+  },
   {
     label: "Entrepreneurship",
     to: "/entrepreneurship",
-    icon: "business",
+    icon: `${STATIC_HOME}/shortcut-icons/entrepreneurship.avif`,
   },
   {
     label: "Integrated Human Practice",
     to: "/human-practices",
-    icon: "people",
+    icon: `${STATIC_HOME}/shortcut-icons/human-practices.svg`,
   },
 ] as const;
 
-function ShortcutIcon({ type }: { type: (typeof quickLinks)[number]["icon"] }) {
-  const paths = {
-    document: <path d="M7 3h8l4 4v14H7zM15 3v5h5M10 12h6m-6 4h6m-6 4h4" />,
-    design: <path d="m4 19 4-1 10-10-3-3L5 15l-1 4Zm9-12 3 3M12 21h9M5 5l3 3" />,
-    proof: <path d="M4 5h16v15H4zM8 5V2m8 3V2M8 9h3v3H8zm5 0h3v3h-3zm-5 5h3v3H8zm5 0h3v3h-3z" />,
-    model: <path d="m12 3 8 4.5v9L12 21l-8-4.5v-9L12 3Zm0 0v9m8-4.5-8 4.5-8-4.5m8 4.5v9" />,
-    business: <path d="M4 10h16v10H4zM9 10V7h6v3M4 14h16M10 14v2h4v-2" />,
-    people: <path d="M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm7-1a3 3 0 1 0 0-6M2 21v-3c0-3 3-5 7-5s7 2 7 5v3m1-8c3 0 5 2 5 4v3" />,
-  } as const;
-
-  return (
-    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none">
-      {paths[type]}
-    </svg>
-  );
-}
+const promotionDecorations = [
+  ["orange-cell-lower-right", "orange-cell-lower-right.avif"],
+  ["orange-molecule-upper-left", "orange-molecule-upper-left.avif"],
+  ["cyan-particle-top", "cyan-particle-top.avif"],
+  ["blue-bird-lower-left", "blue-bird-lower-left.avif"],
+  ["blue-bird-top", "blue-bird-top.avif"],
+  ["dna-left", "dna-left.avif"],
+  ["white-cell-lower-right", "white-cell-lower-right.avif"],
+  ["orange-cell-left", "orange-cell-left.avif"],
+  ["green-cell-right", "green-cell-right.avif"],
+  ["cyan-gear-upper-right", "cyan-gear-upper-right.avif"],
+  ["cyan-gear-middle-right", "cyan-gear-middle-right.avif"],
+] as const;
 
 export function SelpPipeline() {
   return (
@@ -256,11 +294,7 @@ export function SelpPipeline() {
             label="About Anisotropy"
             to="/design#3-2-module-1-magnetically-responsive-anisotropy-directional-load-bearing"
           />
-          <img
-            className="selp-pipeline__connector selp-pipeline__connector--first"
-            src={`${PIPELINE_ASSETS}/pipeline-02-03.svg`}
-            alt=""
-          />
+          <PipelineConnector variant="first" />
         </section>
 
         <section
@@ -295,11 +329,7 @@ export function SelpPipeline() {
             label="About GAG"
             to="/design#3-3-module-2-cpc-link-n-maintaining-matrix-retention-and-renewal"
           />
-          <img
-            className="selp-pipeline__connector selp-pipeline__connector--second"
-            src={`${PIPELINE_ASSETS}/pipeline-03-04.svg`}
-            alt=""
-          />
+          <PipelineConnector variant="second" />
         </section>
 
         <section
@@ -337,28 +367,25 @@ export function SelpPipeline() {
           />
         </section>
 
-        <section className="selp-after-pipeline" aria-label="Explore the NEST project">
+        <section
+          className="selp-after-pipeline"
+          aria-label="Explore the NEST project"
+        >
           <nav className="selp-shortcuts" aria-label="Project shortcuts">
             {quickLinks.map((item) => (
               <Link className="selp-shortcut" key={item.to} to={item.to}>
-                <ShortcutIcon type={item.icon} />
+                <img aria-hidden="true" alt="" src={item.icon} />
                 <span>{item.label}</span>
               </Link>
             ))}
           </nav>
 
-          <section className="selp-promotion" aria-labelledby="promotion-video-title">
-            <div className="selp-promotion__heading">
-              <span aria-hidden="true" className="selp-promotion__line" />
-              <h2 id="promotion-video-title">Promotion Video</h2>
-              <span aria-hidden="true" className="selp-promotion__line" />
-            </div>
-            <div className="selp-promotion__bird" aria-hidden="true">
-              <img src="/images/home/home-heading-bird.png" alt="" />
-            </div>
-            <span className="selp-promotion__ornament selp-promotion__ornament--one" aria-hidden="true" />
-            <span className="selp-promotion__ornament selp-promotion__ornament--two" aria-hidden="true" />
-            <span className="selp-promotion__ornament selp-promotion__ornament--three" aria-hidden="true" />
+          <section
+            className="selp-promotion"
+            aria-labelledby="promotion-video-title"
+          >
+            <div className="selp-promotion__depth" aria-hidden="true" />
+            <div className="selp-promotion__border" aria-hidden="true" />
             <div className="selp-promotion__frame">
               <iframe
                 src="https://video.igem.org/videos/embed/6626b25e-37f5-4fbc-8f49-a9897496b6b0"
@@ -368,6 +395,16 @@ export function SelpPipeline() {
                 allowFullScreen
               />
             </div>
+            <h2 id="promotion-video-title">Promotion Video</h2>
+            {promotionDecorations.map(([className, fileName]) => (
+              <img
+                alt=""
+                aria-hidden="true"
+                className={`selp-promotion__decoration selp-promotion__decoration--${className}`}
+                key={fileName}
+                src={`${STATIC_HOME}/promotion/${fileName}`}
+              />
+            ))}
           </section>
         </section>
       </div>

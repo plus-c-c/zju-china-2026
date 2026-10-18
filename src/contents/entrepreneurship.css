@@ -1,12 +1,20 @@
-/* Expandable card ("extend box") for the Entrepreneurship page.
-   Click the header to expand / collapse the text box below. */
+.entrepreneurship-article {
+  --entre-border: #e2ebf8;
+  --entre-header: #dce9ff;
+  --entre-header-hover: #cfe0fa;
+  --entre-header-open: #c2d8f8;
+  --entre-content: #fff;
+  --entre-title: #365dc9;
+  --entre-body: #233d5c;
+}
 
 .entre-card {
-  border: 2px solid #9ebfe4;
-  border-radius: 16px;
+  border: 0;
+  border-radius: var(--article-card-radius, 22px);
   overflow: hidden;
-  background: #fff;
-  margin: 1.1rem 0;
+  background: var(--article-card-background, #fff);
+  box-shadow: var(--article-card-shadow, 4px 4px #a9c8ed);
+  margin: 1.4rem 0;
   font-family: "Outfit", sans-serif;
 }
 
@@ -16,20 +24,25 @@
   justify-content: space-between;
   gap: 1rem;
   width: 100%;
-  text-align: left;
-  background: #dce9ff;
-  color: #223c81;
+  padding: 1.05rem 1.4rem;
   border: 0;
-  padding: 0.95rem 1.3rem;
-  font-size: 1.5rem;
-  font-weight: 600;
-  line-height: 1.35;
+  background: var(--entre-header);
+  color: var(--entre-title);
   cursor: pointer;
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.4;
+  text-align: left;
   transition: background-color 0.25s ease;
 }
 
 .entre-card-header:hover {
-  background: #c9dcf8;
+  background: var(--entre-header-hover);
+}
+
+.entre-card-header:focus-visible {
+  outline: 3px solid rgb(54 93 201 / 42%);
+  outline-offset: -3px;
 }
 
 .entre-card-title {
@@ -41,17 +54,17 @@
   width: 0.7rem;
   height: 0.7rem;
   margin-top: -0.35rem;
-  border-right: 2.5px solid currentColor;
-  border-bottom: 2.5px solid currentColor;
+  border-right: 2.5px solid currentcolor;
+  border-bottom: 2.5px solid currentcolor;
   transform: rotate(45deg);
   transition: transform 0.3s ease;
 }
 
-.entre-card--open .entre-card-header {
-  background: #cfe0fa;
+.entre-card--open > .entre-card-header {
+  background: var(--entre-header-open);
 }
 
-.entre-card--open .entre-card-chevron {
+.entre-card--open > .entre-card-header .entre-card-chevron {
   margin-top: 0.35rem;
   transform: rotate(225deg);
 }
@@ -59,28 +72,29 @@
 .entre-card-content {
   display: grid;
   grid-template-rows: 0fr;
+  background: var(--entre-content);
   transition: grid-template-rows 0.45s ease;
-  background: #eef4fd;
 }
 
-.entre-card--open .entre-card-content {
+.entre-card--open > .entre-card-content {
   grid-template-rows: 1fr;
 }
 
 .entre-card-content-inner {
+  min-height: 0;
   overflow: hidden;
 }
 
 .entre-card-pad {
-  padding: 1rem 1.3rem 1.1rem;
-  border-top: 2px solid #9ebfe4;
+  padding: 1rem 1.4rem 1.15rem;
+  border-top: 1px solid var(--entre-border);
 }
 
 .entre-card-pad p {
-  font-size: 1rem;
-  color: #233d5c;
-  line-height: 1.65;
   margin: 0.5rem 0;
+  color: var(--entre-body);
+  font-size: 1rem;
+  line-height: 1.65;
 }
 
 .entre-card-pad p:first-child {
@@ -89,6 +103,81 @@
 
 .entre-card-pad p:last-child {
   margin-bottom: 0;
+}
+
+.page-article .entre-card-pad h3 {
+  margin-top: 1.7rem !important;
+  margin-bottom: 0.45rem !important;
+  font-size: 1.28rem;
+}
+
+.page-article .entre-card-pad > h3:first-child {
+  margin-top: 0 !important;
+}
+
+.entre-card-nested-group {
+  display: grid;
+  gap: 0.8rem;
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border-radius: 14px;
+  background: transparent;
+}
+
+.entre-card--secondary {
+  margin: 0;
+  border-width: 1.5px;
+  border-color: #b6cce7;
+  border-radius: 12px;
+  box-shadow: 3px 3px 0 rgb(158 191 228 / 38%);
+}
+
+.entre-card--secondary > .entre-card-header {
+  padding: 0.75rem 1rem;
+  background: #f8fbff;
+  font-size: 1.13rem;
+  font-weight: 650;
+}
+
+.entre-card--secondary > .entre-card-header:hover,
+.entre-card--secondary.entre-card--open > .entre-card-header {
+  background: #e3edfb;
+}
+
+.entre-card--secondary > .entre-card-content {
+  background: #fff;
+}
+
+.entre-card--secondary > .entre-card-content .entre-card-pad {
+  padding: 0.85rem 1rem 0.95rem;
+  border-top: 1.5px solid #b6cce7;
+}
+
+.entre-card--secondary .entre-card-chevron {
+  width: 0.58rem;
+  height: 0.58rem;
+  border-width: 2px;
+}
+
+@media (max-width: 767.98px) {
+  .entre-card-header {
+    padding: 0.82rem 1rem;
+    font-size: 1.17rem;
+  }
+
+  .entre-card-pad {
+    padding: 0.9rem 1rem 1rem;
+  }
+
+  .entre-card-nested-group {
+    margin-right: -0.25rem;
+    margin-left: -0.25rem;
+    padding: 0.7rem;
+  }
+
+  .entre-card--secondary > .entre-card-header {
+    font-size: 1.02rem;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
