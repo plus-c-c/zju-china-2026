@@ -1,14 +1,4 @@
-import anisotropy from "./anisotropy-content.json";
-import gag from "./gag-content.json";
-import delivery from "./delivery-content.json";
-
-/* One content file per supplied manuscript; the renderer only knows how to
-   present them. */
-const content = {
-  anisotropy: anisotropy.anisotropy,
-  gag: gag.gag,
-  delivery: delivery.delivery,
-};
+import content from "./function-content.json";
 
 export function FunctionResults({ module }: { module: keyof typeof content }) {
   return (

@@ -1,17 +1,5 @@
-import {
-  useEffect,
-  useLayoutEffect,
-  useRef,
-  useState,
-  type ReactNode,
-} from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { Header } from "./Header";
-import {
-  clearPageSwipeEntry,
-  isHashScrollSuppressed,
-  PAGE_SWIPE_DURATION,
-  readPageSwipeEntry,
-} from "./tocState";
 import "./toc.css";
 
 type Heading = { id: string; text: string; level: number };
@@ -20,12 +8,10 @@ export function Toc({
   title,
   children,
   hideToc = false,
-  tocSide = "left",
 }: {
   title: string;
   children: ReactNode;
   hideToc?: boolean;
-  tocSide?: "left" | "right";
 }) {
   const headerRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -36,32 +22,7 @@ export function Toc({
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeId, setActiveId] = useState("");
 
-  // Replay the cross-page swipe when arriving from the paired page.
-  useLayoutEffect(() => {
-    const entry = readPageSwipeEntry();
-    if (!entry) return;
-    const root = document.documentElement;
-    const enterClass = `page-swipe-enter-${entry}`;
-    root.classList.add(enterClass);
-    let inner = 0;
-    const outer = window.requestAnimationFrame(() => {
-      inner = window.requestAnimationFrame(() =>
-        root.classList.add("page-swipe-run"),
-      );
-    });
-    const finish = window.setTimeout(() => {
-      root.classList.remove(enterClass, "page-swipe-run");
-      clearPageSwipeEntry();
-    }, PAGE_SWIPE_DURATION + 220);
-    return () => {
-      window.cancelAnimationFrame(outer);
-      window.cancelAnimationFrame(inner);
-      window.clearTimeout(finish);
-      root.classList.remove(enterClass, "page-swipe-run");
-    };
-  }, []);
-
-  useLayoutEffect(() => {
+  useEffect(() => {
     const content = contentRef.current;
     const header = headerRef.current;
     const footer = document.querySelector("footer.footer");
@@ -135,23 +96,20 @@ export function Toc({
         footerRect.bottom > 0;
       setFooterInView(footerVisible);
       setVisible(header.getBoundingClientRect().bottom <= 0 && !footerVisible);
-      /* Deck step anchors (data-toc-track) sit one step apart (40dvh) and the
-         deck's scroll mapping flips at half a step; half a step as the anchor
+      const viewportCenter = window.innerHeight / 2;
+      /* Deck step anchors sit one step apart (40dvh) and the deck's scroll
+         mapping flips at half a step; using half a step as the anchor
          threshold makes the highlighted heading change exactly when the
-         figure switches. Regular headings switch once they reach their
-         landing line (scroll-margin + a 1px tolerance), matching the jump. */
+         figure switches. */
       const anchorThreshold = window.innerHeight * 0.2;
-      const lineOf = (element: HTMLElement) =>
-        (Number.parseFloat(getComputedStyle(element).scrollMarginTop) || 0) + 1;
       const expandedElements = elements.filter(isExpanded);
       let current = expandedElements[0]?.id || "";
       for (const element of expandedElements) {
         const threshold =
           element.dataset.tocTrack === "true"
             ? anchorThreshold
-            : lineOf(element);
-        if (element.getBoundingClientRect().top <= threshold)
-          current = element.id;
+            : viewportCenter;
+        if (element.getBoundingClientRect().top <= threshold) current = element.id;
         else break;
       }
       setActiveId(current);
@@ -160,9 +118,6 @@ export function Toc({
       if (!frame) frame = window.requestAnimationFrame(update);
     };
     collectHeadings();
-    // Resolve the initial visibility right away so the TOC is part of the
-    // first committed frame (keeps view-transition captures complete).
-    update();
     window.addEventListener("scroll", scheduleUpdate, { passive: true });
     window.addEventListener("resize", scheduleUpdate);
     const observer = new ResizeObserver(scheduleUpdate);
@@ -184,68 +139,30 @@ export function Toc({
 
     const hashTimers: number[] = [];
     let hashScrollCancelled = false;
-    let anchorKeeper = 0;
-    const stopAnchorKeeper = () => {
-      if (anchorKeeper) {
-        window.clearInterval(anchorKeeper);
-        anchorKeeper = 0;
-      }
-    };
     const cancelHashScroll = () => {
       hashScrollCancelled = true;
-      stopAnchorKeeper();
       hashTimers.forEach((timer) => window.clearTimeout(timer));
     };
 
     // Re-align deep links after lazy content has settled. The Design page has
     // many images above its module headings, so a single early scroll can drift.
 
-    // Jump navigations that restore a remembered position handle scrolling
-    // themselves; the hash alignment below must stand down.
-    const suppressedHashScroll = isHashScrollSuppressed();
-
-    if (window.location.hash && !suppressedHashScroll) {
+    if (window.location.hash) {
       let id = window.location.hash.slice(1);
       try {
         id = decodeURIComponent(id);
       } catch {
         /* Ignore malformed URL escapes. */
       }
-      // Any element can be an anchor target (jump pairs use label ids as well),
-      // so resolve by document id instead of the collected headings.
-      const target = document.getElementById(id);
-      // Arriving through the cross-page swipe positions instantly, so the
-      // sliding page is already aligned with the target section.
-      const swipeArrival = !!readPageSwipeEntry();
+      const target = elements.find((element) => element.id === id);
       const scrollToTarget = () => {
-        if (!hashScrollCancelled)
-          target?.scrollIntoView(
-            swipeArrival ? { behavior: "instant" } : undefined,
-          );
+        if (!hashScrollCancelled) target?.scrollIntoView();
       };
       scrollToTarget();
       [750, 2000].forEach((delay) =>
         hashTimers.push(window.setTimeout(scrollToTarget, delay)),
       );
       void document.fonts?.ready.then(scrollToTarget);
-
-      // Remote figures above the anchor are size-reserved, so this only mops
-      // up the rare late reflow. The keeper re-checks its deadline (and the
-      // user-cancel flag) every tick and clears itself, so a stale instance
-      // can never keep fighting later wheel scrolls.
-      const keeperDeadline = performance.now() + 1600;
-      const keepAnchor = () => {
-        if (hashScrollCancelled || performance.now() > keeperDeadline) {
-          if (anchorKeeper) {
-            window.clearInterval(anchorKeeper);
-            anchorKeeper = 0;
-          }
-          return;
-        }
-        scrollToTarget();
-      };
-      anchorKeeper = window.setInterval(keepAnchor, 250);
-      hashTimers.push(window.setTimeout(stopAnchorKeeper, 1700));
       window.addEventListener("wheel", cancelHashScroll, {
         once: true,
         passive: true,
@@ -255,10 +172,6 @@ export function Toc({
         passive: true,
       });
       window.addEventListener("keydown", cancelHashScroll, { once: true });
-      // A click (TOC entry, in-page anchor) is explicit navigation: stand down
-      // before the fragment scroll runs, or the keeper would re-align to the
-      // arrival target and cancel it.
-      window.addEventListener("click", cancelHashScroll, { once: true });
     }
     return () => {
       window.removeEventListener("scroll", scheduleUpdate);
@@ -266,8 +179,6 @@ export function Toc({
       window.removeEventListener("wheel", cancelHashScroll);
       window.removeEventListener("touchstart", cancelHashScroll);
       window.removeEventListener("keydown", cancelHashScroll);
-      window.removeEventListener("click", cancelHashScroll);
-      stopAnchorKeeper();
       hashTimers.forEach((timer) => window.clearTimeout(timer));
       observer.disconnect();
       mutations.disconnect();
@@ -322,14 +233,10 @@ export function Toc({
           .reverse()
           .find((heading) => heading.level === 1)?.id || ""
       : "";
-  const visibleHeadings = headings.filter((heading, index) => {
-    if (heading.level === 1) return true;
-    const parentId = headings
-      .slice(0, index)
-      .reverse()
-      .find((candidate) => candidate.level === 1)?.id;
-    return parentId === activeTopLevelId;
-  });
+  /* Show the complete hierarchy: the nested levels stay visible while the
+     page scrolls instead of appearing only under the active top-level
+     section (the active one is still marked with page-toc-section-current). */
+  const visibleHeadings = headings;
 
   const showToc = !hideToc && headings.length > 0;
 
@@ -338,15 +245,10 @@ export function Toc({
       <div ref={headerRef}>
         <Header title={title} />
       </div>
-      <div
-        className={`page-layout ${showToc ? "page-layout-with-toc" : ""}${
-          tocSide === "right" ? " page-layout-toc-right" : ""
-        }`}
-      >
+      <div className={`page-layout ${showToc ? "page-layout-with-toc" : ""}`}>
         {showToc && (
           <nav
             ref={tocRef}
-            data-page-swipe-stage
             aria-label="On this page"
             className={`page-toc ${visible ? "page-toc-visible" : ""}${mobileOpen ? " page-toc-open" : ""}`}
           >
@@ -381,7 +283,6 @@ export function Toc({
         {showToc && (
           <button
             type="button"
-            data-page-swipe-stage
             className={`page-toc-toggle${
               footerInView ? "" : " page-toc-toggle-visible"
             }${mobileOpen ? " page-toc-toggle-open" : ""}`}
@@ -395,11 +296,7 @@ export function Toc({
             <span className="page-toc-toggle-bar" aria-hidden="true" />
           </button>
         )}
-        <div
-          ref={contentRef}
-          data-page-swipe-stage
-          className="container page-article"
-        >
+        <div ref={contentRef} className="container page-article">
           {children}
         </div>
       </div>
