@@ -133,6 +133,22 @@ function SequenceMap({ part }: { part: Part }) {
           </g>
         ))}
       </svg>
+      <figcaption className="parts-map-legend">
+        <ol>
+          {part.features.map((feature, index) => (
+            <li key={`${feature.sourceId}-${feature.start}`}>
+              <b style={{ backgroundColor: colors[feature.color] }}>
+                {index + 1}
+              </b>
+              <span>{feature.label}</span>
+            </li>
+          ))}
+        </ol>
+        <div className="parts-map-other">
+          <i aria-hidden="true" />
+          <span>Other sequence</span>
+        </div>
+      </figcaption>
     </figure>
   );
 }

@@ -17,6 +17,48 @@
   height: auto;
   overflow: visible;
 }
+.parts-map-legend ol {
+  display: grid;
+  gap: 10px;
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.page-article .parts-map-legend li {
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr);
+  align-items: start;
+  gap: 10px;
+  margin: 0;
+  color: #48607f;
+  font-size: 1rem;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+.parts-map-legend b {
+  display: grid;
+  place-items: center;
+  height: 24px;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+}
+.parts-map-other {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 12px;
+  color: #62748b;
+  font-size: 1rem;
+}
+.parts-map-other i {
+  width: 24px;
+  height: 12px;
+  flex-shrink: 0;
+  border-radius: 2px;
+  background: #dce4ed;
+}
 .parts-toolbar {
   display: grid;
   grid-template-columns: minmax(180px, 1fr) minmax(160px, 0.65fr) auto;
