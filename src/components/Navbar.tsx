@@ -77,7 +77,7 @@ export function Navbar({ introEntrance = false }: { introEntrance?: boolean }) {
       visible = true;
       setNavbarVisible(true);
       // Hover navigation must respond immediately, even during the home intro.
-      if (canHover() && pointer) setIntroPlaying(false);
+      if (canHover()) setIntroPlaying(false);
     };
     const hide = () => {
       visible = false;

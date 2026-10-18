@@ -17,9 +17,10 @@
 }
 
 @font-face {
-  font-family: "Seymour One";
-  src: url("https://static.igem.wiki/teams/6102/wiki/home-opening/seymour-one.ttf") format("truetype");
-  font-weight: 400;
+  font-family: "Silkscreen";
+  src: url("https://static.igem.wiki/teams/6102/wiki/fonts/silkscreen-bold.ttf")
+    format("truetype");
+  font-weight: 700;
   font-style: normal;
   font-display: swap;
 }

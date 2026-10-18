@@ -22,12 +22,11 @@
   z-index: 5;
   top: 56px;
   left: 50%;
-  width: 1220px;
-  white-space: nowrap;
+  width: 760px;
   margin: 0;
-  font-family: "Seymour One", sans-serif;
+  font-family: "Silkscreen", monospace;
   font-size: 31px;
-  font-weight: 400;
+  font-weight: 700;
   line-height: 41px;
   text-align: center;
   text-transform: uppercase;
@@ -175,7 +174,7 @@
 .limitations-card:nth-child(1)
   .limitations-layer--yellow
   .limitations-card-title {
-  left: calc(50% - 122.5px);
+  left: 55px;
   top: 78px;
   width: 245px;
   font-size: 48px;
@@ -184,7 +183,7 @@
 .limitations-card:nth-child(2)
   .limitations-layer--yellow
   .limitations-card-title {
-  left: calc(50% - 147.5px);
+  left: 29px;
   top: 57px;
   width: 295px;
 }
@@ -192,7 +191,7 @@
 .limitations-card:nth-child(3)
   .limitations-layer--yellow
   .limitations-card-title {
-  left: calc(50% - 160px);
+  left: 19px;
   top: 57px;
   width: 320px;
   font-size: 37px;
@@ -276,8 +275,7 @@
 
 .limitations-selp-title strong {
   height: 76px;
-  font-size: 54px;
-  font-weight: 700;
+  font-size: 62px;
   line-height: 76px;
 }
 
@@ -285,7 +283,6 @@
   color: #414b59;
   margin-top: -29px;
   font-size: 20px;
-  font-weight: 400;
   line-height: 76px;
 }
 
@@ -607,90 +604,3 @@
     transform: scale(var(--card-scale)) !important;
   }
 }
-
-/* Center each face's copy on its own card, independent of text width. */
-.limitations-page .limitations-card .limitations-layer .limitations-layer__face > .limitations-card-title,
-.limitations-page .limitations-card .limitations-layer .limitations-card-body {
-  left: 50%;
-  translate: -50% 0;
-}
-
-/* Keep the front artwork groups on the same center as their titles/buttons. */
-.limitations-art--yellow-scalability,
-.limitations-art--yellow-mechanical { left: calc(50% - 159px); }
-.limitations-art--yellow-dynamic { left: calc(50% - 121px); }
-/* Center the visible organism, compensating for its transparent padding. */
-.limitations-art--blue-organism { left: calc(50% - 124.75px); }
-.limitations-art--blue-selp { left: calc(50% - 163px); }
-
-/* The replacement occupies the original three illustrations' combined bounds. */
-.limitations-art--dynamic-back-group {
-  left: 34px;
-  top: 355px;
-  width: 302px;
-  height: 172px;
-}
-
-/* Keep the mechanical card copy clear of its centered patient illustration. */
-.limitations-page .limitations-card:nth-child(2) .limitations-layer--yellow .limitations-card-body {
-  top: 163px;
-  font-size: 22px;
-  line-height: 28px;
-}
-.limitations-art--patient {
-  left: calc(50% - 69px);
-  top: 380px;
-  height: 147px;
-}
-
-/* Center both dynamic title lines across the complete card face. */
-.limitations-page .limitations-card:nth-child(3) .limitations-layer--yellow .limitations-layer__face > .limitations-card-title {
-  left: 0;
-  width: 100%;
-  padding-inline: 12px;
-  box-sizing: border-box;
-  translate: none;
-  text-align: center;
-  white-space: nowrap;
-}
-
-/* Center the complete row as well as each face, including both flipped states. */
-.story-viewport .limitations-card-row {
-  left: 50%;
-  translate: -50% 0;
-}
-.limitations-page .limitations-layer--blue .limitations-card-body { text-align: center; }
-
-/* Grow about the visible card center instead of its upper-left corner. */
-@media (hover: hover) and (pointer: fine) {
-  .limitations-page[data-yellow-removed="false"] .limitations-layer--yellow:hover,
-  .limitations-page[data-yellow-removed="true"] .limitations-layer--blue:hover {
-    translate: -5.505px -8.415px;
-  }
-}
-
-/* Separate the reverse face into title, copy and illustration bands. */
-.limitations-page .limitations-card .limitations-layer--blue .limitations-card-body {
-  top: 224px;
-  width: 306px;
-  font-size: 22px;
-  line-height: 30px;
-  text-align: center;
-}
-.limitations-art--blue-back-organism {
-  left: calc(50% - 100px);
-  top: 372px;
-  width: 200px;
-  height: 174px;
-  transform: none;
-}
-.limitations-art--blue-back-selp {
-  left: calc(50% - 110px);
-  top: 409px;
-  width: 220px;
-  height: 125px;
-  transform: rotate(-18deg);
-}
-.limitations-art--blue-back-gag { top: 418px; }
-.limitations-art--blue-back-liposome { top: 435px; height: 110px; }
-.limitations-art--blue-back-magnetic { top: 420px; }

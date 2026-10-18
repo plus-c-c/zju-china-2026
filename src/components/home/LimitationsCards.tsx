@@ -121,8 +121,16 @@ const yellowCards: CardCopy[] = [
     ],
     backArt: [
       {
-        name: "home/group-1.avif",
-        className: "limitations-art--dynamic-back-group",
+        name: "home-limit-back-dna.avif",
+        className: "limitations-art--dna",
+      },
+      {
+        name: "home-limit-back-cell-outline.avif",
+        className: "limitations-art--cell-outline",
+      },
+      {
+        name: "home-limit-back-nucleus.avif",
+        className: "limitations-art--nucleus",
       },
     ],
   },
@@ -132,12 +140,22 @@ const blueCards: CardCopy[] = [
   {
     title: (
       <>
-        Synthetic<br />Biology
+        Synthetic
+        <br />
+        Biology
       </>
     ),
     body: (
       <>
-        Complex fabrication limits batch consistency and large-scale production.
+        Complex fabrication
+        <br />
+        limits batch
+        <br />
+        consistency and
+        <br />
+        large-scale
+        <br />
+        production.
       </>
     ),
     frontArt: [
@@ -162,7 +180,19 @@ const blueCards: CardCopy[] = [
     ),
     body: (
       <>
-        SELP offers tunable stiffness and toughness, while RGD motifs within its chains promote adhesion and tissue integration.
+        SELP offers tunable stiffness
+        <br />
+        and toughness, while RGD
+        <br />
+        motifs within its chains
+        <br />
+        promote
+        <br />
+        adhesion
+        <br />
+        and tissue
+        <br />
+        integration.
       </>
     ),
     frontArt: [
@@ -181,12 +211,20 @@ const blueCards: CardCopy[] = [
   {
     title: (
       <>
-        Modular<br />Design
+        Modular
+        <br />
+        Design
       </>
     ),
     body: (
       <>
-        Matrix loss, degradation, and inflammation demand adaptable repair strategies.
+        Matrix loss, degradation,
+        <br />
+        and inflammation
+        <br />
+        demand adaptable
+        <br />
+        repair strategies.
       </>
     ),
     frontArt: [
@@ -289,28 +327,26 @@ function CardLayer({
 
 export function MaterialLimitations({
   drawProgress,
-  yellowRemoved: removed,
 }: {
-  drawProgress?: number;
-  yellowRemoved?: boolean;
+  drawProgress: number;
 }) {
   const [yellowFlipped, setYellowFlipped] = useState([false, false, false]);
   const [blueFlipped, setBlueFlipped] = useState([false, false, false]);
   const reducedMotion =
     typeof window !== "undefined" &&
     window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const progress = reducedMotion ? 1 : (drawProgress ?? (removed ? 1 : 0));
+  const progress = reducedMotion ? 1 : drawProgress;
   const yellowRemoved = progress >= 0.72;
   const clamp = (value: number) => Math.min(1, Math.max(0, value));
-  const drawEase = (value: number) => value * value * (3 - 2 * value);
+  const drawEase = (value: number) => value * value;
   const pageStyle = {
     "--limitations-title-opacity": 1 - clamp((progress - 0.5) / 0.08),
     "--solution-title-opacity": clamp((progress - 0.62) / 0.08),
   } as CSSProperties;
 
   const cardMotion = (index: number) => {
-    const start = 0;
-    const amount = drawEase(clamp((progress - start) / 0.96));
+    const start = 0.22 + index * 0.12;
+    const amount = drawEase(clamp((progress - start) / 0.24));
     const direction = index - 1;
     return {
       "--card-draw-x": `${direction * 84 * amount}px`,
