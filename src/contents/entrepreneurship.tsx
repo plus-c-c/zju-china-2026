@@ -1,23 +1,25 @@
 import { useId, useState, type ReactNode } from "react";
 import "./entrepreneurship.css";
 
-/**
- * Expandable card ("extend box"): a coloured header bar that expands the text
- * box below when clicked. Replace the titles / placeholder paragraphs of each
- * card in `Entrepreneurship` with the final content, and add or remove cards
- * as needed.
- */
+type CardLevel = "primary" | "secondary";
+
+/** Expandable card; secondary cards can be nested inside a primary card. */
 function ExtendCard({
   title,
   children,
+  level = "primary",
 }: {
   title: ReactNode;
   children: ReactNode;
+  level?: CardLevel;
 }) {
   const [open, setOpen] = useState(false);
   const contentId = useId();
+
   return (
-    <div className={`entre-card${open ? " entre-card--open" : ""}`}>
+    <div
+      className={`entre-card entre-card--${level}${open ? " entre-card--open" : ""}`}
+    >
       <button
         type="button"
         className="entre-card-header"
@@ -37,87 +39,199 @@ function ExtendCard({
   );
 }
 
+const Placeholder = ({ children }: { children?: ReactNode }) => (
+  <p>
+    {children ??
+      "1"}
+  </p>
+);
+
 export function Entrepreneurship() {
   return (
     <div className="row mt-4 mb-5">
       <div className="col-lg-10 mx-auto">
-        <article>
-          <h2 className="mb-4">Entrepreneurship</h2>
+        <article className="entrepreneurship-article">
+          <h2 id="judging-criteria">Judging criteria</h2>
           <p>
-            Placeholder text — introduce how the project is developed toward
-            real-world application: the problem, the intended users, and the
-            commercialization pathway. Replace with the final introduction.
+            For easy review, the five entrepreneurship criteria are collected in
+            the expandable cards below.
           </p>
 
-          {/* ============ Judging criteria ============ */}
-          <h3 className="mt-5 mb-3">Judging criteria</h3>
-          <p>
-            Placeholder text — one sentence introducing this section. Each card
-            expands when its header is clicked. Replace with the final content.
-          </p>
-          <ExtendCard title="Criterion 1 — Has the team discovered their first potential customers and identified any unmet needs not yet covered by other existing solutions?">
-            <p>
-              Placeholder text — answer this criterion here: which potential
-              customers were discovered, which unmet needs they described, and
-              how this shaped the solution. Replace with the final content.
-            </p>
+          <ExtendCard title="Has the team discovered their first potential customers and identified any unmet needs not yet covered by other existing solutions?">
+            <Placeholder />
           </ExtendCard>
-          <ExtendCard title="Criterion 2 — Has the team shown that their solution is possible, scalable and inventive?">
-            <p>
-              Placeholder text — show how the solution is possible, scalable,
-              and inventive, and describe the evidence that supports it. Replace
-              with the final content.
-            </p>
+          <ExtendCard title="Has the team shown that their solution is possible, scalable and inventive?">
+            <Placeholder />
           </ExtendCard>
-          <ExtendCard title="Criterion 3 — Has the team presented logical product development plans with realistic milestones, timelines, resources and risks?">
-            <p>
-              Placeholder text — lay out realistic milestones, timelines, and
-              resources for product development. Replace with the final content.
-            </p>
+          <ExtendCard title="Has the team presented logical product development plans with realistic milestones, timelines, resources and risks?">
+            <Placeholder />
           </ExtendCard>
-          <ExtendCard title="Criterion 4 — Has the team outlined the skills, capabilities, and stakeholders required to be credible in developing their solution further?">
-            <p>
-              Placeholder text — outline the skills, capabilities, and
-              stakeholders required to develop the solution credibly. Replace
-              with the final content.
-            </p>
+          <ExtendCard title="Has the team outlined the skills, capabilities, and stakeholders required to be credible in developing their solution further?">
+            <Placeholder />
           </ExtendCard>
-          <ExtendCard title="Criterion 5 — Has the team considered the positive and negative long-term impacts of their fully developed solution?">
-            <p>
-              Placeholder text — discuss the positive and negative long-term
-              impacts of the fully developed solution. Replace with the final
-              content.
-            </p>
+          <ExtendCard title="Has the team considered the positive and negative long-term impacts of their fully developed solution?">
+            <Placeholder />
           </ExtendCard>
 
-          {/* ============ Business analysis ============ */}
-          <h3 className="mt-5 mb-3">Business analysis</h3>
-          <p>
-            Placeholder text — one sentence introducing this section. Replace
-            with the final content.
-          </p>
-          <ExtendCard title="Market analysis — placeholder">
-            <p>
-              Placeholder text — describe the market for the solution (for
-              example the total, serviceable, and obtainable market) and the
-              sources of the estimates. Replace with the final content.
-            </p>
+          <h2 id="background">Background</h2>
+          <Placeholder />
+
+          <h2 id="about-bcoated">About BCoated</h2>
+          <Placeholder />
+
+          <h2 id="market-size-analysis">Market size analysis</h2>
+          <Placeholder>
+            Introduce the total, available, and obtainable markets for the
+            project.
+          </Placeholder>
+          <ExtendCard title="Total addressable market">
+            <Placeholder />
           </ExtendCard>
-          <ExtendCard title="Competitors — placeholder">
-            <p>
-              Placeholder text — compare direct, indirect, and potential future
-              competitors, and explain the advantage of the solution. Replace
-              with the final content.
-            </p>
+          <ExtendCard title="Serviceable available market">
+            <Placeholder />
           </ExtendCard>
-          <ExtendCard title="Cost structure — placeholder">
-            <p>
-              Placeholder text — summarise the expected costs (investment,
-              equipment, production, materials, labour, consumables, waste, and
-              capital) and how they were estimated. Replace with the final
-              content.
-            </p>
+          <ExtendCard title="Serviceable obtainable market">
+            <Placeholder />
           </ExtendCard>
+
+          <h2 id="competitor-analysis">Competitor analysis</h2>
+          <Placeholder />
+          <ExtendCard title="Direct competitors">
+            <Placeholder />
+          </ExtendCard>
+          <ExtendCard title="Indirect competitors">
+            <Placeholder />
+          </ExtendCard>
+          <ExtendCard title="Future competitors">
+            <Placeholder />
+          </ExtendCard>
+          <ExtendCard title="Conclusion about competitors">
+            <Placeholder />
+          </ExtendCard>
+
+          <h2 id="cost-analysis">Cost analysis</h2>
+          <Placeholder>
+            Introduce the investment, production, and capital costs used in the
+            business analysis.
+          </Placeholder>
+
+          <ExtendCard title="Investment costs">
+            <Placeholder />
+
+            <h3 id="purchase-costs" data-toc="exclude">
+              Purchase costs
+            </h3>
+            <Placeholder />
+
+            <h3 id="direct-costs" data-toc="exclude">
+              Direct costs
+            </h3>
+            <Placeholder />
+
+            <h3 id="indirect-costs" data-toc="exclude">
+              Indirect costs
+            </h3>
+            <Placeholder />
+
+            <h3 id="other-costs" data-toc="exclude">
+              Other costs
+            </h3>
+            <Placeholder />
+
+            <div className="entre-card-nested-group">
+              <ExtendCard title="Equipment costs" level="secondary">
+                <Placeholder />
+              </ExtendCard>
+            </div>
+          </ExtendCard>
+
+          <ExtendCard title="Production costs">
+            <Placeholder />
+
+            <h3 id="variable-costs" data-toc="exclude">
+              Variable costs
+            </h3>
+            <Placeholder />
+
+            <h3 id="fixed-costs" data-toc="exclude">
+              Fixed costs
+            </h3>
+            <Placeholder />
+
+            <div className="entre-card-nested-group">
+              <ExtendCard title="Material costs" level="secondary">
+                <Placeholder />
+              </ExtendCard>
+              <ExtendCard title="Labour costs" level="secondary">
+                <Placeholder />
+              </ExtendCard>
+              <ExtendCard title="Consumable costs" level="secondary">
+                <Placeholder />
+              </ExtendCard>
+              <ExtendCard title="Waste costs" level="secondary">
+                <Placeholder />
+              </ExtendCard>
+              <ExtendCard title="Royalties" level="secondary">
+                <Placeholder />
+              </ExtendCard>
+            </div>
+          </ExtendCard>
+
+          <ExtendCard title="Capital costs">
+            <Placeholder />
+          </ExtendCard>
+
+          <h2 id="timeline">Timeline</h2>
+          <Placeholder />
+
+          <h2 id="financial-analysis">Financial analysis</h2>
+          <Placeholder />
+
+          <h2 id="risk-analysis">Risk analysis</h2>
+          <Placeholder />
+
+          <h2 id="obtaining-capital">Obtaining capital</h2>
+          <Placeholder />
+
+          <h3 id="entrepreneurial-grants">Entrepreneurial grants</h3>
+          <Placeholder />
+
+          <h3 id="long-term-fiscal-security">Long-term fiscal security</h3>
+          <Placeholder />
+
+          <h2 id="the-sustainable-business-canvas">
+            The sustainable business canvas
+          </h2>
+          <Placeholder />
+
+          <h2 id="market-entry">Market entry</h2>
+          <Placeholder />
+
+          <h3 id="minimum-viable-product">Minimum viable product</h3>
+          <Placeholder />
+
+          <h3 id="first-potential-customers">First potential customers</h3>
+          <Placeholder />
+
+          <h3 id="patenting">Patenting</h3>
+          <Placeholder />
+
+          <h3 id="market-expansion">Market expansion</h3>
+          <Placeholder />
+
+          <h2 id="skill-gap-analysis">Skill gap analysis</h2>
+          <Placeholder />
+
+          <h2 id="long-term-benefits-disadvantages">
+            Long-term benefits &amp; disadvantages
+          </h2>
+          <Placeholder />
+
+          <h3 id="positive-impacts">Positive impacts</h3>
+          <Placeholder />
+
+          <h3 id="negative-impacts">Negative impacts</h3>
+          <Placeholder />
         </article>
       </div>
     </div>

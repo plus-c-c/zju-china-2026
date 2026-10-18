@@ -48,36 +48,54 @@ const timelineItems: TimelineItem[] = [
   {
     date: "Month DD, 2026",
     title: "Activity title placeholder 1",
+    image:
+      "https://static.igem.wiki/teams/6102/wiki/images/engagement/ihp/ihp-01.avif",
+    imageAlt: "Human practices activity 1",
     summary: placeholderSummary,
     details: placeholderDetails,
   },
   {
     date: "Month DD, 2026",
     title: "Activity title placeholder 2",
+    image:
+      "https://static.igem.wiki/teams/6102/wiki/images/engagement/ihp/ihp-02.avif",
+    imageAlt: "Human practices activity 2",
     summary: placeholderSummary,
     details: placeholderDetails,
   },
   {
     date: "Month DD, 2026",
     title: "Activity title placeholder 3",
+    image:
+      "https://static.igem.wiki/teams/6102/wiki/images/engagement/ihp/ihp-03.avif",
+    imageAlt: "Human practices activity 3",
     summary: placeholderSummary,
     details: placeholderDetails,
   },
   {
     date: "Month DD, 2026",
     title: "Activity title placeholder 4",
+    image:
+      "https://static.igem.wiki/teams/6102/wiki/images/engagement/ihp/ihp-04.avif",
+    imageAlt: "Human practices activity 4",
     summary: placeholderSummary,
     details: placeholderDetails,
   },
   {
     date: "Month DD, 2026",
     title: "Activity title placeholder 5",
+    image:
+      "https://static.igem.wiki/teams/6102/wiki/images/engagement/ihp/ihp-05.avif",
+    imageAlt: "Human practices activity 5",
     summary: placeholderSummary,
     details: placeholderDetails,
   },
   {
     date: "Month DD, 2026",
     title: "Activity title placeholder 6",
+    image:
+      "https://static.igem.wiki/teams/6102/wiki/images/engagement/ihp/ihp-06.avif",
+    imageAlt: "Human practices activity 6",
     summary: placeholderSummary,
     details: placeholderDetails,
   },
