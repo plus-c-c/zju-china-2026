@@ -1,4 +1,8 @@
 .wetlab-results {
+  --wetlab-control-text: #2e4a7d;
+  --wetlab-control-accent: #5d7aaf;
+  --wetlab-control-fill: #c8d8f0;
+  --wetlab-control-line: #d3ddec;
   width: 100%;
   min-width: 0;
   max-width: 100%;
@@ -104,7 +108,7 @@
   width: 100%;
   min-width: 0;
   box-sizing: border-box;
-  border-bottom: 1px solid #a8bfdc;
+  border-bottom: 1px solid var(--wetlab-control-line);
   background: #dce9f8;
   box-shadow: 0 3px 8px #263b5812;
 }
@@ -170,10 +174,10 @@
   min-height: 44px;
   gap: 10px;
   padding: 8px 18px;
-  border: 1px solid #9fb8d6;
+  border: 1px solid var(--wetlab-control-line);
   border-radius: 6px;
   background: #f8fbff;
-  color: #36577f;
+  color: var(--wetlab-control-text);
   box-shadow: 0 1px 2px #263b5810;
   font-size: 1.1rem;
   font-weight: 600;
@@ -181,30 +185,27 @@
 }
 
 .wetlab-results__navigation button[aria-expanded="true"] {
-  border-color: #6486b2;
-  background: #c4d9f2;
-  color: #234d89;
-  box-shadow: inset 0 -2px #6486b2;
+  border-color: var(--wetlab-control-accent);
+  background: var(--wetlab-control-fill);
+  color: var(--wetlab-control-text);
+  box-shadow: inset 0 -3px var(--wetlab-control-accent);
 }
 
-.wetlab-results__navigation button:hover {
-  border-color: #6486b2;
-  background: #d2e3f7;
-  color: #234d89;
+.wetlab-results__navigation button:hover:not([aria-expanded="true"]) {
+  border-color: var(--wetlab-control-accent);
+  background: rgba(200, 216, 240, 0.35);
 }
 
 .wetlab-results__chevron {
-  width: 7px;
-  height: 7px;
-  border-right: 1.5px solid currentColor;
-  border-bottom: 1.5px solid currentColor;
-  transform: translateY(-2px) rotate(45deg);
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  color: var(--wetlab-control-accent);
+  transition: transform 200ms ease;
 }
 
-.wetlab-results__navigation
-  button[aria-expanded="true"]
-  .wetlab-results__chevron {
-  transform: translateY(2px) rotate(225deg);
+.wetlab-results button[aria-expanded="true"] .wetlab-results__chevron {
+  transform: rotate(180deg);
 }
 
 .wetlab-results__module :is(h2, h3, h4, h5, h6) {
@@ -315,6 +316,23 @@
   object-fit: contain;
 }
 
+/* These source figures include transparent outer margins. The viewport removes
+   only that empty area; the link still opens the complete hosted original. */
+.wetlab-results__figure-viewport {
+  display: block;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.wetlab-results .wetlab-results__figure-viewport img {
+  position: absolute;
+  max-width: none;
+  max-height: none;
+  height: auto;
+  margin: 0;
+}
+
 .wetlab-results .summary {
   margin: 28px 0;
   padding: 24px 28px;
@@ -360,7 +378,79 @@
 .wetlab-results__function-buttons {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
+  gap: 28px;
+  margin: 24px 0 32px;
+}
+
+.wetlab-results button.wetlab-results__function-entry {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 20px;
+  grid-template-areas:
+    "number arrow"
+    "title title";
+  grid-template-rows: 40px auto;
+  align-items: start;
+  align-content: start;
+  gap: 14px 12px;
+  min-height: 140px;
+  padding: 20px 16px;
+  border: 0;
+  border-top: 3px solid var(--wetlab-control-line);
+  border-radius: 0 0 12px 12px;
+  background: transparent;
+  color: var(--wetlab-control-text);
+  transition:
+    background-color 200ms ease,
+    border-color 200ms ease;
+}
+
+.wetlab-results__function-number {
+  grid-area: number;
+  color: var(--wetlab-control-accent);
+  font-size: 2.5rem;
+  font-weight: 500;
+  opacity: 0.7;
+  font-variant-numeric: lining-nums tabular-nums;
+  line-height: 1;
+}
+
+.wetlab-results__function-title {
+  grid-area: title;
+  min-width: 0;
+  min-height: 2.8em;
+  color: var(--wetlab-control-text);
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.wetlab-results__function-arrow {
+  grid-area: arrow;
+  align-self: center;
+  justify-self: end;
+}
+
+.wetlab-results
+  button.wetlab-results__function-entry:is(:hover, :focus-visible) {
+  border-top-color: var(--wetlab-control-accent);
+  background: rgba(200, 216, 240, 0.35);
+}
+
+.wetlab-results button.wetlab-results__function-entry[aria-expanded="true"] {
+  border-top-color: var(--wetlab-control-accent);
+  background: rgba(200, 216, 240, 0.6);
+}
+
+.wetlab-results__function-entry[aria-expanded="true"]
+  .wetlab-results__function-title {
+  font-weight: 600;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wetlab-results__chevron,
+  .wetlab-results button.wetlab-results__function-entry {
+    transition: none;
+  }
 }
 
 .wetlab-results__function-module {
@@ -463,12 +553,6 @@
   }
 }
 
-@media (max-width: 850px) {
-  .wetlab-results__function-buttons {
-    grid-template-columns: 1fr;
-  }
-}
-
 @media (max-width: 575px) {
   .page-article .wetlab-results h3 {
     font-size: 1.5rem;
@@ -492,9 +576,24 @@
     padding-inline: 10px;
   }
 
-  .wetlab-results__function-buttons button {
-    gap: 8px;
-    padding: 14px;
+  .wetlab-results__function-buttons {
+    gap: 14px;
+  }
+
+  .wetlab-results button.wetlab-results__function-entry {
+    grid-template-columns: minmax(0, 1fr) 20px;
+    grid-template-rows: 32px auto;
+    gap: 12px 6px;
+    min-height: 140px;
+    padding: 16px 8px;
+  }
+
+  .wetlab-results__function-number {
+    font-size: 2rem;
+  }
+
+  .wetlab-results__function-title {
+    font-size: 1rem;
   }
 
   .wetlab-results .column,

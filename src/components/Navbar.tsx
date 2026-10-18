@@ -43,6 +43,7 @@ export function Navbar({ introEntrance = false }: { introEntrance?: boolean }) {
   const location = useLocation();
   const navRef = useRef<HTMLElement>(null);
   const focusFrame = useRef(0);
+  const scheduleVisibilityUpdate = useRef<(() => void) | null>(null);
   const [expanded, setExpanded] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const openMenuRef = useRef<string | null>(null);
@@ -175,8 +176,12 @@ export function Navbar({ introEntrance = false }: { introEntrance?: boolean }) {
       window.clearTimeout(showTimer);
       window.clearTimeout(hideTimer);
       showTimer = hideTimer = undefined;
+      // Initialize both visibility states when restoring a scrolled page or
+      // switching from touch navigation to desktop hover navigation.
+      if (canHover() && !atPageTop() && !hasKeyboardFocus()) hide();
       update();
     };
+    scheduleVisibilityUpdate.current = scheduleUpdate;
     resetMode();
     window.addEventListener("pointermove", move, { passive: true });
     document.addEventListener("pointerout", leaveWindow);
@@ -187,6 +192,7 @@ export function Navbar({ introEntrance = false }: { introEntrance?: boolean }) {
     desktopMedia.addEventListener("change", resetMode);
     window.addEventListener("resize", scheduleUpdate);
     return () => {
+      scheduleVisibilityUpdate.current = null;
       window.removeEventListener("pointermove", move);
       document.removeEventListener("pointerout", leaveWindow);
       document.removeEventListener("focusin", focus);
@@ -201,6 +207,11 @@ export function Navbar({ introEntrance = false }: { introEntrance?: boolean }) {
       window.cancelAnimationFrame(focusFrame.current);
     };
   }, [location.pathname]);
+
+  useEffect(() => {
+    // Closing a menu must recheck visibility even if the pointer stays still.
+    scheduleVisibilityUpdate.current?.();
+  }, [openDropdown]);
 
   useEffect(() => {
     const handleOutsidePointer = (event: PointerEvent) => {
