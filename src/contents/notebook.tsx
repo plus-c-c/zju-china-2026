@@ -9,7 +9,7 @@ const notebooks = [
   {
     id: "scaffold-ligation",
     title: "SELP Hydrogels and Ligation System",
-    pdf: "https://static.igem.wiki/teams/6102/wiki/notebook/notebook-scaffold-ligation-system.pdf",
+    pdf: "https://static.igem.wiki/teams/6102/wiki/notebook/notebook-scaffold-ligation-system-v2.pdf",
   },
   {
     id: "gag-retention",
