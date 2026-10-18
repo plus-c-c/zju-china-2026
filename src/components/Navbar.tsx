@@ -102,7 +102,14 @@ export function Navbar({ introEntrance = false }: { introEntrance?: boolean }) {
         (navRef.current?.contains(target) ||
           (pointer.y >= 0 &&
             pointer.y <= (navRef.current?.offsetHeight ?? 88)));
-      let overRevealArea = !!pointer && pointer.y >= 0 && pointer.y <= 18;
+      // The wake-up area matches the navigation bar itself: the full page
+      // width across the bar's height, so hovering anywhere over the bar's
+      // resting place brings it back. Interactive controls and the Results
+      // sticky bar stay excluded below.
+      let overRevealArea =
+        !!pointer &&
+        pointer.y >= 0 &&
+        pointer.y <= (navRef.current?.offsetHeight ?? 88);
       if (overRevealArea && pointer) {
         // No overlay intercepts clicks. Exclude the entire Results sticky bar,
         // including its padding, and other interactive controls at the edge.
