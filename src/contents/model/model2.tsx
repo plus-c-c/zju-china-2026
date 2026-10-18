@@ -6,11 +6,11 @@ import {
   type CSSProperties,
   type ReactNode,
 } from "react";
-import { MathFormula } from "../components/MathFormula";
+import { MathFormula } from "../../components/MathFormula";
 import {
   STEP_ADVANCE_ENABLED,
   useBoundaryStepAdvance,
-} from "../components/useBoundaryStepAdvance";
+} from "../../components/useBoundaryStepAdvance";
 import "./model.css";
 
 /** Scroll distance per protein step, in vh. */

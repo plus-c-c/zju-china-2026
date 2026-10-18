@@ -9,45 +9,43 @@ import {
 import {
   STEP_ADVANCE_ENABLED,
   useBoundaryStepAdvance,
-} from "../components/useBoundaryStepAdvance";
-import { MathFormula } from "../components/MathFormula";
+} from "../../components/useBoundaryStepAdvance";
+import { MathFormula } from "../../components/MathFormula";
 import {
-  m3Overview,
-  m3Question,
-  m3References,
-  m3Steps,
-  m3Title,
-  type M3Block,
-  type M3Part,
-  type M3Step,
-} from "./model3-data";
-import "./model3.css";
+  m1Overview,
+  m1References,
+  m1Steps,
+  m1Title,
+  type M1Block,
+  type M1Part,
+  type M1Step,
+} from "./model1-data";
+import "./model1.css";
 
 /**
- * Model 3 — formula-driven presentation.
+ * Model 1 — SELP hydrogel modeling as a stage-by-stage deck.
  *
- * · The total free energy accumulates its terms step by step.
+ * · The modeling pipeline serves as the progress strip: each step lights
+ *   up its stage of the workflow.
  * · The step texts rotate inside one fixed card: only the text slides
- *   (clipped by the card frame), with a left/right slide-in / slide-out.
- * · Scrolling the text to its bottom advances to the next step (at the last
- *   step the page continues to the references); scrolling back at the top
- *   returns to the previous step. The text area shows no scrollbar.
- * · The core equation is always fully visible: it scales down to fit.
+ *   (clipped by the card frame), left/right slide-in / slide-out.
+ * · Scrolling the text to its bottom advances to the next step (at the
+ *   last step the page continues to the references); scrolling back at
+ *   the top returns to the previous step. Figures scroll inline.
  */
 
-/* 主方程项（与 m3Steps 的 term 对应，step = 该项在推导中出现的步骤） */
-const MASTER_TERMS = [
-  { id: "selp", latex: "\\psi_{\\mathrm{SELP-Fe_3O_4}}", step: 2 },
-  { id: "fiber", latex: "\\psi_{\\mathrm{fiber}}", step: 5 },
-  { id: "particle", latex: "\\psi_{\\mathrm{particle}}", step: 6 },
-  { id: "orient", latex: "\\psi_{\\mathrm{orient}}", step: 4 },
-  { id: "dip", latex: "\\psi_{\\mathrm{dip}}", step: 3 },
-  { id: "crosslink", latex: "\\psi_{\\mathrm{crosslink}}", step: 8 },
-  { id: "fluid", latex: "\\psi_{\\mathrm{fluid}}", step: 7 },
-  { id: "coupling", latex: "\\psi_{\\mathrm{coupling}}", step: 7 },
+/* Pipeline stages — step N lights stage N. */
+const M1_STAGES = [
+  { id: "conf", label: "Conformations", step: 1 },
+  { id: "network", label: "Network", step: 2 },
+  { id: "sampling", label: "Sampling", step: 3 },
+  { id: "stability", label: "Stability", step: 4 },
+  { id: "compression", label: "Compression", step: 5 },
+  { id: "calibration", label: "Calibration", step: 6 },
+  { id: "validation", label: "Validation", step: 7 },
 ];
 
-function Parts({ parts }: { parts: M3Part[] }) {
+function Parts({ parts }: { parts: M1Part[] }) {
   return (
     <>
       {parts.map((part, index) => {
@@ -56,6 +54,9 @@ function Parts({ parts }: { parts: M3Part[] }) {
         }
         if (part.t === "em") {
           return <em key={index}>{part.v}</em>;
+        }
+        if (part.t === "strong") {
+          return <strong key={index}>{part.v}</strong>;
         }
         if (part.t === "link") {
           return (
@@ -70,10 +71,17 @@ function Parts({ parts }: { parts: M3Part[] }) {
   );
 }
 
-function Blocks({ blocks }: { blocks: M3Block[] }) {
+function Blocks({ blocks }: { blocks: M1Block[] }) {
   return (
     <>
       {blocks.map((block, index) => {
+        if (block.t === "h3") {
+          return (
+            <h3 key={index} className="mt-5 mb-3">
+              {block.v}
+            </h3>
+          );
+        }
         if (block.t === "h4") {
           return (
             <h4 key={index} className="mt-4 mb-2">
@@ -90,7 +98,7 @@ function Blocks({ blocks }: { blocks: M3Block[] }) {
         }
         if (block.t === "figure") {
           return (
-            <figure key={index} className="m3-figure">
+            <figure key={index} className="m1-figure">
               <img
                 src={block.src}
                 alt={block.alt ?? ""}
@@ -121,7 +129,7 @@ function SlideInner({
   initialScroll,
   contentRef,
 }: {
-  step: M3Step;
+  step: M1Step;
   variant: "in" | "out";
   dir: 1 | -1;
   animate: boolean;
@@ -131,23 +139,22 @@ function SlideInner({
 }) {
   return (
     <div
-      className={`m3-slide__inner m3-slide__inner--${variant}${
+      className={`m1-slide__inner m1-slide__inner--${variant}${
         animate
           ? dir === 1
-            ? " m3-slide__inner--fwd"
-            : " m3-slide__inner--back"
+            ? " m1-slide__inner--fwd"
+            : " m1-slide__inner--back"
           : ""
       }`}
       aria-hidden={variant === "out"}
     >
-      <div className="m3-slide__head">
-        <span className="m3-slide__num">Step {step.num}</span>
-        <span className="m3-slide__title">{step.title}</span>
+      <div className="m1-slide__head">
+        <span className="m1-slide__num">Step {step.num}</span>
+        <span className="m1-slide__title">{step.title}</span>
       </div>
-      <p className="m3-slide__goal">{step.goal}</p>
       <div
-        className={`m3-slide__content${
-          chain ? " m3-slide__content--chain" : ""
+        className={`m1-slide__content${
+          chain ? " m1-slide__content--chain" : ""
         }`}
         ref={(el) => {
           if (el && initialScroll) el.scrollTop = initialScroll;
@@ -160,7 +167,7 @@ function SlideInner({
   );
 }
 
-export function Model3() {
+export function SelpHydrogelModeling() {
   const [activeStep, setActiveStep] = useState(1);
   /* 幻灯片视图：current = 当前步，prev = 正在滑出的上一步，dir = 切换方向 */
   const [view, setView] = useState<{
@@ -179,7 +186,7 @@ export function Model3() {
   const lastStepRef = useRef(1);
   /* 当前步（供边界步进读取） */
   const stepRef = useRef(1);
-  const total = m3Steps.length;
+  const total = m1Steps.length;
 
   useEffect(() => {
     stepRef.current = activeStep;
@@ -200,10 +207,7 @@ export function Model3() {
 
   useEffect(() => {
     if (view.prev === null) return;
-    const timer = setTimeout(
-      () => setView((v) => ({ ...v, prev: null })),
-      560,
-    );
+    const timer = setTimeout(() => setView((v) => ({ ...v, prev: null })), 560);
     return () => clearTimeout(timer);
   }, [view]);
 
@@ -239,7 +243,9 @@ export function Model3() {
     getCount: () => total,
     onAdvance: (target) => {
       outScrollRef.current = contentRef.current?.scrollTop ?? 0;
-      setEntry(target > stepRef.current ? "top" : "bottom");
+      setEntry(
+        target > stepRef.current || !STEP_ADVANCE_ENABLED ? "top" : "bottom",
+      );
       lastStepRef.current = target;
       setActiveStep(target);
       scrollToStep(target - 1, "smooth");
@@ -261,7 +267,11 @@ export function Model3() {
       const target = Math.round(progress * (total - 1)) + 1;
       if (target === lastStepRef.current) return;
       outScrollRef.current = contentRef.current?.scrollTop ?? 0;
-      setEntry(target > lastStepRef.current || !STEP_ADVANCE_ENABLED ? "top" : "bottom");
+      setEntry(
+        target > lastStepRef.current || !STEP_ADVANCE_ENABLED
+          ? "top"
+          : "bottom",
+      );
       lastStepRef.current = target;
       setActiveStep(target);
     };
@@ -276,57 +286,53 @@ export function Model3() {
     };
   }, [total, suppressUntilRef]);
 
-  const step = m3Steps.find((s) => s.num === view.current) ?? m3Steps[0];
+  const step = m1Steps.find((s) => s.num === view.current) ?? m1Steps[0];
   const prevStep =
     view.prev !== null
-      ? (m3Steps.find((s) => s.num === view.prev) ?? null)
+      ? (m1Steps.find((s) => s.num === view.prev) ?? null)
       : null;
 
   return (
     <>
-      <h2 className="mt-5 mb-3">{m3Title}</h2>
-      <Blocks blocks={m3Overview} />
-      <Blocks blocks={m3Question} />
+      <h2 className="mt-5 mb-3">{m1Title}</h2>
+      <Blocks blocks={m1Overview} />
 
       <div
-        className="m3-deck"
+        className="m1-deck"
         ref={deckRef}
-        style={{ "--m3-count": total } as CSSProperties}
+        style={{ "--m1-count": total } as CSSProperties}
       >
-        <div className="m3-deck__stage" ref={stageRef}>
-          {/* 主方程：随步骤逐步积累各项 */}
-          <div className="m3-master">
-            <p className="m3-master__label">
-              Total free energy — accumulated step by step
+        <div className="m1-deck__stage" ref={stageRef}>
+          {/* 流水线阶段条：随步骤逐步点亮 */}
+          <div className="m1-master">
+            <p className="m1-master__label">
+              Modeling pipeline — built stage by stage
             </p>
-            <div className="m3-master__eq">
-              <span className="m3-master__prefix">
-                <MathFormula>{"\\psi ="}</MathFormula>
-              </span>
-              {MASTER_TERMS.map((term, index) => {
-                const on = activeStep >= term.step;
-                const fresh = activeStep === term.step;
+            <div className="m1-master__eq">
+              {M1_STAGES.map((stage, index) => {
+                const on = activeStep >= stage.step;
+                const fresh = activeStep === stage.step;
                 return (
                   <span
-                    key={term.id}
-                    className={`m3-term${on ? " m3-term--on" : ""}${
-                      fresh ? " m3-term--new" : ""
+                    key={stage.id}
+                    className={`m1-term${on ? " m1-term--on" : ""}${
+                      fresh ? " m1-term--new" : ""
                     }`}
                   >
-                    {index > 0 && <span className="m3-term__op">+</span>}
-                    <MathFormula>{term.latex}</MathFormula>
+                    {index > 0 && <span className="m1-term__op">→</span>}
+                    {stage.label}
                   </span>
                 );
               })}
             </div>
-            <div className="m3-dots" role="navigation" aria-label="Model steps">
-              {m3Steps.map((s) => (
+            <div className="m1-dots" role="navigation" aria-label="Model steps">
+              {m1Steps.map((s) => (
                 <button
                   key={s.num}
                   type="button"
-                  className={`m3-dot${
-                    s.num === activeStep ? " m3-dot--active" : ""
-                  }${s.num < activeStep ? " m3-dot--done" : ""}`}
+                  className={`m1-dot${
+                    s.num === activeStep ? " m1-dot--active" : ""
+                  }${s.num < activeStep ? " m1-dot--done" : ""}`}
                   aria-label={`Step ${s.num}: ${s.title}`}
                   onClick={() => scrollToStep(s.num - 1)}
                 >
@@ -337,8 +343,8 @@ export function Model3() {
           </div>
 
           {/* 固定文本框：仅文本滑入滑出（裁剪在框内） */}
-          <div className="m3-slide">
-            <div className="m3-slides">
+          <div className="m1-slide">
+            <div className="m1-slides">
               {prevStep && (
                 <SlideInner
                   key={`out-${prevStep.num}`}
@@ -369,11 +375,11 @@ export function Model3() {
         </div>
 
         {/* 目录锚点：每步滚动进度位置处的隐藏标题 */}
-        {m3Steps.map((s) => (
+        {m1Steps.map((s) => (
           <h3
             key={s.num}
-            className="visually-hidden m3-anchor"
-            style={{ "--m3-seg": s.num - 1 } as CSSProperties}
+            className="visually-hidden m1-anchor"
+            style={{ "--m1-seg": s.num - 1 } as CSSProperties}
           >
             {s.num}. {s.title}
           </h3>
@@ -381,7 +387,7 @@ export function Model3() {
       </div>
 
       <h3 className="mt-5 mb-3">References</h3>
-      <Blocks blocks={m3References} />
+      <Blocks blocks={m1References} />
     </>
   );
 }
