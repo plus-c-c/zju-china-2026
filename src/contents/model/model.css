@@ -1,3 +1,11 @@
+/* Keep figure and video captions centered across all Model modules. */
+.m1-figure + p:has(> em:only-child),
+.m3-figure + p:has(> em:only-child),
+.m1-slide__content > div:has(iframe) + p:has(> em:only-child),
+.protein-caption p {
+  text-align: center;
+}
+
 /* Rational design of SnoopLigase2 — pinned protein stepper (Model module 2).
    Layout: structure figure + caption + Previous/Next on the left, the
    design text on the right; the page scroll advances one protein per step
