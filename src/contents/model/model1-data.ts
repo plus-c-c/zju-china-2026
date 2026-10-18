@@ -92,7 +92,7 @@ export const m1Steps: M1Step[] = [
         parts: [
           {
             t: "em",
-            v: "Video: | 2KY16 100 ns FAMD",
+            v: "Video: | 2KY5 100 ns FAMD",
           },
         ],
       },
