@@ -526,6 +526,21 @@ export const m1Steps: M1Step[] = [
           },
         ],
       },
+      {
+        t: "figure",
+        src: "https://static.igem.wiki/teams/6102/wiki/images/model/selp/2ky16-validation-20261019.avif",
+        alt: "2KY16 modeled compressive moduli for replicates A, B, and C compared with the wet-lab measurement",
+        width: 680,
+      },
+      {
+        t: "p",
+        parts: [
+          {
+            t: "em",
+            v: "Figure 6 | Independent validation of the 2KY16 model. Bars show the predicted compressive moduli for replicates A, B, and C (52.41, 51.03, and 55.71 kPa); the dashed line marks the wet-lab measurement (53.32 kPa).",
+          },
+        ],
+      },
     ],
   },
   {
@@ -546,7 +561,7 @@ export const m1Steps: M1Step[] = [
         parts: [
           {
             t: "text",
-            v: "We applied the modeling method to 2KY16 to predict the mechanical properties of its hydrogel. Wet-lab experiments were conducted in parallel to validate the predictions. The results showed that the relative error between the predicted mechanical modulus and the wet-lab measurement was [percentage to be specified]%, demonstrating the reliability of our modeling method.",
+            v: "We applied the modeling method to 2KY16 to predict the mechanical properties of its hydrogel. Wet-lab experiments were conducted in parallel to validate the predictions. The three modeled replicates yielded compressive moduli of 52.41, 51.03, and 55.71 kPa, giving a mean of 53.05 kPa. Compared with the wet-lab measurement of 53.32 kPa, the relative error of the modeled mean was approximately 0.51%, supporting the model’s predictive agreement for this construct.",
           },
         ],
       },
@@ -628,7 +643,7 @@ export const m1Steps: M1Step[] = [
         parts: [
           {
             t: "em",
-            v: "Figure 6 | Experimentally measured stress–strain curves. ",
+            v: "Figure 7 | Experimentally measured stress–strain curves. ",
           },
         ],
       },
@@ -643,7 +658,7 @@ export const m1Steps: M1Step[] = [
         parts: [
           {
             t: "em",
-            v: "Figure 7 | Experimentally measured compressive moduli.  ",
+            v: "Figure 8 | Experimentally measured compressive moduli.  ",
           },
         ],
       },
