@@ -3,6 +3,7 @@ import "katex/dist/katex.min.css";
 import "./App.css";
 import "../../components/table.css";
 import "../../components/figureCaption.css";
+import "../../components/references.css";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { getPathMapping, stringToSlug } from "../../utils";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";

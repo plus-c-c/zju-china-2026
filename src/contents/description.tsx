@@ -1,3 +1,4 @@
+import { References } from "../components/References";
 import { useState, type ReactNode } from "react";
 import { BirdLanding } from "../components/BirdCursor";
 import "./description.css";
@@ -760,125 +761,131 @@ export function Description() {
             .
           </p>
 
-          <h2>References</h2>
-          <div className="references-list references-list--paragraphs">
-            {references.map((reference, index) => (
-              <p
-                id={`description-reference-${index + 1}`}
-                key={index}
-                style={{ scrollMarginTop: "112px" }}
-              >
-                [{index + 1}] {reference}
-              </p>
-            ))}
-          </div>
+          <References level={2} showBird={false}>
+            <div className="references-list references-list--paragraphs">
+              {references.map((reference, index) => (
+                <p
+                  id={`description-reference-${index + 1}`}
+                  key={index}
+                  style={{ scrollMarginTop: "112px" }}
+                >
+                  [{index + 1}] {reference}
+                </p>
+              ))}
+            </div>
+          </References>
 
-          <h2>Figure Sources and Credits</h2>
-          <div className="description-credits">
-            <section>
-              <h3>Figure 1 | Knee Support and Discomfort Across Life Stages</h3>
-              <p>
-                Source photographs: young adult, cottonbro studio / Pexels,
-                photo 7339492; adult, Towfiqu barbhuiya / Pexels, photo
-                11349880; older adult, Αλεξανδρος Μαμουνης / Pexels, photo
-                18851495. The collage was adapted from these photographs using
-                AI-assisted compositing (OpenAI imagegen). It is illustrative
-                and should not be presented as clinical evidence or confirmation
-                of a diagnosis.
-              </p>
-              <p className="description-credit-links">
-                <a href="https://www.pexels.com/photo/7339492/">Young adult</a>
-                <a href="https://www.pexels.com/photo/11349880/">Adult</a>
-                <a href="https://www.pexels.com/photo/18851495/">Older adult</a>
-                <a href="https://www.pexels.com/license/">Pexels License</a>
-              </p>
-            </section>
-            <section>
-              <h3>Figures 2–3 | Epidemiology and Injury Distribution</h3>
-              <p>
-                Figure 2: Chen et al. (2026), Figure 1, licensed CC BY-NC-ND
-                4.0. Figure 3: Jiang et al. (2026), Figure 3, licensed CC
-                BY-NC-ND 4.0. Retain the original attribution and observe
-                restrictions on commercial use and modification.
-              </p>
-              <p className="description-credit-links">
-                <a href="https://doi.org/10.1016/j.jot.2025.11.005">
-                  Figure 2 source
-                </a>
-                <a href="https://doi.org/10.1111/os.70272">Figure 3 source</a>
-                <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">
-                  CC BY-NC-ND 4.0
-                </a>
-              </p>
-            </section>
-            <section>
-              <h3>Figure 4 | Zonal Architecture</h3>
-              <p>
-                Morouço, Fernandes &amp; Lattanzi (2021), Figure 1, licensed CC
-                BY 4.0. Consult the original legend for third-party artwork
-                attribution.
-              </p>
-              <p className="description-credit-links">
-                <a href="https://doi.org/10.3390/jfb12010017">
-                  Original article
-                </a>
-                <a href="https://creativecommons.org/licenses/by/4.0/">
-                  CC BY 4.0
-                </a>
-              </p>
-            </section>
-            <section id="description-figure-5-sources">
-              <h3>Figure 5 | Current Treatment Pathways</h3>
-              <p>
-                Left: Medvedeva et al. (2018), Figure 3, CC BY 4.0. Upper right:
-                Funkcinės Terapijos Centras / Pexels, photo 20860595, under the
-                Pexels License. Lower right: “Osteoarthritis” and “Knee
-                Replacement” by BruceBlaus (2015), via Wikimedia Commons, CC
-                BY-SA 4.0. ZJU-China cropped the illustrations, resized them
-                without changing their aspect ratios, and added labels. The
-                adapted lower-right panel is licensed under CC BY-SA 4.0; the
-                other panels retain their respective licenses. The composite
-                layout was arranged by ZJU-China.
-              </p>
-              <p className="description-credit-links">
-                <a href="https://doi.org/10.3390/ijms19082366">
-                  Medvedeva article
-                </a>
-                <a href="https://www.pexels.com/photo/20860595/">
-                  Rehabilitation photo
-                </a>
-                <a href="https://commons.wikimedia.org/wiki/File:Osteoarthritis.png">
-                  BruceBlaus: Osteoarthritis
-                </a>
-                <a href="https://commons.wikimedia.org/wiki/File:Knee_Replacement.png">
-                  BruceBlaus: Knee Replacement
-                </a>
-                <a href="https://creativecommons.org/licenses/by-sa/4.0/">
-                  CC BY-SA 4.0 (lower-right panel)
-                </a>
-                <a href="https://creativecommons.org/licenses/by/4.0/">
-                  CC BY 4.0
-                </a>
-                <a href="https://www.pexels.com/license/">Pexels License</a>
-              </p>
-            </section>
-            <section>
-              <h3>Figure 6 | Hydrogel Strategies</h3>
-              <p>
-                Cavallo et al. (2026), Figure 1, CC BY 4.0. Credit the authors
-                and source and indicate modifications. Included third-party
-                graphics may require separate permission.
-              </p>
-              <p className="description-credit-links">
-                <a href="https://doi.org/10.3390/gels12050350">
-                  Figure 6 source
-                </a>
-                <a href="https://creativecommons.org/licenses/by/4.0/">
-                  CC BY 4.0
-                </a>
-              </p>
-            </section>
-          </div>
+          <References
+            title="Figure Sources and Credits"
+            id="figure-sources-and-credits"
+            showBird={false}
+          >
+            <div className="references-list description-credits">
+              <section>
+                <h3>Figure 1 | Knee Support and Discomfort Across Life Stages</h3>
+                <p>
+                  Source photographs: young adult, cottonbro studio / Pexels,
+                  photo 7339492; adult, Towfiqu barbhuiya / Pexels, photo
+                  11349880; older adult, Αλεξανδρος Μαμουνης / Pexels, photo
+                  18851495. The collage was adapted from these photographs using
+                  AI-assisted compositing (OpenAI imagegen). It is illustrative
+                  and should not be presented as clinical evidence or confirmation
+                  of a diagnosis.
+                </p>
+                <p className="description-credit-links">
+                  <a href="https://www.pexels.com/photo/7339492/">Young adult</a>
+                  <a href="https://www.pexels.com/photo/11349880/">Adult</a>
+                  <a href="https://www.pexels.com/photo/18851495/">Older adult</a>
+                  <a href="https://www.pexels.com/license/">Pexels License</a>
+                </p>
+              </section>
+              <section>
+                <h3>Figures 2–3 | Epidemiology and Injury Distribution</h3>
+                <p>
+                  Figure 2: Chen et al. (2026), Figure 1, licensed CC BY-NC-ND
+                  4.0. Figure 3: Jiang et al. (2026), Figure 3, licensed CC
+                  BY-NC-ND 4.0. Retain the original attribution and observe
+                  restrictions on commercial use and modification.
+                </p>
+                <p className="description-credit-links">
+                  <a href="https://doi.org/10.1016/j.jot.2025.11.005">
+                    Figure 2 source
+                  </a>
+                  <a href="https://doi.org/10.1111/os.70272">Figure 3 source</a>
+                  <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">
+                    CC BY-NC-ND 4.0
+                  </a>
+                </p>
+              </section>
+              <section>
+                <h3>Figure 4 | Zonal Architecture</h3>
+                <p>
+                  Morouço, Fernandes &amp; Lattanzi (2021), Figure 1, licensed CC
+                  BY 4.0. Consult the original legend for third-party artwork
+                  attribution.
+                </p>
+                <p className="description-credit-links">
+                  <a href="https://doi.org/10.3390/jfb12010017">
+                    Original article
+                  </a>
+                  <a href="https://creativecommons.org/licenses/by/4.0/">
+                    CC BY 4.0
+                  </a>
+                </p>
+              </section>
+              <section id="description-figure-5-sources">
+                <h3>Figure 5 | Current Treatment Pathways</h3>
+                <p>
+                  Left: Medvedeva et al. (2018), Figure 3, CC BY 4.0. Upper right:
+                  Funkcinės Terapijos Centras / Pexels, photo 20860595, under the
+                  Pexels License. Lower right: “Osteoarthritis” and “Knee
+                  Replacement” by BruceBlaus (2015), via Wikimedia Commons, CC
+                  BY-SA 4.0. ZJU-China cropped the illustrations, resized them
+                  without changing their aspect ratios, and added labels. The
+                  adapted lower-right panel is licensed under CC BY-SA 4.0; the
+                  other panels retain their respective licenses. The composite
+                  layout was arranged by ZJU-China.
+                </p>
+                <p className="description-credit-links">
+                  <a href="https://doi.org/10.3390/ijms19082366">
+                    Medvedeva article
+                  </a>
+                  <a href="https://www.pexels.com/photo/20860595/">
+                    Rehabilitation photo
+                  </a>
+                  <a href="https://commons.wikimedia.org/wiki/File:Osteoarthritis.png">
+                    BruceBlaus: Osteoarthritis
+                  </a>
+                  <a href="https://commons.wikimedia.org/wiki/File:Knee_Replacement.png">
+                    BruceBlaus: Knee Replacement
+                  </a>
+                  <a href="https://creativecommons.org/licenses/by-sa/4.0/">
+                    CC BY-SA 4.0 (lower-right panel)
+                  </a>
+                  <a href="https://creativecommons.org/licenses/by/4.0/">
+                    CC BY 4.0
+                  </a>
+                  <a href="https://www.pexels.com/license/">Pexels License</a>
+                </p>
+              </section>
+              <section>
+                <h3>Figure 6 | Hydrogel Strategies</h3>
+                <p>
+                  Cavallo et al. (2026), Figure 1, CC BY 4.0. Credit the authors
+                  and source and indicate modifications. Included third-party
+                  graphics may require separate permission.
+                </p>
+                <p className="description-credit-links">
+                  <a href="https://doi.org/10.3390/gels12050350">
+                    Figure 6 source
+                  </a>
+                  <a href="https://creativecommons.org/licenses/by/4.0/">
+                    CC BY 4.0
+                  </a>
+                </p>
+              </section>
+            </div>
+          </References>
         </article>
       </div>
     </div>

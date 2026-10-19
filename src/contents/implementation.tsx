@@ -1,3 +1,4 @@
+import { References } from "../components/References";
 const CIF = "https://static.igem.wiki/teams/6102/wiki/images/cif/";
 const BASE = import.meta.env.BASE_URL;
 
@@ -362,44 +363,47 @@ export function Implementation() {
           products that can be developed and delivered on a continuing basis.
         </p>
 
-        <h3 className="mt-5 mb-3">References</h3>
-        <p>
-          [1] American Academy of Orthopaedic Surgeons (AAOS). Articular
-          Cartilage Restoration. OrthoInfo.{" "}
-          <a href="https://orthoinfo.aaos.org/en/treatment/articular-cartilage-restoration/">
-            Source
-          </a>
-        </p>
-        <p>
-          [2] Meyer DE, Chilkoti A. Purification of recombinant proteins by
-          fusion with thermally-responsive polypeptides.{" "}
-          <em>Nature Biotechnology</em>. 1999;17:1112&ndash;1115.{" "}
-          <a href="https://doi.org/10.1038/70265">Source</a>
-        </p>
-        <p>
-          [3] Hassouneh W, Christensen T, Chilkoti A. Elastin-like polypeptides
-          as a purification tag for recombinant proteins.{" "}
-          <em>Current Protocols in Protein Science</em>. 2010;61:6.11.1&ndash;16.{" "}
-          <a href="https://doi.org/10.1002/0471140864.ps0611s61">Source</a>
-        </p>
-        <p>
-          [4] ZJU-China. NEST Hardware project records and accompanying
-          clinician-facing application.{" "}
-          <a href={`${BASE}hardware`}>Source</a>
-        </p>
-        <p>
-          [5] U.S. Food and Drug Administration (FDA). Biocompatibility
-          Evaluation Endpoints by Contact Duration Periods.{" "}
-          <a href="https://www.fda.gov/regulatory-information/search-fda-guidance-documents/use-international-standard-iso-10993-1-biological-evaluation-medical-devices-part-1-evaluation-and">
-            Source
-          </a>
-        </p>
-        <p>
-          [6] National Medical Products Administration (NMPA) Government
-          Service Portal. Product Classification of Drug&ndash;Device
-          Combination Products.{" "}
-          <a href="https://english.nmpa.gov.cn/">Source</a>
-        </p>
+        <References level={3}>
+          <div className="references-list references-list--paragraphs">
+            <p>
+              [1] American Academy of Orthopaedic Surgeons (AAOS). Articular
+              Cartilage Restoration. OrthoInfo.{" "}
+              <a href="https://orthoinfo.aaos.org/en/treatment/articular-cartilage-restoration/">
+                Source
+              </a>
+            </p>
+            <p>
+              [2] Meyer DE, Chilkoti A. Purification of recombinant proteins by
+              fusion with thermally-responsive polypeptides.{" "}
+              <em>Nature Biotechnology</em>. 1999;17:1112&ndash;1115.{" "}
+              <a href="https://doi.org/10.1038/70265">Source</a>
+            </p>
+            <p>
+              [3] Hassouneh W, Christensen T, Chilkoti A. Elastin-like
+              polypeptides as a purification tag for recombinant proteins.{" "}
+              <em>Current Protocols in Protein Science</em>.
+              2010;61:6.11.1&ndash;16.{" "}
+              <a href="https://doi.org/10.1002/0471140864.ps0611s61">Source</a>
+            </p>
+            <p>
+              [4] ZJU-China. NEST Hardware project records and accompanying
+              clinician-facing application. <a href={`${BASE}hardware`}>Source</a>
+            </p>
+            <p>
+              [5] U.S. Food and Drug Administration (FDA). Biocompatibility
+              Evaluation Endpoints by Contact Duration Periods.{" "}
+              <a href="https://www.fda.gov/regulatory-information/search-fda-guidance-documents/use-international-standard-iso-10993-1-biological-evaluation-medical-devices-part-1-evaluation-and">
+                Source
+              </a>
+            </p>
+            <p>
+              [6] National Medical Products Administration (NMPA) Government
+              Service Portal. Product Classification of Drug&ndash;Device
+              Combination Products.{" "}
+              <a href="https://english.nmpa.gov.cn/">Source</a>
+            </p>
+          </div>
+        </References>
       </div>
     </div>
   );

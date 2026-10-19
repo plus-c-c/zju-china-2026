@@ -1,3 +1,4 @@
+import { References } from "../components/References";
 const CIF = "https://static.igem.wiki/teams/6102/wiki/images/cif/";
 
 export function Contribution() {
@@ -339,27 +340,31 @@ export function Contribution() {
           continue expanding the material capabilities of NEST.
         </p>
 
-        <h3 className="mt-5 mb-3">References</h3>
-        <p>
-          [1] Meyer DE, Chilkoti A. <em>Nature Biotechnology</em>.
-          1999;17:1112&ndash;1115.{" "}
-          <a href="https://doi.org/10.1038/15100">Article</a>
-        </p>
-        <p>
-          [2] Hassouneh W, Christensen T, Chilkoti A.{" "}
-          <em>Current Protocols in Protein Science</em>. 2010;61:6.11.1&ndash;16.{" "}
-          <a href="https://doi.org/10.1002/0471140864.ps0611s61">Article</a>
-        </p>
-        <p>
-          [3] Icons and illustrations from Bioicons. Marcel Tisch, Simon
-          D&uuml;rr, jaiganesh, and Daniel-Marcos (CC0); DBCLS (CC BY 4.0);
-          Servier (CC BY 3.0). <a href="https://bioicons.com/">Source</a>
-        </p>
-        <p>
-          [4] Illustrations from Google Noto Emoji (Apache 2.0). Photographs
-          and application screenshots are from our team&rsquo;s materials.{" "}
-          <a href="https://github.com/googlefonts/noto-emoji">Source</a>
-        </p>
+        <References level={3}>
+          <div className="references-list references-list--paragraphs">
+            <p>
+              [1] Meyer DE, Chilkoti A. <em>Nature Biotechnology</em>.
+              1999;17:1112&ndash;1115.{" "}
+              <a href="https://doi.org/10.1038/15100">Article</a>
+            </p>
+            <p>
+              [2] Hassouneh W, Christensen T, Chilkoti A.{" "}
+              <em>Current Protocols in Protein Science</em>.
+              2010;61:6.11.1&ndash;16.{" "}
+              <a href="https://doi.org/10.1002/0471140864.ps0611s61">Article</a>
+            </p>
+            <p>
+              [3] Icons and illustrations from Bioicons. Marcel Tisch, Simon
+              D&uuml;rr, jaiganesh, and Daniel-Marcos (CC0); DBCLS (CC BY 4.0);
+              Servier (CC BY 3.0). <a href="https://bioicons.com/">Source</a>
+            </p>
+            <p>
+              [4] Illustrations from Google Noto Emoji (Apache 2.0). Photographs
+              and application screenshots are from our team&rsquo;s materials.{" "}
+              <a href="https://github.com/googlefonts/noto-emoji">Source</a>
+            </p>
+          </div>
+        </References>
       </div>
     </div>
   );

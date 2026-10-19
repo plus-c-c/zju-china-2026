@@ -1,0 +1,226 @@
+/* Shared by paragraph, ordered-list and collapsible bibliographies. */
+.page-article {
+  --reference-width: 44rem;
+  --reference-inset: clamp(1.25rem, 3vw, 2.25rem);
+}
+
+.page-article .references-heading {
+  width: calc(100% - 2rem);
+  max-width: var(--reference-width);
+  margin: 3rem auto 1rem !important;
+  color: var(--article-subheading-color);
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.page-article .references-heading::after {
+  content: none;
+}
+
+.page-article .references-list {
+  box-sizing: border-box;
+  width: calc(100% - 2rem);
+  max-width: var(--reference-width);
+  margin: 1.25rem auto 2.75rem;
+  padding: var(--reference-inset);
+  border-radius: var(--article-card-radius);
+  background: var(--article-card-background);
+  box-shadow: var(--article-card-shadow);
+  color: #46546a;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: start;
+  overflow-wrap: anywhere;
+}
+
+.page-article ol.references-list {
+  padding-inline-start: calc(var(--reference-inset) + 1.5rem);
+}
+
+.page-article .references-list :is(p, li),
+.page-article .references-list .source-block p {
+  margin: 0 0 0.625rem;
+  color: inherit;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.page-article .references-list .source-block {
+  margin: 0;
+  padding: 0;
+}
+
+.page-article .references-list--paragraphs > p,
+.page-article details.references-list .source-block p {
+  padding-inline-start: 2em;
+  text-indent: -2em;
+}
+
+.page-article .references-list > :last-child,
+.page-article .references-list .source-block:last-child > p:last-child {
+  margin-bottom: 0;
+}
+
+.page-article .references-list a {
+  color: #365dc9;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  overflow-wrap: anywhere;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  text-decoration-thickness: 0.06em;
+}
+
+.page-article .references-list a:hover {
+  color: #223c81;
+}
+
+.page-article .references-list :is(strong, b) {
+  background: none !important;
+  font-weight: inherit;
+}
+
+.page-article details.references-list summary {
+  cursor: pointer;
+  color: var(--article-subheading-color);
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.page-article details.references-list > div {
+  padding-top: 1rem;
+}
+
+@media (max-width: 575.98px) {
+  .page-article .references-heading,
+  .page-article .references-list {
+    width: 100%;
+  }
+}
+
+/* An editorial endnote section, continuous with the page background. */
+.page-article .references-section {
+  position: relative;
+  width: calc(100% - 2rem);
+  max-width: var(--reference-width);
+  margin: 3.5rem auto 2.75rem;
+}
+
+.references-panel {
+  border: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+}
+
+.references-summary {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem 0;
+  border-top: 1px solid #adc5df;
+  list-style: none;
+  cursor: pointer;
+}
+
+.references-summary::-webkit-details-marker {
+  display: none;
+}
+
+.references-summary:focus-visible {
+  outline: 2px solid #365dc9;
+  outline-offset: 5px;
+}
+
+.page-article .references-summary .references-heading {
+  position: relative;
+  width: auto;
+  margin: 0 !important;
+  scroll-margin-top: 11rem;
+}
+
+.references-chevron {
+  width: 9px;
+  height: 9px;
+  margin-right: 4px;
+  border-right: 1.5px solid #365dc9;
+  border-bottom: 1.5px solid #365dc9;
+  transform: rotate(45deg);
+}
+
+.references-panel[open] .references-chevron {
+  transform: rotate(225deg);
+}
+
+.references-content {
+  position: relative;
+  isolation: isolate;
+  padding: 0.75rem 0 1rem;
+  min-height: 220px;
+}
+
+.references-watermarks {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  overflow: hidden;
+  opacity: 0.075;
+  pointer-events: none;
+}
+
+.references-watermarks img {
+  position: absolute;
+  left: 50%;
+  width: min(68%, 340px);
+  height: 220px;
+  object-fit: contain;
+  translate: -50% -50%;
+}
+
+.page-article .references-panel .references-list {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+}
+
+.page-article .references-panel ol.references-list {
+  padding-inline-start: 1.5rem;
+}
+
+.page-article .references-panel .references-content :is(h3, h4) {
+  margin: 1.5rem 0 0.75rem !important;
+  font-size: 1.125rem;
+  line-height: 1.4;
+}
+
+.references-bird {
+  position: absolute;
+  z-index: 2;
+  top: -45px;
+  right: 2px;
+  display: block;
+  width: 46px;
+  aspect-ratio: 1;
+  pointer-events: none;
+}
+
+.references-bird > .bird-rest {
+  inset: 0;
+}
+
+@media (max-width: 575.98px) {
+  .page-article .references-section {
+    width: 100%;
+  }
+}

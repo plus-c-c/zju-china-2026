@@ -151,26 +151,16 @@
 
 .description-credits {
   display: grid;
-  gap: 2rem;
-  margin: 2rem 8px 2.75rem;
+  gap: 1.5rem;
 }
 
 .description-credits section {
-  padding: 1.3rem 1.5rem;
-  border: 0;
-  border-radius: var(--article-card-radius);
-  background: var(--article-card-background);
-  box-shadow: var(--article-card-shadow);
+  scroll-margin-top: 112px;
 }
 
-.page-article .description-credits h3 {
-  margin: 0 0 0.6rem !important;
-  font-size: 1.25rem;
-}
-
-.description-credits p {
-  margin-bottom: 0.65rem;
-  font-size: 1rem;
+.page-article .references-content .description-credits h3 {
+  margin: 0 0 0.75rem !important;
+  font-size: 1.125rem;
 }
 
 .description-credits p:last-child {

@@ -166,61 +166,6 @@ body {
   }
 }
 
-/*
- * Shared references card used by every article page.
- * Adjust the card color, border, radius and shadow here.
- */
-.page-article .references-list {
-  margin: 1.5rem 14px 2.75rem;
-  padding: 1.5rem 1.75rem 1.5rem 3.25rem;
-  border-radius: var(--article-card-radius);
-  background: var(--article-card-background);
-  box-shadow: var(--article-reference-shadow);
-}
-
-.page-article .references-list--paragraphs {
-  padding-left: 1.75rem;
-}
-
-.page-article .references-list > :last-child {
-  margin-bottom: 0;
-}
-
-.page-article .references-list > li + li {
-  margin-top: 1rem;
-}
-
-.page-article .references-list a {
-  overflow-wrap: anywhere;
-  font-weight: inherit;
-}
-
-/* References use the normal body weight without the body emphasis highlight. */
-.page-article .references-list :is(strong, b) {
-  background: none !important;
-  font-weight: inherit;
-}
-
-.page-article details.references-list {
-  padding-left: 1.75rem;
-}
-
-.page-article details.references-list summary {
-  cursor: pointer;
-  color: var(--article-subheading-color);
-  font-size: 1.25rem;
-  font-weight: 600;
-}
-
-.page-article details.references-list > div {
-  padding-top: 1.25rem;
-}
-
-.page-article details.references-list .source-block p {
-  padding-left: 1.75em;
-  text-indent: -1.75em;
-}
-
 /* Shared article figures: use these classes for photos and scientific figures. */
 .page-article .article-figure {
   width: 100%;

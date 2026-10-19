@@ -1,5 +1,6 @@
 import {
   createContext,
+  useCallback,
   useContext,
   useEffect,
   useRef,
@@ -14,13 +15,18 @@ type BirdPhase = "following" | "arriving" | "landed" | "returning";
 
 const BirdContext = createContext<{
   phase: BirdPhase;
-  registerLanding: (element: HTMLSpanElement | null) => void;
-}>({ phase: "following", registerLanding: () => {} });
+  landing: HTMLSpanElement | null;
+  registerLanding: (element: HTMLSpanElement) => () => void;
+}>({ phase: "following", landing: null, registerLanding: () => () => {} });
 
 function BirdArtwork({ onLoad }: { onLoad?: () => void }) {
+  const [homeFailed, setHomeFailed] = useState(false);
   return (
     <>
-      <span className="bird-art bird-art--loading">
+      <span
+        className="bird-art bird-art--loading"
+        style={homeFailed ? { opacity: 1 } : undefined}
+      >
         <img
           src="https://static.igem.wiki/teams/6102/wiki/images/loading-bird.avif"
           alt=""
@@ -28,11 +34,15 @@ function BirdArtwork({ onLoad }: { onLoad?: () => void }) {
           onLoad={onLoad}
         />
       </span>
-      <span className="bird-art bird-art--home">
+      <span
+        className="bird-art bird-art--home"
+        style={homeFailed ? { opacity: 0 } : undefined}
+      >
         <img
           src="https://static.igem.wiki/teams/6102/wiki/images/home/home-08-bird-landed-2.avif"
           alt=""
           draggable={false}
+          onError={() => setHomeFailed(true)}
         />
       </span>
     </>
@@ -42,22 +52,39 @@ function BirdArtwork({ onLoad }: { onLoad?: () => void }) {
 export function BirdLanding({
   className = "description-bird-slot",
   whenVisible = false,
+  whenPassed = false,
 }: {
   className?: string;
   whenVisible?: boolean;
+  whenPassed?: boolean;
 }) {
-  const { phase, registerLanding } = useContext(BirdContext);
+  const { phase, landing, registerLanding } = useContext(BirdContext);
+  const slot = useRef<HTMLSpanElement | null>(null);
+  const register = useCallback(
+    (element: HTMLSpanElement | null) => {
+      slot.current = element;
+      if (element) return registerLanding(element);
+    },
+    [registerLanding],
+  );
   return (
     <span
-      ref={registerLanding}
+      ref={register}
       className={className}
       data-state={phase}
-      data-landing-visibility={whenVisible ? "visible" : undefined}
+      data-landing-visibility={
+        whenPassed ? "passed" : whenVisible ? "visible" : undefined
+      }
       aria-hidden="true"
     >
       <span
         className="bird-rest"
-        style={{ visibility: phase === "landed" ? "visible" : "hidden" }}
+        style={{
+          visibility:
+            phase === "landed" && landing === slot.current
+              ? "visible"
+              : "hidden",
+        }}
       >
         <BirdArtwork />
       </span>
@@ -75,12 +102,75 @@ export function BirdCursorProvider({
   const { pathname } = useLocation();
   const bird = useRef<HTMLSpanElement>(null);
   const pointer = useRef({ x: 0, y: 0, active: false });
-  const [landing, registerLanding] = useState<HTMLSpanElement | null>(null);
+  const [landing, setLanding] = useState<HTMLSpanElement | null>(null);
+  const [landings, setLandings] = useState<HTMLSpanElement[]>([]);
+  const registerLanding = useCallback((element: HTMLSpanElement) => {
+    setLandings((previous) => [...previous, element]);
+    return () =>
+      setLandings((previous) => previous.filter((item) => item !== element));
+  }, []);
   const [phase, setPhase] = useState<BirdPhase>("following");
   const [artworkReady, setArtworkReady] = useState(false);
   const [finePointer, setFinePointer] = useState(
     () => matchMedia("(hover: hover) and (pointer: fine)").matches,
   );
+
+  useEffect(() => {
+    let frame = 0;
+    const select = () => {
+      frame = 0;
+      const visible = landings.filter((element) => {
+        const rect = element.getBoundingClientRect();
+        return (
+          element.isConnected &&
+          rect.width > 0 &&
+          rect.top >= 82 &&
+          rect.bottom < innerHeight * 0.9
+        );
+      });
+      visible.sort(
+        (a, b) =>
+          Math.abs(a.getBoundingClientRect().top - innerHeight * 0.55) -
+          Math.abs(b.getBoundingClientRect().top - innerHeight * 0.55),
+      );
+      // A fast scroll may skip a perch's entire visible range. Keep the most
+      // recently passed reference perch eligible until scrolling back above it.
+      const passed = landings
+        .filter((element) => {
+          const rect = element.getBoundingClientRect();
+          return (
+            element.isConnected &&
+            element.dataset.landingVisibility === "passed" &&
+            rect.width > 0 &&
+            rect.top < innerHeight * 0.8
+          );
+        })
+        .sort(
+          (a, b) =>
+            b.getBoundingClientRect().top - a.getBoundingClientRect().top,
+        );
+      setLanding(
+        visible[0] ??
+          passed[0] ??
+          landings.find(
+            (element) =>
+              element.isConnected && !element.dataset.landingVisibility,
+          ) ??
+          null,
+      );
+    };
+    const schedule = () => {
+      if (!frame) frame = requestAnimationFrame(select);
+    };
+    select();
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule);
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", schedule);
+      window.removeEventListener("resize", schedule);
+    };
+  }, [landings, pathname]);
 
   useEffect(() => {
     const media = matchMedia("(hover: hover) and (pointer: fine)");
@@ -94,6 +184,7 @@ export function BirdCursorProvider({
     if (!image) return;
     const target = landing?.isConnected ? landing : null;
     const waitForVisibility = target?.dataset.landingVisibility === "visible";
+    const keepAfterPassing = target?.dataset.landingVisibility === "passed";
     const restingBird = target?.querySelector<HTMLElement>(".bird-rest");
     image.style.visibility = "hidden";
     if (!finePointer) {
@@ -160,18 +251,19 @@ export function BirdCursorProvider({
       const tick = (now: number) => {
         const progress = reducedMotion.matches
           ? 1
-          : Math.min(1, (now - began) / (waitForVisibility ? 1100 : 1400));
+          : Math.min(
+              1,
+              (now - began) /
+                (waitForVisibility || keepAfterPassing ? 1100 : 1400),
+            );
         const eased = progress * progress * (3 - 2 * progress);
         // Follow the landing box while the page scrolls during the hop.
         const rect = restingBird.getBoundingClientRect();
         const destination = toNest
           ? { x: rect.left, y: rect.top, size: rect.width }
           : cursorPosition();
-        const hop = waitForVisibility
-          ? Math.sin(Math.PI * progress) * 70
-          : Math.abs(Math.sin(progress * Math.PI * 3)) *
-            55 *
-            Math.sin(Math.PI * progress);
+        const hop = Math.abs(Math.sin(progress * Math.PI * 3)) *
+          55 * Math.sin(Math.PI * progress);
         const homePose = waitForVisibility
           ? 0
           : fromHome +
@@ -299,7 +391,7 @@ export function BirdCursorProvider({
   }, [landing, pathname, enabled, artworkReady, finePointer]);
 
   return (
-    <BirdContext.Provider value={{ phase, registerLanding }}>
+    <BirdContext.Provider value={{ phase, landing, registerLanding }}>
       {children}
       {createPortal(
         <span

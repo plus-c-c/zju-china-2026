@@ -1,3 +1,4 @@
+import { References } from "../../components/References";
 import {
   useCallback,
   useEffect,
@@ -865,97 +866,100 @@ export function SnoopLigase2Design() {
         }
       </p>
       <ProteinStepper steps={SNOOP_STEPS} />
-      <h3 className="mt-5 mb-3">{"References"}</h3>
-      <p>
-        {
-          "[1] Keeble, A. H., Wood, D. P., & Howarth, M. (2023). Design and Evolution of Enhanced Peptide–Peptide Ligation for Modular Transglutaminase Assembly. "
-        }
-        <em>{"Bioconjugate Chemistry"}</em>
-        {", "}
-        <strong>{"34"}</strong>
-        {"(6), 1019–1036. "}
-        <a href="https://doi.org/10.1021/acs.bioconjchem.3c00122">
-          {"https://doi.org/10.1021/acs.bioconjchem.3c00122"}
-        </a>
-      </p>
-      <p>
-        {
-          "[2] Izoré, T., Contreras-Martel, C., El Mortaji, L., Manzano, C., Terrasse, R., Vernet, T., Di Guilmi, A. M., & Dessen, A. (2010). Structural Basis of Host Cell Recognition by the Pilus Adhesin from "
-        }
-        <em>{"Streptococcus pneumoniae"}</em>
-        {". "}
-        <em>{"Structure"}</em>
-        {", "}
-        <strong>{"18"}</strong>
-        {"(1), 106–115. "}
-        <a href="https://doi.org/10.1016/j.str.2009.10.019">
-          {"https://doi.org/10.1016/j.str.2009.10.019"}
-        </a>
-      </p>
-      <p>
-        {
-          "[3] Buldun, C. M., Jean, J. X., Bedford, M. R., & Howarth, M. (2018). SnoopLigase Catalyzes Peptide–Peptide Locking and Enables Solid-Phase Conjugate Isolation. "
-        }
-        <em>{"Journal of the American Chemical Society"}</em>
-        {", "}
-        <strong>{"140"}</strong>
-        {"(8), 3008–3018."}
-        <a href="https://doi.org/10.1021/jacs.7b13237">
-          {"https://doi.org/10.1021/jacs.7b13237"}
-        </a>
-      </p>
-      <p>
-        {
-          "[4] Matthews, B. W., Nicholson, H., & Becktel, W. J. (1987). Enhanced protein thermostability from site-directed mutations that decrease the entropy of unfolding. "
-        }
-        <em>
-          {
-            "Proceedings of the National Academy of Sciences of the United States of America"
-          }
-        </em>
-        {", "}
-        <strong>{"84"}</strong>
-        {"(19), 6663–6667. "}
-        <a href="https://doi.org/10.1073/pnas.84.19.6663">
-          {"https://doi.org/10.1073/pnas.84.19.6663"}
-        </a>
-      </p>
-      <p>
-        {
-          "[5] Chaudhury, S., Lyskov, S., & Gray, J. J. (2010). PyRosetta: A script-based interface for implementing molecular modeling algorithms using Rosetta. "
-        }
-        <em>{"Bioinformatics"}</em>
-        {", "}
-        <strong>{"26"}</strong>
-        {"(5), 689–691. "}
-        <a href="https://doi.org/10.1093/bioinformatics/btq007">
-          {"https://doi.org/10.1093/bioinformatics/btq007"}
-        </a>
-      </p>
-      <p>
-        {
-          "[6] Park, H., Bradley, P., Greisen, P., Jr., Liu, Y., Mulligan, V. K., Kim, D. E., Baker, D., & DiMaio, F. (2016). Simultaneous Optimization of Biomolecular Energy Functions on Features from Small Molecules and Macromolecules. "
-        }
-        <em>{"Journal of Chemical Theory and Computation"}</em>
-        {", "}
-        <strong>{"12"}</strong>
-        {"(12), 6201–6212. "}
-        <a href="https://doi.org/10.1021/acs.jctc.6b00819">
-          {"https://doi.org/10.1021/acs.jctc.6b00819"}
-        </a>
-      </p>
-      <p>
-        {
-          "[7] Alford, R. F., Leaver-Fay, A., Jeliazkov, J. R., et al. (2017). The Rosetta All-Atom Energy Function for Macromolecular Modeling and Design. "
-        }
-        <em>{"Journal of Chemical Theory and Computation"}</em>
-        {", "}
-        <strong>{"13"}</strong>
-        {"(6), 3031–3048. "}
-        <a href="https://doi.org/10.1021/acs.jctc.7b00125">
-          {"https://doi.org/10.1021/acs.jctc.7b00125"}
-        </a>
-      </p>
+      <References level={3}>
+        <div className="references-list references-list--paragraphs">
+          <p>
+            {
+              "[1] Keeble, A. H., Wood, D. P., & Howarth, M. (2023). Design and Evolution of Enhanced Peptide–Peptide Ligation for Modular Transglutaminase Assembly. "
+            }
+            <em>{"Bioconjugate Chemistry"}</em>
+            {", "}
+            <strong>{"34"}</strong>
+            {"(6), 1019–1036. "}
+            <a href="https://doi.org/10.1021/acs.bioconjchem.3c00122">
+              {"https://doi.org/10.1021/acs.bioconjchem.3c00122"}
+            </a>
+          </p>
+          <p>
+            {
+              "[2] Izoré, T., Contreras-Martel, C., El Mortaji, L., Manzano, C., Terrasse, R., Vernet, T., Di Guilmi, A. M., & Dessen, A. (2010). Structural Basis of Host Cell Recognition by the Pilus Adhesin from "
+            }
+            <em>{"Streptococcus pneumoniae"}</em>
+            {". "}
+            <em>{"Structure"}</em>
+            {", "}
+            <strong>{"18"}</strong>
+            {"(1), 106–115. "}
+            <a href="https://doi.org/10.1016/j.str.2009.10.019">
+              {"https://doi.org/10.1016/j.str.2009.10.019"}
+            </a>
+          </p>
+          <p>
+            {
+              "[3] Buldun, C. M., Jean, J. X., Bedford, M. R., & Howarth, M. (2018). SnoopLigase Catalyzes Peptide–Peptide Locking and Enables Solid-Phase Conjugate Isolation. "
+            }
+            <em>{"Journal of the American Chemical Society"}</em>
+            {", "}
+            <strong>{"140"}</strong>
+            {"(8), 3008–3018."}
+            <a href="https://doi.org/10.1021/jacs.7b13237">
+              {"https://doi.org/10.1021/jacs.7b13237"}
+            </a>
+          </p>
+          <p>
+            {
+              "[4] Matthews, B. W., Nicholson, H., & Becktel, W. J. (1987). Enhanced protein thermostability from site-directed mutations that decrease the entropy of unfolding. "
+            }
+            <em>
+              {
+                "Proceedings of the National Academy of Sciences of the United States of America"
+              }
+            </em>
+            {", "}
+            <strong>{"84"}</strong>
+            {"(19), 6663–6667. "}
+            <a href="https://doi.org/10.1073/pnas.84.19.6663">
+              {"https://doi.org/10.1073/pnas.84.19.6663"}
+            </a>
+          </p>
+          <p>
+            {
+              "[5] Chaudhury, S., Lyskov, S., & Gray, J. J. (2010). PyRosetta: A script-based interface for implementing molecular modeling algorithms using Rosetta. "
+            }
+            <em>{"Bioinformatics"}</em>
+            {", "}
+            <strong>{"26"}</strong>
+            {"(5), 689–691. "}
+            <a href="https://doi.org/10.1093/bioinformatics/btq007">
+              {"https://doi.org/10.1093/bioinformatics/btq007"}
+            </a>
+          </p>
+          <p>
+            {
+              "[6] Park, H., Bradley, P., Greisen, P., Jr., Liu, Y., Mulligan, V. K., Kim, D. E., Baker, D., & DiMaio, F. (2016). Simultaneous Optimization of Biomolecular Energy Functions on Features from Small Molecules and Macromolecules. "
+            }
+            <em>{"Journal of Chemical Theory and Computation"}</em>
+            {", "}
+            <strong>{"12"}</strong>
+            {"(12), 6201–6212. "}
+            <a href="https://doi.org/10.1021/acs.jctc.6b00819">
+              {"https://doi.org/10.1021/acs.jctc.6b00819"}
+            </a>
+          </p>
+          <p>
+            {
+              "[7] Alford, R. F., Leaver-Fay, A., Jeliazkov, J. R., et al. (2017). The Rosetta All-Atom Energy Function for Macromolecular Modeling and Design. "
+            }
+            <em>{"Journal of Chemical Theory and Computation"}</em>
+            {", "}
+            <strong>{"13"}</strong>
+            {"(6), 3031–3048. "}
+            <a href="https://doi.org/10.1021/acs.jctc.7b00125">
+              {"https://doi.org/10.1021/acs.jctc.7b00125"}
+            </a>
+          </p>
+        </div>
+      </References>
     </>
   );
 }

@@ -1,3 +1,4 @@
+import { ReferenceArticleHtml } from "../components/References";
 import { useEffect, useRef } from "react";
 import { SectionJump } from "../components/SectionJump";
 import { observeAndWhitenImages } from "../components/whitenImages";
@@ -37,7 +38,7 @@ function ExperimentsPair() {
           };
         }}
       />
-      <div dangerouslySetInnerHTML={{ __html: split.experiments }} />
+      <ReferenceArticleHtml html={split.experiments} />
     </article>
   );
 }

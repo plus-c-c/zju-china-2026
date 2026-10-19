@@ -1,3 +1,4 @@
+import { References } from "../components/References";
 import { TransparentImage } from "../components/TransparentImage";
 
 export function Design() {
@@ -1502,159 +1503,160 @@ export function Design() {
             repair microenvironment that combines structural support, matrix
             protection, and cellular support.
           </p>
-          <h2 className="mt-5 mb-4">References</h2>
-          <div className="references-list references-list--paragraphs">
-            <p id="design-reference-1" style={{ scrollMarginTop: "112px" }}>
-              [1] Huang W, Tarakanova A, Dinjaski N, Wang Q, Xia X, Chen Y, Wong
-              JY, Buehler MJ, Kaplan DL. Design of multistimuli responsive
-              hydrogels using integrated modeling and genetically engineered
-              silk–elastin-like proteins. <em>Adv Funct Mater</em>.
-              2016;26(23):4113–4123. doi:10.1002/adfm.201600236.
-            </p>
-            <p id="design-reference-2" style={{ scrollMarginTop: "112px" }}>
-              [2] Gonzalez-Obeso C, Backlund FG, Kaplan DL. Charge-modulated
-              accessibility of tyrosine residues for silk-elastin copolymers
-              cross-linking. <em>Biomacromolecules</em>. 2022;23(3):760–765.
-              doi:10.1021/acs.biomac.1c01192.
-            </p>
-            <p id="design-reference-3" style={{ scrollMarginTop: "112px" }}>
-              [3] Ruoslahti E. RGD and other recognition sequences for
-              integrins. <em>Annu Rev Cell Dev Biol</em>. 1996;12:697–715.
-              doi:10.1146/annurev.cellbio.12.1.697.
-            </p>
-            <p id="design-reference-4" style={{ scrollMarginTop: "112px" }}>
-              [4] Nie et al., 2026.
-            </p>
-            <p id="design-reference-5" style={{ scrollMarginTop: "112px" }}>
-              [5] Fancy DA, Kodadek T. Chemistry for the analysis of
-              protein–protein interactions: rapid and efficient cross-linking
-              triggered by long wavelength light.{" "}
-              <em>Proc Natl Acad Sci USA</em>. 1999;96(11):6020–6024.
-              doi:10.1073/pnas.96.11.6020.
-            </p>
-            <p id="design-reference-6" style={{ scrollMarginTop: "112px" }}>
-              [6] Cui X, Soliman BG, Alcala-Orozco CR, Li J, Vis MAM, Santos M,
-              Wise SG, Levato R, Malda J, Woodfield TBF, Rnjak-Kovacina J, Lim
-              KS. Rapid photocrosslinking of silk hydrogels with high cell
-              density and enhanced shape fidelity. <em>Adv Healthc Mater</em>.
-              2020;9(4):e1901667. doi:10.1002/adhm.201901667.
-            </p>
-            <p id="design-reference-7" style={{ scrollMarginTop: "112px" }}>
-              [7] Meyer DE, Chilkoti A. Purification of recombinant proteins by
-              fusion with thermally-responsive polypeptides.{" "}
-              <em>Nat Biotechnol</em>. 1999;17(11):1112–1115. doi:10.1038/15100.
-            </p>
-            <p id="design-reference-8" style={{ scrollMarginTop: "112px" }}>
-              [8] Buldun CM, Jean JX, Bedford MR, Howarth M. SnoopLigase
-              catalyzes peptide–peptide locking and enables solid-phase
-              conjugate isolation. <em>J Am Chem Soc</em>.
-              2018;140(8):3008–3018. doi:10.1021/jacs.7b13237.
-            </p>
-            <p id="design-reference-9" style={{ scrollMarginTop: "112px" }}>
-              [9] Keeble AH, Wood DP, Howarth M. Design and evolution of
-              enhanced peptide–peptide ligation for modular transglutaminase
-              assembly. <em>Bioconjug Chem</em>. 2023;34.
-              doi:10.1021/acs.bioconjchem.3c00122.
-            </p>
-            <p id="design-reference-10" style={{ scrollMarginTop: "112px" }}>
-              [10] Fierer JO, Veggiani G, Howarth M. SpyLigase peptide–peptide
-              ligation polymerizes affibodies to enhance magnetic cancer cell
-              capture. <em>Proc Natl Acad Sci USA</em>.
-              2014;111(13):E1176–E1181. doi:10.1073/pnas.1315776111.
-            </p>
-            <p id="design-reference-11" style={{ scrollMarginTop: "112px" }}>
-              [11] Chen M, Chen S, Xie C, Li F, Tao C, Gong W, Qu M, Lin S, Shao
-              Z, Xiao G. Global prevalence, incidence, and years lived with
-              disability (YLDs) of osteoarthritis: trends from 1990 to 2021 and
-              projections to 2050. <em>J Orthop Translat</em>. 2026;56:101029.
-              doi:10.1016/j.jot.2025.11.005.
-            </p>
-            <p id="design-reference-12" style={{ scrollMarginTop: "112px" }}>
-              [12] Medvedeva EV, Grebenik EA, Gornostaeva SN, Telpuhov VI,
-              Lychagin AV, Timashev PS, Chagin AS. Repair of damaged articular
-              cartilage: current approaches and future directions.{" "}
-              <em>Int J Mol Sci</em>. 2018;19(8):2366. doi:10.3390/ijms19082366.
-            </p>
-            <p id="design-reference-13" style={{ scrollMarginTop: "112px" }}>
-              [13] Li Y, Yin G, Pu X, Chen X, Liao X, Huang Z. Novel
-              bi-functional 14-mer peptides with both ovarian carcinoma cells
-              targeting and magnetic Fe₃O₄ nanoparticles affinity.{" "}
-              <em>Materials (Basel)</em>. 2019;12(5):755.
-              doi:10.3390/ma12050755.
-            </p>
-            <p id="design-reference-14" style={{ scrollMarginTop: "112px" }}>
-              [14] Horkay F, et al. Cartilage extracellular matrix polymers:
-              hierarchical structure, osmotic properties, and function.{" "}
-              <em>Soft Matter</em>. 2024;20:6033–6043. doi:10.1039/D4SM00617H.
-            </p>
-            <p id="design-reference-15" style={{ scrollMarginTop: "112px" }}>
-              [15] Vedadghavami A, Wagner EK, Mehta S, He T, Zhang C, Bajpayee
-              AG. Cartilage penetrating cationic peptide carriers for
-              applications in drug delivery to avascular negatively charged
-              tissues. <em>Acta Biomater</em>. 2019;93:258–269.
-              doi:10.1016/j.actbio.2018.12.004.
-            </p>
-            <p id="design-reference-16" style={{ scrollMarginTop: "112px" }}>
-              [16] McKenna LA, Liu H, Sansom PA, Dean MF. An N-terminal peptide
-              from link protein stimulates proteoglycan biosynthesis in human
-              articular cartilage in vitro. <em>Arthritis Rheum</em>.
-              1998;41(1):157–162.
-            </p>
-            <p id="design-reference-17" style={{ scrollMarginTop: "112px" }}>
-              [17] Liu H, McKenna LA, Dean MF. An N-terminal peptide from link
-              protein can stimulate biosynthesis of collagen by human articular
-              cartilage. <em>Arch Biochem Biophys</em>. 2000.
-              doi:10.1006/abbi.2000.1758.
-            </p>
-            <p id="design-reference-18" style={{ scrollMarginTop: "112px" }}>
-              [18] He R, Wang B, Cui M, Xiong Z, Lin H, Zhao L, et al. Link
-              protein N-terminal peptide as a potential stimulating factor for
-              stem cell-based cartilage regeneration. <em>Stem Cells Int</em>.
-              2018;2018:3217895. doi:10.1155/2018/3217895.
-            </p>
-            <p id="design-reference-19" style={{ scrollMarginTop: "112px" }}>
-              [19] Roberts JJ, Nicodemus GD, Giunta S, Bryant SJ. Incorporation
-              of biomimetic matrix molecules in PEG hydrogels enhances matrix
-              deposition and reduces load-induced loss of chondrocyte-secreted
-              matrix. <em>J Biomed Mater Res A</em>. 2011;97(3):281–291.
-              doi:10.1002/jbm.a.33057.
-            </p>
-            <p id="design-reference-20" style={{ scrollMarginTop: "112px" }}>
-              [20] Maneiro E, Martín MA, de Andres MC, López-Armada MJ,
-              Fernández-Sueiro JL, del Hoyo P, Galdo F, Arenas J, Blanco FJ.
-              Mitochondrial respiratory activity is altered in osteoarthritic
-              human articular chondrocytes. <em>Arthritis Rheum</em>.
-              2003;48(3):700–708. doi:10.1002/art.10837.
-            </p>
-            <p id="design-reference-21" style={{ scrollMarginTop: "112px" }}>
-              [21] Lee RA, Woo JS, Lee SY, Na HS, Cho KH, Lee YS, Lee JS, Kim
-              SA, Park SH, Kim SJ, Cho ML. Mitochondrial transplantation
-              ameliorates the development and progression of osteoarthritis.{" "}
-              <em>Immune Netw</em>. 2022;22(2):e14. PMID:35573148.
-            </p>
-            <p id="design-reference-22" style={{ scrollMarginTop: "112px" }}>
-              [22] Kim et al. Fusogenic liposomes encapsulating mitochondria as
-              a promising delivery system for osteoarthritis therapy.{" "}
-              <em>Biomaterials</em>. 2023. PMID:37864947.
-            </p>
-            <p id="design-reference-23" style={{ scrollMarginTop: "112px" }}>
-              [23] Nobs L, Buchegger F, Gurny R, Allémann E. Current methods for
-              attaching targeting ligands to liposomes and nanoparticles.{" "}
-              <em>J Pharm Sci</em>. 2004;93(8):1980–1992. doi:10.1002/jps.20098.
-            </p>
-            <p id="design-reference-24" style={{ scrollMarginTop: "112px" }}>
-              [24] Mitchell PG, et al. Cloning, expression, and type II
-              collagenolytic activity of matrix metalloproteinase-13 from human
-              osteoarthritic cartilage. <em>J Clin Invest</em>.
-              1996;97(3):761–768.
-            </p>
-            <p id="design-reference-25" style={{ scrollMarginTop: "112px" }}>
-              [25] Marblestone JG, Edavettal SC, Lim Y, Lim P, Zuo X, Butt TR.
-              Comparison of SUMO fusion technology with traditional gene fusion
-              systems: enhanced expression and solubility with SUMO.{" "}
-              <em>Protein Sci</em>. 2006;15(1):182–189.
-            </p>
-          </div>
+          <References level={2}>
+            <div className="references-list references-list--paragraphs">
+              <p id="design-reference-1" style={{ scrollMarginTop: "112px" }}>
+                [1] Huang W, Tarakanova A, Dinjaski N, Wang Q, Xia X, Chen Y, Wong
+                JY, Buehler MJ, Kaplan DL. Design of multistimuli responsive
+                hydrogels using integrated modeling and genetically engineered
+                silk–elastin-like proteins. <em>Adv Funct Mater</em>.
+                2016;26(23):4113–4123. doi:10.1002/adfm.201600236.
+              </p>
+              <p id="design-reference-2" style={{ scrollMarginTop: "112px" }}>
+                [2] Gonzalez-Obeso C, Backlund FG, Kaplan DL. Charge-modulated
+                accessibility of tyrosine residues for silk-elastin copolymers
+                cross-linking. <em>Biomacromolecules</em>. 2022;23(3):760–765.
+                doi:10.1021/acs.biomac.1c01192.
+              </p>
+              <p id="design-reference-3" style={{ scrollMarginTop: "112px" }}>
+                [3] Ruoslahti E. RGD and other recognition sequences for
+                integrins. <em>Annu Rev Cell Dev Biol</em>. 1996;12:697–715.
+                doi:10.1146/annurev.cellbio.12.1.697.
+              </p>
+              <p id="design-reference-4" style={{ scrollMarginTop: "112px" }}>
+                [4] Nie et al., 2026.
+              </p>
+              <p id="design-reference-5" style={{ scrollMarginTop: "112px" }}>
+                [5] Fancy DA, Kodadek T. Chemistry for the analysis of
+                protein–protein interactions: rapid and efficient cross-linking
+                triggered by long wavelength light.{" "}
+                <em>Proc Natl Acad Sci USA</em>. 1999;96(11):6020–6024.
+                doi:10.1073/pnas.96.11.6020.
+              </p>
+              <p id="design-reference-6" style={{ scrollMarginTop: "112px" }}>
+                [6] Cui X, Soliman BG, Alcala-Orozco CR, Li J, Vis MAM, Santos M,
+                Wise SG, Levato R, Malda J, Woodfield TBF, Rnjak-Kovacina J, Lim
+                KS. Rapid photocrosslinking of silk hydrogels with high cell
+                density and enhanced shape fidelity. <em>Adv Healthc Mater</em>.
+                2020;9(4):e1901667. doi:10.1002/adhm.201901667.
+              </p>
+              <p id="design-reference-7" style={{ scrollMarginTop: "112px" }}>
+                [7] Meyer DE, Chilkoti A. Purification of recombinant proteins by
+                fusion with thermally-responsive polypeptides.{" "}
+                <em>Nat Biotechnol</em>. 1999;17(11):1112–1115. doi:10.1038/15100.
+              </p>
+              <p id="design-reference-8" style={{ scrollMarginTop: "112px" }}>
+                [8] Buldun CM, Jean JX, Bedford MR, Howarth M. SnoopLigase
+                catalyzes peptide–peptide locking and enables solid-phase
+                conjugate isolation. <em>J Am Chem Soc</em>.
+                2018;140(8):3008–3018. doi:10.1021/jacs.7b13237.
+              </p>
+              <p id="design-reference-9" style={{ scrollMarginTop: "112px" }}>
+                [9] Keeble AH, Wood DP, Howarth M. Design and evolution of
+                enhanced peptide–peptide ligation for modular transglutaminase
+                assembly. <em>Bioconjug Chem</em>. 2023;34.
+                doi:10.1021/acs.bioconjchem.3c00122.
+              </p>
+              <p id="design-reference-10" style={{ scrollMarginTop: "112px" }}>
+                [10] Fierer JO, Veggiani G, Howarth M. SpyLigase peptide–peptide
+                ligation polymerizes affibodies to enhance magnetic cancer cell
+                capture. <em>Proc Natl Acad Sci USA</em>.
+                2014;111(13):E1176–E1181. doi:10.1073/pnas.1315776111.
+              </p>
+              <p id="design-reference-11" style={{ scrollMarginTop: "112px" }}>
+                [11] Chen M, Chen S, Xie C, Li F, Tao C, Gong W, Qu M, Lin S, Shao
+                Z, Xiao G. Global prevalence, incidence, and years lived with
+                disability (YLDs) of osteoarthritis: trends from 1990 to 2021 and
+                projections to 2050. <em>J Orthop Translat</em>. 2026;56:101029.
+                doi:10.1016/j.jot.2025.11.005.
+              </p>
+              <p id="design-reference-12" style={{ scrollMarginTop: "112px" }}>
+                [12] Medvedeva EV, Grebenik EA, Gornostaeva SN, Telpuhov VI,
+                Lychagin AV, Timashev PS, Chagin AS. Repair of damaged articular
+                cartilage: current approaches and future directions.{" "}
+                <em>Int J Mol Sci</em>. 2018;19(8):2366. doi:10.3390/ijms19082366.
+              </p>
+              <p id="design-reference-13" style={{ scrollMarginTop: "112px" }}>
+                [13] Li Y, Yin G, Pu X, Chen X, Liao X, Huang Z. Novel
+                bi-functional 14-mer peptides with both ovarian carcinoma cells
+                targeting and magnetic Fe₃O₄ nanoparticles affinity.{" "}
+                <em>Materials (Basel)</em>. 2019;12(5):755.
+                doi:10.3390/ma12050755.
+              </p>
+              <p id="design-reference-14" style={{ scrollMarginTop: "112px" }}>
+                [14] Horkay F, et al. Cartilage extracellular matrix polymers:
+                hierarchical structure, osmotic properties, and function.{" "}
+                <em>Soft Matter</em>. 2024;20:6033–6043. doi:10.1039/D4SM00617H.
+              </p>
+              <p id="design-reference-15" style={{ scrollMarginTop: "112px" }}>
+                [15] Vedadghavami A, Wagner EK, Mehta S, He T, Zhang C, Bajpayee
+                AG. Cartilage penetrating cationic peptide carriers for
+                applications in drug delivery to avascular negatively charged
+                tissues. <em>Acta Biomater</em>. 2019;93:258–269.
+                doi:10.1016/j.actbio.2018.12.004.
+              </p>
+              <p id="design-reference-16" style={{ scrollMarginTop: "112px" }}>
+                [16] McKenna LA, Liu H, Sansom PA, Dean MF. An N-terminal peptide
+                from link protein stimulates proteoglycan biosynthesis in human
+                articular cartilage in vitro. <em>Arthritis Rheum</em>.
+                1998;41(1):157–162.
+              </p>
+              <p id="design-reference-17" style={{ scrollMarginTop: "112px" }}>
+                [17] Liu H, McKenna LA, Dean MF. An N-terminal peptide from link
+                protein can stimulate biosynthesis of collagen by human articular
+                cartilage. <em>Arch Biochem Biophys</em>. 2000.
+                doi:10.1006/abbi.2000.1758.
+              </p>
+              <p id="design-reference-18" style={{ scrollMarginTop: "112px" }}>
+                [18] He R, Wang B, Cui M, Xiong Z, Lin H, Zhao L, et al. Link
+                protein N-terminal peptide as a potential stimulating factor for
+                stem cell-based cartilage regeneration. <em>Stem Cells Int</em>.
+                2018;2018:3217895. doi:10.1155/2018/3217895.
+              </p>
+              <p id="design-reference-19" style={{ scrollMarginTop: "112px" }}>
+                [19] Roberts JJ, Nicodemus GD, Giunta S, Bryant SJ. Incorporation
+                of biomimetic matrix molecules in PEG hydrogels enhances matrix
+                deposition and reduces load-induced loss of chondrocyte-secreted
+                matrix. <em>J Biomed Mater Res A</em>. 2011;97(3):281–291.
+                doi:10.1002/jbm.a.33057.
+              </p>
+              <p id="design-reference-20" style={{ scrollMarginTop: "112px" }}>
+                [20] Maneiro E, Martín MA, de Andres MC, López-Armada MJ,
+                Fernández-Sueiro JL, del Hoyo P, Galdo F, Arenas J, Blanco FJ.
+                Mitochondrial respiratory activity is altered in osteoarthritic
+                human articular chondrocytes. <em>Arthritis Rheum</em>.
+                2003;48(3):700–708. doi:10.1002/art.10837.
+              </p>
+              <p id="design-reference-21" style={{ scrollMarginTop: "112px" }}>
+                [21] Lee RA, Woo JS, Lee SY, Na HS, Cho KH, Lee YS, Lee JS, Kim
+                SA, Park SH, Kim SJ, Cho ML. Mitochondrial transplantation
+                ameliorates the development and progression of osteoarthritis.{" "}
+                <em>Immune Netw</em>. 2022;22(2):e14. PMID:35573148.
+              </p>
+              <p id="design-reference-22" style={{ scrollMarginTop: "112px" }}>
+                [22] Kim et al. Fusogenic liposomes encapsulating mitochondria as
+                a promising delivery system for osteoarthritis therapy.{" "}
+                <em>Biomaterials</em>. 2023. PMID:37864947.
+              </p>
+              <p id="design-reference-23" style={{ scrollMarginTop: "112px" }}>
+                [23] Nobs L, Buchegger F, Gurny R, Allémann E. Current methods for
+                attaching targeting ligands to liposomes and nanoparticles.{" "}
+                <em>J Pharm Sci</em>. 2004;93(8):1980–1992. doi:10.1002/jps.20098.
+              </p>
+              <p id="design-reference-24" style={{ scrollMarginTop: "112px" }}>
+                [24] Mitchell PG, et al. Cloning, expression, and type II
+                collagenolytic activity of matrix metalloproteinase-13 from human
+                osteoarthritic cartilage. <em>J Clin Invest</em>.
+                1996;97(3):761–768.
+              </p>
+              <p id="design-reference-25" style={{ scrollMarginTop: "112px" }}>
+                [25] Marblestone JG, Edavettal SC, Lim Y, Lim P, Zuo X, Butt TR.
+                Comparison of SUMO fusion technology with traditional gene fusion
+                systems: enhanced expression and solubility with SUMO.{" "}
+                <em>Protein Sci</em>. 2006;15(1):182–189.
+              </p>
+            </div>
+          </References>
         </article>
       </div>
     </div>

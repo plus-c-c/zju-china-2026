@@ -1,3 +1,4 @@
+import { References } from "../../components/References";
 import {
   useCallback,
   useEffect,
@@ -492,8 +493,15 @@ export function SelpHydrogelModeling() {
         ))}
       </div>
 
-      <h3 className="mt-5 mb-3">References</h3>
-      <Blocks blocks={m1References} />
+      <References level={3}>
+        <div className="references-list references-list--paragraphs">
+          <Blocks
+            blocks={m1References.filter(
+              (block) => block.t !== "h3" || block.v !== "References",
+            )}
+          />
+        </div>
+      </References>
     </>
   );
 }

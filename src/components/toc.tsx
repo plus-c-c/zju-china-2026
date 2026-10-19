@@ -87,7 +87,9 @@ export function Toc({
       ).filter(
         (element) =>
           element.dataset.toc !== "exclude" &&
-          !element.closest("[hidden], details:not([open])"),
+          !element.closest("[hidden]") &&
+          (!element.closest("details:not([open])") ||
+            element.parentElement?.matches(".references-summary")),
       );
       const usedIds = new Set(
         Array.from(document.querySelectorAll("[id]"), (node) => node.id),

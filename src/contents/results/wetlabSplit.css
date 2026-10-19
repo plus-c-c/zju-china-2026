@@ -327,10 +327,6 @@ img[data-whiten][data-whiten-state="pending"] {
   white-space: normal;
 }
 
-.wetlab-split .wetlab-results__references {
-  margin-top: 28px;
-}
-
 .wetlab-split :is(a, summary):focus-visible {
   outline: 3px solid #446fa6;
   outline-offset: 4px;

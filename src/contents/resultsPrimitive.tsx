@@ -1,3 +1,4 @@
+import { References } from "../components/References";
 import { useEffect, useRef, useState } from "react";
 import { FunctionResults } from "./results/FunctionResults";
 import scaffold from "./results/scaffold-content.json";
@@ -232,10 +233,9 @@ export function ResultsPrimitive() {
           </div>
         </section>
       </div>
-      <details className="wetlab-results__references references-list">
-        <summary>References</summary>
-        <div dangerouslySetInnerHTML={{ __html: scaffold.referencesHtml }} />
-      </details>
+      <References>
+        <div className="references-list" dangerouslySetInnerHTML={{ __html: scaffold.referencesHtml }} />
+      </References>
       <section className="wetlab-results__conclusion">
         <h2 id="wetlab-conclusion">Conclusion</h2>
         <p>{scaffold.conclusion}</p>

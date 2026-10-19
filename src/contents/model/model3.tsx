@@ -1,3 +1,4 @@
+import { References } from "../../components/References";
 import {
   useCallback,
   useEffect,
@@ -418,8 +419,11 @@ export function Model3() {
       </p>
       <Blocks blocks={finalStep.blocks} />
 
-      <h3 className="mt-5 mb-3">References</h3>
-      <Blocks blocks={m3References} />
+      <References level={3}>
+        <div className="references-list references-list--paragraphs">
+          <Blocks blocks={m3References} />
+        </div>
+      </References>
     </>
   );
 }
