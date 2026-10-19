@@ -25,16 +25,8 @@
   gap: 2rem;
   align-items: stretch;
   padding-top: clamp(2.5rem, 7vh, 6rem);
-  /* The row stays fully opaque: fading it (or its photos) would let the
-     track line show through a half-faded photo. The card and the rail
-     title carry the fade; the dot pops in with its scale, hidden until
-     then via visibility, so it is never semi-transparent. */
-  transform: translateY(40px);
-  transition: transform 0.7s cubic-bezier(0.22, 0.7, 0.26, 1);
-}
-
-.timeline-row.is-visible {
-  transform: translateY(0);
+  /* Entries appear instantly: the photos must stay fully opaque, so the
+     progress rail can never show through a mid-fade avatar. */
 }
 
 .timeline-rail {
@@ -49,7 +41,8 @@
   position: absolute;
   left: calc(var(--tl-rail-center) - var(--tl-dot-size) / 2);
   top: 50%;
-  transform: translateY(-50%) scale(0.72);
+  /* The photos stay static: no reveal scale, fade or hover lift. */
+  transform: translateY(-50%);
   width: var(--tl-dot-size);
   height: var(--tl-dot-size);
   border-radius: 999px;
@@ -58,23 +51,7 @@
   display: grid;
   place-items: center;
   overflow: hidden;
-  /* Revealed via visibility + scale, never opacity: the photo is opaque
-     the moment it appears, so the progress line cannot shine through. */
-  visibility: hidden;
-  transition:
-    transform 0.5s cubic-bezier(0.22, 0.7, 0.26, 1),
-    visibility 0.5s ease,
-    box-shadow 0.25s ease;
   z-index: 3;
-}
-
-.timeline-row.is-visible .timeline-dot {
-  visibility: visible;
-  transform: translateY(-50%) scale(1);
-}
-
-.timeline-dot:hover {
-  box-shadow: 0 8px 22px rgba(12, 77, 198, 0.16);
 }
 
 .timeline-dot-img {
@@ -122,18 +99,13 @@
   padding: 1.25rem 1.5rem;
   box-shadow: 0 12px 32px rgba(15, 66, 145, 0.1);
   line-height: 1.65;
-  /* The fade lives on the card (not the row), so the photo rail is never
-     semi-transparent. */
-  opacity: 0;
   transform: translateX(10px);
   transition:
-    opacity 0.65s ease,
     transform 0.65s cubic-bezier(0.22, 0.7, 0.26, 1),
     box-shadow 0.25s ease;
 }
 
 .timeline-row.is-visible .timeline-card {
-  opacity: 1;
   transform: translateX(0);
 }
 
@@ -230,14 +202,6 @@
     font-size: 1.2rem;
     font-weight: 600;
     color: var(--tl-muted);
-    /* Fades in with the card so the rail itself stays opaque. */
-    opacity: 0;
-    transition: opacity 0.65s ease;
-  }
-
-  .timeline-row.is-visible .timeline-title-desktop {
-    opacity: 1;
-  }
     line-height: 1.3;
     max-width: 16rem;
   }

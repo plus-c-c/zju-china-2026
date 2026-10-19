@@ -47,6 +47,8 @@ interface Section {
   key: string;
   label: string;
   groups: Group[];
+  /** Hide the level-1 button while keeping the section's content wired up. */
+  hidden?: boolean;
 }
 
 const SECTIONS: Section[] = [
@@ -66,7 +68,12 @@ const SECTIONS: Section[] = [
     label: "Dry Lab",
     groups: [proteinHydrogelModelingGroup, hardwareGroup, softwareGroup],
   },
-  { key: "human-practices", label: "Human Practices", groups: humanPracticesGroups },
+  {
+    key: "human-practices",
+    label: "Human Practices",
+    groups: humanPracticesGroups,
+    hidden: true,
+  },
 ];
 
 export function Engineering() {
@@ -305,7 +312,7 @@ export function Engineering() {
   const content = (
     <>
       <div className="eng-module-nav">
-        {SECTIONS.map((section) => (
+        {SECTIONS.filter((section) => !section.hidden).map((section) => (
           <button
             key={section.key}
             type="button"

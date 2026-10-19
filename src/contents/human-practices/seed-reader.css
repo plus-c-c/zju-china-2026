@@ -1,0 +1,71 @@
+/* SEED reader — a large half wheel pinned to the left edge of the page, right
+   under the table of contents (placed from SeedReader.tsx: left = TOC left,
+   top = TOC bottom, --seed-r ≈ TOC width).
+
+   The wrapper is the visible right half only: its width equals the radius and
+   `overflow: hidden` cuts the wheel at the flat (vertical) diameter. The SVG
+   is larger than the wrapper and shifted so its centre sits exactly on the
+   wrapper's left edge, so only the right semicircle is painted.
+
+   Geometry: in the artwork the band's outer edge is 453.5 / 520 of the
+   viewBox half-width, so to make that outer radius equal --seed-r the SVG has
+   to be 2.2936 × --seed-r across (half = 1.1468, vertical overhang 0.1468). */
+.seed-reader__ring {
+  position: fixed;
+  z-index: 1010;
+  width: var(--seed-r, 278px);
+  height: calc(var(--seed-r, 278px) * 2);
+  overflow: hidden;
+  pointer-events: none;
+  /* Parked off the left edge; the reader adds .is-open once the reading of
+     the cycle starts (first line reaching the centre) and removes it after
+     the last line has passed — so the wheel rolls in and out with the text. */
+  transform: translateX(calc(-100% - 96px));
+  transition: transform 0.7s cubic-bezier(0.22, 0.7, 0.26, 1);
+}
+
+.seed-reader__ring.is-open {
+  transform: translateX(0);
+}
+
+.seed-reader__ring .seed-ring {
+  position: absolute;
+  max-width: none;
+  left: calc(var(--seed-r, 278px) * -1.1468);
+  top: calc(var(--seed-r, 278px) * -0.1468);
+  width: calc(var(--seed-r, 278px) * 2.2936);
+  height: calc(var(--seed-r, 278px) * 2.2936);
+}
+
+.seed-reader__ring .seed-ring > svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  transform: rotate(var(--seed-rotation, 90deg));
+  transform-origin: 50% 50%;
+  will-change: transform;
+}
+
+/* The paragraph reaching the wheel's rightmost point shifts right and grows
+   slightly. The enlargement is a scale about the left centre — it never
+   reflows the text, so the paragraph's centre (the alignment keypoint) does
+   not move when the emphasis toggles, and the enlarged lines may run past the
+   article's right edge. */
+[data-seed-phase] {
+  transition:
+    transform 0.45s ease,
+    color 0.45s ease;
+}
+
+[data-seed-phase].is-active {
+  transform: translateX(18px) scale(1.08);
+  transform-origin: left center;
+  color: #223c81;
+}
+
+/* Narrow screens turn the TOC into a drawer: the wheel goes with it. */
+@media (max-width: 1200px) {
+  .seed-reader__ring {
+    display: none;
+  }
+}

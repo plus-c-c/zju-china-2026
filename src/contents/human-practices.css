@@ -1,0 +1,45 @@
+/* Integrated Human Practices page — figure blocks. */
+.ihp-figure {
+  margin: 28px 0;
+}
+
+.ihp-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid #e3e8f4;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.ihp-figure figcaption {
+  margin-top: 10px;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #4d617c;
+}
+
+.ihp-figure figcaption strong {
+  color: #223c81;
+}
+
+/* SEED block: the ring artwork floats right and the text wraps tightly
+   around its circular outline (a Word-style tight wrap). */
+.ihp-seed__ring {
+  float: right;
+  width: min(46%, 440px);
+  height: auto;
+  margin: 6px 0 18px 34px;
+  shape-outside: circle(50% at 50% 50%);
+  shape-margin: 12px;
+}
+
+@media (max-width: 767.98px) {
+  .ihp-seed__ring {
+    float: none;
+    display: block;
+    width: min(100%, 420px);
+    margin: 0 auto 20px;
+    shape-outside: none;
+  }
+}
