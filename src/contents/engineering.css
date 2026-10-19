@@ -167,23 +167,31 @@
    the home page story sections). */
 .dbtl {
   --dbtl-stack-h: clamp(380px, calc(90vh - 10.5rem), 700px);
+  /* About eight spaces of the panel's body text: used both for the ring's
+     inset from the page edge and for the ring-to-card gutter. */
+  --dbtl-gap: 2rem;
+  /* Distance from the centred article to the page's left edge, minus the
+     gutter: the cluster breaks out to the left so the ring stays the same
+     eight-space distance from the page edge on wide screens, while the text
+     card keeps the article's right edge. */
+  --dbtl-bleed: max(0px, (100vw - 100%) / 2 - var(--dbtl-gap));
   display: grid;
-  grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.28fr);
-  gap: clamp(1.25rem, 2.2vw, 2.25rem);
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--dbtl-gap);
   align-items: center;
   margin-top: 1.5rem;
+  margin-left: calc(-1 * var(--dbtl-bleed));
 }
 
 .dbtl-ring-wrap {
   display: flex;
   justify-content: flex-start;
-  /* Nudge the ring slightly towards the page edge, freeing width for the
-     card on the right. */
-  margin-left: -0.75rem;
+  /* The cluster is already inset by --dbtl-gap from the page edge. */
+  margin-left: 0;
 }
 
 .dbtl-ring {
-  width: min(100%, 560px);
+  width: clamp(280px, 24vw, 380px);
   max-width: 100%;
   height: auto;
   margin: 0;
@@ -193,6 +201,21 @@
   display: block;
   width: 100%;
   height: auto;
+  /* The wheel is driven by the page scroll: DbtlStepper writes the current
+     angle to --dbtl-rotation. Positive values turn clockwise, so the phase
+     steps run counter-clockwise like the SEED wheel. */
+  transform: rotate(var(--dbtl-rotation, 0deg));
+  transform-origin: 50% 50%;
+  will-change: transform;
+}
+
+/* Test and Build read from the other side (the labels only: their segments,
+   colours and positions stay where they are). */
+.dbtl-ring path[data-seg="test"][fill="white"],
+.dbtl-ring path[data-seg="build"][fill="white"] {
+  transform: rotate(180deg);
+  transform-box: fill-box;
+  transform-origin: center;
 }
 
 /* Highlighting: the base copy renders the artwork exactly as the SVG defines
@@ -461,14 +484,11 @@
   flex-direction: column;
   padding: 1.25rem 1.5rem 1.5rem;
   overflow-y: auto;
-  overscroll-behavior: contain;
-  outline: none;
-}
-
-/* First / last step: release the scroll chaining so the page continues past
-   the stepper (down into the next section, up into the previous one). */
-.dbtl-panel-body--chain {
+  /* The panel scrolls first; once its scrollbar reaches either end the
+     overflowing wheel chains to the page, which drives the pinned runway —
+     and therefore the ring's rotation and the step switch. */
   overscroll-behavior: auto;
+  outline: none;
 }
 
 .dbtl-panel-body:focus-visible {
@@ -479,7 +499,13 @@
   /* Auto margins centre the step content while it fits the card; once it
      overflows they collapse to zero and the card scrolls from the top. */
   margin: auto 0;
-  animation: dbtl-step-in 0.26s ease;
+  animation: dbtl-card-next 0.32s cubic-bezier(0.22, 0.7, 0.26, 1);
+}
+
+/* Every Engineering card change is a horizontal pan: forward steps enter
+   from the right, backward steps from the left. */
+.dbtl .dbtl-panel-inner[data-dir="prev"] {
+  animation-name: dbtl-card-prev;
 }
 
 .dbtl .dbtl-panel-inner p,
@@ -496,14 +522,25 @@
   font-size: 0.93rem;
 }
 
-@keyframes dbtl-step-in {
+@keyframes dbtl-card-next {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateX(32px);
   }
   to {
     opacity: 1;
-    transform: none;
+    transform: translateX(0);
+  }
+}
+
+@keyframes dbtl-card-prev {
+  from {
+    opacity: 0;
+    transform: translateX(-32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
   }
 }
 
@@ -676,12 +713,14 @@
 
 @media (max-width: 991.98px) {
   .dbtl {
+    --dbtl-bleed: 0px;
     grid-template-columns: minmax(0, 1fr);
     gap: 1.25rem;
   }
 
   .dbtl-ring-wrap {
     justify-content: center;
+    margin-left: 0;
   }
 
   .dbtl-ring {

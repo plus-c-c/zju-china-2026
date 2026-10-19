@@ -1,7 +1,7 @@
 import { useLayoutEffect, useRef, useState } from "react";
 import type { Group, Part } from "./engineering/group";
 import { DbtlStepper } from "./engineering/DbtlStepper";
-import { buildSteps, STEP_DVH, type Step } from "./engineering/steps";
+import { buildSteps, sequenceSpan, STEP_DVH, type Step } from "./engineering/steps";
 import type { DbtlModule } from "./engineering/dbtl";
 import { SeedStepper } from "./engineering/SeedStepper";
 import {
@@ -291,7 +291,7 @@ export function Engineering() {
       const total = runway.offsetHeight - window.innerHeight;
       const top = runway.getBoundingClientRect().top + window.scrollY;
       window.scrollTo({
-        top: top + (total * startIndex) / (steps.length - 1),
+        top: top + (total * startIndex) / Math.max(1, sequenceSpan(steps)) + 2,
         behavior: "instant",
       });
       return;
@@ -389,7 +389,7 @@ export function Engineering() {
               <div
                 className="eng-runway"
                 style={{
-                  height: `calc(${100 + Math.max(0, stepCount - 1) * STEP_DVH}dvh)`,
+                  height: `calc(${100 + sequenceSpan(steps) * STEP_DVH}dvh)`,
                 }}
               >
                 <div className="eng-pin">

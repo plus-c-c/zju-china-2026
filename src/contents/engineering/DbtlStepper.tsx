@@ -11,7 +11,7 @@ import {
   useBoundaryStepAdvance,
 } from "../../components/useBoundaryStepAdvance";
 import type { DbtlModule, DbtlPhase } from "./dbtl";
-import { buildSteps, type Step } from "./steps";
+import { buildSteps, sequenceSpan, type Step } from "./steps";
 import { DbtlRing } from "./DbtlRing";
 
 interface DbtlStepperProps {
@@ -40,11 +40,13 @@ interface DbtlStepperProps {
  * DBTL stepper — embedded in the page scroll the same way as the home page
  * story sections: the page-level runway wraps the whole pinned cluster
  * (nav rows, tabs, ring, panel, cycle buttons), and the scroll progress
- * through the runway drives the Design–Build–Test–Learn sequence while the
- * cluster stays pinned to the middle of the viewport. No wheel is captured:
- * scrolling is native from beginning to end, and the page only continues
- * past the stepper once the last step (or, scrolling up, the first step) has
- * been passed.
+ * through the runway turns the ring and, when a quarter turn completes,
+ * switches the Design–Build–Test–Learn step. The ring rotation is bound to
+ * the wheel: the panel scrolls first, then the overflowing wheel chains to
+ * the page and the wheel keeps turning. No wheel is captured: scrolling is
+ * native from beginning to end, and the page only continues past the
+ * stepper once the last step (or, scrolling up, the first step) has been
+ * passed.
  */
 export function DbtlStepper({
   module,
@@ -62,6 +64,48 @@ export function DbtlStepper({
   );
   const steps = stepsProp && stepsProp.length ? stepsProp : builtSteps;
   const [index, setIndex] = useState(0);
+
+  /** Ring rotation timeline — one alignment per step. Phase steps bring
+   *  their segment to the 3 o'clock reading point (Design starts at 45°,
+   *  then a quarter turn counter-clockwise per phase). Non-phase steps
+   *  borrow the next step's alignment and use their own interval for a full
+   *  revolution, so an Introduction / Conclusion view always turns a whole
+   *  circle before the next view is allowed in. */
+  const timeline = useMemo(() => {
+    const count = steps.length;
+    if (!count) return { cum: [] as number[], span: 0 };
+    const align: number[] = new Array<number>(count).fill(NaN);
+    let phaseIndex = 0;
+    steps.forEach((entry, i) => {
+      if (entry.kind === "phase") {
+        align[i] = 45 - 90 * phaseIndex;
+        phaseIndex += 1;
+      }
+    });
+    for (let i = count - 1; i >= 0; i -= 1) {
+      if (Number.isNaN(align[i])) {
+        align[i] =
+          i + 1 < count ? align[i + 1] : i > 0 ? align[i - 1] : 45;
+      }
+    }
+    /* Every step owns one interval. Phase steps turn a quarter to bring the
+       next segment to the reading point; non-phase steps turn a whole
+       revolution and land on the next step's alignment. */
+    const cum: number[] = new Array<number>(count + 1);
+    cum[0] = align[0];
+    for (let i = 0; i < count; i += 1) {
+      const delta =
+        i === count - 1
+          ? steps[i].kind === "phase"
+            ? -90
+            : -360
+          : align[i + 1] - align[i] - (steps[i].kind === "phase" ? 0 : 360);
+      cum[i + 1] = cum[i] + delta;
+    }
+    return { cum, span: sequenceSpan(steps) };
+  }, [steps]);
+  const timelineRef = useRef(timeline);
+  timelineRef.current = timeline;
 
   const rootRef = useRef<HTMLDivElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
@@ -82,8 +126,9 @@ export function DbtlStepper({
       const total = runway.offsetHeight - window.innerHeight;
       if (total <= 0) return;
       const runwayTop = runway.getBoundingClientRect().top + window.scrollY;
-      const y =
-        runwayTop + (total * target) / Math.max(1, stepsRef.current.length - 1);
+      const span =
+        timelineRef.current.span || Math.max(1, stepsRef.current.length - 1);
+      const y = runwayTop + (total * target) / span + 2;
       window.scrollTo({ top: y, behavior });
     },
     [],
@@ -139,6 +184,39 @@ export function DbtlStepper({
     panel.scrollTo({ top: STEP_ADVANCE_ENABLED && backward ? panel.scrollHeight : 0 });
   }, [index]);
 
+  /* Wheel sensitivity: the whole card (header included) scrolls the text as
+     soon as the pointer is inside it, with a little gain. One notch is never
+     split: if the panel still has room it consumes the notch (the remainder
+     past the end is dropped) and the page stays put; only a notch that
+     starts with the panel already at its boundary scrolls the page and turns
+     the ring — immediately, without waiting for a new gesture. */
+  useEffect(() => {
+    const body = panelRef.current;
+    const card = body?.closest<HTMLElement>(".dbtl-panel");
+    if (!body || !card) return;
+    const GAIN = 1.5;
+    const onWheel = (event: WheelEvent) => {
+      if (!event.deltaY) return;
+      event.preventDefault();
+      const raw = event.deltaY;
+      const max = Math.max(0, body.scrollHeight - body.clientHeight);
+      const atStart = body.scrollTop <= 0;
+      const atEnd =
+        body.scrollTop + body.clientHeight >= body.scrollHeight - 1;
+      /* A notch is indivisible: if the panel can move at all, the whole
+         notch belongs to it (any remainder past the end is discarded); only
+         a notch that finds the panel already at the boundary reaches the
+         page and turns the ring. */
+      if (raw > 0 ? atEnd : atStart) {
+        window.scrollBy(0, raw);
+        return;
+      }
+      body.scrollTop = Math.max(0, Math.min(max, body.scrollTop + raw * GAIN));
+    };
+    card.addEventListener("wheel", onWheel, { passive: false });
+    return () => card.removeEventListener("wheel", onWheel);
+  }, []);
+
   // Map the scroll progress through the page-level runway to the step index.
   useEffect(() => {
     const runway = rootRef.current?.closest(
@@ -152,9 +230,23 @@ export function DbtlStepper({
       const rect = runway.getBoundingClientRect();
       const total = runway.offsetHeight - window.innerHeight;
       if (total <= 0) return;
+      const { cum, span } = timelineRef.current;
       const progress = Math.min(1, Math.max(0, -rect.top / total));
-      const target = Math.round(progress * (stepsRef.current.length - 1));
+      const pos = progress * span;
+      const target = Math.min(
+        stepsRef.current.length - 1,
+        Math.max(0, Math.floor(pos + 1e-4)),
+      );
       if (target !== indexRef.current) setIndex(target);
+      if (cum.length > 1) {
+        const slot = Math.min(Math.floor(pos + 1e-4), cum.length - 2);
+        const fraction = Math.min(1, Math.max(0, pos - slot));
+        const rotation = cum[slot] + (cum[slot + 1] - cum[slot]) * fraction;
+        rootRef.current?.style.setProperty(
+          "--dbtl-rotation",
+          `${rotation.toFixed(2)}deg`,
+        );
+      }
     };
     const schedule = () => {
       if (!frame) frame = window.requestAnimationFrame(update);
@@ -229,6 +321,8 @@ export function DbtlStepper({
 
   const phaseBadge =
     stepModule && step?.kind === "phase" && step.phase ? step.phase : null;
+  /** Horizontal pan direction for the incoming card. */
+  const direction = index < prevIndexRef.current ? "prev" : "next";
   const caption =
     stepModule && step?.kind === "phase" && step.cycleIndex !== undefined
       ? stepModule.cycles[step.cycleIndex]?.title
@@ -255,12 +349,7 @@ export function DbtlStepper({
             </div>
           )}
           <div
-            className={`dbtl-panel-body${
-              !STEP_ADVANCE_ENABLED ||
-              (steps.length > 1 && (index === 0 || index === steps.length - 1))
-                ? " dbtl-panel-body--chain"
-                : ""
-            }`}
+            className="dbtl-panel-body"
             ref={panelRef}
             tabIndex={0}
             role="region"
@@ -286,7 +375,11 @@ export function DbtlStepper({
               }
             }}
           >
-            <div className="dbtl-panel-inner" key={step?.key ?? "static"}>
+            <div
+              className="dbtl-panel-inner"
+              data-dir={direction}
+              key={step?.key ?? "static"}
+            >
               {step?.content ?? content}
             </div>
           </div>

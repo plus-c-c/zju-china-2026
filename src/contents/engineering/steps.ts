@@ -54,3 +54,14 @@ export function buildSteps(
 
 /** Scroll distance per step, as a fraction of the viewport height. */
 export const STEP_DVH = 30;
+
+/**
+ * Number of scroll intervals covered by a sequence. Every step — including
+ * the closing Introduction / Conclusion views — owns one full interval, so
+ * the ring always has room to turn before the content switches. A non-phase
+ * step uses its interval for a complete revolution, which keeps the wheel
+ * usable on views that have no DBTL phase to show.
+ */
+export function sequenceSpan(steps: { kind: string }[]): number {
+  return steps.length;
+}

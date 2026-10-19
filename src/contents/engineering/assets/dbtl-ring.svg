@@ -5,7 +5,7 @@
      of the four interlocking segments, so a highlighted segment is never
      painted over the parts that cover it. The Test cap circle is drawn
      outside its mask because the artwork stacks it above the Learn arc. -->
-<svg width="840" height="650" viewBox="0 0 840 650" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg width="576" height="576" viewBox="132 30 576 576" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g clip-path="url(#clip0_1214_5)">
 <g class="dbtl-base">
 <path data-seg="test" d="M420 546C359.531 546 301.538 521.979 258.78 479.22C216.021 436.462 192 378.469 192 318" stroke-width="120" stroke-linecap="round" stroke="#5396E8"/>
