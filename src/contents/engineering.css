@@ -5,12 +5,12 @@
   display: flex;
   justify-content: center;
   gap: 1rem;
-  margin-top: 2rem;
-  margin-bottom: 1.5rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .eng-module-button {
-  padding: 1rem 2rem;
+  padding: 0.55rem 1.6rem;
   border-radius: 50px;
   border: none;
   background-color: #f0f0f0;
@@ -42,7 +42,7 @@
 
   .eng-module-button {
     font-size: 1.2rem;
-    padding: 0.8rem 1.5rem;
+    padding: 0.5rem 1.25rem;
   }
 }
 
@@ -105,7 +105,7 @@
 }
 
 .eng-subnav-button {
-  padding: 0.5rem 1.1rem;
+  padding: 0.3rem 0.9rem;
   border-radius: 50px;
   border: 1px solid #d6e0f5;
   background-color: #f7faff;
@@ -138,7 +138,7 @@
 }
 
 .eng-partnav-button {
-  padding: 0.4rem 0.2rem;
+  padding: 0.25rem 0.2rem;
   border: none;
   border-bottom: 3px solid transparent;
   background: none;
@@ -166,10 +166,10 @@
    scroll advances the Design–Build–Test–Learn steps (the same pattern as
    the home page story sections). */
 .dbtl {
-  --dbtl-stack-h: clamp(380px, calc(90vh - 12rem), 700px);
+  --dbtl-stack-h: clamp(380px, calc(90vh - 10.5rem), 700px);
   display: grid;
   grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.28fr);
-  gap: clamp(2.25rem, 4.5vw, 4.5rem);
+  gap: clamp(1.25rem, 2.2vw, 2.25rem);
   align-items: center;
   margin-top: 1.5rem;
 }
@@ -695,6 +695,9 @@
   }
 
   .dbtl-panel {
+    /* The single-column stack has no fixed stack height to fill, so the
+       panel keeps its own height instead of collapsing to its borders. */
+    flex: 0 0 auto;
     height: clamp(260px, 54vh, 480px);
   }
 
