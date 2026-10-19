@@ -122,4 +122,4 @@
 }
 
 /* Preserve a readable two-line title instead of shrinking the full name. */
-.header-title--integrated-hp { line-height: 1.12; }
+.header-title--integrated-hp { line-height: 1.12; letter-spacing: -0.03em; }

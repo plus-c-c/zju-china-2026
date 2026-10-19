@@ -19,86 +19,86 @@ export const pageDetails: Record<
 > = {
   "/description": {
     icon: "03_description.png",
-    description: "Why cartilage needs a new repair strategy",
+    description: "The need for cartilage repair",
   },
   "/design": {
     icon: "04-design.png",
-    description: "How NEST combines scaffold and repair modules",
+    description: "Inside the NEST repair system",
   },
   "/proof-of-concept": {
     icon: "05_proof_of_concept.png",
-    description: "Testing NEST’s cartilage repair concept",
+    description: "Testing our repair concept",
   },
   "/implementation": {
     icon: "06_implementation.png",
-    description: "Bringing NEST into clinical use",
+    description: "From laboratory to clinic",
   },
   "/future-plan": {
     icon: "07-future plan.png",
-    description: "What NEST needs before clinical translation",
+    description: "Next steps toward clinical use",
   },
   "/contribution": {
     icon: "08_contribution.png",
-    description: "Parts, methods and tools others can reuse",
+    description: "Resources others can build on",
   },
   "/experiments": {
     icon: "11_experiment_result.png",
-    description: "How we build and test NEST",
+    description: "Building and testing NEST",
   },
   "/results": {
     icon: "11_experiment_result.png",
-    description: "What our material and module tests show",
+    description: "What our experiments reveal",
   },
   "/protocol": {
     icon: "12_protocol.png",
-    description: "Repeat our experiments step by step",
+    description: "Our step-by-step lab methods",
   },
   "/parts": {
     icon: "13_parts.png",
-    description: "Genetic building blocks for modular repair",
+    description: "Building blocks for repair",
   },
   "/notebook": {
     icon: "25_notebook.png",
-    description: "Our laboratory work, recorded over time",
+    description: "Our progress in the laboratory",
   },
   "/safety-and-security": {
     icon: "14_safety.png",
-    description: "Managing biological and laboratory risks",
+    description: "Managing risks in the lab",
   },
   "/hardware": {
     icon: "16_hardware.png",
-    description: "Preparing and delivering the hydrogel",
+    description: "Hydrogel preparation and delivery",
   },
   "/software": {
     icon: "17_software.png",
-    description: "From molecular simulations to formulation workflows",
+    description: "Simulation and formulation tools",
   },
   "/model": {
     icon: "18_model.png",
-    description: "Predicting material behavior to guide design",
+    description: "Models that guide our design",
   },
   "/human-practices": {
     icon: "20_integrated_human_practices.png",
-    description: "How stakeholder feedback shapes NEST",
+    description: "Stakeholder insights into NEST",
   },
   "/entrepreneurship": {
     icon: "21_entrepreneurship.png",
-    description: "Building a business around cartilage repair",
+    description: "A path to the healthcare market",
   },
   "/education": {
     icon: "22_education.png",
-    description: "Making synthetic biology accessible",
+    description: "Making SynBio accessible",
   },
   "/members": {
     icon: "26_members.png",
-    description: "Meet the team building NEST",
+    description: "The people behind NEST",
   },
   "/attributions": {
     icon: "27_attributions.png",
-    description: "Who contributed to each part of NEST",
+    description: "Who contributed what",
   },
   "/sponsors": {
     icon: "28_sponsors.png",
-    description: "The organizations making NEST possible",
+    description: "The support behind our work",
   },
 };

@@ -1,5 +1,5 @@
 .nest-navbar {
-  --nest-nav-height: 88px;
+  --nest-nav-height: 82px;
   /* Single size parameter for every navbar icon (see NavIcon). */
   --nest-icon-size: 60px;
   position: fixed;

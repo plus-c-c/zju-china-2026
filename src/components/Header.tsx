@@ -62,7 +62,16 @@ export function Header({ title }: HeaderProps) {
         parseFloat(style.paddingLeft) -
         parseFloat(style.paddingRight) -
         6;
-      const width = text.getBoundingClientRect().width;
+      // IHP uses two lines at the same fitted size as Proof of Concept.
+      let width = text.getBoundingClientRect().width;
+      if (normalizedPath === "/human-practices") {
+        const reference = document.createElement("span");
+        reference.textContent = "Proof of Concept";
+        Object.assign(reference.style, { position: "absolute", visibility: "hidden", whiteSpace: "nowrap", letterSpacing: "-0.005em" });
+        heading.append(reference);
+        width = reference.getBoundingClientRect().width;
+        reference.remove();
+      }
       if (width > available && available > 0) {
         heading.style.setProperty(
           "--header-title-size",
@@ -83,7 +92,7 @@ export function Header({ title }: HeaderProps) {
       observer.disconnect();
       document.fonts.removeEventListener("loadingdone", fitTitle);
     };
-  }, [title]);
+  }, [title, normalizedPath]);
 
   return (
     <header className="header">
