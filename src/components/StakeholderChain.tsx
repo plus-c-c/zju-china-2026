@@ -7,6 +7,7 @@ import "./StakeholderChain.css";
  * stage content areas (text to be filled in later).
  */
 const stages = [
+  { id: "patient", label: "Patient" },
   { id: "rd", label: "R&D" },
   { id: "manufacturing", label: "Manufacturing" },
   { id: "market", label: "Market Authorization & Access" },

@@ -5,7 +5,9 @@
 .page-layout-with-toc {
   --toc-left: clamp(24px, 4vw, 80px);
   --toc-width: 278px;
-  --toc-gap: 24px;
+  /* Gap between the article and the TOC; kept small so the article reads
+     wider on every page. */
+  --toc-gap: 8px;
 }
 
 .page-toc {
