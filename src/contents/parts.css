@@ -3,13 +3,17 @@
   --parts-muted: #62748b;
   color: var(--parts-navy);
   padding-bottom: 3rem;
+  font-size: 20px;
 }
 
 .parts-map {
   margin: 20px 0 18px;
-  padding: 13px 14px 14px;
+  padding: 20px;
   border-radius: 12px;
   background: #f5f8fc;
+}
+.parts-map .parts-card-meta {
+  margin-bottom: 12px;
 }
 .parts-map svg {
   display: block;
@@ -26,22 +30,22 @@
 }
 .page-article .parts-map-legend li {
   display: grid;
-  grid-template-columns: 24px minmax(0, 1fr);
+  grid-template-columns: 30px minmax(0, 1fr);
   align-items: start;
   gap: 10px;
   margin: 0;
   color: #48607f;
-  font-size: 1rem;
+  font-size: 1.25rem;
   line-height: 1.5;
   overflow-wrap: anywhere;
 }
 .parts-map-number {
   display: grid;
   place-items: center;
-  height: 24px;
+  height: 30px;
   border-radius: 50%;
   color: #fff;
-  font-size: 1rem;
+  font-size: 1.25rem;
   font-weight: 600;
 }
 .parts-toolbar {
@@ -67,7 +71,7 @@
   background: #fff;
   color: var(--parts-navy);
   font: inherit;
-  font-size: 0.95rem;
+  font-size: 1.25rem;
 }
 .parts-toolbar button {
   height: 46px;
@@ -76,7 +80,7 @@
   border-radius: 8px;
   background: #365dc9;
   color: #fff;
-  font-size: 1rem;
+  font-size: 1.25rem;
   font-weight: 500;
 }
 .parts-toolbar button:hover {
@@ -90,7 +94,7 @@
   align-items: center;
   gap: 16px;
   margin: 14px 0 28px;
-  font-size: 1rem;
+  font-size: 1.25rem;
   color: var(--parts-muted);
 }
 .parts-results-line button {
@@ -120,7 +124,7 @@
 }
 .parts-card.parts-card-basic {
   display: grid;
-  grid-template-columns: 145px minmax(0, 1fr);
+  grid-template-columns: 190px minmax(0, 1fr);
   column-gap: 24px;
   padding: 24px 0;
   border: 0;
@@ -129,20 +133,23 @@
   background: transparent;
 }
 .parts-card-basic .parts-card-meta {
+  padding: 12px;
+  border-radius: 8px;
+  background: #f5f8fc;
   grid-column: 1;
   grid-row: 1 / 3;
   align-self: start;
   flex-direction: column;
   align-items: flex-start;
   gap: 10px;
-  font-size: 1rem;
+  font-size: 1.25rem;
 }
 .parts-card-basic > :not(.parts-card-meta) {
   grid-column: 2;
 }
 .page-article .parts-card.parts-card-basic h4 {
   margin: 0 0 5px;
-  font-size: 1.35rem;
+  font-size: 1.5rem;
 }
 .parts-card-basic .parts-details {
   border-top: 0;
@@ -150,7 +157,7 @@
 .parts-card-basic .parts-details > summary {
   justify-content: flex-start;
   padding: 6px 0;
-  font-size: 1rem;
+  font-size: 1.25rem;
 }
 .parts-card-basic .parts-details-body {
   padding-top: 14px;
@@ -164,10 +171,6 @@
 }
 .parts-grid > .parts-card:has(> .parts-details[open]) {
   grid-column: 1 / -1;
-}
-.parts-grid > .parts-card:has(> .parts-details[open]) .parts-map {
-  max-width: 820px;
-  margin-inline: auto;
 }
 .parts-card {
   min-width: 0;
@@ -184,7 +187,7 @@
   align-items: center;
   flex-wrap: wrap;
   gap: 8px;
-  font-size: 1rem;
+  font-size: 1.25rem;
 }
 .parts-card-meta a {
   color: #3b67a7;
@@ -200,7 +203,7 @@
 }
 .page-article .parts-card h4 {
   color: var(--parts-navy);
-  font-size: 1.35rem;
+  font-size: 1.5rem;
   line-height: 1.4;
   margin: 13px 0 9px;
   font-weight: 600;
@@ -215,7 +218,7 @@
   justify-content: space-between;
   gap: 12px;
   padding: 15px 0;
-  font-size: 1rem;
+  font-size: 1.25rem;
   font-weight: 500;
   color: #365f9e;
   cursor: pointer;
@@ -235,14 +238,14 @@
   padding-bottom: 22px;
 }
 .page-article .parts-details-body p {
-  font-size: 0.98rem;
+  font-size: 1.25rem;
   line-height: 1.75;
   margin-bottom: 16px;
 }
 .parts-components,
 .parts-feature-list {
   margin: 20px 0;
-  font-size: 1rem;
+  font-size: 1.25rem;
 }
 .parts-components strong,
 .parts-feature-list > strong {
@@ -259,7 +262,7 @@
   padding: 4px 7px;
   border: 1px solid #d9e4f1;
   border-radius: 5px;
-  font-size: 1rem;
+  font-size: 1.25rem;
   text-decoration: none;
   overflow-wrap: anywhere;
 }
@@ -269,7 +272,7 @@
 }
 .page-article .parts-feature-list li {
   color: #496080;
-  font-size: 1rem;
+  font-size: 1.25rem;
   line-height: 1.6;
   margin-bottom: 8px;
 }
@@ -279,7 +282,7 @@
   display: block;
 }
 .page-article .parts-feature-list p {
-  font-size: 1rem;
+  font-size: 1.25rem;
   color: #62748b;
   margin-top: 10px;
 }
@@ -289,7 +292,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 10px;
-  font-size: 1rem;
+  font-size: 1.25rem;
 }
 .parts-sequence-heading strong {
   font-weight: 500;
@@ -304,11 +307,11 @@
   border-radius: 5px;
   background: #fff;
   color: #365f9e;
-  font-size: 1rem;
+  font-size: 1.25rem;
 }
 .parts-copy-status {
   display: block;
-  font-size: 1rem;
+  font-size: 1.25rem;
   color: #3b6d67;
   margin-top: 5px;
 }
@@ -324,7 +327,7 @@
   background: #f3f6fa;
   color: #3d5679;
   font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
-  font-size: 0.9rem;
+  font-size: 1.25rem;
   line-height: 1.9;
   white-space: pre-wrap;
   overflow-wrap: anywhere;
@@ -332,7 +335,7 @@
   user-select: all;
 }
 .parts-registry-cta {
-  font-size: 1rem;
+  font-size: 1.25rem;
 }
 .parts-empty {
   padding: 20px;

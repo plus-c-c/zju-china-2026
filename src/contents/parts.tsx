@@ -29,6 +29,15 @@ function RegistryLink({ id }: { id: string }) {
   );
 }
 
+function PartMeta({ part }: { part: Part }) {
+  return (
+    <div className="parts-card-meta">
+      <RegistryLink id={part.id} />
+      <span>{part.sequence.length.toLocaleString()} bp</span>
+    </div>
+  );
+}
+
 function SourceText({ text }: { text: string }) {
   return text
     .split(/(\*[^*]+\*)/g)
@@ -49,6 +58,7 @@ function SequenceMap({ part }: { part: Part }) {
   const extraHeight = (lanes - 1) * 52;
   return (
     <figure className="parts-map">
+      <PartMeta part={part} />
       <svg
         viewBox={`0 0 520 ${94 + extraHeight}`}
         role="img"
@@ -193,10 +203,7 @@ function PartCard({ part }: { part: Part }) {
           : undefined
       }
     >
-      <div className="parts-card-meta">
-        <RegistryLink id={part.id} />
-        <span>{part.sequence.length.toLocaleString()} bp</span>
-      </div>
+      {part.kind === "basic" && <PartMeta part={part} />}
       <h4>{part.title}</h4>
       {part.kind === "composite" && <SequenceMap part={part} />}
       <details className="parts-details">
