@@ -104,7 +104,7 @@ export function HumanPractices() {
     <div className="row mt-4 mb-5">
       <div className="col-lg-10 mx-auto">
         <article>
-          <h2 className="mb-4">Human Practices</h2>
+          <h2 className="mb-4">Integrated Human Practices</h2>
           <p>
             Placeholder text — introduce how the project engaged with the world
             beyond the lab and why that engagement matters. Replace with the

@@ -98,8 +98,8 @@ export function Header({ title }: HeaderProps) {
             decoding="async"
           />
         )}
-        <h1 className="header-title" ref={titleRef}>
-          <span ref={textRef}>{title}</span>
+        <h1 className={`header-title${normalizedPath === "/human-practices" ? " header-title--integrated-hp" : ""}`} ref={titleRef}>
+          <span ref={textRef}>{normalizedPath === "/human-practices" ? <>Integrated<br />Human Practices</> : title}</span>
         </h1>
       </div>
     </header>

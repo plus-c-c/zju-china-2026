@@ -166,8 +166,8 @@ const Pages: (Page | Folder)[] = [
     name: "Engagement",
     folder: [
       {
-        name: "Human Practices",
-        title: "Human Practices",
+        name: "Integrated Human Practices",
+        title: "Integrated Human Practices",
         path: "/human-practices",
         component: HumanPractices,
       },
