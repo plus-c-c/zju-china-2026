@@ -48,7 +48,7 @@ export function MobileHome() {
           <GlobalBurdenScene />
         </section>
         <section aria-label="Pain and recovery">
-          <ImpactScene play={false} />
+          <ImpactScene play />
         </section>
         <section aria-label="Hydrogel materials">
           <StoryContext.Provider

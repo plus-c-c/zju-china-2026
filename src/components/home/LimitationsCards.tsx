@@ -115,7 +115,7 @@ const yellowCards: CardCopy[] = [
     ),
     frontArt: [
       {
-        name: "home/group-1.avif",
+        name: "dynamic-microenvironment.avif",
         className: "limitations-art--yellow-dynamic",
       },
     ],
@@ -137,7 +137,11 @@ const blueCards: CardCopy[] = [
     ),
     body: (
       <>
-        Complex fabrication limits batch consistency and large-scale production.
+        Complex fabrication<br />
+        limits batch<br />
+        consistency and<br />
+        large-scale<br />
+        production.
       </>
     ),
     frontArt: [
@@ -162,7 +166,13 @@ const blueCards: CardCopy[] = [
     ),
     body: (
       <>
-        SELP offers tunable stiffness and toughness, while RGD motifs within its chains promote adhesion and tissue integration.
+        SELP offers tunable stiffness<br />
+        and toughness, while RGD<br />
+        motifs within its chains<br />
+        promote<br />
+        adhesion<br />
+        and tissue<br />
+        integration.
       </>
     ),
     frontArt: [
@@ -186,7 +196,10 @@ const blueCards: CardCopy[] = [
     ),
     body: (
       <>
-        Matrix loss, degradation, and inflammation demand adaptable repair strategies.
+        Matrix loss, degradation,<br />
+        and inflammation<br />
+        demand adaptable<br />
+        repair strategies.
       </>
     ),
     frontArt: [
@@ -309,8 +322,8 @@ export function MaterialLimitations({
   } as CSSProperties;
 
   const cardMotion = (index: number) => {
-    const start = 0;
-    const amount = drawEase(clamp((progress - start) / 0.96));
+    const start = index * 0.08;
+    const amount = drawEase(clamp((progress - start) / 0.84));
     const direction = index - 1;
     return {
       "--card-draw-x": `${direction * 84 * amount}px`,

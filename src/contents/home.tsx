@@ -290,7 +290,7 @@ function DesktopHome() {
           <StoryBird position={position} direction={direction} scale={Math.min(size.width / 1280, size.height / 720)} />
         </div>
       </div>
-      <SelpPipeline />
+      <SelpPipeline readingWidth={Math.min(size.width / 1280, size.height / 720) * 0.89 * 0.9375 * 1080} />
       <Footer />
       <PipelineBird />
     </>

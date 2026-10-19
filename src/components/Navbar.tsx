@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { useEffect, useRef, useState, type HTMLAttributes } from "react";
+import { useEffect, useLayoutEffect, useRef, useState, type HTMLAttributes } from "react";
 import Pages from "../pages.ts";
 import { navigationIcon, pageDetails } from "./navigationIcons";
 import { NavIcon } from "./NavIcon";
@@ -39,7 +39,7 @@ function NavigationPanel({
   );
 }
 
-export function Navbar({ introEntrance = false }: { introEntrance?: boolean }) {
+export function Navbar({ introEntrance = false, opening = false }: { introEntrance?: boolean; opening?: boolean }) {
   const location = useLocation();
   const navRef = useRef<HTMLElement>(null);
   const focusFrame = useRef(0);
@@ -50,6 +50,10 @@ export function Navbar({ introEntrance = false }: { introEntrance?: boolean }) {
   openMenuRef.current = openDropdown;
   const [navbarVisible, setNavbarVisible] = useState(true);
   const [introPlaying, setIntroPlaying] = useState(introEntrance);
+
+  useLayoutEffect(() => {
+    if (introEntrance) setIntroPlaying(true);
+  }, [introEntrance]);
 
   const closeMenus = () => {
     setOpenDropdown(null);
@@ -246,7 +250,7 @@ export function Navbar({ introEntrance = false }: { introEntrance?: boolean }) {
     };
   }, [expanded]);
 
-  const navbarHidden = !navbarVisible;
+  const navbarHidden = opening || !navbarVisible;
   const pages = Pages;
 
   return (
@@ -254,6 +258,7 @@ export function Navbar({ introEntrance = false }: { introEntrance?: boolean }) {
       <button
         type="button"
         className="nest-nav__reveal"
+        hidden={opening}
         onClick={() => {
           setNavbarVisible(true);
           setIntroPlaying(false);
@@ -309,7 +314,7 @@ export function Navbar({ introEntrance = false }: { introEntrance?: boolean }) {
         onAnimationEnd={(event) => {
           if (event.target === event.currentTarget) setIntroPlaying(false);
         }}
-        className={`nest-navbar${introPlaying ? " nest-navbar-intro-enter" : ""}${navbarHidden ? " nest-navbar-hidden" : ""}`}
+        className={`nest-navbar${opening ? " nest-navbar-opening" : ""}${introPlaying ? " nest-navbar-intro-enter" : ""}${navbarHidden ? " nest-navbar-hidden" : ""}`}
       >
         <div className="nest-navbar-bar">
           <Link

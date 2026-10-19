@@ -48,8 +48,8 @@ export function SelpAndSnoopLigaseScene() {
             (Silk-elastin-like protein)
           </p>
           <p className="nest-solution-selp-copy">
-            Optimizing the 2KY5/2KY10 ratio enables model-guided control of
-            strength and toughness to mimic natural cartilage.
+            Programmable sequences enable model-guided control of strength and
+            toughness to mimic different types of natural cartilage.
           </p>
           <Link
             className="nest-solution-button nest-solution-button--selp"
@@ -110,7 +110,7 @@ export function OsteoarthritisTargetScene() {
           <strong className="oa-intro__target">osteoarthritis (OA)</strong>, one
           of the most
           <strong> prevalent</strong> and widely studied forms of hyaline
-          cartilage damage, as our therapeutic target to demonstrate NEST’s
+          cartilage damage, as our first therapeutic target to demonstrate NEST’s
           potential as <strong>a versatile biomaterial platform</strong>.
         </p>
         <div className="oa-panel">
@@ -130,7 +130,7 @@ export function OsteoarthritisTargetScene() {
             <p>
               We have designed <strong>three functional modules</strong> to{" "}
               <strong>break this vicious cycle</strong> within the
-              microenvironment.
+              microenvironment, aiming to fully cure osteoarthritis.
             </p>
           </div>
         </div>
@@ -377,7 +377,7 @@ const promotionDecorations = [
   ["cyan-gear-middle-right", "cyan-gear-middle-right.avif"],
 ] as const;
 
-export function SelpPipeline() {
+export function SelpPipeline({ readingWidth }: { readingWidth?: number } = {}) {
   const pipelineRef = useRef<HTMLElement>(null);
   useEffect(() => {
     const root = pipelineRef.current;
@@ -492,9 +492,9 @@ export function SelpPipeline() {
       }
       // Do not let an old inertia target pull against the accepted wheel intent.
       target = direction > 0 ? Math.max(target, window.scrollY) : Math.min(target, window.scrollY);
-      const proposed = target + delta * (inEntry ? 0.22 : inClosing ? 0.23 : 0.32);
+      const proposed = target + delta * (inEntry ? 0.25 : inClosing ? 0.23 : 0.32);
       // Keep closing links/video deliberate without changing the module scroll.
-      const lead = innerHeight * (inEntry ? 0.14 : inClosing ? 0.16 : 0.22);
+      const lead = innerHeight * (inEntry ? 0.155 : inClosing ? 0.16 : 0.22);
       target = Math.max(start, Math.min(limit, Math.max(window.scrollY - lead, Math.min(window.scrollY + lead, proposed))));
       if (!animation) animation = requestAnimationFrame(animate);
     };
@@ -634,12 +634,13 @@ export function SelpPipeline() {
           className="selp-after-pipeline"
           aria-label="Explore the NEST project"
         >
-          <nav className="selp-shortcuts" aria-label="Project shortcuts">
+          <nav className="selp-shortcuts" aria-label="Project shortcuts" style={readingWidth ? { width: readingWidth, maxWidth: "100%" } : undefined}>
             {quickLinks.map((item) => (
               <Link className="selp-shortcut" key={item.to} to={item.to}>
                 <TransparentImage
                   alt=""
                   ariaHidden
+                  loading="eager"
                   src={item.icon}
                   whiteThreshold={240}
                   opaqueThreshold={222}

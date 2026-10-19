@@ -156,11 +156,10 @@ const App = () => {
         <LoadingScreen visible={isLoading} failed={loadingFailed} />
 
         {/* Navigation */}
-        {(!isHome || homeIntroReady || isMobileNavigation) && (
-          <Navbar
-            introEntrance={isHome && homeIntroReady && !isMobileNavigation}
-          />
-        )}
+        <Navbar
+          opening={isHome && !homeIntroReady && !isMobileNavigation}
+          introEntrance={isHome && homeIntroReady && !isMobileNavigation}
+        />
 
         {/* Header and PageContent */}
         <main

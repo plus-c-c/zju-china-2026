@@ -1,6 +1,5 @@
 import {
   useEffect,
-  useRef,
   useState,
   type CSSProperties,
 } from "react";
@@ -19,7 +18,7 @@ const openingLineStyle = (index: number, side: "left" | "right" = "left") =>
     "--opening-line-x": `${(side === "left" ? -1 : 1) * (18 + Math.min(index, 6) * 1.2)}px`,
   }) as CSSProperties;
 
-function PlayOnceGif({
+function LoopingIllustration({
   alt,
   className,
   gif,
@@ -33,24 +32,47 @@ function PlayOnceGif({
   poster: string;
 }) {
   const reducedMotion = useReducedMotion();
-  const wasPlayingRef = useRef(false);
-  const [playbackId, setPlaybackId] = useState(0);
+  const [loopSource, setLoopSource] = useState("");
 
   useEffect(() => {
-    if (play && !wasPlayingRef.current && !reducedMotion) {
-      setPlaybackId((current) => current + 1);
-    }
-    wasPlayingRef.current = play;
-  }, [play, reducedMotion]);
-
-  const isPlaying = play && playbackId > 0 && !reducedMotion;
+    const controller = new AbortController();
+    let objectUrl = "";
+    // The uploaded WebPs have a finite loop count. Reuse their frames and
+    // change only the ANIM loop count (zero means repeat indefinitely).
+    fetch(gif, { signal: controller.signal })
+      .then(response => {
+        if (!response.ok) throw new Error("Illustration unavailable");
+        return response.arrayBuffer();
+      })
+      .then(buffer => {
+        if (controller.signal.aborted) return;
+        const view = new DataView(buffer);
+        for (let offset = 12; offset + 8 <= buffer.byteLength;) {
+          const size = view.getUint32(offset + 4, true);
+          if (offset + 8 + size > buffer.byteLength) break;
+          if (view.getUint32(offset) === 0x414e494d && size >= 6) {
+            view.setUint16(offset + 12, 0, true);
+            break;
+          }
+          offset += 8 + size + size % 2;
+        }
+        objectUrl = URL.createObjectURL(new Blob([buffer], { type: "image/webp" }));
+        setLoopSource(objectUrl);
+      })
+      .catch(() => { if (!controller.signal.aborted) setLoopSource(gif); });
+    return () => {
+      controller.abort();
+      if (objectUrl) URL.revokeObjectURL(objectUrl);
+    };
+  }, [gif]);
 
   return (
     <img
       alt={alt}
       className={className}
+      data-home-preload-src={gif}
       decoding="async"
-      src={isPlaying ? `${gif}?run=${playbackId}` : poster}
+      src={play && !reducedMotion && loopSource ? loopSource : poster}
     />
   );
 }
@@ -124,10 +146,6 @@ export function OpeningStatement() {
               {...bubbleProps("osteoarthritis")}
             >
               <div className="opening-bubble__float">
-                <img
-                  src={`${staticHome}/opening-bubble-osteoarthritis.svg`}
-                  alt=""
-                />
                 <span>osteoarthritis</span>
               <span className="opening-bubble__description">{descriptions.osteoarthritis}</span>
               </div>
@@ -137,7 +155,6 @@ export function OpeningStatement() {
               {...bubbleProps("hyaline")}
             >
               <div className="opening-bubble__float">
-                <img src={`${staticHome}/opening-bubble-hyaline.svg`} alt="" />
                 <span>
                   hyaline
                   <br />
@@ -153,7 +170,6 @@ export function OpeningStatement() {
               {...bubbleProps("focal")}
             >
               <div className="opening-bubble__float">
-                <img src={`${staticHome}/opening-bubble-focal.svg`} alt="" />
                 <span>
                   focal traumatic
                   <br />
@@ -167,7 +183,6 @@ export function OpeningStatement() {
               {...bubbleProps("gout")}
             >
               <div className="opening-bubble__float">
-                <img src={`${staticHome}/opening-bubble-gout.svg`} alt="" />
                 <span>chronic gout</span>
               <span className="opening-bubble__description">{descriptions.gout}</span>
               </div>
@@ -177,7 +192,6 @@ export function OpeningStatement() {
               {...bubbleProps("patellae")}
             >
               <div className="opening-bubble__float">
-                <img src={`${staticHome}/opening-bubble-patellae.svg`} alt="" />
                 <span>
                   chondromalacia
                   <br />
@@ -191,7 +205,6 @@ export function OpeningStatement() {
               {...bubbleProps("acl")}
             >
               <div className="opening-bubble__float">
-                <img src={`${staticHome}/opening-bubble-acl.svg`} alt="" />
                 <span>
                   status post ACL
                   <br />
@@ -205,10 +218,6 @@ export function OpeningStatement() {
               aria-hidden="true"
             >
               <div className="opening-bubble__float">
-                <img
-                  src={`${staticHome}/opening-bubble-decor-top.svg`}
-                  alt=""
-                />
               </div>
             </div>
             <div
@@ -216,10 +225,6 @@ export function OpeningStatement() {
               aria-hidden="true"
             >
               <div className="opening-bubble__float">
-                <img
-                  src={`${staticHome}/opening-bubble-decor-left.svg`}
-                  alt=""
-                />
               </div>
             </div>
             <div
@@ -227,10 +232,6 @@ export function OpeningStatement() {
               aria-hidden="true"
             >
               <div className="opening-bubble__float">
-                <img
-                  src={`${staticHome}/opening-bubble-decor-right.svg`}
-                  alt=""
-                />
               </div>
             </div>
           </div>
@@ -319,7 +320,7 @@ export function SportsTraumaScene({ play }: { play: boolean }) {
             <div className="opening-sports__stage" />
             <div className="opening-sports__spark" />
           </div>
-          <PlayOnceGif
+          <LoopingIllustration
             alt="A boy holding his knee after a sports injury"
             className="opening-sports__person"
             gif={`${staticGif}/boy-sports-injury-once.webp`}
@@ -343,7 +344,7 @@ export function RehabilitationScene({ play }: { play: boolean }) {
             <div className="opening-rehab__yellow" />
             <div className="opening-rehab__dot" />
           </div>
-          <PlayOnceGif
+          <LoopingIllustration
             alt="A young patient recovering after knee surgery"
             className="opening-rehab__person"
             gif={`${staticGif}/post-op-rehab-once.webp`}
@@ -398,7 +399,7 @@ export function ImpactScene({ play }: { play: boolean }) {
       </div>
       <SportsTraumaScene play={play} />
       <RehabilitationScene play={play} />
-      <PlayOnceGif
+      <LoopingIllustration
         alt="A person experiencing knee pain while using stairs"
         className="opening-impact__stairs"
         gif={`${staticGif}/going-up-the-stairs/stairs-pain-compressed.webp`}

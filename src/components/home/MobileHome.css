@@ -337,19 +337,20 @@
   transform: none;
 }
 .mobile-home .limitations-card {
-  width: 100%;
-  max-width: 352px;
-  height: 549px;
+  width: 320px;
+  max-width: 100%;
+  height: 493px;
 }
 .mobile-home .limitations-layer__flip,
 .mobile-home .limitations-layer__face,
 .mobile-home .limitations-layer__shadow {
-  width: 100%;
+  width: 367px;
 }
 .mobile-home .limitations-card-title {
-  left: 4% !important;
+  left: 50% !important;
   width: 92% !important;
   font-size: 32px !important;
+  translate: -50% 0 !important;
 }
 .mobile-home .limitations-card-body {
   left: 7%;
@@ -523,6 +524,13 @@
   }
   .mobile-home .opening-bubble span {
     font-size: 14px;
+  }
+  .mobile-home .limitations-card {
+    width: 286px;
+    height: 443px;
+  }
+  .mobile-home .limitations-layer {
+    --card-scale: 0.78;
   }
 }
 .mobile-home .opening-burden__world {

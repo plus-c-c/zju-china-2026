@@ -159,9 +159,13 @@
   outline-offset: 5px;
 }
 
-html.home-intro-open,
+/* Input is consumed while the intro plays. Retain the same scroll container
+   and gutter when the animation hands over to the first page. */
+html.home-intro-open {
+  overflow-y: scroll !important;
+}
 body.home-intro-open {
-  overflow: hidden !important;
+  overflow: visible !important;
 }
 
 @media (max-width: 640px) {
@@ -214,8 +218,8 @@ body.home-intro-open {
 .home-intro--ready .home-intro__tagline,
 .home-intro--ready .home-intro__next {
   animation-name: home-intro-fade-in;
-  animation-duration: 1400ms;
+  animation-duration: 1100ms;
   animation-delay: 0ms;
-  animation-timing-function: ease;
+  animation-timing-function: ease-out;
 }
 @keyframes home-intro-fade-in { from { opacity: 0; } to { opacity: 1; } }

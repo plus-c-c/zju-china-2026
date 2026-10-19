@@ -550,16 +550,16 @@
 
 .selp-shortcuts {
   display: grid;
-  width: min(64%, 874px);
+  width: 100%;
   margin: 0 auto;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(24px, 4.32cqw, 59px) clamp(24px, 7.45cqw, 102px);
+  gap: clamp(24px, 4.32cqw, 59px) clamp(24px, 4cqw, 55px);
 }
 
 .selp-shortcut {
   display: flex;
-  height: clamp(54px, 5.34cqw, 73px);
-  min-height: clamp(54px, 5.34cqw, 73px);
+  height: clamp(64px, 6.3cqw, 86px);
+  min-height: clamp(64px, 6.3cqw, 86px);
   align-items: center;
   justify-content: center;
   gap: clamp(8px, 1.02cqw, 14px);
@@ -568,7 +568,7 @@
   border-radius: 999px;
   background: rgb(255 255 255 / 32%);
   color: #173b64;
-  font-size: clamp(12px, 1.17cqw, 16px);
+  font-size: clamp(14px, 1.4cqw, 19px);
   font-weight: 600;
   line-height: 1.05;
   text-align: center;
@@ -752,7 +752,7 @@
 
 @media (max-width: 1200px) and (min-width: 701px) {
   .selp-shortcuts {
-    width: min(84%, 874px);
+    width: 100%;
     column-gap: clamp(28px, 4cqw, 48px);
   }
 }

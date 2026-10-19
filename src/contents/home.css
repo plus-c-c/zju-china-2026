@@ -282,6 +282,7 @@ body.home-story-open .app {
 .home-scroll-space {
   position: relative;
   z-index: 1;
+  overflow-anchor: none;
 }
 .home-scroll-space,
 .story-viewport,
