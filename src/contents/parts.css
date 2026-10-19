@@ -162,6 +162,13 @@
   align-items: start;
   gap: 22px;
 }
+.parts-grid > .parts-card:has(> .parts-details[open]) {
+  grid-column: 1 / -1;
+}
+.parts-grid > .parts-card:has(> .parts-details[open]) .parts-map {
+  max-width: 820px;
+  margin-inline: auto;
+}
 .parts-card {
   min-width: 0;
   border: 1px solid #d3dfed;
