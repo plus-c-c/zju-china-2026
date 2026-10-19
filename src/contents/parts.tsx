@@ -254,7 +254,7 @@ function PartCard({ part }: { part: Part }) {
             tabIndex={0}
             aria-label={`${part.id} DNA sequence`}
           >
-            {part.sequence.match(/.{1,60}/g)?.join("\n")}
+            {part.sequence}
           </pre>
           <a
             className="parts-registry-cta"
