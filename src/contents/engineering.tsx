@@ -24,8 +24,9 @@ import "./engineering.css";
  * Engineering page — layout and arrangement rules only. Each group's content
  * lives in its own file under `engineering/groups/` and is referenced here.
  *
- *   - four sections following the 2025 ZJU-China engineering page: Project
- *     Design / Wet Lab / Dry Lab / Human Practices;
+ *   - sections following the 2025 ZJU-China engineering page: Project
+ *     Design / Wet Lab / Dry Lab / Human Practices; Human Practices is
+ *     currently hidden behind the SHOW_HUMAN_PRACTICES switch below;
  *   - Wet Lab is split into four groups following the Notebook page, with
  *     SELP hydrogels and the ligation system merged into one group; Dry Lab
  *     holds Protein Hydrogel Modeling, Hardware, and Software (the SELP MD
@@ -40,8 +41,7 @@ import "./engineering.css";
  *   - each sub-module's own lead / outlook (引导段 / 展望段) sit at the
  *     cycle-button row: they are the first / last steps of the sequence, so
  *     the DBTL ring stays unlit and the panel shows no phase badge on them;
- *   - Project Design and Human Practices stay blank until their content is
- *     added.
+ *   - Project Design stays blank until its content is added.
  */
 interface Section {
   key: string;
@@ -51,7 +51,15 @@ interface Section {
   hidden?: boolean;
 }
 
-const SECTIONS: Section[] = [
+/**
+ * Feature switch for the Engineering Human Practices module. The content
+ * stays in the code so it can be restored at any time; while the switch is
+ * off the tab is removed from the navigation (locally and on the deployed
+ * site alike).
+ */
+const SHOW_HUMAN_PRACTICES = false;
+
+const ALL_SECTIONS: Section[] = [
   { key: "project-design", label: "Project Design", groups: [] },
   {
     key: "wet-lab",
@@ -75,6 +83,10 @@ const SECTIONS: Section[] = [
     hidden: true,
   },
 ];
+
+const SECTIONS = ALL_SECTIONS.filter(
+  (section) => SHOW_HUMAN_PRACTICES || section.key !== "human-practices",
+);
 
 export function Engineering() {
   const [activeKey, setActiveKey] = useState("wet-lab");
@@ -393,8 +405,8 @@ export function Engineering() {
             content
           )}
           {/* The shared references list accompanies sections that have
-              content; Project Design and Human Practices stay blank until
-              their modules are added. */}
+              content; Project Design stays blank until its module is added,
+              and Human Practices is hidden behind SHOW_HUMAN_PRACTICES. */}
           {activeSection.groups.length > 0 && <EngineeringReferences />}
         </article>
       </div>

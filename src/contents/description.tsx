@@ -31,7 +31,7 @@ function DescriptionFigure({
   alt,
   src,
 }: {
-  number: number;
+  number: number | string;
   title: string;
   children: ReactNode;
   alt: string;
@@ -203,7 +203,8 @@ const references = [
     Heir S, Nerhus TK, Røtterud JH, et al.{" "}
     <strong>
       Focal cartilage defects in the knee impair quality of life as much as
-      severe osteoarthritis.
+      severe osteoarthritis: a comparison of knee injury and osteoarthritis
+      outcome score in 4 patient categories scheduled for knee surgery.
     </strong>{" "}
     <em>American Journal of Sports Medicine.</em> 2010;38(2):231–237.{" "}
     <a href="https://doi.org/10.1177/0363546509352157">DOI</a>
@@ -212,7 +213,8 @@ const references = [
     Xie X, Zhang K, Li Y, et al.{" "}
     <strong>
       Global, regional, and national burden of osteoarthritis from 1990 to 2021
-      and projections to 2035.
+      and projections to 2035: a cross-sectional study for the Global Burden of
+      Disease Study 2021.
     </strong>{" "}
     <em>PLOS ONE.</em> 2025;20(5):e0324296.{" "}
     <a href="https://doi.org/10.1371/journal.pone.0324296">DOI</a>
@@ -249,7 +251,11 @@ const references = [
   </>,
   <>
     Morouço P, Fernandes C, Lattanzi W.{" "}
-    <strong>Challenges and Innovations in Osteochondral Regeneration.</strong>{" "}
+    <strong>
+      Challenges and Innovations in Osteochondral Regeneration: Insights from
+      Biology and Inputs from Bioengineering toward the Optimization of Tissue
+      Engineering Strategies.
+    </strong>{" "}
     <em>Journal of Functional Biomaterials.</em> 2021;12(1):17.{" "}
     <a href="https://doi.org/10.3390/jfb12010017">DOI</a>
   </>,
@@ -272,9 +278,10 @@ const references = [
     Niemeyer P, Hanus M, Belickas J, et al.{" "}
     <strong>
       Treatment of Large Cartilage Defects in the Knee by Hydrogel-Based
-      Autologous Chondrocyte Implantation.
+      Autologous Chondrocyte Implantation: A 5-Year Follow-Up of a Prospective,
+      Multicenter, Single-Arm Phase III Trial.
     </strong>{" "}
-    <em>Cartilage.</em> 2026;17(3):347–357.{" "}
+    <em>Cartilage.</em> 2026;17(3):347–357; first published online in 2025.{" "}
     <a href="https://doi.org/10.1177/19476035251334737">DOI</a>
   </>,
   <>
@@ -308,7 +315,8 @@ const references = [
       Ultrafast crosslinking, strongly adhesive de novo protein hydrogels
       promote cartilage regeneration.
     </strong>{" "}
-    <em>Bioactive Materials.</em> 2026;56:368–385.{" "}
+    <em>Bioactive Materials.</em> 2026;56:368–385; first published online in
+    2025.{" "}
     <a href="https://doi.org/10.1016/j.bioactmat.2025.10.009">DOI</a>
   </>,
   <>
@@ -658,6 +666,17 @@ export function Description() {
             complexity.
             <Citation refs={[18, 19, 20]} />
           </p>
+          <DescriptionFigure
+            number={7}
+            title="Pathological Factors and Corresponding Hydrogel Intervention Strategies"
+            alt="Pathological factors in osteoarthritis and corresponding hydrogel intervention strategies: panel A shows the aetiology of osteoarthritis across joint tissues and cell types, panel B shows hydrogel-based interventions in the joint"
+          >
+            Using osteoarthritis as an example, panel A illustrates the
+            pathological processes involving mechanical and inflammatory factors
+            and multiple cell types within the joint, while panel B presents
+            different forms of hydrogel-based intervention. Reproduced from Gan
+            et al. (2024), Figure 1.
+          </DescriptionFigure>
           <p>
             If every new form of cartilage damage requires an entirely new
             material formulation, diverse clinical needs will continually become
@@ -709,6 +728,19 @@ export function Description() {
             property design, functional module assembly, and biomanufacturing
             into one extensible system.
           </p>
+          <DescriptionFigure
+            number="0.1"
+            src="https://static.igem.wiki/teams/6102/wiki/images/design/01/00001.avif"
+            title="Comparison between traditional blending design and sequence-programmed design"
+            alt="Diagram contrasting traditional blending design, which mixes polymers, initiators, crosslinkers, and modifying groups, with sequence-programmed design, which encodes material information in DNA and produces photocrosslinked proteins"
+          >
+            Left: Traditional design relies on the mixing and grafting of
+            polymers, initiators, crosslinkers, and modifying groups. Right:
+            Sequence-programmed design encodes material information in DNA; the
+            DNA is transcribed and translated into proteins, which are then
+            photocrosslinked into a gel, aiming to improve batch-to-batch
+            reproducibility and programmability.
+          </DescriptionFigure>
           <div className="description-card-grid">
             <ExpandableCard number="01" title="Tunable Scaffold">
               We selected <strong>silk–elastin-like polypeptide (SELP)</strong>{" "}
@@ -800,17 +832,36 @@ export function Description() {
                 </p>
               </section>
               <section>
-                <h3>Figures 2–3 | Epidemiology and Injury Distribution</h3>
+                <h3>Figure 2 | Global Burden of Osteoarthritis</h3>
                 <p>
-                  Figure 2: Chen et al. (2026), Figure 1, licensed CC BY-NC-ND
-                  4.0. Figure 3: Jiang et al. (2026), Figure 3, licensed CC
-                  BY-NC-ND 4.0. Retain the original attribution and observe
-                  restrictions on commercial use and modification.
+                  Chen et al. (2026), Figure 1, licensed CC BY-NC-ND 4.0.
+                  Retain the original figure and complete attribution, and
+                  observe the restrictions on commercial use and derivative
+                  works.
                 </p>
                 <p className="description-credit-links">
                   <a href="https://doi.org/10.1016/j.jot.2025.11.005">
                     Figure 2 source
                   </a>
+                  <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">
+                    CC BY-NC-ND 4.0
+                  </a>
+                </p>
+              </section>
+              <section>
+                <h3>
+                  Figure 3 | Severity and Anatomical Distribution of Cartilage
+                  Injuries
+                </h3>
+                <p>
+                  Jiang et al. (2026), Figure 3, licensed CC BY-NC-ND 4.0. The
+                  original figure shows the distribution and severity grades of
+                  cartilage lesions at different sites within the knee in an
+                  arthroscopy cohort; these data are not a population-based
+                  prevalence estimate. Observe the restrictions on commercial
+                  use and modification.
+                </p>
+                <p className="description-credit-links">
                   <a href="https://doi.org/10.1111/os.70272">Figure 3 source</a>
                   <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">
                     CC BY-NC-ND 4.0
@@ -878,6 +929,27 @@ export function Description() {
                 <p className="description-credit-links">
                   <a href="https://doi.org/10.3390/gels12050350">
                     Figure 6 source
+                  </a>
+                  <a href="https://creativecommons.org/licenses/by/4.0/">
+                    CC BY 4.0
+                  </a>
+                </p>
+              </section>
+              <section>
+                <h3>
+                  Figure 7 | Pathological Factors and Hydrogel Intervention
+                  Needs
+                </h3>
+                <p>
+                  Gan et al. (2024), Figure 1, licensed CC BY 4.0. If the figure
+                  includes third-party graphics, such as BioRender elements,
+                  their reuse permissions must be checked separately; an
+                  open-access license for the article does not necessarily
+                  authorise unrestricted reuse of every component.
+                </p>
+                <p className="description-credit-links">
+                  <a href="https://doi.org/10.3390/biomedicines12040923">
+                    Figure 7 source
                   </a>
                   <a href="https://creativecommons.org/licenses/by/4.0/">
                     CC BY 4.0
