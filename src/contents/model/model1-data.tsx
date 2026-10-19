@@ -1,4 +1,8 @@
-/* AUTO-GENERATED from model.tsx (Model 1 — SELP Hydrogel Modeling). */
+/* Model 1 — SELP Hydrogel Modeling content (originally generated from
+   model.tsx; maintained by hand). */
+
+import type { ReactNode } from "react";
+import { MathFormula } from "../../components/MathFormula";
 
 export interface M1Part {
   t: "text" | "math" | "em" | "strong" | "link";
@@ -13,8 +17,8 @@ export interface M1Block {
   src?: string;
   alt?: string;
   width?: number;
-  head?: string[];
-  rows?: string[][];
+  head?: ReactNode[];
+  rows?: ReactNode[][];
 }
 
 export interface M1Step {
@@ -375,11 +379,42 @@ export const m1Steps: M1Step[] = [
         ],
       },
       {
+        t: "table",
+        head: ["Symbol", "Definition", "Unit"],
+        rows: [
+          [
+            <MathFormula>{"\\varepsilon_H"}</MathFormula>,
+            "Axial Hencky strain; positive for tension, negative for compression",
+            "Dimensionless",
+          ],
+          [
+            <MathFormula>{"L_{z,0}"}</MathFormula>,
+            "Initial axial box length",
+            "nm",
+          ],
+          [
+            <MathFormula>{"L_z'"}</MathFormula>,
+            "Deformed axial box length",
+            "nm",
+          ],
+          [
+            <MathFormula>{"L_{x,0},\\ L_{y,0}"}</MathFormula>,
+            "Initial transverse box lengths",
+            "nm",
+          ],
+          [
+            <MathFormula>{"L_x',\\ L_y'"}</MathFormula>,
+            "Deformed transverse box lengths",
+            "nm",
+          ],
+        ],
+      },
+      {
         t: "p",
         parts: [
           {
             t: "text",
-            v: "ith negative Hencky strain indicating compression. In the initial MD analysis, directional stress differences were calculated from the pressure tensor, with tension defined as positive:",
+            v: "In the initial MD analysis, directional stress differences were calculated from the pressure tensor, with tension defined as positive:",
           },
         ],
       },
