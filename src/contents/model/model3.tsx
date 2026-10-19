@@ -35,16 +35,17 @@ import "./model3.css";
  * · The core equation is always fully visible: it scales down to fit.
  */
 
-/* 主方程项（与 m3Steps 的 term 对应，step = 该项在推导中出现的步骤） */
-const MASTER_TERMS = [
-  { id: "selp", latex: "\\psi_{\\mathrm{SELP-Fe_3O_4}}", step: 2 },
-  { id: "fiber", latex: "\\psi_{\\mathrm{fiber}}", step: 5 },
-  { id: "particle", latex: "\\psi_{\\mathrm{particle}}", step: 6 },
-  { id: "orient", latex: "\\psi_{\\mathrm{orient}}", step: 4 },
-  { id: "dip", latex: "\\psi_{\\mathrm{dip}}", step: 3 },
-  { id: "crosslink", latex: "\\psi_{\\mathrm{crosslink}}", step: 8 },
-  { id: "fluid", latex: "\\psi_{\\mathrm{fluid}}", step: 7 },
-  { id: "coupling", latex: "\\psi_{\\mathrm{coupling}}", step: 7 },
+/* 主方程项（与 m3Steps 的 term 对应，steps = 该项在推导中出现的步骤）。
+   ψ_dip 在最终模型中被近似忽略，没有对应的步骤，只作为末项展示。 */
+const MASTER_TERMS: { id: string; latex: string; steps: number[] }[] = [
+  { id: "fiber", latex: "\\psi_{\\mathrm{fiber}}", steps: [2] },
+  { id: "orient", latex: "\\psi_{\\mathrm{orient}}", steps: [3, 4] },
+  { id: "selp", latex: "\\psi_{\\mathrm{SELP-Fe_3O_4}}", steps: [5] },
+  { id: "particle", latex: "\\psi_{\\mathrm{particle}}", steps: [6] },
+  { id: "fluid", latex: "\\psi_{\\mathrm{fluid}}", steps: [7] },
+  { id: "coupling", latex: "\\psi_{\\mathrm{coupling}}", steps: [7] },
+  { id: "crosslink", latex: "\\psi_{\\mathrm{crosslink}}", steps: [8] },
+  { id: "dip", latex: "\\psi_{\\mathrm{dip}}", steps: [] },
 ];
 
 function Parts({ parts }: { parts: M3Part[] }) {
@@ -98,6 +99,11 @@ function Blocks({ blocks }: { blocks: M3Block[] }) {
                 decoding="async"
                 style={block.width ? { maxWidth: block.width } : undefined}
               />
+              {block.caption ? (
+                <figcaption className="figure-caption">
+                  {block.caption}
+                </figcaption>
+              ) : null}
             </figure>
           );
         }
@@ -325,8 +331,9 @@ export function Model3() {
                 <MathFormula>{"\\psi ="}</MathFormula>
               </span>
               {MASTER_TERMS.map((term, index) => {
-                const on = activeStep >= term.step;
-                const fresh = activeStep === term.step;
+                const on =
+                  term.steps.length > 0 && activeStep >= Math.min(...term.steps);
+                const fresh = term.steps.includes(activeStep);
                 return (
                   <span
                     key={term.id}

@@ -322,6 +322,10 @@
   border-radius: 10px;
 }
 
+.m3-figure .figure-caption {
+  margin-top: 10px;
+}
+
 /* ===== 移动端 ===== */
 @media (max-width: 900px) {
   .m3-deck {

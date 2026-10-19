@@ -13,6 +13,8 @@ export interface M3Block {
   src?: string;
   alt?: string;
   width?: number;
+  /** Visible caption shown under the figure. */
+  caption?: string;
 }
 
 export interface M3Step {
@@ -356,7 +358,7 @@ export const m3Steps: M3Step[] = [
     num: 2,
     title: "SELP Non-Fibrous Matrix",
     goal: "Derive the non-fibrous matrix contribution and its effective stress.",
-    term: "selp",
+    term: "fiber",
     key: 1,
     blocks: [
       {
@@ -450,7 +452,7 @@ export const m3Steps: M3Step[] = [
     num: 3,
     title: "Magnetic Field Terms",
     goal: "Introduce the magnetic field and the dipolar interactions.",
-    term: "dip",
+    term: "orient",
     key: 14,
     blocks: [
       {
@@ -984,7 +986,7 @@ export const m3Steps: M3Step[] = [
     num: 5,
     title: "Wilson Fiber Free Energy per Unit Volume and Stress Tensor",
     goal: "Average the fiber energy into the Wilson fiber term and obtain its stress tensor.",
-    term: "fiber",
+    term: "selp",
     key: 12,
     blocks: [
       {
@@ -2528,20 +2530,23 @@ export const m3Steps: M3Step[] = [
       {
         t: "figure",
         src: "https://static.igem.wiki/teams/6102/wiki/images/model/model/b-field.avif",
-        alt: "Magnetic field simulation",
+        alt: "Full-space magnetic field strength map",
         width: 680,
+        caption: "Figure 1 | Full-space magnetic field strength map",
       },
       {
         t: "figure",
         src: "https://static.igem.wiki/teams/6102/wiki/images/model/model/b-xz-y-0-000mm.avif",
-        alt: "Magnetic field simulation",
+        alt: "Cross-sectional map of the magnetic field strength on the plane y = 0 mm",
         width: 680,
+        caption: "Figure 2 | Cross-sectional map of the magnetic field strength on the plane y = 0 mm",
       },
       {
         t: "figure",
         src: "https://static.igem.wiki/teams/6102/wiki/images/model/model/b-yz-x-0-000mm.avif",
-        alt: "Magnetic field simulation",
+        alt: "Cross-sectional map of the magnetic field strength on the plane x = 0 mm",
         width: 680,
+        caption: "Figure 3 | Cross-sectional map of the magnetic field strength on the plane x = 0 mm",
       },
       {
         t: "p",
@@ -2555,20 +2560,23 @@ export const m3Steps: M3Step[] = [
       {
         t: "figure",
         src: "https://static.igem.wiki/teams/6102/wiki/images/model/model/fiber-axial-strain-epsf.avif",
-        alt: "Magnetic field simulation",
+        alt: "Spatial distribution map of the local normal strain along the fiber axial direction",
         width: 680,
+        caption: "Figure 4 | Spatial distribution map of the local normal strain along the fiber axial direction",
       },
       {
         t: "figure",
         src: "https://static.igem.wiki/teams/6102/wiki/images/model/model/magnetic-field-h-x.avif",
-        alt: "Magnetic field simulation",
+        alt: "Spatial distribution map of the magnetic field within the hydrogel",
         width: 680,
+        caption: "Figure 5 | Spatial distribution map of the magnetic field within the hydrogel",
       },
       {
         t: "figure",
         src: "https://static.igem.wiki/teams/6102/wiki/images/model/model/e-z-local-young-modulus.avif",
-        alt: "Magnetic field simulation",
+        alt: "Distribution map of Young’s modulus along the z-direction inside the hydrogel",
         width: 680,
+        caption: "Figure 6 | Distribution map of Young’s modulus along the z-direction inside the hydrogel",
       },
     ],
   },
