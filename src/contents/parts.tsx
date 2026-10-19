@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import collection from "./parts-data.json";
 import "./parts.css";
 
@@ -51,6 +51,21 @@ function SourceText({ text }: { text: string }) {
 }
 
 function SequenceMap({ part }: { part: Part }) {
+  const svgRef = useRef<SVGSVGElement>(null);
+  const [labelSize, setLabelSize] = useState(12);
+
+  useEffect(() => {
+    const svg = svgRef.current;
+    if (!svg) return;
+    const observer = new ResizeObserver(([entry]) => {
+      if (entry.contentRect.width > 0) {
+        setLabelSize((16 * 520) / entry.contentRect.width);
+      }
+    });
+    observer.observe(svg);
+    return () => observer.disconnect();
+  }, []);
+
   const length = part.sequence.length;
   const left = 12;
   const width = 496;
@@ -58,8 +73,8 @@ function SequenceMap({ part }: { part: Part }) {
   const extraHeight = (lanes - 1) * 52;
   return (
     <figure className="parts-map">
-      <PartMeta part={part} />
       <svg
+        ref={svgRef}
         viewBox={`0 0 520 ${94 + extraHeight}`}
         role="img"
         aria-label={`${part.shortName}, ${length} base pairs. ${part.features.map((f) => `${f.label}: bases ${f.start} to ${f.end}`).join("; ")}.`}
@@ -111,7 +126,7 @@ function SequenceMap({ part }: { part: Part }) {
                 y="15"
                 textAnchor="middle"
                 fill="#31476a"
-                fontSize="12"
+                fontSize={labelSize}
                 fontWeight="600"
               >
                 {index + 1}
@@ -135,7 +150,7 @@ function SequenceMap({ part }: { part: Part }) {
                 ratio === 0 ? "start" : ratio === 1 ? "end" : "middle"
               }
               fill="#62748b"
-              fontSize="12"
+              fontSize={labelSize}
             >
               {ratio === 0 ? "1" : Math.round(length * ratio).toLocaleString()}
               {ratio === 1 ? " bp" : ""}
@@ -203,7 +218,7 @@ function PartCard({ part }: { part: Part }) {
           : undefined
       }
     >
-      {part.kind === "basic" && <PartMeta part={part} />}
+      <PartMeta part={part} />
       <h4>{part.title}</h4>
       {part.kind === "composite" && <SequenceMap part={part} />}
       <details className="parts-details">
