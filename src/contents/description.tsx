@@ -70,6 +70,10 @@ function ExpandableCard({
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-|-$/g, "")}`;
+  const displayTitle = title.replace(
+    /(micro|bio|manu|environ)(?=environment|manufacturing|facturing|ment)/gi,
+    "$1\u00ad",
+  );
 
   return (
     <section
@@ -80,6 +84,7 @@ function ExpandableCard({
       <button
         type="button"
         className="description-expandable__trigger"
+        aria-label={title}
         aria-expanded={isOpen}
         aria-controls={contentId}
         onClick={() => setIsOpen((open) => !open)}
@@ -87,7 +92,7 @@ function ExpandableCard({
         <span className="description-expandable__icon" aria-hidden="true">
           {isOpen ? "−" : "+"}
         </span>
-        <span className="description-expandable__title">{title}</span>
+        <span className="description-expandable__title">{displayTitle}</span>
       </button>
       <div
         id={contentId}
