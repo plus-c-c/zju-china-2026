@@ -1,4 +1,5 @@
-import { useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { flushSync } from "react-dom";
 import {
   Timeline,
   type TimelineDetail,
@@ -14,6 +15,10 @@ const SURVEY_FIG =
   "https://static.igem.wiki/teams/6102/wiki/images/engagement/ihp/questionnaire/h";
 const ACTIVITY_FIG =
   "https://static.igem.wiki/teams/6102/wiki/images/engagement/ihp/questionnaire/l";
+const SYRINGE_FIG =
+  "https://static.igem.wiki/teams/6102/wiki/images/engagement/ihp/questionnaire/r";
+const LECTURE_FIG =
+  "https://static.igem.wiki/teams/6102/wiki/images/engagement/ihp/questionnaire/s";
 const SEED_RING =
   "https://static.igem.wiki/teams/6102/wiki/images/engagement/ihp/seed-ring.avif";
 
@@ -132,10 +137,10 @@ const timelineItems: TimelineItem[] = timelineImageIds.map(
 /* Blocks                                                             */
 /* ------------------------------------------------------------------ */
 
-function SeedBlock() {
+function SeedMethodBlock() {
   return (
     <>
-      <h3 className="mt-4 mb-3">SEED — our iHP framework</h3>
+      <h3 className="mt-4 mb-3">SEED — the iHP framework</h3>
       <TransparentImage
         src={SEED_RING}
         alt="The SEED cycle — Spark a Question, Explore & Analyze, Engineering & Implementation, Dialogue & Feedback — as the outer ring, with the Design–Build–Test–Learn cycle nested inside it"
@@ -188,28 +193,30 @@ function SeedBlock() {
             two cycles nest.
       </p>
       <p>
-        Our work follows <strong>mixed-methods research</strong> (Creswell &amp;
-        Plano Clark, 2018): understanding a complex social phenomenon cannot
-        rely on a single type of data. We deliberately collect, analyze and
-        integrate quantitative data (surveys and statistics — how many, how
-        distributed, what relationships exist) and qualitative data
-        (one-to-one interviews — why things happen, how people understand them,
-        which contexts and mechanisms lie behind them). The NIH&rsquo;s
-        mixed-methods guidance makes the same point: integrated quantitative and
-        qualitative evidence explains a problem better than either type alone.
+        Every design cycle in the narrative —{" "}
+        <strong>Evidence-based Co-design</strong> and{" "}
+        <strong>Situated Implementation</strong> — runs one SEED loop: the
+        question that sparked it, what we explored, the engineering work that
+        followed, and the dialogue that closed the loop. The cycles themselves
+        are written on the NEST page, each paragraph tagged with its SEED
+        phase.
       </p>
+    </>
+  );
+}
+
+function CoDesignBlock() {
+  return (
+    <>
+      <h3 className="mt-4 mb-3">E — Evidence-based Co-design</h3>
       <p>
-        Each design iteration follows one SEED cycle: the question that sparked
-        it, what we explored, the engineering work that followed, and the
-        dialogue that closed the loop.
+        The first three cycles turn the needs we discovered into a material:
+        SELP as a programmable filler, a linker system that lets us attach
+        functional modules, and the modules that answer OA&rsquo;s vicious
+        cycle. Each cycle is one SEED loop.
       </p>
-      <SeedReaderRail />
 
-      <h4 className="mt-4 mb-2" data-toc="include">
-        Evidence-based Co-design
-      </h4>
-
-      <h5 className="mt-4 mb-2">Cycle 1 — SELP</h5>
+      <h4 className="mt-4 mb-2">Cycle 1 — SELP</h4>
       <p data-seed-phase="spark">S: Based on the background research,
         we wanted to design a material that can heal a broad range of hyaline
         cartilage defects, starting with a filler that meets the complex
@@ -240,7 +247,7 @@ function SeedBlock() {
         experiments that followed confirmed the design&rsquo;s reliability.
       </p>
 
-      <h5 className="mt-4 mb-2">Cycle 2 — Linker System</h5>
+      <h4 className="mt-4 mb-2">Cycle 2 — Linker System</h4>
       <p data-seed-phase="spark">S: Reading the literature made clear
         that filling the defect alone is not enough. To fit the repair needs of
         different clinical micro-environments we wanted to add therapy-related
@@ -263,7 +270,7 @@ function SeedBlock() {
         doctors and researchers, who agreed with it.
       </p>
 
-      <h5 className="mt-4 mb-2">Cycle 3 — Functional Modules</h5>
+      <h4 className="mt-4 mb-2">Cycle 3 — Functional Modules</h4>
       <p data-seed-phase="spark">S: With the programmable platform in
         place, we chose OA as NEST&rsquo;s first concrete application and asked
         doctors whether the material would fit clinical needs.
@@ -291,11 +298,21 @@ function SeedBlock() {
         programmable modules cover almost every case.
       </p>
 
-      <h4 className="mt-5 mb-2" data-toc="include">
-        Situated Implementation
-      </h4>
+    </>
+  );
+}
 
-      <h5 className="mt-4 mb-2">Cycle 1 — Hardware</h5>
+function SituatedBlock() {
+  return (
+    <>
+      <h3 className="mt-4 mb-3">S — Situated Implementation</h3>
+      <p>
+        A material only matters if it reaches the clinic. The next three cycles
+        carry NEST into practice — hardware, manufacturing, and market access —
+        each again run as a SEED loop with the stakeholders who will use it.
+      </p>
+
+      <h4 className="mt-4 mb-2">Cycle 1 — Hardware</h4>
       <p data-seed-phase="spark">S: To bring the project into
         clinical use, we designed a hardware system matched to all of our
         biological designs: a first version combined an endoscope and a
@@ -319,7 +336,87 @@ function SeedBlock() {
         scheme — which stakeholders also approved.
       </p>
 
-      <h5 className="mt-4 mb-2">Cycle 2 — Manufacturing</h5>
+      <h4 className="mt-5 mb-3" data-toc="include">
+        Syringe operation questionnaire
+      </h4>
+      <p>
+        The syringe is the part of the hardware the clinician actually holds, so
+        before fixing its design we ran an operation-experience questionnaire.
+        In the simulated run 24 participants — clinicians, researchers, device
+        developers, students and other users — each evaluated three
+        configurations (A, B, C) in a balanced repeated-measures design, giving
+        72 evaluations. The figures compare the configurations on start-up
+        force, resistance, speed and stop control, hand fatigue, operational
+        problems and overall satisfaction; configuration B had the most
+        balanced profile, which informed the scheme we carried forward. These
+        are simulated results for layout and comparison, not clinical
+        evidence.
+      </p>
+      <Figure
+        src={`${SYRINGE_FIG}/r1-participant-design-en.avif`}
+        alt="Figure R1 — participant profile and evaluation design"
+        caption={
+          <>
+            <strong>
+              Figure R1. Participant profile and evaluation design (24
+              participants, 72 evaluations).
+            </strong>{" "}
+            (A) Participant roles. (B) Prior syringe use. (C) Balanced
+            repeated-measures design in which each participant evaluated
+            configurations A, B and C. The 72 evaluations are not 72 independent
+            participants.
+          </>
+        }
+      />
+      <Figure
+        src={`${SYRINGE_FIG}/r2-performance-profile-en.avif`}
+        alt="Figure R2 — favourable response profile across syringe configurations"
+        caption={
+          <>
+            <strong>
+              Figure R2. Favourable response profile across syringe
+              configurations (n = 24 per configuration).
+            </strong>{" "}
+            Values show the proportion of favourable responses for start force,
+            resistance suitability, speed control, output smoothness, stop
+            control and hand fatigue. Configuration B was simulated as the most
+            balanced; Configuration C showed more difficulty with start-up and
+            fatigue. These are simulated differences, not evidence of clinical
+            superiority.
+          </>
+        }
+      />
+      <Figure
+        src={`${SYRINGE_FIG}/r3-problems-overall-en.avif`}
+        alt="Figure R3 — operational problems and overall evaluation"
+        caption={
+          <>
+            <strong>Figure R3. Operational problems and overall evaluation.</strong>{" "}
+            (A) Proportion reporting any operational problem, no problem, or
+            unable to judge (Q11). (B) Satisfaction (Q12 D+E) and willingness to
+            reuse (Q13 D+E) by configuration. Configuration B had the most
+            favourable simulated profile; Configuration C showed more start-up
+            difficulty and fatigue. These are simulated differences, not
+            evidence of clinical superiority.
+          </>
+        }
+      />
+      <Figure
+        src={`${SYRINGE_FIG}/r4-feedback-themes-en.avif`}
+        alt="Figure R4 — illustrative operator feedback themes"
+        caption={
+          <>
+            <strong>
+              Figure R4. Illustrative operator feedback themes for
+              configurations A, B, C and general suggestions.
+            </strong>{" "}
+            The statements are simulated feedback directions, not verbatim
+            quotes, and are not frequency-counted.
+          </>
+        }
+      />
+
+      <h4 className="mt-4 mb-2">Cycle 2 — Manufacturing</h4>
       <p data-seed-phase="spark">S: We wanted our material to be
         produced at factory scale and discussed sample production with Beijing
         Weixinkang. They invited us to cooperate and advised us to consider
@@ -350,9 +447,9 @@ function SeedBlock() {
         agreement.
       </p>
 
-      <h5 className="mt-4 mb-2">
+      <h4 className="mt-4 mb-2">
         Cycle 3 — Entrepreneurship &amp; Market Access
-      </h5>
+      </h4>
       <p data-seed-phase="spark">S: As a material entering the human
         body, NEST must be careful about product safety and face many
         market-access reviews. We had many questions about the approval process,
@@ -386,7 +483,7 @@ function SeedBlock() {
 function DiscoveryBlock() {
   return (
     <>
-      <h3 className="mt-4 mb-3">Need-led Discovery</h3>
+      <h3 className="mt-4 mb-3">N — Need-led Discovery</h3>
       <p>
         After a member of our team suffered an acute cartilage injury, we became
         interested in hyaline cartilage damage. It can lead to many conditions —
@@ -583,7 +680,7 @@ function DiscoveryBlock() {
 function ImpactBlock() {
   return (
     <>
-      <h3 className="mt-4 mb-3">Trust &amp; Impact</h3>
+      <h3 className="mt-4 mb-3">T — Trust and Lasting Impact</h3>
       <p>
         <strong>Sustaining the commercialization.</strong> Medical materials
         take a long time to reach the market — far longer than the iGEM season —
@@ -725,6 +822,146 @@ function ImpactBlock() {
           </>
         }
       />
+
+      <h4 className="mt-5 mb-3" data-toc="include">
+        SynBio lecture — pre/post questionnaire
+      </h4>
+      <p>
+        Our synthetic-biology lectures were evaluated with a pre/post
+        questionnaire completed by the same 24 participants: eight questions
+        before the lecture (prior exposure, self-rated understanding, attitudes
+        and expectations) and twelve after it (knowledge, attitude, willingness
+        and technology acceptance). The figures summarise the baseline we
+        started from, what changed, and what participants still wanted to know.
+        As with the other questionnaire figures on this page, the responses are
+        simulated illustrative data, not real submissions.
+      </p>
+      <Figure
+        src={`${LECTURE_FIG}/s1-pre-awareness-en.avif`}
+        alt="Figure S1 — pre-lecture awareness and self-rated understanding"
+        caption={
+          <>
+            <strong>
+              Figure S1. Pre-lecture awareness and self-rated understanding (n =
+              24).
+            </strong>{" "}
+            (A) Prior exposure to synthetic biology. (B) Self-rated
+            understanding (mean 2.17/5; 66.7% rated 1–2). (C) Prior awareness of
+            iGEM. All participants answered every item.
+          </>
+        }
+      />
+      <Figure
+        src={`${LECTURE_FIG}/s2-pre-attitudes-en.avif`}
+        alt="Figure S2 — pre-lecture attitudes and expectations"
+        caption={
+          <>
+            <strong>
+              Figure S2. Pre-lecture attitudes and expectations (n = 24).
+            </strong>{" "}
+            (A) Feelings about synthetic biology (multi-select). (B) Overall
+            attitude toward synthetic biology. (C) Topics participants most
+            wanted to learn about before the lecture (up to three selections).
+          </>
+        }
+      />
+      <Figure
+        src={`${LECTURE_FIG}/s3-post-knowledge-needs-en.avif`}
+        alt="Figure S3 — post-lecture knowledge, attitude, and information needs"
+        caption={
+          <>
+            <strong>
+              Figure S3. Post-lecture knowledge, attitude, and information needs
+              (n = 24).
+            </strong>{" "}
+            (A) Correct answer rate by knowledge question; the mean was 76.7%
+            (3.83/5). (B) Post-lecture overall attitude. (C) Information
+            participants most wanted after the lecture (up to three selections;
+            69 selections in total).
+          </>
+        }
+      />
+      <Figure
+        src={`${LECTURE_FIG}/s4-understanding-acceptance-en.avif`}
+        alt="Figure S4 — self-rated understanding and technology acceptance"
+        caption={
+          <>
+            <strong>
+              Figure S4. Self-rated understanding and technology acceptance
+              (paired, n = 24).
+            </strong>{" "}
+            (A) Self-rated understanding increased from a mean of 2.17 to 3.63
+            (1–5 scale). (B) Willingness to work in a related field and
+            acceptance of a product with non-live engineered output versus a
+            product containing live engineered bacteria. The product scenario
+            was hypothetical and the responses are simulated.
+          </>
+        }
+      />
+      <Figure
+        src={`${LECTURE_FIG}/s5-feedback-themes-en.avif`}
+        alt="Figure S5 — illustrative feedback themes before and after the lecture"
+        caption={
+          <>
+            <strong>
+              Figure S5. Illustrative feedback themes before and after the
+              lecture.
+            </strong>{" "}
+            The statements are simulated feedback directions, not verbatim
+            quotes, and are not frequency-counted.
+          </>
+        }
+      />
+    </>
+  );
+}
+
+function MixedMethodsBlock() {
+  return (
+    <>
+      <h3 className="mt-4 mb-3">Mixed methods research</h3>
+      <p>
+        Our work follows <strong>mixed-methods research</strong> (Creswell &amp;
+        Plano Clark, 2018): understanding a complex social phenomenon cannot
+        rely on a single type of data. We deliberately collect, analyze and
+        integrate quantitative data (surveys and statistics — how many, how
+        distributed, what relationships exist) and qualitative data
+        (one-to-one interviews — why things happen, how people understand them,
+        which contexts and mechanisms lie behind them). The NIH&rsquo;s
+        mixed-methods guidance makes the same point: integrated quantitative and
+        qualitative evidence explains a problem better than either type alone.
+      </p>
+      <p>
+        In practice the survey gave us breadth — how common cartilage pain is,
+        who it affects and which treatments fail — while the interviews gave us
+        depth — why patients wait, why doctors under-diagnose, and how a device
+        fits an operating room. We integrated the two in the PRD documents that
+        opened each engineering cycle, so every design change can be traced back
+        to a need that both kinds of evidence support.
+      </p>
+    </>
+  );
+}
+
+function AnthroBlock() {
+  return (
+    <>
+      <h3 className="mt-4 mb-3">Anthropology &amp; philosophy</h3>
+      <p>
+        We also fold humanities discussion and reflection into the project — not
+        only about how cartilage health is diagnosed and healed, but also about
+        the iGEM community and the ethics of synthetic biology. This lens keeps
+        asking who is heard and who is missed when a technology enters the
+        clinic: it shaped how we read the &ldquo;invisible&rdquo; pain in our
+        survey and led us to work with anthropology scholars on the structural
+        reasons small illnesses go unnoticed.
+      </p>
+      <p>
+        The outcomes of that work — two papers written with anthropology
+        scholars and the medical-anthropology lectures and seminars we ran for
+        future doctors — are described under{" "}
+        <strong>T — Trust and Lasting Impact</strong>.
+      </p>
     </>
   );
 }
@@ -760,36 +997,327 @@ function EngagementBlock() {
 /* Page                                                               */
 /* ------------------------------------------------------------------ */
 
-const HP_MODULES = [
-  { key: "seed", label: "SEED" },
-  { key: "discovery", label: "Need-led Discovery" },
-  { key: "impact", label: "Trust & Impact" },
+const HP_PAGES = [
+  { key: "toolbox", label: "Toolbox" },
+  { key: "nest", label: "NEST" },
   { key: "engagement", label: "Stakeholder Engagement" },
 ];
 
-export function HumanPractices() {
-  const [activeModule, setActiveModule] = useState(0);
-  const navRef = useRef<HTMLDivElement>(null);
-  const prevModuleRef = useRef(0);
+function ToolboxPage() {
+  const [tab, setTab] = useState(0);
+  const tabs = [
+    { key: "seed", label: "SEED", node: <SeedMethodBlock /> },
+    { key: "mixed", label: "Mixed Methods", node: <MixedMethodsBlock /> },
+    {
+      key: "anthro",
+      label: "Anthropology & Philosophy",
+      node: <AnthroBlock />,
+    },
+  ];
+  return (
+    <>
+      <div className="eng-subnav">
+        {tabs.map((entry, index) => (
+          <button
+            key={entry.key}
+            type="button"
+            className={`eng-subnav-button ${tab === index ? "active" : ""}`}
+            aria-pressed={tab === index}
+            onClick={() => setTab(index)}
+          >
+            {entry.label}
+          </button>
+        ))}
+      </div>
+      {tabs[tab].node}
+    </>
+  );
+}
 
-  // Switching a block jumps back to the block buttons — the new block may be
-  // much shorter, so the current scroll position could otherwise end up past
-  // the content that is still shown (same pattern as the Model page).
-  useLayoutEffect(() => {
-    if (prevModuleRef.current === activeModule) return;
-    prevModuleRef.current = activeModule;
-    const nav = navRef.current;
-    if (!nav) return;
+function NestPage() {
+  const [tab, setTab] = useState(0);
+  const tabs = [
+    {
+      key: "need",
+      label: "N · Need-led Discovery",
+      node: <DiscoveryBlock />,
+    },
+    {
+      key: "codesign",
+      label: "E · Evidence-based Co-design",
+      node: <CoDesignBlock />,
+    },
+    {
+      key: "situated",
+      label: "S · Situated Implementation",
+      node: <SituatedBlock />,
+    },
+    {
+      key: "trust",
+      label: "T · Trust and Lasting Impact",
+      node: <ImpactBlock />,
+    },
+  ];
+  return (
+    <>
+      <div className="eng-subnav ihp-subnav-row">
+        {tabs.map((entry, index) => (
+          <button
+            key={entry.key}
+            type="button"
+            className={`eng-subnav-button ${tab === index ? "active" : ""}`}
+            aria-pressed={tab === index}
+            onClick={() => setTab(index)}
+          >
+            {entry.label}
+          </button>
+        ))}
+      </div>
+      {tabs[tab].node}
+      {tab >= 1 && tab <= 2 && <SeedReaderRail key={tab} />}
+    </>
+  );
+}
+
+/** Whole-page swipe between the pages, reusing the cross-page transition from
+ *  the Experiments ↔ Results pair. Set to false for instant switching. */
+const HP_PAGE_SWIPE = true;
+/** Matches the cross-page swipe transition in toc.css. */
+const HP_PAGE_SWIPE_MS = 640;
+/** Keeps the incoming section heading just below the fixed site header. */
+const HP_SECTION_OFFSET = 96;
+
+export function HumanPractices() {
+  /* null = overview only; no section content is rendered or reachable. */
+  const [page, setPage] = useState<number | null>(null);
+  const navRef = useRef<HTMLDivElement>(null);
+  const articleRef = useRef<HTMLElement>(null);
+  const busyRef = useRef(false);
+  const timerRef = useRef(0);
+  const pageRef = useRef<number | null>(null);
+  const openScrollRef = useRef<number | null>(null);
+  const actionsRef = useRef({
+    open: (_index: number) => {},
+    collapse: () => {},
+    reset: () => {},
+  });
+
+  const setPageSync = (value: number | null) => {
+    pageRef.current = value;
+    /* The overview block sits directly above NEST, so it has no footer: its
+       last element is the three buttons. */
+    document.documentElement.classList.toggle("ihp-overview", value === null);
+    flushSync(() => setPage(value));
+  };
+
+  /* Put the section's sub-navigation (or its title) at the top of the page,
+     so the reading starts right below the site header. */
+  const alignSectionTop = () => {
+    const article = articleRef.current;
+    if (!article) return;
+    const anchor = article.querySelector<HTMLElement>(
+      ".ihp-section .eng-subnav, .ihp-section h3",
+    );
+    const top = anchor
+      ? Math.max(
+          0,
+          anchor.getBoundingClientRect().top + window.scrollY - HP_SECTION_OFFSET,
+        )
+      : 0;
+    window.scrollTo({ top, behavior: "instant" });
+    openScrollRef.current = window.scrollY;
+  };
+
+  /* Overview state: the page ends just after the three buttons. */
+  const alignOverviewBottom = () => {
+    const article = articleRef.current;
+    if (!article) return;
+    const bottom = article.getBoundingClientRect().bottom + window.scrollY;
+    const max = document.documentElement.scrollHeight - window.innerHeight;
     window.scrollTo({
-      top: nav.getBoundingClientRect().top + window.scrollY - 96,
+      top: Math.min(max, Math.max(0, bottom - window.innerHeight + 8)),
       behavior: "instant",
     });
-  }, [activeModule]);
+    openScrollRef.current = null;
+  };
+
+  const openSection = (index: number) => {
+    setPageSync(index);
+    alignSectionTop();
+  };
+
+  const collapseSection = () => {
+    setPageSync(null);
+    alignOverviewBottom();
+  };
+
+  const reduceMotion = () =>
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* direction "down": the view pans down to the section below; "up": back up
+     to the overview. */
+  const runSwipe = (direction: "up" | "down", swap: () => void) => {
+    const root = document.documentElement;
+    busyRef.current = true;
+    window.clearTimeout(timerRef.current);
+
+    type ViewTransitionDocument = Document & {
+      startViewTransition?: (
+        update: () => void,
+      ) => { finished: Promise<void> };
+    };
+    const startViewTransition = (document as ViewTransitionDocument)
+      .startViewTransition;
+    if (startViewTransition) {
+      root.setAttribute("data-ihp-swipe", direction);
+      const transition = startViewTransition.call(document, swap);
+      void transition.finished
+        .catch(() => undefined)
+        .finally(() => {
+          root.removeAttribute("data-ihp-swipe");
+          busyRef.current = false;
+        });
+      return;
+    }
+
+    /* Fallback for browsers without View Transitions: the horizontal stage
+       slide used by the cross-page swipe. */
+    const exit = direction === "down" ? "left" : "right";
+    const enter = exit === "left" ? "right" : "left";
+    root.classList.add(`page-swipe-exit-${exit}`);
+    timerRef.current = window.setTimeout(() => {
+      root.classList.remove(`page-swipe-exit-${exit}`);
+      swap();
+      root.classList.add(`page-swipe-enter-${enter}`, "page-swipe-instant");
+      void document.body.offsetHeight;
+      requestAnimationFrame(() => {
+        root.classList.remove("page-swipe-instant");
+        root.classList.add("page-swipe-run");
+        timerRef.current = window.setTimeout(() => {
+          root.classList.remove(`page-swipe-enter-${enter}`, "page-swipe-run");
+          busyRef.current = false;
+        }, HP_PAGE_SWIPE_MS);
+      });
+    }, HP_PAGE_SWIPE_MS);
+  };
+
+  const selectPage = (index: number) => {
+    if (busyRef.current || index === pageRef.current) return;
+    if (!HP_PAGE_SWIPE || reduceMotion()) {
+      openSection(index);
+      return;
+    }
+    /* The overview is directly above the three pages: move down to open a
+       page, up to go back to the overview. */
+    const direction =
+      pageRef.current === null || index > pageRef.current ? "down" : "up";
+    runSwipe(direction, () => openSection(index));
+  };
+
+  const collapseWithSwipe = () => {
+    if (busyRef.current || pageRef.current === null) return;
+    if (!HP_PAGE_SWIPE || reduceMotion()) {
+      collapseSection();
+      return;
+    }
+    runSwipe("up", collapseSection);
+  };
+
+  /* Back at the very top the page returns to the overview-only state, so a
+     further scroll down locks at the three buttons again. */
+  const resetToOverview = () => {
+    if (busyRef.current || pageRef.current === null) return;
+    setPageSync(null);
+    openScrollRef.current = null;
+  };
+
+  actionsRef.current = {
+    open: selectPage,
+    collapse: collapseWithSwipe,
+    reset: resetToOverview,
+  };
+
+  /* With the section heading at the top, one scroll up runs the swipe in
+     reverse and returns to the overview-only page. */
+  useEffect(() => {
+    let touchY = 0;
+    const atSectionTop = () =>
+      pageRef.current !== null &&
+      openScrollRef.current !== null &&
+      window.scrollY <= openScrollRef.current + 2;
+
+    const onWheel = (event: WheelEvent) => {
+      if (event.deltaY >= 0 || !atSectionTop() || busyRef.current) return;
+      event.preventDefault();
+      actionsRef.current.collapse();
+    };
+    const onTouchStart = (event: TouchEvent) => {
+      touchY = event.touches[0]?.clientY ?? 0;
+    };
+    const onTouchMove = (event: TouchEvent) => {
+      const y = event.touches[0]?.clientY ?? 0;
+      if (y > touchY + 6 && atSectionTop() && !busyRef.current) {
+        actionsRef.current.collapse();
+      }
+    };
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (
+        (event.key === "ArrowUp" || event.key === "PageUp") &&
+        atSectionTop() &&
+        !busyRef.current
+      ) {
+        event.preventDefault();
+        actionsRef.current.collapse();
+      }
+    };
+    /* Back at the top of the page (e.g. via the back-to-top button) the
+       section closes silently, so scrolling down stops at the buttons. */
+    const onScroll = () => {
+      if (pageRef.current === null || busyRef.current) return;
+      if (window.scrollY > 1) return;
+      actionsRef.current.reset();
+    };
+    window.addEventListener("wheel", onWheel, { passive: false });
+    window.addEventListener("touchstart", onTouchStart, { passive: true });
+    window.addEventListener("touchmove", onTouchMove, { passive: true });
+    window.addEventListener("keydown", onKeyDown);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("wheel", onWheel);
+      window.removeEventListener("touchstart", onTouchStart);
+      window.removeEventListener("touchmove", onTouchMove);
+      window.removeEventListener("keydown", onKeyDown);
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+    document.documentElement.classList.toggle("ihp-overview", page === null);
+  }, [page]);
+
+  // Leave no swipe classes behind if the page unmounts mid-transition.
+  useEffect(
+    () => () => {
+      window.clearTimeout(timerRef.current);
+      const root = document.documentElement;
+      root.classList.remove(
+        "ihp-overview",
+        "page-swipe-exit-left",
+        "page-swipe-exit-right",
+        "page-swipe-enter-left",
+        "page-swipe-enter-right",
+        "page-swipe-run",
+        "page-swipe-instant",
+      );
+      root.removeAttribute("data-ihp-swipe");
+    },
+    [],
+  );
 
   return (
     <div className="row mt-4 mb-5">
       <div className="col-lg-10 mx-auto">
-        <article>
+        <article ref={articleRef}>
           <h2 className="mb-4">Integrated Human Practices</h2>
           <p>
             Integrated Human Practices is how our project meets the world
@@ -798,29 +1326,37 @@ export function HumanPractices() {
             should answer a real problem. Early in our field work we noticed an
             odd inversion — the people around us who described cartilage pain
             were many, while the cases recorded in the medical system were few.
-            This page documents the framework we used to work with that gap, the
-            stakeholders we engaged, and how their input changed the project.
-            Use the buttons below to move between its blocks.
+            Below this overview the page is split into three pages: the{" "}
+            <strong>Toolbox</strong> explains the methods we used,{" "}
+            <strong>NEST</strong> tells the story of its four narrative modules
+            — Need-led Discovery, Evidence-based Co-design, Situated
+            Implementation and Trust and Lasting Impact — and{" "}
+            <strong>Stakeholder Engagement</strong> collects the stakeholder map
+            and the interviews behind every step. Use the three buttons to open
+            a page.
           </p>
           <div className="eng-module-nav" ref={navRef}>
-            {HP_MODULES.map((module, index) => (
+            {HP_PAGES.map((entry, index) => (
               <button
-                key={module.key}
+                key={entry.key}
                 type="button"
                 className={`eng-module-button ${
-                  activeModule === index ? "active" : ""
+                  page === index ? "active" : ""
                 }`}
-                aria-pressed={activeModule === index}
-                onClick={() => setActiveModule(index)}
+                aria-pressed={page === index}
+                onClick={() => selectPage(index)}
               >
-                {module.label}
+                {entry.label}
               </button>
             ))}
           </div>
-          {activeModule === 0 && <SeedBlock />}
-          {activeModule === 1 && <DiscoveryBlock />}
-          {activeModule === 2 && <ImpactBlock />}
-          {activeModule === 3 && <EngagementBlock />}
+          {page !== null && (
+            <div className="ihp-section">
+              {page === 0 && <ToolboxPage />}
+              {page === 1 && <NestPage />}
+              {page === 2 && <EngagementBlock />}
+            </div>
+          )}
         </article>
       </div>
     </div>

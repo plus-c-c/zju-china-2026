@@ -42,14 +42,14 @@ export function SeedReaderRail() {
     const place = () => {
       if (!nav || !nav.offsetWidth) return;
       const cs = getComputedStyle(nav);
-      const left = parseFloat(cs.left) || 0;
       const top = parseFloat(cs.top) || 0;
       const navBottom = top + nav.offsetHeight;
       const radius = Math.max(
         160,
         Math.min(nav.offsetWidth, (window.innerHeight - navBottom - 24) / 2),
       );
-      wrap.style.left = `${left}px`;
+      /* The wheel's flat edge sits flush against the page's left edge. */
+      wrap.style.left = "0px";
       wrap.style.top = `${navBottom + 12}px`;
       wrap.style.setProperty("--seed-r", `${radius}px`);
       refreshRef.current();
@@ -186,7 +186,7 @@ export function SeedReaderRail() {
 
   if (typeof document === "undefined") return null;
   return createPortal(
-    <div className="seed-reader__ring" ref={wrapRef}>
+    <div className="seed-reader__ring" ref={wrapRef} data-page-swipe-stage>
       <div
         className="seed-ring"
         ref={ringRef}
