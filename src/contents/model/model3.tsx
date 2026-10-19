@@ -6,12 +6,14 @@ import {
   useRef,
   useState,
   type CSSProperties,
+  type ReactNode,
 } from "react";
 import {
   STEP_ADVANCE_ENABLED,
   useBoundaryStepAdvance,
 } from "../../components/useBoundaryStepAdvance";
 import { MathFormula } from "../../components/MathFormula";
+import { TransparentImage } from "../../components/TransparentImage";
 import {
   m3Overview,
   m3Question,
@@ -72,50 +74,68 @@ function Parts({ parts }: { parts: M3Part[] }) {
   );
 }
 
-function Blocks({ blocks }: { blocks: M3Block[] }) {
+function FigureBlock({ block }: { block: M3Block }) {
   return (
-    <>
-      {blocks.map((block, index) => {
-        if (block.t === "h4") {
-          return (
-            <h4 key={index} className="mt-4 mb-2">
-              {block.v}
-            </h4>
-          );
-        }
-        if (block.t === "display") {
-          return (
-            <MathFormula key={index} display>
-              {block.v ?? ""}
-            </MathFormula>
-          );
-        }
-        if (block.t === "figure") {
-          return (
-            <figure key={index} className="m3-figure">
-              <img
-                src={block.src}
-                alt={block.alt ?? ""}
-                loading="lazy"
-                decoding="async"
-                style={block.width ? { maxWidth: block.width } : undefined}
-              />
-              {block.caption ? (
-                <figcaption className="figure-caption">
-                  {block.caption}
-                </figcaption>
-              ) : null}
-            </figure>
-          );
-        }
-        return (
-          <p key={index}>
-            <Parts parts={block.parts ?? []} />
-          </p>
-        );
-      })}
-    </>
+    <figure className="m3-figure">
+      <TransparentImage
+        src={block.src ?? ""}
+        alt={block.alt ?? ""}
+        style={block.width ? { maxWidth: block.width } : undefined}
+      />
+      {block.caption ? (
+        <figcaption className="figure-caption">{block.caption}</figcaption>
+      ) : null}
+    </figure>
   );
+}
+
+function Blocks({ blocks }: { blocks: M3Block[] }) {
+  const nodes: ReactNode[] = [];
+  let index = 0;
+  while (index < blocks.length) {
+    const block = blocks[index];
+    if (block.t === "figure") {
+      // Consecutive figures share one row: the six simulation maps form two
+      // rows of three.
+      let end = index;
+      while (end < blocks.length && blocks[end].t === "figure") end += 1;
+      const run = blocks.slice(index, end);
+      if (run.length >= 2) {
+        nodes.push(
+          <div className="m3-figure-row" key={`figrow-${index}`}>
+            {run.map((figure, offset) => (
+              <FigureBlock key={`${index}-${offset}`} block={figure} />
+            ))}
+          </div>,
+        );
+        index = end;
+        continue;
+      }
+    }
+    if (block.t === "h4") {
+      nodes.push(
+        <h4 key={index} className="mt-4 mb-2">
+          {block.v}
+        </h4>,
+      );
+    } else if (block.t === "display") {
+      nodes.push(
+        <MathFormula key={index} display>
+          {block.v ?? ""}
+        </MathFormula>,
+      );
+    } else if (block.t === "figure") {
+      nodes.push(<FigureBlock key={index} block={block} />);
+    } else {
+      nodes.push(
+        <p key={index}>
+          <Parts parts={block.parts ?? []} />
+        </p>,
+      );
+    }
+    index += 1;
+  }
+  return <>{nodes}</>;
 }
 
 /* 单张幻灯片内容（variant: in = 滑入, out = 滑出；dir: 1 向前, -1 向后） */

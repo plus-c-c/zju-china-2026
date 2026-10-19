@@ -316,14 +316,56 @@
   text-align: center;
 }
 
-.m3-figure img {
+.m3-figure :is(img, canvas) {
+  display: block;
   max-width: 100%;
   height: auto;
   border-radius: 10px;
+  margin-inline: auto;
 }
 
 .m3-figure .figure-caption {
   margin-top: 10px;
+}
+
+/* The simulation figures share rows: three per row on desktop, stacked on
+   narrow screens. */
+.m3-figure-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: start;
+  gap: 18px;
+  margin: 20px 0;
+}
+
+.m3-figure-row .m3-figure {
+  margin: 0;
+}
+
+.m3-figure-row .m3-figure img {
+  width: 100%;
+}
+
+.m3-figure-row .m3-figure canvas {
+  width: 100%;
+}
+
+/* Equal image heights so every caption in a row starts on the same line. */
+.m3-figure-row .m3-figure :is(img, canvas) {
+  height: 200px;
+  object-fit: contain;
+}
+
+@media (max-width: 900px) {
+  .m3-figure-row .m3-figure :is(img, canvas) {
+    height: auto;
+  }
+}
+
+@media (max-width: 900px) {
+  .m3-figure-row {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* ===== 移动端 ===== */
