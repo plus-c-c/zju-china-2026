@@ -416,21 +416,36 @@ export function Design() {
           <p>
             A sequence specifies composition but does not by itself describe how
             multiple crosslinked chains bear load. We therefore simulate five
-            variables: (1) the effect of repeat number on{" "}
-            <strong>chain length and mechanical strength</strong>; (2) the
-            effect of the silk-to-elastin ratio on the{" "}
-            <strong>
-              transition temperature (<em>T</em>t)
-            </strong>
-            ; (3) the effect of substituting the X residue on the{" "}
-            <strong>
-              hydrophilic–hydrophobic balance and structural stability
-            </strong>
-            ; (4) the effect of the number and exposure of crosslinking sites on{" "}
-            <strong>gelation rate and network formation</strong>; and (5) the{" "}
-            <strong>reverse regulation of material behavior</strong> by the
-            insertion position of functional sites.
+            variables:
           </p>
+          <ol>
+            <li>
+              the effect of repeat number on{" "}
+              <strong>chain length and mechanical strength</strong>;
+            </li>
+            <li>
+              the effect of the silk-to-elastin ratio on the{" "}
+              <strong>
+                transition temperature (<em>T</em>t)
+              </strong>
+              ;
+            </li>
+            <li>
+              the effect of substituting the X residue on the{" "}
+              <strong>
+                hydrophilic–hydrophobic balance and structural stability
+              </strong>
+              ;
+            </li>
+            <li>
+              the effect of the number and exposure of crosslinking sites on{" "}
+              <strong>gelation rate and network formation</strong>;
+            </li>
+            <li>
+              the <strong>reverse regulation of material behavior</strong> by
+              the insertion position of functional sites.
+            </li>
+          </ol>
           <p>
             The computational pipeline has two steps.{" "}
             <strong>All-atom molecular dynamics (MD) simulations</strong> track

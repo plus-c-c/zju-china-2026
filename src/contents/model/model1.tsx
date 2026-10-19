@@ -81,11 +81,9 @@ function ValidationHighlight({ active }: { active: boolean }) {
       aria-label="Independent validation with 2KY16"
     >
       {active && <BirdLanding className="m1-validation__bird" whenVisible />}
-      <p className="m1-validation__heading">
-        <strong>
-          2KY16: independent dry-lab prediction validated by wet-lab data
-        </strong>
-      </p>
+      <h4 className="m1-validation__heading">
+        2KY16: independent dry-lab prediction validated by wet-lab data
+      </h4>
       <dl className="m1-validation__metrics">
         <div>
           <dt>Dry-lab prediction (mean)</dt>

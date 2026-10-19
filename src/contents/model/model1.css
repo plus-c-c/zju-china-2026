@@ -375,10 +375,16 @@
   background-position: 41.1765% 26.7585%;
 }
 
-.m1-validation__heading {
+/* Real heading semantics and heading styling: this line is a conclusion of
+   the validation, not a bibliographic reference. */
+.page-article .m1-validation__heading {
   margin: 0 0 16px;
   padding-right: 54px;
   color: #223c81;
+  font-size: 1.28rem;
+  font-weight: 700;
+  font-style: normal;
+  line-height: 1.4;
 }
 
 .m1-validation__bird {
