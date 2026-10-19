@@ -237,8 +237,9 @@
 .oa-panel-copy {
   position: absolute;
   left: 450px;
-  top: 49px;
+  top: 50%;
   width: 576px;
+  transform: translateY(-50%);
   color: #05080d;
   font-size: 23.5px;
   line-height: 39px;

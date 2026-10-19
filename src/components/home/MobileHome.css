@@ -447,6 +447,7 @@
 .mobile-home .oa-panel-copy {
   position: static;
   width: 100%;
+  transform: none;
   font-size: 17.5px;
   line-height: 1.6;
 }

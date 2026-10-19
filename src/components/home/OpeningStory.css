@@ -116,16 +116,14 @@
 .opening-bubble__float {
   position: absolute;
   inset: 0;
-  border: 1px solid rgb(255 255 255 / 65%);
+  border: 1px solid rgb(255 255 255 / 32%);
   border-radius: 50%;
   background:
-    radial-gradient(ellipse at 30% 22%, #ffffffbd 0%, #ffffff30 20%, transparent 43%),
-    radial-gradient(ellipse at 68% 78%, rgb(var(--bubble-shade) / 26%), transparent 62%),
+    linear-gradient(145deg, rgb(255 255 255 / 25%), transparent 55%, rgb(var(--bubble-shade) / 9%)),
     rgb(var(--bubble-color) / 96%);
   box-shadow:
-    inset 7px 9px 17px rgb(255 255 255 / 45%),
-    inset -11px -15px 23px rgb(var(--bubble-shade) / 23%),
-    inset 0 0 0 2px rgb(255 255 255 / 18%);
+    inset 3px 4px 10px rgb(255 255 255 / 13%),
+    inset -4px -6px 14px rgb(var(--bubble-shade) / 9%);
   animation: opening-bubble-float var(--bubble-duration, 5.8s) ease-in-out
     var(--bubble-delay, 0s) infinite alternate;
   will-change: transform;
@@ -984,8 +982,8 @@
 .opening-bubble--hyaline .opening-bubble__description { font-size: 25px; }
 .opening-bubble-hint {
   position: absolute;
-  left: 458px;
-  top: 28px;
+  left: 523px;
+  top: 58px;
   --hint-arrow-width: 86px;
   width: var(--hint-arrow-width);
   height: 104px;
