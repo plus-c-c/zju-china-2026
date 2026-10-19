@@ -40,8 +40,9 @@ export function Header({ title }: HeaderProps) {
   const { pathname } = useLocation();
   const normalizedPath = pathname.replace(/\/$/, "") || "/";
   const imageName = headerImages[normalizedPath];
-  const imageSource =
-    normalizedPath === "/members"
+  const imageSource = normalizedPath === "/human-practices"
+    ? "https://static.igem.wiki/teams/6102/wiki/images/engagement/ihp/7851a9f3ca247b2148bdd7331b3e4b2e.avif"
+    : normalizedPath === "/members"
       ? membersHeaderImage
       : imageName
         ? `${headerImageBase}/${imageName}`
@@ -101,6 +102,7 @@ export function Header({ title }: HeaderProps) {
           <img
             className="header-image"
             src={imageSource}
+            style={normalizedPath === "/human-practices" ? { objectPosition: "center 57%" } : undefined}
             alt=""
             aria-hidden="true"
             loading="eager"
