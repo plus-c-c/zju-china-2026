@@ -165,19 +165,6 @@
   color: #26375d;
 }
 
-.description-credits {
-  display: grid;
-  gap: 1.5rem;
-}
-
-.description-credits section {
-  scroll-margin-top: 112px;
-}
-
-.description-credits p:last-child {
-  margin-bottom: 0;
-}
-
 .description-credit-links {
   display: flex;
   flex-wrap: wrap;

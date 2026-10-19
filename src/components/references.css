@@ -233,8 +233,21 @@
   padding-inline-start: 0;
 }
 
-/* Credit blocks inside a references panel share the sub-heading tier. */
-.page-article .references-content .description-credits h3 {
+/* Image sources share one layout across every article page. */
+.figure-credits {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.figure-credits section {
+  scroll-margin-top: 112px;
+}
+
+.figure-credits p:last-child {
+  margin-bottom: 0;
+}
+
+.page-article .references-panel .references-content .figure-credits h3 {
   margin: 0 0 0.75rem !important;
   font-size: 1.125rem;
 }

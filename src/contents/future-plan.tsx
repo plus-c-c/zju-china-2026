@@ -1,3 +1,4 @@
+import { FigureSourceCitation } from "../components/FigureSourceCitation";
 import { References } from "../components/References";
 const CIF = "https://static.igem.wiki/teams/6102/wiki/images/cif/";
 
@@ -14,23 +15,22 @@ export function FuturePlan() {
           components into a unified material system and assess its performance
           at tissue interfaces under repeated loading. In parallel, we will
           optimize fermentation and downstream processing so that functional
-          validation and reproducible manufacturing jointly inform the
-          selection of the first product.
+          validation and reproducible manufacturing jointly inform the selection
+          of the first product.
         </p>
 
         <h3 className="mt-5 mb-3">
           1. Integration of the Complete Material and Formulation Screening
         </h3>
         <p>
-          The initial phase will focus on the focal cartilage-defect
-          application described in the Implementation section. We will compare
-          the baseline SELP formulation with the prioritized GAG-retention
-          formulation, while retaining magnetically responsive and
-          delivery-enabled formulations as subsequent platform candidates. In
-          consultation with clinical collaborators, we will first define target
-          mechanical ranges, gelation criteria, and handling requirements, and
-          then screen formulations based on their performance as complete
-          materials.
+          The initial phase will focus on the focal cartilage-defect application
+          described in the Implementation section. We will compare the baseline
+          SELP formulation with the prioritized GAG-retention formulation, while
+          retaining magnetically responsive and delivery-enabled formulations as
+          subsequent platform candidates. In consultation with clinical
+          collaborators, we will first define target mechanical ranges, gelation
+          criteria, and handling requirements, and then screen formulations
+          based on their performance as complete materials.
         </p>
         <figure className="figure d-block my-4 text-center">
           <img
@@ -43,16 +43,20 @@ export function FuturePlan() {
           />
           <figcaption className="figure-caption">
             Figure 1. Transition from validation of individual components to
-            evaluation of the complete material. Six complementary readouts
-            will guide formulation screening and assess scaffold, connector,
-            and functional-module performance within a unified system.
+            evaluation of the complete material. Six complementary readouts will
+            guide formulation screening and assess scaffold, connector, and
+            functional-module performance within a unified system.
+            <FigureSourceCitation
+              source={1}
+              href="#future-plan-figure-sources"
+            />
           </figcaption>
         </figure>
         <p>
           Formulation screening will link material architecture and assembly
-          efficiency to functional performance. All readouts will be measured
-          in the fully assembled material to determine whether the intended
-          design objectives are achieved after assembly and crosslinking.
+          efficiency to functional performance. All readouts will be measured in
+          the fully assembled material to determine whether the intended design
+          objectives are achieved after assembly and crosslinking.
         </p>
         <div className="table-responsive mb-4">
           <table
@@ -142,8 +146,8 @@ export function FuturePlan() {
           activity after loading will also be assessed.
         </p>
         <p>
-          The preparation and administration workflow will also be evaluated
-          at this stage. Based on observations from the current device, we will
+          The preparation and administration workflow will also be evaluated at
+          this stage. Based on observations from the current device, we will
           optimize line priming and air removal, compare the effects of valve
           switching and pump start/stop cycles on output, and refine the
           quick-release loading structure. Multipoint temperature measurements
@@ -162,11 +166,11 @@ export function FuturePlan() {
           In parallel with material integration, we will produce SELP in a
           laboratory-scale stirred-tank bioreactor. Aeration, pH, feeding, and
           induction conditions will be optimized, while repeat-sequence
-          stability and soluble expression are monitored. Evaluation will
-          track culture titer, productivity per unit time, downstream recovery
-          yield, and the final quantity of qualified gel-forming material,
-          ensuring that increases in culture scale translate into increases in
-          usable material output.
+          stability and soluble expression are monitored. Evaluation will track
+          culture titer, productivity per unit time, downstream recovery yield,
+          and the final quantity of qualified gel-forming material, ensuring
+          that increases in culture scale translate into increases in usable
+          material output.
         </p>
         <figure className="figure d-block my-4 text-center">
           <img
@@ -180,16 +184,21 @@ export function FuturePlan() {
           <figcaption className="figure-caption">
             Figure 2. Material validation and manufacturing-process development
             will proceed in parallel. Before moving to in vivo studies, we will
-            verify both tissue-interface performance and reproducible
-            production of qualified batches. Bioreactor production, ITC
-            scale-up, and formulation optimization remain future work.
+            verify both tissue-interface performance and reproducible production
+            of qualified batches. Bioreactor production, ITC scale-up, and
+            formulation optimization remain future work.
+            <FigureSourceCitation
+              source={1}
+              href="#future-plan-figure-sources"
+            />
           </figcaption>
         </figure>
         <p>
           Downstream scale-up will build on the ITC process already adopted. We
           will investigate temperature uniformity, phase-transition completion,
           and separation efficiency at larger volumes, and compare membrane
-          concentration with buffer-exchange methods <sup className="article-citation">[1, 2]</sup>. Salt and water
+          concentration with buffer-exchange methods{" "}
+          <sup className="article-citation">[1, 2]</sup>. Salt and water
           consumption, energy use during heating/cooling cycles, lyophilization
           losses, and processing time will be tracked to estimate manufacturing
           cost per qualified material unit and prioritize improvements for
@@ -209,15 +218,14 @@ export function FuturePlan() {
           3. Assessing Repair Quality through In Vivo Studies
         </h3>
         <p>
-          Animal studies will be designed around the selected defect
-          indication, including the baseline scaffold, functional formulations,
-          and model-appropriate reference groups. Endpoints will include
-          material retention and degradation, local inflammation, newly formed
-          cartilage matrix, tissue-interface integration, and mechanical
-          properties of the repair site, so histological findings can be
-          interpreted alongside functional recovery. Follow-up time points will
-          be determined according to material degradation and tissue-repair
-          kinetics.
+          Animal studies will be designed around the selected defect indication,
+          including the baseline scaffold, functional formulations, and
+          model-appropriate reference groups. Endpoints will include material
+          retention and degradation, local inflammation, newly formed cartilage
+          matrix, tissue-interface integration, and mechanical properties of the
+          repair site, so histological findings can be interpreted alongside
+          functional recovery. Follow-up time points will be determined
+          according to material degradation and tissue-repair kinetics.
         </p>
         <p>
           This stage will be considered complete when predefined repair and
@@ -258,17 +266,20 @@ export function FuturePlan() {
             material integration from the outset and will be assessed together
             with tissue validation. Subsequent decisions will be guided by
             repair and safety endpoints, product specifications, and stability.
+            <FigureSourceCitation
+              source={1}
+              href="#future-plan-figure-sources"
+            />
           </figcaption>
         </figure>
         <p>
           Storage strategies will be developed for each component separately.
-          The lyophilized scaffold will undergo studies of packaging,
-          transport, reconstitution, and stability, while storage conditions
-          and allowable use periods will be defined separately for protein
-          modules and active payloads such as mitochondria. We will compare
-          preassembly at the supply stage with point-of-use assembly in terms
-          of quality, time, and cost, and select a delivery format that
-          reliably preserves function.
+          The lyophilized scaffold will undergo studies of packaging, transport,
+          reconstitution, and stability, while storage conditions and allowable
+          use periods will be defined separately for protein modules and active
+          payloads such as mitochondria. We will compare preassembly at the
+          supply stage with point-of-use assembly in terms of quality, time, and
+          cost, and select a delivery format that reliably preserves function.
         </p>
         <p>
           The clinician-facing application and material-preparation device will
@@ -279,7 +290,8 @@ export function FuturePlan() {
           and maintenance burden, generating operating documents for training
           and quality traceability. Product classification and subsequent
           regulatory requirements will be determined based on the final
-          composition, primary mode of action, and target jurisdiction <sup className="article-citation">[3]</sup>.
+          composition, primary mode of action, and target jurisdiction{" "}
+          <sup className="article-citation">[3]</sup>.
         </p>
         <p>
           This stage will be complete when a candidate product has well-defined
@@ -315,6 +327,10 @@ export function FuturePlan() {
           <figcaption className="figure-caption">
             Figure 4. A shared scaffold and functional interfaces support three
             proposed application directions.
+            <FigureSourceCitation
+              source={1}
+              href="#future-plan-figure-sources"
+            />
           </figcaption>
         </figure>
         <h4 className="mt-4 mb-2">
@@ -326,8 +342,8 @@ export function FuturePlan() {
           under wet conditions, and cyclic loading. Formulation selection will
           also take handling time and batch-to-batch reproducibility into
           account. The specifications, manufacturing documentation, and
-          operating instructions established for this application will provide
-          a common starting point for subsequent product development.
+          operating instructions established for this application will provide a
+          common starting point for subsequent product development.
         </p>
         <h4 className="mt-4 mb-2">
           5.2 Advancing OA Functional Modules into Fully Integrated Material
@@ -336,29 +352,29 @@ export function FuturePlan() {
         <p>
           The GAG-retention formulation will be evaluated for matrix
           preservation under continuous fluid exchange; the magnetically
-          responsive formulation will be assessed for orientation and
-          mechanical benefits after crosslinking; and the delivery formulation
-          will be evaluated from trigger-induced release through payload
-          activity. Comparisons of individual modules and their combinations
-          will help identify OA-oriented formulations that retain their
-          functions in the complete material.
+          responsive formulation will be assessed for orientation and mechanical
+          benefits after crosslinking; and the delivery formulation will be
+          evaluated from trigger-induced release through payload activity.
+          Comparisons of individual modules and their combinations will help
+          identify OA-oriented formulations that retain their functions in the
+          complete material.
         </p>
         <h4 className="mt-4 mb-2">
           5.3 Co-developing Layered Products with Bone-Repair Materials
         </h4>
         <p>
           We will collaborate with developers of bone-repair materials to
-          combine the NEST cartilage layer with a separate bone-support layer
-          in a composite structure. Key endpoints will include interlayer
-          adhesion, load transfer and stability under cyclic loading, and
-          matrix formation on the cartilage side. The overall performance of
-          the composite will determine its progression to subsequent tissue
-          studies, extending the programmable cartilage layer to applications
-          involving multiple tissues.
+          combine the NEST cartilage layer with a separate bone-support layer in
+          a composite structure. Key endpoints will include interlayer adhesion,
+          load transfer and stability under cyclic loading, and matrix formation
+          on the cartilage side. The overall performance of the composite will
+          determine its progression to subsequent tissue studies, extending the
+          programmable cartilage layer to applications involving multiple
+          tissues.
         </p>
         <p>
-          The proposed applications will increase demand for the shared
-          scaffold platform. Different products can leverage compatible
+          The proposed applications will increase demand for the shared scaffold
+          platform. Different products can leverage compatible
           scaffold-production, ITC-recovery, and quality-control procedures,
           while functional components will be manufactured according to their
           individual requirements. We will track the output of qualified
@@ -371,8 +387,8 @@ export function FuturePlan() {
           different cartilage injuries. Tissue data, manufacturing
           specifications, and use-related experience from each application will
           inform the next design cycle, enabling the platform&rsquo;s
-          established programmability to be translated into products that can
-          be supplied reproducibly.
+          established programmability to be translated into products that can be
+          supplied reproducibly.
         </p>
 
         <References level={3}>
@@ -394,16 +410,27 @@ export function FuturePlan() {
               Combination Products.{" "}
               <a href="https://english.nmpa.gov.cn/">Source</a>
             </p>
-            <p>
-              [4] Figure assets from Bioicons: Marcel Tisch, Simon D&uuml;rr,
-              jaiganesh, and Daniel-Marcos (CC0); DBCLS (CC BY 4.0); and Servier
-              (CC BY 3.0). <a href="https://bioicons.com/">Source</a>
-            </p>
-            <p>
-              [5] Figure assets from Google Noto Emoji (Apache 2.0). Photographs
-              and application interfaces are from project materials.{" "}
-              <a href="https://github.com/googlefonts/noto-emoji">Source</a>
-            </p>
+          </div>
+        </References>
+        <References
+          level={3}
+          title="Figure Sources and Credits"
+          id="figure-sources-and-credits"
+        >
+          <div className="references-list figure-credits">
+            <section id="future-plan-figure-sources">
+              <h3>[S1] Figure assets and team materials</h3>
+              <p>
+                Figure assets from Bioicons: Marcel Tisch, Simon D&uuml;rr,
+                jaiganesh, and Daniel-Marcos (CC0); DBCLS (CC BY 4.0); and
+                Servier (CC BY 3.0). <a href="https://bioicons.com/">Source</a>
+              </p>
+              <p>
+                Figure assets from Google Noto Emoji (Apache 2.0). Photographs
+                and application interfaces are from project materials.{" "}
+                <a href="https://github.com/googlefonts/noto-emoji">Source</a>
+              </p>
+            </section>
           </div>
         </References>
       </div>

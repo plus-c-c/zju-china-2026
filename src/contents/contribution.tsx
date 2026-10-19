@@ -1,3 +1,4 @@
+import { FigureSourceCitation } from "../components/FigureSourceCitation";
 import { References } from "../components/References";
 const CIF = "https://static.igem.wiki/teams/6102/wiki/images/cif/";
 
@@ -34,6 +35,10 @@ export function Contribution() {
             software/hardware documentation are interconnected, enabling future
             teams to progress from material construction to preparation and
             application support.
+            <FigureSourceCitation
+              source={1}
+              href="#contribution-figure-sources"
+            />
           </figcaption>
         </figure>
         <div className="table-responsive mb-4">
@@ -125,13 +130,12 @@ export function Contribution() {
         </h3>
         <p>
           We used the PRe-RDL repeat-sequence amplification method to generate
-          SELP scaffolds of different lengths while planning connector
-          positions in parallel. The number of repeats determines the
-          chain-length series, whereas placing connectors within the repeat
-          region or at either terminus determines how the ligation sites change
-          during amplification. This provides future teams with a basis for
-          planning module-connection strategies when selecting a material
-          scaffold.
+          SELP scaffolds of different lengths while planning connector positions
+          in parallel. The number of repeats determines the chain-length series,
+          whereas placing connectors within the repeat region or at either
+          terminus determines how the ligation sites change during
+          amplification. This provides future teams with a basis for planning
+          module-connection strategies when selecting a material scaffold.
         </p>
         <p>
           We have successfully produced multiple SELP scaffold constructs,
@@ -147,8 +151,8 @@ export function Contribution() {
           3. Providing Ligation Tools and Controls for New Modules
         </h3>
         <p>
-          We used the established SnoopLigase2 catalytic system to assemble
-          NEST modules: the scaffold carries SnoopTag2, whereas the functional
+          We used the established SnoopLigase2 catalytic system to assemble NEST
+          modules: the scaffold carries SnoopTag2, whereas the functional
           construct carries DogTag. Future teams can introduce their own
           functional sequences through this shared interface, first verifying
           ligation activity and then evaluating the function of the ligated
@@ -168,6 +172,10 @@ export function Contribution() {
             functions into the platform. A shared interface allows functional
             sequences to be replaced, while ligation assays and functional
             assays address two distinct questions.
+            <FigureSourceCitation
+              source={1}
+              href="#contribution-figure-sources"
+            />
           </figcaption>
         </figure>
         <p>
@@ -176,21 +184,14 @@ export function Contribution() {
             SnoopLigase2
           </a>{" "}
           and{" "}
-          <a href="https://registry.igem.org/parts/bba-26pvprq2">
-            SUMO-DogTag
-          </a>{" "}
+          <a href="https://registry.igem.org/parts/bba-26pvprq2">SUMO-DogTag</a>{" "}
           entries. Functional constructs include{" "}
-          <a href="https://registry.igem.org/parts/bba-26r5qazm">
-            DogTag-TVN
-          </a>
-          ,{" "}
+          <a href="https://registry.igem.org/parts/bba-26r5qazm">DogTag-TVN</a>,{" "}
           <a href="https://registry.igem.org/parts/bba-26oz27mh">
             a matched irrelevant-peptide control
           </a>
           ,{" "}
-          <a href="https://registry.igem.org/parts/bba-267xbqoy">
-            DogTag-CPC
-          </a>{" "}
+          <a href="https://registry.igem.org/parts/bba-267xbqoy">DogTag-CPC</a>{" "}
           and{" "}
           <a href="https://registry.igem.org/parts/bba-26zpd683">
             DogTag-CPC-Link-N
@@ -198,8 +199,8 @@ export function Contribution() {
           .
         </p>
         <p>
-          In our sfGFP reporter ligation assay, product was detectable after
-          10 min, and the band corresponding to the less abundant reactant
+          In our sfGFP reporter ligation assay, product was detectable after 10
+          min, and the band corresponding to the less abundant reactant
           disappeared by 60 min. Future modules can use this reporter reaction
           as a reference for ligation activity and include controls lacking the
           enzyme or ligation tag. TVN and the irrelevant peptide can be used to
@@ -221,11 +222,12 @@ export function Contribution() {
         </h3>
         <p>
           We adapted the established principles of inverse transition cycling
-          (ITC) to optimize recovery of our own scaffolds.<sup className="article-citation">[1, 2]</sup> After comparing
+          (ITC) to optimize recovery of our own scaffolds.
+          <sup className="article-citation">[1, 2]</sup> After comparing
           65&nbsp;&deg;C and 80&nbsp;&deg;C and NaCl concentrations of 0.5, 1,
-          and 2&nbsp;M, salt concentration had the more pronounced effect in
-          our current screening. We therefore selected 65&nbsp;&deg;C and
-          2&nbsp;M NaCl for subsequent scaffold variants.
+          and 2&nbsp;M, salt concentration had the more pronounced effect in our
+          current screening. We therefore selected 65&nbsp;&deg;C and 2&nbsp;M
+          NaCl for subsequent scaffold variants.
         </p>
         <figure className="figure d-block my-4 text-center">
           <img
@@ -241,6 +243,10 @@ export function Contribution() {
             bands in the supernatants collected after heating (H-Sup) and
             cooling (C-Sup) help identify protein loss during phase transition
             and resolubilization, respectively.
+            <FigureSourceCitation
+              source={1}
+              href="#contribution-figure-sources"
+            />
           </figcaption>
         </figure>
         <p>
@@ -257,9 +263,9 @@ export function Contribution() {
             lyophilization
           </a>{" "}
           protocols to link protein recovery with preparation of gel-forming
-          materials. This non-chromatographic workflow also provides a basis
-          for further optimizing scaffold recovery following fermentation
-          scale-up.<sup className="article-citation">[1, 2]</sup>
+          materials. This non-chromatographic workflow also provides a basis for
+          further optimizing scaffold recovery following fermentation scale-up.
+          <sup className="article-citation">[1, 2]</sup>
         </p>
 
         <h3 className="mt-5 mb-3">
@@ -281,6 +287,10 @@ export function Contribution() {
           <figcaption className="figure-caption">
             Figure 4. Schematic of a representative SELP modeling and
             computational workflow.
+            <FigureSourceCitation
+              source={1}
+              href="#contribution-figure-sources"
+            />
           </figcaption>
         </figure>
         <p>
@@ -326,14 +336,18 @@ export function Contribution() {
             Figure 5. Photograph of our reagent-preparation prototype and
             screenshots of the application interface, illustrating material
             configuration, step-by-step guidance, and material handling.
+            <FigureSourceCitation
+              source={1}
+              href="#contribution-figure-sources"
+            />
           </figcaption>
         </figure>
         <p>
           <a href="https://2026.igem.wiki/zju-china/hardware">Hardware</a>{" "}
           documentation provides the device design, bill of materials, and
-          records of interactions among the STM32, ESP32, and web interface.
-          The app organizes formulation guidance, while independent channels
-          and replaceable consumables support adaptation to new materials.
+          records of interactions among the STM32, ESP32, and web interface. The
+          app organizes formulation guidance, while independent channels and
+          replaceable consumables support adaptation to new materials.
         </p>
         <p>
           Teams can start with a single component, protocol, or tool and
@@ -353,16 +367,28 @@ export function Contribution() {
               2010;61:6.11.1&ndash;16.{" "}
               <a href="https://doi.org/10.1002/0471140864.ps0611s61">Article</a>
             </p>
-            <p>
-              [3] Icons and illustrations from Bioicons. Marcel Tisch, Simon
-              D&uuml;rr, jaiganesh, and Daniel-Marcos (CC0); DBCLS (CC BY 4.0);
-              Servier (CC BY 3.0). <a href="https://bioicons.com/">Source</a>
-            </p>
-            <p>
-              [4] Illustrations from Google Noto Emoji (Apache 2.0). Photographs
-              and application screenshots are from our team&rsquo;s materials.{" "}
-              <a href="https://github.com/googlefonts/noto-emoji">Source</a>
-            </p>
+          </div>
+        </References>
+        <References
+          level={3}
+          title="Figure Sources and Credits"
+          id="figure-sources-and-credits"
+        >
+          <div className="references-list figure-credits">
+            <section id="contribution-figure-sources">
+              <h3>[S1] Figure assets and team materials</h3>
+              <p>
+                Icons and illustrations from Bioicons. Marcel Tisch, Simon
+                D&uuml;rr, jaiganesh, and Daniel-Marcos (CC0); DBCLS (CC BY
+                4.0); Servier (CC BY 3.0).{" "}
+                <a href="https://bioicons.com/">Source</a>
+              </p>
+              <p>
+                Illustrations from Google Noto Emoji (Apache 2.0). Photographs
+                and application screenshots are from our team&rsquo;s materials.{" "}
+                <a href="https://github.com/googlefonts/noto-emoji">Source</a>
+              </p>
+            </section>
           </div>
         </References>
       </div>

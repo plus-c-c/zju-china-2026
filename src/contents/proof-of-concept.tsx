@@ -1,3 +1,4 @@
+import { FigureSourceCitation } from "../components/FigureSourceCitation";
 import { References } from "../components/References";
 import { TransparentImage } from "../components/TransparentImage";
 import "./proof-of-concept.css";
@@ -43,15 +44,7 @@ export function ProofOfConcept() {
               The two validation tracks address scaffold property tuning and
               functional configuration, respectively; cytocompatibility is
               evaluated across both tracks.
-              <sup>
-                <a
-                  href="#poc-reference-1"
-                  aria-label="Reference 1"
-                  className="text-decoration-none"
-                >
-                  [1]
-                </a>
-              </sup>
+              <FigureSourceCitation source={1} href="#poc-reference-1" />
             </figcaption>
           </figure>
           <h2 className="mt-5 mb-3">1. Programmable Biomimetic Platform</h2>
@@ -311,15 +304,7 @@ export function ProofOfConcept() {
               OA is used as a representative application. The left column shows
               the design needs being addressed, and the right column shows the
               corresponding functions validated on this page.
-              <sup>
-                <a
-                  href="#poc-reference-1"
-                  aria-label="Reference 1"
-                  className="text-decoration-none"
-                >
-                  [1]
-                </a>
-              </sup>
+              <FigureSourceCitation source={1} href="#poc-reference-1" />
             </figcaption>
           </figure>
           <h3 className="mt-5 mb-3">
@@ -743,15 +728,19 @@ export function ProofOfConcept() {
             No two cartilage injuries are exactly alike. Enabling the material
             to change with the needs of repair is why we designed NEST.
           </p>
-          <References level={2}>
+          <References
+            level={2}
+            title="Figure Sources and Credits"
+            id="figure-sources-and-credits"
+          >
             <div className="references-list references-list--paragraphs">
               <p id="poc-reference-1" style={{ scrollMarginTop: "112px" }}>
-                [1] <strong>Icon credits for Figure 1 and Figure 8:</strong> Protein
-                chain: DBCLS (CC BY 4.0); hydrogel: Marcel Tisch (CC0);
+                [S1] <strong>Icon credits for Figure 1 and Figure 8:</strong>{" "}
+                Protein chain: DBCLS (CC BY 4.0); hydrogel: Marcel Tisch (CC0);
                 proteoglycan: Daniel-Marcos (CC0); mitochondrion: Servier (CC BY
-                3.0). Link, puzzle, magnet, and adjustment icons: Google Noto Emoji
-                (Google, Apache 2.0). Icons were resized and recolored in shades of
-                blue.
+                3.0). Link, puzzle, magnet, and adjustment icons: Google Noto
+                Emoji (Google, Apache 2.0). Icons were resized and recolored in
+                shades of blue.
               </p>
             </div>
           </References>

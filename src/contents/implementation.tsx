@@ -1,3 +1,4 @@
+import { FigureSourceCitation } from "../components/FigureSourceCitation";
 import { References } from "../components/References";
 const CIF = "https://static.igem.wiki/teams/6102/wiki/images/cif/";
 const BASE = import.meta.env.BASE_URL;
@@ -60,14 +61,15 @@ export function Implementation() {
         </h4>
         <p>
           For defects involving both cartilage and subchondral bone, we propose
-          developing NEST as the cartilage layer of a stratified repair
-          material in collaboration with a bone-repair materials team. SELP
+          developing NEST as the cartilage layer of a stratified repair material
+          in collaboration with a bone-repair materials team. SELP
           specifications and functional modules will address mechanical and
           matrix-related requirements on the cartilage side, while a separate
           bone-support layer will provide deeper structural support. Interlayer
           bonding and load transfer will jointly determine the performance of
-          the composite. Existing approaches to osteochondral repair will
-          inform the definition and evaluation of this application <sup className="article-citation">[1]</sup>.
+          the composite. Existing approaches to osteochondral repair will inform
+          the definition and evaluation of this application{" "}
+          <sup className="article-citation">[1]</sup>.
         </p>
         <p>
           All three application directions share a common foundation for
@@ -100,40 +102,40 @@ export function Implementation() {
         <p>
           NEST has employed <em>Escherichia coli</em> expression and inverse
           transition cycling (ITC) purification to produce SELP. ITC exploits
-          the temperature- and salt-responsive behavior of the protein,
-          enabling scaffold recovery through reversible aggregation,
-          separation, and resolubilization. This non-chromatographic route
-          reduces reliance on affinity resins for bulk scaffold recovery and
-          provides a foundation for scale-up focused on heat transfer, mixing,
-          and solid&ndash;liquid separation, making it an important component of
-          the project&rsquo;s strategy for scalable biomanufacturing <sup className="article-citation">[2, 3]</sup>.
+          the temperature- and salt-responsive behavior of the protein, enabling
+          scaffold recovery through reversible aggregation, separation, and
+          resolubilization. This non-chromatographic route reduces reliance on
+          affinity resins for bulk scaffold recovery and provides a foundation
+          for scale-up focused on heat transfer, mixing, and solid&ndash;liquid
+          separation, making it an important component of the project&rsquo;s
+          strategy for scalable biomanufacturing{" "}
+          <sup className="article-citation">[2, 3]</sup>.
         </p>
         <p>
-          The proposed supply system centers on centralized scaffold
-          production, followed by concentration, desalting, lyophilization, and
-          quantitative aliquoting. Ligases, functional proteins, and active
-          payloads will be produced and quality-controlled separately according
-          to their specific requirements. Materials delivered to hospitals will
-          be accompanied by a defined formulation, batch information, and
-          operating instructions. Reconstitution and storage conditions for the
-          lyophilized scaffold, as well as the use period for each module, will
-          be established through component-specific stability studies.
+          The proposed supply system centers on centralized scaffold production,
+          followed by concentration, desalting, lyophilization, and quantitative
+          aliquoting. Ligases, functional proteins, and active payloads will be
+          produced and quality-controlled separately according to their specific
+          requirements. Materials delivered to hospitals will be accompanied by
+          a defined formulation, batch information, and operating instructions.
+          Reconstitution and storage conditions for the lyophilized scaffold, as
+          well as the use period for each module, will be established through
+          component-specific stability studies.
         </p>
 
         <h3 className="mt-5 mb-3">
           3. Connecting the Material to Clinician Workflows
         </h3>
         <p>
-          We have developed an Android application for clinicians that
-          organizes formulation selection and preparation guidance in an
-          actionable interface. The app provides selection screens for the
-          scaffold and functional modules and loads the corresponding
-          instructions via QR code. It guides the user through scanning,
-          reviewing instructions, verifying components, and premixing. On the
-          dispensing interface, PBS, SELP, Ru/SPS, and functional components
-          are confirmed step by step; the next step is enabled only after all
-          components have been verified, helping operators confirm the current
-          formulation.
+          We have developed an Android application for clinicians that organizes
+          formulation selection and preparation guidance in an actionable
+          interface. The app provides selection screens for the scaffold and
+          functional modules and loads the corresponding instructions via QR
+          code. It guides the user through scanning, reviewing instructions,
+          verifying components, and premixing. On the dispensing interface, PBS,
+          SELP, Ru/SPS, and functional components are confirmed step by step;
+          the next step is enabled only after all components have been verified,
+          helping operators confirm the current formulation.
         </p>
         <figure className="figure d-block my-4 text-center">
           <img
@@ -146,10 +148,13 @@ export function Implementation() {
           />
           <figcaption className="figure-caption">
             Figure 2. Four-step workflow in the publicly available app
-            interface. Formulation information is loaded after QR-code
-            scanning, and users proceed to premixing instructions after
-            verifying each reagent. Image source: the team&rsquo;s publicly
-            accessible <a href={`${BASE}software`}>Wiki software page</a>.
+            interface. Formulation information is loaded after QR-code scanning,
+            and users proceed to premixing instructions after verifying each
+            reagent.
+            <FigureSourceCitation
+              source={1}
+              href="#implementation-figure-sources"
+            />
           </figcaption>
         </figure>
         <p>
@@ -163,9 +168,7 @@ export function Implementation() {
         <p>
           The application source code and engineering documentation are
           available in the{" "}
-          <a href="https://gitlab.igem.org/2026/zju-china">
-            GitLab repository
-          </a>
+          <a href="https://gitlab.igem.org/2026/zju-china">GitLab repository</a>
           .
         </p>
 
@@ -182,7 +185,8 @@ export function Implementation() {
           module integrates heating and cooling, liquid-level sensing, status
           indicators, and a delivery pump. Independent channels allow component
           ratios to be adjusted, while replaceable tubing and a transparent
-          enclosure facilitate loading, monitoring, and maintenance <sup className="article-citation">[4]</sup>.
+          enclosure facilitate loading, monitoring, and maintenance{" "}
+          <sup className="article-citation">[4]</sup>.
         </p>
         <figure className="figure d-block my-4 text-center">
           <img
@@ -213,32 +217,30 @@ export function Implementation() {
           The device is also connected to a web interface. The STM32 controls
           the pumps, temperature regulation, liquid-level sensing, and panel
           interactions, and communicates with the ESP32 via UART. The ESP32
-          transmits device status to the web interface and relays user
-          commands. Users can monitor temperature, liquid level, and pump
-          status, configure relevant parameters, and issue delivery commands.
-          The web interface consolidates these readouts into a shared reservoir
-          view, enabling the material-handling process to be monitored and
-          controlled <sup className="article-citation">[4]</sup>.
+          transmits device status to the web interface and relays user commands.
+          Users can monitor temperature, liquid level, and pump status,
+          configure relevant parameters, and issue delivery commands. The web
+          interface consolidates these readouts into a shared reservoir view,
+          enabling the material-handling process to be monitored and controlled{" "}
+          <sup className="article-citation">[4]</sup>.
         </p>
         <p>
           The clinician-facing app and device web interface serve distinct
-          purposes: the app supports material selection, component
-          verification, and adherence to preparation steps, whereas the web
-          interface supports monitoring and operation of the device. On the
-          administration side, a three-way valve switches between replenishment
-          and injection pathways and interfaces with a separate injection
-          assembly. From formulation selection and loading through premixing,
-          temporary storage, and output, we have established an integrated
-          operational prototype that can be demonstrated and subjected to
-          further testing.
+          purposes: the app supports material selection, component verification,
+          and adherence to preparation steps, whereas the web interface supports
+          monitoring and operation of the device. On the administration side, a
+          three-way valve switches between replenishment and injection pathways
+          and interfaces with a separate injection assembly. From formulation
+          selection and loading through premixing, temporary storage, and
+          output, we have established an integrated operational prototype that
+          can be demonstrated and subjected to further testing.
         </p>
         <p>
           Details of the device structure, electronics, and bill of materials
-          are available on the{" "}
-          <a href={`${BASE}hardware`}>Hardware page</a>. Further iterations
-          will address line priming and air removal, ease of loading,
-          temperature feedback, and delivery stability, as well as operational
-          integration of the optical and external-field components.
+          are available on the <a href={`${BASE}hardware`}>Hardware page</a>.
+          Further iterations will address line priming and air removal, ease of
+          loading, temperature feedback, and delivery stability, as well as
+          operational integration of the optical and external-field components.
         </p>
 
         <h3 className="mt-5 mb-3">
@@ -250,9 +252,9 @@ export function Implementation() {
           target site, controls its distribution, and induces in situ gelation
           under specified illumination conditions. The material will then be
           evaluated for fixation at the hydrated interface, retention under
-          motion-related loading, and tissue responses in the repair region.
-          The material, device, and instructions will be validated together
-          around this workflow.
+          motion-related loading, and tissue responses in the repair region. The
+          material, device, and instructions will be validated together around
+          this workflow.
         </p>
         <div className="table-responsive mb-4">
           <table
@@ -296,8 +298,8 @@ export function Implementation() {
                   and microbial risk
                 </td>
                 <td>
-                  Batch-release criteria, stability, and consistency of
-                  gelation performance
+                  Batch-release criteria, stability, and consistency of gelation
+                  performance
                 </td>
               </tr>
               <tr>
@@ -307,19 +309,19 @@ export function Implementation() {
                   proteins and mitochondrial payloads
                 </td>
                 <td>
-                  Storage and transport, reconstitution, post-assembly
-                  activity, and allowable use period
+                  Storage and transport, reconstitution, post-assembly activity,
+                  and allowable use period
                 </td>
               </tr>
               <tr>
                 <td>Practical use in hospitals</td>
                 <td>
-                  Clear requirements for equipment, consumables, operating
-                  time, and training
+                  Clear requirements for equipment, consumables, operating time,
+                  and training
                 </td>
                 <td>
-                  Simulated use by professional users, step errors, and
-                  analysis of cost components
+                  Simulated use by professional users, step errors, and analysis
+                  of cost components
                 </td>
               </tr>
             </tbody>
@@ -330,11 +332,12 @@ export function Implementation() {
           of the material. Subsequent biological evaluation will be designed
           according to the final material composition, mode of tissue contact,
           and contact duration, and will systematically investigate local
-          responses, degradation products, and relevant systemic effects <sup className="article-citation">[5]</sup>.
-          Product classification and the regulatory pathway will likewise be
-          determined based on the final components, primary mode of action, and
-          intended markets, with regulatory consultation initiated early in
-          development <sup className="article-citation">[6]</sup>.
+          responses, degradation products, and relevant systemic effects{" "}
+          <sup className="article-citation">[5]</sup>. Product classification
+          and the regulatory pathway will likewise be determined based on the
+          final components, primary mode of action, and intended markets, with
+          regulatory consultation initiated early in development{" "}
+          <sup className="article-citation">[6]</sup>.
         </p>
 
         <h3 className="mt-5 mb-3">
@@ -343,14 +346,14 @@ export function Implementation() {
         </h3>
         <p>
           The focal-defect product will establish the first set of material
-          specifications and use procedures; OA-oriented functional
-          formulations will further develop matrix retention and local
-          delivery; and collaboration on osteochondral repair will advance
-          stratified materials. These product directions can build on
-          established scaffold production, interface testing, and
-          material-preparation support, with additional evaluations tailored to
-          each tissue-repair task. This allows each development cycle to
-          generate reusable knowledge for the next version.
+          specifications and use procedures; OA-oriented functional formulations
+          will further develop matrix retention and local delivery; and
+          collaboration on osteochondral repair will advance stratified
+          materials. These product directions can build on established scaffold
+          production, interface testing, and material-preparation support, with
+          additional evaluations tailored to each tissue-repair task. This
+          allows each development cycle to generate reusable knowledge for the
+          next version.
         </p>
         <p>
           This implementation roadmap provides an actionable starting point for
@@ -387,7 +390,8 @@ export function Implementation() {
             </p>
             <p>
               [4] ZJU-China. NEST Hardware project records and accompanying
-              clinician-facing application. <a href={`${BASE}hardware`}>Source</a>
+              clinician-facing application.{" "}
+              <a href={`${BASE}hardware`}>Source</a>
             </p>
             <p>
               [5] U.S. Food and Drug Administration (FDA). Biocompatibility
@@ -402,6 +406,21 @@ export function Implementation() {
               Combination Products.{" "}
               <a href="https://english.nmpa.gov.cn/">Source</a>
             </p>
+          </div>
+        </References>
+        <References
+          level={3}
+          title="Figure Sources and Credits"
+          id="figure-sources-and-credits"
+        >
+          <div className="references-list figure-credits">
+            <section id="implementation-figure-sources">
+              <h3>[S1] Figure 2 | Application interface</h3>
+              <p>
+                Image source: the team&rsquo;s publicly accessible{" "}
+                <a href={`${BASE}software`}>Wiki software page</a>.
+              </p>
+            </section>
           </div>
         </References>
       </div>

@@ -109,13 +109,6 @@
   }
 }
 
-@media (max-width: 600px) {
-  .page-article > :first-child,
-  .page-article > section:first-child > h2:first-child {
-    margin-top: 12px !important;
-  }
-}
-
 .header-title > span {
   display: inline-block;
   white-space: nowrap;

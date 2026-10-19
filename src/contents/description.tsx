@@ -1,4 +1,5 @@
 import { References } from "../components/References";
+import { FigureSourceCitation } from "../components/FigureSourceCitation";
 import { useState, type ReactNode } from "react";
 import { BirdLanding } from "../components/BirdCursor";
 import "./description.css";
@@ -73,15 +74,10 @@ function DescriptionFigure({
         </strong>{" "}
         {children}
         {!empty && (
-          <sup className="description-citation figure-source-citation">
-            <a
-              href={`#description-figure-${String(number).replace(/\./g, "-")}-sources`}
-              aria-label={`Image source for Figure ${number}`}
-              title={`Source and license for Figure ${number}`}
-            >
-              [S{number}]
-            </a>
-          </sup>
+          <FigureSourceCitation
+            source={number}
+            href={`#description-figure-${String(number).replace(/\./g, "-")}-sources`}
+          />
         )}
       </figcaption>
     </figure>
@@ -836,7 +832,7 @@ export function Description() {
             id="figure-sources-and-credits"
             showBird={false}
           >
-            <div className="references-list description-credits">
+            <div className="references-list figure-credits">
               <section id="description-figure-1-sources">
                 <h3>
                   Figure 1 | Knee Support and Discomfort Across Life Stages

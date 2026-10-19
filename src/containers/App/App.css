@@ -128,17 +128,18 @@ body {
 
 /* The header supplies the opening space once, without stacking the page's
    Bootstrap row margin and the first section's normal heading margin. */
-.page-article > .row:first-child {
+.page-article > :first-child {
   margin-top: 0 !important;
 }
 
-.page-article > .row:first-child > [class*="col-"] > :is(h2, h3):first-child,
+.page-article > .row:first-child > :is(.col, [class*="col-"]) > :first-child,
 .page-article
   > .row:first-child
-  > [class*="col-"]
+  > :is(.col, [class*="col-"])
   > :is(article, div):first-child
-  > :is(h2, h3):first-child,
+  > :first-child,
 .page-article > .members-page > .members-section:first-child > h2:first-child,
+.page-article > .parts-page > .parts-catalogue:first-child > h2:first-child,
 .page-article
   > .wetlab-split
   > div:first-of-type
