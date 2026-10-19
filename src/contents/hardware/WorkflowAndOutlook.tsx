@@ -51,14 +51,15 @@ export function WorkflowAndOutlook() {
           experimental requirements.
         </li>
       </ol>
-      <figure className="my-4 text-center">
+      <figure className="hardware-media">
         <img
           src="https://static.igem.wiki/teams/6102/wiki/images/hardware/hardware-overview-diagram.avif"
           alt="Hardware overview."
-          className="img-fluid rounded"
-          style={{ width: "75%" }}
+          className="hardware-media-image"
           loading="lazy"
           decoding="async"
+          width={4000}
+          height={2834}
         />
         <figcaption className="figure-caption mt-2">
           Figure 4.1 | Hardware overview.

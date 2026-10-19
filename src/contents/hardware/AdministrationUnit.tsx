@@ -1,3 +1,5 @@
+import { HardwareVideo } from "./HardwareVideo";
+
 export function AdministrationUnit() {
   return (
     <>
@@ -25,29 +27,31 @@ export function AdministrationUnit() {
         for the different valve states are shown in the figures and videos
         below.
       </p>
-      <div className="d-flex justify-content-center align-items-start gap-3 my-4">
-        <figure className="text-center mb-0" style={{ width: "45%" }}>
+      <div className="hardware-media-grid hardware-media-grid--valves">
+        <figure className="hardware-media-panel">
           <img
             src="https://static.igem.wiki/teams/6102/wiki/images/hardware/figure3-1a.avif"
             alt="Schematic of the three-way valve configured to pump hydrogel into the syringe."
-            className="img-fluid rounded"
-            style={{ width: "100%" }}
+            className="hardware-media-image"
             loading="lazy"
             decoding="async"
+            width={3685}
+            height={1356}
           />
           <figcaption className="figure-caption mt-2">
             Figure 3.1a | Schematic of the three-way valve configured to pump
             hydrogel into the syringe.
           </figcaption>
         </figure>
-        <figure className="text-center mb-0" style={{ width: "45%" }}>
+        <figure className="hardware-media-panel">
           <img
             src="https://static.igem.wiki/teams/6102/wiki/images/hardware/figure3-1b.avif"
             alt="Schematic of the three-way valve configured to inject hydrogel into the lesion site."
-            className="img-fluid rounded"
-            style={{ width: "100%" }}
+            className="hardware-media-image"
             loading="lazy"
             decoding="async"
+            width={3290}
+            height={1324}
           />
           <figcaption className="figure-caption mt-2">
             Figure 3.1b | Schematic of the three-way valve configured to inject
@@ -55,28 +59,24 @@ export function AdministrationUnit() {
           </figcaption>
         </figure>
       </div>
-      <figure className="my-4">
-        {/* TODO: Video 3.1a — add the user-provided video URL. */}
-        <div
-          className="hardware-video-placeholder"
-          role="img"
-          aria-label="Video 3.1a video placeholder"
-        >
-          <span>Video 3.1a</span>
-        </div>
+      <figure className="hardware-media hardware-media--video">
+        <HardwareVideo
+          src="https://video.igem.org/videos/embed/3GxGTcv5z3GSUTvBgCA2zg"
+          title="Video 3.1a: Demonstration of pumping hydrogel into the syringe"
+          poster="https://video.igem.org/lazy-static/thumbnails/cfc03f62-6e8a-4be3-9a03-79396aa4b564.jpg"
+          aspectRatio={2.4625}
+        />
         <figcaption className="figure-caption mt-2">
           Video 3.1a | Demonstration of pumping hydrogel into the syringe.
         </figcaption>
       </figure>
-      <figure className="my-4">
-        {/* TODO: Video 3.1b — add the user-provided video URL. */}
-        <div
-          className="hardware-video-placeholder"
-          role="img"
-          aria-label="Video 3.1b video placeholder"
-        >
-          <span>Video 3.1b</span>
-        </div>
+      <figure className="hardware-media hardware-media--video">
+        <HardwareVideo
+          src="https://video.igem.org/videos/embed/egiRwNbPvt36AGNyiVRCr8"
+          title="Video 3.1b: Demonstration of hydrogel injection"
+          poster="https://video.igem.org/lazy-static/thumbnails/06a8626b-7b1f-4ad4-bcfd-aa1aec4acc9d.jpg"
+          aspectRatio={1.7777777777777777}
+        />
         <figcaption className="figure-caption mt-2">
           Video 3.1b | Demonstration of hydrogel injection.
         </figcaption>
@@ -122,45 +122,50 @@ export function AdministrationUnit() {
         support for{" "}
         <strong>in situ hydrogel photocrosslinking experiments.</strong>
       </p>
-      <figure className="my-4 text-center">
+      <figure className="hardware-media hardware-media--portrait">
         <img
           src="https://static.igem.wiki/teams/6102/wiki/images/hardware/figure3-2-1.avif"
           alt="Endoscope module."
-          className="img-fluid rounded"
-          style={{ width: "75%" }}
+          className="hardware-media-image"
           loading="lazy"
           decoding="async"
+          width={2763}
+          height={3772}
         />
         <figcaption className="figure-caption mt-2">
           Figure 3.2.1 | Endoscope module.
         </figcaption>
       </figure>
-      <figure className="my-4 text-center">
-        <img
-          src="https://static.igem.wiki/teams/6102/wiki/images/hardware/figure3-2-2.avif"
-          alt="Endoscope camera head and illumination."
-          className="img-fluid rounded"
-          style={{ width: "75%" }}
-          loading="lazy"
-          decoding="async"
-        />
-        <figcaption className="figure-caption mt-2">
-          Figure 3.2.2 | Endoscope camera head and illumination.
-        </figcaption>
-      </figure>
-      <figure className="my-4 text-center">
-        <img
-          src="https://static.igem.wiki/teams/6102/wiki/images/hardware/figure3-2-3.avif"
-          alt="Endoscope module and blue-light control module."
-          className="img-fluid rounded"
-          style={{ width: "75%" }}
-          loading="lazy"
-          decoding="async"
-        />
-        <figcaption className="figure-caption mt-2">
-          Figure 3.2.3 | Endoscope module and blue-light control module.
-        </figcaption>
-      </figure>
+      <div className="hardware-media-grid hardware-media-grid--endoscope">
+        <figure className="hardware-media-panel">
+          <img
+            src="https://static.igem.wiki/teams/6102/wiki/images/hardware/figure3-2-2.avif"
+            alt="Endoscope camera head and illumination."
+            className="hardware-media-image"
+            loading="lazy"
+            decoding="async"
+            width={3000}
+            height={4000}
+          />
+          <figcaption className="figure-caption mt-2">
+            Figure 3.2.2 | Endoscope camera head and illumination.
+          </figcaption>
+        </figure>
+        <figure className="hardware-media-panel">
+          <img
+            src="https://static.igem.wiki/teams/6102/wiki/images/hardware/figure3-2-3.avif"
+            alt="Endoscope module and blue-light control module."
+            className="hardware-media-image"
+            loading="lazy"
+            decoding="async"
+            width={3300}
+            height={2475}
+          />
+          <figcaption className="figure-caption mt-2">
+            Figure 3.2.3 | Endoscope module and blue-light control module.
+          </figcaption>
+        </figure>
+      </div>
       <h3 className="mt-5 mb-3">3.3 Bill of Materials</h3>
       <p>
         The following tables list the components and corresponding costs for the
@@ -171,9 +176,9 @@ export function AdministrationUnit() {
         <table aria-label="Administration module bill of materials">
           <thead>
             <tr>
-              <th scope="col">Administration Module</th>
-              <th scope="col"></th>
-              <th scope="col"></th>
+              <th colSpan={3} className="text-center">
+                Administration Module
+              </th>
             </tr>
           </thead>
           <tbody>

@@ -31,55 +31,59 @@ export function BackgroundAndPrinciples() {
         The two modules are interconnected through fluidic tubing and electrical
         circuitry to support the complete administration workflow.
       </p>
-      <figure className="my-4 text-center">
+      <figure className="hardware-media hardware-media--portrait">
         <img
           src="https://static.igem.wiki/teams/6102/wiki/images/hardware/figure0-1-1.avif"
           alt="Hardware diagram 0-1-1"
-          className="img-fluid rounded"
-          style={{ width: "75%" }}
+          className="hardware-media-image"
           loading="lazy"
           decoding="async"
+          width={1920}
+          height={2399}
         />
         <figcaption className="figure-caption mt-2">
           Figure 0.1.1 | Overall view of the hardware.
         </figcaption>
       </figure>
-      <div className="d-flex justify-content-center align-items-start gap-3 my-4">
-        <figure className="text-center mb-0" style={{ width: "45%" }}>
+      <div className="hardware-media-grid">
+        <figure className="hardware-media-panel">
           <img
             src="https://static.igem.wiki/teams/6102/wiki/images/hardware/figure0-1-2a.avif"
             alt="Magnetic leg band."
-            className="img-fluid rounded"
-            style={{ width: "100%" }}
+            className="hardware-media-image"
             loading="lazy"
             decoding="async"
+            width={1920}
+            height={1080}
           />
           <figcaption className="figure-caption mt-2">
             Figure 0.1.2a | Magnetic leg band.
           </figcaption>
         </figure>
-        <figure className="text-center mb-0" style={{ width: "45%" }}>
+        <figure className="hardware-media-panel">
           <img
             src="https://static.igem.wiki/teams/6102/wiki/images/hardware/figure0-1-2b.avif"
             alt="Transparent schematic view of the magnetic leg band."
-            className="img-fluid rounded"
-            style={{ width: "100%" }}
+            className="hardware-media-image"
             loading="lazy"
             decoding="async"
+            width={1920}
+            height={1080}
           />
           <figcaption className="figure-caption mt-2">
             Figure 0.1.2b | Transparent schematic view of the magnetic leg band.
           </figcaption>
         </figure>
       </div>
-      <figure className="my-4 text-center">
+      <figure className="hardware-media hardware-media--square">
         <img
           src="https://static.igem.wiki/teams/6102/wiki/images/hardware/figure0-1-3.avif"
           alt="Photograph of the assembled hardware."
-          className="img-fluid rounded"
-          style={{ width: "75%" }}
+          className="hardware-media-image"
           loading="lazy"
           decoding="async"
+          width={3072}
+          height={3253}
         />
         <figcaption className="figure-caption mt-2">
           Figure 0.1.3 | Photograph of the assembled hardware.

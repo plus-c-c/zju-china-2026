@@ -1,3 +1,5 @@
+import { HardwareVideo } from "./HardwareVideo";
+
 export function FormulationUnit() {
   return (
     <>
@@ -41,14 +43,15 @@ export function FormulationUnit() {
         which switch between the refill and administration pathways to deliver
         the hydrogel.
       </p>
-      <figure className="my-4 text-center">
+      <figure className="hardware-media hardware-media--square">
         <img
           src="https://static.igem.wiki/teams/6102/wiki/images/hardware/figure2-1.avif"
           alt="Exploded view of the preparation unit’s internal structure."
-          className="img-fluid rounded"
-          style={{ width: "75%" }}
+          className="hardware-media-image"
           loading="lazy"
           decoding="async"
+          width={1080}
+          height={1080}
         />
         <figcaption className="figure-caption mt-2">
           Figure 2.1 | Exploded view of the preparation unit’s internal
@@ -73,29 +76,28 @@ export function FormulationUnit() {
         <strong>a display and buttons</strong>, allowing physicians and other
         users to adjust the mixing ratios easily.
       </p>
-      <figure className="my-4 text-center">
+      <figure className="hardware-media">
         <img
           src="https://static.igem.wiki/teams/6102/wiki/images/hardware/figure2-2.avif"
           alt="Photograph of the three independent stepper-motor-driven lead-screw linear stages."
-          className="img-fluid rounded"
-          style={{ width: "75%" }}
+          className="hardware-media-image"
           loading="lazy"
           decoding="async"
+          width={1792}
+          height={1265}
         />
         <figcaption className="figure-caption mt-2">
           Figure 2.2 | Photograph of the three independent stepper-motor-driven
           lead-screw linear stages.
         </figcaption>
       </figure>
-      <figure className="my-4">
-        {/* TODO: Video 2.2 — add the user-provided video URL. */}
-        <div
-          className="hardware-video-placeholder"
-          role="img"
-          aria-label="Video 2.2 video placeholder"
-        >
-          <span>Video 2.2</span>
-        </div>
+      <figure className="hardware-media hardware-media--video">
+        <HardwareVideo
+          src="https://video.igem.org/videos/embed/gK12mmf1zY6n3EkStbdgXD"
+          title="Video 2.2: Demonstration of the stepper-motor-driven lead-screw linear stage"
+          poster="https://video.igem.org/lazy-static/thumbnails/9c6115c5-666b-467e-82fd-c4399ed6bb76.png"
+          aspectRatio={1.7777777777777777}
+        />
         <figcaption className="figure-caption mt-2">
           Video 2.2 | Demonstration of the stepper-motor-driven lead-screw
           linear stage.
@@ -110,29 +112,31 @@ export function FormulationUnit() {
         need for mechanical stirring components while reducing shear-induced
         damage to bioactive components.
       </p>
-      <figure className="my-4 text-center">
+      <figure className="hardware-media">
         <img
           src="https://static.igem.wiki/teams/6102/wiki/images/hardware/figure2-3-1.avif"
           alt="Microfluidic chip design."
-          className="img-fluid rounded"
-          style={{ width: "75%" }}
+          className="hardware-media-image"
           loading="lazy"
           decoding="async"
+          width={3971}
+          height={2476}
         />
         <figcaption className="figure-caption mt-2">
           Figure 2.3.1 | Microfluidic chip design.
         </figcaption>
       </figure>
-      <div className="row g-3 my-4 align-items-start">
-        <div className="col-md-4">
-          <figure className="mb-0 text-center">
+      <div className="hardware-media-grid hardware-media-grid--streams">
+        <div className="hardware-media-cell">
+          <figure className="hardware-media-panel">
             <img
               src="https://static.igem.wiki/teams/6102/wiki/images/hardware/gif2-3-2a-60frames.webp"
               alt="Simulation of component A flowing through the microfluidic chip."
-              className="img-fluid rounded"
-              style={{ width: "100%" }}
+              className="hardware-media-image"
               loading="lazy"
               decoding="async"
+              width={1200}
+              height={650}
             />
             <figcaption className="figure-caption mt-2">
               Animation 2.3.2a | Simulation of component A flowing through the
@@ -140,15 +144,16 @@ export function FormulationUnit() {
             </figcaption>
           </figure>
         </div>
-        <div className="col-md-4">
-          <figure className="mb-0 text-center">
+        <div className="hardware-media-cell">
+          <figure className="hardware-media-panel">
             <img
               src="https://static.igem.wiki/teams/6102/wiki/images/hardware/gif2-3-2b-60frames.webp"
               alt="Simulation of component B flowing through the microfluidic chip."
-              className="img-fluid rounded"
-              style={{ width: "100%" }}
+              className="hardware-media-image"
               loading="lazy"
               decoding="async"
+              width={1200}
+              height={650}
             />
             <figcaption className="figure-caption mt-2">
               Animation 2.3.2b | Simulation of component B flowing through the
@@ -156,15 +161,16 @@ export function FormulationUnit() {
             </figcaption>
           </figure>
         </div>
-        <div className="col-md-4">
-          <figure className="mb-0 text-center">
+        <div className="hardware-media-cell">
+          <figure className="hardware-media-panel">
             <img
               src="https://static.igem.wiki/teams/6102/wiki/images/hardware/gif2-3-2c-60frames.webp"
               alt="Simulation of component C flowing through the microfluidic chip."
-              className="img-fluid rounded"
-              style={{ width: "100%" }}
+              className="hardware-media-image"
               loading="lazy"
               decoding="async"
+              width={1200}
+              height={650}
             />
             <figcaption className="figure-caption mt-2">
               Animation 2.3.2c | Simulation of component C flowing through the
@@ -173,14 +179,15 @@ export function FormulationUnit() {
           </figure>
         </div>
       </div>
-      <figure className="my-4 text-center">
+      <figure className="hardware-media">
         <img
           src="https://static.igem.wiki/teams/6102/wiki/images/hardware/gif2-3-3-60frames.webp"
           alt="Demonstration of mixing in the microfluidic chip."
-          className="img-fluid rounded"
-          style={{ width: "75%" }}
+          className="hardware-media-image"
           loading="lazy"
           decoding="async"
+          width={1200}
+          height={650}
         />
         <figcaption className="figure-caption mt-2">
           Animation 2.3.3 | Demonstration of mixing in the microfluidic chip.
@@ -223,55 +230,56 @@ export function FormulationUnit() {
         The interface can be displayed on a hospital endoscopy monitor, allowing
         physicians to view device status and operate the system during surgery.
       </p>
-      <figure className="my-4 text-center">
+      <figure className="hardware-media">
         <img
           src="https://static.igem.wiki/teams/6102/wiki/images/hardware/figure2-3-4.avif"
           alt="The reservoir module."
-          className="img-fluid rounded"
-          style={{ width: "75%" }}
+          className="hardware-media-image"
           loading="lazy"
           decoding="async"
+          width={4000}
+          height={2364}
         />
         <figcaption className="figure-caption mt-2">
           Figure 2.3.4 | The reservoir module.
         </figcaption>
       </figure>
-      <figure className="my-4">
-        {/* TODO: Video 2.3.1 — add the user-provided video URL. */}
-        <div
-          className="hardware-video-placeholder"
-          role="img"
-          aria-label="Video 2.3.1 video placeholder"
-        >
-          <span>Video 2.3.1</span>
-        </div>
+      <figure className="hardware-media hardware-media--video">
+        <HardwareVideo
+          src="https://video.igem.org/videos/embed/n7UwHzzYyWV3B9Vvksuaaf"
+          title="Video 2.3.1: Demonstration of reservoir operation"
+          poster="https://video.igem.org/lazy-static/thumbnails/77339ebd-3b63-4011-9492-7c4614535975.png"
+          aspectRatio={1.7777777777777777}
+        />
         <figcaption className="figure-caption mt-2">
           Video 2.3.1 | Demonstration of reservoir operation.
         </figcaption>
       </figure>
-      <div className="d-flex justify-content-center align-items-start gap-3 my-4">
-        <figure className="text-center mb-0" style={{ width: "45%" }}>
+      <div className="hardware-media-grid">
+        <figure className="hardware-media-panel">
           <img
             src="https://static.igem.wiki/teams/6102/wiki/images/hardware/figure2-3-5a.avif"
             alt="Web visualization of the reservoir module when connected to the ESP32."
-            className="img-fluid rounded"
-            style={{ width: "100%" }}
+            className="hardware-media-image"
             loading="lazy"
             decoding="async"
+            width={3072}
+            height={1770}
           />
           <figcaption className="figure-caption mt-2">
             Figure 2.3.5a | Web visualization of the reservoir module when
             connected to the ESP32.
           </figcaption>
         </figure>
-        <figure className="text-center mb-0" style={{ width: "45%" }}>
+        <figure className="hardware-media-panel">
           <img
             src="https://static.igem.wiki/teams/6102/wiki/images/hardware/figure2-3-5b.avif"
             alt="Web-based 3D simulation of the reservoir module when the ESP32 is disconnected."
-            className="img-fluid rounded"
-            style={{ width: "100%" }}
+            className="hardware-media-image"
             loading="lazy"
             decoding="async"
+            width={3116}
+            height={1800}
           />
           <figcaption className="figure-caption mt-2">
             Figure 2.3.5b | Web-based 3D simulation of the reservoir module when
@@ -279,15 +287,13 @@ export function FormulationUnit() {
           </figcaption>
         </figure>
       </div>
-      <figure className="my-4">
-        {/* TODO: Video 2.3.2 — add the user-provided video URL. */}
-        <div
-          className="hardware-video-placeholder"
-          role="img"
-          aria-label="Video 2.3.2 video placeholder"
-        >
-          <span>Video 2.3.2</span>
-        </div>
+      <figure className="hardware-media hardware-media--video">
+        <HardwareVideo
+          src="https://video.igem.org/videos/embed/kG7JXMvgBiLzCmZANMnqUD"
+          title="Video 2.3.2: Demonstration of the reservoir web interface"
+          poster="https://video.igem.org/lazy-static/thumbnails/471633f2-c33d-46c9-931d-0718cef916e5.png"
+          aspectRatio={1.7777777777777777}
+        />
         <figcaption className="figure-caption mt-2">
           Video 2.3.2 | Demonstration of the reservoir web interface.
         </figcaption>
@@ -321,26 +327,30 @@ export function FormulationUnit() {
         allowing physicians to monitor device status and operate the system
         during surgery.
       </p>
-      <div className="hardware-electronics-pair my-4">
-        <figure className="text-center mb-0">
+      <div className="hardware-media-grid hardware-media-grid--electronics">
+        <figure className="hardware-media-panel">
           <img
             src="https://static.igem.wiki/teams/6102/wiki/images/hardware/figure2-4a.avif"
             alt="Electronic control system of the preparation unit."
-            className="hardware-electronics-image rounded"
+            className="hardware-media-image"
             loading="lazy"
             decoding="async"
+            width={1699}
+            height={900}
           />
           <figcaption className="figure-caption mt-2">
             Figure 2.4a | Electronic control system of the preparation unit.
           </figcaption>
         </figure>
-        <figure className="text-center mb-0">
+        <figure className="hardware-media-panel">
           <img
             src="https://static.igem.wiki/teams/6102/wiki/images/hardware/figure2-4b.avif"
             alt="Circuit board of the preparation unit."
-            className="hardware-electronics-image rounded"
+            className="hardware-media-image"
             loading="lazy"
             decoding="async"
+            width={2160}
+            height={2089}
           />
           <figcaption className="figure-caption mt-2">
             Figure 2.4b | Circuit board of the preparation unit.

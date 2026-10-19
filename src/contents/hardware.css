@@ -1,23 +1,120 @@
-.hardware-video-placeholder {
-  display: grid;
-  place-items: center;
-  aspect-ratio: 16 / 9;
-  width: 100%;
-  border: 1px dashed #a7bbde;
-  border-radius: 4px;
-  color: #223c81;
-  background-color: #e0eafa;
-  font-size: 1.25rem;
+.hardware-article .hardware-media,
+.hardware-article .hardware-media-grid {
+  width: 90%;
+  max-width: 860px;
+  margin: 2.5rem auto;
 }
-
-.hardware-electronics-pair {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 20px;
-}
-.hardware-electronics-image {
+.hardware-media-image {
   display: block;
   width: 100%;
-  height: clamp(140px, 24vw, 320px);
+  height: auto;
+  margin-inline: auto;
+  border-radius: 4px;
+}
+.hardware-article .hardware-media--portrait {
+  max-width: 420px;
+}
+.hardware-article .hardware-media--square {
+  max-width: 560px;
+}
+.hardware-media-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  align-items: start;
+}
+.hardware-media-panel,
+.hardware-media-cell {
+  min-width: 0;
+  margin: 0;
+}
+/* Source aspect ratios determine column widths so paired images have equal heights. */
+.hardware-media-grid--electronics {
+  grid-template-columns: minmax(0, 1.826fr) minmax(0, 1fr);
+}
+.hardware-media-grid--endoscope {
+  grid-template-columns: minmax(0, 0.5625fr) minmax(0, 1fr);
+}
+.hardware-media-grid--valves {
+  grid-template-columns: minmax(0, 1.094fr) minmax(0, 1fr);
+}
+.hardware-media-grid--streams {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+.hardware-article .figure-caption {
+  margin-bottom: 0;
+  line-height: 1.6;
+  text-align: center;
+}
+.hardware-media-grid--streams .figure-caption {
+  font-size: 0.85rem;
+}
+.hardware-video-frame {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  border-radius: 4px;
+  background: #14223a;
+}
+.hardware-video-frame iframe,
+.hardware-video-cover {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.hardware-video-cover {
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+.hardware-video-cover img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
+}
+.hardware-play-button {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  padding-left: 4px;
+  border: 2px solid white;
+  border-radius: 50%;
+  color: white;
+  background: rgb(34 60 129 / 90%);
+  font-size: 25px;
+}
+.hardware-video-cover:hover .hardware-play-button {
+  background: #223c81;
+}
+.hardware-video-cover:focus-visible {
+  outline: 3px solid #7bb9ff;
+  outline-offset: -4px;
+}
+@media (max-width: 767px) {
+  .hardware-article .hardware-media,
+  .hardware-article .hardware-media-grid {
+    width: 100%;
+    margin-block: 1.75rem;
+  }
+  .hardware-media-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+  }
+  .hardware-media-panel {
+    width: 100%;
+    max-width: 560px;
+    margin-inline: auto;
+  }
+  .hardware-article .hardware-media--portrait,
+  .hardware-media-grid--endoscope .hardware-media-panel:first-child {
+    max-width: 340px;
+  }
 }

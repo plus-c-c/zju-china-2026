@@ -16,7 +16,7 @@ export function Hardware() {
   return (
     <div className="row mt-4 mb-5">
       <div className="col-lg-10 mx-auto">
-        <article>
+        <article className="hardware-article">
           <BackgroundAndPrinciples />
           <FormulationUnit />
           <AdministrationUnit />
