@@ -7,6 +7,7 @@ import {
 } from "../components/Timeline";
 import { StakeholderChain } from "../components/StakeholderChain";
 import { TransparentImage } from "../components/TransparentImage";
+import { SeedReaderRail } from "./human-practices/SeedReader";
 import "./human-practices.css";
 
 /** All figures live on the team static host. */
@@ -1457,6 +1458,9 @@ export function HumanPractices() {
               </div>
             </div>
           )}
+          {/* The scrolling SEED wheel follows the [data-seed-phase] cycle
+              paragraphs; it collapses on its own where they are not shown. */}
+          <SeedReaderRail />
         </article>
       </div>
     </div>

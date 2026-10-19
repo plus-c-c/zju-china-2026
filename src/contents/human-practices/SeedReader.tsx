@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import seedRingSvg from "../engineering/assets/seed-ring-hp.svg?raw";
 import "./seed-reader.css";
@@ -29,9 +29,24 @@ const SEED_LABEL_OFFSET_DEG = -9.33;
  */
 export function SeedReaderRail() {
   const wrapRef = useRef<HTMLDivElement>(null);
+  const [hasParagraphs, setHasParagraphs] = useState(false);
   const ringRef = useRef<HTMLDivElement>(null);
   const activeRef = useRef<HTMLElement | null>(null);
   const refreshRef = useRef<() => void>(() => {});
+
+  /* The wheel only exists where SEED cycle paragraphs are actually shown;
+     anywhere else (other iHP pages, other routes) it collapses completely. */
+  useEffect(() => {
+    const check = () => {
+      const shown = Array.from(
+        document.querySelectorAll<HTMLElement>("[data-seed-phase]"),
+      ).some((paragraph) => paragraph.getBoundingClientRect().height > 0);
+      setHasParagraphs(shown);
+    };
+    check();
+    const interval = window.setInterval(check, 300);
+    return () => window.clearInterval(interval);
+  }, []);
 
   /* Pin the half wheel under the TOC: flat edge on the TOC's left edge,
      radius as close to the TOC width as the viewport height allows.
@@ -47,8 +62,11 @@ export function SeedReaderRail() {
 
     const place = () => {
       if (!nav || !nav.offsetWidth) return;
-      const cs = getComputedStyle(nav);
-      const top = parseFloat(cs.top) || 0;
+      /* Only a fixed TOC has constant viewport coordinates; anything else
+         (during transitions, before the styles settle) would place the wheel
+         at a document offset. */
+      if (getComputedStyle(nav).position !== "fixed") return;
+      const top = nav.getBoundingClientRect().top;
       const navBottom = top + nav.offsetHeight;
       const radius = Math.max(
         160,
@@ -82,17 +100,18 @@ export function SeedReaderRail() {
       observer?.disconnect();
       window.removeEventListener("resize", place);
     };
-  }, []);
+  }, [hasParagraphs]);
 
+  /* Re-attach whenever the cycle paragraphs appear or disappear (the wheel
+     lives at the page level, so it mounts before the NEST page's content). */
   useEffect(() => {
+    if (!hasParagraphs) return;
     const ring = ringRef.current;
     if (!ring) return;
     const paras = Array.from(
       document.querySelectorAll<HTMLElement>("[data-seed-phase]"),
     );
     if (!paras.length) return;
-    const lineHeight =
-      parseFloat(getComputedStyle(paras[0]).lineHeight) || 34;
 
     let frame = 0;
     const update = () => {
@@ -141,14 +160,14 @@ export function SeedReaderRail() {
         `${(90 + 90 * phasePos - SEED_LABEL_OFFSET_DEG).toFixed(2)}deg`,
       );
 
-      /* The wheel rolls in from the left when the first line of the first
-         paragraph reaches the centre line, and rolls away to the left when
-         the last line of the last paragraph reaches it. */
-      const firstLine =
-        rects[0].top + scrollY + lineHeight / 2;
-      const lastLine =
-        rects[rects.length - 1].bottom + scrollY - lineHeight / 2;
-      const open = docY >= firstLine && docY <= lastLine;
+      /* The wheel shows while at least one cycle paragraph is on screen (or
+         just about to be); long stretches that carry no paragraph at all —
+         figure blocks such as the syringe questionnaire — collapse it, and it
+         comes back as the reading reaches the next paragraph. */
+      const margin = 60;
+      const open = rects.some(
+        (r) => r.bottom > margin && r.top < window.innerHeight - margin,
+      );
       const wrap = ring.closest(".seed-reader__ring");
       wrap?.classList.toggle("is-open", open);
 
@@ -188,9 +207,9 @@ export function SeedReaderRail() {
       window.removeEventListener("resize", schedule);
       cancelAnimationFrame(frame);
     };
-  }, []);
+  }, [hasParagraphs]);
 
-  if (typeof document === "undefined") return null;
+  if (typeof document === "undefined" || !hasParagraphs) return null;
   return createPortal(
     <div className="seed-reader__ring" ref={wrapRef} data-page-swipe-stage>
       <div

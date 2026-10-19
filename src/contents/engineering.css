@@ -191,7 +191,7 @@
 }
 
 .dbtl-ring {
-  width: clamp(280px, 24vw, 380px);
+  width: clamp(230px, 19vw, 310px);
   max-width: 100%;
   height: auto;
   margin: 0;
@@ -245,8 +245,9 @@
   stroke: #64b4ff;
 }
 
-/* The highlighted segment flips its white letters to the navbar's yellow. */
-.dbtl-ring .dbtl-hi path[fill="white"] {
+/* The highlighted segment flips its white letters to the navbar's yellow
+   (the labels are text on arc paths, so both kinds of label are matched). */
+.dbtl-ring .dbtl-hi :is(path[fill="white"], text) {
   fill: #ffe39a;
 }
 
@@ -362,7 +363,7 @@
 
 /* The nested DBTL artwork flips its white letters to yellow when lit; the
    SEED labels sit in their own top layer and turn yellow on their phase. */
-.seed-ring .dbtl-hi path[fill="white"] {
+.seed-ring .dbtl-hi :is(path[fill="white"], text) {
   fill: #ffe39a;
 }
 
