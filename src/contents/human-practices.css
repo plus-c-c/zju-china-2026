@@ -230,3 +230,41 @@ html[data-ihp-swipe="up"] .nest-navbar {
   padding-top: 1.75rem;
   border-top: 1px solid #dbe4f2;
 }
+
+/* Embedded reports under "The neglected pain": the survey report and the
+   report to the Hangzhou Health Commission. */
+.ihp-pdf {
+  margin: 18px 0 10px;
+}
+
+.ihp-pdf__head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  color: #223c81;
+}
+
+.ihp-pdf__head a {
+  color: #365dc9;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.ihp-pdf__frame {
+  display: block;
+  width: 100%;
+  height: clamp(480px, 80dvh, 900px);
+  border: 1px solid #b8c9e6;
+  border-radius: 12px;
+  background-color: #fff;
+}
+
+@media (max-width: 575.98px) {
+  .ihp-pdf__frame {
+    height: 65dvh;
+    min-height: 360px;
+  }
+}

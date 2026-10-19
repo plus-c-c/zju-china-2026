@@ -1,10 +1,7 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
+import { Link } from "react-router-dom";
 import { flushSync } from "react-dom";
-import {
-  Timeline,
-  type TimelineDetail,
-  type TimelineItem,
-} from "../components/Timeline";
+import { Timeline, type TimelineItem } from "../components/Timeline";
 import { StakeholderChain } from "../components/StakeholderChain";
 import { TransparentImage } from "../components/TransparentImage";
 import { SeedReaderRail } from "./human-practices/SeedReader";
@@ -21,6 +18,10 @@ const LECTURE_FIG =
   "https://static.igem.wiki/teams/6102/wiki/images/engagement/ihp/questionnaire/s";
 const SEED_RING =
   "https://static.igem.wiki/teams/6102/wiki/images/engagement/ihp/seed-ring.avif";
+const SURVEY_REPORT_PDF =
+  "https://static.igem.wiki/teams/6102/wiki/hp-file/res.pdf";
+const HEALTH_COMMISSION_PDF =
+  "https://static.igem.wiki/teams/6102/wiki/hp-file/gov.pdf";
 
 function Figure({
   src,
@@ -47,92 +48,362 @@ function Figure({
  * has `details`; add or remove `details` sections as needed. To display a
  * photo inside the rail dot, add `image: "..."` (plus `imageAlt`).
  */
-const placeholderSummary = (
-  <p>
-    Placeholder text — summarise this engagement activity in two or three
-    sentences: whom we met, what we discussed, and what we learned. Replace with
-    the final content.
-  </p>
-);
-
-const placeholderDetails: TimelineDetail[] = [
-  {
-    heading: "Rationale",
-    content: (
-      <p>
-        Placeholder text — explain why this stakeholder or activity was chosen.
-      </p>
-    ),
-  },
-  {
-    heading: "Summary",
-    content: (
-      <p>Placeholder text — describe what happened during the activity.</p>
-    ),
-  },
-  {
-    heading: "Integration",
-    content: (
-      <p>Placeholder text — describe how the feedback changed the project.</p>
-    ),
-  },
-];
-
-const timelineImageIds: Array<string | null> = [
-  "01",
-  "02",
-  null,
-  "08",
-  "09",
-  "10",
-  "11",
-  "12",
-  "13",
-  "15",
-  "16",
-  "35",
-  "17",
-  "36",
-  "19",
-  "20",
-  "22",
-  "37",
-  "24",
-  "38",
-  "26",
-  "27",
-  "29",
-  "39",
-  "34",
-  "30",
-  "32",
-  "40",
-  "41",
-  "42",
-];
-
-const timelineItems: TimelineItem[] = timelineImageIds.map(
-  (imageId, index) => ({
-    date: "Month DD, 2026",
-    title: `Activity title placeholder ${index + 1}`,
+/**
+ * Stakeholder interviews, summarised from the team's stakeholder archive.
+ * Each entry records the stage of the product path, a card title and summary,
+ * and the Rationale / Interview summary / Integration behind "Read more".
+ */
+function stakeholder(
+  date: string,
+  title: string,
+  summary: string,
+  rationale: string,
+  interview: string,
+  integration: ReactNode,
+  imageId?: string,
+): TimelineItem {
+  return {
+    date,
+    title,
+    summary: <p>{summary}</p>,
     ...(imageId
       ? {
-          image: `https://static.igem.wiki/teams/6102/wiki/images/engagement/ihp/ihp-${imageId}.avif`,
-          imageAlt: `Human practices activity ${index + 1}`,
-          imagePosition:
-            imageId === "15"
-              ? "90% 28%"
-              : imageId === "37"
-                ? "65% 50%"
-                : undefined,
-          imageScale: imageId === "15" ? 2 : undefined,
+          image: `https://static.igem.wiki/teams/6102/wiki/images/engagement/ihp/${imageId}.avif`,
+          imageAlt: title,
         }
       : {}),
-    summary: placeholderSummary,
-    details: placeholderDetails,
-  }),
-);
+    details: [
+      { heading: "Rationale", content: <p>{rationale}</p> },
+      { heading: "Summary", content: <p>{interview}</p> },
+      { heading: "Integration", content: <p>{integration}</p> },
+    ],
+  };
+}
 
+const timelineItems: TimelineItem[] = [
+  stakeholder(
+    "Patient",
+    "Xuan Ge — cartilage injury in a competitive tennis player",
+    "A varsity tennis player with two severe sprains described clear cartilage damage on CT that was treated with painkillers, followed by two hours of daily rehabilitation with limited relief. His story showed us that focal defects are a major, under-treated form of cartilage injury and that recovery is slow and burdensome.",
+    "After our survey showed that focal cartilage defects are a common form of hyaline cartilage injury, we looked for a high-risk group to interview and approached a key member of the Zhejiang University tennis team with ten years of competitive play.",
+    "He described two major sprains. After the first, a CT showed obvious cartilage damage, but with no good early treatment he was sent home with painkillers; rehabilitation through a rehabilitation physician and TCM physiotherapy took about two hours a day — “and that was with a team doctor” — yet helped only partially. A teammate who ruptured an ACL received an artificial ligament and recovered quickly, but the hard implant kept wearing the remaining cartilage, and doctors had no solution.",
+    "The interview confirmed focal defects as a key target and pushed us to design a material that fits all kinds of hyaline cartilage injury. The pain point of slow, cumbersome rehabilitation led us to the idea of improving the rehabilitation experience, which later became the AI-guided smart mirror developed with the biomedical engineering team.",
+    "ihp-01",
+  ),
+  stakeholder(
+    "Patient",
+    "Yue Wang, Yu Xu and Fangrui Liang — the invisible pain after surgery",
+    "Three young patients with post-operative cartilage damage described persistent pain that doctors called normal and that family and friends could not see. Their anxiety and self-doubt pushed us to treat the psychological and social side of cartilage health as part of the problem.",
+    "We met Yu Xu at the iGEM East China meet-up and found Yue Wang and Fangrui Liang through a Xiaohongshu discussion thread; all three had direct experience of post-operative cartilage injury.",
+    "Yu Xu had ACL reconstruction; her doctors said the artificial ligament recovers faster but is harder and keeps wearing the cartilage, with no good answer for the resulting damage. Yue Wang developed osteoarthritis after hip surgery; follow-up visits concluded that her discomfort was normal, and rehabilitation could not address the persistent friction caused by a slightly misplaced joint. Fangrui Liang's wrist surgery affected her function even more. They described anxiety, irritability and self-blame because the joint is internal and leaves no visible scar for others to see.",
+    "We recognised that doctors' neglect and patients' psychological burden deserve attention, and that the environment around patients has to change. We ran public lectures on cartilage health, reflected on the structural causes of neglect from an anthropological perspective, wrote two survey reports and held a roundtable with medical students on rehabilitation.",
+  ),
+  stakeholder(
+    "Patient",
+    "Grandpa Gu — cartilage care in a remote village",
+    "In Yantan, a remote village in Zhejiang, an elderly manual worker with years of arthritis could only take local herbal medicine and painkillers; the nearest hospital is an hour away and chronic care is scarce. His case showed us how unequal access to care is and became an example in the report we submitted to the Hangzhou Health Commission.",
+    "To understand regional differences in care, we visited Yantan village — a small, seasonal-tourism village with many left-behind elderly people and limited transport.",
+    "He has had arthritis for more than five years and still suffers from it. He described repeated trips to hospitals and said the nearest one is an hour's drive; township hospitals can handle acute problems but have little for chronic disease — “let alone a small illness like mine.”",
+    "We wrote these observations into our survey report and turned it into a professional report for the Hangzhou Health Commission, which will guide grassroots organisations in screening for and publicising cartilage health in the region.",
+  ),
+  stakeholder(
+    "Treatment",
+    "Dr. Huang Jun — sports-medicine advice from a national team doctor",
+    "A former doctor for the national gymnastics team and the Asian Games, Dr. Huang saw strong potential in NEST but stressed portability and operability for athletes, and warned that athletes may pursue over-treatment to return to sport. His advice shifted our thinking on acute repair and on what the functional modules should carry.",
+    "We wanted authoritative advice on sports injuries caused by cartilage defects, so we consulted Dr. Huang Jun, head of the joint department at the Zhejiang Sports Hospital and a member of the Zhejiang Medical Association's sports-medicine branch.",
+    "He believes the project has strong application potential, but for athletes it must be more portable and easier to operate; the surgical-injection route keeps the material in the operating room. He also said that programmability fits athletes' needs well, and described cases in which athletes over-treated in order to restore function quickly.",
+    "We adopted the advice and decided to develop later materials better suited to acute repair — usable for athletes and in extreme team or field settings — and to consider carrying immune factors or drugs in the functional modules to speed conservative treatment; this became a key consideration for the module payload.",
+    "ihp-02",
+  ),
+  stakeholder(
+    "Treatment",
+    "Dr. Qiu Xiaoming — matching material strength to the joint",
+    "When we showed our first SELP design — one fixed set of 2KY5, 2KY10 and 2KY16 proteins — to clinicians, Dr. Qiu pointed out that different joints bear different loads and need different strengths. A single strength could not fill all hyaline cartilage defects, which set us on the programmable repeat-number platform.",
+    "The first step of NEST was to choose a filler that meets the complex requirements of cartilage repair — filling the defect directly and reducing pain immediately — so we brought our first SELP design to researchers and doctors.",
+    "Dr. Qiu Xiaoming of Sir Run Run Shaw Hospital told us that the elbow, knee and other joints bear different loads and need different strengths; a single-strength material could not achieve our goal of treating all hyaline cartilage defects.",
+    "We moved from a single fixed construct to a programmable repeat-number series whose strength, toughness and pore size can be tuned for different joints, immune capacities and defect sizes.",
+    "ihp-08",
+  ),
+  stakeholder(
+    "Treatment",
+    "Dr. Li Zhiguo — an orthopaedic resident reviews the first design",
+    "An orthopaedic resident at Beijing Tongren Hospital's Mentougou campus, Dr. Li reviewed the first SELP design with the clinical team and added the perspective of a young clinician working in a large public hospital.",
+    "We wanted feedback from clinicians who see cartilage defects in daily practice, not only senior specialists, so we included residents in our round of design reviews.",
+    "Dr. Li reviewed the material's intended use and the injection procedure with us and discussed how such a filler would fit the workflow of an orthopaedic department.",
+    "His comments joined the clinical feedback that pushed us toward a programmable platform and a simple, operating-room-compatible procedure.",
+    "ihp-43",
+  ),
+  stakeholder(
+    "Treatment",
+    "Dr. Ren Bo — sports medicine at Xi'an Honghui Hospital",
+    "Dr. Ren Bo, director of the sports-medicine centre at Xi'an Honghui Hospital and a member of ICRS and APKASS, discussed cartilage repair with us from a sports-medicine perspective.",
+    "Sports-medicine physicians see many focal cartilage injuries in active patients, so we consulted Dr. Ren for a view from that specialty.",
+    "He described how cartilage injuries present in athletes and how treatment choices balance a quick return to sport against the long-term health of the joint.",
+    "The conversation reinforced our decision to keep the material minimally invasive and to design it for early, focal defects rather than late-stage disease.",
+    "ihp-09",
+  ),
+  stakeholder(
+    "Treatment",
+    "Dr. Zhang Yumei — the rehabilitation physician's view",
+    "Almost everyone we interviewed had been through rehabilitation, so we asked a rehabilitation physician about clinical practice. Dr. Zhang Yumei, who works on post-operative cartilage injury and early-to-mid osteoarthritis, explained why rehabilitation is essential but hard for patients to sustain.",
+    "Rehabilitation appeared in nearly every patient story, so we wanted the clinician's view of what it can and cannot do.",
+    "Dr. Zhang Yumei of Nanjing Medical University's First Affiliated Hospital described the rehabilitation pathway for post-operative cartilage injury and early-to-mid OA, and the difficulty patients face in keeping up with long, supervised programmes.",
+    "Her perspective supported our decision to improve the rehabilitation experience — the thread that led to the AI-guided smart mirror — rather than relying on rehabilitation alone.",
+    "ihp-10",
+  ),
+  stakeholder(
+    "Treatment",
+    "Nurse Xue Han and 18 nurses — redesigning the hardware around the ward",
+    "An experienced nurse at the 254th Hospital and 18 colleagues reviewed our first hardware design. They raised three concerns — an unclear preparation workflow, device usability and the training burden — and worried that an uncommon interface could not be shown on hospital displays. Their feedback reshaped the device.",
+    "The hardware is used by clinical staff, so we took our first design to a professional nursing team rather than deciding its details internally.",
+    "They raised three main issues: uncertainty about where and how the material is prepared; questions about the experience of using the device; and the training complexity of introducing a new device, plus adaptability concerns — if the interface is not common, the endoscopic view cannot be shown on emergency-room screens.",
+    <>
+      We combined the endoscope and the operating instrument, added an
+      electronic manual, and moved the display connection to Bluetooth to fit
+      existing hospital equipment and reduce cost. We also ran a blind test of
+      syringes with different damping with the nursing team and chose the final
+      syringe (see the{" "}
+      <a
+        href="#ihp-syringe-questionnaire"
+        onClick={(event) => {
+          event.preventDefault();
+          // Close the "Read more" dialog, then open the questionnaire on NEST.
+          document.dispatchEvent(
+            new KeyboardEvent("keydown", { key: "Escape" }),
+          );
+          window.dispatchEvent(new Event("ihp:open-questionnaire"));
+        }}
+      >
+        syringe questionnaire
+      </a>
+      ).
+    </>,
+    "ihp-11",
+  ),
+  stakeholder(
+    "R&D",
+    "Prof. Ouyang Hongwei — defining the indication and the degradation window",
+    "A leading researcher in joint cartilage tissue engineering, Prof. Ouyang pushed us to say exactly which defect we treat — focal partial-thickness defects and early degeneration, not all osteoarthritis — and to design degradation to match new tissue formation. Both points reshaped our claims and our characterisation plan.",
+    "NEST began as an injectable, in-situ hydrogel, but internally “cartilage repair” and “treating osteoarthritis” were used almost interchangeably. We consulted Prof. Ouyang Hongwei to clarify the repair scenario and the boundary of the indication.",
+    "He raised three points: repair is not just filling a defect, because the material enters a continuously degenerating microenvironment; degradation must keep pace with new tissue formation and bond reliably to the surrounding cartilage; and we must specify which scenario we target — focal partial-thickness defects, early degeneration, or advanced OA with subchondral bone changes. He was clear that local repair cannot be equated with reversing osteoarthritis at every stage.",
+    "We reversed the order of our claims: NEST targets focal, partial-thickness cartilage defects and post-traumatic or early degenerative stages, while advanced OA appears only as the downstream consequence in the background. Degradation became a designed parameter: we added degradation curves in PBS, collagenase/protease solution and simulated synovial fluid at 4, 8 and 12 weeks alongside ITC purification, compression and lap-shear testing. The curves showed that material degradation and cartilage regeneration are largely complementary, so no separate degradation module was needed.",
+    "ihp-12",
+  ),
+  stakeholder(
+    "R&D",
+    "Songlin Shi — questioning the magnetic and protein routes",
+    "A community mentor and former CCiC chair, Songlin Shi challenged two early assumptions: that magnetic particles could orient the network without being anchored, and that SELP could be expressed and purified without structural damage. Both challenges led to concrete design changes.",
+    "We met Songlin Shi, a doctoral researcher at Westlake University's School of Medicine and a former CCiC chair, while the three functional modules were taking shape but their compatibility, hardware support and protein feasibility had not been thought through.",
+    "His questions focused on two areas: the tension between nanoparticle anisotropy and iron metabolism — enough magnetic loading for orientation versus particles that must eventually be cleared — and protein feasibility, including whether structure survives denaturation and renaturation and whether β-sheet aggregation and inclusion bodies would block the project.",
+    "We abandoned the idea of pulling particles with a large coil field and built the current scheme on anchoring and speed: Fe₃O₄-binding peptides anchor particles to the SELP network so a low external field can orient both together, Ru/SPS crosslinking fixes the orientation in about two seconds, and the procedure became injection—observation—magnetic orientation—blue-light crosslinking. For production we chose ITC purification, which relies on SELP's reversible phase behaviour and keeps the protein natively folded rather than denaturing and refolding it.",
+    "ihp-22",
+  ),
+  stakeholder(
+    "R&D",
+    "Prof. Patrick Butaye — de-risking SELP expression",
+    "Facing the risk that SELP might not express normally in E. coli, we asked Prof. Butaye for advice. He recommended starting small and testing expression before scaling, which became our two-step expression and purification route.",
+    "The whole NEST route rested on an unverified assumption — that SELP, a large, highly repetitive protein, could be expressed normally in E. coli. Prof. Patrick Butaye, vice-dean of City University of Hong Kong's veterinary school and an expert in the field, was asked whether expression would work and whether abnormal folding or membrane issues should be expected.",
+    "He advised a small-scale trial first and gave detailed experimental guidance; he considered the design essentially sound, sent useful reference papers by email, and invited us to visit his laboratory.",
+    "We split expression into two steps: confirm at small volume whether the protein is expressed, in what form and with the expected phase behaviour, then scale up in E. coli BL21. ITC purification later confirmed soluble protein with normal phase behaviour, answering both the expression and the structural concerns; the route was further corrected by Weixinkang and Prof. Huang Wenwen.",
+    "ihp-15",
+  ),
+  stakeholder(
+    "R&D",
+    "Prof. Huang Wenwen — scalability and the salt/crosslinking link",
+    "Prof. Huang endorsed the platform's extensibility and identified a practical conflict: raising salt concentration improves ITC purification, but residual salt hinders Ru/SPS photocrosslinking. Adding dialysis after purification let us reach two-second gelation.",
+    "NEST makes SELP chain length, domain ratio, functional residues and peptide interfaces designable parameters. We asked Prof. Huang Wenwen, a researcher in the SELP field, about platform scalability and about the process link between purification and rapid photocrosslinking.",
+    "She rated the overall design highly: the platform lets the team combine or adjust functions on a shared scaffold to meet different patient needs. She focused on the relation between crosslinking efficiency and the purification conditions, noting that the salt added during ITC can remain and interfere with Ru/SPS crosslinking; she also compared our purification efficiency with her laboratory's process and encouraged further industrial exploration.",
+    "We kept the shared-scaffold, standard-interface, replaceable-module architecture and added a dialysis step after ITC to remove residual salt. After the change, SELP reached visible-light gelation in about two seconds, turning her advice into a verifiable process improvement and showing that purification and gelation must be optimised as one continuous flow.",
+    "ihp-17",
+  ),
+  stakeholder(
+    "R&D",
+    "Dr. Yi Junzhi — proving modularity by assembly efficiency",
+    "Dr. Yi accepted sequence-level design and standardised interfaces but demanded evidence that modules do not interfere — assembly efficiency, function retention and reproducibility. That reframed our linker choice around speed and completeness and led us to SnoopLigase 2.",
+    "“Modules can be plugged in” was still a claim on a design drawing: the scaffold stays, the functional units change, but we could not say what proved it. We consulted Dr. Yi Junzhi, a researcher at Zhejiang University's Liangzhu Laboratory working on modular protein engineering and bone tissue engineering.",
+    "He agreed that sequence-level design and standardised interfaces help tune material properties, but asked whether modules affect one another: fusion peptides may change expression or solubility, tags and ligases may change conformation, and multiple modules may cause site masking, lower ligation efficiency or weaker function. Plug-and-play should be proven by assembly efficiency, function retention and reproducibility, not by a diagram.",
+    "We made assembly efficiency the first criterion and chose the SnoopTag/SnoopLigase route, developing the lighter SnoopLigase 2 system (SnoopLigase2, SnoopTag2, DogTag2), which couples efficiently in standard PBS. We kept two insertion options — SnoopTag2 at the SELP terminus for first-round validation, or inside a domain for more flexible assembly — with an optional flexible linker to reduce steric hindrance. The 12- and 23-amino-acid tags keep the structural burden small and can also be inserted internally.",
+    "ihp-36",
+  ),
+  stakeholder(
+    "R&D",
+    "Prof. Lin Si'en — from particle alignment to a real anisotropic network",
+    "Prof. Lin warned that particles lining up does not prove the SELP network is anisotropic, and listed the variables that affect orientation. His challenge led directly to the Fe₃O₄-binding peptide and to the fixed injection–orientation–crosslinking sequence.",
+    "Our early magnetic module simply mixed Fe₃O₄ nanoparticles into the SELP precursor, applied a field and crosslinked — with no anchoring mechanism and no plan to prove that anything had aligned. We asked Prof. Lin Si'en at the University of Hong Kong how structural orientation becomes measurable tissue-engineering function.",
+    "He focused on evidence: particles aligning does not automatically prove a stable anisotropic SELP network, let alone reproduce native cartilage mechanics — particle orientation, network orientation and direction-dependent gel properties must each be shown. He listed five variables that affect orientation (field strength and gradient, particle concentration, ligation efficiency, precursor rheology, crosslinking timing) and separated “a directional structure formed” from “that structure changed cell behaviour.”",
+    "His point that particle orientation is not network orientation directly produced the Fe₃O₄-binding peptide: instead of dragging particles that may spin in the water phase, we anchor them to the SELP scaffold so a low field orients particles and network together. The magnetic module then joined the SnoopTag2/DogTag interface, and the operation became a fixed sequence — injection, confirmation, magnetic orientation, blue-light crosslinking — with an independently controlled light source in the endoscope module.",
+    "ihp-13",
+  ),
+  stakeholder(
+    "R&D",
+    "Prof. Li Xiaoming — linking field-induced structure to local mechanics",
+    "Prof. Li's work on electric-field gradient hydrogels helped us restate the problem: how the field changes internal orientation, how crosslinking preserves it, and how the fixed structure changes local mechanical response. This shaped our four-phase continuum model.",
+    "We wanted to connect external-field control, structural change and the local mechanical environment that cells sense, so that modelling could guide experiments. Prof. Li Xiaoming's Advanced Science work on biomimetic gradient hydrogels drew our attention, and we contacted him online.",
+    "Because his work uses electric fields while our system responds to magnetic fields through Fe₃O₄ and SELP, the model had to be rebuilt around our mechanism. The discussion divided “the field changes hydrogel properties” into steps that can be analysed: how the field affects orientation, how crosslinking preserves it, and how the fixed structure changes local mechanical response.",
+    "Our Model reflects this: alongside molecular dynamics and network analysis, we built a four-phase continuum model describing SELP–Fe₃O₄ fibres, non-fibrous matrix, free particles and water, and included the preparation sequence. The model now predicts local material environments that can guide sampling and later cell-response comparisons, including YAP/TAZ readouts.",
+    "ihp-16",
+  ),
+  stakeholder(
+    "R&D",
+    "Prof. Wu Congjun — timing the light trigger",
+    "Prof. Wu's discussion of the Ru/SPS system clarified two different time requirements: keep an operating window before illumination and fix the structure quickly after it. This led to the explicit injection–confirmation–orientation–crosslinking sequence and the independently controlled blue-light source.",
+    "NEST's precursor must stay flowable for injection and shaping, then form a stable network on demand. We discussed with Prof. Wu Congjun, chair of Westlake University's theoretical physics department, how blue light should trigger crosslinking and when it should be switched on.",
+    "We described the Ru/SPS visible-light system, which crosslinks tyrosine residues and gels in about two seconds under blue light. The discussion clarified two separate requirements: an operating window before illumination for filling and orientation, and rapid fixation after it. Illuminating too early loses flow; too late risks precursor loss or structural change.",
+    "We made injection and photocrosslinking separately controlled steps and fixed the order injection—confirmation—magnetic orientation—blue-light crosslinking, keeping the magnetic field on while the light is applied. The endoscope module has an independently controlled blue-light source so the operator can inspect the defect and fill first, and the software flow presents the illumination and gelation steps explicitly.",
+    "ihp-20",
+  ),
+  stakeholder(
+    "R&D",
+    "Dr. Hong Yi — what “adhesion” actually means",
+    "Dr. Hong split “adhesion” into wet adhesive strength, shape retention and long-term interfacial integration, showing they need different tests. Lap-shear testing entered our characterisation plan because of this conversation, and interfacial bonding became a covalent, not just physical, claim.",
+    "We assumed that because SELP gels, fills the defect and looks attached, adhesion was solved. The joint environment is wet and cyclically loaded, so we asked Dr. Hong Yi, a researcher at Zhejiang University's Liangzhu Laboratory working on biomimetic cartilage and medical tissue adhesives, to examine the interface.",
+    "He asked what “adhesion” means here: the material's wet adhesive strength, the gel's shape retention, or long-term stable integration with native cartilage — related but different properties. A single tensile or compression test cannot represent cyclic loading, wear, interfacial peeling and post-degradation change, and adhesion, modulus and toughness trade off against each other.",
+    "“Adhesion” became three things with three tests: compression for mechanical support and shape retention, lap-shear for interfacial bonding to cartilage, and rheology for precursor flow and gelation — alongside ITC purification. The interface claim also became chemical: the engineered tyrosine residues can couple covalently with endogenous tyrosine, so bonding is not only physical or mechanical interlocking.",
+    "ihp-19",
+  ),
+  stakeholder(
+    "R&D",
+    "Prof. Ma Guanghui — from a module list to a process",
+    "A professor at USTC and an experienced iGEM judge, Prof. Ma asked whether the components can coexist on one timeline — mixing, sensitivity, shelf life, batch consistency and losses. NEST became a pipeline with inputs, windows and release criteria for each step.",
+    "The three functional modules had each taken shape, but we were still thinking module by module. We asked Prof. Ma Guanghui about feasibility, because it depends not only on each component working but on their compatibility in order, stability and storage.",
+    "He focused on engineering and process integration: whether components must be mixed at the same time, which are sensitive to temperature, salt, light or shear, how long the assembly lasts, whether batches of protein, particles and liposomes are consistent, and where losses or inactivation are most likely. For the mitochondrial carrier, payload integrity and function need separate assessment.",
+    "NEST became a pipeline with defined inputs, operating windows, monitoring and release criteria for precursor preparation, module assembly, temporary storage, delivery, injection, magnetic orientation and blue-light crosslinking. We built quality indicators — protein purity, endotoxin and residual impurities, ligation efficiency, storage stability, function retention — and for mitochondria we separated payload integrity, cleavage of the responsive linker and delivery outcomes.",
+    "ihp-35",
+  ),
+  stakeholder(
+    "R&D",
+    "Prof. Chen Ming — making models verifiable",
+    "Across four meetings, Prof. Chen pressed on three things: clearly defined variables, interpretable inputs and outputs, and independent experimental support. We split the model into five single-variable studies and assigned calibration experiments to each scale.",
+    "We expected modelling to tell us directly which sequence was best and saw the software mainly as a display. We asked Prof. Chen Ming at Zhejiang University whether that view holds up from a systems-modelling and data-analysis perspective.",
+    "He focused on whether variables are clearly defined, whether model inputs and outputs are interpretable, and whether results are supported by independent experiments. A prediction without stated assumptions, parameter ranges and error sources is hard to trust, and building a software interface is not model validation: software should help record parameters, compare options, show the basis of a model and feed results into the next design round.",
+    "We separated the simulations so that each of the five variables has a single dependent variable that can be tested on its own, assigned each scale a question (all-atom MD and enhanced sampling for conformations and functional-site states; coarse-grained Martini 3.0 networks for crosslinked mechanics; magnetic–mechanical coupling for field and particle effects), and paired every model with calibration or validation experiments — gelation time, rheology, compression, structural imaging and directional mechanical tests.",
+    "ihp-37",
+  ),
+  stakeholder(
+    "R&D",
+    "Prof. Zhou Hong and Lin Lei — the AI rehabilitation mirror",
+    "With Zhejiang University's School of Biomedical Engineering, we co-developed a smart mirror for home rehabilitation: an AI module checks whether the patient's movements match the tutorial and an on-screen avatar. ZJU-China supplied clinical guidance and survey findings; the engineering team supplied the technology.",
+    "Our patient interviews showed that rehabilitation is effective but long, repetitive and hard to sustain, especially when it requires repeated trips to hospital. We approached Prof. Zhou Hong and Lin Lei's team at the School of Biomedical Engineering to explore a home-based alternative.",
+    "The mirror lets patients practise at home and compare their movements with an on-screen avatar, while the AI module monitors whether the movement matches the tutorial. ZJU-China provided clinicians' guidance and survey findings on what patients actually need; the biomedical engineering team provided the technical development.",
+    "The collaboration produced a working prototype that supports patients emotionally as well as physically, addressing the psychological side of rehabilitation we had heard in the interviews.",
+    "ihp-24",
+  ),
+  stakeholder(
+    "Manufacturing",
+    "Beijing Weixinkang — planning the first factory samples",
+    "A medical-device company experienced in patent filing and Class III applications, Weixinkang advised us to think harder about protein purification, transport and hospital acceptance, and helped estimate equipment, annual output and sample costs.",
+    "As we considered factory-scale production, our literature review showed we needed a mature partner to produce the first samples, so we approached Beijing Weixinkang Medical.",
+    "They gave constructive advice on device manufacturing: give more thought to protein purification so the first factory samples can be released; consider extraction cost, transport cost and hospital acceptance. They also helped estimate the equipment, annual output and sample-production cost of NEST's first generation and provided a profit analysis.",
+    "We adopted ITC for SELP purification and His-tag capture, cleavage and elution for the other proteins, and used their estimates in our cost model.",
+  ),
+  stakeholder(
+    "Manufacturing",
+    "Shaanxi Lanyanwei — what a product must define before translation",
+    "Lanyanwei's chief scientist helped us see that modularity must become a clear product definition: what is delivered, who makes and assembles each part, how it is stored and in what order it is used.",
+    "NEST already linked material, functional modules and a companion device, but how a research plan becomes a product with clear boundaries, production requirements and sales conditions still needed work. We drew on Lanyanwei's experience in translating research and clinical results.",
+    "The discussion covered whether the first stage delivers the hydrogel, the functional components or the complete system with light and magnetic operation; who produces, assembles and delivers each part; and which laboratory steps still depend on individual researchers. Modularity has to become a product description: what each component does, how it is combined and stored, and the order in which the user operates it.",
+    "We split translation preparation into material, functional components and companion device, each with its use, composition, operating requirements and open questions, and clarified the links in the chain assembly—precursor preparation—injection—magnetic orientation—blue-light crosslinking.",
+    "ihp-38",
+  ),
+  stakeholder(
+    "Manufacturing",
+    "Yuanyi Biology — scale-up and batch consistency",
+    "A mature synthetic-biology raw-material company, Yuanyi Biology helped us assess expression, purification and batch consistency at larger scale and how to think about cost across the whole process.",
+    "NEST's SELP scaffold and functional components depend on recombinant expression and assembly. As sample demand grows, we needed to understand what happens when laboratory expression and purification are scaled, so we visited Yuanyi Biology.",
+    "The discussion covered expression, purification and batch-to-batch consistency: whether different SELP constructs give stable yields and recovery, whether ITC purification holds up at larger volumes, and how to keep assembly ratios and final formulation consistent when components are produced separately. Cost has to be seen across the whole process, including purification losses, assembly efficiency, testing and storage.",
+    "We kept the recombinant expression and ITC purification route and planned cross-batch records of yield, recovery and performance, traceable sample numbering and assembly records, and joint process optimisation with the producer based on small-scale scale-up results.",
+    "ihp-30",
+  ),
+  stakeholder(
+    "Manufacturing",
+    "Shanghai Lingjiu — scoping a CDMO collaboration",
+    "A potential CDMO partner, Lingjiu helped turn “you can produce our material” into a defined technical scope: which materials we supply, which steps they own, the first formulation and scale, and the acceptance criteria.",
+    "To move NEST from research samples to repeatable delivery, we assessed external manufacturing partners and identified Shanghai Lingjiu Medical Technology as a potential CDMO.",
+    "The discussion defined the technical scope: which raw materials the team provides, which steps the partner owns, the formulation and scale of the first trial, and the indicators for successful technology transfer. Transfer must also cover performance after preparation — module assembly, precursor state, blue-light gelation and the mechanical properties of the gel.",
+    "We plan a technology-transfer package covering material requirements, formulation, process steps, test methods and sample traceability, followed by a small trial batch compared with laboratory samples, after which the scope, quality responsibilities and delivery conditions will be fixed.",
+    "ihp-28",
+  ),
+  stakeholder(
+    "Market access",
+    "Li Zhuoya — keeping a student team going",
+    "A partner at Yiru Biology and a former iGEMer, Li Zhuoya discussed how a student team can keep accumulating technology and partnerships after the competition, and how to organise external materials by evidence status.",
+    "We wanted to understand how a student team continues to build technology, organise people and attract partners after the competition, so that the project does not stop when members graduate.",
+    "The conversation focused on continuity: who is responsible for the material, the device and the software; whether key experiments can be reproduced from records by new members; and how to distinguish completed results, work in progress and future plans when presenting the project. For a platform project, more modules also mean the team must set priorities, owners and stop/go criteria for each route.",
+    "We plan a unified handover and version-management system linking protein constructs, module assembly, experimental conditions, device operation and data records, and will organise external materials by evidence status.",
+    "ihp-27",
+  ),
+  stakeholder(
+    "Market access",
+    "ZJU Innovation & Entrepreneurship College — matching support to stages",
+    "Through the college we joined the Young Eagle Program, SRTP, SQTP and the Dandelion innovation competition, and discussed how university support can map onto concrete research and entrepreneurial deliverables.",
+    "NEST spans material research, device development and start-up preparation, and needs sustained collaboration and resources. We approached Zhejiang University's Innovation and Entrepreneurship College to understand the support available at different stages.",
+    "Through Wang Feifan's introduction we joined the Young Eagle Program, SRTP, SQTP and the Dandelion innovation competition, covering future-technology exploration, research training, project investigation and practice, and entrepreneurship.",
+    "We plan a single project task list that maps each support opportunity to a concrete research or entrepreneurial deliverable, shares experimental records, budgets and results, and updates technical evidence, the business plan and responsibilities through regular reviews.",
+  ),
+  stakeholder(
+    "Market access",
+    "Zhang Jie — what to prove first",
+    "At a ZJU hackathon pitch, Zhang Jie of Huadan Angel Investment discussed market, competitors and cost, and pushed us to define the first product and the evidence investors would want. We reached an initial cooperation intent with 1.5 million yuan to support the first sample batch.",
+    "NEST is a platform, but its modules differ in maturity, validation cost and value. We wanted an investor's view of what the project should prove first and which progress limited funding should support.",
+    "The discussion focused on how the platform becomes a clear first product: one SELP scaffold carrying different modules supports iteration without restarting from a new system each time, and the market is large with no mature competitor. We discussed which specific value NEST should prove first, whether the cost estimate covers purification, quality testing, storage, functional components and consumables, and what checkable results the team could deliver at the end of early financing.",
+    "We split the business plan into a first product and later module expansion, kept the platform design while setting a narrower validation scope for the first stage, and expanded the cost analysis from raw materials to the full cost of a single treatment. We reached an initial cooperation intent with 1.5 million yuan for the first sample batch.",
+    "ihp-26",
+  ),
+  stakeholder(
+    "Market access",
+    "Erik Forsberg — cost structure and pilot markets",
+    "A hardware entrepreneur and ZJU entrepreneurship lecturer, Erik helped us build the cost framework and economic model with non-public data, and suggested piloting in regions with lighter regulation — leading us to consider Hong Kong.",
+    "Our cost estimates were limited by a lack of practical knowledge, so we asked Erik Forsberg, an experienced hardware professor who teaches entrepreneurship at Zhejiang University, to act as our business adviser.",
+    "He provided many non-public data sources for our business model, guided the cost analysis and built the cost-structure framework and economic model, and suggested piloting in regions with relatively lighter regulatory requirements.",
+    "With his help we estimated market size and target markets and assessed commercial feasibility, and are considering a pilot in Hong Kong, where commercial medical insurance is more developed and regulation is lighter.",
+    "ihp-44",
+  ),
+  stakeholder(
+    "Market access",
+    "Prof. Li Jianqin — a staged commercialisation path",
+    "An economics professor at ZJU, Prof. Li helped turn scattered commercialisation tasks into a staged roadmap with deliverables, funding and ownership, and clarified the IP and equity questions to settle first.",
+    "As NEST moved from research toward entrepreneurship, the team had to consider technology development order, funding, intellectual property and organisation. We consulted Prof. Li Jianqin at Zhejiang University's School of Economics.",
+    "The discussion covered the preparation process before market launch and the equity structure: which technologies and materials involve the university or other partners, how core members' contributions are agreed, and how the team keeps decision continuity when people leave, funding arrives or outside resources join. Technology validation, manufacturing preparation, professional advice and market exploration must share one schedule.",
+    "We plan a staged commercialisation roadmap listing deliverables, funding and owners for each stage, and will clarify contributions, IP ownership and existing agreements before discussing equity, with professional help for the detailed arrangements.",
+    "ihp-34",
+  ),
+  stakeholder(
+    "Market access",
+    "Zhang Binghong — writing a report government can use",
+    "A senior entrepreneurship coach with government-relations experience, Zhang Binghong advised on how to structure our survey report for government needs. The report reached the Hangzhou Health Commission, which replied that it would consider adopting it.",
+    "We wanted our survey findings to reach the people who can act on them. Zhang Binghong, secretary of the RTC Talent Development Business School and an international senior entrepreneurship coach with experience in government relations and support for vulnerable groups, was a judge at our Dandelion competition and discussed the report with us afterwards.",
+    "She set out what a government-facing report needs: a clear structure, alignment with government priorities, a defined scope of investigation, and a time plan that can be replicated and extended. We stayed in contact while writing and produced the final document.",
+    "The report includes concrete action recommendations and received a reply from the Hangzhou Health Commission stating that it would consider adopting them. It will guide our participation in government-led community cartilage-health outreach.",
+    "ihp-39",
+  ),
+  stakeholder(
+    "Market access",
+    "Mavis Wu — the payment perspective",
+    "A branch director at Prudential, Mavis Wu explained how insurance reimbursement works and what hospitals and insurers need to see. We added a payment perspective to our commercial analysis and drafted an information pack for payers.",
+    "Access also depends on who pays. Mainland resident medical insurance requires mature therapies and long approval cycles, so we looked at commercial insurance and asked Mavis Wu, a branch director at Prudential and a 2026 QAA award winner, about payment arrangements.",
+    "She described how insurance works and the profile of high-end commercial-insurance customers: many policies pay hospitals directly, so hospital acceptance of the material is decisive, and some insurers use准入 lists such as the mainland's 2025 commercial health-insurance innovative drug catalogue, while in Hong Kong individual insurers decide. A payer-facing information pack should make reimbursement criteria explicit.",
+    "We added a payment perspective to the commercial analysis, included material, consumables, device use and operating costs in the cost framework, and drafted an initial information pack for payers.",
+    "ihp-40",
+  ),
+  stakeholder(
+    "Market access",
+    "Tung Wah Hospital — hospital adoption in Hong Kong",
+    "Tung Wah Hospital's medical services team explained how a new material enters a Hong Kong hospital: department and collaboration, product definition, MDACS listing, evidence and procurement. They pointed us to their new innovation office for submissions.",
+    "After speaking with Mavis Wu, we wanted to understand hospital admission standards, so we contacted the medical services team of Tung Wah Hospital and the centre director to explore how NEST could enter a hospital.",
+    "The discussion covered confirming the target department and collaboration model, fixing the first product formulation, use and mechanism, checking with the Hong Kong Department of Health whether the product is a medical device and which risk class and MDACS listing apply (assessed separately for the base hydrogel and the version with an active delivery module), preparing product information, specifications, compliance documents and safety and efficacy evidence, and explaining the full-course cost against existing treatments. Hospitals also require clinical and technical evaluation, supplier and procurement procedures, acceptance, training, batch traceability and adverse-event reporting.",
+    "Tung Wah's new Office for Innovative Drugs and Medical Devices, established in June 2026, accepts submissions from manufacturers or local agents at imds@ha.org.hk. We plan to approach flexible private hospitals such as Tung Wah after our factory production is stable.",
+    "ihp-33",
+  ),
+  stakeholder(
+    "Market access",
+    "Legislator Lam Chit-yuen — Hong Kong's device listing",
+    "A medical-sector legislator, Lam explained MDACS — a voluntary listing that hospitals may still require — and noted that a composite material like ours cannot be filed under a single standard. He welcomed innovative materials in Hong Kong.",
+    "Entering a hospital still requires MDACS listing under the Hong Kong Department of Health, and device access standards have been changing. We consulted Lam Chit-yuen, a legislator for the medical and health sector.",
+    "MDACS is the Medical Device Administrative Control System; listing means the device has passed its document review and appears on the Department of Health's published list. It is currently voluntary and covers Class II, III and IV general devices and Classes B, C and D IVDs, with post-market surveillance; hospitals may still require listing for procurement, so “voluntary” does not mean unnecessary. A composite material like our hydrogel cannot be filed under a single standard. He is interested in new materials and noted that Hong Kong has support schemes for innovative materials.",
+    "We reviewed our material design and decided that, for cost reasons, we could first produce and market the simpler SELP material to avoid a long approval cycle and market-access difficulty.",
+    "ihp-32",
+  ),
+];
 /* ------------------------------------------------------------------ */
 /* Blocks                                                             */
 /* ------------------------------------------------------------------ */
@@ -149,6 +420,12 @@ function SeedMethodBlock() {
         height={1600}
         loading="eager"
       />
+      <p>
+        We want our human-practices work not only to make this project fit the
+        real world, but also to give later teams a way of thinking and a
+        reference they can reuse. The iHP toolbox below collects the methods we
+        used.
+      </p>
       <p>
             To make sure every design step answers a real problem, we built a
             new cycle — <strong>SEED</strong> — and wrapped the traditional
@@ -201,6 +478,11 @@ function SeedMethodBlock() {
         are written on the NEST page, each paragraph tagged with its SEED
         phase.
       </p>
+      <p>
+        SEED is the seed of our product design — the first step that let NEST
+        begin to treat cartilage pain — and we hope it can also be a seed for
+        the iGEM community, helping more teams see real pain and solve it.
+      </p>
     </>
   );
 }
@@ -239,8 +521,8 @@ function CoDesignBlock() {
       <p data-seed-phase="engineering">E: We entered the
         SELP DBTL cycle. To realize the complex functions SELP needs as a
         broadly applicable filler, we surfaced many experimental questions and
-        discussed them actively with several stakeholders (see the Engagement
-        Timeline).
+        discussed them actively with several stakeholders (see the{" "}
+        <a href="#ihp-engagement-timeline">Engagement Timeline</a>).
       </p>
       <p data-seed-phase="dialogue">D: We showed the latest
         design to doctors and researchers; the feedback was positive, and the
@@ -336,7 +618,11 @@ function SituatedBlock() {
         scheme — which stakeholders also approved.
       </p>
 
-      <h4 className="mt-5 mb-3" data-toc="include">
+      <h4
+        id="ihp-syringe-questionnaire"
+        className="mt-5 mb-3"
+        data-toc="include"
+      >
         Syringe operation questionnaire
       </h4>
       <p>
@@ -467,7 +753,8 @@ function SituatedBlock() {
       <p data-seed-phase="engineering">E: We weighed cost
         more heavily in the design, built a detailed business model, found a
         CDMO partner, joined several entrepreneurship events, and secured our
-        first letter of intent for investment. More in Entrepreneurship.
+        first letter of intent for investment. More in{" "}
+        <Link to="/entrepreneurship">Entrepreneurship</Link>.
       </p>
       <p data-seed-phase="dialogue">D: Every revision and
         iteration of the business model was discussed with the relevant
@@ -714,6 +1001,44 @@ function ImpactBlock() {
         Medicine and Health Services Management. We also ran medical-anthropology
         lectures and seminars to raise future doctors&rsquo; awareness.
       </p>
+      <h4 className="mt-5 mb-3" data-toc="include">
+        Reports behind the neglected pain
+      </h4>
+      <p>
+        Two documents record this work in full: our survey report on the
+        neglected pain of cartilage injury, and the report we submitted to the
+        Hangzhou Health Commission. Both are embedded below and can be opened in
+        a new tab.
+      </p>
+      <div className="ihp-pdf">
+        <div className="ihp-pdf__head">
+          <strong>Survey report — the neglected pain of cartilage injury</strong>
+          <a href={SURVEY_REPORT_PDF} target="_blank" rel="noreferrer">
+            Open in a new tab
+          </a>
+        </div>
+        <iframe
+          className="ihp-pdf__frame"
+          src={SURVEY_REPORT_PDF}
+          title="Survey report — the neglected pain of cartilage injury"
+          loading="lazy"
+        />
+      </div>
+      <div className="ihp-pdf">
+        <div className="ihp-pdf__head">
+          <strong>Report to the Hangzhou Health Commission</strong>
+          <a href={HEALTH_COMMISSION_PDF} target="_blank" rel="noreferrer">
+            Open in a new tab
+          </a>
+        </div>
+        <iframe
+          className="ihp-pdf__frame"
+          src={HEALTH_COMMISSION_PDF}
+          title="Report to the Hangzhou Health Commission"
+          loading="lazy"
+        />
+      </div>
+
       <p>
         <strong>SynBio education.</strong> In our education practice we were
         welcomed by every educational institution, while other iGEM teams told
@@ -727,7 +1052,8 @@ function ImpactBlock() {
         University to build an industry module. Beyond promoting synthetic
         biology and reducing public misunderstanding, we also reflected on the
         field itself: we discussed the philosophy of science and technology
-        behind it and examined the ethical questions it raises.
+        behind it and examined the ethical questions it raises.{" "}
+        <a href="#ihp-toolbox-anthro">Learn more</a>.
       </p>
 
       <h4 className="mt-5 mb-3" data-toc="include">
@@ -960,7 +1286,10 @@ function AnthroBlock() {
         The outcomes of that work — two papers written with anthropology
         scholars and the medical-anthropology lectures and seminars we ran for
         future doctors — are described under{" "}
-        <strong>T — Trust and Lasting Impact</strong>.
+        <a href="#ihp-nest-trust">
+          <strong>T — Trust and Lasting Impact</strong>
+        </a>
+        .
       </p>
     </>
   );
@@ -980,13 +1309,19 @@ function EngagementBlock() {
       </p>
       <StakeholderChain />
 
-      <h4 className="mt-5 mb-3" data-toc="include">
+      <h4
+        id="ihp-engagement-timeline"
+        className="mt-5 mb-3"
+        data-toc="include"
+      >
         Engagement timeline
       </h4>
       <p>
         What follows is a timeline of our interactions with the stakeholders who
-        made our Integrated Human Practice possible. The entries below are being
-        filled in with the final activities.
+        made our Integrated Human Practice possible. Each entry records whom we
+        met and what we discussed; open “Read more” for the rationale behind the
+        conversation, the interview summary and how the feedback changed the
+        project.
       </p>
       <Timeline items={timelineItems} />
     </>
@@ -1047,10 +1382,22 @@ function SectionSubnav({
   const jump = (id: string) => {
     const el = document.getElementById(id);
     if (!el) return;
-    window.scrollTo({
-      top: el.getBoundingClientRect().top + window.scrollY - 130,
-      behavior: "smooth",
-    });
+    history.replaceState(null, "", `#${id}`);
+    /* Figures above the target load lazily, so re-align once the layout has
+       settled instead of stopping short. */
+    const align = (attempt = 0) => {
+      const target = document.getElementById(id);
+      if (!target) return;
+      const top = target.getBoundingClientRect().top;
+      if (Math.abs(top - 130) > 24) {
+        window.scrollTo({
+          top: top + window.scrollY - 130,
+          behavior: attempt === 0 ? "smooth" : "instant",
+        });
+      }
+      if (attempt < 4) window.setTimeout(() => align(attempt + 1), 600);
+    };
+    align();
   };
   return (
     <div className={className}>
@@ -1293,8 +1640,22 @@ export function HumanPractices() {
     }, 320);
   };
 
+  /* The deck's pages have stable URL hashes so links can target them:
+     #toolbox, #nest, #stakeholder-engagement (plus the sub-section ids). */
+  const syncHash = (index: number | null) => {
+    const id =
+      index === null
+        ? ""
+        : ["toolbox", "nest", "stakeholder-engagement"][index] ?? "";
+    const url = id
+      ? `#${id}`
+      : `${window.location.pathname}${window.location.search}`;
+    history.replaceState(null, "", url);
+  };
+
   const selectPage = (index: number) => {
     if (busyRef.current || index === pageRef.current) return;
+    syncHash(index);
     const wasOpen = pageRef.current !== null;
     if (wasOpen) {
       switchPage(index);
@@ -1338,6 +1699,7 @@ export function HumanPractices() {
   const resetToOverview = () => {
     if (busyRef.current || pageRef.current === null) return;
     setPageSync(null);
+    syncHash(null);
     openScrollRef.current = null;
   };
 
@@ -1346,6 +1708,97 @@ export function HumanPractices() {
     collapse: collapseWithSwipe,
     reset: resetToOverview,
   };
+
+  /* Links from the stakeholder timeline jump to the syringe questionnaire on
+     the NEST page: open that page if needed, then align the questionnaire.
+     Figures above it load lazily, so the alignment is repeated until the
+     heading settles just below the sticky header. */
+  useEffect(() => {
+    const scrollToQuestionnaire = (attempt = 0) => {
+      const el = document.getElementById("ihp-syringe-questionnaire");
+      if (!el) return;
+      const top = el.getBoundingClientRect().top;
+      if (Math.abs(top - 130) > 24) {
+        window.scrollTo({
+          top: top + window.scrollY - 130,
+          behavior: "instant",
+        });
+      }
+      if (attempt < 4) {
+        window.setTimeout(() => scrollToQuestionnaire(attempt + 1), 500);
+      }
+    };
+    const openQuestionnaire = () => {
+      if (document.getElementById("ihp-syringe-questionnaire")) {
+        history.replaceState(null, "", "#ihp-syringe-questionnaire");
+        scrollToQuestionnaire();
+        return;
+      }
+      actionsRef.current.open(1);
+      window.setTimeout(() => {
+        history.replaceState(null, "", "#ihp-syringe-questionnaire");
+        scrollToQuestionnaire();
+      }, 750);
+    };
+    window.addEventListener("ihp:open-questionnaire", openQuestionnaire);
+    return () =>
+      window.removeEventListener("ihp:open-questionnaire", openQuestionnaire);
+  }, []);
+
+  /* Incoming links: #toolbox / #nest / #stakeholder-engagement open that page,
+     and any #ihp-… anchor (also from the other pages) aligns the section.
+     Figures above some targets load lazily, so the alignment is repeated
+     until the heading settles below the sticky header. */
+  useEffect(() => {
+    const pageOf = (id: string): number | null => {
+      if (id === "toolbox" || id.startsWith("ihp-toolbox")) return 0;
+      if (
+        id === "nest" ||
+        id.startsWith("ihp-nest") ||
+        id === "ihp-syringe-questionnaire"
+      )
+        return 1;
+      if (id === "stakeholder-engagement" || id.startsWith("ihp-engagement"))
+        return 2;
+      return null;
+    };
+    let timer = 0;
+    const jump = () => {
+      const raw = window.location.hash.replace(/^#/, "");
+      if (!raw) return;
+      let id: string;
+      try {
+        id = decodeURIComponent(raw);
+      } catch {
+        return;
+      }
+      const target = pageOf(id);
+      if (target === null) return;
+      const align = (attempt = 0) => {
+        const el = document.getElementById(id);
+        const anchor = el ?? navRef.current;
+        if (!anchor) return;
+        const top = anchor.getBoundingClientRect().top + window.scrollY - 130;
+        window.scrollTo({ top: Math.max(0, top), behavior: "instant" });
+        if (el && attempt < 4) {
+          window.clearTimeout(timer);
+          timer = window.setTimeout(() => align(attempt + 1), 450);
+        }
+      };
+      if (pageRef.current !== target) {
+        setPageSync(target);
+        requestAnimationFrame(() => align());
+      } else {
+        align();
+      }
+    };
+    jump();
+    window.addEventListener("hashchange", jump);
+    return () => {
+      window.removeEventListener("hashchange", jump);
+      window.clearTimeout(timer);
+    };
+  }, []);
 
   /* Touch / keyboard can still return to the overview; the wheel is left to
      the page so the reader keeps a normal scroll. */
@@ -1421,13 +1874,21 @@ export function HumanPractices() {
             odd inversion — the people around us who described cartilage pain
             were many, while the cases recorded in the medical system were few.
             Below this overview the page is split into three pages: the{" "}
-            <strong>Toolbox</strong> explains the methods we used,{" "}
-            <strong>NEST</strong> tells the story of its four narrative modules
-            — Need-led Discovery, Evidence-based Co-design, Situated
-            Implementation and Trust and Lasting Impact — and{" "}
-            <strong>Stakeholder Engagement</strong> collects the stakeholder map
-            and the interviews behind every step. Use the three buttons to open
-            a page.
+            <a href="#toolbox">
+              <strong>Toolbox</strong>
+            </a>{" "}
+            explains the methods we used,{" "}
+            <a href="#nest">
+              <strong>NEST</strong>
+            </a>{" "}
+            tells the story of its four narrative modules — Need-led Discovery,
+            Evidence-based Co-design, Situated Implementation and Trust and
+            Lasting Impact — and{" "}
+            <a href="#stakeholder-engagement">
+              <strong>Stakeholder Engagement</strong>
+            </a>{" "}
+            collects the stakeholder map and the interviews behind every step.
+            Use the three buttons to open a page.
           </p>
           <div
             className={`eng-module-nav ihp-page-nav${
