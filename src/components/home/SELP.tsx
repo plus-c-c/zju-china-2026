@@ -370,6 +370,8 @@ const promotionDecorations = [
   ["orange-cell-lower-right", "orange-cell-lower-right.avif"],
   ["orange-molecule-upper-left", "orange-molecule-upper-left.avif"],
   ["cyan-particle-top", "cyan-particle-top.avif"],
+  ["blue-bird-lower-left", "blue-bird-lower-left.avif"],
+  ["blue-bird-top", "blue-bird-top.avif"],
   ["dna-left", "dna-left.avif"],
   ["white-cell-lower-right", "white-cell-lower-right.avif"],
   ["orange-cell-left", "orange-cell-left.avif"],
