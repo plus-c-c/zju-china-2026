@@ -62,11 +62,11 @@ export function Header({ title }: HeaderProps) {
         parseFloat(style.paddingLeft) -
         parseFloat(style.paddingRight) -
         6;
-      // IHP uses two lines at the same fitted size as Proof of Concept.
+      // IHP uses two lines at the same fitted size as Entrepreneurship.
       let width = text.getBoundingClientRect().width;
       if (normalizedPath === "/human-practices") {
         const reference = document.createElement("span");
-        reference.textContent = "Proof of Concept";
+        reference.textContent = "Entrepreneurship";
         Object.assign(reference.style, { position: "absolute", visibility: "hidden", whiteSpace: "nowrap", letterSpacing: "-0.005em" });
         heading.append(reference);
         width = reference.getBoundingClientRect().width;
