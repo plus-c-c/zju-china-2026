@@ -11,6 +11,7 @@ import {
   useBoundaryStepAdvance,
 } from "../../components/useBoundaryStepAdvance";
 import type { DbtlModule, DbtlPhase } from "./dbtl";
+import { useCardWheel, useStepperProgress } from "../../components/stepperWheel";
 import { buildSteps, sequenceSpan, type Step } from "./steps";
 import { DbtlRing } from "./DbtlRing";
 
@@ -48,6 +49,10 @@ interface DbtlStepperProps {
  * stepper once the last step (or, scrolling up, the first step) has been
  * passed.
  */
+/** Rotation that puts each phase's visible centre on 12 o'clock
+ *  (the mirrored label angles, measured from the artwork). */
+const PHASE_TOP_ANGLE = [61.03, 140.62, 235.64, 323.92];
+
 export function DbtlStepper({
   module,
   steps: stepsProp,
@@ -66,8 +71,9 @@ export function DbtlStepper({
   const [index, setIndex] = useState(0);
 
   /** Ring rotation timeline — one alignment per step. Phase steps bring
-   *  their segment to the 3 o'clock reading point (Design starts at 45°,
-   *  then a quarter turn counter-clockwise per phase). Non-phase steps
+   *  their segment to the 12 o'clock reading point (Design starts at −315°
+   *  after the artwork mirror, then a quarter turn clockwise per phase).
+   *  Non-phase steps
    *  borrow the next step's alignment and use their own interval for a full
    *  revolution, so an Introduction / Conclusion view always turns a whole
    *  circle before the next view is allowed in. */
@@ -78,7 +84,10 @@ export function DbtlStepper({
     let phaseIndex = 0;
     steps.forEach((entry, i) => {
       if (entry.kind === "phase") {
-        align[i] = 45 - 90 * phaseIndex;
+        /* The mirrored labels' own centres (design, build, test, learn), so
+           each phase's visible centre lands exactly on 12 o'clock. */
+        align[i] =
+          PHASE_TOP_ANGLE[phaseIndex % 4] + 360 * Math.floor(phaseIndex / 4);
         phaseIndex += 1;
       }
     });
@@ -88,18 +97,18 @@ export function DbtlStepper({
           i + 1 < count ? align[i + 1] : i > 0 ? align[i - 1] : 45;
       }
     }
-    /* Every step owns one interval. Phase steps turn a quarter to bring the
-       next segment to the reading point; non-phase steps turn a whole
-       revolution and land on the next step's alignment. */
+    /* Every step owns one interval. Phase steps turn a quarter clockwise to
+       bring the next segment to the reading point; non-phase steps turn a
+       whole revolution and land on the next step's alignment. */
     const cum: number[] = new Array<number>(count + 1);
     cum[0] = align[0];
     for (let i = 0; i < count; i += 1) {
       const delta =
         i === count - 1
           ? steps[i].kind === "phase"
-            ? -90
-            : -360
-          : align[i + 1] - align[i] - (steps[i].kind === "phase" ? 0 : 360);
+            ? 90
+            : 360
+          : align[i + 1] - align[i] + (steps[i].kind === "phase" ? 0 : 360);
       cum[i + 1] = cum[i] + delta;
     }
     return { cum, span: sequenceSpan(steps) };
@@ -108,6 +117,7 @@ export function DbtlStepper({
   timelineRef.current = timeline;
 
   const rootRef = useRef<HTMLDivElement>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
   const indexRef = useRef(0);
   const stepsRef = useRef<Step[]>(steps);
@@ -174,92 +184,55 @@ export function DbtlStepper({
   });
 
   // The text panel resets whenever a new step is shown: forward lands at the
-  // top, backward at the bottom (continuing an upward read).
+  // top, backward at the bottom (continuing an upward read). The outgoing
+  // card stays mounted for one pan so it can slide off with the incoming one.
   const prevIndexRef = useRef(0);
+  const outgoingTimerRef = useRef(0);
+  const [outgoing, setOutgoing] = useState<ReactNode | null>(null);
   useEffect(() => {
     const panel = panelRef.current;
-    const backward = index < prevIndexRef.current;
+    const previous = prevIndexRef.current;
+    const backward = index < previous;
     prevIndexRef.current = index;
-    if (!panel) return;
-    panel.scrollTo({ top: STEP_ADVANCE_ENABLED && backward ? panel.scrollHeight : 0 });
+    if (panel) {
+      panel.scrollTo({
+        top: STEP_ADVANCE_ENABLED && backward ? panel.scrollHeight : 0,
+      });
+    }
+    if (previous === index) return;
+    setOutgoing(stepsRef.current[previous]?.content ?? null);
+    window.clearTimeout(outgoingTimerRef.current);
+    outgoingTimerRef.current = window.setTimeout(() => setOutgoing(null), 380);
   }, [index]);
 
-  /* Wheel sensitivity: the whole card (header included) scrolls the text as
-     soon as the pointer is inside it, with a little gain. One notch is never
-     split: if the panel still has room it consumes the notch (the remainder
-     past the end is dropped) and the page stays put; only a notch that
-     starts with the panel already at its boundary scrolls the page and turns
-     the ring — immediately, without waiting for a new gesture. */
-  useEffect(() => {
-    const body = panelRef.current;
-    const card = body?.closest<HTMLElement>(".dbtl-panel");
-    if (!body || !card) return;
-    const GAIN = 1.5;
-    const onWheel = (event: WheelEvent) => {
-      if (!event.deltaY) return;
-      event.preventDefault();
-      const raw = event.deltaY;
-      const max = Math.max(0, body.scrollHeight - body.clientHeight);
-      const atStart = body.scrollTop <= 0;
-      const atEnd =
-        body.scrollTop + body.clientHeight >= body.scrollHeight - 1;
-      /* A notch is indivisible: if the panel can move at all, the whole
-         notch belongs to it (any remainder past the end is discarded); only
-         a notch that finds the panel already at the boundary reaches the
-         page and turns the ring. */
-      if (raw > 0 ? atEnd : atStart) {
-        window.scrollBy(0, raw);
-        return;
-      }
-      body.scrollTop = Math.max(0, Math.min(max, body.scrollTop + raw * GAIN));
-    };
-    card.addEventListener("wheel", onWheel, { passive: false });
-    return () => card.removeEventListener("wheel", onWheel);
-  }, []);
+  /* Wheel: shared behaviour — the whole card scrolls the text first (1.5×
+     gain, indivisible notch); at either end the notch drives the page and
+     therefore the ring. */
+  useCardWheel(panelRef, cardRef);
 
-  // Map the scroll progress through the page-level runway to the step index.
-  useEffect(() => {
-    const runway = rootRef.current?.closest(
-      ".eng-runway",
-    ) as HTMLElement | null;
-    if (!runway) return;
-    let frame = 0;
-    const update = () => {
-      frame = 0;
-      if (performance.now() < suppressUntilRef.current) return;
-      const rect = runway.getBoundingClientRect();
-      const total = runway.offsetHeight - window.innerHeight;
-      if (total <= 0) return;
-      const { cum, span } = timelineRef.current;
-      const progress = Math.min(1, Math.max(0, -rect.top / total));
-      const pos = progress * span;
-      const target = Math.min(
-        stepsRef.current.length - 1,
-        Math.max(0, Math.floor(pos + 1e-4)),
+  /* Hidden step progress shared with the Model decks: one interval per
+     step, the step switches when its interval completes, and the position
+     turns the ring through the rotation timeline. */
+  useStepperProgress({
+    getRunway: () =>
+      rootRef.current?.closest(".eng-runway") as HTMLElement | null,
+    count: timeline.span,
+    onIndex: (next) => {
+      if (next !== indexRef.current) setIndex(next);
+    },
+    onProgress: (position) => {
+      const { cum } = timelineRef.current;
+      if (cum.length < 2) return;
+      const slot = Math.min(Math.floor(position + 1e-4), cum.length - 2);
+      const fraction = Math.min(1, Math.max(0, position - slot));
+      const rotation = cum[slot] + (cum[slot + 1] - cum[slot]) * fraction;
+      rootRef.current?.style.setProperty(
+        "--dbtl-rotation",
+        `${rotation.toFixed(2)}deg`,
       );
-      if (target !== indexRef.current) setIndex(target);
-      if (cum.length > 1) {
-        const slot = Math.min(Math.floor(pos + 1e-4), cum.length - 2);
-        const fraction = Math.min(1, Math.max(0, pos - slot));
-        const rotation = cum[slot] + (cum[slot + 1] - cum[slot]) * fraction;
-        rootRef.current?.style.setProperty(
-          "--dbtl-rotation",
-          `${rotation.toFixed(2)}deg`,
-        );
-      }
-    };
-    const schedule = () => {
-      if (!frame) frame = window.requestAnimationFrame(update);
-    };
-    update();
-    window.addEventListener("scroll", schedule, { passive: true });
-    window.addEventListener("resize", schedule);
-    return () => {
-      window.removeEventListener("scroll", schedule);
-      window.removeEventListener("resize", schedule);
-      window.cancelAnimationFrame(frame);
-    };
-  }, [suppressUntilRef]);
+    },
+    suppressUntilRef,
+  });
 
   const step = steps[index];
   /** Module owning the shown step (multi-part sequences switch parts). */
@@ -337,7 +310,7 @@ export function DbtlStepper({
       </div>
       <div className="dbtl-main">
         {topNav && <div className="dbtl-subnav">{topNav}</div>}
-        <div className="dbtl-panel">
+        <div className="dbtl-panel" ref={cardRef}>
           {(phaseBadge || caption) && (
             <div className="dbtl-panel-head">
               {phaseBadge && (
@@ -382,6 +355,15 @@ export function DbtlStepper({
             >
               {step?.content ?? content}
             </div>
+            {outgoing && (
+              <div
+                className="dbtl-panel-inner dbtl-panel-inner--out"
+                data-dir={direction}
+                aria-hidden="true"
+              >
+                {outgoing}
+              </div>
+            )}
           </div>
         </div>
         {stepModule && (

@@ -12,6 +12,7 @@ import {
   STEP_ADVANCE_ENABLED,
   useBoundaryStepAdvance,
 } from "../../components/useBoundaryStepAdvance";
+import { useCardWheel, useStepperProgress } from "../../components/stepperWheel";
 import { MathFormula } from "../../components/MathFormula";
 import { DataTable } from "../../components/table";
 import { BirdLanding } from "../../components/BirdCursor";
@@ -285,6 +286,7 @@ export function SelpHydrogelModeling() {
   const deckRef = useRef<HTMLDivElement | null>(null);
   const stageRef = useRef<HTMLDivElement | null>(null);
   const contentRef = useRef<HTMLDivElement | null>(null);
+  const cardRef = useRef<HTMLDivElement | null>(null);
   /* 滑出层保留切换前的滚动位置 */
   const outScrollRef = useRef(0);
   /* 滚动映射：记录当前步以判断切换方向 */
@@ -333,7 +335,7 @@ export function SelpHydrogelModeling() {
       const range = deck.offsetHeight - window.innerHeight;
       const top = deck.getBoundingClientRect().top + window.scrollY;
       window.scrollTo({
-        top: top + (range * target) / Math.max(1, total - 1),
+        top: top + (range * target) / Math.max(1, total) + 2,
         behavior,
       });
     },
@@ -379,19 +381,18 @@ export function SelpHydrogelModeling() {
     },
   });
 
-  /* 外层滚轮驱动：跑道内的滚动进度 → 步骤（与 homepage / engineering 相同的粘滞机制） */
-  useEffect(() => {
-    const deck = deckRef.current;
-    if (!deck) return;
-    let frame = 0;
-    const update = () => {
-      frame = 0;
-      if (performance.now() < suppressUntilRef.current) return;
-      const rect = deck.getBoundingClientRect();
-      const range = deck.offsetHeight - window.innerHeight;
-      if (range <= 0) return;
-      const progress = Math.min(1, Math.max(0, -rect.top / range));
-      const target = Math.round(progress * (total - 1)) + 1;
+  /* Wheel: shared behaviour — the slide's text scrolls first (1.5x gain,
+     one indivisible notch); once it is at either end the notch drives the
+     page, which advances the hidden step progress below. */
+  useCardWheel(contentRef, cardRef);
+
+  /* Hidden step progress shared with the other steppers: one interval per
+     step; the slide switches when its interval completes. */
+  useStepperProgress({
+    getRunway: () => deckRef.current,
+    count: total,
+    onIndex: (index) => {
+      const target = index + 1;
       if (target === lastStepRef.current) return;
       outScrollRef.current = contentRef.current?.scrollTop ?? 0;
       setEntry(
@@ -401,17 +402,9 @@ export function SelpHydrogelModeling() {
       );
       lastStepRef.current = target;
       setActiveStep(target);
-    };
-    const schedule = () => {
-      if (!frame) frame = window.requestAnimationFrame(update);
-    };
-    window.addEventListener("scroll", schedule, { passive: true });
-    update();
-    return () => {
-      window.removeEventListener("scroll", schedule);
-      if (frame) window.cancelAnimationFrame(frame);
-    };
-  }, [total, suppressUntilRef]);
+    },
+    suppressUntilRef,
+  });
 
   const step = m1Steps.find((s) => s.num === view.current) ?? m1Steps[0];
   const prevStep =
@@ -470,7 +463,7 @@ export function SelpHydrogelModeling() {
           </div>
 
           {/* 固定文本框：仅文本滑入滑出（裁剪在框内） */}
-          <div className="m1-slide">
+          <div className="m1-slide" ref={cardRef}>
             <div className="m1-slides">
               {prevStep && (
                 <SlideInner

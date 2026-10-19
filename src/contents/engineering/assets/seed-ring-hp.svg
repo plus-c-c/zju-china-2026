@@ -15,20 +15,20 @@
 <svg width="1040" height="1040" viewBox="0 0 1040 1040" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g class="seed-base">
 <path data-seg="engineering" d="M244.23 795.77A390 390 0 0 0 795.77 795.77" stroke-width="127" stroke-linecap="round" stroke="#477fae"/>
-<path data-seg="explore" d="M795.77 244.23A390 390 0 0 1 795.77 795.77" stroke-width="127" stroke-linecap="round" stroke="#3979ab"/>
+<path data-seg="explore" d="M244.23 795.77A390 390 0 0 1 244.23 244.23" stroke-width="127" stroke-linecap="round" stroke="#3979ab"/>
 <path data-seg="spark" d="M244.23 244.23A390 390 0 0 1 795.77 244.23" stroke-width="127" stroke-linecap="round" stroke="#4e8dbb"/>
-<path data-seg="dialogue" d="M244.23 795.77A390 390 0 0 1 244.23 244.23" stroke-width="127" stroke-linecap="round" stroke="#5c9dc7"/>
-<circle data-seg="engineering" cx="244.23" cy="795.77" r="65" fill="#477fae"/>
+<path data-seg="dialogue" d="M795.77 244.23A390 390 0 0 1 795.77 795.77" stroke-width="127" stroke-linecap="round" stroke="#5c9dc7"/>
+<circle data-seg="engineering" cx="795.77" cy="795.77" r="65" fill="#477fae"/>
 </g>
 <g class="seed-hi seed-hi-engineering">
 <g mask="url(#seed-mask-engineering)">
 <path data-seg="engineering" d="M244.23 795.77A390 390 0 0 0 795.77 795.77" stroke-width="127" stroke-linecap="round" stroke="#004688"/>
 </g>
-<circle data-seg="engineering" cx="244.23" cy="795.77" r="65" fill="#477fae"/>
+<circle data-seg="engineering" cx="795.77" cy="795.77" r="65" fill="#477fae"/>
 </g>
 <g class="seed-hi seed-hi-explore">
 <g mask="url(#seed-mask-explore)">
-<path data-seg="explore" d="M795.77 244.23A390 390 0 0 1 795.77 795.77" stroke-width="127" stroke-linecap="round" stroke="#003d84"/>
+<path data-seg="explore" d="M244.23 795.77A390 390 0 0 1 244.23 244.23" stroke-width="127" stroke-linecap="round" stroke="#003d84"/>
 </g>
 </g>
 <g class="seed-hi seed-hi-spark">
@@ -38,7 +38,7 @@
 </g>
 <g class="seed-hi seed-hi-dialogue">
 <g mask="url(#seed-mask-dialogue)">
-<path data-seg="dialogue" d="M244.23 795.77A390 390 0 0 1 244.23 244.23" stroke-width="127" stroke-linecap="round" stroke="#1473ad"/>
+<path data-seg="dialogue" d="M795.77 244.23A390 390 0 0 1 795.77 795.77" stroke-width="127" stroke-linecap="round" stroke="#1473ad"/>
 </g>
 </g>
 <g class="seed-texts">
@@ -56,28 +56,28 @@
 </text>
 </g>
 <defs>
-<path id="seed-text-spark" d="M302 216.1A374 374 0 0 1 823.9 302"/>
-<path id="seed-text-explore" d="M823.9 302A374 374 0 0 1 738 823.9"/>
-<path id="seed-text-engineering" d="M738.04 823.86A374 374 0 0 1 216.07 738.04"/>
-<path id="seed-text-dialogue" d="M216.1 738A374 374 0 0 1 302 216.1"/>
+<path id="seed-text-spark" d="M216.23 301.83A374 374 0 0 1 738.17 216.23"/>
+<path id="seed-text-explore" d="M301.83 823.77A374 374 0 0 1 216.23 301.83"/>
+<path id="seed-text-engineering" d="M823.80 738.13A374 374 0 0 1 301.84 823.78"/>
+<path id="seed-text-dialogue" d="M738.17 216.23A374 374 0 0 1 823.77 738.17"/>
 <mask id="seed-mask-spark" maskUnits="userSpaceOnUse" x="0" y="0" width="1040" height="1040">
 <rect x="0" y="0" width="1040" height="1040" fill="white"/>
-<path d="M244.23 795.77A390 390 0 0 1 244.23 244.23" stroke="#000" stroke-width="127" stroke-linecap="round" fill="none"/>
+<path d="M795.77 244.23A390 390 0 0 1 795.77 795.77" stroke="#000" stroke-width="127" stroke-linecap="round" fill="none"/>
 </mask>
 <mask id="seed-mask-explore" maskUnits="userSpaceOnUse" x="0" y="0" width="1040" height="1040">
 <rect x="0" y="0" width="1040" height="1040" fill="white"/>
 <path d="M244.23 244.23A390 390 0 0 1 795.77 244.23" stroke="#000" stroke-width="127" stroke-linecap="round" fill="none"/>
-<path d="M244.23 795.77A390 390 0 0 1 244.23 244.23" stroke="#000" stroke-width="127" stroke-linecap="round" fill="none"/>
+<path d="M795.77 244.23A390 390 0 0 1 795.77 795.77" stroke="#000" stroke-width="127" stroke-linecap="round" fill="none"/>
 </mask>
 <mask id="seed-mask-engineering" maskUnits="userSpaceOnUse" x="0" y="0" width="1040" height="1040">
 <rect x="0" y="0" width="1040" height="1040" fill="white"/>
-<path d="M795.77 244.23A390 390 0 0 1 795.77 795.77" stroke="#000" stroke-width="127" stroke-linecap="round" fill="none"/>
-<path d="M244.23 244.23A390 390 0 0 1 795.77 244.23" stroke="#000" stroke-width="127" stroke-linecap="round" fill="none"/>
 <path d="M244.23 795.77A390 390 0 0 1 244.23 244.23" stroke="#000" stroke-width="127" stroke-linecap="round" fill="none"/>
+<path d="M244.23 244.23A390 390 0 0 1 795.77 244.23" stroke="#000" stroke-width="127" stroke-linecap="round" fill="none"/>
+<path d="M795.77 244.23A390 390 0 0 1 795.77 795.77" stroke="#000" stroke-width="127" stroke-linecap="round" fill="none"/>
 </mask>
 <mask id="seed-mask-dialogue" maskUnits="userSpaceOnUse" x="0" y="0" width="1040" height="1040">
 <rect x="0" y="0" width="1040" height="1040" fill="white"/>
-<circle cx="244.23" cy="795.77" r="66" fill="black"/>
+<circle cx="795.77" cy="795.77" r="66" fill="black"/>
 </mask>
 </defs>
 </svg>

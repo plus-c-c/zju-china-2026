@@ -14,6 +14,7 @@ import {
   STEP_ADVANCE_ENABLED,
   useBoundaryStepAdvance,
 } from "../../components/useBoundaryStepAdvance";
+import { useCardWheel, useStepperProgress } from "../../components/stepperWheel";
 import "./model.css";
 
 /** Scroll distance per protein step, in vh. */
@@ -208,7 +209,7 @@ function ProteinStepper({ steps }: { steps: ProteinStep[] }) {
       if (total <= 0) return;
       const top = runway.getBoundingClientRect().top + window.scrollY;
       window.scrollTo({
-        top: top + (total * target) / Math.max(1, stepsRef.current.length - 1),
+        top: top + (total * target) / Math.max(1, stepsRef.current.length) + 2,
         behavior,
       });
     },
@@ -292,33 +293,21 @@ function ProteinStepper({ steps }: { steps: ProteinStep[] }) {
     });
   }, [index]);
 
-  // Map the scroll progress through the runway to the protein index.
-  useEffect(() => {
-    const runway = runwayRef.current;
-    if (!runway) return;
-    let frame = 0;
-    const update = () => {
-      frame = 0;
-      if (performance.now() < suppressUntilRef.current) return;
-      const rect = runway.getBoundingClientRect();
-      const total = runway.offsetHeight - window.innerHeight;
-      if (total <= 0) return;
-      const progress = Math.min(1, Math.max(0, -rect.top / total));
-      const target = Math.round(progress * (stepsRef.current.length - 1));
-      if (target !== indexRef.current) setIndex(target);
-    };
-    const schedule = () => {
-      if (!frame) frame = window.requestAnimationFrame(update);
-    };
-    update();
-    window.addEventListener("scroll", schedule, { passive: true });
-    window.addEventListener("resize", schedule);
-    return () => {
-      window.removeEventListener("scroll", schedule);
-      window.removeEventListener("resize", schedule);
-      window.cancelAnimationFrame(frame);
-    };
-  }, [suppressUntilRef]);
+  /* Wheel: shared behaviour — the text card scrolls first (1.5x gain, one
+     indivisible notch); once it is at either end the notch drives the page,
+     which advances the hidden step progress below. */
+  useCardWheel(panelRef);
+
+  /* Hidden step progress shared with the other steppers: one interval per
+     protein; the protein switches when its interval completes. */
+  useStepperProgress({
+    getRunway: () => runwayRef.current,
+    count: steps.length,
+    onIndex: (next) => {
+      if (next !== indexRef.current) setIndex(next);
+    },
+    suppressUntilRef,
+  });
 
   // Direction of the caption / text slide; the outgoing step stays
   // rendered until its slide-out finishes. When the design text is
@@ -374,7 +363,7 @@ function ProteinStepper({ steps }: { steps: ProteinStep[] }) {
       className="protein-runway"
       ref={runwayRef}
       style={{
-        height: `calc(${100 + Math.max(0, steps.length - 1) * STEP_DVH}dvh)`,
+        height: `calc(${100 + steps.length * STEP_DVH}dvh)`,
       }}
     >
       <div

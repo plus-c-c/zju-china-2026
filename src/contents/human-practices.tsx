@@ -1088,13 +1088,14 @@ const HP_PAGE_SWIPE_MS = 640;
 const HP_SECTION_OFFSET = 96;
 
 export function HumanPractices() {
-  /* null = overview only; no section content is rendered or reachable. */
-  const [page, setPage] = useState<number | null>(null);
+  /* Toolbox is preselected on mount: the page never starts in the bare
+     overview state, which avoids the layout/scroll edge cases around it. */
+  const [page, setPage] = useState<number | null>(0);
   const navRef = useRef<HTMLDivElement>(null);
   const articleRef = useRef<HTMLElement>(null);
   const busyRef = useRef(false);
   const timerRef = useRef(0);
-  const pageRef = useRef<number | null>(null);
+  const pageRef = useRef<number | null>(0);
   const openScrollRef = useRef<number | null>(null);
   const actionsRef = useRef<{
     open: (index: number) => void;
@@ -1114,20 +1115,16 @@ export function HumanPractices() {
     flushSync(() => setPage(value));
   };
 
-  /* Put the section's sub-navigation (or its title) at the top of the page,
-     so the reading starts right below the site header. */
+  /* Keep the level-1 buttons just under the site header when a page opens,
+     so they stay in place while its sub-panels switch; the section starts
+     right below them. */
   const alignSectionTop = () => {
-    const article = articleRef.current;
-    if (!article) return;
-    const anchor = article.querySelector<HTMLElement>(
-      ".ihp-section .eng-subnav, .ihp-section h3",
+    const nav = navRef.current;
+    if (!nav) return;
+    const top = Math.max(
+      0,
+      nav.getBoundingClientRect().top + window.scrollY - HP_SECTION_OFFSET,
     );
-    const top = anchor
-      ? Math.max(
-          0,
-          anchor.getBoundingClientRect().top + window.scrollY - HP_SECTION_OFFSET,
-        )
-      : 0;
     window.scrollTo({ top, behavior: "instant" });
     openScrollRef.current = window.scrollY;
   };
@@ -1158,9 +1155,12 @@ export function HumanPractices() {
   const reduceMotion = () =>
     window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  /* direction "down": the view pans down to the section below; "up": back up
-     to the overview. */
-  const runSwipe = (direction: "up" | "down", swap: () => void) => {
+  /* Entering from the overview: "down" (open) / "up" (back to the overview).
+     Switching sub-panels: "next" / "prev" pan the section only. */
+  const runSwipe = (
+    direction: "down" | "up" | "next" | "prev",
+    swap: () => void,
+  ) => {
     const root = document.documentElement;
     busyRef.current = true;
     window.clearTimeout(timerRef.current);
@@ -1186,7 +1186,7 @@ export function HumanPractices() {
 
     /* Fallback for browsers without View Transitions: the horizontal stage
        slide used by the cross-page swipe. */
-    const exit = direction === "down" ? "left" : "right";
+    const exit = direction === "next" || direction === "down" ? "left" : "right";
     const enter = exit === "left" ? "right" : "left";
     root.classList.add(`page-swipe-exit-${exit}`);
     timerRef.current = window.setTimeout(() => {
@@ -1205,17 +1205,52 @@ export function HumanPractices() {
     }, HP_PAGE_SWIPE_MS);
   };
 
+  /* Switching between two open pages: the buttons and the overview above
+     stay exactly where they are. The outgoing page is cloned into a ghost
+     layer so both pages pan at the same time, inside the section's column:
+     the old one leaves through one edge while the new one enters from the
+     other. */
+  const switchPage = (index: number) => {
+    const viewport = document.querySelector<HTMLElement>(
+      ".ihp-section-viewport",
+    );
+    const current = viewport?.querySelector<HTMLElement>(".ihp-section");
+    const direction = index > (pageRef.current as number) ? "next" : "prev";
+    busyRef.current = true;
+    window.clearTimeout(timerRef.current);
+    if (!viewport || !current || reduceMotion()) {
+      setPageSync(index);
+      busyRef.current = false;
+      return;
+    }
+    const ghost = current.cloneNode(true) as HTMLElement;
+    ghost.classList.add("ihp-section-ghost", `ihp-section-ghost-${direction}`);
+    ghost.setAttribute("aria-hidden", "true");
+    viewport.appendChild(ghost);
+    setPageSync(index);
+    const incoming = viewport.querySelector<HTMLElement>(
+      ".ihp-section:not(.ihp-section-ghost)",
+    );
+    incoming?.classList.add(`ihp-section-enter-${direction}`);
+    timerRef.current = window.setTimeout(() => {
+      ghost.remove();
+      incoming?.classList.remove(`ihp-section-enter-${direction}`);
+      busyRef.current = false;
+    }, 320);
+  };
+
   const selectPage = (index: number) => {
     if (busyRef.current || index === pageRef.current) return;
+    const wasOpen = pageRef.current !== null;
+    if (wasOpen) {
+      switchPage(index);
+      return;
+    }
     if (!HP_PAGE_SWIPE || reduceMotion()) {
       openSection(index);
       return;
     }
-    /* The overview is directly above the three pages: move down to open a
-       page, up to go back to the overview. */
-    const direction =
-      pageRef.current === null || index > pageRef.current ? "down" : "up";
-    runSwipe(direction, () => openSection(index));
+    runSwipe("down", () => openSection(index));
   };
 
   const collapseWithSwipe = () => {
@@ -1226,6 +1261,23 @@ export function HumanPractices() {
     }
     runSwipe("up", collapseSection);
   };
+
+  /* Overview: once the page has scrolled down to the buttons, a further
+     wheel-down opens the Toolbox page instead of dead-ending. A page that is
+     already open is left to normal scrolling (no wheel lock). */
+  useEffect(() => {
+    if (page !== null) return;
+    const onWheel = (event: WheelEvent) => {
+      if (event.deltaY <= 0 || busyRef.current) return;
+      const max =
+        document.documentElement.scrollHeight - window.innerHeight;
+      if (window.scrollY < max - 24) return; /* scroll to the buttons first */
+      event.preventDefault();
+      actionsRef.current.open(0);
+    };
+    window.addEventListener("wheel", onWheel, { passive: false });
+    return () => window.removeEventListener("wheel", onWheel);
+  }, [page]);
 
   /* Back at the very top the page returns to the overview-only state, so a
      further scroll down locks at the three buttons again. */
@@ -1241,8 +1293,8 @@ export function HumanPractices() {
     reset: resetToOverview,
   };
 
-  /* With the section heading at the top, one scroll up runs the swipe in
-     reverse and returns to the overview-only page. */
+  /* Touch / keyboard can still return to the overview; the wheel is left to
+     the page so the reader keeps a normal scroll. */
   useEffect(() => {
     let touchY = 0;
     const atSectionTop = () =>
@@ -1250,11 +1302,6 @@ export function HumanPractices() {
       openScrollRef.current !== null &&
       window.scrollY <= openScrollRef.current + 2;
 
-    const onWheel = (event: WheelEvent) => {
-      if (event.deltaY >= 0 || !atSectionTop() || busyRef.current) return;
-      event.preventDefault();
-      actionsRef.current.collapse();
-    };
     const onTouchStart = (event: TouchEvent) => {
       touchY = event.touches[0]?.clientY ?? 0;
     };
@@ -1274,24 +1321,13 @@ export function HumanPractices() {
         actionsRef.current.collapse();
       }
     };
-    /* Back at the top of the page (e.g. via the back-to-top button) the
-       section closes silently, so scrolling down stops at the buttons. */
-    const onScroll = () => {
-      if (pageRef.current === null || busyRef.current) return;
-      if (window.scrollY > 1) return;
-      actionsRef.current.reset();
-    };
-    window.addEventListener("wheel", onWheel, { passive: false });
     window.addEventListener("touchstart", onTouchStart, { passive: true });
     window.addEventListener("touchmove", onTouchMove, { passive: true });
     window.addEventListener("keydown", onKeyDown);
-    window.addEventListener("scroll", onScroll, { passive: true });
     return () => {
-      window.removeEventListener("wheel", onWheel);
       window.removeEventListener("touchstart", onTouchStart);
       window.removeEventListener("touchmove", onTouchMove);
       window.removeEventListener("keydown", onKeyDown);
-      window.removeEventListener("scroll", onScroll);
     };
   }, []);
 
@@ -1339,7 +1375,12 @@ export function HumanPractices() {
             and the interviews behind every step. Use the three buttons to open
             a page.
           </p>
-          <div className="eng-module-nav" ref={navRef}>
+          <div
+            className={`eng-module-nav ihp-page-nav${
+              page !== null ? " ihp-page-nav--selected" : ""
+            }`}
+            ref={navRef}
+          >
             {HP_PAGES.map((entry, index) => (
               <button
                 key={entry.key}
@@ -1355,10 +1396,12 @@ export function HumanPractices() {
             ))}
           </div>
           {page !== null && (
-            <div className="ihp-section">
-              {page === 0 && <ToolboxPage />}
-              {page === 1 && <NestPage />}
-              {page === 2 && <EngagementBlock />}
+            <div className="ihp-section-viewport">
+              <div className="ihp-section">
+                {page === 0 && <ToolboxPage />}
+                {page === 1 && <NestPage />}
+                {page === 2 && <EngagementBlock />}
+              </div>
             </div>
           )}
         </article>

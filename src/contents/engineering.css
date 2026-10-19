@@ -209,15 +209,6 @@
   will-change: transform;
 }
 
-/* Test and Build read from the other side (the labels only: their segments,
-   colours and positions stay where they are). */
-.dbtl-ring path[data-seg="test"][fill="white"],
-.dbtl-ring path[data-seg="build"][fill="white"] {
-  transform: rotate(180deg);
-  transform-box: fill-box;
-  transform-origin: center;
-}
-
 /* Highlighting: the base copy renders the artwork exactly as the SVG defines
    it; the active segment is shown by a masked copy in a "150% opacity"
    colour. Plain opacity cannot exceed 1 (and opacity() clamps too), so the
@@ -483,6 +474,8 @@
   flex: 1;
   flex-direction: column;
   padding: 1.25rem 1.5rem 1.5rem;
+  position: relative;
+  overflow-x: hidden;
   overflow-y: auto;
   /* The panel scrolls first; once its scrollbar reaches either end the
      overflowing wheel chains to the page, which drives the pinned runway —
@@ -499,13 +492,35 @@
   /* Auto margins centre the step content while it fits the card; once it
      overflows they collapse to zero and the card scrolls from the top. */
   margin: auto 0;
-  animation: dbtl-card-next 0.32s cubic-bezier(0.22, 0.7, 0.26, 1);
+  animation: dbtl-card-next 0.36s cubic-bezier(0.22, 0.7, 0.26, 1) both;
 }
 
-/* Every Engineering card change is a horizontal pan: forward steps enter
-   from the right, backward steps from the left. */
+/* Every Engineering card change is a complete horizontal pan: the incoming
+   card enters from one side while the outgoing one leaves through the
+   other, exactly like the Model 2 deck. */
 .dbtl .dbtl-panel-inner[data-dir="prev"] {
   animation-name: dbtl-card-prev;
+}
+
+.dbtl .dbtl-panel-inner--out {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 1.5rem;
+  right: 1.5rem;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: safe center;
+  width: auto;
+  max-height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  animation-name: dbtl-card-out-next;
+}
+
+.dbtl .dbtl-panel-inner--out[data-dir="prev"] {
+  animation-name: dbtl-card-out-prev;
 }
 
 .dbtl .dbtl-panel-inner p,
@@ -525,7 +540,7 @@
 @keyframes dbtl-card-next {
   from {
     opacity: 0;
-    transform: translateX(32px);
+    transform: translateX(100%);
   }
   to {
     opacity: 1;
@@ -536,11 +551,33 @@
 @keyframes dbtl-card-prev {
   from {
     opacity: 0;
-    transform: translateX(-32px);
+    transform: translateX(-100%);
   }
   to {
     opacity: 1;
     transform: translateX(0);
+  }
+}
+
+@keyframes dbtl-card-out-next {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes dbtl-card-out-prev {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(100%);
   }
 }
 

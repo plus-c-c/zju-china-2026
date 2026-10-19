@@ -3,6 +3,12 @@ import { createPortal } from "react-dom";
 import seedRingSvg from "../engineering/assets/seed-ring-hp.svg?raw";
 import "./seed-reader.css";
 
+/** The SEED labels sit this far from their segment's visible centre in the
+ *  source artwork (+9.33° clockwise: cap radius 63.5 over ring radius 390).
+ *  Mirroring the ring moves them to the other side, so the reader stores the
+ *  negated value and subtracts it when turning the wheel. */
+const SEED_LABEL_OFFSET_DEG = -9.33;
+
 /**
  * SEED reader — a large half wheel fixed to the left edge of the page, right
  * under the table of contents. Only its right semicircle is shown: the flat
@@ -126,13 +132,13 @@ export function SeedReaderRail() {
         }
       }
 
-      /* One quarter turn per phase, minus the 9.33° that the segments'
-         actual (visible) centres — the same shift the labels use — sit
-         clockwise of the arc centres, so the actual centre lands exactly on
-         the 3 o'clock line. */
+      /* One quarter turn per phase, clockwise after the artwork mirror
+         (scrolling down turns the wheel clockwise). Subtracting the negated
+         label offset brings the visible centre exactly onto the 3 o'clock
+         line. */
       ring.style.setProperty(
         "--seed-rotation",
-        `${(90 - 90 * phasePos - 9.33).toFixed(2)}deg`,
+        `${(90 + 90 * phasePos - SEED_LABEL_OFFSET_DEG).toFixed(2)}deg`,
       );
 
       /* The wheel rolls in from the left when the first line of the first

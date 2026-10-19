@@ -56,9 +56,11 @@ html.ihp-overview footer.footer {
   display: none;
 }
 
-/* Vertical swipe for the iHP deck (View Transitions path): the overview sits
-   above the three pages, so the view glides down to open one and up to close
-   it again. */
+/* iHP page transitions (View Transitions path).
+   · Entering a page from the overview slides vertically: the pages live
+     below the buttons, so the view glides down to open one and up to close.
+   · Switching between sub-panels keeps the buttons and everything above
+     them still; only the section below pans, following the button order. */
 ::view-transition-old(root),
 ::view-transition-new(root) {
   mix-blend-mode: normal;
@@ -101,6 +103,22 @@ html[data-ihp-swipe="up"]::view-transition-new(root) {
   from { transform: translateY(-100%); }
 }
 
+@keyframes ihp-swipe-out-left {
+  to { transform: translateX(-100%); }
+}
+
+@keyframes ihp-swipe-in-right {
+  from { transform: translateX(100%); }
+}
+
+@keyframes ihp-swipe-out-right {
+  to { transform: translateX(100%); }
+}
+
+@keyframes ihp-swipe-in-left {
+  from { transform: translateX(-100%); }
+}
+
 /* NEST's four module buttons stay on one row; the labels are compacted just
    enough to fit the article column. */
 .ihp-subnav-row {
@@ -118,4 +136,84 @@ html[data-ihp-swipe="up"]::view-transition-new(root) {
   .ihp-subnav-row {
     flex-wrap: wrap;
   }
+}
+
+/* Level-1 page buttons: the chosen page turns blue (the shared .active
+   colour) and stretches a little, so the current page is unmistakable after
+   a click or after scrolling into the Toolbox. */
+.ihp-page-nav .eng-module-button.active {
+  padding-inline: 2.6rem;
+}
+
+/* Sub-panel switch: the outgoing page is cloned into a ghost layer, so both
+   pages pan at once inside the section's column; the buttons and the overview
+   above never move. */
+.ihp-section-viewport {
+  position: relative;
+  overflow: clip;
+}
+
+.ihp-section-ghost {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.ihp-section-ghost-next {
+  animation: ihp-panel-out-left 300ms cubic-bezier(0.32, 0.72, 0.28, 1) both;
+}
+
+.ihp-section-ghost-prev {
+  animation: ihp-panel-out-right 300ms cubic-bezier(0.32, 0.72, 0.28, 1) both;
+}
+
+.ihp-section.ihp-section-enter-next {
+  animation: ihp-panel-in-right 300ms cubic-bezier(0.32, 0.72, 0.28, 1) both;
+}
+
+.ihp-section.ihp-section-enter-prev {
+  animation: ihp-panel-in-left 300ms cubic-bezier(0.32, 0.72, 0.28, 1) both;
+}
+
+@keyframes ihp-panel-out-left {
+  to { transform: translateX(-100%); }
+}
+
+@keyframes ihp-panel-in-right {
+  from { transform: translateX(100%); }
+}
+
+@keyframes ihp-panel-out-right {
+  to { transform: translateX(100%); }
+}
+
+@keyframes ihp-panel-in-left {
+  from { transform: translateX(-100%); }
+}
+
+/* Once a page is selected the three level-1 buttons spread across the whole
+   article column; the active one is still the widest of the three. */
+.ihp-page-nav--selected {
+  align-items: center;
+}
+
+.ihp-page-nav--selected .eng-module-button {
+  flex: 1 1 auto;
+  /* The labels never wrap while the widths animate, so the row's height is
+     pinned to the single-line button height throughout. */
+  white-space: nowrap;
+}
+
+/* The site navigation bar is fixed chrome: keep it out of the page-transition
+   snapshots so it never slides (or briefly reappears) with the iHP pages. */
+html[data-ihp-swipe="down"] .nest-navbar,
+html[data-ihp-swipe="up"] .nest-navbar {
+  view-transition-name: site-navbar;
+}
+
+::view-transition-old(site-navbar),
+::view-transition-new(site-navbar) {
+  animation: none;
 }
