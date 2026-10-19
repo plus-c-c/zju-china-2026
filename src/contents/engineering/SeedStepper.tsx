@@ -256,12 +256,7 @@ export function SeedStepper({
             </div>
           )}
           <div
-            className={`dbtl-panel-body${
-              !STEP_ADVANCE_ENABLED ||
-              (steps.length > 1 && (index === 0 || index === steps.length - 1))
-                ? " dbtl-panel-body--chain"
-                : ""
-            }`}
+            className="dbtl-panel-body"
             ref={panelRef}
             tabIndex={0}
             role="region"

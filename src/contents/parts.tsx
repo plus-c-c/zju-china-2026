@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import collection from "./parts-data.json";
 import "./parts.css";
 
@@ -29,6 +29,15 @@ function RegistryLink({ id }: { id: string }) {
   );
 }
 
+function PartMeta({ part }: { part: Part }) {
+  return (
+    <div className="parts-card-meta">
+      <RegistryLink id={part.id} />
+      <span>{part.sequence.length.toLocaleString()} bp</span>
+    </div>
+  );
+}
+
 function SourceText({ text }: { text: string }) {
   return text
     .split(/(\*[^*]+\*)/g)
@@ -42,15 +51,31 @@ function SourceText({ text }: { text: string }) {
 }
 
 function SequenceMap({ part }: { part: Part }) {
+  const svgRef = useRef<SVGSVGElement>(null);
+  const [mapWidth, setMapWidth] = useState(520);
+
+  useEffect(() => {
+    const svg = svgRef.current;
+    if (!svg) return;
+    const observer = new ResizeObserver(([entry]) => {
+      if (entry.contentRect.width > 0) {
+        setMapWidth(entry.contentRect.width);
+      }
+    });
+    observer.observe(svg);
+    return () => observer.disconnect();
+  }, []);
+
   const length = part.sequence.length;
   const left = 12;
-  const width = 496;
+  const width = mapWidth - left * 2;
   const lanes = Math.max(...part.features.map((feature) => feature.lane)) + 1;
   const extraHeight = (lanes - 1) * 52;
   return (
     <figure className="parts-map">
       <svg
-        viewBox={`0 0 520 ${94 + extraHeight}`}
+        ref={svgRef}
+        viewBox={`0 0 ${mapWidth} ${94 + extraHeight}`}
         role="img"
         aria-label={`${part.shortName}, ${length} base pairs. ${part.features.map((f) => `${f.label}: bases ${f.start} to ${f.end}`).join("; ")}.`}
       >
@@ -101,7 +126,7 @@ function SequenceMap({ part }: { part: Part }) {
                 y="15"
                 textAnchor="middle"
                 fill="#31476a"
-                fontSize="12"
+                fontSize="16"
                 fontWeight="600"
               >
                 {index + 1}
@@ -125,7 +150,7 @@ function SequenceMap({ part }: { part: Part }) {
                 ratio === 0 ? "start" : ratio === 1 ? "end" : "middle"
               }
               fill="#62748b"
-              fontSize="12"
+              fontSize="16"
             >
               {ratio === 0 ? "1" : Math.round(length * ratio).toLocaleString()}
               {ratio === 1 ? " bp" : ""}
@@ -193,10 +218,7 @@ function PartCard({ part }: { part: Part }) {
           : undefined
       }
     >
-      <div className="parts-card-meta">
-        <RegistryLink id={part.id} />
-        <span>{part.sequence.length.toLocaleString()} bp</span>
-      </div>
+      <PartMeta part={part} />
       <h4>{part.title}</h4>
       {part.kind === "composite" && <SequenceMap part={part} />}
       <details className="parts-details">
@@ -254,7 +276,7 @@ function PartCard({ part }: { part: Part }) {
             tabIndex={0}
             aria-label={`${part.id} DNA sequence`}
           >
-            {part.sequence.match(/.{1,60}/g)?.join("\n")}
+            {part.sequence}
           </pre>
           <a
             className="parts-registry-cta"

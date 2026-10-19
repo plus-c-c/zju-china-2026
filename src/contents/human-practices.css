@@ -43,3 +43,79 @@
     shape-outside: none;
   }
 }
+
+/* Whole-page swipe between the three iHP pages: the incoming page is placed
+   off-screen without animating, then slides in (see HumanPractices). */
+html.page-swipe-instant [data-page-swipe-stage] {
+  transition: none !important;
+}
+
+/* The overview block is logically right above the NEST page: it carries no
+   footer, its last element is the three section buttons. */
+html.ihp-overview footer.footer {
+  display: none;
+}
+
+/* Vertical swipe for the iHP deck (View Transitions path): the overview sits
+   above the three pages, so the view glides down to open one and up to close
+   it again. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  mix-blend-mode: normal;
+}
+
+::view-transition-group(root) {
+  animation-duration: 520ms;
+  animation-timing-function: cubic-bezier(0.32, 0.72, 0.28, 1);
+}
+
+html[data-ihp-swipe="down"]::view-transition-old(root) {
+  animation: 520ms cubic-bezier(0.32, 0.72, 0.28, 1) both ihp-swipe-out-up;
+}
+
+html[data-ihp-swipe="down"]::view-transition-new(root) {
+  animation: 520ms cubic-bezier(0.32, 0.72, 0.28, 1) both ihp-swipe-in-bottom;
+}
+
+html[data-ihp-swipe="up"]::view-transition-old(root) {
+  animation: 520ms cubic-bezier(0.32, 0.72, 0.28, 1) both ihp-swipe-out-down;
+}
+
+html[data-ihp-swipe="up"]::view-transition-new(root) {
+  animation: 520ms cubic-bezier(0.32, 0.72, 0.28, 1) both ihp-swipe-in-top;
+}
+
+@keyframes ihp-swipe-out-up {
+  to { transform: translateY(-100%); }
+}
+
+@keyframes ihp-swipe-in-bottom {
+  from { transform: translateY(100%); }
+}
+
+@keyframes ihp-swipe-out-down {
+  to { transform: translateY(100%); }
+}
+
+@keyframes ihp-swipe-in-top {
+  from { transform: translateY(-100%); }
+}
+
+/* NEST's four module buttons stay on one row; the labels are compacted just
+   enough to fit the article column. */
+.ihp-subnav-row {
+  flex-wrap: nowrap;
+  gap: 0.35rem;
+}
+
+.ihp-subnav-row .eng-subnav-button {
+  padding: 0.26rem 0.6rem;
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
+@media (max-width: 992px) {
+  .ihp-subnav-row {
+    flex-wrap: wrap;
+  }
+}
