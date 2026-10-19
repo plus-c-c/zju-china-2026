@@ -37,12 +37,19 @@ export type TimelineItem = {
  * Data is passed in through `items`, so the component can be reused on any
  * page (see `src/contents/human-practices.tsx` for usage).
  */
+
+/** The dot's resting scale (see .timeline-dot in Timeline.css). The
+    progress line stops at the dot's resting edge so it can never show
+    through a photo that is still fading in. */
+const DOT_REST_SCALE = 0.72;
+
 export function Timeline({ items }: { items: TimelineItem[] }) {
   const listRef = useRef<HTMLDivElement>(null);
   const [visibleItems, setVisibleItems] = useState<boolean[]>(() =>
     items.map(() => false),
   );
   const [dotOffsets, setDotOffsets] = useState<number[]>([]);
+  const [dotRestRadii, setDotRestRadii] = useState<number[]>([]);
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   // Measure each dot centre relative to the top of the track, so the
@@ -66,6 +73,13 @@ export function Timeline({ items }: { items: TimelineItem[] }) {
         ? prev
         : next,
     );
+    const radii = dots.map((dot) => (dot.offsetWidth / 2) * DOT_REST_SCALE);
+    setDotRestRadii((prev) =>
+      prev.length === radii.length &&
+      prev.every((value, index) => Math.abs(value - radii[index]) < 0.5)
+        ? prev
+        : radii,
+    );
   }, []);
 
   useEffect(() => {
@@ -74,6 +88,9 @@ export function Timeline({ items }: { items: TimelineItem[] }) {
     const rows = Array.from(
       list.querySelectorAll<HTMLElement>(".timeline-row"),
     );
+    // After a row reveals, its slide-in moves the dot: re-measure once the
+    // transition has settled so the line ends exactly at the dot's edge.
+    const settleTimers: number[] = [];
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -86,6 +103,7 @@ export function Timeline({ items }: { items: TimelineItem[] }) {
             return next;
           });
           observer.unobserve(entry.target);
+          settleTimers.push(window.setTimeout(measure, 750));
         });
       },
       { rootMargin: "-30% 0px -30% 0px", threshold: 0.1 },
@@ -105,6 +123,7 @@ export function Timeline({ items }: { items: TimelineItem[] }) {
     window.addEventListener("scroll", schedule, { passive: true });
     return () => {
       observer.disconnect();
+      settleTimers.forEach((timer) => window.clearTimeout(timer));
       window.removeEventListener("resize", schedule);
       window.removeEventListener("scroll", schedule);
       if (frame) window.cancelAnimationFrame(frame);
@@ -125,7 +144,10 @@ export function Timeline({ items }: { items: TimelineItem[] }) {
   const lastVisible = visibleItems.lastIndexOf(true);
   const lineHeight =
     lastVisible >= 0 && lastVisible < dotOffsets.length
-      ? dotOffsets[lastVisible]
+      ? Math.max(
+          0,
+          dotOffsets[lastVisible] - (dotRestRadii[lastVisible] ?? 0),
+        )
       : 0;
   const openItem = openIndex !== null ? items[openIndex] : null;
 
