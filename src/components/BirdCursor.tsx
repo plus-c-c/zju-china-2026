@@ -39,13 +39,20 @@ function BirdArtwork({ onLoad }: { onLoad?: () => void }) {
   );
 }
 
-export function BirdLanding() {
+export function BirdLanding({
+  className = "description-bird-slot",
+  whenVisible = false,
+}: {
+  className?: string;
+  whenVisible?: boolean;
+}) {
   const { phase, registerLanding } = useContext(BirdContext);
   return (
     <span
       ref={registerLanding}
-      className="description-bird-slot"
+      className={className}
       data-state={phase}
+      data-landing-visibility={whenVisible ? "visible" : undefined}
       aria-hidden="true"
     >
       <span
@@ -86,6 +93,7 @@ export function BirdCursorProvider({
     const image = bird.current;
     if (!image) return;
     const target = landing?.isConnected ? landing : null;
+    const waitForVisibility = target?.dataset.landingVisibility === "visible";
     const restingBird = target?.querySelector<HTMLElement>(".bird-rest");
     image.style.visibility = "hidden";
     if (!finePointer) {
@@ -97,6 +105,7 @@ export function BirdCursorProvider({
     const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
     const cursorSize = 34;
     let state: BirdPhase = "following";
+    let landingVisible = false;
     let frame = 0;
     let scrollFrame = 0;
     let clickHop: Animation | null = null;
@@ -151,20 +160,22 @@ export function BirdCursorProvider({
       const tick = (now: number) => {
         const progress = reducedMotion.matches
           ? 1
-          : Math.min(1, (now - began) / 1400);
+          : Math.min(1, (now - began) / (waitForVisibility ? 1100 : 1400));
         const eased = progress * progress * (3 - 2 * progress);
         // Follow the landing box while the page scrolls during the hop.
         const rect = restingBird.getBoundingClientRect();
         const destination = toNest
           ? { x: rect.left, y: rect.top, size: rect.width }
           : cursorPosition();
-        const hop =
-          Math.abs(Math.sin(progress * Math.PI * 3)) *
-          55 *
-          Math.sin(Math.PI * progress);
-        const homePose =
-          fromHome +
-          ((toNest ? 1 : 0) - fromHome) * Math.max(0, (progress - 0.6) / 0.4);
+        const hop = waitForVisibility
+          ? Math.sin(Math.PI * progress) * 70
+          : Math.abs(Math.sin(progress * Math.PI * 3)) *
+            55 *
+            Math.sin(Math.PI * progress);
+        const homePose = waitForVisibility
+          ? 0
+          : fromHome +
+            ((toNest ? 1 : 0) - fromHome) * Math.max(0, (progress - 0.6) / 0.4);
         place(
           start.x + (destination.x - start.x) * eased,
           start.y + (destination.y - start.y) * eased - hop,
@@ -185,6 +196,14 @@ export function BirdCursorProvider({
     const checkScroll = () => {
       scrollFrame = 0;
       if (!target || !restingBird) return;
+      if (waitForVisibility) {
+        if (!landingVisible) {
+          if (state !== "following") resumeFollowing();
+        } else if (state === "following" || state === "returning") {
+          jump(true);
+        }
+        return;
+      }
       const rect = target.getBoundingClientRect();
       // A fast upward scroll can move the nest far below the viewport in one
       // frame. Resume at the pointer instead of hopping in from off screen.
@@ -239,6 +258,20 @@ export function BirdCursorProvider({
         { duration: 420 },
       );
     };
+    // IntersectionObserver also accounts for the Model card's inner scroll
+    // clipping, so a hidden callout cannot attract the bird off screen.
+    const visibilityObserver =
+      waitForVisibility && target
+        ? new IntersectionObserver(
+            ([entry]) => {
+              landingVisible =
+                entry.isIntersecting && entry.intersectionRatio >= 0.99;
+              scheduleScroll();
+            },
+            { threshold: [0, 0.99, 1] },
+          )
+        : null;
+    if (visibilityObserver && target) visibilityObserver.observe(target);
     window.addEventListener("pointermove", move, { passive: true });
     window.addEventListener("pointerdown", hopOnClick, {
       passive: true,
@@ -253,6 +286,7 @@ export function BirdCursorProvider({
     return () => {
       cancelAnimationFrame(frame);
       cancelAnimationFrame(scrollFrame);
+      visibilityObserver?.disconnect();
       clickHop?.cancel();
       image.style.visibility = "hidden";
       window.removeEventListener("pointermove", move);

@@ -12,6 +12,7 @@ import {
 } from "../../components/useBoundaryStepAdvance";
 import { MathFormula } from "../../components/MathFormula";
 import { DataTable } from "../../components/table";
+import { BirdLanding } from "../../components/BirdCursor";
 import {
   m1Overview,
   m1References,
@@ -69,6 +70,48 @@ function Parts({ parts }: { parts: M1Part[] }) {
         return <span key={index}>{part.v}</span>;
       })}
     </>
+  );
+}
+
+function ValidationHighlight({ active }: { active: boolean }) {
+  return (
+    <section
+      className="m1-validation"
+      aria-label="Independent validation with 2KY16"
+    >
+      {active && <BirdLanding className="m1-validation__bird" whenVisible />}
+      <p className="m1-validation__heading">
+        <strong>
+          2KY16: independent dry-lab prediction validated by wet-lab data
+        </strong>
+      </p>
+      <dl className="m1-validation__metrics">
+        <div>
+          <dt>Dry-lab prediction (mean)</dt>
+          <dd>
+            53.05 <span>kPa</span>
+          </dd>
+        </div>
+        <div>
+          <dt>Wet-lab measurement</dt>
+          <dd>
+            53.32 <span>kPa</span>
+          </dd>
+        </div>
+        <div className="m1-validation__error">
+          <dt>Relative error of the mean</dt>
+          <dd>0.51%</dd>
+          <span className="m1-validation__badge">Within 1%</span>
+        </div>
+      </dl>
+      <p className="m1-validation__note">
+        <strong>
+          Independent dry-lab modeling of 2KY16 matched the wet-lab result
+        </strong>
+        , with the predicted mean differing by only{" "}
+        <strong>0.51% (within 1%).</strong>
+      </p>
+    </section>
   );
 }
 
@@ -200,6 +243,7 @@ function SlideInner({
           contentRef?.(el);
         }}
       >
+        {step.num === 7 && <ValidationHighlight active={variant === "in"} />}
         <Blocks blocks={step.blocks} />
       </div>
     </div>
