@@ -721,6 +721,8 @@
   .dbtl-ring-wrap {
     justify-content: center;
     margin-left: 0;
+    /* Rotated SVG corners must not widen the mobile page. */
+    overflow-x: clip;
   }
 
   .dbtl-ring {
