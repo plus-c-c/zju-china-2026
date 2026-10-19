@@ -248,9 +248,11 @@ function ProteinStepper({ steps }: { steps: ProteinStep[] }) {
     const panel = panelRef.current;
     if (!panel) return;
     const apply = () => {
+      const pin = pinRef.current;
       const wide = Boolean(stepsRef.current[indexRef.current]?.figureHeight);
       if (!wide) {
         panel.style.height = "";
+        pin?.style.removeProperty("--protein-card-h");
         return;
       }
       const inner = panel.querySelector<HTMLElement>(".protein-text-inner");
@@ -258,7 +260,11 @@ function ProteinStepper({ steps }: { steps: ProteinStep[] }) {
       const styles = window.getComputedStyle(panel);
       const padding =
         parseFloat(styles.paddingTop) + parseFloat(styles.paddingBottom);
-      panel.style.height = `${inner.offsetHeight + padding}px`;
+      const height = inner.offsetHeight + padding;
+      panel.style.height = `${height}px`;
+      // Publish the card's height so the wide figure can keep its bottom
+      // clear of the card on short viewports (see .protein-pin--wide).
+      pin?.style.setProperty("--protein-card-h", `${height}px`);
     };
     apply();
     window.addEventListener("resize", apply);

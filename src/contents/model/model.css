@@ -79,8 +79,17 @@
 .protein-pin--wide .protein-figure {
   /* The wide frame is taller than the stage: centre it exactly on the same
      line as every other step (identical on-screen centre), raised like the
-     regular steps (same +2dvh compensation as .protein-figure). */
-  top: calc(40dvh - var(--protein-figure-h, 466px) / 2 - 60px + 2dvh);
+     regular steps (same +2dvh compensation as .protein-figure). On short
+     viewports the card's measured height (--protein-card-h) lifts the
+     figure further so its bottom — and the labels inside the image — always
+     stays clear of the card's top edge. */
+  top: min(
+    calc(40dvh - var(--protein-figure-h, 466px) / 2 - 60px + 2dvh),
+    calc(
+      100dvh - 10dvh - var(--protein-card-h, 0px) - var(--protein-figure-h, 466px) -
+        24px
+    )
+  );
 }
 
 .protein-pin--wide .protein-text {
