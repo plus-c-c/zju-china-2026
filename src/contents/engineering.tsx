@@ -244,6 +244,7 @@ export function Engineering() {
   }
   const steps = sequence.map((entry) => entry.step);
   const stepCount = steps.length;
+  const scrollSpan = sequenceSpan(steps);
   const metaByKey = new Map(sequence.map((entry) => [entry.step.key, entry]));
   const moduleForStep = (step: Step | SeedStep) =>
     metaByKey.get(step.key)?.module;
@@ -287,11 +288,11 @@ export function Engineering() {
       return;
     }
     const runway = document.querySelector(".eng-runway") as HTMLElement | null;
-    if (runway && startIndex >= 0 && steps.length > 1) {
+    if (runway && startIndex >= 0 && stepCount > 1) {
       const total = runway.offsetHeight - window.innerHeight;
       const top = runway.getBoundingClientRect().top + window.scrollY;
       window.scrollTo({
-        top: top + (total * startIndex) / Math.max(1, sequenceSpan(steps)) + 2,
+        top: top + (total * startIndex) / Math.max(1, scrollSpan) + 2,
         behavior: "instant",
       });
       return;
@@ -303,7 +304,7 @@ export function Engineering() {
         behavior: "instant",
       });
     }
-  }, [activeKey, groupIndex, tabIndex, startIndex, steps.length]);
+  }, [activeKey, groupIndex, tabIndex, startIndex, stepCount, scrollSpan]);
 
   const tabNav = tabs.map((tab, index) => (
     <button

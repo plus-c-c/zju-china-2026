@@ -1096,8 +1096,12 @@ export function HumanPractices() {
   const timerRef = useRef(0);
   const pageRef = useRef<number | null>(null);
   const openScrollRef = useRef<number | null>(null);
-  const actionsRef = useRef({
-    open: (_index: number) => {},
+  const actionsRef = useRef<{
+    open: (index: number) => void;
+    collapse: () => void;
+    reset: () => void;
+  }>({
+    open: () => {},
     collapse: () => {},
     reset: () => {},
   });
