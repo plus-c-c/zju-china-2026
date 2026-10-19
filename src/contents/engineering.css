@@ -244,6 +244,150 @@
   pointer-events: auto;
 }
 
+/* SEED ring (Human Practices): the SEED artwork as the outer ring with the
+   DBTL artwork nested inside. Highlighting mirrors the DBTL ring rules; the
+   nested ring lights while the Engineering & Implementation step is shown,
+   because that phase carries the whole DBTL loop. */
+.seed-ring {
+  position: relative;
+  width: min(100%, 560px);
+  max-width: 100%;
+  margin: 0;
+}
+
+.seed-ring-outer,
+.seed-ring-outer svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.seed-ring-inner {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* The layer only catches clicks on the nested artwork itself: its empty
+     area lets clicks through to the outer ring's segments underneath. */
+  pointer-events: none;
+}
+
+.seed-ring-inner svg {
+  display: block;
+  width: 62%;
+  height: auto;
+  /* The artwork's ring centre sits slightly above its viewBox centre. */
+  transform: translateY(1.1%);
+}
+
+.seed-ring-inner .dbtl-base [data-seg] {
+  pointer-events: auto;
+}
+
+.seed-ring [data-seg] {
+  cursor: pointer;
+}
+
+.seed-ring .seed-hi,
+.seed-ring .dbtl-hi {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.seed-ring .seed-hi-spark path[stroke] {
+  stroke: #005b9c;
+}
+
+.seed-ring .seed-hi-explore path[stroke] {
+  stroke: #003d84;
+}
+
+.seed-ring .seed-hi-engineering path[stroke] {
+  stroke: #004688;
+}
+
+.seed-ring .seed-hi-engineering circle {
+  fill: #004688;
+}
+
+.seed-ring .seed-hi-dialogue path[stroke] {
+  stroke: #1473ad;
+}
+
+.seed-ring[data-active="spark"] .seed-hi-spark,
+.seed-ring[data-active="explore"] .seed-hi-explore,
+.seed-ring[data-active="engineering"] .seed-hi-engineering,
+.seed-ring[data-active="dialogue"] .seed-hi-dialogue {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Nested DBTL artwork: reuse the DBTL highlight colours; the whole inner
+   ring lights on the Engineering & Implementation step. */
+.seed-ring .dbtl-hi-design path[stroke] {
+  stroke: #136aee;
+}
+
+.seed-ring .dbtl-hi-build path[stroke] {
+  stroke: #0043bb;
+}
+
+.seed-ring .dbtl-hi-test path[stroke] {
+  stroke: #0768df;
+}
+
+.seed-ring .dbtl-hi-test circle {
+  fill: #0768df;
+}
+
+.seed-ring .dbtl-hi-learn path[stroke] {
+  stroke: #64b4ff;
+}
+
+/* The nested DBTL artwork flips its white letters to yellow when lit; the
+   SEED labels sit in their own top layer and turn yellow on their phase. */
+.seed-ring .dbtl-hi path[fill="white"] {
+  fill: #ffe39a;
+}
+
+.seed-ring[data-active="spark"] .seed-texts text[data-seg="spark"],
+.seed-ring[data-active="explore"] .seed-texts text[data-seg="explore"],
+.seed-ring[data-active="engineering"] .seed-texts text[data-seg="engineering"],
+.seed-ring[data-active="dialogue"] .seed-texts text[data-seg="dialogue"] {
+  fill: #ffe39a;
+}
+
+.seed-ring[data-dbtl="on"] .dbtl-hi {
+  opacity: 1;
+}
+
+/* SEED phase badges (Human Practices stepper): one width for all four so the
+   cycle title never shifts between Spark / Explore / Engineering / Dialogue. */
+.dbtl-phase-Spark,
+.dbtl-phase-Explore,
+.dbtl-phase-Engineering,
+.dbtl-phase-Dialogue {
+  min-width: 11rem;
+}
+
+.dbtl-phase-Spark {
+  background: #4e8dbb;
+}
+
+.dbtl-phase-Explore {
+  background: #3979ab;
+}
+
+.dbtl-phase-Engineering {
+  background: #477fae;
+}
+
+.dbtl-phase-Dialogue {
+  background: #5c9dc7;
+}
+
 .dbtl-main {
   display: flex;
   flex-direction: column;

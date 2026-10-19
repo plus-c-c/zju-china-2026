@@ -3,9 +3,16 @@ import type { Group, Part } from "./engineering/group";
 import { DbtlStepper } from "./engineering/DbtlStepper";
 import { buildSteps, STEP_DVH, type Step } from "./engineering/steps";
 import type { DbtlModule } from "./engineering/dbtl";
+import { SeedStepper } from "./engineering/SeedStepper";
+import {
+  buildSeedSteps,
+  type SeedModule,
+  type SeedStep,
+} from "./engineering/seed";
 import { EngineeringReferences } from "./engineering/EngineeringReferences";
 import { gagRetentionGroup } from "./engineering/groups/gag-retention";
 import { hardwareGroup } from "./engineering/groups/hardware";
+import { humanPracticesGroups } from "./engineering/groups/human-practices";
 import { mitochondrialTherapyGroup } from "./engineering/groups/mitochondrial-therapy";
 import { proteinHydrogelModelingGroup } from "./engineering/groups/protein-hydrogel-modeling";
 import { selpHydrogelsGroup } from "./engineering/groups/selp-hydrogels-and-ligation";
@@ -59,7 +66,7 @@ const SECTIONS: Section[] = [
     label: "Dry Lab",
     groups: [proteinHydrogelModelingGroup, hardwareGroup, softwareGroup],
   },
-  { key: "human-practices", label: "Human Practices", groups: [] },
+  { key: "human-practices", label: "Human Practices", groups: humanPracticesGroups },
 ];
 
 export function Engineering() {
@@ -94,10 +101,12 @@ export function Engineering() {
   // (group outlook). The Introduction tab exists when the group or its
   // shared module carries lead content; the Conclusion tab when the group
   // carries an outlook or its single shared module carries an outro.
+  const seedFlavor = activeGroup?.flavor === "seed";
   const introModule =
     activeGroup &&
-    new Set(activeGroup.parts.map((part) => part.module)).size === 1
-      ? activeGroup.parts[0].module
+    new Set(activeGroup.parts.map((part) => part.seedModule ?? part.module))
+      .size === 1
+      ? (activeGroup.parts[0].seedModule ?? activeGroup.parts[0].module)
       : undefined;
   const hasIntro = Boolean(
     activeGroup &&
@@ -137,16 +146,27 @@ export function Engineering() {
   // sequence, so the page scroll drives both the level-3 tabs and the
   // level-4 cycle steps.
   const partSequences = (activeGroup?.parts ?? []).map((part) => {
-    const module = part.cycleSlice
-      ? {
-          ...part.module,
-          cycles: part.module.cycles.slice(
-            part.cycleSlice[0],
-            part.cycleSlice[1],
-          ),
-          infos: [],
-        }
-      : part.module;
+    const baseModule = part.seedModule ?? part.module;
+    const module: DbtlModule | SeedModule | undefined =
+      part.cycleSlice && part.seedModule
+        ? {
+            ...part.seedModule,
+            cycles: part.seedModule.cycles.slice(
+              part.cycleSlice[0],
+              part.cycleSlice[1],
+            ),
+            infos: [],
+          }
+        : part.cycleSlice && part.module
+          ? {
+              ...part.module,
+              cycles: part.module.cycles.slice(
+                part.cycleSlice[0],
+                part.cycleSlice[1],
+              ),
+              infos: [],
+            }
+          : baseModule;
     const lead =
       part.heading || part.lead ? (
         <>
@@ -156,16 +176,18 @@ export function Engineering() {
           {part.lead}
         </>
       ) : undefined;
-    const built = buildSteps(module, lead, part.outlook);
-    const steps: Step[] = built.length
+    const built = part.seedModule
+      ? buildSeedSteps(module as SeedModule, lead, part.outlook)
+      : buildSteps(module as DbtlModule, lead, part.outlook);
+    const steps: Array<Step | SeedStep> = built.length
       ? built
       : [{ key: "part", kind: "info", title: part.label, content: lead }];
     return { part, module, steps };
   });
 
   interface SeqEntry {
-    step: Step;
-    module?: DbtlModule;
+    step: Step | SeedStep;
+    module?: DbtlModule | SeedModule;
     tab: number;
   }
   const sequence: SeqEntry[] = [];
@@ -204,18 +226,23 @@ export function Engineering() {
   const steps = sequence.map((entry) => entry.step);
   const stepCount = steps.length;
   const metaByKey = new Map(sequence.map((entry) => [entry.step.key, entry]));
-  const moduleForStep = (step: Step) => metaByKey.get(step.key)?.module;
-  /* Where a tab starts in the sequence (its Cycle 1 Design when available). */
+  const moduleForStep = (step: Step | SeedStep) =>
+    metaByKey.get(step.key)?.module;
+  const handleStepChange = (step: Step | SeedStep) => {
+    const tab = metaByKey.get(step.key)?.tab;
+    if (tab === undefined || tab === tabIndexRef.current) return;
+    autoTabRef.current = true;
+    setTabIndex(tab);
+  };
+  /* Where a tab starts in the sequence — the first phase step of the tab
+     (Cycle 1 Design for DBTL groups, Cycle 1 Spark for SEED groups; a
+     part-level lead step before it is skipped). */
   const startIndexForTab = (tab: number) => {
     const first = sequence.findIndex((entry) => entry.tab === tab);
     if (first < 0) return -1;
     const design = sequence.findIndex(
       (entry, index) =>
-        index >= first &&
-        entry.tab === tab &&
-        entry.step.kind === "phase" &&
-        entry.step.cycleIndex === 0 &&
-        entry.step.phase === "Design",
+        index >= first && entry.tab === tab && entry.step.kind === "phase",
     );
     return design >= 0 ? design : first;
   };
@@ -307,18 +334,27 @@ export function Engineering() {
       )}
       {activeGroup &&
         (stepCount > 0 ? (
-          <DbtlStepper
-            key={activeGroup.label}
-            steps={steps}
-            moduleForStep={moduleForStep}
-            onStepChange={(step) => {
-              const tab = metaByKey.get(step.key)?.tab;
-              if (tab === undefined || tab === tabIndexRef.current) return;
-              autoTabRef.current = true;
-              setTabIndex(tab);
-            }}
-            topNav={<>{tabNav}</>}
-          />
+          seedFlavor ? (
+            <SeedStepper
+              key={activeGroup.label}
+              steps={steps as SeedStep[]}
+              moduleForStep={
+                moduleForStep as (step: SeedStep) => SeedModule | undefined
+              }
+              onStepChange={handleStepChange}
+              topNav={<>{tabNav}</>}
+            />
+          ) : (
+            <DbtlStepper
+              key={activeGroup.label}
+              steps={steps as Step[]}
+              moduleForStep={
+                moduleForStep as (step: Step) => DbtlModule | undefined
+              }
+              onStepChange={handleStepChange}
+              topNav={<>{tabNav}</>}
+            />
+          )
         ) : (
           <div className="eng-partnav">{tabNav}</div>
         ))}
