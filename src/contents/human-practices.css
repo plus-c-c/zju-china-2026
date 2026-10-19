@@ -217,3 +217,16 @@ html[data-ihp-swipe="up"] .nest-navbar {
 ::view-transition-new(site-navbar) {
   animation: none;
 }
+
+/* Toolbox / NEST: one continuous body — the stacked sub-sections are
+   separated by a hairline and leave room for the sticky header when a
+   sub-navigation button or a TOC entry jumps to them. */
+.ihp-subpage {
+  scroll-margin-top: 130px;
+}
+
+.ihp-subpage + .ihp-subpage {
+  margin-top: 2.75rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid #dbe4f2;
+}

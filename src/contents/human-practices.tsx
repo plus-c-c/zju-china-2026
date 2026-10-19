@@ -7,7 +7,6 @@ import {
 } from "../components/Timeline";
 import { StakeholderChain } from "../components/StakeholderChain";
 import { TransparentImage } from "../components/TransparentImage";
-import { SeedReaderRail } from "./human-practices/SeedReader";
 import "./human-practices.css";
 
 /** All figures live on the team static host. */
@@ -1003,78 +1002,132 @@ const HP_PAGES = [
   { key: "engagement", label: "Stakeholder Engagement" },
 ];
 
+/* One continuous body per page: the sub-navigation is a scroll spy over the
+   stacked blocks, so the wheel reaches every block and the TOC lists all of
+   their headings. */
+function useSectionSpy(ids: string[]) {
+  const [active, setActive] = useState(0);
+  const key = ids.join("|");
+  useEffect(() => {
+    const list = key.split("|");
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      let index = 0;
+      list.forEach((id, i) => {
+        const el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().top <= 150) index = i;
+      });
+      setActive(index);
+    };
+    const schedule = () => {
+      if (!frame) frame = window.requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule);
+    return () => {
+      window.removeEventListener("scroll", schedule);
+      window.removeEventListener("resize", schedule);
+      if (frame) window.cancelAnimationFrame(frame);
+    };
+  }, [key]);
+  return active;
+}
+
+function SectionSubnav({
+  items,
+  className = "eng-subnav",
+}: {
+  items: { id: string; label: string }[];
+  className?: string;
+}) {
+  const active = useSectionSpy(items.map((item) => item.id));
+  const jump = (id: string) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    window.scrollTo({
+      top: el.getBoundingClientRect().top + window.scrollY - 130,
+      behavior: "smooth",
+    });
+  };
+  return (
+    <div className={className}>
+      {items.map((item, index) => (
+        <button
+          key={item.id}
+          type="button"
+          className={`eng-subnav-button ${active === index ? "active" : ""}`}
+          aria-pressed={active === index}
+          onClick={() => jump(item.id)}
+        >
+          {item.label}
+        </button>
+      ))}
+    </div>
+  );
+}
+
 function ToolboxPage() {
-  const [tab, setTab] = useState(0);
-  const tabs = [
-    { key: "seed", label: "SEED", node: <SeedMethodBlock /> },
-    { key: "mixed", label: "Mixed Methods", node: <MixedMethodsBlock /> },
+  const sections = [
+    { id: "ihp-toolbox-seed", label: "SEED", node: <SeedMethodBlock /> },
     {
-      key: "anthro",
+      id: "ihp-toolbox-mixed",
+      label: "Mixed Methods",
+      node: <MixedMethodsBlock />,
+    },
+    {
+      id: "ihp-toolbox-anthro",
       label: "Anthropology & Philosophy",
       node: <AnthroBlock />,
     },
   ];
   return (
     <>
-      <div className="eng-subnav">
-        {tabs.map((entry, index) => (
-          <button
-            key={entry.key}
-            type="button"
-            className={`eng-subnav-button ${tab === index ? "active" : ""}`}
-            aria-pressed={tab === index}
-            onClick={() => setTab(index)}
-          >
-            {entry.label}
-          </button>
-        ))}
-      </div>
-      {tabs[tab].node}
+      <SectionSubnav items={sections.map(({ id, label }) => ({ id, label }))} />
+      {sections.map((entry) => (
+        <section className="ihp-subpage" id={entry.id} key={entry.id}>
+          {entry.node}
+        </section>
+      ))}
     </>
   );
 }
 
 function NestPage() {
-  const [tab, setTab] = useState(0);
-  const tabs = [
+  const sections = [
     {
-      key: "need",
+      id: "ihp-nest-need",
       label: "N · Need-led Discovery",
       node: <DiscoveryBlock />,
     },
     {
-      key: "codesign",
+      id: "ihp-nest-codesign",
       label: "E · Evidence-based Co-design",
       node: <CoDesignBlock />,
     },
     {
-      key: "situated",
+      id: "ihp-nest-situated",
       label: "S · Situated Implementation",
       node: <SituatedBlock />,
     },
     {
-      key: "trust",
+      id: "ihp-nest-trust",
       label: "T · Trust and Lasting Impact",
       node: <ImpactBlock />,
     },
   ];
   return (
     <>
-      <div className="eng-subnav ihp-subnav-row">
-        {tabs.map((entry, index) => (
-          <button
-            key={entry.key}
-            type="button"
-            className={`eng-subnav-button ${tab === index ? "active" : ""}`}
-            aria-pressed={tab === index}
-            onClick={() => setTab(index)}
-          >
-            {entry.label}
-          </button>
-        ))}
-      </div>
-      {tabs[tab].node}
-      {tab >= 1 && tab <= 2 && <SeedReaderRail key={tab} />}
+      <SectionSubnav
+        className="eng-subnav ihp-subnav-row"
+        items={sections.map(({ id, label }) => ({ id, label }))}
+      />
+      {sections.map((entry) => (
+        <section className="ihp-subpage" id={entry.id} key={entry.id}>
+          {entry.node}
+        </section>
+      ))}
     </>
   );
 }
