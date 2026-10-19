@@ -30,7 +30,7 @@ function BirdArtwork({ onLoad }: { onLoad?: () => void }) {
       </span>
       <span className="bird-art bird-art--home">
         <img
-          src="https://static.igem.wiki/teams/6102/wiki/images/home/home-08-bird-landed-2.avif"
+          src="https://static.igem.wiki/teams/6102/wiki/home-opening/guide-bird-rest.avif"
           alt=""
           draggable={false}
         />

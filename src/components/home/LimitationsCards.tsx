@@ -115,7 +115,7 @@ const yellowCards: CardCopy[] = [
     ),
     frontArt: [
       {
-        name: "blue-card-3.avif",
+        name: "home/group-1.avif",
         className: "limitations-art--yellow-dynamic",
       },
     ],

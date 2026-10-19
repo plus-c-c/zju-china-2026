@@ -192,6 +192,7 @@ function PipelineAnimation({
   const [finished, setFinished] = useState(false);
   const durationRef = useRef(4800);
   const finishTimer = useRef(0);
+  const [fetchFailed, setFetchFailed] = useState(false);
   const [animationBlob, setAnimationBlob] = useState<Blob | null>(null);
   const [playbackSrc, setPlaybackSrc] = useState("");
   const [scrolling, setScrolling] = useState(false);
@@ -245,7 +246,7 @@ function PipelineAnimation({
           image.close();
         }).catch(() => {});
       })
-      .catch(() => { /* Keep the original image available if fetching fails. */ });
+      .catch(() => { if (!controller.signal.aborted) setFetchFailed(true); });
     return () => controller.abort();
   }, [src]);
 
@@ -320,8 +321,8 @@ function PipelineAnimation({
 
 
   return (
-    <div ref={containerRef} data-home-preload-src={src} className={`${className} selp-pipeline__animation`} data-paused={finished ? stopAtFirstFrame : paused || !started} data-finished={finished} role="img" aria-label={alt}>
-      <img ref={imageRef} src={started && playbackSrc ? playbackSrc : undefined} alt="" onLoad={() => {
+    <div ref={containerRef} data-home-preload-src={src} className={`${className} selp-pipeline__animation`} data-paused={!fetchFailed && (finished ? stopAtFirstFrame : paused || !started)} data-finished={finished} role="img" aria-label={alt}>
+      <img ref={imageRef} src={fetchFailed ? src : started && playbackSrc ? playbackSrc : undefined} alt="" onLoad={() => {
         freeze();
         window.clearTimeout(finishTimer.current);
         finishTimer.current = window.setTimeout(() => setFinished(true), durationRef.current + 80);
