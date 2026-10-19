@@ -522,7 +522,7 @@ export const m1Steps: M1Step[] = [
           },
           {
             t: "strong",
-            v: "and the final validation results were consistent with the wet-lab measurements.",
+            v: "and the final validation results were consistent with the wet-lab measurements. The relative error of the modeled mean was within 1%.",
           },
         ],
       },
