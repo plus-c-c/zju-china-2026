@@ -210,7 +210,7 @@ function SeedBlock() {
       </h4>
 
       <h5 className="mt-4 mb-2">Cycle 1 — SELP</h5>
-      <p data-seed-phase="spark">Based on the background research,
+      <p data-seed-phase="spark">S: Based on the background research,
         we wanted to design a material that can heal a broad range of hyaline
         cartilage defects, starting with a filler that meets the complex
         requirements of cartilage repair — filling the defect directly and
@@ -220,7 +220,7 @@ function SeedBlock() {
         and need different strengths; a single strength could not achieve our
         goal of filling all hyaline cartilage defects.
       </p>
-      <p data-seed-phase="explore">We found that the repeat
+      <p data-seed-phase="explore">E: We found that the repeat
         number of the 2KY protein series can tune the material&rsquo;s strength
         and toughness, and that higher repeat numbers reduce pore size and raise
         cell adhesion, favoring GAG production, native cartilage growth and
@@ -229,19 +229,19 @@ function SeedBlock() {
         for the repeat-number series and to use modeling to fix the
         hydrogel&rsquo;s final properties.
       </p>
-      <p data-seed-phase="engineering">We entered the
+      <p data-seed-phase="engineering">E: We entered the
         SELP DBTL cycle. To realize the complex functions SELP needs as a
         broadly applicable filler, we surfaced many experimental questions and
         discussed them actively with several stakeholders (see the Engagement
         Timeline).
       </p>
-      <p data-seed-phase="dialogue">We showed the latest
+      <p data-seed-phase="dialogue">D: We showed the latest
         design to doctors and researchers; the feedback was positive, and the
         experiments that followed confirmed the design&rsquo;s reliability.
       </p>
 
       <h5 className="mt-4 mb-2">Cycle 2 — Linker System</h5>
-      <p data-seed-phase="spark">Reading the literature made clear
+      <p data-seed-phase="spark">S: Reading the literature made clear
         that filling the defect alone is not enough. To fit the repair needs of
         different clinical micro-environments we wanted to add therapy-related
         functional modules — but large modules inserted inside the molecule
@@ -250,25 +250,25 @@ function SeedBlock() {
         SnoopTag systems, but protein modeling showed the linkers were too large
         and would bury the functional peptide domain.
       </p>
-      <p data-seed-phase="explore">We asked stakeholders; one
+      <p data-seed-phase="explore">E: We asked stakeholders; one
         researcher suggested using SnoopLigase as the linker system.
       </p>
-      <p data-seed-phase="engineering">Through modeling
+      <p data-seed-phase="engineering">E: Through modeling
         we engineered the enzyme, improved the ligation efficiency, and iterated
         the SnoopLigase system into the{" "}
         <strong>SnoopLigase-ZJU</strong> system, greatly improving its
         efficiency and keeping the linker system running reliably.
       </p>
-      <p data-seed-phase="dialogue">We showed the design to
+      <p data-seed-phase="dialogue">D: We showed the design to
         doctors and researchers, who agreed with it.
       </p>
 
       <h5 className="mt-4 mb-2">Cycle 3 — Functional Modules</h5>
-      <p data-seed-phase="spark">With the programmable platform in
+      <p data-seed-phase="spark">S: With the programmable platform in
         place, we chose OA as NEST&rsquo;s first concrete application and asked
         doctors whether the material would fit clinical needs.
       </p>
-      <p data-seed-phase="explore">In our conversations the
+      <p data-seed-phase="explore">E: In our conversations the
         doctors explained that the closed environment of OA easily forms a
         vicious cycle of local mechanical imbalance, GAG loss and aggravated
         inflammation. Reading the literature widely, we found that anisotropy —
@@ -276,14 +276,14 @@ function SeedBlock() {
         carrying shear while keeping toughness and elasticity, stopping the
         vicious cycle at its start.
       </p>
-      <p data-seed-phase="engineering">Together with
+      <p data-seed-phase="engineering">E: Together with
         doctors and researchers we designed a magnetic-nanoparticle-binding
         peptide that aligns SELP under an external field to create anisotropy, a
         GAG-retaining peptide based on electrostatic adsorption, and a liposome
         delivery module for personalized treatment — addressing the three
         vicious-cycle modules one by one.
       </p>
-      <p data-seed-phase="dialogue">We returned to the doctors
+      <p data-seed-phase="dialogue">D: We returned to the doctors
         and researchers for their opinions. One doctor thought the material too
         complex, which could raise concerns in practical use and difficulties
         during market approval — this made us weigh safety even more carefully.
@@ -296,42 +296,42 @@ function SeedBlock() {
       </h4>
 
       <h5 className="mt-4 mb-2">Cycle 1 — Hardware</h5>
-      <p data-seed-phase="spark">To bring the project into
+      <p data-seed-phase="spark">S: To bring the project into
         clinical use, we designed a hardware system matched to all of our
         biological designs: a first version combined an endoscope and a
         blue-light illumination system into one in-body device, plus a syringe.
       </p>
-      <p data-seed-phase="explore">We tested it in a clinical
+      <p data-seed-phase="explore">E: We tested it in a clinical
         setting. The nurses we interviewed raised three main issues: where
         should the material be prepared? How should the system be operated? How
         should it connect to the hospital&rsquo;s existing displays? We did
         on-site research, consulted medical-device companies, and decided to add
         a pre-mixing module, an electronic manual and a Bluetooth connection.
       </p>
-      <p data-seed-phase="engineering">Combined with the
+      <p data-seed-phase="engineering">E: Combined with the
         wet-lab protein purification design, we iterated the hardware into an
         integrated system compatible with different operating-room
         configurations.
       </p>
-      <p data-seed-phase="dialogue">To match user habits, we
+      <p data-seed-phase="dialogue">D: To match user habits, we
         ran comparative evaluations with the emergency-ward nurse team of the
         254th Hospital and medical students, and chose the highest-scoring
         scheme — which stakeholders also approved.
       </p>
 
       <h5 className="mt-4 mb-2">Cycle 2 — Manufacturing</h5>
-      <p data-seed-phase="spark">We wanted our material to be
+      <p data-seed-phase="spark">S: We wanted our material to be
         produced at factory scale and discussed sample production with Beijing
         Weixinkang. They invited us to cooperate and advised us to consider
         protein purification, transport and storage.
       </p>
-      <p data-seed-phase="explore">We reviewed how marketed
+      <p data-seed-phase="explore">E: We reviewed how marketed
         hydrogels are extracted, purified and transported, and decided on a
         protein powder packaged as a pharmaceutical for hospitals. We visited a
         mature synbio raw-material company, Yuanyi Biology, to learn more about
         practical scenarios.
       </p>
-      <p data-seed-phase="engineering">We turned the
+      <p data-seed-phase="engineering">E: We turned the
         information from our research and the company&rsquo;s guidance into
         concrete engineering design. Around protein purification, powder
         preparation, packaging, transport and storage, we mapped the technical
@@ -345,7 +345,7 @@ function SeedBlock() {
         these requirements into the sample-cooperation discussions with
         Weixinkang, laying the groundwork for process optimization and scale-up.
       </p>
-      <p data-seed-phase="dialogue">We interviewed Weixinkang
+      <p data-seed-phase="dialogue">D: We interviewed Weixinkang
         again; their engineers approved, and we signed a sample-cooperation
         agreement.
       </p>
@@ -353,7 +353,7 @@ function SeedBlock() {
       <h5 className="mt-4 mb-2">
         Cycle 3 — Entrepreneurship &amp; Market Access
       </h5>
-      <p data-seed-phase="spark">As a material entering the human
+      <p data-seed-phase="spark">S: As a material entering the human
         body, NEST must be careful about product safety and face many
         market-access reviews. We had many questions about the approval process,
         the market and sales channels, and after research we also had thoughts
@@ -361,18 +361,18 @@ function SeedBlock() {
         cost estimate showed the early investment would be large and
         unavoidable — which meant we needed early funding.
       </p>
-      <p data-seed-phase="explore">With these questions we
+      <p data-seed-phase="explore">E: With these questions we
         looked widely for stakeholders across production, sales, government
         regulation, finance and start-up mentoring, and received effective
         advice. We also received guidance from Shaanxi Lanyanwei Biotechnology,
         which has rich experience in translating medical research into products.
       </p>
-      <p data-seed-phase="engineering">We weighed cost
+      <p data-seed-phase="engineering">E: We weighed cost
         more heavily in the design, built a detailed business model, found a
         CDMO partner, joined several entrepreneurship events, and secured our
         first letter of intent for investment. More in Entrepreneurship.
       </p>
-      <p data-seed-phase="dialogue">Every revision and
+      <p data-seed-phase="dialogue">D: Every revision and
         iteration of the business model was discussed with the relevant
         stakeholders until the team and the stakeholders agreed. Through
         competitions and investor pitches, the recognition of investment
