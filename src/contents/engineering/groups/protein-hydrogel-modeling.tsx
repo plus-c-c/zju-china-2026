@@ -81,8 +81,7 @@ const hydrogelModelingModule: DbtlModule = {
       },
     },
     {
-      title:
-        "Cycle 3 — Molecular Dynamics Sampling and Stability Assessment",
+      title: "Cycle 3 — Molecular Dynamics Sampling and Stability Assessment",
       content: {
         Design: (
           <p>
@@ -199,21 +198,26 @@ const hydrogelModelingModule: DbtlModule = {
         Build: (
           <p>
             {
-              " Subsequently construct the 2KY16 structure and crosslinked network, apply the same calculation rules, and freeze the existing shared calibration parameters to obtain predictions."
+              " Constructed the 2KY16 structure and crosslinked network, applied the same calculation rules, and retained the shared calibration parameters determined from 2KY5 and 2KY10 without refitting to 2KY16."
             }
           </p>
         ),
         Test: (
           <p>
             {
-              " Obtain wet-state experimental data for 2KY16 under the same conditions, compare the predicted and experimental values, and evaluate the relative error and differences between branches."
+              " The modeled compressive moduli for 2KY16 branches A, B, and C were 52.41, 51.03, and 55.71 kPa, respectively, giving a mean of 53.05 kPa. The wet-lab measurement was 53.32 kPa under the same conditions. "
             }
+            <strong>
+              {
+                "The relative error of the modeled mean was approximately 0.51%, within 1%."
+              }
+            </strong>
           </p>
         ),
         Learn: (
           <p>
             {
-              " Agreement between predictions and experiments would support the applicability of the model to a new system."
+              " The independent validation on 2KY16, which was excluded from parameter fitting, supports the applicability of the calibrated model to a new construct without refitting. The close agreement between the modeled mean and the wet-lab measurement supports the predictive value of the shared calibration, while the individual A, B, and C results preserve the differences between branches."
             }
           </p>
         ),
