@@ -221,7 +221,7 @@ export function Contribution() {
         </h3>
         <p>
           We adapted the established principles of inverse transition cycling
-          (ITC) to optimize recovery of our own scaffolds.[1,2] After comparing
+          (ITC) to optimize recovery of our own scaffolds.<sup className="article-citation">[1, 2]</sup> After comparing
           65&nbsp;&deg;C and 80&nbsp;&deg;C and NaCl concentrations of 0.5, 1,
           and 2&nbsp;M, salt concentration had the more pronounced effect in
           our current screening. We therefore selected 65&nbsp;&deg;C and
@@ -259,7 +259,7 @@ export function Contribution() {
           protocols to link protein recovery with preparation of gel-forming
           materials. This non-chromatographic workflow also provides a basis
           for further optimizing scaffold recovery following fermentation
-          scale-up.[1,2]
+          scale-up.<sup className="article-citation">[1, 2]</sup>
         </p>
 
         <h3 className="mt-5 mb-3">

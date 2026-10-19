@@ -1,5 +1,9 @@
 import { useLayoutEffect, useRef, useState, type ReactNode } from "react";
 import { BirdLanding } from "./BirdCursor";
+import {
+  formatArticleCitations,
+  formatReferenceHtml,
+} from "./referenceFormatting";
 
 export function References({
   children,
@@ -56,7 +60,9 @@ export function References({
     document.addEventListener("click", onLink, true);
     const observer = new ResizeObserver(([entry]) => {
       if (entry.contentRect.height > 0)
-        setLogos(Math.max(1, 1 + Math.floor((entry.contentRect.height - 390) / 560)));
+        setLogos(
+          Math.max(1, 1 + Math.floor((entry.contentRect.height - 390) / 560)),
+        );
     });
     if (content.current) observer.observe(content.current);
     return () => {
@@ -107,7 +113,11 @@ export function ReferenceArticleHtml({ html }: { html: string }) {
   if (!match) return <div dangerouslySetInnerHTML={{ __html: html }} />;
   return (
     <>
-      <div dangerouslySetInnerHTML={{ __html: html.slice(0, match.index) }} />
+      <div
+        dangerouslySetInnerHTML={{
+          __html: formatArticleCitations(html.slice(0, match.index), match[1]),
+        }}
+      />
       <References>
         <div
           className="references-list"
@@ -119,22 +129,13 @@ export function ReferenceArticleHtml({ html }: { html: string }) {
       {html.slice(match.index + match[0].length).trim() && (
         <div
           dangerouslySetInnerHTML={{
-            __html: html.slice(match.index + match[0].length),
+            __html: formatArticleCitations(
+              html.slice(match.index + match[0].length),
+              match[1],
+            ),
           }}
         />
       )}
     </>
   );
-}
-
-/** Exported bibliographies arrive as plain HTML numbered "1." with bare URLs;
- *  present them in the wiki's shared "[n]" format with working links. */
-export function formatReferenceHtml(html: string) {
-  const numbered = html.replace(/(<p[^>]*>)\s*(\d+)\.\s+/g, "$1[$2] ");
-  if (numbered.includes("<a ")) return numbered;
-  return numbered.replace(/(https?:\/\/[^\s<]+)/g, (match) => {
-    const trailing = /[.,;)]+$/.exec(match)?.[0] ?? "";
-    const url = match.slice(0, match.length - trailing.length);
-    return `<a href="${url}" target="_blank" rel="noreferrer">${url}</a>${trailing}`;
-  });
 }

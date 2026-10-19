@@ -65,7 +65,7 @@ export const gagRetentionModule: DbtlModule = {
               characterized previously. It therefore had a clearer literature
               basis than our initial repetitive design
               <sup>
-                <a href="#ref-gag-1">[1]</a>
+                <a href="#ref-gag-1">[3]</a>
               </sup>
               . We retained the intended cationic properties while re-optimizing
               the codons for <em>E. coli</em> and reducing unnecessary
@@ -265,7 +265,7 @@ export const gagRetentionModule: DbtlModule = {
             literature commonly use chemically synthesized short peptides, which
             are expected to have high purity
             <sup>
-              <a href="#ref-gag-2">[2]</a>
+              <a href="#ref-gag-2">[4]</a>
             </sup>
             . These explanations remain possibilities and were not tested
             individually in our system. Because this assay requires the

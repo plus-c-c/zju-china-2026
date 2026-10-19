@@ -1,4 +1,5 @@
 import { References } from "../../components/References";
+import { CitationText } from "../../components/CitationText";
 import {
   useCallback,
   useEffect,
@@ -217,7 +218,12 @@ function ProteinStepper({ steps }: { steps: ProteinStep[] }) {
   /* 左右方向键与滚轮等效：切换上一步 / 下一步 */
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.defaultPrevented || event.metaKey || event.ctrlKey || event.altKey)
+      if (
+        event.defaultPrevented ||
+        event.metaKey ||
+        event.ctrlKey ||
+        event.altKey
+      )
         return;
       const forward = event.key === "ArrowRight" || event.key === "ArrowDown";
       const backward = event.key === "ArrowLeft" || event.key === "ArrowUp";
@@ -403,9 +409,7 @@ function ProteinStepper({ steps }: { steps: ProteinStep[] }) {
         </div>
         <div
           className={`protein-text${
-            !STEP_ADVANCE_ENABLED ||
-            index === 0 ||
-            index === steps.length - 1
+            !STEP_ADVANCE_ENABLED || index === 0 || index === steps.length - 1
               ? " protein-text--chain"
               : ""
           }`}
@@ -417,7 +421,9 @@ function ProteinStepper({ steps }: { steps: ProteinStep[] }) {
           <div className="protein-text-stack">
             {transition.outgoing && transition.textChanged && (
               <div className="protein-text-out" aria-hidden="true">
-                {transition.outgoing.body}
+                <CitationText validReferences={[1, 2, 3, 4, 5, 6, 7]}>
+                  {transition.outgoing.body}
+                </CitationText>
               </div>
             )}
             <div
@@ -426,7 +432,9 @@ function ProteinStepper({ steps }: { steps: ProteinStep[] }) {
               }`}
               key={step?.key}
             >
-              {step?.body}
+              <CitationText validReferences={[1, 2, 3, 4, 5, 6, 7]}>
+                {step?.body}
+              </CitationText>
             </div>
           </div>
         </div>
@@ -458,7 +466,7 @@ function ProteinStepper({ steps }: { steps: ProteinStep[] }) {
         <h3
           key={title}
           className="visually-hidden protein-anchor"
-            data-toc-track="true"
+          data-toc-track="true"
           style={{ "--protein-step": step === 0 ? 0.5 : step } as CSSProperties}
         >
           {title}
@@ -490,7 +498,9 @@ const SNOOP_STEPS: ProteinStep[] = [
     ),
     body: (
       <>
-        <h3 className="mt-5 mb-3" data-toc="exclude">{"1 Research Background"}</h3>
+        <h3 className="mt-5 mb-3" data-toc="exclude">
+          {"1 Research Background"}
+        </h3>
         <p>
           {
             "SnoopLigase2 catalyzes the formation of a covalent isopeptide bond between SnoopTag2 and DogTag, providing a short peptide-based ligation interface for different protein modules. Previous research has also shown that SnoopLigase2 binds strongly and noncovalently to the ligated product, limiting product release and catalyst recycling. "
@@ -545,7 +555,9 @@ const SNOOP_STEPS: ProteinStep[] = [
     ),
     body: (
       <>
-        <h3 className="mt-5 mb-3" data-toc="exclude">{"2 Model Construction"}</h3>
+        <h3 className="mt-5 mb-3" data-toc="exclude">
+          {"2 Model Construction"}
+        </h3>
         <p>
           {
             "We used the crystal structure of RrgA, 2WW8, as a template to construct a ligase core model containing 104 amino acids.[2]"
@@ -587,7 +599,9 @@ const SNOOP_STEPS: ProteinStep[] = [
     ),
     body: (
       <>
-        <h3 className="mt-5 mb-3" data-toc="exclude">{"3 Stability Screening"}</h3>
+        <h3 className="mt-5 mb-3" data-toc="exclude">
+          {"3 Stability Screening"}
+        </h3>
         <p>
           <strong>
             {
@@ -713,7 +727,9 @@ const SNOOP_STEPS: ProteinStep[] = [
     ),
     body: (
       <>
-        <h3 className="mt-5 mb-3" data-toc="exclude">{"5 Turnover Optimization"}</h3>
+        <h3 className="mt-5 mb-3" data-toc="exclude">
+          {"5 Turnover Optimization"}
+        </h3>
         <p>
           {
             "We performed a per-residue analysis of the 104 ligase core residues in 20 single-chain product models. Based on interface distances, contact extent, and structural protection criteria, we selected six sites—K792, N793, S795, E827, V828, and V831—and designed 12 substitutions comprising alanine-scanning mutations or more conservative replacements."
@@ -828,7 +844,9 @@ const SNOOP_STEPS: ProteinStep[] = [
     ),
     body: (
       <>
-        <h3 className="mt-5 mb-3" data-toc="exclude">{"6 Conclusion"}</h3>
+        <h3 className="mt-5 mb-3" data-toc="exclude">
+          {"6 Conclusion"}
+        </h3>
         <p>
           <strong>
             {

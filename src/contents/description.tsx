@@ -6,12 +6,23 @@ import "./description.css";
 const IMAGE_ROOT =
   "https://static.igem.wiki/teams/6102/wiki/images/description";
 
+const figureDimensions: Record<string, [number, number]> = {
+  "1": [1871, 840],
+  "2": [3045, 1870],
+  "3": [2085, 1043],
+  "4": [3233, 1509],
+  "5": [3000, 1770],
+  "6": [2570, 1814],
+  "7": [3849, 3275],
+};
+
 function Citation({ refs }: { refs: number[] }) {
   return (
     <sup className="description-citation">
+      [
       {refs.map((ref, index) => (
         <span key={ref}>
-          {index > 0 && ","}
+          {index > 0 && ", "}
           <a
             href={`#description-reference-${ref}`}
             aria-label={`Reference ${ref}`}
@@ -20,6 +31,7 @@ function Citation({ refs }: { refs: number[] }) {
           </a>
         </span>
       ))}
+      ]
     </sup>
   );
 }
@@ -30,6 +42,7 @@ function DescriptionFigure({
   children,
   alt,
   src,
+  empty = false,
 }: {
   number: number | string;
   title: string;
@@ -37,21 +50,39 @@ function DescriptionFigure({
   alt: string;
   /** Optional override of the default description<N>.avif asset. */
   src?: string;
+  empty?: boolean;
 }) {
   return (
     <figure className="figure d-block my-4 text-center article-figure">
-      <img
-        className="figure-img img-fluid rounded article-figure__image"
-        src={src ?? `${IMAGE_ROOT}/description${number}.avif`}
-        alt={alt}
-        loading="lazy"
-        decoding="async"
-      />
+      {empty ? (
+        <div className="description-figure-placeholder" aria-hidden="true" />
+      ) : (
+        <img
+          className="figure-img img-fluid rounded article-figure__image"
+          src={src ?? `${IMAGE_ROOT}/description${number}.avif`}
+          alt={alt}
+          width={figureDimensions[String(number)]?.[0]}
+          height={figureDimensions[String(number)]?.[1]}
+          loading="lazy"
+          decoding="async"
+        />
+      )}
       <figcaption className="figure-caption article-figure__caption">
         <strong>
           Figure {number} | {title}.
         </strong>{" "}
         {children}
+        {!empty && (
+          <sup className="description-citation figure-source-citation">
+            <a
+              href={`#description-figure-${String(number).replace(/\./g, "-")}-sources`}
+              aria-label={`Image source for Figure ${number}`}
+              title={`Source and license for Figure ${number}`}
+            >
+              [S{number}]
+            </a>
+          </sup>
+        )}
       </figcaption>
     </figure>
   );
@@ -316,8 +347,7 @@ const references = [
       promote cartilage regeneration.
     </strong>{" "}
     <em>Bioactive Materials.</em> 2026;56:368–385; first published online in
-    2025.{" "}
-    <a href="https://doi.org/10.1016/j.bioactmat.2025.10.009">DOI</a>
+    2025. <a href="https://doi.org/10.1016/j.bioactmat.2025.10.009">DOI</a>
   </>,
   <>
     Gan X, Wang X, Huang Y, Li G, Kang H.{" "}
@@ -374,8 +404,7 @@ export function Description() {
             stages: knee taping for a young adult (left), an adult holding a
             knee (center), and an older adult resting a hand on a knee (right).
             The images do not establish a diagnosis of cartilage damage in any
-            individual shown. Source photographs and AI-assisted compositing
-            credits are provided below.
+            individual shown.
           </DescriptionFigure>
 
           <p>
@@ -401,8 +430,8 @@ export function Description() {
             <Citation refs={[2]} />
           </p>
 
-          <h3>Cartilage Damage Is Far from Rare</h3>
-          <div className="article-figure-grid">
+          <h2>Cartilage Damage Is Far from Rare</h2>
+          <div className="description-figure-pair">
             <DescriptionFigure
               number={2}
               src={`${IMAGE_ROOT}/description2-a.avif`}
@@ -411,24 +440,25 @@ export function Description() {
             >
               The upper panel shows age-standardized osteoarthritis prevalence
               across countries in 2021; the lower panel illustrates differences
-              by age, sex, and affected joint site. Reproduced from Chen et al.
-              (2026), Figure 1.
-              <Citation refs={[3]} />
+              by age, sex, and affected joint site.
             </DescriptionFigure>
             <DescriptionFigure
               number={3}
+              src={`${IMAGE_ROOT}/description-figure-03-original-hires.avif`}
               title="Severity and Anatomical Distribution of Cartilage Injuries"
               alt="Severity and anatomical distribution of cartilage injuries in the knee"
             >
-              Reproduced from Jiang et al. (2026), Figure 3.
-              <Citation refs={[4]} />
+              Stacked bars show the proportions of knees with no cartilage
+              injury or Outerbridge Grades I–IV across six anatomical sites in
+              25,293 primary knee arthroscopies. These hospital-cohort data do
+              not estimate prevalence in the general population.
             </DescriptionFigure>
           </div>
 
           <p>
             Cartilage damage is by no means a problem affecting only a small
-            group of people. A study published in 2026 examined{" "}
-            <strong>25,293 knee arthroscopy procedures</strong> and found that{" "}
+            group of people. A study published in 2026 examined 25,293 knee
+            arthroscopy procedures and found that{" "}
             <strong>
               66.2% involved articular cartilage damage, with severe lesions
               identified in 26.6%
@@ -487,9 +517,7 @@ export function Description() {
           >
             Cross-section of the knee joint and an enlarged osteochondral
             interface showing the superficial, middle, deep, and calcified
-            zones, chondrocytes, and subchondral bone. Reproduced from Morouço
-            et al. (2021), Figure 1.
-            <Citation refs={[10]} />
+            zones, chondrocytes, and subchondral bone.
           </DescriptionFigure>
           <p>
             Healthy articular cartilage has a highly organized zonal
@@ -535,9 +563,6 @@ export function Description() {
             cartilage in osteoarthritis with an artificial knee joint; these are
             separate illustrations, not matched images of a patient before and
             after surgery. The panels do not show comparative clinical outcomes.
-            The lower-right illustrations are by BruceBlaus, adapted under CC
-            BY-SA 4.0. Full credits and adaptation details are provided in the{" "}
-            <a href="#description-figure-5-sources">image sources below</a>.
           </DescriptionFigure>
           <p>
             Existing treatments have helped many patients relieve pain and
@@ -609,8 +634,8 @@ export function Description() {
             title="Risks and Mitigation Strategies in Hydrogel Design and Clinical Translation"
             alt="Risks and strategies in hydrogel design and clinical translation"
           >
-            Reproduced from Cavallo et al. (2026), Figure 1.
-            <Citation refs={[14]} />
+            Overview of potential risks in hydrogel design and clinical
+            translation, paired with strategies for addressing them.
           </DescriptionFigure>
 
           <div className="description-card-grid description-card-grid--barriers">
@@ -674,8 +699,7 @@ export function Description() {
             Using osteoarthritis as an example, panel A illustrates the
             pathological processes involving mechanical and inflammatory factors
             and multiple cell types within the joint, while panel B presents
-            different forms of hydrogel-based intervention. Reproduced from Gan
-            et al. (2024), Figure 1.
+            different forms of hydrogel-based intervention.
           </DescriptionFigure>
           <p>
             If every new form of cartilage damage requires an entirely new
@@ -728,20 +752,7 @@ export function Description() {
             property design, functional module assembly, and biomanufacturing
             into one extensible system.
           </p>
-          <DescriptionFigure
-            number="0.1"
-            src="https://static.igem.wiki/teams/6102/wiki/images/design/01/00001.avif"
-            title="Comparison between traditional blending design and sequence-programmed design"
-            alt="Diagram contrasting traditional blending design, which mixes polymers, initiators, crosslinkers, and modifying groups, with sequence-programmed design, which encodes material information in DNA and produces photocrosslinked proteins"
-          >
-            Left: Traditional design relies on the mixing and grafting of
-            polymers, initiators, crosslinkers, and modifying groups. Right:
-            Sequence-programmed design encodes material information in DNA; the
-            DNA is transcribed and translated into proteins, which are then
-            photocrosslinked into a gel, aiming to improve batch-to-batch
-            reproducibility and programmability.
-          </DescriptionFigure>
-          <div className="description-card-grid">
+          <div className="description-card-grid description-card-grid--platform">
             <ExpandableCard number="01" title="Tunable Scaffold">
               We selected <strong>silk–elastin-like polypeptide (SELP)</strong>{" "}
               as the scaffold. Its genetically designable sequence and
@@ -765,6 +776,19 @@ export function Description() {
               configurations.
             </ExpandableCard>
           </div>
+          <DescriptionFigure
+            number="0.1"
+            title="Comparison between traditional blending design and sequence-programmed design"
+            alt=""
+            empty
+          >
+            Left: Traditional design relies on the mixing and grafting of
+            polymers, initiators, crosslinkers, and modifying groups. Right:
+            Sequence-programmed design encodes material information in DNA; the
+            DNA is transcribed and translated into proteins, which are then
+            photocrosslinked into a gel, aiming to improve batch-to-batch
+            reproducibility and programmability.
+          </DescriptionFigure>
           <p>
             We chose{" "}
             <strong>osteoarthritis as a representative application</strong>.
@@ -813,31 +837,36 @@ export function Description() {
             showBird={false}
           >
             <div className="references-list description-credits">
-              <section>
-                <h3>Figure 1 | Knee Support and Discomfort Across Life Stages</h3>
+              <section id="description-figure-1-sources">
+                <h3>
+                  Figure 1 | Knee Support and Discomfort Across Life Stages
+                </h3>
                 <p>
                   Source photographs: young adult, cottonbro studio / Pexels,
                   photo 7339492; adult, Towfiqu barbhuiya / Pexels, photo
                   11349880; older adult, Αλεξανδρος Μαμουνης / Pexels, photo
                   18851495. The collage was adapted from these photographs using
                   AI-assisted compositing (OpenAI imagegen). It is illustrative
-                  and should not be presented as clinical evidence or confirmation
-                  of a diagnosis.
+                  and should not be presented as clinical evidence or
+                  confirmation of a diagnosis.
                 </p>
                 <p className="description-credit-links">
-                  <a href="https://www.pexels.com/photo/7339492/">Young adult</a>
+                  <a href="https://www.pexels.com/photo/7339492/">
+                    Young adult
+                  </a>
                   <a href="https://www.pexels.com/photo/11349880/">Adult</a>
-                  <a href="https://www.pexels.com/photo/18851495/">Older adult</a>
+                  <a href="https://www.pexels.com/photo/18851495/">
+                    Older adult
+                  </a>
                   <a href="https://www.pexels.com/license/">Pexels License</a>
                 </p>
               </section>
-              <section>
+              <section id="description-figure-2-sources">
                 <h3>Figure 2 | Global Burden of Osteoarthritis</h3>
                 <p>
-                  Chen et al. (2026), Figure 1, licensed CC BY-NC-ND 4.0.
-                  Retain the original figure and complete attribution, and
-                  observe the restrictions on commercial use and derivative
-                  works.
+                  Chen et al. (2026), Figure 1, licensed CC BY-NC-ND 4.0. Retain
+                  the original figure and complete attribution, and observe the
+                  restrictions on commercial use and derivative works.
                 </p>
                 <p className="description-credit-links">
                   <a href="https://doi.org/10.1016/j.jot.2025.11.005">
@@ -848,7 +877,7 @@ export function Description() {
                   </a>
                 </p>
               </section>
-              <section>
+              <section id="description-figure-3-sources">
                 <h3>
                   Figure 3 | Severity and Anatomical Distribution of Cartilage
                   Injuries
@@ -863,16 +892,19 @@ export function Description() {
                 </p>
                 <p className="description-credit-links">
                   <a href="https://doi.org/10.1111/os.70272">Figure 3 source</a>
+                  <a href="https://onlinelibrary.wiley.com/doi/epdf/10.1111/os.70272">
+                    Original figure in the article PDF (p. 676)
+                  </a>
                   <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">
                     CC BY-NC-ND 4.0
                   </a>
                 </p>
               </section>
-              <section>
+              <section id="description-figure-4-sources">
                 <h3>Figure 4 | Zonal Architecture</h3>
                 <p>
-                  Morouço, Fernandes &amp; Lattanzi (2021), Figure 1, licensed CC
-                  BY 4.0. Consult the original legend for third-party artwork
+                  Morouço, Fernandes &amp; Lattanzi (2021), Figure 1, licensed
+                  CC BY 4.0. Consult the original legend for third-party artwork
                   attribution.
                 </p>
                 <p className="description-credit-links">
@@ -887,15 +919,15 @@ export function Description() {
               <section id="description-figure-5-sources">
                 <h3>Figure 5 | Current Treatment Pathways</h3>
                 <p>
-                  Left: Medvedeva et al. (2018), Figure 3, CC BY 4.0. Upper right:
-                  Funkcinės Terapijos Centras / Pexels, photo 20860595, under the
-                  Pexels License. Lower right: “Osteoarthritis” and “Knee
-                  Replacement” by BruceBlaus (2015), via Wikimedia Commons, CC
-                  BY-SA 4.0. ZJU-China cropped the illustrations, resized them
-                  without changing their aspect ratios, and added labels. The
-                  adapted lower-right panel is licensed under CC BY-SA 4.0; the
-                  other panels retain their respective licenses. The composite
-                  layout was arranged by ZJU-China.
+                  Left: Medvedeva et al. (2018), Figure 3, CC BY 4.0. Upper
+                  right: Funkcinės Terapijos Centras / Pexels, photo 20860595,
+                  under the Pexels License. Lower right: “Osteoarthritis” and
+                  “Knee Replacement” by BruceBlaus (2015), via Wikimedia
+                  Commons, CC BY-SA 4.0. ZJU-China cropped the illustrations,
+                  resized them without changing their aspect ratios, and added
+                  labels. The adapted lower-right panel is licensed under CC
+                  BY-SA 4.0; the other panels retain their respective licenses.
+                  The composite layout was arranged by ZJU-China.
                 </p>
                 <p className="description-credit-links">
                   <a href="https://doi.org/10.3390/ijms19082366">
@@ -919,7 +951,7 @@ export function Description() {
                   <a href="https://www.pexels.com/license/">Pexels License</a>
                 </p>
               </section>
-              <section>
+              <section id="description-figure-6-sources">
                 <h3>Figure 6 | Hydrogel Strategies</h3>
                 <p>
                   Cavallo et al. (2026), Figure 1, CC BY 4.0. Credit the authors
@@ -935,7 +967,7 @@ export function Description() {
                   </a>
                 </p>
               </section>
-              <section>
+              <section id="description-figure-7-sources">
                 <h3>
                   Figure 7 | Pathological Factors and Hydrogel Intervention
                   Needs

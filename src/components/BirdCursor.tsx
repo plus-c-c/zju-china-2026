@@ -39,7 +39,7 @@ function BirdArtwork({ onLoad }: { onLoad?: () => void }) {
         style={homeFailed ? { opacity: 0 } : undefined}
       >
         <img
-          src="https://static.igem.wiki/teams/6102/wiki/images/home/home-08-bird-landed-2.avif"
+          src="https://static.igem.wiki/teams/6102/wiki/home-opening/guide-bird-rest.avif"
           alt=""
           draggable={false}
           onError={() => setHomeFailed(true)}

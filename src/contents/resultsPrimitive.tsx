@@ -1,4 +1,5 @@
-import { References, formatReferenceHtml } from "../components/References";
+import { References } from "../components/References";
+import { formatReferenceHtml } from "../components/referenceFormatting";
 import { useEffect, useRef, useState } from "react";
 import { FunctionResults } from "./results/FunctionResults";
 import scaffold from "./results/scaffold-content.json";

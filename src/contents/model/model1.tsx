@@ -1,4 +1,5 @@
 import { References } from "../../components/References";
+import { CitationText } from "../../components/CitationText";
 import {
   useCallback,
   useEffect,
@@ -48,7 +49,13 @@ const M1_STAGES = [
   { id: "validation", label: "Validation", step: 7 },
 ];
 
-function Parts({ parts }: { parts: M1Part[] }) {
+function Parts({
+  parts,
+  citationize = true,
+}: {
+  parts: M1Part[];
+  citationize?: boolean;
+}) {
   return (
     <>
       {parts.map((part, index) => {
@@ -68,7 +75,17 @@ function Parts({ parts }: { parts: M1Part[] }) {
             </a>
           );
         }
-        return <span key={index}>{part.v}</span>;
+        return (
+          <span key={index}>
+            {citationize ? (
+              <CitationText validReferences={[1, 2, 3, 4, 5, 6]}>
+                {part.v}
+              </CitationText>
+            ) : (
+              part.v
+            )}
+          </span>
+        );
       })}
     </>
   );
@@ -116,7 +133,13 @@ function ValidationHighlight({ active }: { active: boolean }) {
   );
 }
 
-function Blocks({ blocks }: { blocks: M1Block[] }) {
+function Blocks({
+  blocks,
+  citationize = true,
+}: {
+  blocks: M1Block[];
+  citationize?: boolean;
+}) {
   return (
     <>
       {blocks.map((block, index) => {
@@ -194,7 +217,7 @@ function Blocks({ blocks }: { blocks: M1Block[] }) {
         }
         return (
           <p key={index}>
-            <Parts parts={block.parts ?? []} />
+            <Parts parts={block.parts ?? []} citationize={citationize} />
           </p>
         );
       })}
@@ -496,6 +519,7 @@ export function SelpHydrogelModeling() {
       <References level={3}>
         <div className="references-list references-list--paragraphs">
           <Blocks
+            citationize={false}
             blocks={m1References.filter(
               (block) => block.t !== "h3" || block.v !== "References",
             )}

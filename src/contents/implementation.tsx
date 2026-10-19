@@ -67,7 +67,7 @@ export function Implementation() {
           bone-support layer will provide deeper structural support. Interlayer
           bonding and load transfer will jointly determine the performance of
           the composite. Existing approaches to osteochondral repair will
-          inform the definition and evaluation of this application [1].
+          inform the definition and evaluation of this application <sup className="article-citation">[1]</sup>.
         </p>
         <p>
           All three application directions share a common foundation for
@@ -106,7 +106,7 @@ export function Implementation() {
           reduces reliance on affinity resins for bulk scaffold recovery and
           provides a foundation for scale-up focused on heat transfer, mixing,
           and solid&ndash;liquid separation, making it an important component of
-          the project&rsquo;s strategy for scalable biomanufacturing [2,3].
+          the project&rsquo;s strategy for scalable biomanufacturing <sup className="article-citation">[2, 3]</sup>.
         </p>
         <p>
           The proposed supply system centers on centralized scaffold
@@ -182,7 +182,7 @@ export function Implementation() {
           module integrates heating and cooling, liquid-level sensing, status
           indicators, and a delivery pump. Independent channels allow component
           ratios to be adjusted, while replaceable tubing and a transparent
-          enclosure facilitate loading, monitoring, and maintenance [4].
+          enclosure facilitate loading, monitoring, and maintenance <sup className="article-citation">[4]</sup>.
         </p>
         <figure className="figure d-block my-4 text-center">
           <img
@@ -218,7 +218,7 @@ export function Implementation() {
           status, configure relevant parameters, and issue delivery commands.
           The web interface consolidates these readouts into a shared reservoir
           view, enabling the material-handling process to be monitored and
-          controlled [4].
+          controlled <sup className="article-citation">[4]</sup>.
         </p>
         <p>
           The clinician-facing app and device web interface serve distinct
@@ -330,11 +330,11 @@ export function Implementation() {
           of the material. Subsequent biological evaluation will be designed
           according to the final material composition, mode of tissue contact,
           and contact duration, and will systematically investigate local
-          responses, degradation products, and relevant systemic effects [5].
+          responses, degradation products, and relevant systemic effects <sup className="article-citation">[5]</sup>.
           Product classification and the regulatory pathway will likewise be
           determined based on the final components, primary mode of action, and
           intended markets, with regulatory consultation initiated early in
-          development [6].
+          development <sup className="article-citation">[6]</sup>.
         </p>
 
         <h3 className="mt-5 mb-3">

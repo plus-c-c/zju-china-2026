@@ -126,6 +126,35 @@ body {
   font-size: 1.5rem;
 }
 
+/* The header supplies the opening space once, without stacking the page's
+   Bootstrap row margin and the first section's normal heading margin. */
+.page-article > .row:first-child {
+  margin-top: 0 !important;
+}
+
+.page-article > .row:first-child > [class*="col-"] > :is(h2, h3):first-child,
+.page-article
+  > .row:first-child
+  > [class*="col-"]
+  > :is(article, div):first-child
+  > :is(h2, h3):first-child,
+.page-article > .members-page > .members-section:first-child > h2:first-child,
+.page-article
+  > .wetlab-split
+  > div:first-of-type
+  > .section-heading:first-child,
+.page-article
+  > .wetlab-split
+  > div:first-of-type
+  > .section-heading:first-child
+  > h2:first-child {
+  margin-top: 0 !important;
+}
+
+.page-article > .wetlab-split {
+  padding-top: 0;
+}
+
 /* Shared white callout card for Markdown blockquotes and emphasis panels. */
 .page-article :is(
     blockquote,

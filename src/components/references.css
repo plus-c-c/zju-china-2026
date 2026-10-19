@@ -1,13 +1,31 @@
 /* Shared by paragraph, ordered-list and collapsible bibliographies. */
 .page-article {
-  --reference-width: 44rem;
-  --reference-inset: clamp(1.25rem, 3vw, 2.25rem);
+  --reference-inset: 0;
+}
+
+.page-article :is(sup.article-citation, sup:has(a[href^="#"])) {
+  margin-inline-start: 0.12em;
+  white-space: nowrap;
+  color: #365dc9;
+  font-size: 0.75em;
+  font-weight: 600;
+  line-height: 0;
+}
+
+.page-article :is(sup.article-citation, sup:has(a[href^="#"])) a {
+  color: #365dc9;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.page-article :is(sup.article-citation, sup:has(a[href^="#"])) a:hover {
+  text-decoration: underline;
 }
 
 .page-article .references-heading {
-  width: calc(100% - 2rem);
-  max-width: var(--reference-width);
-  margin: 3rem auto 1rem !important;
+  width: 100%;
+  max-width: none;
+  margin: 3rem 0 1rem !important;
   color: var(--article-subheading-color);
   font-size: 1.5rem;
   font-weight: 600;
@@ -20,9 +38,9 @@
 
 .page-article .references-list {
   box-sizing: border-box;
-  width: calc(100% - 2rem);
-  max-width: var(--reference-width);
-  margin: 1.25rem auto 2.75rem;
+  width: 100%;
+  max-width: none;
+  margin: 1.25rem 0 2.75rem;
   padding: var(--reference-inset);
   border-radius: var(--article-card-radius);
   background: var(--article-card-background);
@@ -123,9 +141,9 @@
 /* An editorial endnote section, continuous with the page background. */
 .page-article .references-section {
   position: relative;
-  width: calc(100% - 2rem);
-  max-width: var(--reference-width);
-  margin: 3.5rem auto 2.75rem;
+  width: 100%;
+  max-width: none;
+  margin: 3.5rem 0 2.75rem;
 }
 
 .references-panel {

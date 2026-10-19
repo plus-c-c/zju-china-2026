@@ -5,12 +5,12 @@ export function SoftwareReferences() {
       <References level={2}>
         <blockquote className="blockquote border-start border-3 ps-3">
           <p>
-            Scientific literature that the two software tools directly rely on or
-            cite in their implementation, grouped by tool and by purpose. The
+            Scientific literature that the two software tools directly rely on
+            or cite in their implementation, grouped by tool and by purpose. The
             entries correspond to the methods actually used in the code and
             project documentation (simulation engines, force fields, network
-            elasticity models, magnetomechanics, and poroelasticity), each with a
-            DOI / arXiv link.
+            elasticity models, magnetomechanics, and poroelasticity), each with
+            a DOI / arXiv link.
           </p>
         </blockquote>
         <h3 className="mt-5 mb-3">
@@ -23,7 +23,8 @@ export function SoftwareReferences() {
           <li>
             Phillips, J. C.; Hardy, D. J.; Maia, J. D. C.; et al.{" "}
             <strong>
-              Scalable molecular dynamics on CPU and GPU architectures with NAMD.
+              Scalable molecular dynamics on CPU and GPU architectures with
+              NAMD.
             </strong>{" "}
             <em>J. Chem. Phys.</em> <strong>2020</strong>, 153, 044130.{" "}
             <a
@@ -60,7 +61,8 @@ export function SoftwareReferences() {
             <strong>
               Parallel generalized Born implicit solvent calculations with NAMD.
             </strong>{" "}
-            <em>J. Chem. Theory Comput.</em> <strong>2011</strong>, 7, 3635–3642.{" "}
+            <em>J. Chem. Theory Comput.</em> <strong>2011</strong>, 7,
+            3635–3642.{" "}
             <a
               href="https://doi.org/10.1021/ct200563j"
               target="_blank"
@@ -78,7 +80,8 @@ export function SoftwareReferences() {
               Long-time-step molecular dynamics through hydrogen mass
               repartitioning.
             </strong>{" "}
-            <em>J. Chem. Theory Comput.</em> <strong>2015</strong>, 11, 1864–1874.{" "}
+            <em>J. Chem. Theory Comput.</em> <strong>2015</strong>, 11,
+            1864–1874.{" "}
             <a
               href="https://doi.org/10.1021/ct5010406"
               target="_blank"
@@ -93,8 +96,8 @@ export function SoftwareReferences() {
           <li>
             Li, X.; Latour, R. A.; Stuart, S. J.{" "}
             <strong>
-              TIGER2: An improved algorithm for temperature intervals with global
-              exchange of replicas.
+              TIGER2: An improved algorithm for temperature intervals with
+              global exchange of replicas.
             </strong>{" "}
             <em>J. Chem. Phys.</em> <strong>2009</strong>, 130, 174106.{" "}
             <a
@@ -111,7 +114,8 @@ export function SoftwareReferences() {
           <li>
             Menz, W. J.; Penna, M. J.; Biggs, M. J.{" "}
             <strong>TNAMD: Implementation of TIGER2 in NAMD.</strong>{" "}
-            <em>Comput. Phys. Commun.</em> <strong>2010</strong>, 181, 2082–2085.{" "}
+            <em>Comput. Phys. Commun.</em> <strong>2010</strong>, 181,
+            2082–2085.{" "}
             <a
               href="https://doi.org/10.1016/j.cpc.2010.09.011"
               target="_blank"
@@ -141,7 +145,11 @@ export function SoftwareReferences() {
           </li>
         </ol>
         <h4 className="mt-4 mb-3">2. Coarse-graining and network simulation</h4>
-        <ol className="references-list" start={8}>
+        <ol
+          className="references-list"
+          start={8}
+          style={{ counterReset: "reference 7" }}
+        >
           <li>
             Souza, P. C. T.; Alessandri, R.; Barnoud, J.; et al.{" "}
             <strong>
@@ -164,8 +172,8 @@ export function SoftwareReferences() {
           <li>
             Abraham, M. J.; Murtola, T.; Schulz, R.; et al.{" "}
             <strong>
-              GROMACS: High performance molecular simulations through multi-level
-              parallelism from laptops to supercomputers.
+              GROMACS: High performance molecular simulations through
+              multi-level parallelism from laptops to supercomputers.
             </strong>{" "}
             <em>SoftwareX</em> <strong>2015</strong>, 1–2, 19–25.{" "}
             <a
@@ -183,7 +191,11 @@ export function SoftwareReferences() {
         <h4 className="mt-4 mb-3">
           3. Network elasticity and modulus estimation
         </h4>
-        <ol className="references-list" start={10}>
+        <ol
+          className="references-list"
+          start={10}
+          style={{ counterReset: "reference 9" }}
+        >
           <li>
             James, H. M.; Guth, E.{" "}
             <strong>
@@ -207,8 +219,8 @@ export function SoftwareReferences() {
             Treloar, L. R. G. <strong>The Physics of Rubber Elasticity</strong>,
             3rd ed.; Oxford University Press: Oxford, 1975.
             <span className="d-block text-body-secondary">
-              — classical rubber-elasticity theory (affine networks, stress–strain
-              relations).
+              — classical rubber-elasticity theory (affine networks,
+              stress–strain relations).
             </span>
           </li>
           <li>
@@ -226,8 +238,8 @@ export function SoftwareReferences() {
               https://doi.org/10.1002/pol.1960.1204314219
             </a>
             <span className="d-block text-body-secondary">
-              — the &ldquo;effective network&rdquo; criterion: a junction must be
-              connected through at least three independent paths.
+              — the &ldquo;effective network&rdquo; criterion: a junction must
+              be connected through at least three independent paths.
             </span>
           </li>
           <li>
@@ -270,7 +282,8 @@ export function SoftwareReferences() {
           <li>
             Lang, M.{" "}
             <strong>
-              On the elasticity of polymer model networks containing finite loops.
+              On the elasticity of polymer model networks containing finite
+              loops.
             </strong>{" "}
             <em>Macromolecules</em> <strong>2019</strong>, 52, 6266–6273.{" "}
             <a
@@ -289,13 +302,17 @@ export function SoftwareReferences() {
           </li>
         </ol>
         <h4 className="mt-4 mb-3">4. Magnetomechanics and poroelasticity</h4>
-        <ol className="references-list" start={16}>
+        <ol
+          className="references-list"
+          start={16}
+          style={{ counterReset: "reference 15" }}
+        >
           <li>
             Rosensweig, R. E. <strong>Ferrohydrodynamics</strong>; Cambridge
             University Press: Cambridge, 1985 (Dover reprint 1997).
             <span className="d-block text-body-secondary">
-              — Langevin magnetization curves of superparamagnetic particles, the
-              demagnetizing field (self-consistent internal field), and the
+              — Langevin magnetization curves of superparamagnetic particles,
+              the demagnetizing field (self-consistent internal field), and the
               magnetic energy density of dipolar chain interactions.
             </span>
           </li>
@@ -340,7 +357,11 @@ export function SoftwareReferences() {
           biological basis comes from the wet-lab modules. Listed below are the
           technical standards and tools that the application directly involves:
         </p>
-        <ol className="references-list" start={19}>
+        <ol
+          className="references-list"
+          start={19}
+          style={{ counterReset: "reference 18" }}
+        >
           <li>
             ISO/IEC 18004:2024,{" "}
             <strong>
@@ -392,10 +413,10 @@ export function SoftwareReferences() {
         </ol>
         <blockquote className="blockquote border-start border-3 ps-3">
           <p>
-            Note: the materials-science literature for the adhesive peptides, the
-            liposomal linker peptides, and the SELP / Ru / sPS functional modules
-            involved in Software II is cited by the respective wet-lab modules and
-            their wiki pages and is not repeated here.
+            Note: the materials-science literature for the adhesive peptides,
+            the liposomal linker peptides, and the SELP / Ru / sPS functional
+            modules involved in Software II is cited by the respective wet-lab
+            modules and their wiki pages and is not repeated here.
           </p>
         </blockquote>
       </References>

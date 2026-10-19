@@ -33,6 +33,21 @@
   margin: 0.75rem auto 0;
 }
 
+.page-article .figure-source-citation {
+  margin-left: 0.3em;
+  white-space: nowrap;
+  font-size: 0.75em;
+}
+
+.page-article .figure-source-citation a {
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.page-article .figure-source-citation a:is(:hover, :focus-visible) {
+  text-decoration: underline;
+}
+
 /* Model module 2: the protein captions sit under a centred structure. */
 .page-article .protein-caption {
   max-width: 560px;

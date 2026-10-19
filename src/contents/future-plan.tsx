@@ -189,7 +189,7 @@ export function FuturePlan() {
           Downstream scale-up will build on the ITC process already adopted. We
           will investigate temperature uniformity, phase-transition completion,
           and separation efficiency at larger volumes, and compare membrane
-          concentration with buffer-exchange methods [1,2]. Salt and water
+          concentration with buffer-exchange methods <sup className="article-citation">[1, 2]</sup>. Salt and water
           consumption, energy use during heating/cooling cycles, lyophilization
           losses, and processing time will be tracked to estimate manufacturing
           cost per qualified material unit and prioritize improvements for
@@ -279,7 +279,7 @@ export function FuturePlan() {
           and maintenance burden, generating operating documents for training
           and quality traceability. Product classification and subsequent
           regulatory requirements will be determined based on the final
-          composition, primary mode of action, and target jurisdiction [3].
+          composition, primary mode of action, and target jurisdiction <sup className="article-citation">[3]</sup>.
         </p>
         <p>
           This stage will be complete when a candidate product has well-defined
