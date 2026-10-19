@@ -36,7 +36,7 @@
 }
 
 .page-article ol.references-list {
-  padding-inline-start: calc(var(--reference-inset) + 1.5rem);
+  padding-inline-start: var(--reference-inset);
 }
 
 .page-article .references-list :is(p, li),
@@ -53,10 +53,27 @@
   padding: 0;
 }
 
+/* One format for every bibliography: the number sits in a hanging gutter,
+   whether the entries are written as paragraphs or as an ordered list. The
+   counter prints the same "[n]" marker the paragraph entries carry. */
 .page-article .references-list--paragraphs > p,
-.page-article details.references-list .source-block p {
+.page-article .references-list .source-block p,
+.page-article ol.references-list > li {
   padding-inline-start: 2em;
   text-indent: -2em;
+}
+
+.page-article ol.references-list {
+  list-style: none;
+  counter-reset: reference;
+}
+
+.page-article ol.references-list > li {
+  counter-increment: reference;
+}
+
+.page-article ol.references-list > li::before {
+  content: "[" counter(reference) "] ";
 }
 
 .page-article .references-list > :last-child,
@@ -195,7 +212,13 @@
 }
 
 .page-article .references-panel ol.references-list {
-  padding-inline-start: 1.5rem;
+  padding-inline-start: 0;
+}
+
+/* Credit blocks inside a references panel share the sub-heading tier. */
+.page-article .references-content .description-credits h3 {
+  margin: 0 0 0.75rem !important;
+  font-size: 1.125rem;
 }
 
 .page-article .references-panel .references-content :is(h3, h4) {

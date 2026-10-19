@@ -111,7 +111,9 @@ export function ReferenceArticleHtml({ html }: { html: string }) {
       <References>
         <div
           className="references-list"
-          dangerouslySetInnerHTML={{ __html: match[1] }}
+          dangerouslySetInnerHTML={{
+            __html: formatReferenceHtml(match[1]),
+          }}
         />
       </References>
       {html.slice(match.index + match[0].length).trim() && (
@@ -123,4 +125,16 @@ export function ReferenceArticleHtml({ html }: { html: string }) {
       )}
     </>
   );
+}
+
+/** Exported bibliographies arrive as plain HTML numbered "1." with bare URLs;
+ *  present them in the wiki's shared "[n]" format with working links. */
+export function formatReferenceHtml(html: string) {
+  const numbered = html.replace(/(<p[^>]*>)\s*(\d+)\.\s+/g, "$1[$2] ");
+  if (numbered.includes("<a ")) return numbered;
+  return numbered.replace(/(https?:\/\/[^\s<]+)/g, (match) => {
+    const trailing = /[.,;)]+$/.exec(match)?.[0] ?? "";
+    const url = match.slice(0, match.length - trailing.length);
+    return `<a href="${url}" target="_blank" rel="noreferrer">${url}</a>${trailing}`;
+  });
 }
