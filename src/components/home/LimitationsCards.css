@@ -703,9 +703,6 @@
 .limitations-art--blue-back-liposome { left: 130px; top: 429px; width: 88px; height: 94px; }
 .limitations-art--blue-back-magnetic { left: 240px; top: 417px; width: 109px; height: 103px; }
 
-.limitations-layer--blue .limitations-layer__face--back { background: #a8c9eb; }
-.limitations-layer--blue[data-flipped="true"] .limitations-layer__shadow { background: #6b98c7; }
-
 .limitations-page .limitations-card:nth-child(2) .limitations-layer--blue .limitations-card-body {
   left: 45px;
   width: 300px;

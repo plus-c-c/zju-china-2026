@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { perch } from "./StoryBird";
+import { getStoryHandoffTop } from "./UseStoryNavigation";
 
 /** A reversible document-space route, shared with the OA bird. */
 export function PipelineBird() {
@@ -57,7 +58,7 @@ export function PipelineBird() {
       // the outgoing viewport to reduce the visual gap.
       const story = document.querySelector(".home-scroll-space");
       const storyBottom = story ? story.getBoundingClientRect().bottom + scroll : pipelineTop;
-      const start = storyBottom - innerHeight;
+      const start = getStoryHandoffTop() ?? storyBottom - innerHeight;
       const foot = footer.getBoundingClientRect();
       const active = scroll >= start - 1 && foot.bottom > 0;
       if (!active) {

@@ -240,12 +240,12 @@
   top: 49px;
   width: 576px;
   color: #05080d;
-  font-size: 24px;
-  line-height: 40px;
+  font-size: 23.5px;
+  line-height: 39px;
 }
 
 .oa-panel-copy p + p {
-  margin-top: 28px;
+  margin-top: 0.5lh;
 }
 
 .oa-panel-copy strong {

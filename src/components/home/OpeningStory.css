@@ -92,7 +92,8 @@
 .opening-bubble {
   --bubble-drift-x: 7px;
   --bubble-drift-y: -12px;
-  --bubble-color: 163 202 247;
+  --bubble-color: 174 212 252;
+  --bubble-shade: 66 110 163;
   position: absolute;
   z-index: 2;
   opacity: 0;
@@ -119,11 +120,11 @@
   border-radius: 50%;
   background:
     radial-gradient(ellipse at 30% 22%, #ffffffbd 0%, #ffffff30 20%, transparent 43%),
-    radial-gradient(ellipse at 68% 78%, rgb(54 111 174 / 26%), transparent 62%),
-    radial-gradient(circle at 42% 36%, rgb(var(--bubble-color) / 30%) 18%, rgb(var(--bubble-color) / 65%) 61%, rgb(var(--bubble-color) / 94%) 100%);
+    radial-gradient(ellipse at 68% 78%, rgb(var(--bubble-shade) / 26%), transparent 62%),
+    rgb(var(--bubble-color) / 96%);
   box-shadow:
     inset 7px 9px 17px rgb(255 255 255 / 45%),
-    inset -11px -15px 23px rgb(66 110 163 / 23%),
+    inset -11px -15px 23px rgb(var(--bubble-shade) / 23%),
     inset 0 0 0 2px rgb(255 255 255 / 18%);
   animation: opening-bubble-float var(--bubble-duration, 5.8s) ease-in-out
     var(--bubble-delay, 0s) infinite alternate;
@@ -163,7 +164,7 @@
 }
 
 .opening-bubble--hyaline {
-  --bubble-color: 190 210 244;
+  --bubble-color: 216 234 250;
   left: 770px;
   top: 193px;
   width: 328px;
@@ -179,7 +180,7 @@
 }
 
 .opening-bubble--focal {
-  --bubble-color: 171 191 235;
+  --bubble-color: 173 213 252;
   left: 985px;
   top: 80px;
   width: 226px;
@@ -195,7 +196,8 @@
 }
 
 .opening-bubble--gout {
-  --bubble-color: 182 216 242;
+  --bubble-color: 255 241 174;
+  --bubble-shade: 184 146 49;
   left: 1159px;
   top: 278px;
   width: 147px;
@@ -213,7 +215,7 @@
 }
 
 .opening-bubble--patellae {
-  --bubble-color: 195 204 242;
+  --bubble-color: 179 219 251;
   left: 1002px;
   top: 402px;
   width: 188px;
@@ -225,7 +227,8 @@
 }
 
 .opening-bubble--acl {
-  --bubble-color: 158 204 242;
+  --bubble-color: 255 241 182;
+  --bubble-shade: 184 146 49;
   left: 681px;
   top: 432px;
   width: 237px;
@@ -242,6 +245,8 @@
 }
 
 .opening-bubble--decor-top {
+  --bubble-color: 244 238 206;
+  --bubble-shade: 184 146 49;
   left: 733px;
   top: 84px;
   width: 69px;
@@ -253,6 +258,8 @@
 }
 
 .opening-bubble--decor-left {
+  --bubble-color: 245 237 198;
+  --bubble-shade: 184 146 49;
   left: 540px;
   top: 495px;
   width: 91px;
@@ -264,6 +271,7 @@
 }
 
 .opening-bubble--decor-right {
+  --bubble-color: 168 216 250;
   left: 1138px;
   top: 616px;
   width: 77px;
@@ -978,15 +986,15 @@
   position: absolute;
   left: 458px;
   top: 28px;
-  --hint-arrow-width: 120px;
+  --hint-arrow-width: 86px;
   width: var(--hint-arrow-width);
-  height: 138px;
+  height: 104px;
   color: #173b64;
   opacity: var(--opening-text, 1);
   pointer-events: none;
 }
 .opening-bubble-hint > span { position: absolute; left: calc(var(--hint-arrow-width) * 25 / 220); top: 0; transform: translateX(-50%); width: 140px; text-align: center; font-size: 22px; line-height: 28px; white-space: nowrap; }
-.opening-bubble-hint__arrow { position: absolute; left: 0; top: 34px; width: var(--hint-arrow-width); height: 98px; }
+.opening-bubble-hint__arrow { position: absolute; left: 0; top: 34px; width: var(--hint-arrow-width); height: 70px; }
 .opening-scene--impact .opening-sports__title strong { color: #e30c00; }
 
 .opening-scene--burden .opening-burden__legend strong { text-align: center; }

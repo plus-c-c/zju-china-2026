@@ -6,6 +6,16 @@ export const STORY_STOPS = [
 
 // One timeline beat takes less than a screen of scrolling.
 export const STORY_SCROLL_RATIO = 0.6;
+export const STORY_PIPELINE_BEAT = 21;
+
+/** Both scroll controllers and the bird transfer at the settled OA scene. */
+export function getStoryHandoffTop() {
+  const root = document.querySelector<HTMLElement>(".home-scroll-space");
+  const viewport = document.querySelector<HTMLElement>(".story-viewport");
+  if (!root || !viewport) return null;
+  return root.getBoundingClientRect().top + window.scrollY
+    + STORY_PIPELINE_BEAT * viewport.clientHeight * STORY_SCROLL_RATIO;
+}
 
 /** Scroll position drives the timeline; one wheel/touch gesture advances a scene. */
 export function useStoryNavigation() {
@@ -132,7 +142,7 @@ export function useStoryNavigation() {
       const viewport = document.querySelector<HTMLElement>(".story-viewport");
       if (!root || !viewport) return null;
       const top = root.getBoundingClientRect().top + window.scrollY;
-      const end = top + root.offsetHeight - viewport.clientHeight;
+      const end = top + STORY_PIPELINE_BEAT * viewport.clientHeight * STORY_SCROLL_RATIO;
       return {
         top, end,
         value: (window.scrollY - top) / (viewport.clientHeight * STORY_SCROLL_RATIO),
@@ -168,11 +178,11 @@ export function useStoryNavigation() {
       return true;
     };
     const onWheel = (event: WheelEvent) => {
-      if (event.ctrlKey || Math.abs(event.deltaX) > Math.abs(event.deltaY) || (event.target instanceof Element && !!event.target.closest("nav, input, textarea, select, [role=dialog]"))) return;
+      if (event.defaultPrevented || event.ctrlKey || Math.abs(event.deltaX) > Math.abs(event.deltaY) || (event.target instanceof Element && !!event.target.closest("nav, input, textarea, select, [role=dialog]"))) return;
       const current = readPosition();
       if (!current || window.scrollY < current.top - 1 || window.scrollY > current.end + 1) return;
       // The lower document route owns scrolling after the OA arrival.
-      if (current.value >= 21 && event.deltaY > 0 && !animationActive.current) return;
+      if (window.scrollY >= current.end - 1 && event.deltaY > 0 && !animationActive.current) return;
       const now = performance.now();
       const quiet = now - lastWheelAt > 420;
       lastWheelAt = now;
@@ -232,7 +242,7 @@ export function useStoryNavigation() {
       if (!sustained || continuationDistance < 480 || performance.now() - lastIntentAt > 90 || animationActive.current) return;
       if (document.querySelector(".story-guide-bird--flying")) return;
       const current = readPosition();
-      if (!current || (current.value >= 21 && gestureDirection > 0)) return;
+      if (!current || window.scrollY > current.end + 1 || (current.value >= STORY_PIPELINE_BEAT && gestureDirection > 0)) return;
       chaining.current = true;
       turn(gestureDirection, current.value);
     };

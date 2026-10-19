@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { TransparentImage } from "../TransparentImage";
+import { getStoryHandoffTop } from "./UseStoryNavigation";
 import "./SELP.css";
 
 const STATIC_HOME = "https://static.igem.wiki/teams/6102/wiki/images/home";
@@ -421,7 +422,7 @@ export function SelpPipeline({ readingWidth }: { readingWidth?: number } = {}) {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
     const animate = (time: number) => {
       const pipeline = pipelineRef.current;
-      const boundary = pipeline ? pipeline.getBoundingClientRect().top + window.scrollY - innerHeight * 1.6 + 2 : Infinity;
+      const boundary = getStoryHandoffTop() ?? (pipeline ? pipeline.getBoundingClientRect().top + window.scrollY - innerHeight * 1.6 + 2 : Infinity);
       if (window.scrollY < boundary - 2) { stop(); return; }
       // Native wheel/iframe/scrollbar movement owns the new position. Never
       // pull it back toward a target from a previous intercepted gesture.
@@ -453,10 +454,10 @@ export function SelpPipeline({ readingWidth }: { readingWidth?: number } = {}) {
       const root = pipelineRef.current;
       if (!root) return;
       const bounds = root.getBoundingClientRect();
-      const start = bounds.top + window.scrollY - innerHeight * 1.6 + 2;
+      const start = getStoryHandoffTop() ?? bounds.top + window.scrollY - innerHeight * 1.6 + 2;
       const inEntry = bounds.top > innerHeight * 0.25;
       if (window.scrollY < start - 2 || bounds.bottom <= 0) { stop(); return; }
-      if (window.scrollY <= start + 2 && event.deltaY < 0) return;
+      if (window.scrollY <= start + 1 && event.deltaY < 0) return;
       event.preventDefault();
       let delta = event.deltaY * (event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? innerHeight : 1);
       const limit = document.documentElement.scrollHeight - innerHeight;
