@@ -72,7 +72,8 @@ export function StoryBird({ position, direction, scale }: { position: number; di
   const flightRate = useRef(1);
   useEffect(() => {
     const updateRate = (event: Event) => {
-      flightRate.current = Math.max(1, Math.min(1.25, (event as CustomEvent<number>).detail || 1));
+      const requestedRate = Math.max(1, Math.min(1.25, (event as CustomEvent<number>).detail || 1));
+      flightRate.current = 1 + (requestedRate - 1) * 0.8;
     };
     window.addEventListener("home-story-speed", updateRate);
     return () => window.removeEventListener("home-story-speed", updateRate);

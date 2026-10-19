@@ -120,7 +120,7 @@
   border-radius: 50%;
   background:
     linear-gradient(145deg, rgb(255 255 255 / 25%), transparent 55%, rgb(var(--bubble-shade) / 9%)),
-    rgb(var(--bubble-color) / 96%);
+    rgb(var(--bubble-color) / 80%);
   box-shadow:
     inset 3px 4px 10px rgb(255 255 255 / 13%),
     inset -4px -6px 14px rgb(var(--bubble-shade) / 9%);
