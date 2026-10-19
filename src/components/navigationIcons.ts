@@ -19,86 +19,86 @@ export const pageDetails: Record<
 > = {
   "/description": {
     icon: "03_description.png",
-    description: "The context behind our project",
+    description: "Why cartilage needs a new repair strategy",
   },
   "/design": {
     icon: "04-design.png",
-    description: "How our system is designed",
+    description: "How NEST combines scaffold and repair modules",
   },
   "/proof-of-concept": {
     icon: "05_proof_of_concept.png",
-    description: "Putting the concept to the test",
+    description: "Testing NEST’s cartilage repair concept",
   },
   "/implementation": {
     icon: "06_implementation.png",
-    description: "From the lab to application",
+    description: "Bringing NEST into clinical use",
   },
   "/future-plan": {
     icon: "07-future plan.png",
-    description: "The next steps for our project",
+    description: "What NEST needs before clinical translation",
   },
   "/contribution": {
     icon: "08_contribution.png",
-    description: "Resources for the iGEM community",
+    description: "Parts, methods and tools others can reuse",
   },
   "/experiments": {
     icon: "11_experiment_result.png",
-    description: "Explore our experimental work",
+    description: "How we build and test NEST",
   },
   "/results": {
     icon: "11_experiment_result.png",
-    description: "Platform and function in focus",
+    description: "What our material and module tests show",
   },
   "/protocol": {
     icon: "12_protocol.png",
-    description: "Methods and step-by-step procedures",
+    description: "Repeat our experiments step by step",
   },
   "/parts": {
     icon: "13_parts.png",
-    description: "The biological parts in our system",
+    description: "Genetic building blocks for modular repair",
   },
   "/notebook": {
     icon: "25_notebook.png",
-    description: "Follow our work in the lab",
+    description: "Our laboratory work, recorded over time",
   },
   "/safety-and-security": {
     icon: "14_safety.png",
-    description: "Responsible work in the laboratory",
+    description: "Managing biological and laboratory risks",
   },
   "/hardware": {
     icon: "16_hardware.png",
-    description: "Tools built for our project",
+    description: "Preparing and delivering the hydrogel",
   },
   "/software": {
     icon: "17_software.png",
-    description: "Our computational tools",
+    description: "From molecular simulations to formulation workflows",
   },
   "/model": {
     icon: "18_model.png",
-    description: "Understanding our system through models",
+    description: "Predicting material behavior to guide design",
   },
   "/human-practices": {
     icon: "20_integrated_human_practices.png",
-    description: "Listening, learning and responding",
+    description: "How stakeholder feedback shapes NEST",
   },
   "/entrepreneurship": {
     icon: "21_entrepreneurship.png",
-    description: "Exploring a path to market",
+    description: "Building a business around cartilage repair",
   },
   "/education": {
     icon: "22_education.png",
-    description: "Sharing science with our communities",
+    description: "Making synthetic biology accessible",
   },
   "/members": {
     icon: "26_members.png",
-    description: "Meet the people behind ZJU-China",
+    description: "Meet the team building NEST",
   },
   "/attributions": {
     icon: "27_attributions.png",
-    description: "The people and support behind the work",
+    description: "Who contributed to each part of NEST",
   },
   "/sponsors": {
     icon: "28_sponsors.png",
-    description: "The partners supporting our team",
+    description: "The organizations making NEST possible",
   },
 };

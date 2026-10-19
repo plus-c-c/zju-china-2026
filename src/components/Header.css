@@ -120,3 +120,6 @@
   display: inline-block;
   white-space: nowrap;
 }
+
+/* Preserve a readable two-line title instead of shrinking the full name. */
+.header-title--integrated-hp { line-height: 1.12; }
