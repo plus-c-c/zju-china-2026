@@ -276,3 +276,26 @@
     width: 100%;
   }
 }
+
+/* Keep source actions inline with the citation. */
+.page-article .references-list a.reference-source-link {
+  display: inline;
+  margin-left: 0.5em;
+  white-space: nowrap;
+  padding: 0.15rem 0;
+  font-size: 0.7em;
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.page-article .references-list a.reference-source-link:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+.page-article .references-list a.reference-source-link:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+  border-radius: 2px;
+}
