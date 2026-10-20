@@ -9,7 +9,7 @@ export type PipelineFlightRoute = {
   exit: number;
   edge: number;
   stops: number[];
-  sample: (scroll: number) => Point & { dx: number; dy: number };
+  sample: (scroll: number) => Point & { dx: number; dy: number; speed: number };
 };
 
 const routes = new WeakMap<Element, { key: string; route: PipelineFlightRoute }>();
@@ -135,11 +135,47 @@ export function getPipelineFlightRoute(
     { x: landing.x, y: landing.y - closingHeight * 0.3 }, landing));
 
   const speed = distance / (end - start);
+  // On tall screens the first module is farther below the OA panel. Give
+  // the page enough scroll to reveal it before the bird reaches its curve.
+  // Match the following route's speed at the join instead of pausing there.
+  const entryEnd = Math.min(end - 1, Math.max(start + firstStop / speed,
+    first.y - innerHeight * 0.82));
+  const entrySpan = entryEnd - start;
+  const entrySpeed = firstStop / entrySpan;
+  const followingSpeed = (distance - firstStop) / (end - entryEnd);
+  const initialSpeed = Math.min(entrySpeed, followingSpeed);
+  const finalEntrySpeed = Math.min(followingSpeed, entrySpeed * 3);
+  const travel = (scrollTop: number) => {
+    if (scrollTop >= entryEnd) return {
+      distance: firstStop + (scrollTop - entryEnd) * followingSpeed,
+      speed: followingSpeed,
+    };
+    const t = clamp((scrollTop - start) / entrySpan), t2 = t * t, t3 = t2 * t;
+    return {
+      distance: (t3 - 2 * t2 + t) * entrySpan * initialSpeed
+        + (-2 * t3 + 3 * t2) * firstStop
+        + (t3 - t2) * entrySpan * finalEntrySpeed,
+      speed: (3 * t2 - 4 * t + 1) * initialSpeed
+        + (-6 * t2 + 6 * t) * entrySpeed
+        + (3 * t2 - 2 * t) * finalEntrySpeed,
+    };
+  };
+  const scrollAtDistance = (target: number) => {
+    if (target >= firstStop) return entryEnd + (target - firstStop) / followingSpeed;
+    let low = start, high = entryEnd;
+    for (let i = 0; i < 24; i++) {
+      const middle = (low + high) / 2;
+      if (travel(middle).distance < target) low = middle;
+      else high = middle;
+    }
+    return (low + high) / 2;
+  };
   const route: PipelineFlightRoute = {
-    speed, start, end, exit: start + exitStart / speed, edge: start + edgeDistance / speed,
-    stops: [firstStop, secondStop, thirdStop].map(stop => start + stop / speed),
+    speed, start, end, exit: scrollAtDistance(exitStart), edge: scrollAtDistance(edgeDistance),
+    stops: [firstStop, secondStop, thirdStop].map(scrollAtDistance),
     sample: (scrollTop) => {
-      const traveled = clamp((scrollTop - start) / (end - start)) * distance;
+      const motion = travel(Math.max(start, Math.min(end, scrollTop)));
+      const traveled = Math.max(0, Math.min(distance, motion.distance));
       let low = 1, high = points.length - 1;
       while (low < high) {
         const middle = (low + high) >> 1;
@@ -152,7 +188,7 @@ export function getPipelineFlightRoute(
       const tangent = Math.hypot(dx, dy);
       return {
         x: a.x + (b.x - a.x) * t, y: a.y + (b.y - a.y) * t,
-        dx: dx / tangent, dy: dy / tangent,
+        dx: dx / tangent, dy: dy / tangent, speed: motion.speed,
       };
     },
   };

@@ -85,8 +85,8 @@ export function PipelineBird() {
         // Before the drawn connector, use the visible flight direction: the
         // document itself is scrolling underneath the fixed bird.
         const inEntry = scroll < route.stops[0];
-        const dx = position.dx * route.speed;
-        const dy = position.dy * route.speed - (inEntry ? 1 : 0);
+        const dx = position.dx * position.speed;
+        const dy = position.dy * position.speed - (inEntry ? 1 : 0);
         const heading = Math.atan2(dy * routeDirection, dx * routeDirection) * 180 / Math.PI;
         bird.style.setProperty("--bird-flight-angle", `${heading}deg`);
       }
