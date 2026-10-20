@@ -142,7 +142,7 @@ export function Navbar({ introEntrance = false, opening = false }: { introEntran
         // No overlay intercepts clicks. Exclude the entire section sticky bar,
         // including its padding, and other interactive controls at the edge.
         const protectedBar = document.querySelector(
-          ".wetlab-results__navigation, .project-tracks__navigation",
+          ".wetlab-results__navigation, .project-tracks__navigation, .eng-section-navigation",
         );
         const rect = protectedBar?.getBoundingClientRect();
         const overSectionBar =

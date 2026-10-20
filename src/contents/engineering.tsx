@@ -141,9 +141,36 @@ export function Engineering() {
   const [activeCycle, setActiveCycle] = useState(0);
   const prevNavRef = useRef({ activeKey, groupIndex, tabIndex });
   const groupNavRef = useRef<HTMLDivElement>(null);
+  const primaryNavRef = useRef<HTMLDivElement>(null);
 
-  // Only the secondary navigation spans the viewport. The article, card and
-  // ring keep their existing widths and positions.
+  useLayoutEffect(() => {
+    const navigation = primaryNavRef.current;
+    const article = navigation?.closest<HTMLElement>(".engineering-article");
+    if (!navigation || !article) return;
+    const measure = () => {
+      if (window.innerWidth >= 992) {
+        navigation.style.width = `${document.documentElement.clientWidth - 64}px`;
+        navigation.style.marginLeft = `${32 - article.getBoundingClientRect().left}px`;
+      } else {
+        navigation.style.width = "";
+        navigation.style.marginLeft = "";
+      }
+      article.style.setProperty(
+        "--eng-primary-nav-height", `${navigation.offsetHeight}px`,
+      );
+    };
+    const observer = new ResizeObserver(measure);
+    observer.observe(navigation);
+    measure();
+    window.addEventListener("resize", measure);
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", measure);
+    };
+  }, []);
+
+  // Give the secondary row the same viewport centre as the primary row.
+  // This measures navigation only; the reading column follows Experiments.
   useLayoutEffect(() => {
     const nav = groupNavRef.current;
     const parent = nav?.parentElement;
@@ -463,9 +490,6 @@ export function Engineering() {
       <div
         className="eng-subnav"
         ref={groupNavRef}
-        style={{
-          gridTemplateColumns: `repeat(${activeSection.groups.length}, minmax(0, 1fr))`,
-        }}
       >
         {activeSection.groups.map((group, index) => (
           <button
@@ -553,7 +577,6 @@ export function Engineering() {
 
   const content = (
     <>
-      {!ringNav && moduleNav}
       {!ringNav && groupNav}
       {projectDesignActive ? (
         <ProjectDesignStepper layout={layout} />
@@ -610,7 +633,7 @@ export function Engineering() {
   return (
     <div className="row mt-4 mb-5">
       <div className="col-12">
-        <article>
+        <article className="engineering-article">
           <section
             className="eng-overview"
             aria-labelledby="engineering-overview-title"
@@ -653,6 +676,11 @@ export function Engineering() {
               unmet needs to developing a programmable biomaterial platform.
             </p>
           </section>
+          {!ringNav && (
+            <div className="eng-section-navigation" ref={primaryNavRef}>
+              {moduleNav}
+            </div>
+          )}
           {activeGroup || projectDesignActive ? (
             stepCount > 0 || projectDesignActive ? (
               <div className="eng-runway" style={{ height: runwayHeight }}>
