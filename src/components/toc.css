@@ -2,12 +2,24 @@
   font-family: "Outfit", sans-serif;
 }
 
-.page-layout-with-toc {
+.page-layout {
   --toc-left: clamp(24px, 4vw, 80px);
   --toc-width: 278px;
   /* Gap between the article and the TOC; kept small so the article reads
      wider on every page. */
   --toc-gap: 8px;
+}
+
+/* Single-column pages share the wet-lab article width, without Bootstrap's
+   additional 10-column inset. Nested grids keep their own column layout. */
+.page-article > .row:has(> :only-child) {
+  --bs-gutter-x: 0;
+}
+
+.page-article > .row > :only-child {
+  flex: 0 0 100%;
+  width: 100%;
+  max-width: 100%;
 }
 
 .page-toc {
@@ -118,12 +130,12 @@
 }
 
 @media (min-width: 1201px) {
-  .page-layout-with-toc {
-    /* Keep the article beyond the fixed sidebar at every desktop width. */
+  .page-layout {
+    /* Use the original Experiments article bounds on every content page. */
     padding-left: calc(var(--toc-left) + var(--toc-width) + var(--toc-gap));
     padding-right: 144px;
   }
-  .page-layout-with-toc .page-article {
+  .page-layout .page-article {
     /* Expand with the viewport on large screens, up to a readable cap. */
     max-width: min(1800px, 100%);
   }

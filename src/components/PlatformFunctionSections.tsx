@@ -233,7 +233,7 @@ export function PlatformFunctionSections({
               type="button"
               key={track}
               id={`${id}-${track}-button`}
-              className="project-tracks__button"
+              className={`project-tracks__button project-tracks__button--${track}`}
               aria-pressed={active === track}
               aria-controls={`${id}-${track}`}
               onClick={() => select(track)}
@@ -254,17 +254,19 @@ export function PlatformFunctionSections({
               </span>
               <span className="project-tracks__label">
                 {track === "platform" ? (
-                  <>
-                    Programmable
-                    <br />
-                    Biomimetic Platform
-                  </>
+                  wholeProcess ? (
+                    <>
+                      Programmable
+                      <br />
+                      Biomimetic Platform
+                    </>
+                  ) : (
+                    "Programmable Biomimetic Platform"
+                  )
                 ) : track === "function" ? (
-                  <>
-                    Repair Function
-                    <br />
-                    Modules
-                  </>
+                  <span className="project-tracks__function-label">
+                    Repair Function{wholeProcess ? <br /> : " "}Modules
+                  </span>
                 ) : (
                   <>
                     <span className="project-tracks__whole-label">

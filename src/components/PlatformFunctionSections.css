@@ -5,7 +5,7 @@
 
 .project-tracks {
   --project-site-nav-offset: 82px;
-  --project-track-nav-height: 89px;
+  --project-track-nav-height: 77px;
   --project-track-offset: calc(
     var(--project-site-nav-offset) + var(--project-track-nav-height) + 28px
   );
@@ -74,16 +74,17 @@ body:has(.nest-navbar-hidden) .project-tracks {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 16px;
+  gap: 24px;
   min-width: 0;
-  min-height: 88px;
-  padding: 6px 10px;
+  height: 76px;
+  min-height: 76px;
+  padding: 6px 16px;
   border: 0;
   border-radius: 0;
   background: transparent;
   color: #6b7b91;
   font: inherit;
-  font-size: 26px;
+  font-size: 20px;
   font-weight: 600;
   line-height: 1.15;
   text-align: left;
@@ -95,15 +96,24 @@ body:has(.nest-navbar-hidden) .project-tracks {
 
 .project-tracks__label {
   min-width: 0;
+  text-align: center;
+  white-space: nowrap;
 }
 
-.project-tracks__whole-label {
+.project-tracks__whole-label,
+.project-tracks__function-label {
   white-space: nowrap;
 }
 
 .project-tracks:where([data-track-count="3"]) .project-tracks__button {
-  gap: 12px;
-  font-size: 22px;
+  gap: 26px;
+  padding-inline: 10px;
+  font-size: 19px;
+}
+
+.project-tracks:where([data-track-count="3"])
+  .project-tracks__button--whole-process {
+  padding-inline: 8px;
 }
 
 .project-tracks:where([data-track-count="3"]) .project-tracks__art {
@@ -113,8 +123,8 @@ body:has(.nest-navbar-hidden) .project-tracks {
 
 .project-tracks:where([data-track-count="3"])
   .project-tracks__art--whole-process {
-  flex-basis: 40px;
-  width: 40px;
+  flex-basis: 34px;
+  width: 34px;
 }
 
 .project-tracks__button[aria-pressed="true"] {
@@ -158,12 +168,24 @@ body:has(.nest-navbar-hidden) .project-tracks {
 
 .project-tracks__art--function {
   aspect-ratio: 240 / 200;
+  /* Exclude the source diagram's stray line above the first grey capsule. */
+  clip-path: polygon(
+    0 0,
+    24% 0,
+    24% 4.5%,
+    29% 4.5%,
+    29% 0,
+    100% 0,
+    100% 100%,
+    0 100%
+  );
 }
 
 .project-tracks__art--function :is(img, canvas) {
   width: 1666.667%;
-  left: -462.5%;
-  top: -333%;
+  /* Center the visible chains within the crop, including its white padding. */
+  left: -460%;
+  top: -329%;
 }
 
 .project-tracks__art--whole-process {
@@ -214,47 +236,60 @@ body:has(.nest-navbar-hidden) .project-tracks {
   }
 }
 
-@media (min-width: 768px) and (max-width: 1199.98px) {
+@media (min-width: 768px) and (max-width: 1439.98px) {
   .project-tracks__button {
-    gap: 12px;
-    font-size: 24px;
+    gap: 10px;
+    padding-inline: 12px;
+    font-size: 16px;
   }
 
   .project-tracks__art {
-    flex-basis: 56px;
-    width: 56px;
+    flex-basis: 36px;
+    width: 36px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1439.98px) {
+  .project-tracks:where([data-track-count="3"]) .project-tracks__button {
+    padding: 6px;
+    gap: 20px;
+    font-size: 15px;
   }
 
-  .project-tracks:where([data-track-count="3"]) .project-tracks__button {
-    padding: 6px 8px;
-    gap: 8px;
-    font-size: 20px;
+  .project-tracks:where([data-track-count="3"])
+    .project-tracks__button--whole-process {
+    padding-inline: 4px;
   }
 
   .project-tracks:where([data-track-count="3"]) .project-tracks__art {
-    flex-basis: 40px;
-    width: 40px;
+    flex-basis: 28px;
+    width: 28px;
+  }
+
+  .project-tracks:where([data-track-count="3"])
+    .project-tracks__art--whole-process {
+    flex-basis: 22px;
+    width: 22px;
   }
 }
 
 @media (max-width: 767.98px) {
   .project-tracks .project-tracks__button {
-    justify-content: flex-start;
-    min-height: 70px;
-    padding: 8px 16px;
-    gap: 14px;
-    font-size: 20px;
+    height: 64px;
+    min-height: 64px;
+    padding: 6px 12px;
+    gap: 10px;
+    font-size: 16px;
   }
 
   .project-tracks .project-tracks__art {
-    flex-basis: 44px;
-    width: 44px;
+    flex-basis: 36px;
+    width: 36px;
   }
 
   .project-tracks .project-tracks__art--whole-process {
-    flex-basis: 32px;
-    width: 32px;
-    margin-inline: 6px;
+    flex-basis: 22px;
+    width: 22px;
   }
 
   .project-tracks__choices {
@@ -271,12 +306,29 @@ body:has(.nest-navbar-hidden) .project-tracks {
   }
 }
 
+@media (max-width: 383.98px) {
+  .project-tracks .project-tracks__button {
+    padding-inline: 6px;
+    gap: 8px;
+  }
+
+  .project-tracks .project-tracks__art {
+    flex-basis: 28px;
+    width: 28px;
+  }
+}
+
 @media (max-width: 359.98px) {
   .project-tracks .project-tracks__button {
-    padding-right: 12px;
-    padding-left: 12px;
-    gap: 14px;
-    font-size: 20px;
+    padding-right: 4px;
+    padding-left: 4px;
+    gap: 8px;
+    font-size: 14px;
+  }
+
+  .project-tracks .project-tracks__art {
+    flex-basis: 24px;
+    width: 24px;
   }
 }
 
