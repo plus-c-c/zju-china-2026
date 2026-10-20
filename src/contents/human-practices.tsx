@@ -1353,9 +1353,9 @@ function EngagementBlock() {
 /* ------------------------------------------------------------------ */
 
 const HP_PAGES = [
-  { key: "toolbox", label: "Toolbox" },
-  { key: "nest", label: "NEST" },
   { key: "engagement", label: "Stakeholder Engagement" },
+  { key: "nest", label: "NEST" },
+  { key: "toolbox", label: "Toolbox" },
 ];
 
 /* One continuous body per page: the sub-navigation is a scroll spy over the
@@ -1509,14 +1509,15 @@ const HP_PAGE_SWIPE_MS = 640;
 const HP_SECTION_OFFSET = 96;
 
 export function HumanPractices() {
-  /* Toolbox is preselected on mount: the page never starts in the bare
-     overview state, which avoids the layout/scroll edge cases around it. */
-  const [page, setPage] = useState<number | null>(0);
+  /* Toolbox is preselected on mount (third position after the swap): the page
+     never starts in the bare overview state, which avoids the layout/scroll
+     edge cases around it. */
+  const [page, setPage] = useState<number | null>(2);
   const navRef = useRef<HTMLDivElement>(null);
   const articleRef = useRef<HTMLElement>(null);
   const busyRef = useRef(false);
   const timerRef = useRef(0);
-  const pageRef = useRef<number | null>(0);
+  const pageRef = useRef<number | null>(2);
   const openScrollRef = useRef<number | null>(null);
   const actionsRef = useRef<{
     open: (index: number) => void;
@@ -1666,7 +1667,7 @@ export function HumanPractices() {
     const id =
       index === null
         ? ""
-        : ["toolbox", "nest", "stakeholder-engagement"][index] ?? "";
+        : ["stakeholder-engagement", "nest", "toolbox"][index] ?? "";
     const url = id
       ? `#${id}`
       : `${window.location.pathname}${window.location.search}`;
@@ -1771,15 +1772,15 @@ export function HumanPractices() {
      until the heading settles below the sticky header. */
   useEffect(() => {
     const pageOf = (id: string): number | null => {
-      if (id === "toolbox" || id.startsWith("ihp-toolbox")) return 0;
+      if (id === "stakeholder-engagement" || id.startsWith("ihp-engagement"))
+        return 0;
       if (
         id === "nest" ||
         id.startsWith("ihp-nest") ||
         id === "ihp-syringe-questionnaire"
       )
         return 1;
-      if (id === "stakeholder-engagement" || id.startsWith("ihp-engagement"))
-        return 2;
+      if (id === "toolbox" || id.startsWith("ihp-toolbox")) return 2;
       return null;
     };
     let timer = 0;
@@ -1893,22 +1894,22 @@ export function HumanPractices() {
             should answer a real problem. Early in our field work we noticed an
             odd inversion — the people around us who described cartilage pain
             were many, while the cases recorded in the medical system were few.
-            Below this overview the page is split into three pages: the{" "}
-            <a href="#toolbox">
-              <strong>Toolbox</strong>
+            Below this overview the page is split into three pages:{" "}
+            <a href="#stakeholder-engagement">
+              <strong>Stakeholder Engagement</strong>
             </a>{" "}
-            explains the methods we used,{" "}
+            collects the stakeholder map and the interviews behind every step,{" "}
             <a href="#nest">
               <strong>NEST</strong>
             </a>{" "}
             tells the story of its four narrative modules — Need-led Discovery,
             Evidence-based Co-design, Situated Implementation and Trust and
-            Lasting Impact — and{" "}
-            <a href="#stakeholder-engagement">
-              <strong>Stakeholder Engagement</strong>
+            Lasting Impact — and the{" "}
+            <a href="#toolbox">
+              <strong>Toolbox</strong>
             </a>{" "}
-            collects the stakeholder map and the interviews behind every step.
-            Use the three buttons to open a page.
+            explains the methods we used. Use the three buttons to open a
+            page.
           </p>
           <div
             className={`eng-module-nav ihp-page-nav${
@@ -1933,9 +1934,9 @@ export function HumanPractices() {
           {page !== null && (
             <div className="ihp-section-viewport">
               <div className="ihp-section">
-                {page === 0 && <ToolboxPage />}
+                {page === 0 && <EngagementBlock />}
                 {page === 1 && <NestPage />}
-                {page === 2 && <EngagementBlock />}
+                {page === 2 && <ToolboxPage />}
               </div>
             </div>
           )}

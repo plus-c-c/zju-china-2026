@@ -268,3 +268,12 @@ html[data-ihp-swipe="up"] .nest-navbar {
     min-height: 360px;
   }
 }
+
+/* Hover lifts (sub-navigation buttons) and cards that break out of the text
+   column (the stakeholder chain) must not be clipped by the page-switch
+   viewport. The padding widens the clip box while the negative margin keeps
+   the content aligned. */
+.ihp-section-viewport {
+  padding: 8px 2.75rem;
+  margin: -8px -2.75rem 0;
+}
