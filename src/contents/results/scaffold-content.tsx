@@ -496,7 +496,7 @@ export function ScaffoldContent() {
                 , and that the buffer containing <strong>2 M NaCl</strong> gave
                 the highest yield (Figure 1.2.4). This trend is consistent with
                 the reported regulation of the phase-transition temperature of
-                elastin-like polypeptides by salt ions.([5])
+                elastin-like polypeptides by salt ions.[5]
               </p>
             </div>
             <div className="source-block figure-block" data-block="28">
@@ -920,9 +920,7 @@ export function ScaffoldContent() {
             </div>
             <div className="source-block" data-block="60">
               <p className="figure-caption">
-                <strong>Figure 1.2.10.</strong> SEM image of the hydrogel. The
-                hydrogel has an interconnected, three-dimensional porous network
-                with pores of varying size.
+                <strong>Figure 1.2.10.</strong> Digital photograph of SELP hydrogels and SEM images, (A) and (B) are hydrogels made from SELP with different repeats of unit.The hydrogel has an interconnected, three-dimensional porous network with pores of varying size.
               </p>
             </div>
             <div className="source-block" data-block="61">
@@ -1130,19 +1128,15 @@ export function ScaffoldContent() {
               <div className="figure-unit figure-unit--caption">
                 <div className="source-block" data-block="70">
                   <p className="figure-caption">
-                    <strong>Figure 1.2.13.</strong> Stress–strain curves and
-                    Young’s moduli of the hydrogels. (A) Stress–strain curves
-                    over a strain range of 0–0.3. (B) Young’s moduli. ns, not
-                    significant; ***, p &lt; 0.001.
+                    <strong>Figure 1.2.13.</strong> 
+                    Stress–strain curves and Young’s moduli of the hydrogels. Upper panel: Stress–strain curves over a strain range of 0–0.3. Lower panel: Young’s moduli. ns, not significant;  ***, p &lt; 0.001.
                   </p>
                 </div>
               </div>
               <div className="figure-unit figure-unit--caption">
                 <div className="source-block" data-block="74">
                   <p className="figure-caption">
-                    <strong>Figure 1.2.14.</strong> Shear adhesion performance
-                    of the hydrogels. (A) Shear force–displacement curves. (B)
-                    Shear strength. ns, not significant; ***, p &lt; 0.001.
+                    <strong>Figure 1.2.14.</strong> Shear adhesion performance of the hydrogels. Upper panel: Shear force–displacement curves. Lower panel:  Shear strength. ns, not significant; ***, p &lt; 0.001.
                   </p>
                 </div>
               </div>
@@ -1345,7 +1339,7 @@ export function ScaffoldContent() {
               <p>
                 The purification results are shown in Figure 1.3.3: the
                 purification was effective, with a yield of approximately 480 mg
-                per liter of bacterial culture, close to that of 2KY-5.
+                per liter of bacterial culture, <strong>close to that of 2KY-5</strong>.
               </p>
             </div>
             <div className="source-block figure-block" data-block="118">
@@ -1524,12 +1518,7 @@ export function ScaffoldContent() {
             </div>
             <div className="source-block" data-block="128">
               <p>
-                Protein expression was subsequently induced and the proteins
-                were purified. The purification results are shown in Figure
-                1.3.6: <strong>the purification was effective</strong>, with
-                yields of approximately 520 mg and 490 mg per liter of bacterial
-                culture for 2KY-5-Tag and 2KY-10-Tag, respectively,{" "}
-                <strong>close to that of 2KY-5.</strong>
+                The purification was effective, with yields of approximately 520 mg and 490 mg per liter of bacterial culture for 2KY-5-Tag and 2KY-10-Tag, respectively, close to that of 2KY-5.（Figure 1.3.6）
               </p>
             </div>
             <div className="source-block figure-block" data-block="129">
@@ -1723,20 +1712,18 @@ export function ScaffoldContent() {
                 difference between the 2KY-16 and 2Y-5 groups.
               </p>
               <p>
-                <strong>
-                  These results indicate that the 2KY hydrogels promote the
-                  expression of cartilage matrix-related genes (ACAN, COL2 and
-                  SOX9) in chondrocytes and suppress COL1 expression. Increased
-                  COL1 expression is a hallmark of the loss of the cartilage
-                  phenotype (dedifferentiation) of chondrocytes in
-                  culture,([11]) and SOX9 is a key transcriptional activator of
-                  COL2 expression;([12]) this expression profile is therefore
-                  conducive to maintaining the chondrocyte phenotype. Among the
-                  groups, 2KY-16 had the stronger promoting effect on ACAN and
-                  COL2 expression, indicating that to a certain extent the
-                  effect is better as the repeat number increases, which makes
-                  it more suitable for our clinical choice.
-                </strong>
+                These results indicate that the 2KY hydrogels <strong>promote the
+                expression of cartilage matrix-related genes (ACAN, COL2 and
+                SOX9) in chondrocytes and suppress COL1 expression.</strong> Increased
+                COL1 expression is a hallmark of the loss of the cartilage
+                phenotype (dedifferentiation) of chondrocytes in
+                culture,[11] and SOX9 is a key transcriptional activator of
+                COL2 expression;[12] this expression profile is therefore
+                conducive to <strong>maintaining the chondrocyte phenotype</strong>. Among the
+                groups, 2KY-16 had the stronger promoting effect on ACAN and
+                COL2 expression, indicating that <strong>to a certain extent the
+                effect is better as the repeat number increases, which makes
+                it more suitable for our clinical choice</strong>.
               </p>
             </div>
             <div className="source-block figure-block" data-block="87">
