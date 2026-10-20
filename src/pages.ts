@@ -6,7 +6,6 @@ import {
   Protocol,
   Parts,
   Sponsors,
-  Attributions,
   Contribution,
   Description,
   Engineering,
@@ -193,12 +192,6 @@ const Pages: (Page | Folder)[] = [
         title: "Members",
         path: "/members",
         component: Members,
-      },
-      {
-        name: "Attributions",
-        title: "Attributions",
-        path: "/attributions",
-        component: Attributions,
       },
       {
         name: "Sponsors",

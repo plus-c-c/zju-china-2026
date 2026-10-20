@@ -93,10 +93,6 @@ export const pageDetails: Record<
     icon: "26_members.png",
     description: "The people behind NEST",
   },
-  "/attributions": {
-    icon: "27_attributions.png",
-    description: "Who contributed what",
-  },
   "/sponsors": {
     icon: "28_sponsors.png",
     description: "The support behind our work",

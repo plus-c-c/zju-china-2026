@@ -25,7 +25,6 @@ const headerImages: Record<string, string> = {
   "/entrepreneurship": "17-engagement-entrepreneurship.avif",
   "/education": "18-engagement-education.avif",
   "/notebook": "20-team-notebook.avif",
-  "/attributions": "22-team-attributions.avif",
   "/sponsors": "23-team-sponsors.avif",
 };
 

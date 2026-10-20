@@ -1,7 +1,6 @@
 export { Home } from "./home.tsx";
 // Team
 export { Members } from "./members.tsx";
-export { Attributions } from "./attributions.tsx";
 // Project
 export { Description } from "./description.tsx";
 export { Engineering } from "./engineering.tsx";
