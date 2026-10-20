@@ -1,3 +1,4 @@
+import { TableCaption } from "../../components/FigureCaption";
 export function EngineeringChapter() {
   return (
     <>
@@ -246,6 +247,9 @@ export function EngineeringChapter() {
       </p>
       <div className="table-responsive">
         <table className="table table-bordered align-middle">
+          <TableCaption as="caption">
+            Table 1 | Software development cycles.
+          </TableCaption>
           <thead>
             <tr>
               <th>Cycle</th>

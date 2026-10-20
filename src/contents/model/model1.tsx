@@ -1,4 +1,7 @@
-import { FigureCaptionText } from "../../components/FigureCaption";
+import {
+  TableCaption,
+  FigureCaptionText,
+} from "../../components/FigureCaption";
 import { References } from "../../components/References";
 import { CitationText } from "../../components/CitationText";
 import {
@@ -173,7 +176,11 @@ function Blocks({
                 alt={block.alt ?? ""}
                 loading="lazy"
                 decoding="async"
-                style={block.width ? { maxWidth: `min(100%, ${block.width}px)` } : undefined}
+                style={
+                  block.width
+                    ? { maxWidth: `min(100%, ${block.width}px)` }
+                    : undefined
+                }
               />
             </figure>
           );
@@ -214,6 +221,14 @@ function Blocks({
               head={block.head ?? []}
               rows={block.rows ?? []}
             />
+          );
+        }
+        const paragraphText = (block.parts ?? [])
+          .map((part) => ("v" in part ? part.v : ""))
+          .join("");
+        if (/^\s*Table\s+\d/.test(paragraphText)) {
+          return (
+            <TableCaption key={index}>{paragraphText}</TableCaption>
           );
         }
         const followsFigure = index > 0 && blocks[index - 1].t === "figure";

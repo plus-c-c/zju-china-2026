@@ -1,3 +1,4 @@
+import { TableCaption } from "../../components/FigureCaption";
 import { FigureCaption } from "../../components/FigureCaption";
 import { HardwareVideo } from "./HardwareVideo";
 
@@ -364,9 +365,9 @@ export function FormulationUnit() {
         preparation unit, including the three-channel dispensing subsystem,
         mixing and storage subsystem, and electronic control system.
       </p>
-      <p>
+      <TableCaption>
         <strong>Table 1 | Components and Costs of the Preparation Unit</strong>
-      </p>
+      </TableCaption>
       <div className="table-scroll">
         <table aria-label="Preparation unit bill of materials">
           <thead>

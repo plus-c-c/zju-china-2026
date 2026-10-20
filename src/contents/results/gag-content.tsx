@@ -1,3 +1,4 @@
+import { TableCaption } from "../../components/FigureCaption";
 import { FigureCaption } from "../../components/FigureCaption";
 import { ContentMath } from "./ContentMath";
 
@@ -146,9 +147,9 @@ export function GagContent() {
             </div>
             <div className="table-scroll">
               <table>
-                <caption>
+                <TableCaption as="caption">
                   Table 5.1.1. Full lengths and insert sequences of the three expression plasmids.
-                </caption>
+                </TableCaption>
                 <thead>
                   <tr>
                     <th scope="col">

@@ -1,3 +1,4 @@
+import { TableCaption } from "../components/FigureCaption";
 import { Link } from "react-router-dom";
 import { FlappyInjection } from "../components/FlappyInjection";
 import { Inspirations, InspirationLink } from "../components/Inspirations";
@@ -144,10 +145,10 @@ export function Education() {
           </p>
 
           <h2>Our Educational Framework</h2>
-          <p>
+          <TableCaption>
             <strong>Table 1 |</strong> Educational framework: areas,
             participants, guiding questions, and main activities.
-          </p>
+          </TableCaption>
           <div className="table-responsive mb-4">
             <table
               className="table table-bordered align-middle"
@@ -762,10 +763,10 @@ export function Education() {
           </p>
 
           <h3>Research and Exchanges</h3>
-          <p>
+          <TableCaption>
             <strong>Table 2 |</strong> Research and exchange activities,
             approaches, and focus.
-          </p>
+          </TableCaption>
           <div className="table-responsive mb-4">
             <table
               className="table table-bordered align-middle"
