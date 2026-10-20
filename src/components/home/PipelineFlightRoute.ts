@@ -7,6 +7,7 @@ export type PipelineFlightRoute = {
   start: number;
   end: number;
   exit: number;
+  edge: number;
   stops: number[];
   sample: (scroll: number) => Point & { dx: number; dy: number };
 };
@@ -84,11 +85,14 @@ export function getPipelineFlightRoute(
     }
   };
   const first = curves[0][0];
-  // Leave OA in one direct downward-left arc, ending on the first guide dot.
-  const entryHeight = first.y - origin.y;
+  // Connect the two anchors directly, with only a small bow off their chord.
+  const entryX = first.x - origin.x, entryY = first.y - origin.y;
+  const entryLength = Math.hypot(entryX, entryY);
+  const bow = Math.min(24 * scale, entryLength * 0.02);
+  const bowX = entryY / entryLength * bow, bowY = -entryX / entryLength * bow;
   append(bezier(origin,
-    { x: origin.x + (first.x - origin.x) * 0.26, y: origin.y + entryHeight * 0.4 },
-    { x: first.x, y: first.y - entryHeight * 0.2 }, first));
+    { x: origin.x + entryX / 3 + bowX, y: origin.y + entryY / 3 + bowY },
+    { x: origin.x + entryX * 2 / 3 + bowX, y: origin.y + entryY * 2 / 3 + bowY }, first));
   const firstStop = distance;
   append(curves[0]);
 
@@ -102,13 +106,14 @@ export function getPipelineFlightRoute(
   append(curves[1]);
 
   const last = curves[1][curves[1].length - 1];
-  const edge = { x: canvas.left + canvas.width * 0.9, y: third.top + scroll + third.height * 0.98 };
+  const edge = { x: canvas.left + canvas.width * 0.9, y: third.top + scroll + third.height * 1.22 };
   const exitHeight = edge.y - last.y;
   const exitStart = distance;
   append(bezier(last,
     { x: last.x, y: last.y + exitHeight * 0.6 },
     { x: edge.x, y: edge.y - exitHeight * 0.4 }, edge));
   const thirdStop = exitStart + (distance - exitStart) * 0.72;
+  const edgeDistance = distance;
   const closingHeight = landing.y - edge.y;
   append(bezier(edge,
     { x: edge.x, y: edge.y + closingHeight * 0.22 },
@@ -116,7 +121,7 @@ export function getPipelineFlightRoute(
 
   const speed = distance / (end - start);
   const route: PipelineFlightRoute = {
-    speed, start, end, exit: start + exitStart / speed,
+    speed, start, end, exit: start + exitStart / speed, edge: start + edgeDistance / speed,
     stops: [firstStop, secondStop, thirdStop].map(stop => start + stop / speed),
     sample: (scrollTop) => {
       const traveled = clamp((scrollTop - start) / (end - start)) * distance;
@@ -146,5 +151,7 @@ export function getPipelineFlightDamping(root: Element, scroll: number) {
   if (!route) return 1;
   const width = Math.max(50, Math.min(80, innerHeight * 0.075));
   const proximity = Math.max(...route.stops.map(stop => Math.exp(-(((scroll - stop) / width)**2))));
-  return 1 - proximity * 0.35;
+  const exitProgress = clamp((scroll - route.exit) / (route.edge - route.exit));
+  const exitEase = Math.sin(Math.PI * exitProgress)**2;
+  return (1 - proximity * 0.35) * (1 - exitEase * 0.1);
 }
