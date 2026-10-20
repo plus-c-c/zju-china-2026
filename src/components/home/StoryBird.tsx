@@ -134,7 +134,7 @@ export function StoryBird({ position, direction, scale }: { position: number; di
     // Longer routes accelerate smoothly; short hops stay gentle.
     const distanceRatio = Math.max(0, Math.min(1, (length - 120) / 780));
     const speed = 340 + 460 * distanceRatio;
-    const duration = reduced ? 1 : Math.min(1350, Math.max(450, length / speed * 1000)) * 1.08;
+    const duration = reduced ? 1 : Math.min(1350, Math.max(450, length / speed * 1000)) * 1.05;
     const began = performance.now();
     let frame = 0;
     let previousTime = began;
