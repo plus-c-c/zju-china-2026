@@ -132,8 +132,8 @@ const Pages: (Page | Folder)[] = [
         component: Notebook,
       },
       {
-        name: "Safety",
-        title: "Safety",
+        name: "Safety and Security",
+        title: "Safety and Security",
         path: "/safety-and-security",
         component: SafetyAndSecurity,
       },
