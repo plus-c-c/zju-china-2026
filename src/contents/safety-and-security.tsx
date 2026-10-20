@@ -40,16 +40,16 @@ export function SafetyAndSecurity() {
         <p>
           <strong>Functional peptides.</strong> Each of the three functional
           modules uses a short peptide as its molecular effector. In the
-          magnetic-response module, the heptapeptide TVNFKLY serves as the
+          TVN Magnetic Binding Module, the heptapeptide TVNFKLY serves as the
           Fe₃O₄-binding motif; Fe₃O₄ is a magnetic material widely used in
           biomedicine, and the particles retain their magnetic properties after
-          peptide modification. In the matrix-retention module, CPC+14A and
+          peptide modification. In the GAG Retention Module, CPC+14A and
           Link-N are employed: CPC+14A is an arginine-rich cationic peptide
           whose charge design balances reversible binding to sulfated
           glycosaminoglycans (GAGs) against the irreversible aggregation that
           excessive positive charge would cause; Link-N is a 16-amino-acid
           N-terminal fragment of cartilage link protein, a proteolytic product
-          that occurs naturally in vivo. In the mitochondrial-delivery module,
+          that occurs naturally in vivo. In the Mitochondrial Therapeutic Module,
           the MMP-13-responsive peptide ensures that the carrier is cleaved and
           released only within the degenerative osteoarthritic microenvironment
           (elevated MMP-13 expression); validation includes a scrambled-sequence
@@ -190,9 +190,9 @@ export function SafetyAndSecurity() {
           Counting Kit-8 (CCK-8) assay to measure the relative viability of
           mesenchymal stem cells (MSCs) treated with the engineered responsive
           peptide. Control, blank, and treatment groups (5 μM and 10 μM) were
-          examined at three time points (24, 48, and 96 h). From 48 h onward,
+          examined at three time points (24, 48, and 72 h). From 48 h onward,
           the relative viability of both treatment groups was approximately
-          85–90%, and it was maintained at 85–95% at 96 h — indicating good cell
+          85–90%, and it was maintained at 85–95% at 72 h — indicating good cell
           compatibility within the tested concentration range (Figure 1).
           Viability at the 24 h time point was lower in both groups (~70% and
           ~55%); repeat experiments under controlled initial cell states are
