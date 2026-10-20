@@ -35,7 +35,7 @@ function regenerateWetlabSplit(): Plugin {
 
       server.watcher.on("change", (path) => {
         if (
-          /src[\\/]contents[\\/]results[\\/](?:scaffold|anisotropy|gag|delivery)-content\.tsx$/.test(
+          /src[\\/]contents[\\/]results[\\/](?:scaffold|anisotropy|gag|delivery|biosafety)-content\.tsx$/.test(
             path,
           )
         ) {

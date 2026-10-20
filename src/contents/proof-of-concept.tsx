@@ -3,12 +3,19 @@ import {
   SharedProjectSections,
 } from "../components/PlatformFunctionSections";
 import { FigureCaption } from "../components/FigureCaption";
+import { ProjectExperimentNotes } from "../components/ProjectExperimentNotes";
 import {
   FigureSourceCitation,
   FigureSourceEntry,
 } from "../components/FigureSourceCitation";
 import { References } from "../components/References";
 import { TransparentImage } from "../components/TransparentImage";
+import {
+  BIOSAFETY_FIGURE_URL,
+  BiosafetyFigureCaption,
+  BiosafetyIntroduction,
+  BiosafetyResultsText,
+} from "./results/biosafety-content";
 import "./proof-of-concept.css";
 
 export function ProofOfConcept() {
@@ -57,6 +64,7 @@ export function ProofOfConcept() {
               <FigureSourceCitation source={1} href="#poc-reference-1" />
             </FigureCaption>
           </figure>
+          <ProjectExperimentNotes />
           <PlatformFunctionSections
             id="poc"
             platform={
@@ -704,53 +712,22 @@ export function ProofOfConcept() {
           />
           <SharedProjectSections>
             <h2 className="mt-5 mb-3">
-              3 The Scaffold and Functional Components Show Good In Vitro
-              Cytocompatibility
+              Biocompatibility
             </h2>
-            <p>
-              Beyond material properties and module-specific functions, we also
-              examined how these components performed in the presence of cells.
-              We therefore used <strong>CCK-8 assays</strong> to assess the
-              hydrogel scaffold and major functional components, treating{" "}
-              <em>in vitro</em> cytocompatibility as a common element of our
-              proof-of-concept evaluation.
-            </p>
-            <p>
-              Across the concentrations and time points tested in this study,
-              the scaffold, TVN, CPC, Link-N, CPC-Link-N, and the mitochondrial
-              delivery components all maintained high cell viability, with{" "}
-              <strong>
-                mean relative viability exceeding 85% in every tested group
-              </strong>
-              . The scaffold and delivery components also maintained high
-              viability at multiple time points (Figure 21).
-            </p>
+            <BiosafetyIntroduction />
+            <BiosafetyResultsText figureNumber="21" />
             <figure className="my-4 text-center">
               <TransparentImage
-                src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-19.avif"
-                alt="Figure 21 | CCK-8 cytocompatibility of the scaffold and functional modules"
+                src={BIOSAFETY_FIGURE_URL}
+                alt="Figure 21 | Preliminary cytocompatibility assessment of NEST components using the CCK-8 assay"
+                width={4000}
+                height={3158}
+                trim={false}
                 className="img-fluid rounded"
                 style={{ width: "100%" }}
               />
-              <FigureCaption className="figure-caption mt-2">
-                <strong>
-                  Figure 21 | CCK-8 Results for the Scaffold and Functional
-                  Modules.
-                </strong>{" "}
-                (A, B) Photographs of the assay plates; (C) scaffold at 24, 48,
-                and 72 h; (D-G) TVN, CPC, Link-N, and CPC-Link-N at 48 h; (H)
-                Mito at 48 and 72 h. S denotes stock solution; L/M/H indicate
-                low/medium/high concentration groups. Bars show means, and error
-                bars indicate standard deviations.
-              </FigureCaption>
+              <BiosafetyFigureCaption figureNumber="21" />
             </figure>
-            <p>
-              These results indicate that the NEST scaffold and its principal
-              functional components exhibited good <em>in vitro</em>{" "}
-              cytocompatibility. In addition to material manufacturing and
-              module function, we have therefore experimentally evaluated how
-              the materials behave in the presence of cells.
-            </p>
             <h2 className="mt-5 mb-3">Conclusion</h2>
             <p>
               In testing NEST's core concept, we successfully produced SELP
@@ -759,8 +736,8 @@ export function ProofOfConcept() {
               compatible with different functional constructs, while the
               magnetic-response, GAG-retention, and mitochondrial-delivery
               modules each exhibited their key intended functions. The scaffold
-              and major functional components also demonstrated good{" "}
-              <em>in vitro</em> cytocompatibility.
+              and major functional components were also evaluated in preliminary{" "}
+              <em>in vitro</em> cytocompatibility assays.
             </p>
             <p>
               We have therefore established two experimental aspects of NEST's

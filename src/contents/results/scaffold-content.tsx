@@ -43,12 +43,9 @@ export function ScaffoldContent() {
             <strong>
               determined the effect of repeat number on hydrogel properties
             </strong>
-            ; this work was combined with our
+            ; this work was combined with our{" "}
             <strong>modeling</strong> to build a more{" "}
-            <strong>accurate and reliable</strong> prediction system. We also
-            tested the
-            <strong>cytocompatibility</strong> of the hydrogel material in order
-            to assess its <strong>safety</strong>.
+            <strong>accurate and reliable</strong> prediction system.
           </p>
         </div>
       </div>
@@ -1620,87 +1617,9 @@ export function ScaffoldContent() {
           data-toc="include"
           data-toc-depth="2"
         >
-          2 Safety and Functional Evaluation of the Hydrogel
+          2 Functional Evaluation of the Hydrogel
         </h3>
-        <h4
-          data-block="79"
-          id="wetlab-scaffold-25"
-          data-toc="include"
-          data-toc-depth="3"
-        >
-          2.1 Cytotoxicity Assessment
-        </h4>
       </div>
-      <section className="pair">
-        <h6 className="pair-label" id="wetlab-scaffold-26">
-          Cytotoxicity assessment
-        </h6>
-        <div className="columns">
-          <div className="column experiment">
-            <p className="column-label">Experiment</p>
-            <div className="source-block" data-block="80">
-              <p>
-                The relative viability of mesenchymal stem cells (MSCs) after
-                co-culture with the SELP protein was measured by the{" "}
-                <strong>CCK-8 assay</strong>. A control group, a blank group and
-                treatment groups (5 µM and 10 µM) were set up, and three time
-                points (24, 48 and 72 h) were examined. The experimental groups
-                comprised a dressing-solution group and low- and
-                high-concentration G-S groups (G-S low, stock solution diluted
-                20-fold; G-S high, stock solution diluted 10-fold).
-              </p>
-            </div>
-          </div>
-          <div className="column results">
-            <p className="column-label">Results</p>
-            <div className="source-block" data-block="81">
-              <p>
-                The CCK-8 results were as follows. At 24 h, the cell viability
-                of the dressing-solution, G-S low and G-S high groups was 125.1
-                ± 36.3%, 110.2 ± 12.4% and 100.7 ± 12.7%, respectively; at 48 h,
-                134.7 ± 3.2%, 103.0 ± 4.4% and 102.7 ± 4.7%; and at 72 h, 119.0
-                ± 15.5%, 98.6 ± 27.6% and 88.2 ± 17.6% (percentages relative to
-                the control group; mean ± SD, n = 3).
-              </p>
-              <p>
-                The mean viability of every group at every time point was not
-                lower than 88%, above the 70% threshold defined in ISO 10993-5
-                (a reduction of cell viability by more than 30% is considered a
-                cytotoxic effect) [10]{" "}
-                <strong>
-                  Overall, these results indicate that the material is not
-                  markedly cytotoxic
-                </strong>{" "}
-                (Figure 2.1.1).
-              </p>
-            </div>
-            <div className="source-block figure-block" data-block="82">
-              <p>
-                <a
-                  className="figure-link"
-                  href="https://static.igem.wiki/teams/6102/wiki/images/result/01-skeleton/19.avif"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  <img
-                    loading="lazy"
-                    src="https://static.igem.wiki/teams/6102/wiki/images/result/01-skeleton/19.avif"
-                    alt="Figure 2.1.1. Relative viability of mesenchymal stem cells co-cultured with the SELP protein, measured by the CCK-8 assay at 24, 48 and 72 h. Percentages are relative to the control group (mean ± SD, n = 3)."
-                  />
-                </a>
-              </p>
-            </div>
-            <div className="source-block" data-block="83">
-              <FigureCaption as="p" className="figure-caption">
-                <strong>Figure 2.1.1 |</strong> Relative viability of
-                mesenchymal stem cells co-cultured with the SELP protein,
-                measured by the CCK-8 assay at 24, 48 and 72 h. Percentages are
-                relative to the control group (mean ± SD, n = 3).
-              </FigureCaption>
-            </div>
-          </div>
-        </div>
-      </section>
       <div className="section-heading">
         <h4
           data-block="84"
@@ -1708,7 +1627,7 @@ export function ScaffoldContent() {
           data-toc="include"
           data-toc-depth="3"
         >
-          2.2 Functional Validation in Chondrocytes
+          2.1 Functional Validation in Chondrocytes
         </h4>
       </div>
       <section className="pair">
@@ -1720,22 +1639,10 @@ export function ScaffoldContent() {
             <p className="column-label">Experiment</p>
             <div className="source-block" data-block="85">
               <p>
-                <strong>Special Note:</strong> Our collaborating team, led by
-                Professors Hongwei Ouyang and Wenwen Huang, has an established
-                and well-developed cartilage cell culture system. Therefore,
-                their team conducted the cartilage cell culture and functional
-                validation of SELP. Our team did not directly perform any
-                biosafety-relevant experimental procedures in this part of the
-                project.
-              </p>
-              <p>
                 To further evaluate the effect of the hydrogels on the
-                chondrocyte phenotype (the chondrocytes were not cultured or
-                validated by our own team; the SELP hydrogel materials were sent
-                to a third party for evaluation, so no biosafety issue is
-                involved), chondrocytes were co-cultured with the hydrogels
+                chondrocyte phenotype, chondrocytes were co-cultured with the hydrogels
                 (2Y-5, 2KY-5 and 2KY-16), and the expression of
-                cartilage-related genes was measured by qPCR (Figure 2.2.1).
+                cartilage-related genes was measured by qPCR (Figure 2.1.1).
               </p>
             </div>
           </div>
@@ -1771,8 +1678,8 @@ export function ScaffoldContent() {
                 </strong>{" "}
                 Increased COL1 expression is a hallmark of the loss of the
                 cartilage phenotype (dedifferentiation) of chondrocytes in
-                culture,[11] and SOX9 is a key transcriptional activator of COL2
-                expression;[12] this expression profile is therefore conducive
+                culture,[10] and SOX9 is a key transcriptional activator of COL2
+                expression;[11] this expression profile is therefore conducive
                 to <strong>maintaining the chondrocyte phenotype</strong>. Among
                 the groups, 2KY-16 had the stronger promoting effect on ACAN and
                 COL2 expression, indicating that{" "}
@@ -1795,14 +1702,14 @@ export function ScaffoldContent() {
                   <img
                     loading="lazy"
                     src="https://static.igem.wiki/teams/6102/wiki/images/result/01-skeleton/20.avif"
-                    alt="Figure 2.2.1. Relative expression of cartilage-related genes in chondrocytes co-cultured with the hydrogels, determined by qPCR. ACAN, COL2, SOX9, COL1 and COLX are shown with the 2Y-5 group as the reference (relative expression set to 1)."
+                    alt="Figure 2.1.1. Relative expression of cartilage-related genes in chondrocytes co-cultured with the hydrogels, determined by qPCR. ACAN, COL2, SOX9, COL1 and COLX are shown with the 2Y-5 group as the reference (relative expression set to 1)."
                   />
                 </a>
               </p>
             </div>
             <div className="source-block" data-block="88">
               <FigureCaption as="p" className="figure-caption">
-                <strong>Figure 2.2.1 |</strong> Relative expression of
+                <strong>Figure 2.1.1 |</strong> Relative expression of
                 cartilage-related genes in chondrocytes co-cultured with the
                 hydrogels, determined by qPCR. ACAN, COL2, SOX9, COL1 and COLX
                 are shown with the 2Y-5 group as the reference (relative
@@ -1819,10 +1726,9 @@ export function ScaffoldContent() {
       >
         <strong>Hydrogel evaluation</strong>
         <br />
-        The cell experiments evaluate the hydrogel-related samples through CCK-8
-        measurements and cartilage-related gene expression. Together, these
-        assays connect the material characterization to the cellular responses
-        reported for the tested conditions.
+        The chondrocyte experiments evaluate cartilage-related gene expression
+        following co-culture with the hydrogels, connecting material
+        characterization to cellular responses under the tested conditions.
       </p>
       <div className="section-heading">
         <h3
@@ -2292,16 +2198,9 @@ export function ScaffoldReferences() {
           .
         </p>
       </div>
-      <div className="source-block" data-block="126">
-        <p>
-          [10] ISO 10993-5:2009. Biological evaluation of medical devices — Part
-          5: Tests for in vitro cytotoxicity; International Organization for
-          Standardization: Geneva, Switzerland, 2009.
-        </p>
-      </div>
       <div className="source-block" data-block="127">
         <p>
-          [11] von der Mark, K.; Gauss, V.; von der Mark, H.; Müller, P.
+          [10] von der Mark, K.; Gauss, V.; von der Mark, H.; Müller, P.
           Relationship between cell shape and type of collagen synthesised as
           chondrocytes lose their cartilage phenotype in culture. Nature 1977,
           267 (5611), 531–532.{" "}
@@ -2317,7 +2216,7 @@ export function ScaffoldReferences() {
       </div>
       <div className="source-block" data-block="128">
         <p>
-          [12] Lefebvre, V.; Huang, W.; Harley, V. R.; Goodfellow, P. N.; de
+          [11] Lefebvre, V.; Huang, W.; Harley, V. R.; Goodfellow, P. N.; de
           Crombrugghe, B. SOX9 is a potent activator of the chondrocyte-specific
           enhancer of the proα1(II) collagen gene. Mol. Cell. Biol. 1997, 17
           (4), 2336–2346.{" "}
@@ -2333,7 +2232,7 @@ export function ScaffoldReferences() {
       </div>
       <div className="source-block" data-block="129">
         <p>
-          [13] Veggiani, G.; Nakamura, T.; Brenner, M. D.; Gayet, R. V.; Yan,
+          [12] Veggiani, G.; Nakamura, T.; Brenner, M. D.; Gayet, R. V.; Yan,
           J.; Robinson, C. V.; Howarth, M. Programmable polyproteams built using
           twin peptide superglues. Proc. Natl. Acad. Sci. U.S.A. 2016, 113 (5),
           1202–1207.{" "}
@@ -2349,7 +2248,7 @@ export function ScaffoldReferences() {
       </div>
       <div className="source-block" data-block="130">
         <p>
-          [14] Buldun, C. M.; Jean, J. X.; Bedford, M. R.; Howarth, M.
+          [13] Buldun, C. M.; Jean, J. X.; Bedford, M. R.; Howarth, M.
           SnoopLigase catalyzes peptide–peptide locking and enables solid-phase
           conjugate isolation. J. Am. Chem. Soc. 2018, 140 (8), 3008–3018.{" "}
           <a
@@ -2364,21 +2263,21 @@ export function ScaffoldReferences() {
       </div>
       <div className="source-block" data-block="131">
         <p>
-          [15] Keeble, A. H.; Wood, D. P.; Howarth, M. Design and evolution of
+          [14] Keeble, A. H.; Wood, D. P.; Howarth, M. Design and evolution of
           enhanced peptide–peptide ligation for modular transglutaminase
           assembly. Bioconjugate Chem. 2023, 34 (6), 1019–1036.
         </p>
       </div>
       <div className="source-block" data-block="132">
         <p>
-          [23] Buldun CM, Jean JX, Bedford MR, Howarth M. SnoopLigase Catalyzes
+          [15] Buldun CM, Jean JX, Bedford MR, Howarth M. SnoopLigase Catalyzes
           Peptide–Peptide Locking and Enables Solid-Phase Conjugate Isolation.
           Journal of the American Chemical Society. 2018;140(8):3008–3018.
         </p>
       </div>
       <div className="source-block" data-block="133">
         <p>
-          [24] Abe Y, Shodai T, Muto T, Mihara K, Torii H, Nishikawa S, Endo T,
+          [16] Abe Y, Shodai T, Muto T, Mihara K, Torii H, Nishikawa S, Endo T,
           Kohda D. Structural Basis of Presequence Recognition by the
           Mitochondrial Protein Import Receptor Tom20. Cell.
           2000;100(5):551–560.
@@ -2386,7 +2285,7 @@ export function ScaffoldReferences() {
       </div>
       <div className="source-block" data-block="134">
         <p>
-          [25] Okutani A, Naima J, Ogihara A, Motoichi T, Ohsawa I, Ohta Y. A
+          [17] Okutani A, Naima J, Ogihara A, Motoichi T, Ohsawa I, Ohta Y. A
           method for isolating and cryopreserving intact mitochondria with
           improved integrity and functionality. Biophysics and Physicobiology.
           2025;22(2):e220012.
@@ -2394,32 +2293,25 @@ export function ScaffoldReferences() {
       </div>
       <div className="source-block" data-block="135">
         <p>
-          [26] Nakano T, et al. Mitochondrial surface coating with artificial
+          [18] Nakano T, et al. Mitochondrial surface coating with artificial
           lipid membrane improves the transfer efficacy. Communications Biology.
           2022;5:745.
         </p>
       </div>
       <div className="source-block" data-block="136">
         <p>
-          [27] Miyasaki K, Han S, Carton O, Kandell RM, Gunn J, Kwon EJ.
+          [19] Miyasaki K, Han S, Carton O, Kandell RM, Gunn J, Kwon EJ.
           Formulation methods for peptide-modified lipid nanoparticles. Journal
           of Controlled Release. 2025;385:114030.
         </p>
       </div>
       <div className="source-block" data-block="137">
         <p>
-          [28] Little CB, Barai A, Burkhardt D, Smith SM, Fosang AJ, Werb Z,
+          [20] Little CB, Barai A, Burkhardt D, Smith SM, Fosang AJ, Werb Z,
           Shah M, Thompson EW. Matrix metalloproteinase 13–deficient mice are
           resistant to osteoarthritic cartilage erosion but not chondrocyte
           hypertrophy or osteophyte development. Arthritis &amp; Rheumatism.
           2009;60(12):3723–3733.
-        </p>
-      </div>
-      <div className="source-block" data-block="138">
-        <p>
-          [29] Ishiyama M, Miyazono Y, Sasamoto K, Ohkura Y, Ueno K. A highly
-          water-soluble disulfonated tetrazolium salt as a chromogenic indicator
-          for NADH as well as cell viability. Talanta. 1997;44(7):1299–1305.
         </p>
       </div>
     </>

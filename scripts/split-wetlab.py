@@ -6,6 +6,7 @@ Source files (kept for regeneration, one per supplied manuscript):
   src/contents/results/anisotropy-content.tsx    -> the magnetic-anisotropy manuscript
   src/contents/results/gag-content.tsx           -> the GAG-retention manuscripts
   src/contents/results/delivery-content.tsx      -> the mitochondrial-delivery manuscript
+  src/contents/results/biosafety-content.tsx     -> the shared cytocompatibility assessment
 
 Each <pair> block carries an "Experiment" column and a "Results" column. This
 script emits one combined document per page (shared headings, one side of each
@@ -164,15 +165,20 @@ def build(keep: str) -> str:
     documents += [function[key] for key in ("anisotropy", "gag", "delivery")]
     parts = [promote_headings(split_pairs(part, keep)) for part in documents]
     html = "\n".join(part.strip() for part in parts)
-    return add_shared_shell(reserve_image_space(COLUMN_LABEL.sub("", html)))
+    biosafety = promote_headings(split_pairs(biosafety_html, keep))
+    return add_shared_shell(
+        reserve_image_space(COLUMN_LABEL.sub("", html)),
+        reserve_image_space(COLUMN_LABEL.sub("", biosafety)),
+    )
 
 
-def add_shared_shell(html: str) -> str:
-    """Wrap the shared Introduction / Conclusion / References around a page.
+def add_shared_shell(html: str, biosafety: str) -> str:
+    """Add the shared page shell and the appropriate biosafety content.
 
     These blocks are not split (the manuscript's intro, conclusion and
-    reference list are page-level), so each page carries the same copy —
-    matching the coverage of the original Results layout.
+    reference list are page-level), so each page carries the same copy.
+    Biosafety follows the same experiment/results split as the module content
+    and sits outside the Platform / Function panels, before Conclusion.
     """
     intro = (
         '<div class="section-heading wetlab-page-section"><h2 id="wetlab-introduction" '
@@ -190,7 +196,7 @@ def add_shared_shell(html: str) -> str:
         f'<div class="wetlab-results__references-content">{scaffold["referencesHtml"]}</div>'
         "</details>"
     )
-    return "\n".join([intro, html, conclusion, references])
+    return "\n".join([intro, html, biosafety, conclusion, references])
 
 
 def render_component(module: str, component: str) -> str:
@@ -214,6 +220,7 @@ function = {
     "gag": render_component("gag-content.tsx", "GagContent"),
     "delivery": render_component("delivery-content.tsx", "DeliveryContent"),
 }
+biosafety_html = render_component("biosafety-content.tsx", "BiosafetyContent")
 
 experiments_html = build("experiment")
 results_html = build("results")
@@ -319,7 +326,7 @@ def track_boundaries(html: str) -> dict[str, int]:
         "introductionEnd": html.index("\n") + 1,
         "platformEnd": html.index('<h2 id="wetlab-anisotropy-overview"'),
         "functionEnd": html.index(
-            '<div class="section-heading wetlab-page-section"><h2 id="wetlab-conclusion"'
+            '<div class="section-heading wetlab-page-section"><h2 id="wetlab-biosafety"'
         ),
     }
     return {

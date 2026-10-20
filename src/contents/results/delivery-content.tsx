@@ -1,4 +1,5 @@
 import { FigureCaption } from "../../components/FigureCaption";
+
 export function DeliveryContent() {
   return (
     <>
@@ -237,7 +238,7 @@ export function DeliveryContent() {
               <p>
                 The published SnoopLigase system catalyzes covalent isopeptide-bond formation
                 between DogTag and SnoopTagJr. This work established a basis for using SDS-PAGE
-                mobility shifts to assess peptide ligation activity <sup className="article-citation">[23]</sup>.
+                mobility shifts to assess peptide ligation activity <sup className="article-citation">[15]</sup>.
               </p>
               <p>
                 The recovered DogTag-containing peptide was mixed with GFP-SnoopTag and SnoopLigase
@@ -285,8 +286,8 @@ export function DeliveryContent() {
             <div className="source-block">
               <p>
                 TOMM20 (Tom20) is a receptor of the mitochondrial outer-membrane protein import
-                machinery <sup className="article-citation">[24]</sup>, whereas cytochrome c oxidase subunit IV (COX IV) is located in the
-                inner mitochondrial membrane <sup className="article-citation">[25]</sup>. Their complementary localizations provided the
+                machinery <sup className="article-citation">[16]</sup>, whereas cytochrome c oxidase subunit IV (COX IV) is located in the
+                inner mitochondrial membrane <sup className="article-citation">[17]</sup>. Their complementary localizations provided the
                 rationale for assessing mitochondrial components from both membrane compartments.
               </p>
               <p>
@@ -300,7 +301,7 @@ export function DeliveryContent() {
               <p>
                 Marker detection was interpreted as evidence of mitochondrial components; organelle
                 purity, membrane integrity, and respiratory function require distinct assessments
-                <sup className="article-citation">[25]</sup>.
+                <sup className="article-citation">[17]</sup>.
               </p>
             </div>
           </div>
@@ -343,9 +344,9 @@ export function DeliveryContent() {
                 DOTAP and DOPE were selected as cationic and fusogenic lipid components,
                 respectively. A previous study used DOTAP/DOPE coatings to improve mitochondrial
                 transfer, providing a rationale for investigating this lipid combination in our
-                carrier system <sup className="article-citation">[26]</sup>. DSPE-PEG-Mal was included to provide maleimide groups for
+                carrier system <sup className="article-citation">[18]</sup>. DSPE-PEG-Mal was included to provide maleimide groups for
                 conjugation with Cys-containing peptides, based on established peptide–PEG–lipid
-                coupling chemistry <sup className="article-citation">[27]</sup>.
+                coupling chemistry <sup className="article-citation">[19]</sup>.
               </p>
               <p>
                 Functionalized liposomes were prepared using DOPE, DOTAP, and DSPE-PEG-Mal and
@@ -478,7 +479,7 @@ export function DeliveryContent() {
             <div className="source-block">
               <p>
                 The conjugation strategy was based on thiol–maleimide coupling between a peptide
-                cysteine residue and a maleimide-functionalized PEG–lipid <sup className="article-citation">[27]</sup>.
+                cysteine residue and a maleimide-functionalized PEG–lipid <sup className="article-citation">[19]</sup>.
               </p>
               <p>
                 The Cys-containing linker peptide was co-incubated with maleimide-functionalized
@@ -561,7 +562,7 @@ export function DeliveryContent() {
             <div className="source-block">
               <p>
                 MMP-13 was selected as a disease-relevant enzyme because Mmp13-deficient mice show
-                reduced osteoarthritic cartilage erosion <sup className="article-citation">[28]</sup>. This finding motivated evaluation of
+                reduced osteoarthritic cartilage erosion <sup className="article-citation">[20]</sup>. This finding motivated evaluation of
                 MMP-13 responsiveness in the linker design.
               </p>
               <p>
@@ -629,7 +630,7 @@ export function DeliveryContent() {
               <p>
                 Green fluorescence was observed within the cell outlines and in perinuclear regions
                 of complex-treated cells (Figure 6.3.3A). No distinct corresponding green
-                fluorescence was observed in the control group (Figure 3.3.1B). <strong>These images showed cell-associated localization of the mitochondrial tracer. They did not establish the intracellular integrity or function of the delivered mitochondria.</strong>
+                fluorescence was observed in the control group (Figure 6.3.3B). <strong>These images showed cell-associated localization of the mitochondrial tracer. They did not establish the intracellular integrity or function of the delivered mitochondria.</strong>
               </p>
             </div>
             <figure className="figure-block">
@@ -640,61 +641,6 @@ export function DeliveryContent() {
                 <strong>Figure 6.3.3 |</strong> Fluorescence assessment of cellular delivery by liposome–mitochondria
                 complexes. (A) Cells treated with liposome–mitochondria complexes. (B) Control
                 cells.
-              </FigureCaption>
-            </figure>
-          </div>
-        </div>
-      </section>
-      <h5 id="wetlab-delivery-18" data-toc="include" data-toc-depth="4">
-        6.3.4 In Vitro Cytocompatibility of the Functional Peptide
-      </h5>
-      <section className="pair">
-        <div className="columns">
-          <div className="column experiment">
-            <div className="column-label">
-              Experiment
-            </div>
-            <div className="source-block">
-              <p>
-                Reduction of WST-8 produces a water-soluble formazan signal and has been established
-                as a colorimetric indicator of cell viability <sup className="article-citation">[29]</sup>. The assay was used here as a
-                preliminary measure of peptide cytocompatibility.
-              </p>
-              <p>
-                Cells were treated with 5 or 10 µM functional peptide for 24, 48, or 72 h. A CCK-8
-                assay was used to assess relative cell viability, with control, blank, and
-                peptide-treated groups included in the experimental design (Figure 6.3.4A).
-              </p>
-            </div>
-          </div>
-          <div className="column results">
-            <div className="column-label">
-              Results
-            </div>
-            <div className="source-block">
-              <p>
-                At 24 h, relative cell viability was approximately 70% in the 5 µM group and 55% in
-                the 10 µM group. At 48 h, the values were approximately 85%–90% in both groups and
-                were approximately 85%–95% at 72 h (Figure 6.3.4B). At both concentrations, the
-                measured values were lower at 24 h than at the later time points.
-              </p>
-              <p>
-                The relatively high cell viability observed at 48 and 72 h provides preliminary
-                evidence of limited cytotoxicity of the functional peptide at these later time
-                points under the tested conditions, <strong>supporting its potential cytocompatibility</strong>. However, the reduced
-                viability at 24 h indicates that early cellular responses require further evaluation
-                before conclusions about overall cytocompatibility can be drawn.
-              </p>
-            </div>
-            <figure className="figure-block">
-              <a className="figure-link" href="https://static.igem.wiki/teams/6102/wiki/images/result/04/delivery-v2-14-6c94c3ad.avif" target="_blank" rel="noopener noreferrer" aria-label="Open full-size image: Figure 6.3.4">
-                <img src="https://static.igem.wiki/teams/6102/wiki/images/result/04/delivery-v2-14-6c94c3ad.avif" alt="Figure 6.3.4." loading="lazy" decoding="async" />
-              </a>
-              <FigureCaption className="figure-caption">
-                <strong>Figure 6.3.4 |</strong> Preliminary assessment of functional peptide cytocompatibility using the
-                CCK-8 assay. (A) Photograph of the assay plate. Yellow, blue, and red boxes indicate
-                control, blank, and peptide-treated wells, respectively. (B) Relative cell viability
-                following treatment with 5 or 10 μM experimental peptide for 24, 48, and 72 h.
               </FigureCaption>
             </figure>
           </div>
