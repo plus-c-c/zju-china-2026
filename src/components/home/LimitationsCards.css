@@ -22,11 +22,12 @@
   z-index: 5;
   top: 56px;
   left: 50%;
-  width: 760px;
+  width: 1220px;
+  white-space: nowrap;
   margin: 0;
-  font-family: "Silkscreen", monospace;
+  font-family: "Seymour One", sans-serif;
   font-size: 31px;
-  font-weight: 700;
+  font-weight: 400;
   line-height: 41px;
   text-align: center;
   text-transform: uppercase;
@@ -174,7 +175,7 @@
 .limitations-card:nth-child(1)
   .limitations-layer--yellow
   .limitations-card-title {
-  left: 55px;
+  left: calc(50% - 122.5px);
   top: 78px;
   width: 245px;
   font-size: 48px;
@@ -183,7 +184,7 @@
 .limitations-card:nth-child(2)
   .limitations-layer--yellow
   .limitations-card-title {
-  left: 29px;
+  left: calc(50% - 147.5px);
   top: 57px;
   width: 295px;
 }
@@ -191,7 +192,7 @@
 .limitations-card:nth-child(3)
   .limitations-layer--yellow
   .limitations-card-title {
-  left: 19px;
+  left: calc(50% - 160px);
   top: 57px;
   width: 320px;
   font-size: 37px;
@@ -275,7 +276,8 @@
 
 .limitations-selp-title strong {
   height: 76px;
-  font-size: 62px;
+  font-size: 54px;
+  font-weight: 700;
   line-height: 76px;
 }
 
@@ -283,6 +285,7 @@
   color: #414b59;
   margin-top: -29px;
   font-size: 20px;
+  font-weight: 400;
   line-height: 76px;
 }
 
@@ -603,4 +606,104 @@
     opacity: 1 !important;
     transform: scale(var(--card-scale)) !important;
   }
+}
+
+/* Center each face's copy on its own card, independent of text width. */
+.limitations-page .limitations-card .limitations-layer .limitations-layer__face > .limitations-card-title,
+.limitations-page .limitations-card .limitations-layer .limitations-card-body {
+  left: 50%;
+  translate: -50% 0;
+}
+
+/* Keep the front artwork groups on the same center as their titles/buttons. */
+.limitations-art--yellow-scalability,
+.limitations-art--yellow-mechanical { left: calc(50% - 159px); }
+.limitations-art--yellow-dynamic { left: calc(50% - 121px); }
+/* Center the visible organism, compensating for its transparent padding. */
+.limitations-art--blue-organism { left: calc(50% - 124.75px); }
+.limitations-art--blue-selp { left: calc(50% - 163px); }
+
+/* The replacement occupies the original three illustrations' combined bounds. */
+.limitations-art--dynamic-back-group {
+  left: 34px;
+  top: 355px;
+  width: 302px;
+  height: 172px;
+}
+
+/* Keep the mechanical card copy clear of its centered patient illustration. */
+.limitations-page .limitations-card:nth-child(2) .limitations-layer--yellow .limitations-card-body {
+  top: 163px;
+  font-size: 22px;
+  line-height: 28px;
+}
+.limitations-art--patient {
+  left: calc(50% - 69px);
+  top: 380px;
+  height: 147px;
+}
+
+/* Center both dynamic title lines across the complete card face. */
+.limitations-page .limitations-card:nth-child(3) .limitations-layer--yellow .limitations-layer__face > .limitations-card-title {
+  left: 0;
+  width: 100%;
+  padding-inline: 12px;
+  box-sizing: border-box;
+  translate: none;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* Center the complete row as well as each face, including both flipped states. */
+.story-viewport .limitations-card-row {
+  left: 50%;
+  translate: -50% 0;
+}
+.limitations-page .limitations-layer--blue .limitations-card-body { text-align: center; }
+
+/* Grow about the visible card center instead of its upper-left corner. */
+@media (hover: hover) and (pointer: fine) {
+  .limitations-page[data-yellow-removed="false"] .limitations-layer--yellow:hover,
+  .limitations-page[data-yellow-removed="true"] .limitations-layer--blue:hover {
+    translate: -5.505px -8.415px;
+  }
+}
+
+/* Reference layout: copy wraps beside the organism and SELP chain; the
+   three module illustrations form a separate row under the third card. */
+.limitations-page .limitations-card .limitations-layer--blue .limitations-card-body {
+  left: 47px;
+  top: 240px;
+  width: 278px;
+  translate: none;
+  font-size: 24px;
+  line-height: 38px;
+  text-align: left;
+}
+.limitations-page .limitations-card:nth-child(3) .limitations-layer--blue .limitations-card-body {
+  left: 32px;
+  width: 303px;
+  text-align: center;
+}
+.limitations-art--blue-back-organism {
+  left: 135px;
+  top: 268px;
+  width: 344px;
+  height: 324px;
+  transform: rotate(12.51deg) skewX(1.23deg);
+}
+.limitations-art--blue-back-selp {
+  left: 128px;
+  top: 298px;
+  width: 260px;
+  height: 240px;
+  transform: rotate(-58.24deg);
+}
+.limitations-art--blue-back-gag { left: 15px; top: 421px; width: 101px; height: 86px; }
+.limitations-art--blue-back-liposome { left: 130px; top: 429px; width: 88px; height: 94px; }
+.limitations-art--blue-back-magnetic { left: 240px; top: 417px; width: 109px; height: 103px; }
+
+.limitations-page .limitations-card:nth-child(2) .limitations-layer--blue .limitations-card-body {
+  left: 45px;
+  width: 300px;
 }

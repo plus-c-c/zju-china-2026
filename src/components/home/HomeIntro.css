@@ -1,7 +1,7 @@
 .home-intro {
   --intro-brand-y: -44px;
   --intro-tagline-y: 40px;
-  --intro-next-y: 48px;
+  --intro-next-y: 88px;
   position: absolute;
   inset: 0;
   display: grid;
@@ -42,9 +42,9 @@
   align-items: center;
   justify-content: center;
   color: #1a1f52;
-  font-family: "Silkscreen", monospace;
+  font-family: "Seymour One", sans-serif;
   font-size: clamp(96px, 13.02vw, 250px);
-  font-weight: 700;
+  font-weight: 400;
   line-height: 1;
   letter-spacing: clamp(-7px, -0.365vw, -3px);
   white-space: nowrap;
@@ -65,11 +65,11 @@
   width: min(1548px, 88vw);
   margin: clamp(14px, 1.8vh, 28px) 0 0;
   color: #000;
-  font-family: "Silkscreen", monospace;
+  font-family: "Seymour One", sans-serif;
   font-size: clamp(15px, 2.083vw, 40px);
-  font-weight: 700;
+  font-weight: 400;
   line-height: 1.5;
-  letter-spacing: clamp(-7px, -0.365vw, -1.5px);
+  letter-spacing: 0;
   text-align: center;
   opacity: 0;
   transform: translateY(calc(var(--intro-tagline-y) + 22px));
@@ -99,7 +99,7 @@
 .home-intro--ready .home-intro__brand {
   opacity: 1;
   transform: translateY(var(--intro-brand-y)) scale(1);
-  animation: home-intro-brand-in 1150ms cubic-bezier(0.22, 1, 0.36, 1) 120ms
+  animation: home-intro-brand-in 1150ms cubic-bezier(0.22, 1, 0.36, 1) 0ms
     backwards;
 }
 
@@ -113,7 +113,7 @@
 .home-intro--ready .home-intro__next {
   opacity: 1;
   transform: translateY(var(--intro-next-y));
-  animation: home-intro-copy-in 1050ms cubic-bezier(0.22, 1, 0.36, 1) 1350ms
+  animation: home-intro-copy-in 1050ms cubic-bezier(0.22, 1, 0.36, 1) 1150ms
     backwards;
 }
 
@@ -159,9 +159,13 @@
   outline-offset: 5px;
 }
 
-html.home-intro-open,
+/* Input is consumed while the intro plays. Retain the same scroll container
+   and gutter when the animation hands over to the first page. */
+html.home-intro-open {
+  overflow-y: scroll !important;
+}
 body.home-intro-open {
-  overflow: hidden !important;
+  overflow: visible !important;
 }
 
 @media (max-width: 640px) {
@@ -182,3 +186,40 @@ body.home-intro-open {
     opacity: 1;
   }
 }
+
+.home-intro__initial { color: #e6ad20; }
+
+.home-intro__next { position: relative; overflow: visible; }
+.home-intro__bird-anchor {
+  position: absolute;
+  left: -4px;
+  bottom: calc(100% - 2px);
+  width: 64px;
+  height: 0;
+  pointer-events: none;
+}
+
+/* Keep the completed joint scene behind the existing first-page content. */
+.home-intro__animation {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  pointer-events: none;
+}
+
+/* Reveal over the stationary final bone frame, with no layout or scale change. */
+.home-intro__brand,
+.home-intro--ready .home-intro__brand {
+  transform: translateY(var(--intro-brand-y));
+}
+.home-intro--ready .home-intro__brand,
+.home-intro--ready .home-intro__tagline,
+.home-intro--ready .home-intro__next {
+  animation-name: home-intro-fade-in;
+  animation-duration: 1100ms;
+  animation-delay: 0ms;
+  animation-timing-function: ease-out;
+}
+@keyframes home-intro-fade-in { from { opacity: 0; } to { opacity: 1; } }
