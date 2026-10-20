@@ -173,6 +173,11 @@ export function AdministrationUnit() {
         administration module, including the injection assembly, endoscope
         module, and blue-light curing module.
       </p>
+      <p>
+        <strong>
+          Table 2 | Components and Costs of the Administration Module
+        </strong>
+      </p>
       <div className="table-scroll">
         <table aria-label="Administration module bill of materials">
           <thead>

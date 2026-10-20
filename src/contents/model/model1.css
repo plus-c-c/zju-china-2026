@@ -331,6 +331,12 @@
   border-radius: 10px;
 }
 
+/* Keep multi-panel network results readable within the scrolling content. */
+.m1-slide__content--readable-figures .m1-figure img {
+  width: 100%;
+  max-height: none;
+}
+
 /* Validation remains part of Step 7 and reads as a result card, not as a
    reference block: no landing bird and no watermark behind the numbers. */
 .m1-validation {

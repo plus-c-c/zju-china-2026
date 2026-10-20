@@ -3,6 +3,10 @@ import { MathFormula } from "../components/MathFormula";
 import { References } from "../components/References";
 import "./entrepreneurship.css";
 
+/** Uploaded Entrepreneurship figures. */
+const ENTRE_FIG =
+  "https://static.igem.wiki/teams/6102/wiki/images/new-upload";
+
 type CardLevel = "primary" | "secondary";
 
 /** Expandable card; secondary cards can be nested inside a primary card. */
@@ -40,10 +44,6 @@ export function ExtendCard({
     </div>
   );
 }
-
-/** Figures live on the team static host (see static/README.md). */
-const ENTRE_FIG =
-  "https://static.igem.wiki/teams/6102/wiki/images/entrepreneurship";
 
 /* Market screening: size × 2, potential × 1, accessibility × 4. */
 const SPA_ROWS = [
@@ -1395,7 +1395,7 @@ export function Entrepreneurship() {
           </p>
           <figure className="figure d-block my-4 text-center">
             <img
-              src={`${ENTRE_FIG}/roadmap-2026-2042.png`}
+              src={`${ENTRE_FIG}/roadmap-2026-2042.avif`}
               alt="Proposed NEST development roadmap from 2026 to 2042, showing six phases and parallel technical, regulatory, IP, funding and commercial workstreams."
               className="figure-img img-fluid rounded"
               style={{ width: "100%" }}
@@ -1577,7 +1577,7 @@ export function Entrepreneurship() {
           </p>
           <figure className="figure d-block my-4 text-center">
             <img
-              src={`${ENTRE_FIG}/sustainable-business-canvas.png`}
+              src={`${ENTRE_FIG}/sustainable-business-canvas.avif`}
               alt="NEST sustainable business model canvas with key partners, activities, resources, value propositions, customer relationships, channels, segments, cost structure and revenue streams."
               className="figure-img img-fluid rounded"
               style={{ width: "100%" }}
@@ -2016,7 +2016,7 @@ export function Entrepreneurship() {
           </ul>
           <figure className="figure d-block my-4 text-center">
             <img
-              src={`${ENTRE_FIG}/dandelion-competition-2026.jpg`}
+              src={`${ENTRE_FIG}/dandelion-competition-2026.avif`}
               alt="Three team members holding a certificate at the Zhejiang University Dandelion Undergraduate Innovation Competition."
               className="figure-img img-fluid rounded"
               style={{ width: "100%" }}

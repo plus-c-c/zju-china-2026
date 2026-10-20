@@ -364,6 +364,9 @@ export function FormulationUnit() {
         preparation unit, including the three-channel dispensing subsystem,
         mixing and storage subsystem, and electronic control system.
       </p>
+      <p>
+        <strong>Table 1 | Components and Costs of the Preparation Unit</strong>
+      </p>
       <div className="table-scroll">
         <table aria-label="Preparation unit bill of materials">
           <thead>

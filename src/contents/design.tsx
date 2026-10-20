@@ -861,7 +861,7 @@ export function Design() {
                 </p>
                 <figure className="figure d-block my-4 text-center">
                   <FigureImage
-                    src="https://static.igem.wiki/teams/6102/wiki/images/design/02/02.avif"
+                    src="https://static.igem.wiki/teams/6102/wiki/images/design/02/002.avif"
                     alt="Magnetically guided orientation and visible-light gelation of the SELP scaffold."
                     className="figure-img img-fluid rounded"
                     style={{ width: "100%" }}
@@ -949,7 +949,7 @@ export function Design() {
                 </p>
                 <figure className="figure d-block my-4 text-center">
                   <FigureImage
-                    src="https://static.igem.wiki/teams/6102/wiki/images/design/02/04.avif"
+                    src="https://static.igem.wiki/teams/6102/wiki/images/design/02/004.avif"
                     alt="Magneto-mechanical coupling model of the magnetic nanoparticle-containing hydrogel."
                     className="figure-img img-fluid rounded"
                     style={{ width: "100%" }}
