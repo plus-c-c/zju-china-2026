@@ -1186,7 +1186,7 @@
    The classes are only applied when the layout switch is set to "legacy".
    -------------------------------------------------------------------------- */
 .dbtl--legacy {
-  --dbtl-stack-h: clamp(380px, calc(90vh - 10.5rem), 700px);
+  --dbtl-stack-h: clamp(356px, calc(90vh - 12rem), 676px);
   grid-template-columns: auto minmax(0, 1fr);
   grid-template-rows: none;
   grid-template-areas: none;
@@ -1282,10 +1282,10 @@
   --dbtl-ring-size: clamp(340px, 36vw, 520px);
   --dbtl-gap: clamp(1rem, 1.5vw, 1.5rem);
   /* Leave room for the larger double ring at narrower desktop widths. */
-  --project-copy-width: min(
-    850px,
-    calc(100% - var(--dbtl-ring-size) - var(--project-copy-gap))
+  --project-copy-width: calc(
+    100% - var(--dbtl-ring-size) - var(--project-copy-gap)
   );
+  --dbtl-bleed: max(0px, (100vw - 100%) / 2 - 2rem);
   --project-copy-gap: 8px;
 }
 
@@ -1332,11 +1332,11 @@
 
   .dbtl--legacy .dbtl-panel {
     flex: 0 0 auto;
-    height: clamp(260px, 54vh, 480px);
+    height: clamp(236px, calc(54vh - 24px), 456px);
   }
 
   .project-design-stepper.dbtl--legacy .dbtl-panel {
-    height: clamp(210px, 34vh, 330px);
+    height: clamp(186px, calc(34vh - 24px), 306px);
   }
 
   .dbtl--legacy .dbtl-ring-wrap {
@@ -1440,6 +1440,10 @@ body:has(.nest-navbar-hidden) .engineering-article {
 @media (min-width: 1201px) {
   .engineering-article .dbtl--legacy:not(.project-design-stepper) {
     --dbtl-bleed: calc(var(--dbtl-ring-size) + var(--dbtl-gap));
+  }
+  .engineering-article .project-design-stepper.dbtl--legacy {
+    /* Share the other modules' outer left edge, independently of ring size. */
+    --dbtl-bleed: calc(clamp(230px, 19vw, 310px) + 2rem);
   }
 }
 
