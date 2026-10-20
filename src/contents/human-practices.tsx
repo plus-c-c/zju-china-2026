@@ -1531,6 +1531,15 @@ const TIMELINE_STAGES = [
   "Market access",
 ];
 
+/* Deep links for the stage headings under "Stakeholder Interviews". */
+const TIMELINE_STAGE_IDS: Record<string, string> = {
+  Patient: "ihp-engagement-patient",
+  "R&D": "ihp-engagement-rd",
+  Treatment: "ihp-engagement-treatment",
+  Manufacturing: "ihp-engagement-manufacturing",
+  "Market access": "ihp-engagement-market-access",
+};
+
 function EngagementBlock() {
   return (
     <>
@@ -1589,7 +1598,14 @@ function EngagementBlock() {
         if (!items.length) return null;
         return (
           <section key={stage} className="ihp-timeline-stage">
-            <h5 className="ihp-timeline-stage__title">{stage}</h5>
+            <h4
+              id={TIMELINE_STAGE_IDS[stage]}
+              className="ihp-timeline-stage__title"
+              data-toc="include"
+              data-toc-depth="3"
+            >
+              {stage}
+            </h4>
             <Timeline items={items.map((item) => ({ ...item, date: "" }))} />
           </section>
         );

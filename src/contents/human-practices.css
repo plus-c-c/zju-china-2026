@@ -370,11 +370,15 @@ html[data-ihp-swipe="up"] .nest-navbar {
 }
 
 .ihp-timeline-stage__title {
-  margin: 0 0 0.4rem;
-  padding-bottom: 0.45rem;
+  margin: 1.6rem 0 0.6rem;
+  padding-bottom: 0.5rem;
   border-bottom: 1px solid #dbe4f2;
   color: #223c81;
-  font-size: 1.18rem;
+  font-size: 1.4rem;
   font-weight: 700;
   letter-spacing: 0.01em;
+}
+
+.ihp-timeline-stage:first-of-type .ihp-timeline-stage__title {
+  margin-top: 0.4rem;
 }
