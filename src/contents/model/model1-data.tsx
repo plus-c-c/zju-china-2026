@@ -197,15 +197,6 @@ export const m1Steps: M1Step[] = [
         parts: [
           {
             t: "text",
-            v: ".",
-          },
-        ],
-      },
-      {
-        t: "p",
-        parts: [
-          {
-            t: "text",
             v: "Inspection of the connectivity revealed an issue requiring improvement: local chain clusters could become connected, and the network could exhibit periodic wrapping, while some chains remained outside the overall crosslinked network. We therefore prioritized connections between different chain clusters in subsequent steps. When suitable candidate sites were unavailable, the clusters were guided closer together and the connectivity checks were repeated.",
           },
         ],
