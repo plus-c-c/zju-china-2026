@@ -1393,7 +1393,7 @@
 .engineering-article {
   --eng-site-nav-offset: 82px;
   --eng-primary-nav-height: 72px;
-  --eng-nav-gap: 24px;
+  --eng-nav-gap: 10px;
 }
 
 body:has(.nest-navbar-hidden) .engineering-article {
@@ -1404,7 +1404,7 @@ body:has(.nest-navbar-hidden) .engineering-article {
   position: sticky;
   top: var(--eng-site-nav-offset);
   z-index: 20;
-  padding-block: 8px;
+  padding-block: 4px;
   background: #f5faff;
   transition: top 300ms ease;
 }
@@ -1423,6 +1423,16 @@ body:has(.nest-navbar-hidden) .engineering-article {
 .engineering-article .eng-aggregate .eng-subnav {
   margin-top: 0;
   margin-bottom: var(--eng-nav-gap);
+}
+
+/* Avoid counting the nested Project Design tab row's margins twice. */
+.engineering-article .dbtl-subnav--legacy {
+  margin-bottom: 0.25rem;
+}
+
+.engineering-article .dbtl-subnav--legacy > .dbtl-subnav {
+  margin: 0;
+  row-gap: 0.25rem;
 }
 
 /* The reading card uses the same article edges as Experiments. The ring
