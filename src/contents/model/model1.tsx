@@ -173,7 +173,7 @@ function Blocks({
                 alt={block.alt ?? ""}
                 loading="lazy"
                 decoding="async"
-                style={block.width ? { maxWidth: block.width } : undefined}
+                style={block.width ? { maxWidth: `min(100%, ${block.width}px)` } : undefined}
               />
             </figure>
           );
@@ -255,7 +255,7 @@ function SlideInner({
   useLayoutEffect(() => {
     const content =
       innerRef.current?.querySelector<HTMLElement>(".m1-slide__content");
-    if (!content) return;
+    if (!content || step.num === 2 || step.num === 3) return;
     const fit = () => {
       const figures = Array.from(
         content.querySelectorAll<HTMLElement>(".m1-figure"),
@@ -316,7 +316,7 @@ function SlideInner({
       <div
         className={`m1-slide__content${
           chain ? " m1-slide__content--chain" : ""
-        }`}
+        }${step.num === 2 || step.num === 3 ? " m1-slide__content--readable-figures" : ""}`}
         ref={(el) => {
           if (el && initialScroll) el.scrollTop = initialScroll;
           contentRef?.(el);
