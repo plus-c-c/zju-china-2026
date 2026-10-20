@@ -28,6 +28,8 @@ export type TimelineItem = {
   imageScale?: number;
   /** Optional sections rendered in the "Read more" dialog. */
   details?: TimelineDetail[];
+  /** Optional grouping label (used by pages that split the timeline). */
+  stage?: string;
 };
 
 /**
@@ -42,6 +44,18 @@ export type TimelineItem = {
     progress line stops at the dot's resting edge so it can never show
     through a photo that is still fading in. */
 const DOT_REST_SCALE = 0.72;
+
+/** Initials for entries without a portrait, e.g. "Yue Wang, Yu Xu …" → "YW". */
+function initials(title: string) {
+  const name = title.split(" — ")[0];
+  return name
+    .replace(/^(Dr\.|Prof\.)\s+/, "")
+    .split(/[\s,]+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((word) => word[0].toUpperCase())
+    .join("");
+}
 
 export function Timeline({ items }: { items: TimelineItem[] }) {
   const listRef = useRef<HTMLDivElement>(null);
@@ -180,7 +194,9 @@ export function Timeline({ items }: { items: TimelineItem[] }) {
                     decoding="async"
                   />
                 ) : (
-                  <span className="timeline-dot-fallback" aria-hidden="true" />
+                  <span className="timeline-dot-fallback" aria-hidden="true">
+                    {initials(item.title)}
+                  </span>
                 )}
               </div>
               <div className="timeline-title-desktop">{item.title}</div>

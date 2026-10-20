@@ -146,3 +146,38 @@
     transition: none;
   }
 }
+
+/* Privacy note at the bottom-right of the expanded map. */
+.chain .chain__privacy-note,
+.page-article .chain .chain__privacy-note {
+  margin: 10px 4px 2px;
+  color: #93a3bb;
+  font-size: 0.76rem;
+  line-height: 1.5;
+  text-align: right;
+}
+
+/* Avatars inside the dropdown cards. The cards themselves keep their size and
+   styling and only grow taller, so the row keeps its original format. */
+.chain__mini-card img,
+.chain__mini-initials {
+  /* Two avatars per card, each half the card's width, so the row fills the
+     card without a gap on the right. */
+  width: calc(50% - 2px);
+  height: auto;
+  aspect-ratio: 1;
+  margin: 1px;
+  border-radius: 50%;
+  background: #dce9ff;
+  object-fit: cover;
+  object-position: 50% 30%;
+  vertical-align: middle;
+}
+
+.chain__mini-initials {
+  display: inline-grid;
+  place-items: center;
+  color: #365dc9;
+  font-size: 0.56rem;
+  font-weight: 700;
+}

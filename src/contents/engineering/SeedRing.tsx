@@ -1,6 +1,11 @@
-import seedRingSvg from "./assets/seed-ring.svg?raw";
+import seedRingMirrored from "./assets/seed-ring.svg?raw";
+import seedRingOriginal from "./assets/seed-ring-original.svg?raw";
 import dbtlRingSvg from "./assets/dbtl-ring.svg?raw";
+import { SEED_RING_MIRRORED } from "./ringArtwork";
 import type { SeedPhase } from "./seed";
+
+/* Pick the ring artwork version (see ringArtwork.ts). */
+const seedRingSvg = SEED_RING_MIRRORED ? seedRingMirrored : seedRingOriginal;
 
 interface SeedRingProps {
   /** Currently active SEED phase; null when an info step is shown. */

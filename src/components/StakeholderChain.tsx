@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useState, type ReactNode } from "react";
 import "./StakeholderChain.css";
 
 /**
@@ -6,16 +6,46 @@ import "./StakeholderChain.css";
  * (or tapping / focusing) any stage drops down one full-width card holding the
  * stage content areas (text to be filled in later).
  */
-const stages = [
-  { id: "patient", label: "Patient" },
-  { id: "rd", label: "R&D" },
-  { id: "treatment", label: "Treatment" },
-  { id: "manufacturing", label: "Manufacturing" },
-  { id: "market", label: "Market Authorization & Access" },
-  { id: "rehabilitation", label: "Rehabilitation" },
+export type ChainPerson = {
+  name: string;
+  /** Optional portrait; falls back to initials. */
+  image?: string;
+};
+
+export type ChainStage = {
+  id: string;
+  label: string;
+  people: ChainPerson[];
+};
+
+const defaultStages: ChainStage[] = [
+  { id: "patient", label: "Patient", people: [] },
+  { id: "rd", label: "R&D", people: [] },
+  { id: "treatment", label: "Treatment", people: [] },
+  { id: "manufacturing", label: "Manufacturing", people: [] },
+  {
+    id: "market",
+    label: "Market Authorization & Access",
+    people: [],
+  },
+  { id: "rehabilitation", label: "Rehabilitation", people: [] },
 ];
 
-export function StakeholderChain() {
+const initials = (name: string) =>
+  name
+    .replace(/^(Dr\.|Prof\.)\s+/, "")
+    .split(/\s+/)
+    .slice(0, 2)
+    .map((word) => word[0])
+    .join("");
+
+export function StakeholderChain({
+  stages = defaultStages,
+  note,
+}: {
+  stages?: ChainStage[];
+  note?: ReactNode;
+}) {
   const [active, setActive] = useState<string | null>(null);
 
   // Touch / keyboard support: tapping outside or pressing Esc closes the drawer.
@@ -65,10 +95,31 @@ export function StakeholderChain() {
           <div className="chain__long-card">
             <div className="chain__mini-row">
               {stages.map((stage) => (
-                <div className="chain__mini-card" key={stage.id} />
+                <div className="chain__mini-card" key={stage.id}>
+                  {stage.people.map((person) =>
+                    person.image ? (
+                      <img
+                        key={person.name}
+                        src={person.image}
+                        alt={person.name}
+                        title={person.name}
+                        loading="lazy"
+                      />
+                    ) : (
+                      <span
+                        key={person.name}
+                        className="chain__mini-initials"
+                        title={person.name}
+                      >
+                        {initials(person.name)}
+                      </span>
+                    ),
+                  )}
+                </div>
               ))}
             </div>
           </div>
+          {note && <p className="chain__privacy-note">{note}</p>}
         </div>
       </div>
     </div>

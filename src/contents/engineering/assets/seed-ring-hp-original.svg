@@ -1,0 +1,83 @@
+<!-- SEED ring — the Human Practices framework artwork: the SEED cycle as the
+     outer ring (Spark a Question · Explore & Analyze · Engineering &
+     Implementation · Dialogue & Feedback) with the DBTL cycle nested inside.
+     Ouroboros stacking (like the DBTL artwork): the segments are drawn
+     engineering → explore → spark → dialogue, so each segment overlaps the
+     one before it, and the Engineering cap circle is drawn last to close the
+     chain (it sits above the Dialogue arc while the Explore cap bites the
+     other end of E&I). The circle is slightly larger than the round caps it
+     hides, so its edge never cuts across the E&I band itself.
+     The labels sit in their own top layer (never covered by any segment or
+     highlight) and are shifted clockwise by 9.33° (the cap radius 63.5 over
+     the ring radius 390), which is how far each segment's visible centre
+     moves under the stacking — so every label stays on the visual centre of
+     its segment. -->
+<svg width="1040" height="1040" viewBox="0 0 1040 1040" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g class="seed-base">
+<path data-seg="engineering" d="M244.23 795.77A390 390 0 0 0 795.77 795.77" stroke-width="127" stroke-linecap="round" stroke="#477fae"/>
+<path data-seg="explore" d="M795.77 244.23A390 390 0 0 1 795.77 795.77" stroke-width="127" stroke-linecap="round" stroke="#3979ab"/>
+<path data-seg="spark" d="M244.23 244.23A390 390 0 0 1 795.77 244.23" stroke-width="127" stroke-linecap="round" stroke="#4e8dbb"/>
+<path data-seg="dialogue" d="M244.23 795.77A390 390 0 0 1 244.23 244.23" stroke-width="127" stroke-linecap="round" stroke="#5c9dc7"/>
+<circle data-seg="engineering" cx="244.23" cy="795.77" r="65" fill="#477fae"/>
+</g>
+<g class="seed-hi seed-hi-engineering">
+<g mask="url(#seed-mask-engineering)">
+<path data-seg="engineering" d="M244.23 795.77A390 390 0 0 0 795.77 795.77" stroke-width="127" stroke-linecap="round" stroke="#004688"/>
+</g>
+<circle data-seg="engineering" cx="244.23" cy="795.77" r="65" fill="#477fae"/>
+</g>
+<g class="seed-hi seed-hi-explore">
+<g mask="url(#seed-mask-explore)">
+<path data-seg="explore" d="M795.77 244.23A390 390 0 0 1 795.77 795.77" stroke-width="127" stroke-linecap="round" stroke="#003d84"/>
+</g>
+</g>
+<g class="seed-hi seed-hi-spark">
+<g mask="url(#seed-mask-spark)">
+<path data-seg="spark" d="M244.23 244.23A390 390 0 0 1 795.77 244.23" stroke-width="127" stroke-linecap="round" stroke="#005b9c"/>
+</g>
+</g>
+<g class="seed-hi seed-hi-dialogue">
+<g mask="url(#seed-mask-dialogue)">
+<path data-seg="dialogue" d="M244.23 795.77A390 390 0 0 1 244.23 244.23" stroke-width="127" stroke-linecap="round" stroke="#1473ad"/>
+</g>
+</g>
+<g class="seed-texts">
+<text data-seg="spark" font-size="46" font-weight="700" letter-spacing="1" fill="#ffffff">
+<textPath href="#seed-text-spark" startOffset="50%" text-anchor="middle">Spark a Question</textPath>
+</text>
+<text data-seg="explore" font-size="46" font-weight="700" letter-spacing="1" fill="#ffffff">
+<textPath href="#seed-text-explore" startOffset="50%" text-anchor="middle">Explore &amp; Analyze</textPath>
+</text>
+<text data-seg="engineering" font-size="36" font-weight="700" letter-spacing="1" fill="#ffffff">
+<textPath href="#seed-text-engineering" startOffset="50%" text-anchor="middle">Engineering &amp; Implementation</textPath>
+</text>
+<text data-seg="dialogue" font-size="44" font-weight="700" letter-spacing="1" fill="#ffffff">
+<textPath href="#seed-text-dialogue" startOffset="50%" text-anchor="middle">Dialogue &amp; Feedback</textPath>
+</text>
+</g>
+<defs>
+<path id="seed-text-spark" d="M302 216.1A374 374 0 0 1 823.9 302"/>
+<path id="seed-text-explore" d="M823.9 302A374 374 0 0 1 738 823.9"/>
+<path id="seed-text-engineering" d="M738.04 823.86A374 374 0 0 1 216.07 738.04"/>
+<path id="seed-text-dialogue" d="M216.1 738A374 374 0 0 1 302 216.1"/>
+<mask id="seed-mask-spark" maskUnits="userSpaceOnUse" x="0" y="0" width="1040" height="1040">
+<rect x="0" y="0" width="1040" height="1040" fill="white"/>
+<path d="M244.23 795.77A390 390 0 0 1 244.23 244.23" stroke="#000" stroke-width="127" stroke-linecap="round" fill="none"/>
+</mask>
+<mask id="seed-mask-explore" maskUnits="userSpaceOnUse" x="0" y="0" width="1040" height="1040">
+<rect x="0" y="0" width="1040" height="1040" fill="white"/>
+<path d="M244.23 244.23A390 390 0 0 1 795.77 244.23" stroke="#000" stroke-width="127" stroke-linecap="round" fill="none"/>
+<path d="M244.23 795.77A390 390 0 0 1 244.23 244.23" stroke="#000" stroke-width="127" stroke-linecap="round" fill="none"/>
+</mask>
+<mask id="seed-mask-engineering" maskUnits="userSpaceOnUse" x="0" y="0" width="1040" height="1040">
+<rect x="0" y="0" width="1040" height="1040" fill="white"/>
+<path d="M795.77 244.23A390 390 0 0 1 795.77 795.77" stroke="#000" stroke-width="127" stroke-linecap="round" fill="none"/>
+<path d="M244.23 244.23A390 390 0 0 1 795.77 244.23" stroke="#000" stroke-width="127" stroke-linecap="round" fill="none"/>
+<path d="M244.23 795.77A390 390 0 0 1 244.23 244.23" stroke="#000" stroke-width="127" stroke-linecap="round" fill="none"/>
+</mask>
+<mask id="seed-mask-dialogue" maskUnits="userSpaceOnUse" x="0" y="0" width="1040" height="1040">
+<rect x="0" y="0" width="1040" height="1040" fill="white"/>
+<circle cx="244.23" cy="795.77" r="66" fill="black"/>
+</mask>
+</defs>
+</svg>

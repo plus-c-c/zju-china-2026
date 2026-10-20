@@ -8,10 +8,11 @@
      other end of E&I). The circle is slightly larger than the round caps it
      hides, so its edge never cuts across the E&I band itself.
      The labels sit in their own top layer (never covered by any segment or
-     highlight) and are shifted clockwise by 9.33° (the cap radius 63.5 over
-     the ring radius 390), which is how far each segment's visible centre
-     moves under the stacking — so every label stays on the visual centre of
-     its segment. -->
+     highlight) and are shifted anti-clockwise by 9.33° (the cap radius 63.5
+     over the ring radius 390), which is how far each segment's visible centre
+     moves under the mirrored stacking — so every label stays on the visual
+     centre of its segment. (This file is the mirrored version; see
+     ringArtwork.ts to switch back to the original layout.) -->
 <svg width="1040" height="1040" viewBox="0 0 1040 1040" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g class="seed-base">
 <path data-seg="engineering" d="M244.23 795.77A390 390 0 0 0 795.77 795.77" stroke-width="127" stroke-linecap="round" stroke="#477fae"/>

@@ -142,7 +142,9 @@ html[data-ihp-swipe="up"]::view-transition-new(root) {
    colour) and stretches a little, so the current page is unmistakable after
    a click or after scrolling into the Toolbox. */
 .ihp-page-nav .eng-module-button.active {
-  padding-inline: 2.6rem;
+  padding-inline: 3.6rem;
+  box-shadow: 0 8px 22px rgb(54 93 201 / 38%);
+  transform: translateY(-1px);
 }
 
 /* Sub-panel switch: the outgoing page is cloned into a ghost layer, so both
@@ -200,10 +202,19 @@ html[data-ihp-swipe="up"]::view-transition-new(root) {
 }
 
 .ihp-page-nav--selected .eng-module-button {
-  flex: 1 1 auto;
+  /* Frames hug their label instead of filling the row, so each pill stays
+     narrow; the selected one grows much wider so the current page is
+     unmistakable. */
+  flex: 0 0 auto;
+  padding-inline: 1.5rem;
   /* The labels never wrap while the widths animate, so the row's height is
      pinned to the single-line button height throughout. */
   white-space: nowrap;
+  transition:
+    padding 0.3s ease,
+    background-color 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
 }
 
 /* The site navigation bar is fixed chrome: keep it out of the page-transition
@@ -287,4 +298,83 @@ html[data-ihp-swipe="up"] .nest-navbar {
   .ihp-section-viewport .chain {
     margin-inline: 0;
   }
+}
+
+/* NEST module switcher: borderless text tabs with letter badges; the scroll
+   spy marks the module in view with a bottom underline. */
+.ihp-nest-tabs {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 6px 14px;
+  margin: 6px 0 22px;
+}
+
+.ihp-nest-tab {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 2px;
+  height: 100%;
+  padding: 2px 2px 12px;
+  border: 0;
+  background: none;
+  color: #6b7c99;
+  text-align: center;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+/* Hand-drawn NEST letter from the Figma wordmark, above the module title. */
+.ihp-nest-tab__letter {
+  display: block;
+  flex: none;
+  width: auto;
+  height: 6.6rem;
+  opacity: 0.4;
+  transition: opacity 0.2s ease;
+}
+
+.ihp-nest-tab:hover .ihp-nest-tab__letter {
+  opacity: 0.75;
+}
+
+.ihp-nest-tab__label {
+  font-size: 0.86rem;
+  font-weight: 600;
+  line-height: 1.25;
+  text-align: center;
+}
+
+.ihp-nest-tab:hover {
+  color: #365dc9;
+}
+
+@media (max-width: 992px) {
+  .ihp-nest-tabs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 4px 16px;
+  }
+
+  .ihp-nest-tab__label {
+    white-space: normal;
+  }
+}
+
+/* Stakeholder interviews: each stage of the product path gets its own
+   heading and timeline run. */
+.ihp-timeline-stage {
+  margin-top: 1.8rem;
+}
+
+.ihp-timeline-stage__title {
+  margin: 0 0 0.4rem;
+  padding-bottom: 0.45rem;
+  border-bottom: 1px solid #dbe4f2;
+  color: #223c81;
+  font-size: 1.18rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
 }
