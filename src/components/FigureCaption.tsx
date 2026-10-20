@@ -125,3 +125,30 @@ export function FigureCaption({
     </Tag>
   );
 }
+
+/** Tables share figure-caption typography and preserve their existing wording. */
+export function TableCaption({
+  as: Tag = "p",
+  children,
+}: {
+  as?: "p" | "caption";
+  children: ReactNode;
+}) {
+  const content = withoutBold(children);
+  const text = textOf(content);
+  const label = /^\s*Table\s+([\d]+(?:\.[\d]+)*)\s*[.|:]?\s*/.exec(text);
+  if (!label) return <Tag className="table-caption">{children}</Tag>;
+  const [, body] = splitAt(content, label[0].length);
+  const [lead, rest] = splitAt(
+    body,
+    leadEnd(text, label[0].length) - label[0].length,
+  );
+  return (
+    <Tag className="table-caption">
+      <strong className="figure-caption__lead">
+        Table {label[1]} | {lead}
+      </strong>
+      {rest}
+    </Tag>
+  );
+}

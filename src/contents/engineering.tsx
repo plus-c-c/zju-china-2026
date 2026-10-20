@@ -7,6 +7,7 @@ import {
   STEP_DVH,
   type Step,
 } from "./engineering/steps";
+import { STEPPER_STEP_PX } from "../components/stepperWheel";
 import { DBTL_TAB_SCROLL_NUDGE } from "./engineering/ringStage";
 import type { DbtlModule } from "./engineering/dbtl";
 import { SeedStepper } from "./engineering/SeedStepper";
@@ -16,6 +17,8 @@ import {
   type SeedStep,
 } from "./engineering/seed";
 import { EngineeringReferences } from "./engineering/EngineeringReferences";
+import { resolveEngineeringLayout } from "./engineering/layout";
+import { TocPanel, type TocEntry } from "../components/toc";
 import {
   PROJECT_DESIGN_STEP_COUNT,
   ProjectDesignStepper,
@@ -130,9 +133,12 @@ const SECTIONS = ALL_SECTIONS.filter(
 );
 
 export function Engineering() {
+  const layout = resolveEngineeringLayout();
+  const legacyLayout = layout === "legacy";
   const [activeKey, setActiveKey] = useState("project-design");
   const [groupIndex, setGroupIndex] = useState(0);
   const [tabIndex, setTabIndex] = useState(0);
+  const [activeCycle, setActiveCycle] = useState(0);
   const prevNavRef = useRef({ activeKey, groupIndex, tabIndex });
 
   const activeSection =
@@ -151,11 +157,13 @@ export function Engineering() {
     setActiveKey(key);
     setGroupIndex(0);
     setTabIndex(0);
+    setActiveCycle(0);
   };
 
   const selectGroup = (index: number) => {
     setGroupIndex(index);
     setTabIndex(0);
+    setActiveCycle(0);
   };
 
   // Level-3 tabs: Introduction (group lead) → sub-modules → Conclusion
@@ -291,6 +299,9 @@ export function Engineering() {
   const moduleForStep = (step: Step | SeedStep) =>
     metaByKey.get(step.key)?.module;
   const handleStepChange = (step: Step | SeedStep) => {
+    if (step.kind === "phase" && step.cycleIndex !== undefined) {
+      setActiveCycle(step.cycleIndex);
+    }
     const tab = metaByKey.get(step.key)?.tab;
     if (tab === undefined || tab === tabIndexRef.current) return;
     autoTabRef.current = true;
@@ -365,21 +376,46 @@ export function Engineering() {
     projectDesignActive,
   ]);
 
-  const tabNav = tabs.map((tab, index) => (
-    <button
-      key={tab.kind === "part" ? tab.part.label : tab.kind}
-      type="button"
-      className={`dbtl-subnav-button ${tabIndex === index ? "active" : ""}`}
-      aria-pressed={tabIndex === index}
-      onClick={() => setTabIndex(index)}
-    >
-      {tab.kind === "intro"
-        ? "Introduction"
-        : tab.kind === "conclusion"
-          ? "Conclusion"
-          : tab.part.label}
-    </button>
-  ));
+  const scrollToSequenceIndex = (index: number) => {
+    if (index < 0) return;
+    const runway = document.querySelector(".eng-runway") as HTMLElement | null;
+    if (!runway || stepCount <= 1) return;
+    const total = runway.offsetHeight - window.innerHeight;
+    const top = runway.getBoundingClientRect().top + window.scrollY;
+    window.scrollTo({
+      top: top + (total * index) / Math.max(1, scrollSpan) + 2,
+      behavior: "instant",
+    });
+  };
+
+  const selectTab = (index: number) => {
+    const target = startIndexForTab(index);
+    if (target < 0) return;
+    autoTabRef.current = true;
+    setTabIndex(index);
+    setActiveCycle(0);
+    requestAnimationFrame(() => {
+      autoTabRef.current = false;
+      scrollToSequenceIndex(target);
+    });
+  };
+
+  const selectCycle = (tab: number, cycleIndex: number) => {
+    const target = sequence.findIndex(
+      (entry) =>
+        entry.tab === tab &&
+        entry.step.kind === "phase" &&
+        entry.step.cycleIndex === cycleIndex,
+    );
+    if (target < 0) return;
+    autoTabRef.current = true;
+    setTabIndex(tab);
+    setActiveCycle(cycleIndex);
+    requestAnimationFrame(() => {
+      autoTabRef.current = false;
+      scrollToSequenceIndex(target);
+    });
+  };
 
   const moduleNav = (
     <div className="eng-module-nav">
@@ -412,8 +448,73 @@ export function Engineering() {
         ))}
       </div>
     ) : null;
-  /* Split layout needs a ring, so it is only used by the stepper views on
-     the two-column desktop grid; tablet/mobile keep the stacked rows. */
+  const tabNav = tabs.map((tab, index) => (
+    <button
+      key={tab.kind === "part" ? tab.part.label : tab.kind}
+      type="button"
+      className={`dbtl-subnav-button ${tabIndex === index ? "active" : ""}`}
+      aria-pressed={tabIndex === index}
+      onClick={() => setTabIndex(index)}
+    >
+      {tab.kind === "intro"
+        ? "Introduction"
+        : tab.kind === "conclusion"
+          ? "Conclusion"
+          : tab.part.label}
+    </button>
+  ));
+  /* Reuse the page TOC's markup and styles; only the active level-3 entry
+     expands its level-4 cycles. */
+  const sideTocItems: TocEntry[] = [];
+  tabs.forEach((tab, index) => {
+    const label =
+      tab.kind === "intro"
+        ? "Introduction"
+        : tab.kind === "conclusion"
+          ? "Conclusion"
+          : tab.part.label;
+    const partEntry =
+      tab.kind === "part"
+        ? partSequences.find((entry) => entry.part === tab.part)
+        : undefined;
+    const cycleCount = partEntry?.module?.cycles.length ?? 0;
+    const active = tabIndex === index;
+    sideTocItems.push({
+      id: `engineering-step-${index}`,
+      text: label,
+      level: 1,
+      current: active,
+      onSelect: (event) => {
+        event.preventDefault();
+        selectTab(index);
+      },
+    });
+    if (active && cycleCount > 0) {
+      Array.from({ length: cycleCount }, (_, cycleIndex) => {
+        sideTocItems.push({
+          id: `engineering-step-${index}-${cycleIndex}`,
+          text: `Cycle ${cycleIndex + 1}`,
+          level: 2,
+          current: activeCycle === cycleIndex,
+          onSelect: (event) => {
+            event.preventDefault();
+            selectCycle(index, cycleIndex);
+          },
+        });
+      });
+    }
+  });
+  const sideToc = (
+    <div className="eng-toc-slot">
+      <TocPanel
+        title={activeGroup?.label ?? "Steps"}
+        ariaLabel="Steps"
+        className="page-toc--embedded"
+        items={sideTocItems}
+      />
+    </div>
+  );
+
   const isDesktop = useIsDesktop();
   const ringNav =
     RING_NAV_LAYOUT && isDesktop && stepCount > 0 && Boolean(activeGroup);
@@ -423,7 +524,7 @@ export function Engineering() {
       {!ringNav && moduleNav}
       {!ringNav && groupNav}
       {projectDesignActive ? (
-        <ProjectDesignStepper />
+        <ProjectDesignStepper layout={layout} />
       ) : (
         activeGroup &&
         (stepCount > 0 ? (
@@ -435,7 +536,9 @@ export function Engineering() {
                 moduleForStep as (step: SeedStep) => SeedModule | undefined
               }
               onStepChange={handleStepChange}
-              topNav={<>{tabNav}</>}
+              layout={layout}
+              topNav={legacyLayout ? <>{tabNav}</> : undefined}
+              sideNav={legacyLayout ? undefined : sideToc}
               ringTop={ringNav ? moduleNav : undefined}
               ringBottom={ringNav ? groupNav : undefined}
             />
@@ -447,18 +550,30 @@ export function Engineering() {
                 moduleForStep as (step: Step) => DbtlModule | undefined
               }
               onStepChange={handleStepChange}
-              topNav={<>{tabNav}</>}
+              layout={layout}
+              topNav={legacyLayout ? <>{tabNav}</> : undefined}
+              sideNav={legacyLayout ? undefined : sideToc}
               ringTop={ringNav ? moduleNav : undefined}
               ringBottom={ringNav ? groupNav : undefined}
             />
           )
         ) : (
-          <div className="eng-partnav">{tabNav}</div>
+          <div className="eng-partnav">
+            {legacyLayout ? tabNav : sideToc}
+          </div>
         ))
       )}
     </>
   );
-  const aggregateClass = `eng-aggregate${ringNav ? " eng-aggregate--ring-nav" : ""}`;
+  const aggregateClass = `eng-aggregate${
+    legacyLayout ? " eng-aggregate--legacy" : ""
+  }${ringNav ? " eng-aggregate--ring-nav" : ""}`;
+  const runwaySpan = projectDesignActive
+    ? PROJECT_DESIGN_STEP_COUNT
+    : sequenceSpan(steps);
+  const runwayHeight = legacyLayout
+    ? `calc(${100 + runwaySpan * STEP_DVH}dvh)`
+    : `calc(100dvh + ${runwaySpan * STEPPER_STEP_PX}px)`;
 
   return (
     <div className="row mt-4 mb-5">
@@ -508,19 +623,10 @@ export function Engineering() {
           </section>
           {activeGroup || projectDesignActive ? (
             stepCount > 0 || projectDesignActive ? (
-              <div
-                className="eng-runway"
-                style={{
-                  height: `calc(${
-                    100 +
-                    (projectDesignActive
-                      ? PROJECT_DESIGN_STEP_COUNT
-                      : sequenceSpan(steps)) *
-                      STEP_DVH
-                  }dvh)`,
-                }}
-              >
-                <div className="eng-pin">
+              <div className="eng-runway" style={{ height: runwayHeight }}>
+                <div
+                  className={`eng-pin${legacyLayout ? " eng-pin--legacy" : ""}`}
+                >
                   <div className={aggregateClass}>{content}</div>
                 </div>
               </div>

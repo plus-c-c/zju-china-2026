@@ -42,7 +42,7 @@ export const pageDetails: Record<
     description: "Resources others can build on",
   },
   "/experiments": {
-    icon: "11_experiment_result.png",
+    icon: "10-wet-lab.avif",
     description: "Building and testing NEST",
   },
   "/results": {
@@ -88,6 +88,10 @@ export const pageDetails: Record<
   "/education": {
     icon: "22_education.png",
     description: "Making SynBio accessible",
+  },
+  "/collaboration": {
+    icon: "23_collaboration.png",
+    description: "Growing through shared experience",
   },
   "/members": {
     icon: "26_members.png",

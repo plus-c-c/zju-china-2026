@@ -1,3 +1,4 @@
+import { TableCaption } from "../../components/FigureCaption";
 import type { DbtlModule } from "./dbtl";
 
 /**
@@ -227,10 +228,10 @@ export const softwareIModule: DbtlModule = {
   outro: (
     <>
       <h3 className="mt-5 mb-3">Cycle Overview</h3>
-      <p>
+      <TableCaption>
         <strong>Table 1</strong>: Cycle overview — Design / Build / Test / Learn
         of each cycle.
-      </p>
+      </TableCaption>
       <div className="table-responsive mb-4">
         <table
           className="table table-bordered align-middle"

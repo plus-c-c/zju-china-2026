@@ -4,17 +4,17 @@ const notebooks = [
   {
     id: "overview",
     title: "Overview",
-    pdf: "https://static.igem.wiki/teams/6102/wiki/notebook/zju-china-2026-notebook-overview-en.pdf",
+    pdf: "https://static.igem.wiki/teams/6102/wiki/final-notebook/01-notebook-overview.pdf",
   },
   {
     id: "scaffold-ligation",
     title: "SELP Hydrogels and Ligation System",
-    pdf: "https://static.igem.wiki/teams/6102/wiki/notebook/notebook-scaffold-ligation-system.pdf",
+    pdf: "https://static.igem.wiki/teams/6102/wiki/final-notebook/02-notebook-scaffold-ligation-system.pdf",
   },
   {
     id: "gag-retention",
     title: "GAG Retention Module",
-    pdf: "https://static.igem.wiki/teams/6102/wiki/notebook/notebook-gag-retention-module.pdf",
+    pdf: "https://static.igem.wiki/teams/6102/wiki/final-notebook/03-notebook-gag-retention-module.pdf",
   },
   {
     id: "tvn-magnetic-binding",
@@ -24,7 +24,7 @@ const notebooks = [
   {
     id: "mitochondrial-therapy",
     title: "Mitochondrial Therapeutic Module",
-    pdf: "https://static.igem.wiki/teams/6102/wiki/notebook/notebook-mitochondrial-therapy-module.pdf",
+    pdf: "https://static.igem.wiki/teams/6102/wiki/final-notebook/05-notebook-mitochondrial-therapeutic-module.pdf",
   },
 ];
 

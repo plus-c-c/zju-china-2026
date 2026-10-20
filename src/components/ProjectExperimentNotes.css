@@ -1,0 +1,55 @@
+.project-experiment-notes {
+  min-width: 0;
+  margin: 1.5rem 0 0;
+  overflow: hidden;
+  border-radius: var(--article-card-radius);
+  background: var(--article-card-background);
+  box-shadow: var(--article-card-shadow);
+}
+
+.page-article .project-experiment-notes > summary {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  padding: 0.875rem 1.25rem;
+  color: var(--article-subheading-color);
+  font-size: 1.375rem;
+  font-weight: 600;
+  line-height: 1.35;
+  list-style: none;
+  cursor: pointer;
+}
+
+.project-experiment-notes > summary::-webkit-details-marker {
+  display: none;
+}
+
+.project-experiment-notes > summary::before {
+  flex: 0 0 1rem;
+  color: #365dc9;
+  font-size: 1.8rem;
+  font-weight: 500;
+  line-height: 1;
+  text-align: center;
+  content: "+";
+}
+
+.project-experiment-notes[open] > summary::before {
+  content: "−";
+}
+
+.project-experiment-notes > summary:focus-visible {
+  outline: 3px solid rgb(54 93 201 / 45%);
+  outline-offset: -3px;
+}
+
+.page-article .project-experiment-notes > p {
+  margin: 0;
+  padding: 0 1.25rem 1rem;
+  font-size: 1.125rem;
+  line-height: 1.6;
+}
+
+.project-experiment-notes + .project-tracks {
+  padding-top: 1.5rem;
+}

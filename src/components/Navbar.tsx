@@ -101,9 +101,31 @@ export function Navbar({ introEntrance = false, opening = false }: { introEntran
       const target = pointer
         ? document.elementFromPoint(pointer.x, pointer.y)
         : null;
+      // The Engineering level-1 row pins to the very top of the viewport
+      // during the DBTL runway. Its rectangle must not wake the navbar, or
+      // the bar would cover the buttons. The tiny gap above it and the areas
+      // to its left/right remain normal wake zones.
+      const engineeringNav = document.querySelector<HTMLElement>(
+        ".eng-module-nav",
+      );
+      const engineeringRect = engineeringNav?.getBoundingClientRect();
+      const navHeight = navRef.current?.offsetHeight ?? 88;
+      const engineeringAtTop =
+        !!engineeringRect &&
+        engineeringRect.top >= 0 &&
+        engineeringRect.top <= navHeight + 12;
+      const overEngineeringL1 =
+        !!pointer &&
+        engineeringAtTop &&
+        engineeringRect &&
+        pointer.x >= engineeringRect.left - 8 &&
+        pointer.x <= engineeringRect.right + 8 &&
+        pointer.y >= engineeringRect.top - 2 &&
+        pointer.y <= engineeringRect.bottom + 10;
       const overNavigation =
         visible &&
         pointer &&
+        !overEngineeringL1 &&
         (navRef.current?.contains(target) ||
           (pointer.y >= 0 &&
             pointer.y <= (navRef.current?.offsetHeight ?? 88)));
@@ -114,7 +136,8 @@ export function Navbar({ introEntrance = false, opening = false }: { introEntran
       let overRevealArea =
         !!pointer &&
         pointer.y >= 0 &&
-        pointer.y <= (navRef.current?.offsetHeight ?? 88);
+        pointer.y <= (navRef.current?.offsetHeight ?? 88) &&
+        !overEngineeringL1;
       if (overRevealArea && pointer) {
         // No overlay intercepts clicks. Exclude the entire section sticky bar,
         // including its padding, and other interactive controls at the edge.

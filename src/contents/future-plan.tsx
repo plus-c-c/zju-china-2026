@@ -1,3 +1,4 @@
+import { TableCaption } from "../components/FigureCaption";
 import { FigureCaption } from "../components/FigureCaption";
 import {
   FigureSourceCitation,
@@ -62,54 +63,83 @@ export function FuturePlan() {
           the fully assembled material to determine whether the intended design
           objectives are achieved after assembly and crosslinking.
         </p>
+        <TableCaption>
+          <strong>
+            Table 1. Tests for selecting the first NEST formulation.
+          </strong>{" "}
+          Compare the assembled material with the scaffold alone and with each
+          module tested separately. Repeat the tests with independently prepared
+          batches.
+        </TableCaption>
         <div className="table-responsive mb-4">
           <table
             className="table table-bordered align-middle"
-            aria-label="Formulation screening: assessment focus, conditions, and key readouts"
+            aria-label="Table 1: Tests for selecting the first NEST formulation"
           >
             <thead className="table-primary">
               <tr>
-                <th scope="col">Assessment focus</th>
-                <th scope="col">Conditions or processes to compare</th>
-                <th scope="col">Key readouts</th>
+                <th scope="col">Test</th>
+                <th scope="col">What we will compare</th>
+                <th scope="col">What we will measure</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>Mechanical properties and assembly</td>
+                <td>Gel formation and compression</td>
                 <td>
-                  Scaffold specification, concentration, crosslinking, and
-                  module assembly
+                  SELP concentrations and crosslinking conditions, with and
+                  without attached modules.
                 </td>
                 <td>
-                  Modulus under wet conditions, cyclic stability, assembly
-                  yield, and component retention
-                </td>
-              </tr>
-              <tr>
-                <td>Orientation and GAG retention</td>
-                <td>
-                  Crosslinking after orientation; sustained fluid exchange
-                </td>
-                <td>
-                  Retention of orientation, anisotropic mechanical properties,
-                  GAG retention, and GAG release
+                  Gelation time, wet compressive modulus, and changes in modulus
+                  after repeated compression. Measure how much of each module
+                  remains attached after washing.
                 </td>
               </tr>
               <tr>
-                <td>Stimuli-responsive delivery</td>
+                <td>Magnetic alignment</td>
                 <td>
-                  Anchoring, MMP-13-triggered release, and intracellular
-                  delivery
+                  Gels crosslinked with and without an applied magnetic field.
                 </td>
-                <td>Release fraction, payload activity, ATP, and ROS</td>
+                <td>
+                  Alignment before and after crosslinking, stiffness parallel
+                  and perpendicular to the alignment, and whether alignment
+                  persists after repeated compression.
+                </td>
               </tr>
               <tr>
-                <td>Compatibility of the complete formulation</td>
-                <td>The complete material and its degradation products</td>
+                <td>GAG retention</td>
                 <td>
-                  Tissue compatibility, inflammatory responses, and degradation
-                  behavior
+                  The GAG-binding formulation and the scaffold alone during
+                  repeated buffer replacement.
+                </td>
+                <td>
+                  GAG remaining in the gel and GAG recovered from each buffer
+                  change. Repeat after compression to test whether loading
+                  increases GAG loss.
+                </td>
+              </tr>
+              <tr>
+                <td>Triggered delivery</td>
+                <td>
+                  The delivery formulation with and without MMP-13, alongside
+                  free payload and scaffold-only controls.
+                </td>
+                <td>
+                  Payload release over time and activity after release. For
+                  mitochondrial delivery, measure cellular ATP and ROS to check
+                  whether uptake changes cell function.
+                </td>
+              </tr>
+              <tr>
+                <td>Cell response and degradation</td>
+                <td>
+                  Cells exposed to the assembled gel, scaffold alone, or
+                  material collected as the gel degrades.
+                </td>
+                <td>
+                  Cell viability, inflammatory markers, gel mass loss, and
+                  changes in stiffness during degradation.
                 </td>
               </tr>
             </tbody>
@@ -136,7 +166,7 @@ export function FuturePlan() {
         <h3 className="mt-5 mb-3">
           2 Validation at Tissue Interfaces alongside Fermentation Development
         </h3>
-        <h4 className="mt-4 mb-2">
+        <h4 className="mt-4 mb-2" data-toc="include" data-toc-depth="3">
           2.1 Evaluating Candidate Materials in Models of Actual Defects
         </h4>
         <p>
@@ -162,7 +192,7 @@ export function FuturePlan() {
           guide iterative development of the app, device web interface, and
           hardware.
         </p>
-        <h4 className="mt-4 mb-2">
+        <h4 className="mt-4 mb-2" data-toc="include" data-toc-depth="3">
           2.2 From Shake-Flask Culture to Controlled Fermentation and
           Reproducible Recovery
         </h4>
@@ -337,7 +367,7 @@ export function FuturePlan() {
             />
           </FigureCaption>
         </figure>
-        <h4 className="mt-4 mb-2">
+        <h4 className="mt-4 mb-2" data-toc="include" data-toc-depth="3">
           5.1 Establishing the First Product for Focal Cartilage Defects
         </h4>
         <p>
@@ -349,7 +379,7 @@ export function FuturePlan() {
           operating instructions established for this application will provide a
           common starting point for subsequent product development.
         </p>
-        <h4 className="mt-4 mb-2">
+        <h4 className="mt-4 mb-2" data-toc="include" data-toc-depth="3">
           5.2 Advancing OA Functional Modules into Fully Integrated Material
           Formulations
         </h4>
@@ -363,7 +393,7 @@ export function FuturePlan() {
           identify OA-oriented formulations that retain their functions in the
           complete material.
         </p>
-        <h4 className="mt-4 mb-2">
+        <h4 className="mt-4 mb-2" data-toc="include" data-toc-depth="3">
           5.3 Co-developing Layered Products with Bone-Repair Materials
         </h4>
         <p>

@@ -1,3 +1,4 @@
+import { TableCaption } from "../components/FigureCaption";
 import { FigureCaption } from "../components/FigureCaption";
 import {
   FigureSourceCitation,
@@ -51,6 +52,9 @@ export function Contribution() {
             className="table table-bordered align-middle"
             aria-label="Reusable resources and where to access them"
           >
+            <TableCaption as="caption">
+              Table 1 | Reusable resources and where to access them.
+            </TableCaption>
             <thead className="table-primary">
               <tr>
                 <th scope="col">Resource</th>

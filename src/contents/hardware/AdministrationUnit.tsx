@@ -1,3 +1,4 @@
+import { TableCaption } from "../../components/FigureCaption";
 import { FigureCaption } from "../../components/FigureCaption";
 import { HardwareVideo } from "./HardwareVideo";
 
@@ -173,11 +174,11 @@ export function AdministrationUnit() {
         administration module, including the injection assembly, endoscope
         module, and blue-light curing module.
       </p>
-      <p>
+      <TableCaption>
         <strong>
           Table 2 | Components and Costs of the Administration Module
         </strong>
-      </p>
+      </TableCaption>
       <div className="table-scroll">
         <table aria-label="Administration module bill of materials">
           <thead>

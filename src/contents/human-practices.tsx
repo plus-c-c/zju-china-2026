@@ -1,3 +1,4 @@
+import { TableCaption } from "../components/FigureCaption";
 import { FigureCaption } from "../components/FigureCaption";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { Link } from "react-router-dom";
@@ -14,14 +15,10 @@ import { scrollToSection } from "./human-practices/scrollToSection";
 import "./human-practices.css";
 
 /** All figures live on the team static host. */
-const SURVEY_FIG =
-  "https://static.igem.wiki/teams/6102/wiki/images/hp/v2/h";
-const ACTIVITY_FIG =
-  "https://static.igem.wiki/teams/6102/wiki/images/hp/v2/l";
-const SYRINGE_FIG =
-  "https://static.igem.wiki/teams/6102/wiki/images/hp/v2/r";
-const LECTURE_FIG =
-  "https://static.igem.wiki/teams/6102/wiki/images/hp/v2/s";
+const SURVEY_FIG = "https://static.igem.wiki/teams/6102/wiki/images/hp/v2/h";
+const ACTIVITY_FIG = "https://static.igem.wiki/teams/6102/wiki/images/hp/v2/l";
+const SYRINGE_FIG = "https://static.igem.wiki/teams/6102/wiki/images/hp/v2/r";
+const LECTURE_FIG = "https://static.igem.wiki/teams/6102/wiki/images/hp/v2/s";
 const SEED_RING =
   "https://static.igem.wiki/teams/6102/wiki/images/engagement/ihp/seed-ring.avif";
 const SURVEY_REPORT_PDF =
@@ -44,13 +41,7 @@ function Figure({
 }) {
   return (
     <figure className="ihp-figure">
-      <img
-        src={src}
-        alt={alt}
-        width={width}
-        height={height}
-        loading="lazy"
-      />
+      <img src={src} alt={alt} width={width} height={height} loading="lazy" />
       <FigureCaption>{caption}</FigureCaption>
     </figure>
   );
@@ -67,7 +58,7 @@ function Figure({
 /**
  * Stakeholder interviews, summarised from the team's stakeholder archive.
  * Each entry records the approximate date of the engagement, a card title and
- * summary, and the Rationale / Interview summary / Integration behind
+ * summary, and the Rationale / Interview Summary / Integration behind
  * "Read more". Dates are inferred from the content and the order of the
  * conversations, and the list runs in the order the engagements happened.
  */
@@ -94,7 +85,7 @@ function stakeholder(
       : {}),
     details: [
       { heading: "Rationale", content: <p>{rationale}</p> },
-      { heading: "Summary", content: <p>{interview}</p> },
+      { heading: "Interview Summary", content: <p>{interview}</p> },
       { heading: "Integration", content: <p>{integration}</p> },
     ],
   };
@@ -190,13 +181,13 @@ const timelineItems: TimelineItem[] = [
     "Xuan Ge described long-term discomfort after his injuries, the lack of early intervention and the burden of two hours of daily rehabilitation. The interview confirmed the need for focal cartilage repair and led us to develop a smart rehabilitation mirror that corrects exercise posture at home.",
     "After our survey showed that focal cartilage defects are a common form of hyaline cartilage injury, we looked for a high-risk group to interview and approached a key member of the Zhejiang University tennis team with ten years of competitive play.",
     "He described two major sprains. After the first, a CT showed obvious cartilage damage, but with no good early treatment he was sent home with painkillers; rehabilitation through a rehabilitation physician and TCM physiotherapy took about two hours a day — “and that was with a team doctor” — yet helped only partially. A teammate who ruptured an ACL received an artificial ligament and recovered quickly, but the hard implant kept wearing the remaining cartilage, and doctors had no solution.",
-    "The interview confirmed focal defects as a key target and pushed us to design a material that fits all kinds of hyaline cartilage injury. The pain point of slow, cumbersome rehabilitation led us to the idea of improving the rehabilitation experience, which later became the AI-guided smart mirror developed with the biomedical engineering team.",
+    "The interview confirmed focal defects as a key target and pushed us to design a material that fits all kinds of hyaline cartilage injury. The pain point of slow, cumbersome rehabilitation led us to the idea of improving the rehabilitation experience, which later became the AI-guided smart mirror developed with Lin Lei's group in biomedical engineering.",
     "ihp-01",
   ),
   stakeholder(
     "Mid-April 2026",
     "Patient",
-    "Yue Wang, Yu Xu and Fangrui Liang — the invisible pain after surgery",
+    "High-school student Yue Wang and university students Yu Xu and Fangrui Liang — the invisible pain after surgery",
     "The three post-operative patients described persistent pain, limited function and the extra burden of having their invisible pain dismissed. The interviews moved us to address the psychological and social side of treatment through science videos, public lectures and rehabilitation discussions with medical students.",
     "We met Yu Xu at the iGEM East China meet-up and found Yue Wang and Fangrui Liang through a Xiaohongshu discussion thread; all three had direct experience of post-operative cartilage injury.",
     "Yu Xu had ACL reconstruction; her doctors said the artificial ligament recovers faster but is harder and keeps wearing the cartilage, with no good answer for the resulting damage. Yue Wang developed osteoarthritis after patellar surgery; follow-up visits concluded that her discomfort was normal, and her rehabilitation doctor said the persistent friction caused by the protruding bone position is mechanical and irreversible, and that further surgery could cause other problems. Fangrui Liang's wrist surgery affected her function even more. They described anxiety, irritability and self-blame because the joint is internal and leaves no visible scar for others to see.",
@@ -207,8 +198,8 @@ const timelineItems: TimelineItem[] = [
     "Patient",
     "Grandpa Gu — cartilage care in a remote village",
     "The Yantan village visit revealed long travel distances to care, chronic joint problems managed with painkillers and low awareness of cartilage health. We wrote these observations on rural access into our survey report and pushed for community cartilage screening and education.",
-    "To understand regional differences in care, we visited Yantan village — a small, seasonal-tourism village with many left-behind elderly people and limited transport.",
-    "He has had arthritis for more than five years and still suffers from it. He described repeated trips to hospitals and said the nearest one is an hour's drive; township hospitals can handle acute problems but have little for chronic disease — “let alone a small illness like mine.”",
+    "To understand regional differences in care, we visited Yantan village — a small, seasonal-tourism village with many left-behind elderly people and limited transport. We spent most time with an elderly man who lives by manual labour.",
+    "He has had arthritis for more than five years and still suffers from it; he manages it with local herbal medicine and painkillers. He described repeated trips to hospitals and said the nearest one is an hour's drive; township hospitals can handle acute problems but have little for chronic disease — “let alone a small illness like mine.”",
     "We wrote these observations into our survey report and turned it into a professional report for the Hangzhou Health Commission, which will guide grassroots organisations in screening for and publicising cartilage health in the region.",
   ),
   stakeholder(
@@ -216,7 +207,7 @@ const timelineItems: TimelineItem[] = [
     "Treatment",
     "Dr. Huang Jun — sports-medicine advice from a national team doctor",
     "Dr. Huang Jun started from athletes' needs and pointed out the limits of an operating-room injection, portability and quick recovery. The interview pushed us to explore acute-repair materials and drug-carrying modules that speed conservative treatment and reduce overtreatment.",
-    "We wanted authoritative advice on sports injuries caused by cartilage defects, so we consulted Dr. Huang Jun, head of the joint department at the Zhejiang Sports Hospital and a member of the Zhejiang Medical Association's sports-medicine branch.",
+    "We wanted authoritative advice on sports injuries caused by cartilage defects, so we consulted Dr. Huang Jun, head of the joint department at Zhejiang Provincial Sports Hospital, a member of the sports-medicine branch of the Zhejiang Medical Doctor Association, and a former team doctor for the national gymnastics team and at the Asian Games.",
     "He believes the project has strong application potential, but for athletes it must be more portable and easier to operate; the surgical-injection route keeps the material in the operating room. He also said that programmability fits athletes' needs well, and described cases in which athletes over-treated in order to restore function quickly.",
     "We adopted the advice and decided to develop later materials better suited to acute repair — usable for athletes and in extreme team or field settings — and to consider carrying immune factors or drugs in the functional modules to speed conservative treatment; this became a key consideration for the module payload.",
     "ihp-02",
@@ -266,7 +257,7 @@ const timelineItems: TimelineItem[] = [
     "Treatment",
     "Nurse Xue Han and 18 nurses — redesigning the hardware around the ward",
     "Eighteen nurses gave feedback on workflow, training and device compatibility. Their input led to the integrated endoscope and instrument, the electronic manual and Bluetooth screen mirroring, and a syringe-damping blind test that improved precise dosing.",
-    "The hardware is used by clinical staff, so we took our first design to a professional nursing team rather than deciding its details internally.",
+    "The hardware is used by clinical staff, so we took our first design to a professional nursing team rather than deciding its details internally. Xue Han is an experienced nurse who spent ten years at 254 Hospital and rotated through several departments; our design drew mainly on the advice of her and her colleagues — 18 nurses in total.",
     "They raised three main issues: uncertainty about where and how the material is prepared; questions about the experience of using the device; and the training complexity of introducing a new device, plus adaptability concerns — if the interface is not common, the endoscopic view cannot be shown on emergency-room screens.",
     <>
       We combined the endoscope and the operating instrument, added an
@@ -306,7 +297,7 @@ const timelineItems: TimelineItem[] = [
     "R&D",
     "Songlin Shi — questioning the magnetic and protein routes",
     "Songlin Shi questioned the trade-off between magnetic particle orientation and clearance, and the reliability of protein performance after denaturation and refolding. The interview led to a low-field, fast-crosslinking scheme and to ITC purification that protects protein structure.",
-    "We met Songlin Shi, a doctoral researcher at Westlake University's School of Medicine and a former CCiC chair, while the three functional modules were taking shape but their compatibility, hardware support and protein feasibility had not been thought through.",
+    "We met Songlin Shi — a doctoral researcher at the Emergency Medicine Research Centre of Westlake University's School of Medicine, a community mentor, a former member of the CCiC steering committee, an HP Committee member and an iGEM BYLP — while the three functional modules were taking shape but their compatibility, hardware support and protein feasibility had not been thought through.",
     "His questions focused on two areas: the tension between nanoparticle anisotropy and iron metabolism — enough magnetic loading for orientation versus particles that must eventually be cleared — and protein feasibility, including whether structure survives denaturation and renaturation and whether β-sheet aggregation and inclusion bodies would block the project.",
     "We abandoned the idea of pulling particles with a large coil field and built the current scheme on anchoring and speed: Fe₃O₄-binding peptides anchor particles to the SELP network so a low external field can orient both together, Ru/SPS crosslinking fixes the orientation in about two seconds, and the procedure became injection—observation—magnetic orientation—blue-light crosslinking. For production we chose ITC purification, which relies on SELP's reversible phase behaviour and keeps the protein natively folded rather than denaturing and refolding it.",
     "ihp-22",
@@ -316,8 +307,8 @@ const timelineItems: TimelineItem[] = [
     "R&D",
     "Prof. Patrick Butaye — de-risking SELP expression",
     "Prof. Butaye advised validating SELP expression and phase behaviour at small scale before scaling up. The team completed expression and ITC-purification validation accordingly, lowering the risk of discovering protein problems only after large batches.",
-    "The whole NEST route rested on an unverified assumption — that SELP, a large, highly repetitive protein, could be expressed normally in E. coli. Prof. Patrick Butaye, vice-dean of City University of Hong Kong's veterinary school and an expert in the field, was asked whether expression would work and whether abnormal folding or membrane issues should be expected.",
-    "He advised a small-scale trial first and gave detailed experimental guidance; he considered the design essentially sound, sent useful reference papers by email, and invited us to visit his laboratory.",
+    "The whole NEST route rested on an unverified assumption — that SELP, a large, highly repetitive protein, could be expressed normally in E. coli. We asked Prof. Patrick Butaye — vice-dean of City University of Hong Kong's Jockey Club College of Veterinary Medicine and Life Sciences, adjunct professor at Ghent University, editor-in-chief of Veterinary Sciences and an invited expert for WHO and EFSA — whether expression would work and whether abnormal folding or membrane issues should be expected.",
+    "He advised a small-scale trial first and gave detailed experimental guidance; he considered the design essentially sound and sent useful reference papers by email. We also visited his laboratory, whose display boards of published work gave us ideas for our own poster.",
     "We split expression into two steps: confirm at small volume whether the protein is expressed, in what form and with the expected phase behaviour, then scale up in E. coli BL21. ITC purification later confirmed soluble protein with normal phase behaviour, answering both the expression and the structural concerns; the route was further corrected by Weixinkang and Prof. Huang Wenwen.",
     "ihp-15",
   ),
@@ -326,7 +317,7 @@ const timelineItems: TimelineItem[] = [
     "R&D",
     "Prof. Huang Wenwen — scalability and the salt/crosslinking link",
     "Prof. Huang Wenwen pointed out that residual salt from ITC purification hinders photocrosslinking. We added dialysis to remove it, solved the gelation problem, reached about two-second visible-light gelation, and now optimise purification and gelation as one continuous flow.",
-    "NEST makes SELP chain length, domain ratio, functional residues and peptide interfaces designable parameters. We asked Prof. Huang Wenwen, a researcher in the SELP field, about platform scalability and about the process link between purification and rapid photocrosslinking.",
+    "NEST makes SELP chain length, domain ratio, functional residues and peptide interfaces designable parameters. We asked Prof. Huang Wenwen, a tenured associate professor at the Zhejiang University–University of Edinburgh Institute (ZJE) and a leading researcher in the SELP field, about platform scalability and about the process link between purification and rapid photocrosslinking.",
     "She rated the overall design highly: the platform lets the team combine or adjust functions on a shared scaffold to meet different patient needs. She focused on the relation between crosslinking efficiency and the purification conditions, noting that the salt added during ITC can remain and interfere with Ru/SPS crosslinking; she also compared our purification efficiency with her laboratory's process and encouraged further industrial exploration.",
     "We kept the shared-scaffold, standard-interface, replaceable-module architecture and added a dialysis step after ITC to remove residual salt. After the change, SELP reached visible-light gelation in about two seconds, turning her advice into a verifiable process improvement and showing that purification and gelation must be optimised as one continuous flow.",
     "ihp-17",
@@ -348,7 +339,7 @@ const timelineItems: TimelineItem[] = [
     "Prof. Lin Si'en distinguished particle orientation, network orientation and direction-dependent mechanics, showing each must be verified separately. The interview led us to a magnetic-particle-binding peptide that anchors particles to the SELP scaffold and transmits the field force.",
     "Our early magnetic module simply mixed Fe₃O₄ nanoparticles into the SELP precursor, applied a field and crosslinked — with no anchoring mechanism and no plan to prove that anything had aligned. We asked Prof. Lin Si'en at the University of Hong Kong how structural orientation becomes measurable tissue-engineering function.",
     "He focused on evidence: particles aligning does not automatically prove a stable anisotropic SELP network, let alone reproduce native cartilage mechanics — particle orientation, network orientation and direction-dependent gel properties must each be shown. He listed five variables that affect orientation (field strength and gradient, particle concentration, ligation efficiency, precursor rheology, crosslinking timing) and separated “a directional structure formed” from “that structure changed cell behaviour.”",
-    "His point that particle orientation is not network orientation directly produced the Fe₃O₄-binding peptide: instead of dragging particles that may spin in the water phase, we anchor them to the SELP scaffold so a low field orients particles and network together. The magnetic module then joined the SnoopTag2/DogTag interface, and the operation became a fixed sequence — injection, confirmation, magnetic orientation, blue-light crosslinking — with an independently controlled light source in the endoscope module.",
+    "His point that particle orientation is not network orientation directly produced the Fe₃O₄-binding peptide. Modelling by Wu Jialin and Sun Yuxuan showed that unanchored particles cannot keep SELP molecules aligned, even with charge tuning through lysine, so we anchor the particles to the SELP scaffold and let a low field orient particles and network together. Two selected 7-mer peptides, HYIDFRW and TVNFKLY, were validated to bind Fe₃O₄ nanoparticles, and TVNFKLY can be fused in tandem with other functional peptides while keeping its binding ability. The magnetic module then joined the SnoopTag2/DogTag interface, and the operation became a fixed sequence — injection, confirmation, magnetic orientation, blue-light crosslinking — with an independently controlled light source in the endoscope module.",
     "ihp-13",
   ),
   stakeholder(
@@ -356,7 +347,7 @@ const timelineItems: TimelineItem[] = [
     "R&D",
     "Prof. Li Xiaoming — linking field-induced structure to local mechanics",
     "The discussion with Prof. Li Xiaoming connected the magnetic field, structural orientation and local mechanical response, leading to a four-phase model that includes the crosslinking sequence. The model guides sampling; YAP/TAZ cell responses still require separate validation.",
-    "We wanted to connect external-field control, structural change and the local mechanical environment that cells sense, so that modelling could guide experiments. Prof. Li Xiaoming's Advanced Science work on biomimetic gradient hydrogels drew our attention, and we contacted him online.",
+    "We wanted to connect external-field control, structural change and the local mechanical environment that cells sense, so that modelling could guide experiments. Prof. Li Xiaoming is a professor at Beihang University's School of Biological Science and Medical Engineering and vice-chair of the Intelligent Biomimetic Materials branch of the Chinese Society for Biomaterials. His team's Advanced Science paper, “Biomimetic Gradient Hydrogels Regulate Osteochondral Regeneration Microenvironment Remodeling via Spatiotemporal Programming Engineering”, drew our attention, and we contacted him online.",
     "Because his work uses electric fields while our system responds to magnetic fields through Fe₃O₄ and SELP, the model had to be rebuilt around our mechanism. The discussion divided “the field changes hydrogel properties” into steps that can be analysed: how the field affects orientation, how crosslinking preserves it, and how the fixed structure changes local mechanical response.",
     "Our Model reflects this: alongside molecular dynamics and network analysis, we built a four-phase continuum model describing SELP–Fe₃O₄ fibres, non-fibrous matrix, free particles and water, and included the preparation sequence. The model now predicts local material environments that can guide sampling and later cell-response comparisons, including YAP/TAZ readouts.",
     "ihp-16",
@@ -366,7 +357,7 @@ const timelineItems: TimelineItem[] = [
     "R&D",
     "Prof. Wu Congjun — timing the light trigger",
     "Prof. Wu Congjun helped distinguish the filling and orientation window before illumination from the fast fixation required after it. The workflow now fixes injection, observation and magnetic orientation before the blue light, with an independently controlled light source.",
-    "NEST's precursor must stay flowable for injection and shaping, then form a stable network on demand. We discussed with Prof. Wu Congjun, chair of Westlake University's theoretical physics department, how blue light should trigger crosslinking and when it should be switched on.",
+    "NEST's precursor must stay flowable for injection and shaping, then form a stable network on demand. We discussed with Prof. Wu Congjun, Chair Professor of Physics at Westlake University, how blue light should trigger crosslinking and when it should be switched on.",
     "We described the Ru/SPS visible-light system, which crosslinks tyrosine residues and gels in about two seconds under blue light. The discussion clarified two separate requirements: an operating window before illumination for filling and orientation, and rapid fixation after it. Illuminating too early loses flow; too late risks precursor loss or structural change.",
     "We made injection and photocrosslinking separately controlled steps and fixed the order injection—confirmation—magnetic orientation—blue-light crosslinking, keeping the magnetic field on while the light is applied. The endoscope module has an independently controlled blue-light source so the operator can inspect the defect and fill first, and the software flow presents the illumination and gelation steps explicitly.",
     "ihp-20",
@@ -386,7 +377,7 @@ const timelineItems: TimelineItem[] = [
     "R&D",
     "Prof. Ma Guanghui — from a module list to a process",
     "Prof. Ma Guanghui asked whether the components are compatible under temperature, salt, light and storage. The interview turned the module list into a stepwise process with batch quality indicators, and mitochondrial payload integrity is now evaluated separately.",
-    "The three functional modules had each taken shape, but we were still thinking module by module. We asked Prof. Ma Guanghui about feasibility, because it depends not only on each component working but on their compatibility in order, stability and storage.",
+    "The three functional modules had each taken shape, but we were still thinking module by module. We asked Prof. Ma Guanghui, a professor at the University of Science and Technology of China and a former iGEM judge, about feasibility, because it depends not only on each component working but on their compatibility in order, stability and storage.",
     "He focused on engineering and process integration: whether components must be mixed at the same time, which are sensitive to temperature, salt, light or shear, how long the assembly lasts, whether batches of protein, particles and liposomes are consistent, and where losses or inactivation are most likely. For the mitochondrial carrier, payload integrity and function need separate assessment.",
     "NEST became a pipeline with defined inputs, operating windows, monitoring and release criteria for precursor preparation, module assembly, temporary storage, delivery, injection, magnetic orientation and blue-light crosslinking. We built quality indicators — protein purity, endotoxin and residual impurities, ligation efficiency, storage stability, function retention — and for mitochondria we separated payload integrity, cleavage of the responsive linker and delivery outcomes.",
     "ihp-35",
@@ -398,7 +389,7 @@ const timelineItems: TimelineItem[] = [
     "Across four meetings, Prof. Chen Ming required clear variables, model assumptions and experimental evidence. The team split five design variables, assigned each modelling scale its question, and calibrated predictions with rheology, gelation and directional mechanics.",
     "We expected modelling to tell us directly which sequence was best and saw the software mainly as a display. We asked Prof. Chen Ming at Zhejiang University whether that view holds up from a systems-modelling and data-analysis perspective.",
     "He focused on whether variables are clearly defined, whether model inputs and outputs are interpretable, and whether results are supported by independent experiments. A prediction without stated assumptions, parameter ranges and error sources is hard to trust, and building a software interface is not model validation: software should help record parameters, compare options, show the basis of a model and feed results into the next design round.",
-    "We separated the simulations so that each of the five variables has a single dependent variable that can be tested on its own, assigned each scale a question (all-atom MD and enhanced sampling for conformations and functional-site states; coarse-grained Martini 3.0 networks for crosslinked mechanics; magnetic–mechanical coupling for field and particle effects), and paired every model with calibration or validation experiments — gelation time, rheology, compression, structural imaging and directional mechanical tests.",
+    "We separated the simulations so that each of the five variables has a single dependent variable that can be tested on its own, assigned each scale a question (all-atom MD and enhanced sampling for conformations and functional-site states; coarse-grained Martini 3.0 networks for crosslinked mechanics; magnetic–mechanical coupling for field and particle effects), and paired every model with calibration or validation experiments — gelation time, rheology, compression, structural imaging and directional mechanical tests. The four rounds of discussion also led us to choose the Model track as one of our Best Award applications this year.",
     "ihp-37",
   ),
   stakeholder(
@@ -416,7 +407,7 @@ const timelineItems: TimelineItem[] = [
     "Manufacturing",
     "Beijing Weixinkang — planning the first factory samples",
     "Beijing Weixinkang raised purification, transport and hospital-acceptance requirements from a factory perspective, leading to different purification routes for SELP and the functional proteins and helping estimate equipment, annual output and first-generation sample costs.",
-    "As we considered factory-scale production, our literature review showed we needed a mature partner to produce the first samples, so we approached Beijing Weixinkang Medical.",
+    "As we considered factory-scale production, our literature review showed we needed a mature partner to produce the first samples, so we approached Beijing Weixinkang Medical — a company with extensive experience in medical-device patent filing and Class III device applications.",
     "They gave constructive advice on device manufacturing: give more thought to protein purification so the first factory samples can be released; consider extraction cost, transport cost and hospital acceptance. They also helped estimate the equipment, annual output and sample-production cost of NEST's first generation and provided a profit analysis.",
     "We adopted ITC for SELP purification and His-tag capture, cleavage and elution for the other proteins, and used their estimates in our cost model.",
   ),
@@ -455,7 +446,7 @@ const timelineItems: TimelineItem[] = [
     "Market access",
     "Li Zhuoya — keeping a student team going",
     "Li Zhuoya started from how a student team keeps going after the competition, asking about technical responsibilities, experiment reproducibility and how results are presented. The interview led to a handover and version-management plan with owners, stage goals and priorities for each route.",
-    "We wanted to understand how a student team continues to build technology, organise people and attract partners after the competition, so that the project does not stop when members graduate.",
+    "Li Zhuoya is a partner at Yiru Biology and a former iGEMer with rich experience in turning iGEM teams into companies. We wanted to understand how a student team continues to build technology, organise people and attract partners after the competition, so that the project does not stop when members graduate.",
     "The conversation focused on continuity: who is responsible for the material, the device and the software; whether key experiments can be reproduced from records by new members; and how to distinguish completed results, work in progress and future plans when presenting the project. For a platform project, more modules also mean the team must set priorities, owners and stop/go criteria for each route.",
     "We plan a unified handover and version-management system linking protein constructs, module assembly, experimental conditions, device operation and data records, and will organise external materials by evidence status.",
     "ihp-27",
@@ -474,7 +465,7 @@ const timelineItems: TimelineItem[] = [
     "Market access",
     "Zhang Jie — what to prove first",
     "Zhang Jie asked, from an investor's view, about the first product's value, competitor differences and full use cost. The interview narrowed the validation scope, separated the near-term product from later module expansion, and led to an initial cooperation intent for the first sample batch.",
-    "NEST is a platform, but its modules differ in maturity, validation cost and value. We wanted an investor's view of what the project should prove first and which progress limited funding should support.",
+    "Zhang Jie of Huadan Angel Investment heard our pitch at a hackathon held at Zhejiang University and discussed the market, competitors and cost with us. NEST is a platform, but its modules differ in maturity, validation cost and value. We wanted an investor's view of what the project should prove first and which progress limited funding should support.",
     "The discussion focused on how the platform becomes a clear first product: one SELP scaffold carrying different modules supports iteration without restarting from a new system each time, and the market is large with no mature competitor. We discussed which specific value NEST should prove first, whether the cost estimate covers purification, quality testing, storage, functional components and consumables, and what checkable results the team could deliver at the end of early financing.",
     "We split the business plan into a first product and later module expansion, kept the platform design while setting a narrower validation scope for the first stage, and expanded the cost analysis from raw materials to the full cost of a single treatment. We reached an initial cooperation intent with 1.5 million yuan for the first sample batch.",
     "ihp-26",
@@ -515,7 +506,7 @@ const timelineItems: TimelineItem[] = [
     "Mavis Wu — the payment perspective",
     "Mavis Wu explained how hospital adoption and insurance payment are linked and advised preparing payer-facing product information. The team now includes material, consumable and procedure costs and organises the patient-benefit data needed for reimbursement discussions.",
     "Access also depends on who pays. Mainland resident medical insurance requires mature therapies and long approval cycles, so we looked at commercial insurance and asked Mavis Wu, a branch director at Prudential and a 2026 QAA award winner, about payment arrangements.",
-    "She described how insurance works and the profile of high-end commercial-insurance customers: many policies pay hospitals directly, so hospital acceptance of the material is decisive, and some insurers use eligibility lists such as the mainland's 2025 commercial health-insurance innovative drug catalogue, while in Hong Kong individual insurers decide. A payer-facing information pack should make reimbursement criteria explicit.",
+    "She described how insurance works and the profile of high-end commercial-insurance customers: many policies pay hospitals directly, so hospital acceptance of the material is decisive, and some insurers work from coverage lists such as the mainland's Commercial Health Insurance Innovative Drug Catalogue (2025), while in Hong Kong individual insurers decide. A payer-facing information pack should make reimbursement criteria explicit.",
     "We added a payment perspective to the commercial analysis, included material, consumables, device use and operating costs in the cost framework, and drafted an initial information pack for payers.",
     "ihp-40",
   ),
@@ -524,7 +515,7 @@ const timelineItems: TimelineItem[] = [
     "Market access",
     "Tung Wah Hospital — hospital adoption in Hong Kong",
     "The discussion with Tung Wah Hospital turned hospital cooperation into target departments, a first formulation, product classification and safety and efficacy evidence, and mapped procurement, training and batch-traceability requirements for later clinical collaboration.",
-    "After speaking with Mavis Wu, we wanted to understand hospital admission standards, so we contacted the medical services team of Tung Wah Hospital and the centre director to explore how NEST could enter a hospital.",
+    "After speaking with Mavis Wu, we wanted to understand hospital admission standards, so we contacted Chen Yihua, medical services supervisor of Tung Wah Hospital, and Li Yongshi, director of the centre, to explore how NEST could enter a hospital.",
     "The discussion covered confirming the target department and collaboration model, fixing the first product formulation, use and mechanism, checking with the Hong Kong Department of Health whether the product is a medical device and which risk class and MDACS listing apply (assessed separately for the base hydrogel and the version with an active delivery module), preparing product information, specifications, compliance documents and safety and efficacy evidence, and explaining the full-course cost against existing treatments. Hospitals also require clinical and technical evaluation, supplier and procurement procedures, acceptance, training, batch traceability and adverse-event reporting.",
     "Tung Wah's new Office for Innovative Drugs and Medical Devices, established in June 2026, accepts submissions from manufacturers or local agents at imds@ha.org.hk. We plan to approach flexible private hospitals such as Tung Wah after our factory production is stable.",
     "ihp-33",
@@ -539,6 +530,24 @@ const timelineItems: TimelineItem[] = [
     "We reviewed our material design and decided that, for cost reasons, we could first produce and market the simpler SELP material to avoid a long approval cycle and market-access difficulty.",
     "ihp-32",
   ),
+  stakeholder(
+    "Late October 2026",
+    "Rehabilitation",
+    "Dr. Shen Yang — pain that falls outside the diagnostic threshold",
+    "Dr. Shen Yang helped us turn the interviews into a systematic anthropological study of why early joint symptoms remain medically invisible. The work became a paper discussed at an ethnographic workshop and fed back to Zhejiang University's health-services institute, and it shaped our medical-humanities lectures for future doctors.",
+    "Our surveys and interviews showed how cartilage damage is overlooked in the medical system. We wanted to examine the structural reasons behind this invisibility and how it might be addressed at the system level, so we approached Dr. Shen Yang — a researcher in Zhejiang University's Department of Sociology and a Boston University PhD in anthropology — at the university's third social research annual meeting.",
+    "She advised us to study the topic systematically and produce a paper, and after a semester of coursework we wrote “Pain beyond the diagnostic threshold: the medical invisibility of early joint symptoms”. Starting from the inversion between many reported symptoms and few formal records, and drawing on Kleinman's distinction between disease and illness and on Carel and Kidd's framework of epistemic injustice, the paper examines how patients' accounts of pain, activity limitation and disruption to daily life are translated into clinically recognisable information, and which experiences are lost in that translation. It argues that care needs can still be identified and answered while a diagnosis remains uncertain, and that understanding this problem requires attention to diagnostic uncertainty, the patient's situation and the organisation of care. Its contribution is to move attention from the number of diagnoses to the burden of symptoms that are not yet fully recorded, and to propose including patient-reported pain, life impact and follow-up needs in assessment. It also considers structural violence and the power imbalance inherent in doctor–patient relationships.",
+    "We took the paper to the ethnographic workshop in Chiang Mai and fed the results back to Zhejiang University's Institute of Social Medicine and Health Services Management. We also ran medical-anthropology lectures and seminars that raised future doctors' patient awareness — that illness is not only a physiological injury but is accompanied by social context and structural violence — and called for patients' care needs to be recognised even within ambiguous diagnostic standards.",
+  ),
+  stakeholder(
+    "Early November 2026",
+    "Rehabilitation",
+    "Chen Xi — drawing rehabilitation into art",
+    "Artist Chen Xi advised us on motion sensors and artistic visualisation, and our rehabilitation movements became two artworks. The collaboration also brought a visual-tracking piece on engineered bacteria into our science talks and is planned for a future art–science exhibition.",
+    "Chen Xi is a designer and artist, currently a PhD candidate in art and computational technology at Goldsmiths, University of London. He curated “The Larva of Time” for Bai Shunong, a Berggruen Fellow at Peking University's School of Life Sciences, in which an artist drew butterfly trajectories in the air with eye tracking; the resulting works brought science and art, biology and the public, closer together.",
+    "We met him at a lecture and explained that “The Larva of Time” had inspired us to make a trajectory artwork from cartilage-rehabilitation movements. He gave concrete advice on sensors and on artistic drawing, and the work was completed from those rehabilitation movements. He also shared his experience of drawing with visual sensors and allowed us to present a new piece that traces the movement of engineered bacteria, which made our synthetic-biology talks more interactive and helped audiences understand engineered bacteria.",
+    "Following his advice we completed two themed artworks. We plan to exhibit them in the science-and-art exhibition that the future learning centre will run, to spread awareness of cartilage health and synthetic biology.",
+  ),
 ];
 /* ------------------------------------------------------------------ */
 /* Blocks                                                             */
@@ -547,7 +556,7 @@ const timelineItems: TimelineItem[] = [
 function SeedMethodBlock() {
   return (
     <>
-      <h3 className="mt-4 mb-3">SEED — the iHP framework</h3>
+      <h3 className="mt-4 mb-3">SEED — the analysis method</h3>
       <TransparentImage
         src={SEED_RING}
         alt="The SEED cycle — Spark a Question, Explore & Analyze, Engineering & Implementation, Dialogue & Feedback — as the outer ring, with the Design–Build–Test–Learn cycle nested inside it"
@@ -557,53 +566,52 @@ function SeedMethodBlock() {
         loading="eager"
       />
       <p>
-        We want our human-practices work not only to make this project fit the
-        real world, but also to give later teams a way of thinking and a
-        reference they can reuse. The iHP toolbox below collects the methods we
-        used.
+        iHP is the bridge between the laboratory and the real world. Because our
+        material is a medical material, its design has to stay cautious. We want
+        our human-practices work not only to make this project fit the real
+        world, but also to give later teams a way of thinking and a reference
+        they can reuse. The iHP toolbox below collects the methods we used.
       </p>
       <p>
-            To make sure every design step answers a real problem, we built a
-            new cycle — <strong>SEED</strong> — and wrapped the traditional
-            engineering cycle (Design–Build–Test–Learn) inside it, so that the
-            laboratory loop becomes one part of the project&rsquo;s overall
-            iteration:
-          </p>
-          <ul>
-            <li>
-              <strong>S — Spark a Question.</strong> When experiments stall or
-              the design hits a bottleneck that needs iteration, we organize the
-              difficulty at hand and ask a worthwhile question.
-            </li>
-            <li>
-              <strong>E — Explore &amp; Analyze.</strong> We try to answer that
-              question — exploring outward by asking stakeholders and running
-              public surveys, and inward through the literature — and then
-              analyze what we have gathered from the project&rsquo;s own
-              perspective, writing the needs and possible solutions into a PRD
-              document that the engineering team can use.
-            </li>
-            <li>
-              <strong>E — Engineering &amp; Implementation.</strong> The
-              engineering team runs the DBTL cycle, confirms the plan, and
-              carries out the experiments and application.
-            </li>
-            <li>
-              <strong>D — Dialogue &amp; Feedback.</strong> We show the latest
-              design and experimental results to stakeholders, to the team
-              members who raised the question, and to the wider target group,
-              and listen to their feedback.
-            </li>
-          </ul>
-          <p>
-            Between the two &ldquo;E&rdquo;s, multi-step, multi-team
-            requirements can make collaboration difficult and information
-            mismatched. We adapted the PRD (product requirement document)
-            feedback pattern from product teams so that real-world needs are fed
-            back to the project in an orderly and accurate way, keeping the
-            team&rsquo;s work coordinated. The interactive SEED ring lives on
-            the Engineering page; the static artwork on the right shows how the
-            two cycles nest.
+        To make sure every design step answers a real problem, we built a new
+        cycle — <strong>SEED</strong> — and wrapped the traditional engineering
+        cycle (Design–Build–Test–Learn) inside it, so that the laboratory loop
+        becomes one part of the project&rsquo;s overall iteration:
+      </p>
+      <ul>
+        <li>
+          <strong>S — Spark a Question.</strong> When experiments stall or the
+          design hits a bottleneck that needs iteration, we organize the
+          difficulty at hand and ask a worthwhile question.
+        </li>
+        <li>
+          <strong>E — Explore &amp; Analyze.</strong> We try to answer that
+          question — exploring outward by asking stakeholders and running public
+          surveys, and inward through the literature — and then analyze what we
+          have gathered from the project&rsquo;s own perspective, writing the
+          needs and possible solutions into a PRD document that the engineering
+          team can use.
+        </li>
+        <li>
+          <strong>E — Engineering &amp; Implementation.</strong> The engineering
+          team runs the DBTL cycle, confirms the plan, and carries out the
+          experiments and application.
+        </li>
+        <li>
+          <strong>D — Dialogue &amp; Feedback.</strong> We show the latest
+          design and experimental results to stakeholders, to the team members
+          who raised the question, and to the wider target group, and listen to
+          their feedback.
+        </li>
+      </ul>
+      <p>
+        Between the two &ldquo;E&rdquo;s, multi-step, multi-team requirements
+        can make collaboration difficult and information mismatched. We adapted
+        the PRD (product requirement document) feedback pattern from product
+        teams so that real-world needs are fed back to the project in an orderly
+        and accurate way, keeping the team&rsquo;s work coordinated. The
+        interactive SEED ring lives on the Engineering page; the static artwork
+        on the right shows how the two cycles nest.
       </p>
       <p>
         Every design cycle in the narrative —{" "}
@@ -611,8 +619,7 @@ function SeedMethodBlock() {
         <strong>Situated Implementation</strong> — runs one SEED loop: the
         question that sparked it, what we explored, the engineering work that
         followed, and the dialogue that closed the loop. The cycles themselves
-        are written on the NEST page, each paragraph tagged with its SEED
-        phase.
+        are written on the NEST page, each paragraph tagged with its SEED phase.
       </p>
       <p>
         SEED is the seed of our product design — the first step that let NEST
@@ -635,87 +642,94 @@ function CoDesignBlock() {
       </p>
 
       <h4 className="mt-4 mb-2">Cycle 1 — SELP</h4>
-      <p data-seed-phase="spark">S: Based on the background research,
-        we wanted to design a material that can heal a broad range of hyaline
-        cartilage defects, starting with a filler that meets the complex
-        requirements of cartilage repair — filling the defect directly and
-        reducing pain immediately. We presented the first SELP design — a fixed
-        set of 2KY5, 2KY10 and 2KY16 proteins — to researchers and doctors. The
+      <p data-seed-phase="spark">
+        S: Based on the background research, we wanted to design a material that
+        can heal a broad range of hyaline cartilage defects, starting with a
+        filler that meets the complex requirements of cartilage repair — filling
+        the defect directly and reducing pain immediately. We presented the
+        first SELP design — a fixed set of 2KY5, 2KY10 and 2KY16 proteins — to
+        Dr. Qiu Xiaoming and Prof. Ouyang Hongwei&rsquo;s research team. The
         doctors said that different joints (elbow, knee) bear different loads
         and need different strengths; a single strength could not achieve our
         goal of filling all hyaline cartilage defects.
       </p>
-      <p data-seed-phase="explore">E: We found that the repeat
-        number of the 2KY protein series can tune the material&rsquo;s strength
-        and toughness, and that higher repeat numbers reduce pore size and raise
-        cell adhesion, favoring GAG production, native cartilage growth and
-        anti-inflammatory signaling — fitting patients with different immune
-        capacities and defect sizes. We decided to build a programmable method
-        for the repeat-number series and to use modeling to fix the
-        hydrogel&rsquo;s final properties.
+      <p data-seed-phase="explore">
+        E: We found that the repeat number of the 2KY protein series can tune
+        the material&rsquo;s strength and toughness, and that higher repeat
+        numbers reduce pore size and raise cell adhesion, favoring GAG
+        production, native cartilage growth and anti-inflammatory signaling —
+        fitting patients with different immune capacities and defect sizes. We
+        decided to build a programmable method for the repeat-number series and
+        to use modeling to fix the hydrogel&rsquo;s final properties.
       </p>
-      <p data-seed-phase="engineering">E: We entered the
-        SELP DBTL cycle. To realize the complex functions SELP needs as a
-        broadly applicable filler, we surfaced many experimental questions and
-        discussed them actively with several stakeholders (see the{" "}
+      <p data-seed-phase="engineering">
+        E: We entered the SELP DBTL cycle. To realize the complex functions SELP
+        needs as a broadly applicable filler, we surfaced many experimental
+        questions and discussed them actively with several stakeholders (see the{" "}
         <a href="#ihp-engagement-timeline">Engagement Timeline</a>).
       </p>
-      <p data-seed-phase="dialogue">D: We showed the latest
-        design to doctors and researchers; the feedback was positive, and the
-        experiments that followed confirmed the design&rsquo;s reliability.
+      <p data-seed-phase="dialogue">
+        D: We showed the latest design to doctors and researchers; the feedback
+        was positive, and the experiments that followed confirmed the
+        design&rsquo;s reliability.
       </p>
 
       <h4 className="mt-4 mb-2">Cycle 2 — Linker System</h4>
-      <p data-seed-phase="spark">S: Reading the literature made clear
-        that filling the defect alone is not enough. To fit the repair needs of
-        different clinical micro-environments we wanted to add therapy-related
-        functional modules — but large modules inserted inside the molecule
-        would disturb SELP&rsquo;s normal function, so we chose protein linkers
-        for an extensible design. We first tried the mainstream SpyTag and
-        SnoopTag systems, but protein modeling showed the linkers were too large
-        and would bury the functional peptide domain.
+      <p data-seed-phase="spark">
+        S: Reading the literature made clear that filling the defect alone is
+        not enough. To fit the repair needs of different clinical
+        micro-environments we wanted to add therapy-related functional modules —
+        but large modules inserted inside the molecule would disturb
+        SELP&rsquo;s normal function, so we chose protein linkers for an
+        extensible design. We first tried the mainstream SpyTag and SnoopTag
+        systems, but protein modeling showed the linkers were too large and
+        would bury the functional peptide domain.
       </p>
-      <p data-seed-phase="explore">E: We asked stakeholders; one
-        researcher suggested using SnoopLigase as the linker system.
+      <p data-seed-phase="explore">
+        E: We asked stakeholders; Dr. Yi Junzhi suggested using SnoopLigase as
+        the linker system.
       </p>
-      <p data-seed-phase="engineering">E: Through modeling
-        we engineered the enzyme, improved the ligation efficiency, and iterated
-        the SnoopLigase system into the{" "}
-        <strong>SnoopLigase-ZJU</strong> system, greatly improving its
+      <p data-seed-phase="engineering">
+        E: Through modeling we engineered the enzyme, improved the ligation
+        efficiency, and iterated the system into our{" "}
+        <strong>SnoopLigase-ZJU</strong> linker, built on the SnoopLigase 2
+        toolkit (SnoopLigase2, SnoopTag2 and DogTag2), greatly improving its
         efficiency and keeping the linker system running reliably.
       </p>
-      <p data-seed-phase="dialogue">D: We showed the design to
-        doctors and researchers, who agreed with it.
+      <p data-seed-phase="dialogue">
+        D: We showed the design to Dr. Yi Junzhi and Dr. Ren Bo, who agreed with
+        it.
       </p>
 
       <h4 className="mt-4 mb-2">Cycle 3 — Functional Modules</h4>
-      <p data-seed-phase="spark">S: With the programmable platform in
-        place, we chose OA as NEST&rsquo;s first concrete application and asked
-        doctors whether the material would fit clinical needs.
+      <p data-seed-phase="spark">
+        S: With the programmable platform in place, we chose OA as NEST&rsquo;s
+        first concrete application and asked doctors whether the material would
+        fit clinical needs.
       </p>
-      <p data-seed-phase="explore">E: In our conversations the
-        doctors explained that the closed environment of OA easily forms a
-        vicious cycle of local mechanical imbalance, GAG loss and aggravated
-        inflammation. Reading the literature widely, we found that anisotropy —
-        a physical property of native cartilage — can mimic its structure:
-        carrying shear while keeping toughness and elasticity, stopping the
-        vicious cycle at its start.
+      <p data-seed-phase="explore">
+        E: In our conversations the doctors explained that the closed
+        environment of OA easily forms a vicious cycle of local mechanical
+        imbalance, GAG loss and aggravated inflammation. Reading the literature
+        widely, we found that anisotropy — a physical property of native
+        cartilage — can mimic its structure: carrying shear while keeping
+        toughness and elasticity, stopping the vicious cycle at its start.
       </p>
-      <p data-seed-phase="engineering">E: Together with
-        doctors and researchers we designed a magnetic-nanoparticle-binding
-        peptide that aligns SELP under an external field to create anisotropy, a
-        GAG-retaining peptide based on electrostatic adsorption, and a liposome
-        delivery module for personalized treatment — addressing the three
-        vicious-cycle modules one by one.
+      <p data-seed-phase="engineering">
+        E: Together with doctors and researchers we designed a
+        magnetic-nanoparticle-binding peptide that aligns SELP under an external
+        field to create anisotropy, a GAG-retaining peptide based on
+        electrostatic adsorption, and a liposome delivery module for
+        personalized treatment — addressing the three vicious-cycle modules one
+        by one.
       </p>
-      <p data-seed-phase="dialogue">D: We returned to the doctors
-        and researchers for their opinions. One doctor thought the material too
-        complex, which could raise concerns in practical use and difficulties
-        during market approval — this made us weigh safety even more carefully.
-        We also compared the collected patient needs to make sure the
-        programmable modules cover almost every case.
+      <p data-seed-phase="dialogue">
+        D: We returned to the doctors and researchers for their opinions. One
+        doctor thought the material too complex, which could raise concerns in
+        practical use and difficulties during market approval — this made us
+        weigh safety even more carefully. We also compared the collected patient
+        needs to make sure the programmable modules cover almost every case.
       </p>
-
     </>
   );
 }
@@ -731,27 +745,29 @@ function SituatedBlock() {
       </p>
 
       <h4 className="mt-4 mb-2">Cycle 1 — Hardware</h4>
-      <p data-seed-phase="spark">S: To bring the project into
-        clinical use, we designed a hardware system matched to all of our
-        biological designs: a first version combined an endoscope and a
-        blue-light illumination system into one in-body device, plus a syringe.
+      <p data-seed-phase="spark">
+        S: To bring the project into clinical use, we designed a hardware system
+        matched to all of our biological designs: a first version combined an
+        endoscope and a blue-light illumination system into one in-body device,
+        plus a syringe.
       </p>
-      <p data-seed-phase="explore">E: We tested it in a clinical
-        setting. The nurses we interviewed raised three main issues: where
-        should the material be prepared? How should the system be operated? How
-        should it connect to the hospital&rsquo;s existing displays? We did
-        on-site research, consulted medical-device companies, and decided to add
-        a pre-mixing module, an electronic manual and a Bluetooth connection.
+      <p data-seed-phase="explore">
+        E: We tested it in a clinical setting. The nurses we interviewed raised
+        three main issues: where should the material be prepared? How should the
+        system be operated? How should it connect to the hospital&rsquo;s
+        existing displays? We did on-site research, consulted medical-device
+        companies, and decided to add a pre-mixing module, an electronic manual
+        and a Bluetooth connection.
       </p>
-      <p data-seed-phase="engineering">E: Combined with the
-        wet-lab protein purification design, we iterated the hardware into an
-        integrated system compatible with different operating-room
-        configurations.
+      <p data-seed-phase="engineering">
+        E: Combined with the wet-lab protein purification design, we iterated
+        the hardware into an integrated system compatible with different
+        operating-room configurations.
       </p>
-      <p data-seed-phase="dialogue">D: To match user habits, we
-        ran comparative evaluations with the emergency-ward nurse team of the
-        254th Hospital and medical students, and chose the highest-scoring
-        scheme — which stakeholders also approved.
+      <p data-seed-phase="dialogue">
+        D: To match user habits, we ran comparative evaluations with the
+        emergency-ward nurse team of the 254th Hospital and medical students,
+        and chose the highest-scoring scheme — which stakeholders also approved.
       </p>
 
       <h4 id="ihp-syringe-questionnaire" className="mt-5 mb-3">
@@ -784,130 +800,134 @@ function SituatedBlock() {
         <p>
           In the simulated run 24 participants — clinicians, researchers, device
           developers, students and other users — each evaluated three
-          configurations (A, B, C) in a balanced repeated-measures design, giving
-          72 evaluations. The figures compare the configurations on start-up
-          force, resistance, speed and stop control, hand fatigue, operational
-          problems and overall satisfaction.
+          configurations (A, B, C) in a balanced repeated-measures design,
+          giving 72 evaluations. The figures compare the configurations on
+          start-up force, resistance, speed and stop control, hand fatigue,
+          operational problems and overall satisfaction.
         </p>
-      <Figure
-        src={`${SYRINGE_FIG}/r2-performance-profile-en.avif`}
-        alt="Figure 8 — favourable response profile across syringe configurations"
-        width={4000}
-        height={1205}
-        caption={
-          <>
-            <strong>
-              Figure 8 | Favourable response profile across syringe
-              configurations (n = 24 per configuration).
-            </strong>{" "}
-            Values show the proportion of favourable responses for start force,
-            resistance suitability, speed control, output smoothness, stop
-            control and hand fatigue. Configuration B was simulated as the most
-            balanced; Configuration C showed more difficulty with start-up and
-            fatigue. These are simulated differences, not evidence of clinical
-            superiority.
-          </>
-        }
-      />
-      <Figure
-        src={`${SYRINGE_FIG}/r3-problems-overall-en.avif`}
-        alt="Figure 9 — operational problems and overall evaluation"
-        width={4000}
-        height={1036}
-        caption={
-          <>
-            <strong>Figure 9 | Operational problems and overall evaluation.</strong>{" "}
-            (A) Proportion reporting any operational problem, no problem, or
-            unable to judge (Q11). (B) Satisfaction (Q12 D+E) and willingness to
-            reuse (Q13 D+E) by configuration. Configuration B had the most
-            favourable simulated profile; Configuration C showed more start-up
-            difficulty and fatigue. These are simulated differences, not
-            evidence of clinical superiority.
-          </>
-        }
-      />
-      <Figure
-        src={`${SYRINGE_FIG}/r4-feedback-themes-en.avif`}
-        alt="Figure 10 — illustrative operator feedback themes"
-        width={4000}
-        height={1844}
-        caption={
-          <>
-            <strong>
-              Figure 10 | Illustrative operator feedback themes for
-              configurations A, B, C and general suggestions.
-            </strong>{" "}
-            The statements are simulated feedback directions, not verbatim
-            quotes, and are not frequency-counted.
-          </>
-        }
-      />
-
+        <Figure
+          src={`${SYRINGE_FIG}/r2-performance-profile-en.avif`}
+          alt="Figure 8 — favourable response profile across syringe configurations"
+          width={4000}
+          height={1205}
+          caption={
+            <>
+              <strong>
+                Figure 8 | Favourable response profile across syringe
+                configurations (n = 24 per configuration).
+              </strong>{" "}
+              Values show the proportion of favourable responses for start
+              force, resistance suitability, speed control, output smoothness,
+              stop control and hand fatigue. Configuration B was simulated as
+              the most balanced; Configuration C showed more difficulty with
+              start-up and fatigue. These are simulated differences, not
+              evidence of clinical superiority.
+            </>
+          }
+        />
+        <Figure
+          src={`${SYRINGE_FIG}/r3-problems-overall-en.avif`}
+          alt="Figure 9 — operational problems and overall evaluation"
+          width={4000}
+          height={1036}
+          caption={
+            <>
+              <strong>
+                Figure 9 | Operational problems and overall evaluation.
+              </strong>{" "}
+              (A) Proportion reporting any operational problem, no problem, or
+              unable to judge (Q11). (B) Satisfaction (Q12 D+E) and willingness
+              to reuse (Q13 D+E) by configuration. Configuration B had the most
+              favourable simulated profile; Configuration C showed more start-up
+              difficulty and fatigue. These are simulated differences, not
+              evidence of clinical superiority.
+            </>
+          }
+        />
+        <Figure
+          src={`${SYRINGE_FIG}/r4-feedback-themes-en.avif`}
+          alt="Figure 10 — illustrative operator feedback themes"
+          width={4000}
+          height={1844}
+          caption={
+            <>
+              <strong>
+                Figure 10 | Illustrative operator feedback themes for
+                configurations A, B, C and general suggestions.
+              </strong>{" "}
+              The statements are simulated feedback directions, not verbatim
+              quotes, and are not frequency-counted.
+            </>
+          }
+        />
       </ExtendCard>
       <p>
-        Configuration B had the most balanced profile, which informed the
-        scheme we carried forward. These are simulated results for layout and
+        Configuration B had the most balanced profile, which informed the scheme
+        we carried forward. These are simulated results for layout and
         comparison, not clinical evidence.
       </p>
 
       <h4 className="mt-4 mb-2">Cycle 2 — Manufacturing</h4>
-      <p data-seed-phase="spark">S: We wanted our material to be
-        produced at factory scale and discussed sample production with Beijing
-        Weixinkang. They invited us to cooperate and advised us to consider
-        protein purification, transport and storage.
+      <p data-seed-phase="spark">
+        S: We wanted our material to be produced at factory scale and discussed
+        sample production with Beijing Weixinkang. They invited us to cooperate
+        and advised us to consider protein purification, transport and storage.
       </p>
-      <p data-seed-phase="explore">E: We reviewed how marketed
-        hydrogels are extracted, purified and transported, and decided on a
-        protein powder packaged as a pharmaceutical for hospitals. We visited a
-        mature synbio raw-material company, Yuanyi Biology, to learn more about
-        practical scenarios.
+      <p data-seed-phase="explore">
+        E: We reviewed how marketed hydrogels are extracted, purified and
+        transported, and decided on a protein powder packaged as a
+        pharmaceutical for hospitals. We visited a mature synbio raw-material
+        company, Yuanyi Biology, to learn more about practical scenarios.
       </p>
-      <p data-seed-phase="engineering">E: We turned the
-        information from our research and the company&rsquo;s guidance into
-        concrete engineering design. Around protein purification, powder
-        preparation, packaging, transport and storage, we mapped the technical
-        problems NEST must solve to move from a lab sample to a standardized
-        product. We prioritized the protein-powder form, focusing on keeping the
-        protein intact and the hydrogel performance after reconstitution while
-        remaining easy to produce, transport and store. Together with the
-        company&rsquo;s production experience we listed the quality-control
-        points for later sample preparation — protein purity, storage stability,
-        post-reconstitution performance and batch consistency — and brought
-        these requirements into the sample-cooperation discussions with
-        Weixinkang, laying the groundwork for process optimization and scale-up.
+      <p data-seed-phase="engineering">
+        E: We turned the information from our research and the company&rsquo;s
+        guidance into concrete engineering design. Around protein purification,
+        powder preparation, packaging, transport and storage, we mapped the
+        technical problems NEST must solve to move from a lab sample to a
+        standardized product. We prioritized the protein-powder form, focusing
+        on keeping the protein intact and the hydrogel performance after
+        reconstitution while remaining easy to produce, transport and store.
+        Together with the company&rsquo;s production experience we listed the
+        quality-control points for later sample preparation — protein purity,
+        storage stability, post-reconstitution performance and batch consistency
+        — and brought these requirements into the sample-cooperation discussions
+        with Weixinkang, laying the groundwork for process optimization and
+        scale-up.
       </p>
-      <p data-seed-phase="dialogue">D: We interviewed Weixinkang
-        again; their engineers approved, and we signed a sample-cooperation
-        agreement.
+      <p data-seed-phase="dialogue">
+        D: We interviewed Weixinkang again; their engineers approved, and we
+        signed a sample-cooperation agreement.
       </p>
 
       <h4 className="mt-4 mb-2">
         Cycle 3 — Entrepreneurship &amp; Market Access
       </h4>
-      <p data-seed-phase="spark">S: As a material entering the human
-        body, NEST must be careful about product safety and face many
-        market-access reviews. We had many questions about the approval process,
-        the market and sales channels, and after research we also had thoughts
-        and questions about public and commercial medical insurance. A simple
-        cost estimate showed the early investment would be large and
-        unavoidable — which meant we needed early funding.
+      <p data-seed-phase="spark">
+        S: As a material entering the human body, NEST must be careful about
+        product safety and face many market-access reviews. We had many
+        questions about the approval process, the market and sales channels, and
+        after research we also had thoughts and questions about public and
+        commercial medical insurance. A simple cost estimate showed the early
+        investment would be large and unavoidable — which meant we needed early
+        funding.
       </p>
-      <p data-seed-phase="explore">E: With these questions we
-        looked widely for stakeholders across production, sales, government
-        regulation, finance and start-up mentoring, and received effective
-        advice. We also received guidance from Shaanxi Lanyanwei Biotechnology,
-        which has rich experience in translating medical research into products.
+      <p data-seed-phase="explore">
+        E: With these questions we looked widely for stakeholders across
+        production, sales, government regulation, finance and start-up
+        mentoring, and received effective advice. We also received guidance from
+        Shaanxi Lanyanwei Biotechnology, which has rich experience in
+        translating medical research into products.
       </p>
-      <p data-seed-phase="engineering">E: We weighed cost
-        more heavily in the design, built a detailed business model, found a
-        CDMO partner, joined several entrepreneurship events, and secured our
-        first letter of intent for investment. More in{" "}
+      <p data-seed-phase="engineering">
+        E: We weighed cost more heavily in the design, built a detailed business
+        model, found a CDMO partner, joined several entrepreneurship events, and
+        secured our first letter of intent for investment. More in{" "}
         <Link to="/entrepreneurship">Entrepreneurship</Link>.
       </p>
-      <p data-seed-phase="dialogue">D: Every revision and
-        iteration of the business model was discussed with the relevant
-        stakeholders until the team and the stakeholders agreed. Through
-        competitions and investor pitches, the recognition of investment
+      <p data-seed-phase="dialogue">
+        D: Every revision and iteration of the business model was discussed with
+        the relevant stakeholders until the team and the stakeholders agreed.
+        Through competitions and investor pitches, the recognition of investment
         institutions also demonstrated the project&rsquo;s entrepreneurial
         feasibility.
       </p>
@@ -928,198 +948,226 @@ function DiscoveryBlock() {
       </p>
       <p>
         We ran a questionnaire through four channels: a university community
-        (~150 responses), community sites in Hangzhou (Qigudeng Street, Sandun
-        Town) and Tianjin (~1,200), and Chinese online platforms (Xiaohongshu,
-        CDM patient groups; ~300). In total we collected{" "}
+        (~150 responses), community sites in Hangzhou&rsquo;s Gongshu (Qigudeng
+        Street) and Xihu (Sandun Town) districts and Tianjin&rsquo;s Nankai
+        District (~1,200), and Chinese online platforms (Xiaohongshu, CDM
+        patient groups; ~300). The form included strict privacy protection and
+        risk notices. In total the questionnaire reached more than{" "}
+        <strong>1,700 people</strong>, and we collected{" "}
         <strong>1,654 valid responses</strong>.
+      </p>
+      <p>
+        Beyond the questionnaire we interviewed patients from the three main
+        presentations of hyaline cartilage injury (see{" "}
+        <a href="#ihp-engagement-patient">Stakeholder Interviews</a>). The broad
+        case mix, the sharp pain and the persistent foreign-body sensation
+        convinced us to build a product that can treat hyaline cartilage defects
+        widely, and this inspired the platform design.
       </p>
       <ExtendCard title="Survey details: responses, figures and clinical context">
         <p>
           23.8% reported personal or family experience of cartilage injury. The
-          university sample was
-        dominated by focal traumatic defects; community OA concentrated in older
-        adults; and the online platforms discussed OA and post-operative
-        injuries (ACL reconstruction, patellar surgery, tenosynovitis surgery)
-        most actively.
-      </p>
-      <Figure
-        src={`${SURVEY_FIG}/fig1-survey-reach-prevalence-en.avif`}
-        alt="Figure 1 — survey reach and experience of cartilage injury"
-        width={4000}
-        height={1635}
-        caption={
-          <>
-            <strong>
-              Figure 1 | Survey reach and experience of cartilage injury.
-            </strong>{" "}
-            (A) Valid responses by recruitment channel (n = 1,654). (B)
-            Proportion of respondents reporting personal or family experience of
-            cartilage injury. The community survey estimate including family
-            &ldquo;unsure&rdquo; was 23.5%, close to the 23.8% population
-            estimate; university and online samples were purposively enriched.
-          </>
-        }
-      />
-      <p>
-        The clinical profile differed sharply by channel. Among the 579
-        respondents with personal or family experience, acute injury was the
-        largest mechanism in the university and online samples (57% and 50%),
-        while chronic degeneration was the largest in the community sample
-        (34%). Surgical treatment was reported by 16.3% of the university
-        sample, 6.6% of the community sample and 22.6% of the online sample. In
-        the community, 59.5% of respondents with chronic degeneration (OA) were
-        46 or older, while post-operative recovery cases spanned adult ages.
-      </p>
-      <Figure
-        src={`${SURVEY_FIG}/fig2-clinical-landscape-en.avif`}
-        alt="Figure 2 — clinical profile across survey channels"
-        width={4000}
-        height={2179}
-        caption={
-          <>
-            <strong>Figure 2 | Clinical profile across survey channels.</strong>{" "}
-            (A) Injury mechanism among patients (n = 579). (B) Proportion
-            reporting surgical treatment. (C) Age distribution of community
-            respondents with chronic degeneration/OA (n = 84); 59.5% were aged
-            46 years or older. (D) Age distribution of post-operative recovery
-            cases in the 50-patient supplementary sample (n = 14), spanning
-            adult age groups. Injury mechanism is used as a proxy for local
-            traumatic defect and OA.
-          </>
-        }
-      />
-      <p>
-        The injury sites were broad — the knee was most common, but ankle, hip,
-        shoulder and spinal involvement showed a wide case mix. 37.1% of
-        patients reported severe or sharp pain, and 30.7% reported a
-        foreign-body sensation lasting hours to long-term. In interviews,
-        patients described this as a persistent irritation rather than pain
-        alone.
-      </p>
-      <Figure
-        src={`${SURVEY_FIG}/fig3-sites-symptoms-en.avif`}
-        alt="Figure 3 — broad injury sites and persistent symptom burden"
-        width={4000}
-        height={1321}
-        caption={
-          <>
-            <strong>
-              Figure 3 | Broad injury sites and persistent symptom burden.
-            </strong>{" "}
-            Among patients with personal or family experience (n = 579), (A)
-            knee involvement was most common, while ankle, hip, shoulder and
-            spinal involvement indicated a broad case mix; (B) 37.1% reported
-            severe or sharp pain; and (C) 30.7% reported foreign-body sensation
-            lasting hours to long-term. Injury site is multi-select; percentages
-            sum to more than 100%.
-          </>
-        }
-      />
-      <p>
-        The treatment picture shows the cost of the current options. Painkillers
-        were the most common treatment (59.1%), followed by rehabilitation
-        exercise (33.3%) and TCM (31.3%); 14.9% had surgery and 14.5% received
-        no treatment. Recovery outcomes left residual symptoms (slight
-        improvement, no change or worsening) in 49–70% of treated patients; and
-        when asked for their first-choice treatment, patients preferred the
-        least invasive options — rehabilitation (34.0%) and TCM (30.4%) over
-        surgery (19.0%). The consequences of each pathway recur in our
-        interviews: no or mild treatment leaves the symptoms in place and lets
-        the condition progress; rehabilitation needs hospital guidance and is
-        hard to sustain; aggressive treatment is uncomfortable and aimed at
-        moderate-to-severe cases, and we met cases of over-treatment where
-        surgery was pursued mainly to restore joint function quickly.
-      </p>
-      <Figure
-        src={`${SURVEY_FIG}/fig4-treatment-recovery-en.avif`}
-        alt="Figure 4 — treatment pathways, recovery, and patient preference"
-        width={4000}
-        height={2192}
-        caption={
-          <>
-            <strong>
-              Figure 4 | Treatment pathways, recovery, and patient preference.
-            </strong>{" "}
-            (A) Treatments ever received (multi-select). (B) First-choice
-            treatment in the ranking question (n = 579). (C) Recovery outcomes
-            by mutually exclusive treatment pathway; residual symptoms (slight
-            improvement, no change, or worsening) remained in 49–70% of treated
-            patients. &ldquo;No treatment&rdquo; patients had no recorded
-            recovery outcome.
-          </>
-        }
-      />
-      <p>
-        A supplementary 50-patient sample explored the daily-life side of the
-        condition: stairs (76%) and sports (72%) were the most common
-        pain-provoking scenarios; pain (86%) and irritation (64%) the most
-        common sensations; and two-thirds reported life-impact scores of 4–5 out
-        of 5. These items were not part of the main questionnaire and are
-        presented as supplementary patient-experience data.
-      </p>
-      <Figure
-        src={`${SURVEY_FIG}/fig5-patient-experience-en.avif`}
-        alt="Figure 5 — patient-reported pain scenarios, sensations, and life impact"
-        width={4000}
-        height={1296}
-        caption={
-          <>
-            <strong>
-              Figure 5 | Patient-reported pain scenarios, sensations, and life
-              impact (supplementary sample, n = 50).
-            </strong>{" "}
-            Stairs and sports were the most frequently reported pain-provoking
-            scenarios; pain and irritation were the most common sensations;
-            two-thirds reported life-impact scores of 4–5 out of 5.
-          </>
-        }
-      />
-      <p>
-        We also asked whether people would use an injectable, sterile material
-        produced by synthetic biology. Willing and willing-to-try answers add up
-        to 28.6%, while the largest group — 52.4% — said they were somewhat
-        afraid. Being afraid signals concern rather than refusal, and this
-        question does not show what people fear; we read it together with the
-        education and trust work in Trust and Lasting Impact.
-      </p>
-      <Figure
-        src={`${SURVEY_FIG}/fig6.avif`}
-        alt="Figure 6 — willingness to use an injectable, sterile material produced by synthetic biology"
-        width={3570}
-        height={1591}
-        caption={
-          <>
-            <strong>
-              Figure 6 | Willingness to use an injectable, sterile material
-              produced by synthetic biology (n = 1,654).
-            </strong>{" "}
-            (A) Very willing: 4.78% (79). (B) Willing to try: 23.82% (394). (C)
-            Somewhat afraid: 52.36% (866). (D) Definitely would not use: 19.04%
-            (315). Willing and willing-to-try together are 28.60%; “somewhat
-            afraid” expresses concern rather than refusal, and the question does
-            not show what participants fear.
-          </>
-        }
-      />
-      <p>
-        The literature tells the same story: statistics are relatively complete
-        only for OA, while focal traumatic and post-operative defects are barely
-        recorded. For design safety we chose OA — the best-documented and most
-          widespread condition — as NEST&rsquo;s first application.
+          university sample was dominated by focal traumatic defects; community
+          OA concentrated in older adults; and the online platforms discussed OA
+          and post-operative injuries (ACL reconstruction, patellar surgery,
+          tenosynovitis surgery) most actively.
+        </p>
+        <Figure
+          src={`${SURVEY_FIG}/fig1-survey-reach-prevalence-en.avif`}
+          alt="Figure 1 — survey reach and experience of cartilage injury"
+          width={4000}
+          height={1635}
+          caption={
+            <>
+              <strong>
+                Figure 1 | Survey reach and experience of cartilage injury.
+              </strong>{" "}
+              (A) Valid responses by recruitment channel (n = 1,654). (B)
+              Proportion of respondents reporting personal or family experience
+              of cartilage injury. The community survey estimate including
+              family &ldquo;unsure&rdquo; was 23.5%, close to the 23.8%
+              population estimate; university and online samples were
+              purposively enriched.
+            </>
+          }
+        />
+        <p>
+          The clinical profile differed sharply by channel. Among the 579
+          respondents with personal or family experience, acute injury was the
+          largest mechanism in the university and online samples (57% and 50%),
+          while chronic degeneration was the largest in the community sample
+          (34%). Surgical treatment was reported by 16.3% of the university
+          sample, 6.6% of the community sample and 22.6% of the online sample.
+          In the community, 59.5% of respondents with chronic degeneration (OA)
+          were 46 or older, while post-operative recovery cases spanned adult
+          ages.
+        </p>
+        <Figure
+          src={`${SURVEY_FIG}/fig2-clinical-landscape-en.avif`}
+          alt="Figure 2 — clinical profile across survey channels"
+          width={4000}
+          height={2179}
+          caption={
+            <>
+              <strong>
+                Figure 2 | Clinical profile across survey channels.
+              </strong>{" "}
+              (A) Injury mechanism among patients (n = 579). (B) Proportion
+              reporting surgical treatment. (C) Age distribution of community
+              respondents with chronic degeneration/OA (n = 84); 59.5% were aged
+              46 years or older. (D) Age distribution of post-operative recovery
+              cases in the 50-patient supplementary sample (n = 14), spanning
+              adult age groups. Injury mechanism is used as a proxy for local
+              traumatic defect and OA.
+            </>
+          }
+        />
+        <p>
+          The injury sites were broad — the knee was most common, but ankle,
+          hip, shoulder and spinal involvement showed a wide case mix. 37.1% of
+          patients reported severe or sharp pain, and 30.7% reported a
+          foreign-body sensation lasting hours to long-term. In interviews,
+          patients described this as a persistent irritation rather than pain
+          alone.
+        </p>
+        <Figure
+          src={`${SURVEY_FIG}/fig3-sites-symptoms-en.avif`}
+          alt="Figure 3 — broad injury sites and persistent symptom burden"
+          width={4000}
+          height={1321}
+          caption={
+            <>
+              <strong>
+                Figure 3 | Broad injury sites and persistent symptom burden.
+              </strong>{" "}
+              Among patients with personal or family experience (n = 579), (A)
+              knee involvement was most common, while ankle, hip, shoulder and
+              spinal involvement indicated a broad case mix; (B) 37.1% reported
+              severe or sharp pain; and (C) 30.7% reported foreign-body
+              sensation lasting hours to long-term. Injury site is multi-select;
+              percentages sum to more than 100%.
+            </>
+          }
+        />
+        <p>
+          The treatment picture shows the cost of the current options.
+          Painkillers were the most common treatment (59.1%), followed by
+          rehabilitation exercise (33.3%) and TCM (31.3%); 14.9% had surgery and
+          14.5% received no treatment. Recovery outcomes left residual symptoms
+          (slight improvement, no change or worsening) in 49–70% of treated
+          patients; and when asked for their first-choice treatment, patients
+          preferred the least invasive options — rehabilitation (34.0%) and TCM
+          (30.4%) over surgery (19.0%). The consequences of each pathway recur
+          in our interviews: no or mild treatment leaves the symptoms in place
+          and lets the condition progress; rehabilitation needs hospital
+          guidance and is hard to sustain; aggressive treatment is uncomfortable
+          and aimed at moderate-to-severe cases, and we met cases of
+          over-treatment where surgery was pursued mainly to restore joint
+          function quickly.
+        </p>
+        <Figure
+          src={`${SURVEY_FIG}/fig4-treatment-recovery-en.avif`}
+          alt="Figure 4 — treatment pathways, recovery, and patient preference"
+          width={4000}
+          height={2192}
+          caption={
+            <>
+              <strong>
+                Figure 4 | Treatment pathways, recovery, and patient preference.
+              </strong>{" "}
+              (A) Treatments ever received (multi-select). (B) First-choice
+              treatment in the ranking question (n = 579). (C) Recovery outcomes
+              by mutually exclusive treatment pathway; residual symptoms (slight
+              improvement, no change, or worsening) remained in 49–70% of
+              treated patients. &ldquo;No treatment&rdquo; patients had no
+              recorded recovery outcome.
+            </>
+          }
+        />
+        <p>
+          A supplementary 50-patient sample explored the daily-life side of the
+          condition: stairs (76%) and sports (72%) were the most common
+          pain-provoking scenarios; pain (86%) and irritation (64%) the most
+          common sensations; and two-thirds reported life-impact scores of 4–5
+          out of 5. These items were not part of the main questionnaire and are
+          presented as supplementary patient-experience data.
+        </p>
+        <Figure
+          src={`${SURVEY_FIG}/fig5-patient-experience-en.avif`}
+          alt="Figure 5 — patient-reported pain scenarios, sensations, and life impact"
+          width={4000}
+          height={1296}
+          caption={
+            <>
+              <strong>
+                Figure 5 | Patient-reported pain scenarios, sensations, and life
+                impact (supplementary sample, n = 50).
+              </strong>{" "}
+              Stairs and sports were the most frequently reported pain-provoking
+              scenarios; pain and irritation were the most common sensations;
+              two-thirds reported life-impact scores of 4–5 out of 5.
+            </>
+          }
+        />
+        <p>
+          We also asked whether people would use an injectable, sterile material
+          produced by synthetic biology. Willing and willing-to-try answers add
+          up to 28.6%, while the largest group — 52.4% — said they were somewhat
+          afraid. Being afraid signals concern rather than refusal, and this
+          question does not show what people fear; we read it together with the
+          education and trust work in Trust and Lasting Impact.
+        </p>
+        <Figure
+          src={`${SURVEY_FIG}/fig6.avif`}
+          alt="Figure 6 — willingness to use an injectable, sterile material produced by synthetic biology"
+          width={3570}
+          height={1591}
+          caption={
+            <>
+              <strong>
+                Figure 6 | Willingness to use an injectable, sterile material
+                produced by synthetic biology (n = 1,654).
+              </strong>{" "}
+              (A) Very willing: 4.78% (79). (B) Willing to try: 23.82% (394).
+              (C) Somewhat afraid: 52.36% (866). (D) Definitely would not use:
+              19.04% (315). Willing and willing-to-try together are 28.60%;
+              “somewhat afraid” expresses concern rather than refusal, and the
+              question does not show what participants fear.
+            </>
+          }
+        />
+        <p>
+          The literature tells the same story: statistics are relatively
+          complete for osteoarthritis (OA) and its cartilage damage, while focal
+          traumatic and post-operative defects are barely recorded. The GBD 2021
+          study covered OA in 204 countries and territories from 1990 to 2020,
+          with projections to 2050, and broke the burden down by joint, age, sex
+          and region [1]. The US Osteoarthritis Initiative followed 4,796
+          participants and accumulated more than 430,000 clinical and imaging
+          examinations and about 26.63 million images [2]. Focal cartilage
+          defects, by contrast, are studied at a much smaller scale — Hjelle et
+          al. examined cartilage defects in 1,000 knee arthroscopies [3]. For
+          evidence strength and design safety we chose OA — the best-documented
+          and most widespread condition — as NEST&rsquo;s first application.
         </p>
       </ExtendCard>
       <p>
         The clinic itself is not settled. No authority defines how much
         cartilage loss counts as disease; even for OA, the authoritative
-        treatment standards in the United States and China do not agree.
-        Different doctors diagnose the same defect differently, and in early or
-        mid-stage cases the lack of a unified standard makes doctors inclined
-        not to diagnose the patient at all. In post-operative cases, the damage
-        often comes from the surgery&rsquo;s own success criteria — how the
-        implanted material threatens the cartilage that remains. A patient we
-        interviewed (yue, after patellar surgery) described in detail how the
-        repositioning of her patella let the implant occupy the space her
-        cartilage needed; several doctors we interviewed acknowledged this.
+        standards in the United States and China do not agree. China&rsquo;s
+        2018 guideline uses both the Kellgren&ndash;Lawrence and Outerbridge
+        classifications [4], while the AAOS guideline mainly addresses patients
+        with already diagnosed symptomatic OA [5]; neither sets a common
+        threshold of defect area, depth or volume at which a person counts as
+        ill or treatment should start. Different doctors therefore diagnose the
+        same defect differently, and in early or mid-stage cases the lack of a
+        unified standard makes doctors inclined not to diagnose the patient at
+        all. In post-operative cases, the damage often comes from the
+        surgery&rsquo;s own success criteria — how the implanted material
+        threatens the cartilage that remains. A patient we interviewed (Yue,
+        after patellar surgery) described in detail how the repositioning of her
+        patella let the implant occupy the space her cartilage needed; several
+        doctors we interviewed acknowledged this.
       </p>
       <p>
         Patients also overlook their own cartilage health. Told that no
@@ -1150,6 +1198,42 @@ function DiscoveryBlock() {
           evidence, and weigh safety and real-world impact cautiously.
         </li>
       </ul>
+
+      <h4 className="mt-5 mb-3">References</h4>
+      <ol className="small">
+        <li id="ihp-ref-1">
+          GBD 2021 Osteoarthritis Collaborators. Global, regional, and national
+          burden of osteoarthritis, 1990&ndash;2020 and projections to 2050: a
+          systematic analysis for the Global Burden of Disease Study 2021.{" "}
+          <em>Lancet Rheumatology</em>. 2023;5(9):e508&ndash;e522.
+          doi:10.1016/S2665-9913(23)00163-7.
+        </li>
+        <li id="ihp-ref-2">
+          National Institute of Mental Health Data Archive. Osteoarthritis
+          Initiative (OAI) [data repository]. National Institutes of Health;
+          accessed 19 October 2026.
+        </li>
+        <li id="ihp-ref-3">
+          Hjelle K, Solheim E, Strand T, Muri R, Brittberg M. Articular
+          cartilage defects in 1,000 knee arthroscopies. <em>Arthroscopy</em>.
+          2002;18(7):730&ndash;734. doi:10.1053/jars.2002.32839.
+        </li>
+        <li id="ihp-ref-4">
+          Joint Surgery Group, Chinese Orthopaedic Association. Chinese
+          guideline for diagnosis and management of osteoarthritis (2018
+          edition). <em>Chinese Journal of Orthopaedics</em>.
+          2018;38(12):705&ndash;715.
+          doi:10.3760/cma.j.issn.0253-2352.2018.12.001. [In Chinese].
+        </li>
+        <li id="ihp-ref-5">
+          American Academy of Orthopaedic Surgeons.{" "}
+          <em>
+            Management of Osteoarthritis of the Knee (Non-Arthroplasty):
+            Evidence-Based Clinical Practice Guideline
+          </em>
+          . 3rd ed. Rosemont, IL: AAOS; 2021.
+        </li>
+      </ol>
     </>
   );
 }
@@ -1179,21 +1263,28 @@ function ImpactBlock() {
         children, older people, the public and medical students. With Prof.
         Zhang Binghong&rsquo;s guidance we wrote our findings into a survey
         report submitted to the Hangzhou Health Commission; the Commission
-        adopted our suggestions, and our team also provided reference cases —
-        our age-specific lectures and activities — for the Commission&rsquo;s
-        next steps in training community hospitals and neighbourhood committees.
-        For doctors and medical students we appealed that orthopaedic treatment
-        should be patient-centred, valuing patients&rsquo; actual health
-        experience rather than only repairing function. With anthropology
-        scholars we wrote two papers on the structural problems behind the
-        neglect of the &ldquo;small illnesses&rdquo; in medical systems, and fed
-        the results back to Zhejiang University&rsquo;s Institute of Social
-        Medicine and Health Services Management. We also ran medical-anthropology
-        lectures and seminars to raise future doctors&rsquo; awareness.
+        replied that it would consider adopting our suggestions, and our team
+        also provided reference cases — our age-specific lectures and activities
+        — for the Commission&rsquo;s next steps in training community hospitals
+        and neighbourhood committees. Under policy requirements the reply itself
+        cannot be shown publicly. For doctors and medical students we appealed
+        that orthopaedic treatment should be patient-centred, valuing
+        patients&rsquo; actual health experience rather than only repairing
+        function. With anthropology scholars we wrote two papers on the
+        structural problems behind the neglect of the &ldquo;small
+        illnesses&rdquo; in medical systems, including{" "}
+        <em>
+          Pain beyond the diagnostic threshold: the medical invisibility of
+          early joint symptoms
+        </em>
+        , and fed the results back to Zhejiang University&rsquo;s Institute of
+        Social Medicine and Health Services Management. We also ran
+        medical-anthropology lectures and seminars to raise future
+        doctors&rsquo; awareness, and discussed the ethics and philosophy of
+        synthetic biology with Dr. Chen Bohang of the Department of Philosophy
+        of Science and Technology.
       </p>
-      <h4 className="mt-5 mb-3">
-        Reports behind the neglected pain
-      </h4>
+      <h4 className="mt-5 mb-3">Reports behind the neglected pain</h4>
       <p>
         Two documents record this work in full: the{" "}
         <a href={SURVEY_REPORT_PDF} target="_blank" rel="noreferrer">
@@ -1207,56 +1298,60 @@ function ImpactBlock() {
         open them in a new tab.
       </p>
       <ExtendCard title="Read the full reports (PDF)">
-      <div className="ihp-pdf">
-        <div className="ihp-pdf__head">
-          <strong>Survey report — the neglected pain of cartilage injury</strong>
-          <a href={SURVEY_REPORT_PDF} target="_blank" rel="noreferrer">
-            Open in a new tab
-          </a>
+        <div className="ihp-pdf">
+          <div className="ihp-pdf__head">
+            <strong>
+              Survey report — the neglected pain of cartilage injury
+            </strong>
+            <a href={SURVEY_REPORT_PDF} target="_blank" rel="noreferrer">
+              Open in a new tab
+            </a>
+          </div>
+          <iframe
+            className="ihp-pdf__frame"
+            src={SURVEY_REPORT_PDF}
+            title="Survey report — the neglected pain of cartilage injury"
+            loading="lazy"
+          />
         </div>
-        <iframe
-          className="ihp-pdf__frame"
-          src={SURVEY_REPORT_PDF}
-          title="Survey report — the neglected pain of cartilage injury"
-          loading="lazy"
-        />
-      </div>
-      <div className="ihp-pdf">
-        <div className="ihp-pdf__head">
-          <strong>Report to the Hangzhou Health Commission</strong>
-          <a href={HEALTH_COMMISSION_PDF} target="_blank" rel="noreferrer">
-            Open in a new tab
-          </a>
+        <div className="ihp-pdf">
+          <div className="ihp-pdf__head">
+            <strong>Report to the Hangzhou Health Commission</strong>
+            <a href={HEALTH_COMMISSION_PDF} target="_blank" rel="noreferrer">
+              Open in a new tab
+            </a>
+          </div>
+          <iframe
+            className="ihp-pdf__frame"
+            src={HEALTH_COMMISSION_PDF}
+            title="Report to the Hangzhou Health Commission"
+            loading="lazy"
+          />
         </div>
-        <iframe
-          className="ihp-pdf__frame"
-          src={HEALTH_COMMISSION_PDF}
-          title="Report to the Hangzhou Health Commission"
-          loading="lazy"
-        />
-      </div>
       </ExtendCard>
 
       <p>
         <strong>SynBio education.</strong> In our education practice we were
         welcomed by every educational institution, while other iGEM teams told
         us they struggled to find suitable institutions. So we joined other
-        teams to build <strong>SynEdu Global</strong>, a synthetic biology
-        education website open to everyone: institutions and iGEM teams can
-        invite teams and share educational materials, and the online format
-        partly solves regional imbalance. Later we noticed that the bio-industry
-        is also deeply interested in synthetic biology and that many industry
-        practitioners need further education, so we worked with Jiangnan
-        University to build an industry module. Beyond promoting synthetic
-        biology and reducing public misunderstanding, we also reflected on the
-        field itself: we discussed the philosophy of science and technology
-        behind it and examined the ethical questions it raises.{" "}
-        <a href="#ihp-toolbox-anthro">Learn more</a>.
+        teams to build{" "}
+        <a href="https://syneduglobal.top" target="_blank" rel="noreferrer">
+          <strong>SynEdu Global</strong>
+        </a>
+        , a synthetic biology education website open to everyone: institutions
+        and iGEM teams can invite teams and share educational materials, and the
+        online format partly solves regional imbalance. Later we noticed that
+        the bio-industry is also deeply interested in synthetic biology and that
+        many industry practitioners need further education, so we worked with
+        Jiangnan University to build an industry module and signed a five-year
+        cooperation agreement to keep the platform running long term. Beyond
+        promoting synthetic biology and reducing public misunderstanding, we
+        also reflected on the field itself: we discussed the philosophy of
+        science and technology behind it and examined the ethical questions it
+        raises. <Link to="/education">Learn more</Link>.
       </p>
 
-      <h4 className="mt-5 mb-3">
-        Education activity — pre/post questionnaire
-      </h4>
+      <h4 className="mt-5 mb-3">Education activity — pre/post questionnaire</h4>
       <p>
         Our cartilage-health education activities for children, older people,
         the public and medical students were paired with a pre/post
@@ -1266,103 +1361,101 @@ function ImpactBlock() {
         participants most wanted. These are simulated illustrative results.
       </p>
       <ExtendCard title="Questionnaire figures: baseline, change and information needs">
-      <Figure
-        src={`${ACTIVITY_FIG}/fig1-baseline-awareness-en.avif`}
-        alt="Figure 11 — baseline awareness and knowledge of joint cartilage (pre-activity)"
-        width={4000}
-        height={1248}
-        caption={
-          <>
-            <strong>
-              Figure 11 | Baseline awareness and knowledge of joint cartilage
-              (pre-activity, n = 24).
-            </strong>{" "}
-            (A) Prior attention to cartilage health. (B) Self-rated
-            understanding (mean 2.08/5; 70.8% rated 1–2). (C) Knowledge of
-            cartilage components: 79.2% could name at most a few components or
-            functions. All respondents answered every item.
-          </>
-        }
-      />
-      <Figure
-        src={`${ACTIVITY_FIG}/fig2-product-training-en.avif`}
-        alt="Figure 12 — product use, training, and perceived changes (pre-activity)"
-        width={4000}
-        height={2165}
-        caption={
-          <>
-            <strong>
-              Figure 12 | Product use, training, and perceived changes
-              (pre-activity, n = 24).
-            </strong>{" "}
-            (A) Products ever used (multi-select; 16/24 had used at least one
-            product). (B) Perceived change during product use; 7/24 reported
-            improvement. (C) Targeted exercise or rehabilitation training; 13/24
-            had trained. (D) Perceived change after training; 7/24 reported
-            improvement. Subjective improvement is not clinical evidence of
-            cartilage repair and cannot be attributed to a product or training
-            alone.
-          </>
-        }
-      />
-      <Figure
-        src={`${ACTIVITY_FIG}/fig3-pre-post-change-en.avif`}
-        alt="Figure 13 — pre-post change in self-rated knowledge and willingness"
-        width={4000}
-        height={859}
-        caption={
-          <>
-            <strong>
-              Figure 13 | Pre-post change in self-rated knowledge and willingness
-              (paired, n = 24).
-            </strong>{" "}
-            (A) Self-rated understanding increased from a mean of 2.08 to 3.63
-            (1–5 scale). (B) Willingness to use a hypothetical cartilage-repair
-            product increased from 33.3% to 54.2% (fairly/very willing). (C)
-            Individual paired changes. These simulated changes are illustrative
-            and not causal.
-          </>
-        }
-      />
-      <Figure
-        src={`${ACTIVITY_FIG}/fig4-post-knowledge-needs-en.avif`}
-        alt="Figure 14 — post-activity knowledge and information needs"
-        width={4000}
-        height={1321}
-        caption={
-          <>
-            <strong>
-              Figure 14 | Post-activity knowledge and information needs (n = 24).
-            </strong>{" "}
-            (A) Correct answer rate by knowledge question; the mean was 79.2%
-            (6.33/8). (B) Distribution of individual total scores. (C)
-            Information participants most wanted before using a hypothetical
-            product; reliable human evidence and long-term risks were the most
-            common topics (68 selections in total).
-          </>
-        }
-      />
-      <Figure
-        src={`${ACTIVITY_FIG}/fig5-feedback-themes-en.avif`}
-        alt="Figure 15 — illustrative feedback themes before and after the activity"
-        width={4000}
-        height={1869}
-        caption={
-          <>
-            <strong>
-              Figure 15 | Illustrative feedback themes from the simulated
-              open-text responses before and after the activity.
-            </strong>{" "}
-            The themes are not verbatim quotes and are not frequency-counted.
-          </>
-        }
-      />
+        <Figure
+          src={`${ACTIVITY_FIG}/fig1-baseline-awareness-en.avif`}
+          alt="Figure 11 — baseline awareness and knowledge of joint cartilage (pre-activity)"
+          width={4000}
+          height={1248}
+          caption={
+            <>
+              <strong>
+                Figure 11 | Baseline awareness and knowledge of joint cartilage
+                (pre-activity, n = 24).
+              </strong>{" "}
+              (A) Prior attention to cartilage health. (B) Self-rated
+              understanding (mean 2.08/5; 70.8% rated 1–2). (C) Knowledge of
+              cartilage components: 79.2% could name at most a few components or
+              functions. All respondents answered every item.
+            </>
+          }
+        />
+        <Figure
+          src={`${ACTIVITY_FIG}/fig2-product-training-en.avif`}
+          alt="Figure 12 — product use, training, and perceived changes (pre-activity)"
+          width={4000}
+          height={2165}
+          caption={
+            <>
+              <strong>
+                Figure 12 | Product use, training, and perceived changes
+                (pre-activity, n = 24).
+              </strong>{" "}
+              (A) Products ever used (multi-select; 16/24 had used at least one
+              product). (B) Perceived change during product use; 7/24 reported
+              improvement. (C) Targeted exercise or rehabilitation training;
+              13/24 had trained. (D) Perceived change after training; 7/24
+              reported improvement. Subjective improvement is not clinical
+              evidence of cartilage repair and cannot be attributed to a product
+              or training alone.
+            </>
+          }
+        />
+        <Figure
+          src={`${ACTIVITY_FIG}/fig3-pre-post-change-en.avif`}
+          alt="Figure 13 — pre-post change in self-rated knowledge and willingness"
+          width={4000}
+          height={859}
+          caption={
+            <>
+              <strong>
+                Figure 13 | Pre-post change in self-rated knowledge and
+                willingness (paired, n = 24).
+              </strong>{" "}
+              (A) Self-rated understanding increased from a mean of 2.08 to 3.63
+              (1–5 scale). (B) Willingness to use a hypothetical
+              cartilage-repair product increased from 33.3% to 54.2%
+              (fairly/very willing). (C) Individual paired changes. These
+              simulated changes are illustrative and not causal.
+            </>
+          }
+        />
+        <Figure
+          src={`${ACTIVITY_FIG}/fig4-post-knowledge-needs-en.avif`}
+          alt="Figure 14 — post-activity knowledge and information needs"
+          width={4000}
+          height={1321}
+          caption={
+            <>
+              <strong>
+                Figure 14 | Post-activity knowledge and information needs (n =
+                24).
+              </strong>{" "}
+              (A) Correct answer rate by knowledge question; the mean was 79.2%
+              (6.33/8). (B) Distribution of individual total scores. (C)
+              Information participants most wanted before using a hypothetical
+              product; reliable human evidence and long-term risks were the most
+              common topics (68 selections in total).
+            </>
+          }
+        />
+        <Figure
+          src={`${ACTIVITY_FIG}/fig5-feedback-themes-en.avif`}
+          alt="Figure 15 — illustrative feedback themes before and after the activity"
+          width={4000}
+          height={1869}
+          caption={
+            <>
+              <strong>
+                Figure 15 | Illustrative feedback themes from the simulated
+                open-text responses before and after the activity.
+              </strong>{" "}
+              The themes are not verbatim quotes and are not frequency-counted.
+            </>
+          }
+        />
       </ExtendCard>
 
-      <h4
-        id="ihp-nest-synbio-lecture"
-        className="mt-5 mb-3"
-      >
+      <h4 id="ihp-nest-synbio-lecture" className="mt-5 mb-3">
         SynBio lecture — pre/post questionnaire
       </h4>
       <p>
@@ -1376,93 +1469,109 @@ function ImpactBlock() {
         simulated illustrative data, not real submissions.
       </p>
       <ExtendCard title="Questionnaire figures: knowledge, acceptance and feedback">
-      <Figure
-        src={`${LECTURE_FIG}/s1-pre-awareness-en.avif`}
-        alt="Figure 16 — pre-lecture awareness and self-rated understanding"
-        width={4000}
-        height={1297}
-        caption={
-          <>
-            <strong>
-              Figure 16 | Pre-lecture awareness and self-rated understanding (n =
-              24).
-            </strong>{" "}
-            (A) Prior exposure to synthetic biology. (B) Self-rated
-            understanding (mean 2.17/5; 66.7% rated 1–2). (C) Prior awareness of
-            iGEM. All participants answered every item.
-          </>
-        }
-      />
-      <Figure
-        src={`${LECTURE_FIG}/s2-pre-attitudes-en.avif`}
-        alt="Figure 17 — pre-lecture attitudes and expectations"
-        width={4000}
-        height={1300}
-        caption={
-          <>
-            <strong>
-              Figure 17 | Pre-lecture attitudes and expectations (n = 24).
-            </strong>{" "}
-            (A) Feelings about synthetic biology (multi-select). (B) Overall
-            attitude toward synthetic biology. (C) Topics participants most
-            wanted to learn about before the lecture (up to three selections).
-          </>
-        }
-      />
-      <Figure
-        src={`${LECTURE_FIG}/s3-post-knowledge-needs-en.avif`}
-        alt="Figure 18 — post-lecture knowledge, attitude, and information needs"
-        width={4000}
-        height={1300}
-        caption={
-          <>
-            <strong>
-              Figure 18 | Post-lecture knowledge, attitude, and information needs
-              (n = 24).
-            </strong>{" "}
-            (A) Correct answer rate by knowledge question; the mean was 76.7%
-            (3.83/5). (B) Post-lecture overall attitude. (C) Information
-            participants most wanted after the lecture (up to three selections;
-            69 selections in total).
-          </>
-        }
-      />
-      <Figure
-        src={`${LECTURE_FIG}/s4-understanding-acceptance-en.avif`}
-        alt="Figure 19 — self-rated understanding and technology acceptance"
-        width={4000}
-        height={992}
-        caption={
-          <>
-            <strong>
-              Figure 19 | Self-rated understanding and technology acceptance
-              (paired, n = 24).
-            </strong>{" "}
-            (A) Self-rated understanding increased from a mean of 2.17 to 3.63
-            (1–5 scale). (B) Willingness to work in a related field and
-            acceptance of a product with non-live engineered output versus a
-            product containing live engineered bacteria. The product scenario
-            was hypothetical and the responses are simulated.
-          </>
-        }
-      />
-      <Figure
-        src={`${LECTURE_FIG}/s5-feedback-themes-en.avif`}
-        alt="Figure 20 — illustrative feedback themes before and after the lecture"
-        width={4000}
-        height={1844}
-        caption={
-          <>
-            <strong>
-              Figure 20 | Illustrative feedback themes before and after the
-              lecture.
-            </strong>{" "}
-            The statements are simulated feedback directions, not verbatim
-            quotes, and are not frequency-counted.
-          </>
-        }
-      />
+        <Figure
+          src={`${LECTURE_FIG}/s1-pre-awareness-en.avif`}
+          alt="Figure 16 — pre-lecture awareness and self-rated understanding"
+          width={4000}
+          height={1297}
+          caption={
+            <>
+              <strong>
+                Figure 16 | Pre-lecture awareness and self-rated understanding
+                (n = 24).
+              </strong>{" "}
+              (A) Prior exposure to synthetic biology. (B) Self-rated
+              understanding (mean 2.17/5; 66.7% rated 1–2). (C) Prior awareness
+              of iGEM. All participants answered every item.
+            </>
+          }
+        />
+        <Figure
+          src={`${LECTURE_FIG}/s2-pre-attitudes-en.avif`}
+          alt="Figure 17 — pre-lecture attitudes and expectations"
+          width={4000}
+          height={1300}
+          caption={
+            <>
+              <strong>
+                Figure 17 | Pre-lecture attitudes and expectations (n = 24).
+              </strong>{" "}
+              (A) Feelings about synthetic biology (multi-select). (B) Overall
+              attitude toward synthetic biology. (C) Topics participants most
+              wanted to learn about before the lecture (up to three selections).
+            </>
+          }
+        />
+        <Figure
+          src={`${LECTURE_FIG}/s3-post-knowledge-needs-en.avif`}
+          alt="Figure 18 — post-lecture knowledge, attitude, and information needs"
+          width={4000}
+          height={1300}
+          caption={
+            <>
+              <strong>
+                Figure 18 | Post-lecture knowledge, attitude, and information
+                needs (n = 24).
+              </strong>{" "}
+              (A) Correct answer rate by knowledge question; the mean was 76.7%
+              (3.83/5). (B) Post-lecture overall attitude. (C) Information
+              participants most wanted after the lecture (up to three
+              selections; 69 selections in total).
+            </>
+          }
+        />
+        <Figure
+          src={`${LECTURE_FIG}/s4-understanding-acceptance-en.avif`}
+          alt="Figure 19 — self-rated understanding and technology acceptance"
+          width={4000}
+          height={992}
+          caption={
+            <>
+              <strong>
+                Figure 19 | Self-rated understanding and technology acceptance
+                (paired, n = 24).
+              </strong>{" "}
+              (A) Self-rated understanding increased from a mean of 2.17 to 3.63
+              (1–5 scale). (B) Willingness to work in a related field and
+              acceptance of a product with non-live engineered output versus a
+              product containing live engineered bacteria. The product scenario
+              was hypothetical and the responses are simulated.
+            </>
+          }
+        />
+        <Figure
+          src={`${LECTURE_FIG}/s5-feedback-themes-en.avif`}
+          alt="Figure 20 — illustrative feedback themes before and after the lecture"
+          width={4000}
+          height={1844}
+          caption={
+            <>
+              <strong>
+                Figure 20 | Illustrative feedback themes before and after the
+                lecture.
+              </strong>{" "}
+              The statements are simulated feedback directions, not verbatim
+              quotes, and are not frequency-counted.
+            </>
+          }
+        />
       </ExtendCard>
+
+      <h4 className="mt-5 mb-3">Summary and reflection</h4>
+      <p>
+        We have tried to make our iHP work as comprehensive and effective as we
+        could, attending to the many patient-centred dimensions of the project:
+        we cared not only about a biotechnology therapy but also about
+        patients&rsquo; place in society, and we contributed to the iGEM
+        community through platform building. We thank every member of our team —
+        this body of work exists because of you.
+      </p>
+      <p>
+        Our main limitations are two. We have not helped establish
+        synthetic-biology safety standards for biomimetic cartilage medical
+        materials, and our anthropological research has not yet found a form
+        that other teams can easily replicate.
+      </p>
     </>
   );
 }
@@ -1473,14 +1582,23 @@ function MixedMethodsBlock() {
       <h3 className="mt-4 mb-3">Mixed methods research</h3>
       <p>
         Our work follows <strong>mixed-methods research</strong> (Creswell &amp;
-        Plano Clark, 2018): understanding a complex social phenomenon cannot
-        rely on a single type of data. We deliberately collect, analyze and
-        integrate quantitative data (surveys and statistics — how many, how
-        distributed, what relationships exist) and qualitative data
-        (one-to-one interviews — why things happen, how people understand them,
-        which contexts and mechanisms lie behind them). The NIH&rsquo;s
-        mixed-methods guidance makes the same point: integrated quantitative and
-        qualitative evidence explains a problem better than either type alone.
+        Plano Clark, 2018,{" "}
+        <em>Designing and Conducting Mixed Methods Research</em>, 3rd ed.,
+        SAGE): understanding a complex social phenomenon cannot rely on a single
+        type of data. We deliberately collect, analyze and integrate
+        quantitative data (surveys and statistics — how many, how distributed,
+        what relationships exist) and qualitative data (one-to-one interviews —
+        why things happen, how people understand them, which contexts and
+        mechanisms lie behind them). The NIH&rsquo;s{" "}
+        <a
+          href="https://obssr.od.nih.gov/research-resources/mixed-methods-research"
+          target="_blank"
+          rel="noreferrer"
+        >
+          mixed-methods research guidance
+        </a>{" "}
+        makes the same point: integrated quantitative and qualitative evidence
+        explains a problem better than either type alone.
       </p>
       <p>
         In practice the survey gave us breadth — how common cartilage pain is,
@@ -1528,6 +1646,7 @@ const TIMELINE_STAGES = [
   "Treatment",
   "Manufacturing",
   "Market access",
+  "Rehabilitation",
 ];
 
 /* Deep links for the stage headings under "Stakeholder Interviews". */
@@ -1537,6 +1656,7 @@ const TIMELINE_STAGE_IDS: Record<string, string> = {
   Treatment: "ihp-engagement-treatment",
   Manufacturing: "ihp-engagement-manufacturing",
   "Market access": "ihp-engagement-market-access",
+  Rehabilitation: "ihp-engagement-rehabilitation",
 };
 
 function EngagementBlock() {
@@ -1544,11 +1664,11 @@ function EngagementBlock() {
     <>
       <h3 className="mt-4 mb-3">Stakeholder Engagement</h3>
 
-      <h4 className="mt-4 mb-3" data-toc="include">
+      <h4 id="ihp-stakeholders-map" className="mt-4 mb-3" data-toc="include">
         Stakeholders MAP
       </h4>
       <p>
-        We wanted the stakeholders we interview to be comprehensive and the
+        We wanted the stakeholders we interviewed to be comprehensive and the
         process to be orderly. We therefore arranged the interviews for each
         module according to the progress of the project design. In the end,{" "}
         <strong>56 stakeholders</strong> took part in our interviews and
@@ -1570,19 +1690,16 @@ function EngagementBlock() {
         difficult. Inspired by BioBricks and the parts registry, we want to
         build a stakeholder-engagement library that keeps accumulating
         experience and shows the stakeholders in a field who are willing to talk
-        to teams. Organised along the product's path from R&amp;D to
-        implementation, it collects roles, interview questions and integration
+        to teams. Organised along the product&rsquo;s path — patient, R&amp;D,
+        treatment, manufacturing, market authorisation and access, and
+        rehabilitation — it collects roles, interview questions and integration
         cases, so a team that does not yet know whom to ask, what to ask or how
         to act can find a participation path that fits its own project.
       </p>
       {/* StakeBridge app: the interactive program is being implemented and
           will be embedded below this paragraph. */}
 
-      <h4
-        id="ihp-engagement-timeline"
-        className="mt-5 mb-3"
-        data-toc="include"
-      >
+      <h4 id="ihp-engagement-timeline" className="mt-5 mb-3" data-toc="include">
         Stakeholder Interviews
       </h4>
       <p>
@@ -1709,6 +1826,9 @@ function NestFrameworkBlock() {
           className="table table-bordered align-middle"
           aria-label="The NEST human-practices framework"
         >
+          <TableCaption as="caption">
+            Table 1 | The NEST human-practices framework.
+          </TableCaption>
           <thead className="table-primary">
             <tr>
               <th scope="col" style={{ width: "4.5rem" }}>
@@ -1971,9 +2091,7 @@ export function HumanPractices() {
     window.clearTimeout(timerRef.current);
 
     type ViewTransitionDocument = Document & {
-      startViewTransition?: (
-        update: () => void,
-      ) => { finished: Promise<void> };
+      startViewTransition?: (update: () => void) => { finished: Promise<void> };
     };
     const startViewTransition = (document as ViewTransitionDocument)
       .startViewTransition;
@@ -1991,7 +2109,8 @@ export function HumanPractices() {
 
     /* Fallback for browsers without View Transitions: the horizontal stage
        slide used by the cross-page swipe. */
-    const exit = direction === "next" || direction === "down" ? "left" : "right";
+    const exit =
+      direction === "next" || direction === "down" ? "left" : "right";
     const enter = exit === "left" ? "right" : "left";
     root.classList.add(`page-swipe-exit-${exit}`);
     timerRef.current = window.setTimeout(() => {
@@ -2050,7 +2169,7 @@ export function HumanPractices() {
     const id =
       index === null
         ? ""
-        : ["toolbox", "nest", "stakeholder-engagement"][index] ?? "";
+        : (["toolbox", "nest", "stakeholder-engagement"][index] ?? "");
     const url = id
       ? `#${id}`
       : `${window.location.pathname}${window.location.search}`;
@@ -2088,8 +2207,7 @@ export function HumanPractices() {
     if (page !== null) return;
     const onWheel = (event: WheelEvent) => {
       if (event.deltaY <= 0 || busyRef.current) return;
-      const max =
-        document.documentElement.scrollHeight - window.innerHeight;
+      const max = document.documentElement.scrollHeight - window.innerHeight;
       if (window.scrollY < max - 24) return; /* scroll to the buttons first */
       event.preventDefault();
       actionsRef.current.open(0);
@@ -2272,12 +2390,22 @@ export function HumanPractices() {
           <h2 className="mb-4">Integrated Human Practices</h2>
           <p>
             Integrated Human Practices is how our project meets the world
-            outside the laboratory. Because NEST is a material intended to enter
-            the human body, we kept the design deliberately cautious: every step
-            should answer a real problem. Early in our field work we noticed an
-            odd inversion — the people around us who described cartilage pain
-            were many, while the cases recorded in the medical system were few.
-            Below this overview the page is split into three pages: the{" "}
+            outside the laboratory. Cartilage defects are a complex problem —
+            widespread, diffuse and easily overlooked, yet directly relevant to
+            our health — and NEST, as a material intended to enter the human
+            body, faces tests in patient experience, research, production,
+            market access, clinician use and public opinion. We therefore kept
+            the design deliberately cautious: every step should answer a real
+            problem. <strong>56 stakeholders</strong> took part in our
+            interviews and technical tests, our questionnaire reached more than{" "}
+            <strong>1,700 people</strong> (1,654 valid responses), and our
+            online and offline activities and lectures reached more than{" "}
+            <strong>450 people</strong>. We hoped to treat patients through
+            technology, fill a gap through design, innovate in the industry,
+            raise awareness of cartilage health in society, deepen understanding
+            of the patient community and, finally, contribute to the
+            synthetic-biology community. Below this overview the page is split
+            into three pages: the{" "}
             <a href="#toolbox">
               <strong>Toolbox</strong>
             </a>{" "}

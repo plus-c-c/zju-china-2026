@@ -24,7 +24,19 @@ export function CitationText({
         if (!refs.every((ref) => valid.has(ref))) return part;
         return (
           <sup key={index} className="article-citation">
-            [{refs.join(", ")}]
+            [
+            {refs.map((ref, position) => (
+              <Fragment key={position}>
+                {position > 0 && ", "}
+                <a
+                  href={`#citation-reference-1-${ref}`}
+                  aria-label={`Go to reference ${ref}`}
+                >
+                  {ref}
+                </a>
+              </Fragment>
+            ))}
+            ]
           </sup>
         );
       });

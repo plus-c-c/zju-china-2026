@@ -87,7 +87,7 @@
 }
 
 .page-article .wetlab-split .pair-label {
-  margin: 0;
+  margin: 0 !important;
   padding: 14px 20px;
   border-bottom: 1px solid #cfdbeb;
   background: #edf3fc;

@@ -1,3 +1,4 @@
+import { TableCaption } from "../components/FigureCaption";
 import { PlatformFunctionSections } from "../components/PlatformFunctionSections";
 import { FigureCaption } from "../components/FigureCaption";
 import { References } from "../components/References";
@@ -181,12 +182,12 @@ export function Design() {
                   . Mechanics, tissue contact, cell recognition, and gelation
                   behavior are thus integrated into a single sequence.
                 </p>
-                <p>
+                <TableCaption>
                   <strong>
                     Table 1.1 | Design elements, key sequences, insertion
                     positions, and intended functions of the SELP scaffold.
                   </strong>
-                </p>
+                </TableCaption>
                 <div className="table-responsive mb-4">
                   <table
                     className="table table-bordered align-middle text-center"
@@ -861,7 +862,7 @@ export function Design() {
                 </p>
                 <figure className="figure d-block my-4 text-center">
                   <FigureImage
-                    src="https://static.igem.wiki/teams/6102/wiki/images/design/02/02.avif"
+                    src="https://static.igem.wiki/teams/6102/wiki/images/design/02/002.avif"
                     alt="Magnetically guided orientation and visible-light gelation of the SELP scaffold."
                     className="figure-img img-fluid rounded"
                     style={{ width: "100%" }}
@@ -949,7 +950,7 @@ export function Design() {
                 </p>
                 <figure className="figure d-block my-4 text-center">
                   <FigureImage
-                    src="https://static.igem.wiki/teams/6102/wiki/images/design/02/04.avif"
+                    src="https://static.igem.wiki/teams/6102/wiki/images/design/02/004.avif"
                     alt="Magneto-mechanical coupling model of the magnetic nanoparticle-containing hydrogel."
                     className="figure-img img-fluid rounded"
                     style={{ width: "100%" }}

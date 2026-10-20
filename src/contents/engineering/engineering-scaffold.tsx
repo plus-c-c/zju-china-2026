@@ -1,3 +1,4 @@
+import { TableCaption } from "../../components/FigureCaption";
 import { DbtlFigure } from "./Figure";
 import type { DbtlModule } from "./dbtl";
 
@@ -32,12 +33,12 @@ export const scaffoldModule: DbtlModule = {
               Using these five criteria as our frame of reference, we listed a
               set of parallel candidate solutions for evaluation:
             </p>
-            <p>
+            <TableCaption>
               <strong>
                 Table 1.1.1. Comparison of candidate materials for cartilage
                 repair and the main reasons for their exclusion.
               </strong>
-            </p>
+            </TableCaption>
             <div className="table-responsive mb-4">
               <table
                 className="table table-bordered align-middle"

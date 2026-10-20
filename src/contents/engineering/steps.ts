@@ -52,7 +52,7 @@ export function buildSteps(
   return steps;
 }
 
-/** Scroll distance per step, as a fraction of the viewport height. */
+/** Scroll distance per step in the legacy layout, as a fraction of the viewport height. */
 export const STEP_DVH = 30;
 
 /**

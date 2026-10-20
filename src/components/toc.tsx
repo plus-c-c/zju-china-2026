@@ -3,7 +3,9 @@ import {
   useLayoutEffect,
   useRef,
   useState,
+  type MouseEvent as ReactMouseEvent,
   type ReactNode,
+  type Ref,
 } from "react";
 import { Header } from "./Header";
 import {
@@ -15,6 +17,72 @@ import {
 import "./toc.css";
 
 type Heading = { id: string; text: string; level: number };
+
+export type TocEntry = {
+  id: string;
+  text: string;
+  level: number;
+  href?: string;
+  current?: boolean;
+  sectionCurrent?: boolean;
+  onSelect?: (event: ReactMouseEvent<HTMLAnchorElement>) => void;
+};
+
+/**
+ * Shared TOC markup: the page TOC and the Engineering stepper both render
+ * through this component so their titles, entry levels, colors and spacing
+ * all come from the same `page-toc-*` styles in toc.css.
+ */
+export function TocPanel({
+  title,
+  items,
+  className = "",
+  navRef,
+  listId,
+  ariaLabel = "On this page",
+  onListClick,
+  swipeStage = false,
+}: {
+  title: string;
+  items: TocEntry[];
+  className?: string;
+  navRef?: Ref<HTMLElement>;
+  listId?: string;
+  ariaLabel?: string;
+  onListClick?: () => void;
+  swipeStage?: boolean;
+}) {
+  return (
+    <nav
+      ref={navRef}
+      data-page-swipe-stage={swipeStage ? true : undefined}
+      aria-label={ariaLabel}
+      className={["page-toc", className].filter(Boolean).join(" ")}
+    >
+      <div className="page-toc-title" role="heading" aria-level={2}>
+        {title || "On this page"}
+      </div>
+      <ul id={listId} className="page-toc-list" onClick={onListClick}>
+        {items.map((item) => (
+          <li
+            key={item.id}
+            className={`page-toc-level-${item.level}${
+              item.sectionCurrent ? " page-toc-section-current" : ""
+            }`}
+          >
+            <a
+              href={item.href ?? `#${item.id}`}
+              aria-current={item.current ? "location" : undefined}
+              onClick={item.onSelect}
+            >
+              {item.text}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  );
+}
 
 export function Toc({
   title,
@@ -346,39 +414,22 @@ export function Toc({
         }`}
       >
         {showToc && (
-          <nav
-            ref={tocRef}
-            data-page-swipe-stage
-            aria-label="On this page"
-            className={`page-toc ${visible ? "page-toc-visible" : ""}${mobileOpen ? " page-toc-open" : ""}`}
-          >
-            <h2 className="page-toc-title">{title || "On this page"}</h2>
-            <ul
-              id="page-toc-list"
-              className="page-toc-list"
-              onClick={() => setMobileOpen(false)}
-            >
-              {visibleHeadings.map((heading) => (
-                <li
-                  key={heading.id}
-                  className={`page-toc-level-${heading.level}${
-                    heading.level === 1 && heading.id === activeTopLevelId
-                      ? " page-toc-section-current"
-                      : ""
-                  }`}
-                >
-                  <a
-                    href={`#${heading.id}`}
-                    aria-current={
-                      activeId === heading.id ? "location" : undefined
-                    }
-                  >
-                    {heading.text}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </nav>
+          <TocPanel
+            navRef={tocRef}
+            title={title || "On this page"}
+            listId="page-toc-list"
+            className={`${visible ? "page-toc-visible" : ""}${mobileOpen ? " page-toc-open" : ""}`}
+            items={visibleHeadings.map((heading) => ({
+              id: heading.id,
+              text: heading.text,
+              level: heading.level,
+              current: activeId === heading.id,
+              sectionCurrent:
+                heading.level === 1 && heading.id === activeTopLevelId,
+            }))}
+            onListClick={() => setMobileOpen(false)}
+            swipeStage
+          />
         )}
         {showToc && (
           <button

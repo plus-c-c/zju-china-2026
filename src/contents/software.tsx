@@ -1,3 +1,4 @@
+import { TableCaption } from "../components/FigureCaption";
 import { FigureCaption } from "../components/FigureCaption";
 /**
  * Software page — usage documentation for both software tools, converted from
@@ -89,10 +90,10 @@ export function Software() {
             workflow described on the Model page (see that page for method
             details):
           </p>
-          <p>
+          <TableCaption>
             <strong>Table 1</strong>: Task types, purpose, and interface of the
             three computational steps.
-          </p>
+          </TableCaption>
           <div className="table-responsive mb-4">
             <table
               className="table table-bordered align-middle"
@@ -182,10 +183,10 @@ export function Software() {
             </li>
           </ul>
           <p>The technology choices for these components are as follows:</p>
-          <p>
+          <TableCaption>
             <strong>Table 2</strong>: Technology stack of the SELP molecular
             dynamics simulation platform.
-          </p>
+          </TableCaption>
           <div className="table-responsive mb-4">
             <table
               className="table table-bordered align-middle"
@@ -272,10 +273,10 @@ export function Software() {
             Each panel has two buttons at the bottom with deliberately distinct
             semantics (Figure 2):
           </p>
-          <p>
+          <TableCaption>
             <strong>Table 3</strong>: Semantics of the Save and Save &amp;
             restart buttons in a parameter panel.
-          </p>
+          </TableCaption>
           <div className="table-responsive mb-4">
             <table
               className="table table-bordered align-middle"
@@ -365,10 +366,10 @@ export function Software() {
             <strong>CG network &amp; deformation input</strong>, with the
             following main fields:
           </p>
-          <p>
+          <TableCaption>
             <strong>Table 4</strong>: Main parameter fields and units of Step 2
             (CG network and deformation).
-          </p>
+          </TableCaption>
           <div className="table-responsive mb-4">
             <table
               className="table table-bordered align-middle"
@@ -519,9 +520,9 @@ export function Software() {
             With parameters filled in, both running and monitoring happen in the
             Control block, which provides run and view buttons for each step:
           </p>
-          <p>
+          <TableCaption>
             <strong>Table 5</strong>: Run and view buttons for each step.
-          </p>
+          </TableCaption>
           <div className="table-responsive mb-4">
             <table
               className="table table-bordered align-middle"
@@ -602,10 +603,10 @@ export function Software() {
             </strong>
             . The result types presented by different steps are as follows:
           </p>
-          <p>
+          <TableCaption>
             <strong>Table 6</strong>: Result categories in Results and the steps
             they apply to.
-          </p>
+          </TableCaption>
           <div className="table-responsive mb-4">
             <table
               className="table table-bordered align-middle"
@@ -735,10 +736,10 @@ export function Software() {
             at the bottom. The four steps and their contents are as follows
             (Figure 5):
           </p>
-          <p>
+          <TableCaption>
             <strong>Table 7</strong>: Steps and contents of the four-step
             clinical wizard.
-          </p>
+          </TableCaption>
           <div className="table-responsive mb-4">
             <table
               className="table table-bordered align-middle"
@@ -837,9 +838,9 @@ export function Software() {
             The app is built for bedside use, prioritising on-device capability
             and offline availability:
           </p>
-          <p>
+          <TableCaption>
             <strong>Table 8</strong>: Tech stack of the NEST Software app.
-          </p>
+          </TableCaption>
           <div className="table-responsive mb-4">
             <table
               className="table table-bordered align-middle"

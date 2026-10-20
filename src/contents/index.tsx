@@ -20,6 +20,7 @@ export { Hardware } from "./hardware.tsx";
 export { Entrepreneurship } from "./entrepreneurship.tsx";
 export { HumanPractices } from "./human-practices.tsx";
 export { Education } from "./education.tsx";
+export { Collaboration } from "./collaboration.tsx";
 export { Inclusivity } from "./inclusivity.tsx";
 export { Sustainability } from "./sustainability.tsx";
 

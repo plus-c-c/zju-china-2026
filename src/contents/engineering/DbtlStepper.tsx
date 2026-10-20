@@ -12,6 +12,7 @@ import {
   useBoundaryStepAdvance,
 } from "../../components/useBoundaryStepAdvance";
 import type { DbtlModule, DbtlPhase } from "./dbtl";
+import type { EngineeringLayout } from "./layout";
 import { useCardWheel, useStepperProgress } from "../../components/stepperWheel";
 import { buildSteps, sequenceSpan, type Step } from "./steps";
 import { DbtlRing } from "./DbtlRing";
@@ -39,8 +40,12 @@ interface DbtlStepperProps {
   outlook?: ReactNode;
   /** Group-level lead / outlook view: static panel, ring unlit, no cycles. */
   content?: ReactNode;
+  /** Layout variant: left TOC or the previous tabs-above/cycles-below layout. */
+  layout?: EngineeringLayout;
   /** Level-3 tab row rendered above the panel. */
   topNav?: ReactNode;
+  /** Nested level-3 / level-4 TOC rendered in the left column. */
+  sideNav?: ReactNode;
   /** Level-1 navigation rendered above the ring in the split layout. */
   ringTop?: ReactNode;
   /** Level-2 navigation rendered below the ring in the split layout. */
@@ -67,10 +72,13 @@ export function DbtlStepper({
   lead,
   outlook,
   content,
+  layout = "toc",
   topNav,
+  sideNav,
   ringTop,
   ringBottom,
 }: DbtlStepperProps) {
+  const legacy = layout === "legacy";
   const builtSteps = useMemo(
     () => (module ? buildSteps(module, lead, outlook) : []),
     [module, lead, outlook],
@@ -294,12 +302,16 @@ export function DbtlStepper({
     );
   };
 
-  /* Report the shown step so the parent can sync the level-3 tabs. */
+  /* Report the shown step so the parent can sync the level-3 tabs. Depend on
+     the stable step key rather than the object: the parent rebuilds the
+     sequence on every render, and reporting the old object after a tab click
+     would switch the tabs back before the programmatic scroll lands. */
+  const stepKey = step?.key;
   const onStepChangeRef = useRef(onStepChange);
   onStepChangeRef.current = onStepChange;
   useEffect(() => {
-    if (step) onStepChangeRef.current?.(step, index);
-  }, [step, index]);
+    if (stepKey) onStepChangeRef.current?.(stepsRef.current[index], index);
+  }, [stepKey, index]);
 
   const phaseBadge =
     stepModule && step?.kind === "phase" && step.phase ? step.phase : null;
@@ -313,35 +325,96 @@ export function DbtlStepper({
         : "";
 
   const splitRing = Boolean(ringTop || ringBottom);
+  const ring = splitRing ? (
+    <div className="dbtl-ring-wrap dbtl-ring-wrap--split">
+      {ringTop}
+      <div className="dbtl-ring-center">
+        <DbtlRing active={phaseBadge} onSelect={goToPhase} />
+      </div>
+      {ringBottom}
+    </div>
+  ) : (
+    <div className="dbtl-ring-wrap">
+      <DbtlRing active={phaseBadge} onSelect={goToPhase} />
+    </div>
+  );
+  const cycles = stepModule ? (
+    <div className="dbtl-cycles" role="group" aria-label="Steps">
+      {leadIndex >= 0 && (
+        <button
+          type="button"
+          className={`dbtl-cycle-button${
+            step?.kind === "lead" ? " active" : ""
+          }`}
+          aria-pressed={step?.kind === "lead"}
+          onClick={() => goToStep(leadIndex)}
+        >
+          Introduction
+        </button>
+      )}
+      {stepModule.cycles.map((cycle, cycleIndex) => (
+        <button
+          key={cycle.title}
+          type="button"
+          className={`dbtl-cycle-button${
+            cycleIndex === currentCycleIndex ? " active" : ""
+          }`}
+          aria-pressed={cycleIndex === currentCycleIndex}
+          onClick={() => goToCycle(cycleIndex)}
+        >
+          Cycle {cycleIndex + 1}
+        </button>
+      ))}
+      {outlookIndex >= 0 && (
+        <button
+          type="button"
+          className={`dbtl-cycle-button${
+            step?.kind === "outlook" ? " active" : ""
+          }`}
+          aria-pressed={step?.kind === "outlook"}
+          onClick={() => goToStep(outlookIndex)}
+        >
+          Conclusion
+        </button>
+      )}
+    </div>
+  ) : null;
 
   return (
-    <div
-      className={`dbtl${splitRing ? " dbtl--ring-nav" : ""}`}
-      ref={rootRef}
-      /* First paint of every group uses the shared starting heading; the
-         scroll progress takes over on the next frame. */
-      style={
-        {
-          "--dbtl-rotation": `${DBTL_RING_START_ANGLE}deg`,
-        } as CSSProperties
-      }
-    >
-      {splitRing ? (
-        <div className="dbtl-ring-wrap dbtl-ring-wrap--split">
-          {ringTop}
-          <div className="dbtl-ring-center">
-            <DbtlRing active={phaseBadge} onSelect={goToPhase} />
-          </div>
-          {ringBottom}
-        </div>
-      ) : (
-        <div className="dbtl-ring-wrap">
-          <DbtlRing active={phaseBadge} onSelect={goToPhase} />
-        </div>
+    <>
+      {legacy && topNav && (
+        <div className="dbtl-subnav dbtl-subnav--legacy">{topNav}</div>
       )}
-      <div className="dbtl-main">
-        {topNav && <div className="dbtl-subnav">{topNav}</div>}
-        <div className="dbtl-panel" ref={cardRef}>
+      <div
+        className={`dbtl${legacy ? " dbtl--legacy" : ""}${
+          splitRing ? " dbtl--ring-nav" : ""
+        }`}
+        ref={rootRef}
+        /* First paint of every group uses the shared starting heading; the
+           scroll progress takes over on the next frame. */
+        style={
+          {
+            "--dbtl-rotation": `${DBTL_RING_START_ANGLE}deg`,
+          } as CSSProperties
+        }
+      >
+        {!legacy && topNav && (
+          <div className="dbtl-subnav">{topNav}</div>
+        )}
+        {legacy ? (
+          <div className="dbtl-left dbtl-left--legacy">
+            {ring}
+            {cycles}
+          </div>
+        ) : (
+          <div className="dbtl-left">
+            {ring}
+            {sideNav}
+            {!sideNav && cycles}
+          </div>
+        )}
+        <div className="dbtl-main">
+          <div className="dbtl-panel" ref={cardRef}>
           {(phaseBadge || caption) && (
             <div className="dbtl-panel-head">
               {phaseBadge && (
@@ -397,48 +470,8 @@ export function DbtlStepper({
             )}
           </div>
         </div>
-        {stepModule && (
-          <div className="dbtl-cycles" role="group" aria-label="Steps">
-            {leadIndex >= 0 && (
-              <button
-                type="button"
-                className={`dbtl-cycle-button${
-                  step?.kind === "lead" ? " active" : ""
-                }`}
-                aria-pressed={step?.kind === "lead"}
-                onClick={() => goToStep(leadIndex)}
-              >
-                Introduction
-              </button>
-            )}
-            {stepModule.cycles.map((cycle, cycleIndex) => (
-              <button
-                key={cycle.title}
-                type="button"
-                className={`dbtl-cycle-button${
-                  cycleIndex === currentCycleIndex ? " active" : ""
-                }`}
-                aria-pressed={cycleIndex === currentCycleIndex}
-                onClick={() => goToCycle(cycleIndex)}
-              >
-                Cycle {cycleIndex + 1}
-              </button>
-            ))}
-            {outlookIndex >= 0 && (
-              <button
-                type="button"
-                className={`dbtl-cycle-button${
-                  step?.kind === "outlook" ? " active" : ""
-                }`}
-                aria-pressed={step?.kind === "outlook"}
-                onClick={() => goToStep(outlookIndex)}
-              >
-                Conclusion
-              </button>
-            )}
-          </div>
-        )}
       </div>
-    </div>
+      </div>
+    </>
   );
 }

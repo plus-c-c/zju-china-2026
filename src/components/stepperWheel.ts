@@ -1,7 +1,17 @@
 import { useEffect, useRef, type RefObject } from "react";
 
-/** Shared gain for the stepper cards' wheel scrolling. */
-export const STEPPER_WHEEL_GAIN = 1.5;
+/**
+ * Shared gain for the stepper cards' wheel scrolling. One wheel notch scrolls
+ * the panel twice as far as the raw delta.
+ */
+export const STEPPER_WHEEL_GAIN = 2;
+
+/**
+ * Scroll distance for one hidden-progress step, shared by Engineering DBTL and
+ * the three Model decks. Two standard wheel notches (~100 px each) therefore
+ * advance exactly one step / 90° of ring rotation.
+ */
+export const STEPPER_STEP_PX = 200;
 
 /**
  * Wheel handling shared by the scroll steppers (Engineering DBTL and the
