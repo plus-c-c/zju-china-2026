@@ -1,4 +1,3 @@
-import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { FlappyInjection } from "../components/FlappyInjection";
 import { Inspirations, InspirationLink } from "../components/Inspirations";
@@ -56,38 +55,6 @@ function PhotoFigure({
   );
 }
 
-
-function EducationFigure({
-  src,
-  alt,
-  caption,
-}: {
-  src: string;
-  alt: string;
-  caption: ReactNode;
-}) {
-  return (
-    <figure className="figure d-block my-4 text-center">
-      <a
-        className="article-image-link"
-        href={src}
-        target="_blank"
-        rel="noreferrer"
-        aria-label={`Open full-size image: ${alt}`}
-        title="Open full-size image"
-      >
-        <img
-          src={src}
-          alt={alt}
-          className="figure-img img-fluid rounded"
-          loading="lazy"
-          decoding="async"
-        />
-      </a>
-      <figcaption className="figure-caption">{caption}</figcaption>
-    </figure>
-  );
-}
 
 export function Education() {
   const links: InspirationLink[] = [
@@ -466,99 +433,14 @@ export function Education() {
             Participant feedback: synthetic-biology lecture
           </h4>
           <p>
-            Our synthetic-biology lectures were evaluated with a pre/post
-            questionnaire completed by <strong>76 high-school participants</strong>:
-            eight questions before the lecture (prior exposure, self-rated
-            understanding, attitudes and expectations) and twelve after it
-            (knowledge, attitude, willingness and technology acceptance). The
-            figures summarise the baseline we started from, what changed, and
-            what participants still wanted to know.
-          </p>
-          <p>
-            The figures show an illustrative response distribution for the 76
-            participants; individual submissions are not reproduced.{" "}
+            The pre/post questionnaire for our high-school synthetic-biology
+            lecture, including its figures and analysis, is presented in full on
+            the Integrated Human Practices page.{" "}
             <Link to="/human-practices#ihp-nest-synbio-lecture">
-              Read the full pre/post questionnaire on the IHP page
+              Read the synthetic-biology lecture questionnaire on the IHP page
             </Link>
             .
           </p>
-          <EducationFigure
-            src={`${EDUCATION_IMG}/edu-s1.avif`}
-            alt="Figure S1 — pre-lecture awareness and self-rated understanding"
-            caption={
-              <>
-                <strong>
-                  Figure S1 | Pre-lecture awareness and self-rated understanding
-                  (n = 76).
-                </strong>{" "}
-                (A) Prior exposure to synthetic biology. (B) Self-rated
-                understanding (mean 2.16/5; 67.1% rated 1–2). (C) Prior
-                awareness of iGEM. All participants answered every item.
-              </>
-            }
-          />
-          <EducationFigure
-            src={`${EDUCATION_IMG}/edu-s2.avif`}
-            alt="Figure S2 — pre-lecture attitudes and expectations"
-            caption={
-              <>
-                <strong>
-                  Figure S2 | Pre-lecture attitudes and expectations (n = 76).
-                </strong>{" "}
-                (A) Feelings about synthetic biology (multi-select). (B)
-                Overall attitude toward synthetic biology. (C) Topics
-                participants most wanted to learn about before the lecture (up
-                to three selections).
-              </>
-            }
-          />
-          <EducationFigure
-            src={`${EDUCATION_IMG}/edu-s3.avif`}
-            alt="Figure S3 — post-lecture knowledge, attitude, and information needs"
-            caption={
-              <>
-                <strong>
-                  Figure S3 | Post-lecture knowledge, attitude, and information
-                  needs (n = 76).
-                </strong>{" "}
-                (A) Correct answer rate by knowledge question; the mean was
-                76.8% (3.84/5). (B) Post-lecture overall attitude. (C)
-                Information participants most wanted after the lecture (up to
-                three selections; 219 selections in total).
-              </>
-            }
-          />
-          <EducationFigure
-            src={`${EDUCATION_IMG}/edu-s4.avif`}
-            alt="Figure S4 — self-rated understanding and technology acceptance"
-            caption={
-              <>
-                <strong>
-                  Figure S4 | Self-rated understanding and technology acceptance
-                  (paired, n = 76).
-                </strong>{" "}
-                (A) Self-rated understanding increased from a mean of 2.16 to
-                3.64 (1–5 scale). (B) Willingness to work in a related field and
-                acceptance of a product with non-live engineered output versus a
-                product containing live engineered bacteria. The product
-                scenario was hypothetical.
-              </>
-            }
-          />
-          <EducationFigure
-            src={`${EDUCATION_IMG}/edu-s5.avif`}
-            alt="Figure S5 — illustrative feedback themes before and after the lecture"
-            caption={
-              <>
-                <strong>
-                  Figure S5 | Illustrative feedback themes before and after the
-                  lecture (n = 76).
-                </strong>{" "}
-                The statements are illustrative feedback directions, not verbatim
-                quotes, and are not frequency-counted.
-              </>
-            }
-          />
 
           <h3>
             1.4 The Wider Public: A Film on Cartilage Damage and Life after
