@@ -13,6 +13,7 @@ export function LoadingScreen({ visible, failed = false }: LoadingScreenProps) {
     // than letting native scrolling race the homepage's initial positioning.
     const blockScroll = (event: Event) => { event.preventDefault(); event.stopImmediatePropagation(); };
     const blockKey = (event: KeyboardEvent) => {
+      if (event.key === " " && event.target instanceof Element && event.target.closest("button")) return;
       if (["ArrowUp", "ArrowDown", "PageUp", "PageDown", "Home", "End", " "].includes(event.key)) {
         event.preventDefault();
         event.stopImmediatePropagation();
@@ -37,7 +38,7 @@ export function LoadingScreen({ visible, failed = false }: LoadingScreenProps) {
       className={`loading-screen${visible ? " loading-screen--visible" : ""}`}
       role="status"
       aria-live="polite"
-      aria-label="Loading page"
+      aria-label={failed ? "Unable to load page resources" : "Loading page"}
       aria-hidden={!visible}
     >
       <div className="loading-screen__content">
@@ -49,15 +50,23 @@ export function LoadingScreen({ visible, failed = false }: LoadingScreenProps) {
             height="1640"
           />
         </div>
-        <div className="loading-screen__label" aria-hidden="true">
-          <span>Loading</span>
-          <span className="loading-screen__dots">
-            <span>.</span>
-            <span>.</span>
-            <span>.</span>
-          </span>
-        </div>
-        {failed && <button type="button" onClick={() => window.location.reload()}>资源加载失败，点击重新加载</button>}
+        {failed ? (
+          <div className="loading-screen__error">
+            <p>Some resources could not load.</p>
+            <button className="loading-screen__reload" type="button" onClick={() => window.location.reload()}>
+              Reload
+            </button>
+          </div>
+        ) : (
+          <div className="loading-screen__label" aria-hidden="true">
+            <span>Loading</span>
+            <span className="loading-screen__dots">
+              <span>.</span>
+              <span>.</span>
+              <span>.</span>
+            </span>
+          </div>
+        )}
       </div>
     </div>
   );

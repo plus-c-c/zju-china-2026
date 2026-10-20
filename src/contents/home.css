@@ -331,7 +331,7 @@ body.home-story-open .app {
 .story-viewport :is(.home-layer-59, .home-layer-60) { visibility: hidden; }
 @media (prefers-reduced-motion: reduce) { .story-guide-bird--flying img { animation: none; } }
 
-.story-guide-bird__flight { display: none; position: absolute; inset: 0; transform: rotate(var(--bird-flight-angle, 0deg)) rotate(-135deg); }
+.story-guide-bird__flight { display: none; position: absolute; inset: 0; transform: rotate(calc(var(--bird-flight-angle, 0deg) - var(--bird-artwork-heading, 126deg))); }
 .story-guide-bird--flying .story-guide-bird__flight { display: block; }
 .story-guide-bird--flying .story-guide-bird__rest { visibility: hidden; }
 .story-guide-bird--flying .story-guide-bird__flight img { animation-duration: 360ms; }
@@ -369,14 +369,15 @@ body.home-story-open .app {
 .pipeline-bird-active .story-guide-bird__flight {
   display: block;
   opacity: 0;
+  transform: rotate(calc(var(--pipeline-flight-angle, 0deg) - var(--bird-artwork-heading, 126deg)));
   transition: opacity 160ms ease;
 }
 .pipeline-bird-active .story-guide-bird__rest {
   visibility: visible;
   transition: opacity 160ms ease;
 }
-.pipeline-bird-active .story-guide-bird--flying .story-guide-bird__flight { opacity: 1; }
-.pipeline-bird-active .story-guide-bird--flying .story-guide-bird__rest { opacity: 0; }
+.pipeline-bird-active .story-guide-bird[data-pipeline-pose="flying"] .story-guide-bird__flight { opacity: 1; }
+.pipeline-bird-active .story-guide-bird[data-pipeline-pose="flying"] .story-guide-bird__rest { opacity: 0; }
 @media (prefers-reduced-motion: reduce) {
   .pipeline-bird-active :is(.story-guide-bird__flight, .story-guide-bird__rest) { transition: none; }
 }

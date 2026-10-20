@@ -1,4 +1,4 @@
-<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>NEST · 水凝胶动画</title><style>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>NEST · Hydrogel Animation</title><style>
 :root{--duration:18s;--syringe-liquid:linear-gradient(#86c9df80 0%,#4aa7c86b 25%,#2d91b580 75%,#357e9e75);color-scheme:light;font-family:Arial,sans-serif}
 *{box-sizing:border-box}html{background:transparent}body{margin:0;min-height:100svh;display:grid;place-items:center;background:transparent}
 .player{width:min(100%,1280px);margin:auto}.viewport{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;background:transparent}
@@ -560,9 +560,9 @@ body.clean .controls{display:none}body.clean .player{width:100%}
 </style><style>
 html,body{width:100%;height:100%;min-height:0;overflow:hidden;background:#d4e7fb}
 .player{width:100%;height:100%}.viewport{width:100%;height:100%;aspect-ratio:auto;background:#d4e7fb}
-.stage{left:50%;top:50%;transform:translate(-50%,-50%)}
+.stage{left:50%;top:50%;transform-origin:center;transform:translate(-50%,-50%) scale(var(--stage-scale,1))}
 .controls,.debug-panel{display:none!important}
-</style></head><body><main class="player" data-loading><div class="viewport" role="img" aria-label="发酵罐直接输出水凝胶，进入透明泵、注射器和膝关节，经蓝光固化后停留在修复后的骨头画面"><div class="stage" id="stage">
+</style></head><body><main class="player" data-loading><div class="viewport" role="img" aria-label="Hydrogel travels from the reactor through a transparent pump and syringe into the knee joint, where blue light cures it to repair cartilage."><div class="stage" id="stage">
 <div class="hardware-scene anim"><div class="hardware-camera anim">
  <svg class="hardware-hose" viewBox="0 0 3180 720" aria-hidden="true"><defs><linearGradient id="hose-fill" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#bce8f2"/><stop offset=".4" stop-color="#65bbd5"/><stop offset="1" stop-color="#78c7de"/></linearGradient></defs>
   <path d="M815 354 C1280 275 2025 517 2248 435 Q2303 408 2303 366" fill="none" stroke="#7bbcdc" stroke-width="15" stroke-linecap="round"/>
@@ -675,16 +675,20 @@ html,body{width:100%;height:100%;min-height:0;overflow:hidden;background:#d4e7fb
           </div>
         </div>
         </div></div>
-<div class="controls" aria-label="播放控制">
- <button id="toggle" type="button" aria-label="播放动画"><svg class="play-symbol" viewBox="0 0 24 24"><path d="M8 5 19 12 8 19Z" fill="currentColor" stroke="none"/></svg><svg class="pause-symbol" viewBox="0 0 24 24"><path d="M8 5V19M16 5V19" stroke-width="3"/></svg></button>
- <button id="restart" type="button" aria-label="重播"><svg viewBox="0 0 24 24"><path d="M4 10a8 8 0 1 1 1 7 M4 4v6h6"/></svg></button>
- <input id="timeline" type="range" min="0" max="18" step="0.01" value="0" aria-label="动画进度">
- <button id="fullscreen" type="button" aria-label="全屏"><svg viewBox="0 0 24 24"><path d="M9 4H4v5M15 4h5v5M4 15v5h5M20 15v5h-5"/></svg></button>
+<div class="controls" aria-label="Playback controls">
+ <button id="toggle" type="button" aria-label="Play animation"><svg class="play-symbol" viewBox="0 0 24 24"><path d="M8 5 19 12 8 19Z" fill="currentColor" stroke="none"/></svg><svg class="pause-symbol" viewBox="0 0 24 24"><path d="M8 5V19M16 5V19" stroke-width="3"/></svg></button>
+ <button id="restart" type="button" aria-label="Replay"><svg viewBox="0 0 24 24"><path d="M4 10a8 8 0 1 1 1 7 M4 4v6h6"/></svg></button>
+ <input id="timeline" type="range" min="0" max="18" step="0.01" value="0" aria-label="Animation progress">
+ <button id="fullscreen" type="button" aria-label="Fullscreen"><svg viewBox="0 0 24 24"><path d="M9 4H4v5M15 4h5v5M4 15v5h5M20 15v5h-5"/></svg></button>
 </div>
 <script>
 (() => {
  const stage=document.querySelector('#stage');
  const player=document.querySelector('.player');
+ const viewport=stage.closest('.viewport');
+ const fitStage=()=>stage.style.setProperty('--stage-scale',String(viewport.clientHeight/720));
+ new ResizeObserver(fitStage).observe(viewport);
+ fitStage();
  const duration=16750;
  const baseRate=1.08;
  let tracks=[],clock,done=false,rate=baseRate,ready=false,started=false;

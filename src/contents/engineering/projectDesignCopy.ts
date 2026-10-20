@@ -107,7 +107,7 @@ function buildCopy(): {
     "## D | Dialogue & Feedback:",
   ).replace(/^## /, "### ");
   const dialogue = withoutFirstHeading(
-    section("## D | Dialogue & Feedback:").replace("（使用“流程图”的css）", ""),
+    section("## D | Dialogue & Feedback:"),
   );
 
   cycle1.Design = [engineeringIntro, cycle1.Design]

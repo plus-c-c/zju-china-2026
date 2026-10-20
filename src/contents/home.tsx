@@ -154,7 +154,7 @@ function DesktopHome() {
         <MaterialLimitations drawProgress={Math.max(0, Math.min(1, (position - 10) / 2.8))} />
       ),
     },
-    { name: "Return to NEST", content: <BirdReturnsToNest /> },
+    { name: "Return to NEST", content: <BirdReturnsToNest direction={direction} /> },
     {
       name: "SELP and SnoopLigase-ZJU",
       content: <SelpAndSnoopLigaseScene />,

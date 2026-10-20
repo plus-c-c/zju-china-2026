@@ -1,11 +1,12 @@
 import { useReducedMotion } from "motion/react";
 import { useStory } from "./StoryContext";
+import { BIRD_ARTWORK_HEADING, flightHeading } from "./flightHeading";
 const imgFlyingBirdFrame1 = "https://static.igem.wiki/teams/6102/wiki/home-opening/guide-bird-flight-01.avif";
 const imgFlyingBirdFrame2 = "https://static.igem.wiki/teams/6102/wiki/home-opening/guide-bird-flight-02.avif";
 const imgBoneNest = `https://static.igem.wiki/teams/6102/wiki/images/home/bird-return-bone-2.avif`;
 const imgBirdRestingOnBone = "https://static.igem.wiki/teams/6102/wiki/home-opening/guide-bird-rest.avif";
 
-export default function BirdReturnsToNest() {
+export default function BirdReturnsToNest({ direction = 1 }: { direction?: number }) {
   const { birdProgress, birdStage, birdLandingProgress } = useStory();
   const reduced = useReducedMotion();
   const landing = reduced ? Number(birdStage >= 2) : birdLandingProgress;
@@ -27,9 +28,10 @@ export default function BirdReturnsToNest() {
     flightStartY * remainingFlight * remainingFlight +
     2 * remainingFlight * flightEase * flightControlY +
     flightEndY * flightEase * flightEase;
-  // Enter level and facing left, then smoothly pitch the head downward as the
-  // bird approaches the bone.
-  const flightRotation = 20 - 40 * flightEase;
+  // Correct the source artwork's forward axis once for both wing frames.
+  const flightRotation = flightHeading((flightEndX - flightStartX) * direction,
+    (2 * remainingFlight * (flightControlY - flightStartY)
+      + 2 * flightEase * (flightEndY - flightControlY)) * direction) - BIRD_ARTWORK_HEADING;
   const flightEntryOpacity = Math.max(0, Math.min(1, flight * 8));
 
   return (

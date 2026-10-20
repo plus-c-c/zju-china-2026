@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { OA_BIRD_STOP, perch } from "./storyBirdGeometry";
 import { getStoryHandoffTop } from "./UseStoryNavigation";
 import { getPipelineFlightRoute } from "./PipelineFlightRoute";
+import { flightHeading } from "./flightHeading";
 
 /** A reversible document-space route, shared with the OA bird. */
 export function PipelineBird() {
@@ -14,8 +15,11 @@ export function PipelineBird() {
     let routeDirection = 1;
     let activeBefore = false;
     const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const tick = (time: number) => {
+    const tick = () => {
       frame = 0;
+      // Scroll events and animation callbacks must use the same live clock.
+      // A delayed frame timestamp can otherwise mark fresh motion as idle.
+      const time = performance.now();
       const root = document.querySelector(".selp-pipeline");
       const footer = document.querySelector(".footer");
       const canvas = bird.parentElement;
@@ -41,12 +45,16 @@ export function PipelineBird() {
       if (!active) {
         if (activeBefore) {
           bird.classList.remove("story-guide-bird--flying");
+          delete bird.dataset.pipelinePose;
+          bird.style.removeProperty("--pipeline-flight-angle");
+          bird.style.removeProperty("--pipeline-bird-x");
+          bird.style.removeProperty("--pipeline-bird-y");
           bird.style.setProperty("--bird-flight-angle", "0deg");
           // Restore the shared OA perch before returning ownership. A fast
           // reverse scroll may otherwise leave the fixed bird below the screen.
           const anchor = perch(OA_BIRD_STOP);
-          bird.style.left = `${anchor.x}px`;
-          bird.style.top = `${anchor.y}px`;
+          bird.style.left = `var(--pipeline-bird-x, ${anchor.x}px)`;
+          bird.style.top = `var(--pipeline-bird-y, ${anchor.y}px)`;
           document.body.classList.remove("pipeline-bird-active");
           window.dispatchEvent(new CustomEvent("home-bird-handoff", { detail: { x: anchor.x, y: anchor.y } }));
         }
@@ -73,22 +81,20 @@ export function PipelineBird() {
       const position = route.sample(scroll);
       const x = position.x, y = position.y - scroll;
       const onRoute = scroll > route.start + 0.5 && scroll < route.end - 0.5;
-      const moving = onRoute && time - lastScrollTime < 350;
+      const moving = onRoute && position.speed > 0 && time - lastScrollTime < 350;
       bird.dataset.pipelineControlled = "true";
-      bird.style.left = `${(x - c.left) / scale}px`;
-      bird.style.top = `${(y - c.top) / scale}px`;
+      bird.dataset.pipelinePose = moving && !reduced ? "flying" : "resting";
+      // Separate properties keep story rerenders from overwriting the route's
+      // position, heading, or pose between animation frames.
+      bird.style.setProperty("--pipeline-bird-x", `${(x - c.left) / scale}px`);
+      bird.style.setProperty("--pipeline-bird-y", `${(y - c.top) / scale}px`);
       bird.style.setProperty("--bird-size", "0.4");
       bird.classList.toggle("story-guide-bird--flying", moving && !reduced);
-      if (moving) {
-        // Align directly with this same route's tangent. atan2 stays within
-        // [-180, 180]; no accumulated rotations or delayed heading catch-up.
-        // Before the drawn connector, use the visible flight direction: the
-        // document itself is scrolling underneath the fixed bird.
-        const inEntry = scroll < route.stops[0];
-        const dx = position.dx * position.speed;
-        const dy = position.dy * position.speed - (inEntry ? 1 : 0);
-        const heading = Math.atan2(dy * routeDirection, dx * routeDirection) * 180 / Math.PI;
-        bird.style.setProperty("--bird-flight-angle", `${heading}deg`);
+      if (onRoute) {
+        // Position and tangent use document coordinates throughout, including
+        // takeoff and the SVG sections. Reverse only when travelling back up.
+        const heading = flightHeading(position.dx * routeDirection, position.dy * routeDirection);
+        bird.style.setProperty("--pipeline-flight-angle", `${heading}deg`);
       }
       document.body.classList.add("pipeline-bird-active");
       // Keep one clock alive while active; wheel bursts no longer restart the flight.
@@ -98,7 +104,7 @@ export function PipelineBird() {
       // Apply the latest scroll position in the scroll event itself, so the
       // fixed bird cannot lag a frame behind the document near the video.
       cancelAnimationFrame(frame);
-      tick(performance.now());
+      tick();
     };
     window.addEventListener("scroll", wake, { passive: true });
     window.addEventListener("resize", wake);
@@ -106,6 +112,10 @@ export function PipelineBird() {
     return () => {
       cancelAnimationFrame(frame);
       document.body.classList.remove("pipeline-bird-active");
+      delete bird.dataset.pipelinePose;
+      bird.style.removeProperty("--pipeline-flight-angle");
+      bird.style.removeProperty("--pipeline-bird-x");
+      bird.style.removeProperty("--pipeline-bird-y");
       window.removeEventListener("scroll", wake);
       window.removeEventListener("resize", wake);
     };

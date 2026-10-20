@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, type CSSProperties } from "react";
 
 import { createPortal } from "react-dom";
 import { perch, stops } from "./storyBirdGeometry";
+import { BIRD_ARTWORK_HEADING, flightHeading } from "./flightHeading";
 const restBird = "https://static.igem.wiki/teams/6102/wiki/home-opening/guide-bird-rest.avif";
 const flightOne = "https://static.igem.wiki/teams/6102/wiki/home-opening/guide-bird-flight-01.avif";
 const flightTwo = "https://static.igem.wiki/teams/6102/wiki/home-opening/guide-bird-flight-02.avif";
@@ -96,7 +97,8 @@ export function StoryBird({ position, direction, scale }: { position: number; di
     let start = poseRef.current;
     const element = document.querySelector<HTMLElement>(".story-guide-bird");
     if (element?.dataset.pipelineControlled === "true") {
-      start = { ...start, x: parseFloat(element.style.left), y: parseFloat(element.style.top),
+      const rendered = getComputedStyle(element);
+      start = { ...start, x: parseFloat(rendered.left), y: parseFloat(rendered.top),
         size: parseFloat(element.style.getPropertyValue("--bird-size")) || 0.4,
         angle: parseFloat(element.style.getPropertyValue("--bird-flight-angle")) || 0 };
       poseRef.current = start;
@@ -132,7 +134,7 @@ export function StoryBird({ position, direction, scale }: { position: number; di
     // Longer routes accelerate smoothly; short hops stay gentle.
     const distanceRatio = Math.max(0, Math.min(1, (length - 120) / 780));
     const speed = 340 + 460 * distanceRatio;
-    const duration = reduced ? 1 : Math.min(1350, Math.max(450, length / speed * 1000));
+    const duration = reduced ? 1 : Math.min(1350, Math.max(450, length / speed * 1000)) * 1.08;
     const began = performance.now();
     let frame = 0;
     let previousTime = began;
@@ -155,16 +157,22 @@ export function StoryBird({ position, direction, scale }: { position: number; di
       segment = Math.max(1, segment);
       const t = elapsed === 1 ? 1 : (segment - 1 + (traveled - samples[segment - 1]) / Math.max(0.001, samples[segment] - samples[segment - 1])) / 100;
       const liveTarget = atHome ? destination : perch(destinationStopRef.current);
-      const heading = Math.atan2(liveTarget.y - start.y - Math.PI * height * Math.cos(Math.PI * t), liveTarget.x - start.x) * 180 / Math.PI;
       const next = {
         ...destination,
         x: start.x + (liveTarget.x - start.x) * t,
         y: start.y + (liveTarget.y - start.y) * t - Math.sin(Math.PI * t) * height,
         size: start.size + (destination.size - start.size) * (t * t * (3 - 2 * t)),
         moving: elapsed < 1,
-        angle: heading,
+        angle: poseRef.current.angle,
         facing: 1,
       };
+      // Differentiate this same curve at t, rather than taking the chord
+      // between frames or including the incoming scene's translation.
+      next.angle = flightHeading(
+        liveTarget.x - start.x,
+        liveTarget.y - start.y - Math.PI * height * Math.cos(Math.PI * t),
+        next.angle,
+      );
       poseRef.current = next;
       setPose(next);
       if (elapsed < 1) frame = requestAnimationFrame(tick);
@@ -221,7 +229,7 @@ export function StoryBird({ position, direction, scale }: { position: number; di
     <div role="button" tabIndex={0} aria-label="Make the NEST bird hop"
       onClick={(event) => { event.stopPropagation(); jump(event.currentTarget); }}
       onKeyDown={(event) => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); jump(event.currentTarget); } }}
-      className={`story-guide-bird${moving ? " story-guide-bird--flying" : ""}`} style={{left: x, top: y, "--bird-size": size, "--bird-bank": "0deg", "--bird-flight-angle": `${flightAngle}deg`, "--bird-facing": pose.facing} as CSSProperties}>
+      className={`story-guide-bird${moving ? " story-guide-bird--flying" : ""}`} style={{left: `var(--pipeline-bird-x, ${x}px)`, top: `var(--pipeline-bird-y, ${y}px)`, "--bird-size": size, "--bird-bank": "0deg", "--bird-flight-angle": `${flightAngle}deg`, "--bird-artwork-heading": `${BIRD_ARTWORK_HEADING}deg`, "--bird-facing": pose.facing} as CSSProperties}>
       <img className="story-guide-bird__rest" src={restBird} alt="" />
       <div className="story-guide-bird__flight">
         <img className="home-flying-bird-frame--1" src={flightOne} alt="" />

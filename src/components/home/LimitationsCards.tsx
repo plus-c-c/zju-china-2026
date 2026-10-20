@@ -342,7 +342,7 @@ export function MaterialLimitations({
       style={pageStyle}
     >
       <h2 className="limitations-page__heading limitations-page__heading--yellow">
-        limitations of the materials
+        limitations of hydrogel materials
       </h2>
       <h2 className="limitations-page__heading limitations-page__heading--blue">
         our solution

@@ -19,6 +19,10 @@ export function HomeIntro({ onEnter }: HomeIntroProps) {
     window.dispatchEvent(new Event("home-intro-ready"));
   }, []);
 
+  const skipOpening = () => openingFrame.current?.contentWindow?.postMessage(
+    { source: "nest-home", type: "finish" }, location.origin,
+  );
+
   useLayoutEffect(() => {
     openingVisited = true;
     window.scrollTo({ top: 0, behavior: "instant" });
@@ -74,6 +78,7 @@ export function HomeIntro({ onEnter }: HomeIntroProps) {
       touchY = nextY;
     };
     const key = (event: KeyboardEvent) => {
+      if (event.key === " " && event.target instanceof Element && event.target.closest("button")) return;
       if (["ArrowDown", "ArrowUp", "PageDown", "PageUp", " ", "Home", "End"].includes(event.key)) {
         event.preventDefault(); event.stopImmediatePropagation();
         if (["ArrowDown", "PageDown", " "].includes(event.key)) accelerate();
@@ -112,6 +117,11 @@ export function HomeIntro({ onEnter }: HomeIntroProps) {
       <iframe ref={openingFrame} className="home-intro__animation" src={openingAnimationUrl}
         onLoad={() => openingFrame.current?.contentWindow?.postMessage({ source: "nest-home", type: "status" }, location.origin)}
         title="NEST hydrogel opening animation" tabIndex={-1} aria-hidden="true" />
+      {!finished && !skipAnimation && (
+        <button className="home-intro__skip" type="button" onClick={skipOpening} aria-label="Skip opening animation">
+          Skip
+        </button>
+      )}
       <div className="home-intro__landing" aria-hidden={!finished}>
         <div className="home-intro__brand" aria-label="NEST">
           <span

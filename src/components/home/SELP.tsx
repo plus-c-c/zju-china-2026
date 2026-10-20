@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import { PeerTubePlayer } from "@peertube/embed-api/build/player.min.js";
 import { TransparentImage } from "../TransparentImage";
 import { getStoryHandoffTop } from "./UseStoryNavigation";
-import { getPipelineFlightDamping } from "./PipelineFlightRoute";
+import { getPipelineEntryAssist, getPipelineFlightDamping } from "./PipelineFlightRoute";
 import "./SELP.css";
 
 const STATIC_HOME = "https://static.igem.wiki/teams/6102/wiki/images/home";
@@ -379,6 +380,42 @@ const promotionDecorations = [
   ["cyan-gear-middle-right", "cyan-gear-middle-right.avif"],
 ] as const;
 
+function PromotionPlayer() {
+  const frame = useRef<HTMLIFrameElement>(null);
+  const player = useRef<PeerTubePlayer | null>(null);
+  const [interactive, setInteractive] = useState(false);
+  const connect = () => {
+    if (frame.current) player.current = new PeerTubePlayer(frame.current);
+  };
+  const activate = async () => {
+    setInteractive(true);
+    frame.current?.focus();
+    try {
+      await player.current?.ready;
+      await player.current?.play();
+    } catch {
+      // Keep the original player controls available if the API is unavailable.
+    }
+  };
+
+  return (
+    <div className="selp-promotion__player" onPointerLeave={() => setInteractive(false)}>
+      <iframe
+        ref={frame}
+        src="https://video.igem.org/videos/embed/6626b25e-37f5-4fbc-8f49-a9897496b6b0?api=1"
+        title="ZJU-China NEST promotion video"
+        loading="lazy"
+        allow="autoplay; fullscreen; picture-in-picture"
+        allowFullScreen
+        onLoad={connect}
+      />
+      {!interactive && (
+        <button className="selp-promotion__scroll-cover" type="button" aria-label="Play promotion video" onClick={activate} />
+      )}
+    </div>
+  );
+}
+
 export function SelpPipeline({ readingWidth }: { readingWidth?: number } = {}) {
   const pipelineRef = useRef<HTMLElement>(null);
   useEffect(() => {
@@ -438,7 +475,9 @@ export function SelpPipeline({ readingWidth }: { readingWidth?: number } = {}) {
         return;
       }
       const damping = pipeline ? getPipelineFlightDamping(pipeline, window.scrollY) : 1;
-      const step = Math.sign(distance) * Math.min(Math.abs(distance), Math.max(1, Math.abs(distance) * (1 - Math.exp(-elapsed / 210)) * damping));
+      const entryAssist = pipeline ? getPipelineEntryAssist(pipeline, window.scrollY) : 0;
+      const response = 210 - 30 * entryAssist;
+      const step = Math.sign(distance) * Math.min(Math.abs(distance), Math.max(1, Math.abs(distance) * (1 - Math.exp(-elapsed / response)) * damping));
       window.scrollTo({ top: window.scrollY + step, behavior: "instant" });
       appliedScroll = window.scrollY;
       animation = requestAnimationFrame(animate);
@@ -466,6 +505,7 @@ export function SelpPipeline({ readingWidth }: { readingWidth?: number } = {}) {
       if (!delta) return;
       const closingTop = root.querySelector(".selp-after-pipeline")?.getBoundingClientRect().top;
       const inClosing = closingTop !== undefined && closingTop < innerHeight * 0.85;
+      const entryAssist = getPipelineEntryAssist(root, window.scrollY);
       const now = performance.now();
       const direction = Math.sign(delta);
       const freshGesture = now - lastWheelTime > 280;
@@ -474,7 +514,7 @@ export function SelpPipeline({ readingWidth }: { readingWidth?: number } = {}) {
         if (freshGesture || Math.sign(initialImpulse) !== direction) initialImpulse = 0;
         initialImpulse += delta;
         // A resting section needs intentional input before starting to move.
-        if (Math.abs(initialImpulse) < (inClosing ? 40 : 20)) return;
+        if (Math.abs(initialImpulse) < (inClosing ? 40 : 20 - 6 * entryAssist)) return;
         delta = initialImpulse;
         initialImpulse = 0;
       }
@@ -495,7 +535,7 @@ export function SelpPipeline({ readingWidth }: { readingWidth?: number } = {}) {
       }
       // Do not let an old inertia target pull against the accepted wheel intent.
       target = direction > 0 ? Math.max(target, window.scrollY) : Math.min(target, window.scrollY);
-      const proposed = target + delta * 0.28;
+      const proposed = target + delta * (0.28 + 0.02 * entryAssist);
       // Keep closing links/video deliberate without changing the module scroll.
       const lead = innerHeight * (inEntry ? 0.155 : inClosing ? 0.16 : 0.22);
       target = Math.max(start, Math.min(limit, Math.max(window.scrollY - lead, Math.min(window.scrollY + lead, proposed))));
@@ -661,13 +701,7 @@ export function SelpPipeline({ readingWidth }: { readingWidth?: number } = {}) {
             <div className="selp-promotion__depth" aria-hidden="true" />
             <div className="selp-promotion__border" aria-hidden="true" />
             <div className="selp-promotion__frame">
-              <iframe
-                src="https://video.igem.org/videos/embed/6626b25e-37f5-4fbc-8f49-a9897496b6b0"
-                title="ZJU-China NEST promotion video"
-                loading="lazy"
-                allow="fullscreen; picture-in-picture"
-                allowFullScreen
-              />
+              <PromotionPlayer />
             </div>
             <h2 id="promotion-video-title">Promotion Video</h2>
             {promotionDecorations.map(([className, fileName]) => (

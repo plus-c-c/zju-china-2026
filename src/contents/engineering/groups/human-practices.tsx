@@ -11,12 +11,12 @@ import type { SeedCycle, SeedModule } from "../seed";
  *
  * PROVISIONAL: the phase texts below are condensed from the draft
  * `Integrated Human Practices.md` (still being written — several phases are
- * placeholders and the final English copy will replace the Chinese draft).
+ * placeholders).
  */
 
 const todo = (
   <p>
-    <em>（待补充）</em>
+    <em>Details to follow.</em>
   </p>
 );
 
@@ -45,13 +45,24 @@ const realWorldNeed = module(
   cycle(
     "Cycle 1 — Real-world cases versus sparse medical records",
     <p>
-      在我们团队成员一次急性软骨损伤后，我们对透明软骨损伤产生了兴趣：它可能导致骨关节炎、局部创伤性缺损和术后适应性缺损等多种情况，但现实病例与医疗系统记载之间存在明显矛盾。
+      An acute cartilage injury experienced by a team member drew our attention
+      to hyaline cartilage damage, including osteoarthritis, focal traumatic
+      defects, and postoperative adaptive defects. We noticed a substantial gap
+      between real-world cases and medical records.
     </p>,
     <p>
-      我们在大学社区（约 150 份）、杭州市拱墅区七古登街道、西湖区三墩镇、天津市南开区水上西街道（共约 1200 份）以及中文互联网平台（小红书、CDM 病友群，约 300 份）开展问卷调查：有过相关经历（含认识的患者）的人群占 23.8%。大学生以局部创伤性缺损为主，社区中的 OA 集中在老年人，互联网平台对 OA 和术后损伤的讨论较多。
+      We collected approximately 150 questionnaires in university communities,
+      1,200 across Qigudeng and Sandun in Hangzhou and Shuishangxi in Tianjin,
+      and 300 through Chinese online platforms, including Xiaohongshu and CDM
+      patient groups. Of respondents, 23.8% had relevant experience themselves
+      or knew someone affected. Focal traumatic defects predominated among
+      university students, community OA cases were concentrated among older
+      adults, and online discussions frequently concerned OA and postoperative
+      damage.
     </p>,
     <p>
-      我们将调研结论整理为 PRD 文档，交接给工程部门作为设计依据。
+      We compiled the findings into a product requirements document (PRD) and
+      passed it to the engineering team to guide design.
     </p>,
     todo,
   ),
@@ -62,10 +73,18 @@ const clinicalControversy = module(
   cycle(
     "Cycle 1 — Disagreement in the clinic",
     <p>
-      医疗界对软骨损伤存在争议：诊断标准不统一，早期软骨损伤容易被忽视。
+      Clinical views on cartilage damage differ: diagnostic criteria vary, and
+      early cartilage injuries are easily overlooked.
     </p>,
     <p>
-      文献中并没有权威依据指导何种程度的软骨缺损可以算作疾病程度；即使是标准相对最完善的 OA，在美国和中国的权威治疗标准中也没有统一的判定标准。不同地区、不同身份的医生对同一种软骨缺损的诊断也不一致；术后损伤中，骨科手术的成功衡量标准忽视了对人工材料威胁软骨健康的评估（髌骨手术术后软骨磨损患者 yue 的深度访谈）。
+      Our literature review found no single authoritative threshold defining
+      when a cartilage defect constitutes disease. Even for OA, which has
+      comparatively well-developed standards, treatment guidelines in the United
+      States and China do not use identical diagnostic criteria. Clinicians in
+      different regions and roles may assess the same defect differently. Our
+      in-depth interview with Yue, who experienced cartilage wear after patellar
+      surgery, also suggested that measures of surgical success can overlook the
+      effects of implanted materials on cartilage.
     </p>,
     todo,
     todo,
@@ -76,9 +95,13 @@ const patientExperience = module(
   "Patient experience",
   cycle(
     "Cycle 1 — Patients themselves overlook cartilage health",
-    <p>患者自身也在忽视软骨健康。</p>,
+    <p>Patients themselves may also overlook cartilage health.</p>,
     <p>
-      一方面，患者得到“无需治疗”的诊断后，会刻意忽视自己的疼痛情况、合理化病症；另一方面，部分患者（尤其是老年患者）就医意愿较低，偏远地区还存在就医不便的问题（浙江省岩坦村顾爷爷的案例）。
+      After being told that treatment is unnecessary, some patients dismiss
+      their pain or rationalize their symptoms. Others, particularly older
+      adults, are reluctant to seek care. Access is also difficult in remote
+      areas, as illustrated by our conversation with Mr. Gu in Yantan Village,
+      Zhejiang.
     </p>,
     todo,
     todo,
@@ -90,18 +113,21 @@ export const needLedDiscoveryGroup: Group = {
   flavor: "seed",
   lead: (
     <p>
-      NEST 的 iHP 从真实的疼痛出发：广泛问卷、深度访谈与文献调研共同构成了
-      Need-led Discovery 阶段。
+      NEST's Integrated Human Practices began with real experiences of pain.
+      Broad surveys, in-depth interviews, and literature research together
+      formed our Need-led Discovery stage.
     </p>
   ),
   outlook: (
     <p>
-      我们认为任何合成生物学医疗材料的设计，都应该满足四个价值观：
-      <strong>健康</strong>（改善软骨损伤患者的关节健康与生活质量）、
-      <strong>共情</strong>（看见疼痛和异物感等容易被忽视的患者体验）、
-      <strong>可及</strong>（关注不同年龄、地区和就医条件下的治疗需求）、
-      <strong>责任</strong>（依据证据推进研发，审慎考虑安全性与实际影响）。
-      我们的项目设计围绕实现这四个价值观的目标。
+      We believe that synthetic biology-based medical materials should reflect
+      four values: <strong>health</strong> (improving joint health and quality
+      of life), <strong>empathy</strong> (recognizing easily overlooked
+      experiences such as pain and foreign-body sensation),{" "}
+      <strong>accessibility</strong> (addressing needs across ages, regions, and
+      healthcare settings), and <strong>responsibility</strong> (advancing
+      evidence-based research while carefully considering safety and practical
+      impact). These values guide our project design.
     </p>
   ),
   parts: [
@@ -120,19 +146,33 @@ const selpCycle = module(
   cycle(
     "Cycle 1 — SELP",
     <p>
-      基于背景调查，我们希望设计一款能够治愈广泛透明软骨缺损的材料。第一步是选择一种能够满足软骨修复复杂需求的填充材料，直接填补缺损、立刻减少患者疼痛。我们将第一版 SELP 设计稿（只涵盖固定 2KY5、2KY10、2KY16
-      的蛋白设计）呈现给研究者和医生；医生认为手肘、膝盖等不同部位的软骨受力不同、所需强度不同，只做一种强度的材料无法达到广泛性施用的目标。
+      Our background research led us to pursue a material for a broad range of
+      hyaline cartilage defects. We first sought a filler that could address
+      complex repair needs by filling defects and promptly reducing pain. We
+      presented our initial SELP designs, limited to fixed 2KY5, 2KY10, and
+      2KY16 proteins, to researchers and clinicians. They explained that
+      cartilage in the elbow, knee, and other locations experiences different
+      loads and requires different strengths; a single-strength material would
+      not support broad application.
     </p>,
     <p>
-      我们调研发现，可以调控 2KY 系列蛋白的重复次数来改变材料的强度和韧度；随着重复数增大，孔径变小、细胞黏附性上升，更有利于 GAG 生成、自身软骨生长和抗炎因子水平上调，也可以适应不同免疫能力、缺损程度的病人。我们决定找到编程化序列蛋白的方法，并用建模工作帮助我们确定水凝胶的最终性质。
+      Our research suggested that changing the repeat number of 2KY proteins
+      could tune material strength and toughness. More repeats were associated
+      with smaller pores and greater cell adhesion, potentially supporting GAG
+      production, native cartilage growth, and anti-inflammatory activity. This
+      offered a way to accommodate different immune capacities and defect
+      severities. We therefore pursued programmable protein sequences and used
+      modeling to guide the final hydrogel properties.
     </p>,
     <p>
-      我们进入 SELP 的 <strong>DBTL 循环</strong>
-      。为了更好实现 SELP 作为广泛缺损填充材料所需要的复杂功能，我们在实验层面产生诸多问题，积极地与多位利益相关者展开了讨论（见
-      Engagement Timeline）。
+      We entered the SELP <strong>DBTL cycle</strong>. Developing SELP into a
+      versatile defect-filling material raised many experimental questions,
+      which we discussed with stakeholders (see the Engagement Timeline).
     </p>,
     <p>
-      我们又给医生和研究者看了我们最新的设计，他们给出了比较积极的反馈。后续的实验证明了我们设计的可靠性。
+      We presented the revised design to clinicians and researchers and received
+      positive feedback. Subsequent experiments supported the reliability of the
+      design.
     </p>,
   ),
 );
@@ -142,20 +182,24 @@ const linkerCycle = module(
   cycle(
     "Cycle 1 — Linker System",
     <p>
-      经过文献调研，单填补缺损是不够的。为了更好贴合不同临床病症微环境的修复需求，我们希望添加与治疗相关的功能模块；而大分子量的功能模块如果直接插入分子内部，会对
-      SELP 蛋白正常功能产生较大影响，因此我们希望选择蛋白接头进行扩展型设计。我们一开始选择了主流的
-      SpyTag 和 SnoopTag 接头系统，通过蛋白建模发现接头分子量太大，功能短肽结构域会被掩盖。
+      Our literature review showed that filling a defect alone would not be
+      enough. We wanted therapeutic modules tailored to different clinical
+      microenvironments, but directly inserting large modules could disrupt SELP
+      function. We therefore explored protein linkers for modular expansion. We
+      initially considered SpyTag and SnoopTag systems; protein modeling
+      suggested that bulky linkers could obscure functional peptide domains.
     </p>,
     <p>
-      我们询问利益相关者，其中一位研究员建议可以用 SnoopLigase 作为我们的
-      linker 系统。
+      During stakeholder consultations, a researcher suggested SnoopLigase as
+      our linker system.
     </p>,
     <p>
-      我们通过建模工作改造酶、提升连接效率，并对 SnoopLigase
-      系统进行迭代，创新性地形成了 <strong>SnoopLigase-ZJU</strong>{" "}
-      系统，大幅提升工作效率，保证接头系统高效运行。
+      We used modeling to engineer the enzyme and improve ligation efficiency.
+      Iteration of the SnoopLigase system produced{" "}
+      <strong>SnoopLigase-ZJU</strong>, improving workflow efficiency and
+      supporting effective linker operation.
     </p>,
-    <p>我们给医生和研究者看了我们的设计，他们表示赞同。</p>,
+    <p>Clinicians and researchers reviewed and supported our design.</p>,
   ),
 );
 
@@ -164,21 +208,31 @@ const functionalCycle = module(
   cycle(
     "Cycle 1 — Functional module",
     <p>
-      在设计好可编程平台后，我们选择 OA 作为 NEST
-      系列材料的第一个具体应用病症，进行针对 OA
-      的模块化搭载。我们希望材料符合临床需求，因此询问了医生。
+      After designing the programmable platform, we selected OA as the first
+      application for NEST and developed OA-focused modules. We consulted
+      clinicians to ensure that the material addressed clinical needs.
     </p>,
     <p>
-      在与医生谈话的过程中我们了解到，骨关节炎所处的封闭微环境很容易形成局部力学失衡、GAG
-      流失、炎症反应加剧三者的恶性循环。我们广泛阅读文献，发现各向异性这一物理性质可以很好地模拟软骨天然结构，既能承接剪切力，又能保持韧度和弹性，可以阻止三个恶性循环的开端。
+      Clinicians explained how the confined OA microenvironment can sustain a
+      vicious cycle of local mechanical imbalance, GAG loss, and worsening
+      inflammation. Our literature research suggested that anisotropy could
+      mimic native cartilage architecture, bearing shear loads while retaining
+      toughness and elasticity, and help interrupt this cycle at its mechanical
+      starting point.
     </p>,
     <p>
-      在与医生和研究人员商议后，我们设计了磁性纳米颗粒吸附短肽，通过外接磁场吸引
-      SELP，实现各向异性排列；还设计了静电吸附原理的 GAG
-      保持肽段和满足患者个性化治疗需求的脂质体递送模块，将三个恶性循环模块逐个击破。
+      With input from clinicians and researchers, we designed peptides that bind
+      magnetic nanoparticles so an external magnetic field could align SELP
+      anisotropically. We also developed electrostatic GAG-retention peptides
+      and a liposomal delivery module for personalized treatment, addressing
+      each component of the vicious cycle.
     </p>,
     <p>
-      我们重新访问了医生和研究者并询问意见。有医生认为我们的材料太复杂，实际应用可能引起医生的担心，在上市审批阶段可能面临困难——这让我们更加审慎地面对材料的安全问题。此外，我们比对问卷收集的患者需求，确保可编程模块可以覆盖几乎所有情况的病人。
+      We revisited clinicians and researchers for feedback. Some clinicians
+      cautioned that the material's complexity could raise practical concerns
+      and complicate market approval, prompting closer attention to safety. We
+      also compared the programmable modules with patient needs identified in
+      our surveys to assess the breadth of their potential coverage.
     </p>,
   ),
 );
@@ -188,8 +242,9 @@ export const evidenceBasedCoDesignGroup: Group = {
   flavor: "seed",
   lead: (
     <p>
-      Co-design 阶段围绕 SELP 骨架、Linker 系统与功能模块展开三轮 SEED
-      循环：每一轮都由利益相关者的反馈推动迭代。
+      The Co-design stage comprised three SEED cycles covering the SELP
+      scaffold, linker system, and functional modules. Stakeholder feedback
+      drove iteration in each cycle.
     </p>
   ),
   parts: [
@@ -208,18 +263,26 @@ const hardwareCycle = module(
   cycle(
     "Cycle 1 — Hardware design",
     <p>
-      为了使我们的项目能够在临床端得到应用，我们设计了一套适配全部生物设计的硬件系统。第一版包括内窥镜、蓝光照射系统二合一的入体式设备和注射器。
+      To support clinical application, we designed hardware compatible with the
+      biological platform. The first version combined an endoscope and
+      blue-light source in an intracorporeal device, alongside a syringe.
     </p>,
     <p>
-      我们进入临床场景试验。受访的护士提出 3
-      个主要问题：材料的预处理应该在哪里进行？如何使用这套操作系统？系统如何适配医院既有的显示设备？根据这些问题，我们进行了现场调研和排查，并咨询了医疗器械公司，决定增加预混模块、电子说明书和蓝牙连接的组块。
+      During clinical-scenario testing, nurses raised three questions: where
+      should material preparation take place, how should the system be operated,
+      and how could it connect to existing hospital displays? Site visits and
+      consultations with medical-device companies led us to add a premixing
+      module, electronic instructions, and Bluetooth connectivity.
     </p>,
     <p>
-      结合 wet lab 的蛋白纯化设计，我们开展硬件的迭代，最终得到了广泛适配不同规格手术室的一体化硬件。
+      We iterated the hardware alongside the wet-lab protein-purification
+      design, producing an integrated system intended to accommodate different
+      operating-room configurations.
     </p>,
     <p>
-      为了让设备使用符合用户使用习惯，我们寻找 254
-      医院的急诊病房护士组和医学院的学生进行了不同方案的评测，最终选出一款得分最高的方案，该方案也得到利益相关者的认可。
+      Nurses from the emergency ward of Hospital 254 and medical students
+      evaluated alternative designs for usability. We selected the
+      highest-scoring option, which also received stakeholder support.
     </p>,
   ),
 );
@@ -229,14 +292,21 @@ const manufacturingCycle = module(
   cycle(
     "Cycle 1 — Factory production",
     <p>
-      我们希望我们的材料能够进行工厂化生产，并与北京微欣康公司商讨样本生产的相关事宜。他们对我们提出了合作邀请，并建议我们考虑材料在蛋白纯化、产品运输和存储的设计。
+      We discussed industrial-scale sample production with Beijing Weixinkang.
+      The company invited collaboration and advised us to consider protein
+      purification, product transport, and storage in our design.
     </p>,
     <p>
-      我们对已经上市的水凝胶的蛋白提取、纯化和药品运输方式进行了文献调研，最终决定做成蛋白粉包装成药剂进入医院。我们探访了一家成熟的合成生物学原料生产公司——元一生物，学习了更多实用场景下的知识。
+      We reviewed protein extraction, purification, and pharmaceutical transport
+      methods used for existing hydrogels, and chose a protein-powder
+      formulation for hospital supply. A visit to Yuanyi Biotechnology, an
+      established synthetic-biology raw-material manufacturer, provided further
+      practical insights.
     </p>,
     todo,
     <p>
-      我们对微欣康又做了访谈，并且得到了工程师的认可，成功与他们签订了样品合作协议。
+      A follow-up discussion with Weixinkang secured engineers' support and led
+      to a sample-production collaboration agreement.
     </p>,
   ),
 );
@@ -246,19 +316,28 @@ const entrepreneurshipCycle = module(
   cycle(
     "Cycle 1 — Entrepreneurship and market access",
     <p>
-      NEST
-      作为一款进入人体的医疗材料，我们必须更加审慎地对待产品安全，接受市场准入的诸多考察。我们对准入流程、市场情况和销售通路有很多疑惑；在简单的成本测算后，我们的前期投入巨大、无法避免，这决定了我们要有前期的资金支持。
+      As a material intended for use inside the body, NEST requires careful
+      safety assessment and market-access preparation. We had questions about
+      approval pathways, market conditions, and distribution. Initial cost
+      estimates also showed substantial unavoidable upfront investment, making
+      early financial support necessary.
     </p>,
     <p>
-      带着这些问题，我们广泛地寻找利益相关者，涵盖生产、销售、政府监管、金融、创业指导多个环节，并且得到了有效的建议。
+      We consulted stakeholders across manufacturing, sales, government
+      regulation, finance, and entrepreneurship support, receiving practical
+      advice on these questions.
     </p>,
     <p>
-      我们在设计中更加看重成本层面的考虑，建立了细致的商业模型，寻找了 CDMO
-      合作方，参与多次创业活动并成功拿下第一笔意向投资。更多信息可见
-      Entrepreneurship 页面。
+      We gave costs greater weight in design, developed a detailed business
+      model, sought a CDMO partner, and participated in entrepreneurship events,
+      securing our first expression of investment interest. Further details are
+      available on the Entrepreneurship page.
     </p>,
     <p>
-      每一次商业模式的修改和迭代，我们都会与相应利益相关者协商反馈，直到得到我们团队内部和利益相关者的一致认同。最终，投资机构的认可也证明了我们项目创业的可行性。
+      We discussed each business-model revision with the relevant stakeholders
+      until both the team and stakeholders reached agreement. Investor
+      recognition provided further support for the project's commercial
+      feasibility.
     </p>,
   ),
 );
@@ -268,8 +347,9 @@ export const situatedImplementationGroup: Group = {
   flavor: "seed",
   lead: (
     <p>
-      Implementation
-      阶段把设计放进真实的临床、生产与市场场景：硬件、工厂化生产与创业准入三轮循环分别回应了不同场景中的需求。
+      The Implementation stage brought the design into clinical, manufacturing,
+      and market settings. Three cycles covering hardware, industrial
+      production, and entrepreneurship addressed the needs of each setting.
     </p>
   ),
   parts: [
@@ -285,17 +365,23 @@ export const situatedImplementationGroup: Group = {
 
 const commercializationCycle = module(
   "Commercialization",
-  cycle("Cycle 1 — 持续的商业化进程", todo, todo, todo, todo),
+  cycle("Cycle 1 — Continuing commercialization", todo, todo, todo, todo),
 );
 
 const neglectedPainCycle = module(
   "Neglected pain",
-  cycle("Cycle 1 — 被忽视的疼痛", todo, todo, todo, todo),
+  cycle("Cycle 1 — Neglected pain", todo, todo, todo, todo),
 );
 
 const educationCycle = module(
   "SynBio education",
-  cycle("Cycle 1 — 合成生物学教育贡献", todo, todo, todo, todo),
+  cycle(
+    "Cycle 1 — Contributions to synthetic biology education",
+    todo,
+    todo,
+    todo,
+    todo,
+  ),
 );
 
 export const trustAndLastingImpactGroup: Group = {

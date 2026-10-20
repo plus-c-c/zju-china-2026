@@ -10,7 +10,8 @@
 }
 .mobile-home .mobile-home__intro {
   height: 100svh;
-  min-height: 620px;
+  height: 100dvh;
+  min-height: 0;
   padding: 0;
 }
 .mobile-home .home-intro {
@@ -33,6 +34,27 @@
 }
 .mobile-home .home-intro__next > span:not(.home-intro__bird-anchor) {
   font-size: 32px;
+}
+@media (max-height: 520px) {
+  .mobile-home .home-intro__landing {
+    padding: 80px 4vw 12px;
+  }
+  .mobile-home .home-intro__brand {
+    height: 56px;
+  }
+  .mobile-home .home-intro__nest {
+    font-size: clamp(44px, 14vh, 64px);
+  }
+  .mobile-home .home-intro__tagline {
+    margin-top: 10px;
+    font-size: clamp(13px, 4vh, 18px);
+    line-height: 1.4;
+  }
+  .mobile-home .home-intro__next {
+    --intro-next-y: 8px;
+    height: 44px;
+    margin-top: 12px;
+  }
 }
 .mobile-home
   :is(

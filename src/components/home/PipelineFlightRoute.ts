@@ -15,9 +15,9 @@ export type PipelineFlightRoute = {
 const routes = new WeakMap<Element, { key: string; route: PipelineFlightRoute }>();
 const clamp = (value: number) => Math.max(0, Math.min(1, value));
 
-function bezier(a: Point, b: Point, c: Point, d: Point): TangentPoint[] {
-  return Array.from({ length: 121 }, (_, index) => {
-    const t = index / 120, s = 1 - t;
+function bezier(a: Point, b: Point, c: Point, d: Point, segments = 120): TangentPoint[] {
+  return Array.from({ length: segments + 1 }, (_, index) => {
+    const t = index / segments, s = 1 - t;
     return {
       x: s**3*a.x + 3*s*s*t*b.x + 3*s*t*t*c.x + t**3*d.x,
       y: s**3*a.y + 3*s*s*t*b.y + 3*s*t*t*c.y + t**3*d.y,
@@ -37,10 +37,8 @@ export function getPipelineFlightRoute(
   centerOffset: number,
 ): PipelineFlightRoute | null {
   const paths = [...root.querySelectorAll<SVGPathElement>(".selp-pipeline__connector path")];
-  const firstStage = root.querySelector(".selp-pipeline__stage--magnetic")?.getBoundingClientRect();
-  const firstTitle = root.querySelector<HTMLElement>(".selp-pipeline__stage--magnetic h2");
   const third = root.querySelector(".selp-pipeline__stage--mitochondrial")?.getBoundingClientRect();
-  if (paths.length !== 2 || !third || !firstStage || !firstTitle) return null;
+  if (paths.length !== 2 || !third) return null;
   const scroll = window.scrollY;
   const scale = canvas.width / 1280;
   const end = Math.max(start + 1, Math.min(
@@ -48,13 +46,7 @@ export function getPipelineFlightRoute(
     landing.y - innerHeight * 0.36,
   ));
   const bounds = paths.map(path => path.closest("svg")!.getBoundingClientRect());
-  // Stable layout coordinates ignore the module's decorative reveal translate.
-  // This is the perch above the first module heading, before its drawn curve.
-  const arrival = {
-    x: firstStage.left + firstTitle.offsetLeft + firstTitle.offsetWidth + 10 * scale,
-    y: firstStage.top + scroll + firstTitle.offsetTop - 10 * scale,
-  };
-  const key = [origin.x, origin.y, arrival.x, arrival.y, landing.x, landing.y, start, end,
+  const key = [origin.x, origin.y, landing.x, landing.y, start, end,
     canvas.left, canvas.width, centerOffset, third.top + scroll, third.height,
     ...bounds.flatMap(rect => [rect.left, rect.top + scroll, rect.width, rect.height]),
   ].map(value => Math.round(value * 4)).join(",");
@@ -93,22 +85,6 @@ export function getPipelineFlightRoute(
     }
   };
   const first = curves[0][0];
-  // Fly directly from the OA perch to the perch above the first heading.
-  // Do not detour to the OA card's right corner or aim past this perch.
-  const entryX = arrival.x - origin.x, entryY = arrival.y - origin.y;
-  const entryLength = Math.hypot(entryX, entryY);
-  const bow = Math.min(24 * scale, entryLength * 0.02);
-  const bowX = entryY / entryLength * bow, bowY = -entryX / entryLength * bow;
-  append(bezier(origin,
-    { x: origin.x + entryX / 3 + bowX, y: origin.y + entryY / 3 + bowY },
-    { x: origin.x + entryX * 2 / 3 + bowX, y: origin.y + entryY * 2 / 3 + bowY }, arrival));
-  // Continue toward the existing connector without moving any of its dots.
-  const approachHeight = first.y - arrival.y;
-  append(bezier(arrival,
-    { x: arrival.x + entryX / entryLength * approachHeight * 0.24,
-      y: arrival.y + entryY / entryLength * approachHeight * 0.24 },
-    { x: first.x, y: first.y - approachHeight * 0.24 }, first));
-  const firstStop = distance;
   append(curves[0]);
 
   const firstEnd = curves[0][curves[0].length - 1];
@@ -134,66 +110,110 @@ export function getPipelineFlightRoute(
     { x: edge.x, y: edge.y + closingHeight * 0.22 },
     { x: landing.x, y: landing.y - closingHeight * 0.3 }, landing));
 
-  const speed = distance / (end - start);
-  // On tall screens the first module is farther below the OA panel. Give
-  // the page enough scroll to reveal it before the bird reaches its curve.
-  // Match the following route's speed at the join instead of pausing there.
-  const entryEnd = Math.min(end - 1, Math.max(start + firstStop / speed,
-    first.y - innerHeight * 0.82));
-  const entrySpan = entryEnd - start;
-  const entrySpeed = firstStop / entrySpan;
-  const followingSpeed = (distance - firstStop) / (end - entryEnd);
-  const initialSpeed = Math.min(entrySpeed, followingSpeed);
-  const finalEntrySpeed = Math.min(followingSpeed, entrySpeed * 3);
-  const travel = (scrollTop: number) => {
-    if (scrollTop >= entryEnd) return {
-      distance: firstStop + (scrollTop - entryEnd) * followingSpeed,
-      speed: followingSpeed,
-    };
-    const t = clamp((scrollTop - start) / entrySpan), t2 = t * t, t3 = t2 * t;
-    return {
-      distance: (t3 - 2 * t2 + t) * entrySpan * initialSpeed
-        + (-2 * t3 + 3 * t2) * firstStop
-        + (t3 - t2) * entrySpan * finalEntrySpeed,
-      speed: (3 * t2 - 4 * t + 1) * initialSpeed
-        + (-6 * t2 + 6 * t) * entrySpeed
-        + (3 * t2 - 2 * t) * finalEntrySpeed,
-    };
+  const entryEnd = Math.min(end - 1, Math.max(start + 1, first.y - innerHeight * 0.94));
+  // Keep moving through the first dot. A near-1:1 document/scroll speed
+  // cancels most of the bird's visible motion on this nearly vertical part.
+  const turnDistance = Math.min(150 * scale, distance * 0.08);
+  const turnPace = Math.min(0.5, (end - entryEnd) / distance);
+  const followingPace = (end - entryEnd - turnPace * turnDistance / 2) / (distance - turnDistance / 2);
+  const followingScroll = (traveled: number) => {
+    const t = clamp(traveled / turnDistance);
+    return entryEnd + followingPace * traveled
+      + (turnPace - followingPace) * turnDistance * (t - t**3 + t**4 / 2);
   };
-  const scrollAtDistance = (target: number) => {
-    if (target >= firstStop) return entryEnd + (target - firstStop) / followingSpeed;
-    let low = start, high = entryEnd;
+  const followingTravel = (scrollTop: number) => {
+    let low = 0, high = distance;
     for (let i = 0; i < 24; i++) {
       const middle = (low + high) / 2;
-      if (travel(middle).distance < target) low = middle;
+      if (followingScroll(middle) < scrollTop) low = middle;
       else high = middle;
     }
-    return (low + high) / 2;
+    const traveled = (low + high) / 2;
+    const t = clamp(traveled / turnDistance);
+    return { distance: traveled, speed: 1 / (followingPace + (turnPace - followingPace) * (1 - 3 * t * t + 2 * t**3)) };
+  };
+  // Design the entire takeoff in the viewport, where it is actually seen.
+  // Its long final handle spreads the turn over real travel distance; page
+  // movement can no longer squeeze a large rotation into the last pixel.
+  const entryOrigin = { x: origin.x, y: origin.y - start };
+  const entryTarget = { x: first.x, y: first.y - entryEnd };
+  const drop = entryTarget.y - entryOrigin.y;
+  const turnRadius = Math.min(innerHeight * 0.14, drop * 0.45);
+  let entryLength = 0;
+  const entry: FlightPoint[] = bezier(entryOrigin,
+    { x: entryOrigin.x + (first.x - entryOrigin.x) * 0.32,
+      y: entryOrigin.y + drop * 0.6 },
+    { x: first.x, y: entryTarget.y - turnRadius }, entryTarget, 600)
+    .map((point, index, samples) => {
+      if (index) entryLength += Math.hypot(point.x - samples[index - 1].x, point.y - samples[index - 1].y);
+      const tangent = Math.hypot(point.dx, point.dy);
+      return { ...point, distance: entryLength, dx: point.dx / tangent, dy: point.dy / tangent };
+    });
+  const entrySpan = entryEnd - start;
+  // A short, smooth approach matches the speed on the drawn curve. Most
+  // of the flight stays at a constant speed, with no stop at the join.
+  const finalPace = 1 / Math.max(0.1, 1 / turnPace - 1);
+  const approachLength = Math.min(turnRadius, entryLength * 0.16, entrySpan / finalPace);
+  const initialPace = (entrySpan - finalPace * approachLength / 2) / (entryLength - approachLength / 2);
+  const paceChange = finalPace - initialPace;
+  const entryScroll = (traveled: number) => {
+    const t = clamp((traveled - (entryLength - approachLength)) / approachLength);
+    return start + traveled * initialPace + paceChange * approachLength * (t**3 - t**4 / 2);
+  };
+  const entryTravel = (scrollTop: number) => {
+    let low = 0, high = entryLength;
+    for (let i = 0; i < 24; i++) {
+      const middle = (low + high) / 2;
+      if (entryScroll(middle) < scrollTop) low = middle;
+      else high = middle;
+    }
+    const traveled = (low + high) / 2;
+    const t = clamp((traveled - (entryLength - approachLength)) / approachLength);
+    return { distance: traveled, speed: 1 / (initialPace + paceChange * t * t * (3 - 2 * t)) };
   };
   const route: PipelineFlightRoute = {
-    speed, start, end, exit: scrollAtDistance(exitStart), edge: scrollAtDistance(edgeDistance),
-    stops: [firstStop, secondStop, thirdStop].map(scrollAtDistance),
+    speed: (entryLength + distance) / (end - start), start, end,
+    exit: followingScroll(exitStart), edge: followingScroll(edgeDistance),
+    stops: [entryEnd, followingScroll(secondStop), followingScroll(thirdStop)],
     sample: (scrollTop) => {
-      const motion = travel(Math.max(start, Math.min(end, scrollTop)));
-      const traveled = Math.max(0, Math.min(distance, motion.distance));
-      let low = 1, high = points.length - 1;
+      const scroll = Math.max(start, Math.min(end, scrollTop));
+      const entering = scroll < entryEnd;
+      const motion = entering ? entryTravel(scroll) : followingTravel(scroll);
+      const samples = entering ? entry : points;
+      const traveled = motion.distance;
+      let low = 1, high = samples.length - 1;
       while (low < high) {
         const middle = (low + high) >> 1;
-        if (points[middle].distance < traveled) low = middle + 1;
+        if (samples[middle].distance < traveled) low = middle + 1;
         else high = middle;
       }
-      const a = points[low - 1], b = points[low];
+      const a = samples[low - 1], b = samples[low];
       const t = clamp((traveled - a.distance) / (b.distance - a.distance));
       const dx = a.dx + (b.dx - a.dx) * t, dy = a.dy + (b.dy - a.dy) * t;
       const tangent = Math.hypot(dx, dy);
+      // The entry is designed on screen, but its returned y is in the document.
+      // Differentiate that same position: d(screenY + scroll)/d(scroll) adds 1.
+      // Otherwise the head follows a much flatter, unrelated screen tangent.
+      const velocityX = dx / tangent * motion.speed;
+      const velocityY = dy / tangent * motion.speed + (entering ? 1 : 0);
+      const velocity = Math.hypot(velocityX, velocityY);
       return {
-        x: a.x + (b.x - a.x) * t, y: a.y + (b.y - a.y) * t,
-        dx: dx / tangent, dy: dy / tangent, speed: motion.speed,
+        x: a.x + (b.x - a.x) * t, y: a.y + (b.y - a.y) * t + (entering ? scroll : 0),
+        dx: velocityX / velocity, dy: velocityY / velocity, speed: velocity,
       };
     },
   };
   routes.set(root, { key, route });
   return route;
+}
+
+/** Respond promptly at takeoff, then restore the usual pace before the first dot. */
+export function getPipelineEntryAssist(root: Element, scroll: number) {
+  const route = routes.get(root)?.route;
+  if (!route) return 0;
+  const span = Math.max(1, Math.min(innerHeight * 0.5, (route.stops[0] - route.start) * 0.55));
+  const progress = clamp((scroll - route.start) / span);
+  return 1 - progress * progress * (3 - 2 * progress);
 }
 
 /** A short reading pause, without locking the gesture or requiring another swipe. */
