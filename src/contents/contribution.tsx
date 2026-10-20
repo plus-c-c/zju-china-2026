@@ -244,8 +244,7 @@ export function Contribution() {
         </p>
 
         <h3 className="mt-5 mb-3">
-          4 Sharing Optimization Insights for SELP Phase-Transition
-          Purification
+          4 Sharing Optimization Insights for SELP Phase-Transition Purification
         </h3>
         <p>
           We adapted the established principles of inverse transition cycling
@@ -296,44 +295,54 @@ export function Contribution() {
         </p>
 
         <h3 className="mt-5 mb-3">
-          5 Demonstrating Computational Design with a Worked Example
+          5 A Reusable Modeling Workflow for the iGEM Community
         </h3>
         <p>
-          We connect sequence-level design, single-chain conformations,
-          multichain networks, and mechanical analysis.
+          For iGEM teams developing protein-based hydrogels, producing and
+          mechanically testing every candidate can be time-consuming and costly.
+          Our work provides a reusable computational workflow that connects
+          protein sequences, single-chain conformational sampling,
+          coarse-grained network construction, and mechanical analysis, helping
+          teams prioritize candidates for wet-lab testing.
         </p>
         <figure className="figure d-block my-4 text-center">
           <img
             src={`${CIF}contribution-figure-4-new.avif`}
-            alt="Schematic of a representative SELP modeling and computational workflow."
+            alt="Overview of the modeling workflow from protein conformation sampling to network mechanical analysis."
             className="figure-img img-fluid rounded"
             style={{ width: "100%" }}
             loading="lazy"
             decoding="async"
           />
           <FigureCaption className="figure-caption">
-            Figure 5 | Schematic of a representative SELP modeling and
-            computational workflow.
-            <FigureSourceCitation
-              source={1}
-              href="#contribution-figure-sources"
-            />
+            Figure 5 | Overview of the modeling workflow from protein
+            conformation sampling to network mechanical analysis.
           </FigureCaption>
         </figure>
         <p>
-          Using wet-lab results as a reference, we calibrated the dry-lab
-          modeling data with a correction function, E<sub>emp</sub> = aE
-          <sub>0</sub> + b where a = 1.895, b = 19.793&nbsp;kPa, achieving an
-          error of less than 5%.{" "}
-          <a href="https://rcny9dy1085s.feishu.cn/docx/OYHqdzwwbopzMMxph0OctdWYnkh">
-            Model
+          Using SELP hydrogels as a worked example, we demonstrate how molecular
+          simulations and static network calculations can be combined with
+          experimental calibration. Beyond the final modulus estimates, we
+          document the assumptions, parameters, network connectivity checks, and
+          numerical sensitivity analyses needed to interpret the results. These
+          checks help distinguish stable simulation conditions from converged
+          mechanical predictions.
+        </p>
+        <p>
+          The{" "}
+          <a href="https://2026.igem.wiki/zju-china/model">
+            <strong>Model</strong>
           </a>{" "}
-          provides the assumptions, parameters, and results;{" "}
-          <a href="https://rcny9dy1085s.feishu.cn/docx/SvTSdzlfvoAOZMxMhoWcL3GhnCd">
-            Software
+          page explains the methods and their limitations, while the{" "}
+          <a href="https://2026.igem.wiki/zju-china/software">
+            <strong>Software</strong>
           </a>{" "}
-          documentation describes the workflow, and the resource package
-          includes the parameters used in the example.
+          documentation and accompanying resource package support implementation
+          and adaptation. Other teams can use this framework to compare their
+          own protein designs and plan targeted experiments. Application to new
+          materials requires appropriate calibration and validation; our fitted
+          coefficients should not be assumed to transfer directly to other
+          systems.
         </p>
 
         <h3 className="mt-5 mb-3">
