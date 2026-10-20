@@ -37,8 +37,10 @@ export function getPipelineFlightRoute(
   centerOffset: number,
 ): PipelineFlightRoute | null {
   const paths = [...root.querySelectorAll<SVGPathElement>(".selp-pipeline__connector path")];
+  const firstStage = root.querySelector(".selp-pipeline__stage--magnetic")?.getBoundingClientRect();
+  const firstTitle = root.querySelector<HTMLElement>(".selp-pipeline__stage--magnetic h2");
   const third = root.querySelector(".selp-pipeline__stage--mitochondrial")?.getBoundingClientRect();
-  if (paths.length !== 2 || !third) return null;
+  if (paths.length !== 2 || !third || !firstStage || !firstTitle) return null;
   const scroll = window.scrollY;
   const scale = canvas.width / 1280;
   const end = Math.max(start + 1, Math.min(
@@ -46,7 +48,13 @@ export function getPipelineFlightRoute(
     landing.y - innerHeight * 0.36,
   ));
   const bounds = paths.map(path => path.closest("svg")!.getBoundingClientRect());
-  const key = [origin.x, origin.y, landing.x, landing.y, start, end,
+  // Stable layout coordinates ignore the module's decorative reveal translate.
+  // This is the perch above the first module heading, before its drawn curve.
+  const arrival = {
+    x: firstStage.left + firstTitle.offsetLeft + firstTitle.offsetWidth + 10 * scale,
+    y: firstStage.top + scroll + firstTitle.offsetTop - 10 * scale,
+  };
+  const key = [origin.x, origin.y, arrival.x, arrival.y, landing.x, landing.y, start, end,
     canvas.left, canvas.width, centerOffset, third.top + scroll, third.height,
     ...bounds.flatMap(rect => [rect.left, rect.top + scroll, rect.width, rect.height]),
   ].map(value => Math.round(value * 4)).join(",");
@@ -85,14 +93,21 @@ export function getPipelineFlightRoute(
     }
   };
   const first = curves[0][0];
-  // Connect the two anchors directly, with only a small bow off their chord.
-  const entryX = first.x - origin.x, entryY = first.y - origin.y;
+  // Fly directly from the OA perch to the perch above the first heading.
+  // Do not detour to the OA card's right corner or aim past this perch.
+  const entryX = arrival.x - origin.x, entryY = arrival.y - origin.y;
   const entryLength = Math.hypot(entryX, entryY);
   const bow = Math.min(24 * scale, entryLength * 0.02);
   const bowX = entryY / entryLength * bow, bowY = -entryX / entryLength * bow;
   append(bezier(origin,
     { x: origin.x + entryX / 3 + bowX, y: origin.y + entryY / 3 + bowY },
-    { x: origin.x + entryX * 2 / 3 + bowX, y: origin.y + entryY * 2 / 3 + bowY }, first));
+    { x: origin.x + entryX * 2 / 3 + bowX, y: origin.y + entryY * 2 / 3 + bowY }, arrival));
+  // Continue toward the existing connector without moving any of its dots.
+  const approachHeight = first.y - arrival.y;
+  append(bezier(arrival,
+    { x: arrival.x + entryX / entryLength * approachHeight * 0.24,
+      y: arrival.y + entryY / entryLength * approachHeight * 0.24 },
+    { x: first.x, y: first.y - approachHeight * 0.24 }, first));
   const firstStop = distance;
   append(curves[0]);
 

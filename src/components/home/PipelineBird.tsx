@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { perch } from "./StoryBird";
+import { OA_BIRD_STOP, perch } from "./StoryBird";
 import { getStoryHandoffTop } from "./UseStoryNavigation";
 import { getPipelineFlightRoute } from "./PipelineFlightRoute";
 
@@ -44,7 +44,7 @@ export function PipelineBird() {
           bird.style.setProperty("--bird-flight-angle", "0deg");
           // Restore the shared OA perch before returning ownership. A fast
           // reverse scroll may otherwise leave the fixed bird below the screen.
-          const anchor = perch({ beat: 21, x: 1092, y: 590, size: 0.4 });
+          const anchor = perch(OA_BIRD_STOP);
           bird.style.left = `${anchor.x}px`;
           bird.style.top = `${anchor.y}px`;
           document.body.classList.remove("pipeline-bird-active");
@@ -54,7 +54,7 @@ export function PipelineBird() {
         document.body.classList.remove("pipeline-bird-active");
         return;
       }
-      const oaPerch = perch({ beat: 21, x: 1092, y: 590, size: 0.4 });
+      const oaPerch = perch(OA_BIRD_STOP);
       const oaX = c.left + oaPerch.x * scale;
       const oaScreenY = c.top + oaPerch.y * scale;
       const arch = Math.min(104, Math.max(64, innerWidth * 0.07));
@@ -82,7 +82,12 @@ export function PipelineBird() {
       if (moving) {
         // Align directly with this same route's tangent. atan2 stays within
         // [-180, 180]; no accumulated rotations or delayed heading catch-up.
-        const heading = Math.atan2(position.dy * routeDirection, position.dx * routeDirection) * 180 / Math.PI;
+        // Before the drawn connector, use the visible flight direction: the
+        // document itself is scrolling underneath the fixed bird.
+        const inEntry = scroll < route.stops[0];
+        const dx = position.dx * route.speed;
+        const dy = position.dy * route.speed - (inEntry ? 1 : 0);
+        const heading = Math.atan2(dy * routeDirection, dx * routeDirection) * 180 / Math.PI;
         bird.style.setProperty("--bird-flight-angle", `${heading}deg`);
       }
       document.body.classList.add("pipeline-bird-active");

@@ -4,6 +4,7 @@ import { createPortal } from "react-dom";
 const restBird = "https://static.igem.wiki/teams/6102/wiki/home-opening/guide-bird-rest.avif";
 const flightOne = "https://static.igem.wiki/teams/6102/wiki/home-opening/guide-bird-flight-01.avif";
 const flightTwo = "https://static.igem.wiki/teams/6102/wiki/home-opening/guide-bird-flight-02.avif";
+export const OA_BIRD_STOP = { beat: 21, x: 800, y: 670, size: 0.4 };
 // Feet positions in the shared 1280 × 720 illustration space.
 const stops = [
   { beat: 0, x: 452, y: 575, size: 0.4 },
@@ -23,8 +24,8 @@ const stops = [
   { beat: 18, x: 640, y: 477, size: 1.5 },
   { beat: 19, x: 210, y: 402, size: 0.4 },
   { beat: 20, x: 210, y: 402, size: 0.4 },
-  { beat: 21, x: 1092, y: 590, size: 0.4 },
-  { beat: 22, x: 1092, y: 590, size: 0.4 },
+  OA_BIRD_STOP,
+  { ...OA_BIRD_STOP, beat: 22 },
 ];
 /** Resolve perches from the illustration they belong to, including its content scale. */
 export function perch(stop: typeof stops[number]) {
@@ -44,8 +45,8 @@ export function perch(stop: typeof stops[number]) {
     18: [".home-layer-57", 0.5, 0.25],
     19: [".nest-solution-card--ligase", 0.07, 0.02],
     20: [".nest-solution-card--ligase", 0.07, 0.02],
-    21: [".oa-panel", 0.955, 0.98],
-    22: [".oa-panel", 0.955, 0.98],
+    21: [".oa-panel", 0.65, 1.13],
+    22: [".oa-panel", 0.65, 1.13],
   };
   const anchor = anchors[stop.beat];
   const element = anchor && document.querySelector<HTMLElement>(anchor[0]);
