@@ -856,7 +856,6 @@ export function SnoopLigase2Design() {
   return (
     <>
       <h2 className="mt-5 mb-3">{"Rational Engineering of SnoopLigase2"}</h2>
-      <h3 className="mt-5 mb-3">{"Overview"}</h3>
       <p>
         {
           "Modular protein assembly requires efficient and reliable ligation tools. We use the SnoopTag2–DogTag ligation system in our protein ligation module, with SnoopLigase2 catalyzing the reaction. However, during our experiments, we found that the stability and turnover of SnoopLigase2 were suboptimal. "

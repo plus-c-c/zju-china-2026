@@ -31,10 +31,6 @@ export const m1Title = "SELP Hydrogel Modeling";
 
 export const m1Overview: M1Block[] = [
   {
-    t: "h3",
-    v: "Overview",
-  },
-  {
     t: "p",
     parts: [
       {
