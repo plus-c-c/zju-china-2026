@@ -1,36 +1,34 @@
 import { References } from "../components/References";
-import { TransparentImage } from "../components/TransparentImage";
+import { FigureImage } from "../components/FigureImage";
+import { MathFormula } from "../components/MathFormula";
+import "./design.css";
 
 export function Design() {
   return (
     <div className="row mt-4 mb-5">
       <div className="col-lg-10 mx-auto">
-        <article>
+        <article className="design-article">
           <h2 className="mt-5 mb-4">Introduction</h2>
           <p>
-            As described above, damage to hyaline cartilage affects a very large
-            population, and existing treatments—rehabilitation and drugs,
-            microfracture, osteochondral transplantation, autologous chondrocyte
-            implantation, and joint replacement—struggle to restore durable
-            native hyaline cartilage. Hydrogels, which are water-rich,
-            injectable, and able to form in situ, have recently emerged as a new
-            direction, but their application remains limited: a single material
-            must combine strength, toughness, and wet adhesion; degradation must
-            be coordinated with tissue regeneration; and multistep modification
-            and composite assembly make added functions, batch consistency, and
-            sterilization and storage difficult.
+            Hyaline cartilage damage affects a large population, yet existing
+            treatments—rehabilitation and drugs, microfracture, osteochondral
+            transplantation, autologous chondrocyte implantation, and joint
+            replacement—struggle to restore durable native hyaline cartilage.
+            Water-rich, injectable hydrogels that form in situ have recently
+            emerged as a new direction, but remain limited: one material must
+            combine strength, toughness, and wet adhesion; degradation must be
+            coordinated with tissue regeneration; and multistep modification and
+            composite assembly complicate added functions, batch consistency,
+            sterilization, and storage.
           </p>
           <p>
-            Synthetic biology offers direct tools for this problem: protein
-            composition and functional sites can be designed through gene
-            sequences and then produced by biomanufacturing, and modular
-            ligation provides interfaces for combining functions. Moreover,
-            cartilage at different joint sites and in different patient
-            populations differs in strength, toughness, and local
-            microenvironment, so an ideal material should retain a common
-            material basis while allowing properties to be tuned and functions
-            combined on demand. We therefore designed{" "}
-            <strong>the NEST platform</strong>, built on a{" "}
+            Synthetic biology allows protein composition and functional sites to
+            be encoded in genes and produced by biomanufacturing, while modular
+            ligation combines functions. Cartilage strength, toughness, and
+            local microenvironment vary across joint sites and patient
+            populations; an ideal material should therefore share a common basis
+            with tunable properties and functions combined on demand. We
+            designed <strong>the NEST platform</strong>, built on a{" "}
             <strong>
               programmable silk–elastin-like polypeptide (SELP) scaffold
             </strong>{" "}
@@ -44,20 +42,17 @@ export function Design() {
             (Figure 0.1).
           </p>
           <figure className="figure d-block my-4 text-center">
-            <TransparentImage
+            <FigureImage
               src="https://static.igem.wiki/teams/6102/wiki/images/design/01/00001.avif"
               alt="Overview of the NEST platform design."
               className="figure-img img-fluid rounded"
               style={{ width: "100%" }}
             />
             <figcaption className="figure-caption">
-              Figure 0.1. Comparison between traditional blending design and
-              sequence-programmed design. Left: Traditional design relies on the
-              mixing and grafting of polymers, initiators, crosslinkers, and
-              modifying groups. Right: Sequence-programmed design encodes
-              material information in DNA; the DNA is transcribed and translated
-              into proteins, which are then photocrosslinked into a gel, aiming
-              to improve batch-to-batch reproducibility and programmability.
+              Figure 0.1 | Overview of the NEST platform. Recombinant SELP
+              scaffolds and functional modules form a hydrogel precursor for
+              injection, magnetic alignment, and in situ photocrosslinking under
+              450 nm blue light.
             </figcaption>
           </figure>
           <h2
@@ -199,7 +194,12 @@ export function Design() {
                   <th scope="row" className="align-middle">
                     Silk-like Motif
                   </th>
-                  <td>(GAGAGS)ₙ</td>
+                  <td>
+                    (GAGAGS)
+                    <sub>
+                      <em>n</em>
+                    </sub>
+                  </td>
                   <td>Mimics the crystalline region of natural silk fibroin</td>
                   <td>Forms β-sheet, provides mechanical strength</td>
                 </tr>
@@ -207,7 +207,12 @@ export function Design() {
                   <th scope="row" className="align-middle">
                     Elastin-like Motif
                   </th>
-                  <td>(GVGVP)ₙ</td>
+                  <td>
+                    (GVGVP)
+                    <sub>
+                      <em>n</em>
+                    </sub>
+                  </td>
                   <td>Mimics the hydrophobic region of natural elastin</td>
                   <td>
                     Confers chain flexibility (elasticity) and thermoresponsive
@@ -278,7 +283,7 @@ export function Design() {
             repeats (Figure 1.1).
           </p>
           <figure className="figure d-block my-4 text-center">
-            <TransparentImage
+            <FigureImage
               src="https://static.igem.wiki/teams/6102/wiki/images/design/01/01-02.avif"
               alt="SELP scaffold sequence design and nomenclature."
               className="figure-img img-fluid rounded"
@@ -286,9 +291,9 @@ export function Design() {
               cropTop={0.152}
             />
             <figcaption className="figure-caption">
-              Figure 1.1. Domain composition and sequence nomenclature of SELPs.
-              Schematic of the elastin-like, adhesion, and silk-like domains;
-              the insertion positions of functional residues and of the
+              Figure 1.1 | Domain composition and sequence nomenclature of
+              SELPs. Schematic of the elastin-like, adhesion, and silk-like
+              domains; the insertion positions of functional residues and of the
               SnoopTag2 peptide tag; and the naming of representative constructs
               (2Y-5, 2KY-5, 2KY-20). The inset table lists the ζ potential,
               elastic modulus (E), and gelation time (GEL) of each construct. K
@@ -307,7 +312,7 @@ export function Design() {
             lost before gelation; gelation therefore needs to be completed
             within seconds. We use a{" "}
             <strong>ruthenium/sodium persulfate (Ru/SPS)</strong> visible-light
-            initiating system: photoexcited Ru(II)bpy₃²⁺ transfers an electron
+            initiating system: photoexcited [Ru(bpy)₃]²⁺ transfers an electron
             to persulfate, generating Ru(III), a strong one-electron oxidant
             that oxidizes tyrosine and mediates dityrosine crosslinking
             <sup>
@@ -341,16 +346,16 @@ export function Design() {
             triggering gelation.
           </p>
           <figure className="figure d-block my-4 text-center">
-            <TransparentImage
+            <FigureImage
               src="https://static.igem.wiki/teams/6102/wiki/images/design/01/32.avif"
               alt="Ru/SPS-mediated visible-light crosslinking of the SELP scaffold."
               className="figure-img img-fluid rounded"
               style={{ width: "100%" }}
             />
             <figcaption className="figure-caption">
-              Figure 1.2. Ru/SPS-mediated visible-light crosslinking and in situ
-              gelation of SELPs. Tyrosine residues on the protein chains form
-              dityrosine crosslinks under Ru/SPS and 450 nm blue light,
+              Figure 1.2 | Ru/SPS-mediated visible-light crosslinking and in
+              situ gelation of SELPs. Tyrosine residues on the protein chains
+              form dityrosine crosslinks under Ru/SPS and 450 nm blue light,
               converting the SELP precursor solution into a covalent network;
               photographs show the material before and after irradiation.
             </figcaption>
@@ -382,14 +387,16 @@ export function Design() {
             quality control and later formulation adjustment.
           </p>
           <figure className="figure d-block my-4 text-center">
-            <TransparentImage
+            <FigureImage
               src="https://static.igem.wiki/teams/6102/wiki/images/design/01/01-03.avif"
               alt="SELP expression and purification by inverse transition cycling."
+              width={1280}
+              height={896}
               className="figure-img img-fluid rounded"
               style={{ width: "100%" }}
             />
             <figcaption className="figure-caption">
-              Figure 1.3. Purification of SELPs by inverse transition cycling
+              Figure 1.3 | Purification of SELPs by inverse transition cycling
               (ITC), exploiting their thermoresponsiveness. Cell lysis is
               followed by heating (65 °C, 2 h) to induce SELP aggregation,
               cooling (4 °C, overnight) to redissolve SELPs, and centrifugation
@@ -426,7 +433,8 @@ export function Design() {
             <li>
               the effect of the silk-to-elastin ratio on the{" "}
               <strong>
-                transition temperature (<em>T</em>t)
+                transition temperature (<em>T</em>
+                <sub>t</sub>)
               </strong>
               ;
             </li>
@@ -498,7 +506,11 @@ export function Design() {
           <p>
             We use the{" "}
             <strong>
-              SnoopLigase2/SnoopTag2/DogTag peptide–peptide ligation system
+              SnoopLigase2/
+              <wbr />
+              SnoopTag2/
+              <wbr />
+              DogTag peptide–peptide ligation system
             </strong>
             . It derives from the domain split of the{" "}
             <em>Streptococcus pneumoniae</em> adhesin RrgA; SELP carries
@@ -528,14 +540,17 @@ export function Design() {
             assembly (Figure 2.1).
           </p>
           <figure className="figure d-block my-4 text-center">
-            <TransparentImage
+            <FigureImage
               src="https://static.igem.wiki/teams/6102/wiki/images/design/01/01-04.avif"
               alt="SnoopLigase-mediated ligation between the SELP scaffold and functional components."
+              width={1280}
+              height={1280}
+              maxWidth={520}
               className="figure-img img-fluid rounded"
-              style={{ width: "75%" }}
+              style={{ width: "70%" }}
             />
             <figcaption className="figure-caption">
-              Figure 2.1. Structural origin of the Snoop ligation system.
+              Figure 2.1 | Structural origin of the Snoop ligation system.
               SnoopTagJr/DogTag are illustrated as derived from the split of the
               RrgA domain; NEST assembly uses the SnoopTag2/DogTag interface.
             </figcaption>
@@ -627,14 +642,14 @@ export function Design() {
             </li>
           </ol>
           <figure className="figure d-block my-4 text-center">
-            <TransparentImage
+            <FigureImage
               src="https://static.igem.wiki/teams/6102/wiki/images/design/01/01-05.avif"
               alt="Interface placement and functional assembly designs for the SELP scaffold."
               className="figure-img img-fluid rounded"
               style={{ width: "100%" }}
             />
             <figcaption className="figure-caption">
-              Figure 2.2. Placement of standardized interfaces and strategies
+              Figure 2.2 | Placement of standardized interfaces and strategies
               for assembling functional modules. Top: terminal insertion,
               dual-terminal interfaces, inter-domain insertion, and two
               orthogonal channels, extending the interface layer from a single
@@ -764,7 +779,7 @@ export function Design() {
             matrix tissue formation.
           </p>
           <figure className="figure d-block my-4 text-center">
-            <TransparentImage
+            <FigureImage
               src="https://static.igem.wiki/teams/6102/wiki/images/design/02/01.avif"
               alt="Native articular cartilage architecture and the directional organization of collagen bundles."
               className="figure-img img-fluid rounded"
@@ -800,7 +815,7 @@ export function Design() {
             direction, whereas crosslinking fixes the anisotropy (Figure 3.2.2).
           </p>
           <figure className="figure d-block my-4 text-center">
-            <TransparentImage
+            <FigureImage
               src="https://static.igem.wiki/teams/6102/wiki/images/design/02/02.avif"
               alt="Magnetically guided orientation and visible-light gelation of the SELP scaffold."
               className="figure-img img-fluid rounded"
@@ -857,7 +872,7 @@ export function Design() {
             structures on motif exposure and target access (Figure 3.2.3).
           </p>
           <figure className="figure d-block my-4 text-center">
-            <TransparentImage
+            <FigureImage
               src="https://static.igem.wiki/teams/6102/wiki/images/design/02/03.avif"
               alt="Molecular coupling of magnetic particles to the SELP scaffold."
               className="figure-img img-fluid rounded"
@@ -881,7 +896,7 @@ export function Design() {
             the illumination protocol (Figure 3.2.4).
           </p>
           <figure className="figure d-block my-4 text-center">
-            <TransparentImage
+            <FigureImage
               src="https://static.igem.wiki/teams/6102/wiki/images/design/02/04.avif"
               alt="Magneto-mechanical coupling model of the magnetic nanoparticle-containing hydrogel."
               className="figure-img img-fluid rounded"
@@ -940,7 +955,7 @@ export function Design() {
             .
           </p>
           <figure className="figure d-block my-4 text-center">
-            <TransparentImage
+            <FigureImage
               src="https://static.igem.wiki/teams/6102/wiki/images/design/03/01.avif"
               alt="Glycosaminoglycan loss and fixed charge density in cartilage."
               className="figure-img img-fluid rounded"
@@ -1011,13 +1026,31 @@ export function Design() {
             Anchoring CPC on the scaffold creates spatially confined cationic
             binding sites in the repair region. The scaffold retains the
             functional peptide, and the exposed CPC interacts reversibly with
-            GAG: SELP–CPC⁺ + GAG⁻ ⇌ SELP–CPC⁺···GAG⁻ (Figure 3.3.2). This design
-            reduces GAG loss while preserving dynamic matrix exchange,
-            converting CPC from a free carrier into a matrix-binding component
-            of the network.
+            GAG (Figure 3.3.2):
+          </p>
+          <div
+            className="design-binding-equation"
+            role="math"
+            aria-label="Positively charged SELP–CPC plus negatively charged GAG reversibly forms an SELP–CPC and GAG complex."
+          >
+            <div className="design-equation-wide">
+              <MathFormula display>
+                {String.raw`\mathrm{SELP\text{–}CPC}^{+} + \mathrm{GAG}^{-} \rightleftharpoons \mathrm{SELP\text{–}CPC}^{+}\!\cdots\!\mathrm{GAG}^{-}`}
+              </MathFormula>
+            </div>
+            <div className="design-equation-compact">
+              <MathFormula display>
+                {String.raw`\begin{gathered}\mathrm{SELP\text{–}CPC}^{+} + \mathrm{GAG}^{-}\\[-0.1em]\rightleftharpoons \mathrm{SELP\text{–}CPC}^{+}\!\cdots\!\mathrm{GAG}^{-}\end{gathered}`}
+              </MathFormula>
+            </div>
+          </div>
+          <p>
+            This design reduces GAG loss while preserving dynamic matrix
+            exchange, converting CPC from a free carrier into a matrix-binding
+            component of the network.
           </p>
           <figure className="figure d-block my-4 text-center">
-            <TransparentImage
+            <FigureImage
               src="https://static.igem.wiki/teams/6102/wiki/images/design/03/02.avif"
               alt="Reversible binding of scaffold-anchored CPC to sulfated glycosaminoglycans."
               className="figure-img img-fluid rounded"
@@ -1109,11 +1142,11 @@ export function Design() {
             reduced load bearing, and aggravated damage.
           </p>
           <figure className="figure d-block my-4 text-center">
-            <TransparentImage
+            <FigureImage
               src="https://static.igem.wiki/teams/6102/wiki/images/design/03/04.avif"
               alt="Assembly of the CPC and Link-N dual-function module onto the SELP scaffold."
               className="figure-img img-fluid rounded"
-              style={{ width: "75%" }}
+              style={{ width: "100%" }}
             />
             <figcaption className="figure-caption">
               Figure 3.3.3 | Design of the CPC/Link-N dual-function module
@@ -1197,7 +1230,7 @@ export function Design() {
             explore its potential to promote cartilage repair (Figure 3.4.1).
           </p>
           <figure className="figure d-block my-4 text-center">
-            <TransparentImage
+            <FigureImage
               src="https://static.igem.wiki/teams/6102/wiki/images/design/04/01.avif"
               alt="Design concept for locally anchored, enzyme-responsive mitochondrial delivery."
               className="figure-img img-fluid rounded"
@@ -1314,11 +1347,11 @@ export function Design() {
             attachment and responsive release.
           </p>
           <figure className="figure d-block my-4 text-center">
-            <TransparentImage
+            <FigureImage
               src="https://static.igem.wiki/teams/6102/wiki/images/design/04/02.avif"
               alt="Responsive peptide design linking liposome attachment, enzyme-sensitive cleavage, and scaffold anchoring."
               className="figure-img img-fluid rounded"
-              style={{ width: "75%" }}
+              style={{ width: "100%" }}
             />
             <figcaption className="figure-caption">
               Figure 3.4.2 | Expression precursor and control design of the
@@ -1392,11 +1425,11 @@ export function Design() {
             3.4.3B).
           </p>
           <figure className="figure d-block my-4 text-center">
-            <TransparentImage
+            <FigureImage
               src="https://static.igem.wiki/teams/6102/wiki/images/design/04/03.avif"
               alt="Liposomal mitochondrial delivery system showing scaffold anchoring and enzyme-responsive detachment."
               className="figure-img img-fluid rounded"
-              style={{ width: "75%" }}
+              style={{ width: "100%" }}
             />
             <figcaption className="figure-caption">
               Figure 3.4.3 | Assembly interface between liposome and scaffold,
@@ -1467,7 +1500,7 @@ export function Design() {
             they determine the final state of the scaffold.
           </p>
           <figure className="figure d-block my-4 text-center">
-            <TransparentImage
+            <FigureImage
               src="https://static.igem.wiki/teams/6102/wiki/images/hardware/hardware-overview-diagram.avif"
               alt="Hardware overview diagram."
               className="figure-img img-fluid rounded"
@@ -1521,10 +1554,10 @@ export function Design() {
           <References level={2}>
             <div className="references-list references-list--paragraphs">
               <p id="design-reference-1" style={{ scrollMarginTop: "112px" }}>
-                [1] Huang W, Tarakanova A, Dinjaski N, Wang Q, Xia X, Chen Y, Wong
-                JY, Buehler MJ, Kaplan DL. Design of multistimuli responsive
-                hydrogels using integrated modeling and genetically engineered
-                silk–elastin-like proteins. <em>Adv Funct Mater</em>.
+                [1] Huang W, Tarakanova A, Dinjaski N, Wang Q, Xia X, Chen Y,
+                Wong JY, Buehler MJ, Kaplan DL. Design of multistimuli
+                responsive hydrogels using integrated modeling and genetically
+                engineered silk–elastin-like proteins. <em>Adv Funct Mater</em>.
                 2016;26(23):4113–4123. doi:10.1002/adfm.201600236.
               </p>
               <p id="design-reference-2" style={{ scrollMarginTop: "112px" }}>
@@ -1549,16 +1582,17 @@ export function Design() {
                 doi:10.1073/pnas.96.11.6020.
               </p>
               <p id="design-reference-6" style={{ scrollMarginTop: "112px" }}>
-                [6] Cui X, Soliman BG, Alcala-Orozco CR, Li J, Vis MAM, Santos M,
-                Wise SG, Levato R, Malda J, Woodfield TBF, Rnjak-Kovacina J, Lim
-                KS. Rapid photocrosslinking of silk hydrogels with high cell
+                [6] Cui X, Soliman BG, Alcala-Orozco CR, Li J, Vis MAM, Santos
+                M, Wise SG, Levato R, Malda J, Woodfield TBF, Rnjak-Kovacina J,
+                Lim KS. Rapid photocrosslinking of silk hydrogels with high cell
                 density and enhanced shape fidelity. <em>Adv Healthc Mater</em>.
                 2020;9(4):e1901667. doi:10.1002/adhm.201901667.
               </p>
               <p id="design-reference-7" style={{ scrollMarginTop: "112px" }}>
-                [7] Meyer DE, Chilkoti A. Purification of recombinant proteins by
-                fusion with thermally-responsive polypeptides.{" "}
-                <em>Nat Biotechnol</em>. 1999;17(11):1112–1115. doi:10.1038/15100.
+                [7] Meyer DE, Chilkoti A. Purification of recombinant proteins
+                by fusion with thermally-responsive polypeptides.{" "}
+                <em>Nat Biotechnol</em>. 1999;17(11):1112–1115.
+                doi:10.1038/15100.
               </p>
               <p id="design-reference-8" style={{ scrollMarginTop: "112px" }}>
                 [8] Buldun CM, Jean JX, Bedford MR, Howarth M. SnoopLigase
@@ -1579,17 +1613,18 @@ export function Design() {
                 2014;111(13):E1176–E1181. doi:10.1073/pnas.1315776111.
               </p>
               <p id="design-reference-11" style={{ scrollMarginTop: "112px" }}>
-                [11] Chen M, Chen S, Xie C, Li F, Tao C, Gong W, Qu M, Lin S, Shao
-                Z, Xiao G. Global prevalence, incidence, and years lived with
-                disability (YLDs) of osteoarthritis: trends from 1990 to 2021 and
-                projections to 2050. <em>J Orthop Translat</em>. 2026;56:101029.
-                doi:10.1016/j.jot.2025.11.005.
+                [11] Chen M, Chen S, Xie C, Li F, Tao C, Gong W, Qu M, Lin S,
+                Shao Z, Xiao G. Global prevalence, incidence, and years lived
+                with disability (YLDs) of osteoarthritis: trends from 1990 to
+                2021 and projections to 2050. <em>J Orthop Translat</em>.
+                2026;56:101029. doi:10.1016/j.jot.2025.11.005.
               </p>
               <p id="design-reference-12" style={{ scrollMarginTop: "112px" }}>
                 [12] Medvedeva EV, Grebenik EA, Gornostaeva SN, Telpuhov VI,
                 Lychagin AV, Timashev PS, Chagin AS. Repair of damaged articular
                 cartilage: current approaches and future directions.{" "}
-                <em>Int J Mol Sci</em>. 2018;19(8):2366. doi:10.3390/ijms19082366.
+                <em>Int J Mol Sci</em>. 2018;19(8):2366.
+                doi:10.3390/ijms19082366.
               </p>
               <p id="design-reference-13" style={{ scrollMarginTop: "112px" }}>
                 [13] Li Y, Yin G, Pu X, Chen X, Liao X, Huang Z. Novel
@@ -1611,15 +1646,15 @@ export function Design() {
                 doi:10.1016/j.actbio.2018.12.004.
               </p>
               <p id="design-reference-16" style={{ scrollMarginTop: "112px" }}>
-                [16] McKenna LA, Liu H, Sansom PA, Dean MF. An N-terminal peptide
-                from link protein stimulates proteoglycan biosynthesis in human
-                articular cartilage in vitro. <em>Arthritis Rheum</em>.
+                [16] McKenna LA, Liu H, Sansom PA, Dean MF. An N-terminal
+                peptide from link protein stimulates proteoglycan biosynthesis
+                in human articular cartilage in vitro. <em>Arthritis Rheum</em>.
                 1998;41(1):157–162.
               </p>
               <p id="design-reference-17" style={{ scrollMarginTop: "112px" }}>
                 [17] Liu H, McKenna LA, Dean MF. An N-terminal peptide from link
-                protein can stimulate biosynthesis of collagen by human articular
-                cartilage. <em>Arch Biochem Biophys</em>. 2000.
+                protein can stimulate biosynthesis of collagen by human
+                articular cartilage. <em>Arch Biochem Biophys</em>. 2000.
                 doi:10.1006/abbi.2000.1758.
               </p>
               <p id="design-reference-18" style={{ scrollMarginTop: "112px" }}>
@@ -1629,11 +1664,11 @@ export function Design() {
                 2018;2018:3217895. doi:10.1155/2018/3217895.
               </p>
               <p id="design-reference-19" style={{ scrollMarginTop: "112px" }}>
-                [19] Roberts JJ, Nicodemus GD, Giunta S, Bryant SJ. Incorporation
-                of biomimetic matrix molecules in PEG hydrogels enhances matrix
-                deposition and reduces load-induced loss of chondrocyte-secreted
-                matrix. <em>J Biomed Mater Res A</em>. 2011;97(3):281–291.
-                doi:10.1002/jbm.a.33057.
+                [19] Roberts JJ, Nicodemus GD, Giunta S, Bryant SJ.
+                Incorporation of biomimetic matrix molecules in PEG hydrogels
+                enhances matrix deposition and reduces load-induced loss of
+                chondrocyte-secreted matrix. <em>J Biomed Mater Res A</em>.
+                2011;97(3):281–291. doi:10.1002/jbm.a.33057.
               </p>
               <p id="design-reference-20" style={{ scrollMarginTop: "112px" }}>
                 [20] Maneiro E, Martín MA, de Andres MC, López-Armada MJ,
@@ -1649,25 +1684,26 @@ export function Design() {
                 <em>Immune Netw</em>. 2022;22(2):e14. PMID:35573148.
               </p>
               <p id="design-reference-22" style={{ scrollMarginTop: "112px" }}>
-                [22] Kim et al. Fusogenic liposomes encapsulating mitochondria as
-                a promising delivery system for osteoarthritis therapy.{" "}
+                [22] Kim et al. Fusogenic liposomes encapsulating mitochondria
+                as a promising delivery system for osteoarthritis therapy.{" "}
                 <em>Biomaterials</em>. 2023. PMID:37864947.
               </p>
               <p id="design-reference-23" style={{ scrollMarginTop: "112px" }}>
-                [23] Nobs L, Buchegger F, Gurny R, Allémann E. Current methods for
-                attaching targeting ligands to liposomes and nanoparticles.{" "}
-                <em>J Pharm Sci</em>. 2004;93(8):1980–1992. doi:10.1002/jps.20098.
+                [23] Nobs L, Buchegger F, Gurny R, Allémann E. Current methods
+                for attaching targeting ligands to liposomes and nanoparticles.{" "}
+                <em>J Pharm Sci</em>. 2004;93(8):1980–1992.
+                doi:10.1002/jps.20098.
               </p>
               <p id="design-reference-24" style={{ scrollMarginTop: "112px" }}>
                 [24] Mitchell PG, et al. Cloning, expression, and type II
-                collagenolytic activity of matrix metalloproteinase-13 from human
-                osteoarthritic cartilage. <em>J Clin Invest</em>.
+                collagenolytic activity of matrix metalloproteinase-13 from
+                human osteoarthritic cartilage. <em>J Clin Invest</em>.
                 1996;97(3):761–768.
               </p>
               <p id="design-reference-25" style={{ scrollMarginTop: "112px" }}>
                 [25] Marblestone JG, Edavettal SC, Lim Y, Lim P, Zuo X, Butt TR.
-                Comparison of SUMO fusion technology with traditional gene fusion
-                systems: enhanced expression and solubility with SUMO.{" "}
+                Comparison of SUMO fusion technology with traditional gene
+                fusion systems: enhanced expression and solubility with SUMO.{" "}
                 <em>Protein Sci</em>. 2006;15(1):182–189.
               </p>
             </div>

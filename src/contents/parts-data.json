@@ -7,7 +7,7 @@
       "order": 1,
       "id": "BBa_261SXVOZ",
       "title": "TVNFKLY magnetite-binding peptide",
-      "description": "A seven-residue magnetite-binding peptide, TVNFKLY, used to couple Fe3O4 magnetic nanoparticles to a modular protein scaffold. The 21-bp coding region is fused downstream of DogTag through a flexible linker in the magnetic-response module.",
+      "description": "A seven-residue magnetite-binding peptide, TVNFKLY, used to couple Fe₃O₄ magnetic nanoparticles to a modular protein scaffold. The 21-bp coding region is fused downstream of DogTag through a flexible linker in the magnetic-response module.",
       "components": [],
       "shortName": "TVNFKLY",
       "category": "Magnetic response",
@@ -27,7 +27,7 @@
           "lane": 0
         }
       ],
-      "summary": "A seven-residue magnetite-binding peptide, TVNFKLY, used to couple Fe3O4 magnetic nanoparticles to a modular protein scaffold."
+      "summary": "A seven-residue magnetite-binding peptide, TVNFKLY, used to couple Fe₃O₄ magnetic nanoparticles to a modular protein scaffold."
     },
     {
       "kind": "basic",
@@ -142,7 +142,7 @@
       "order": 6,
       "id": "BBa_26EC8O68",
       "title": "GTWSLLL unrelated peptide control",
-      "description": "A seven-residue unrelated control peptide, GTWSLLL, for evaluating the sequence-dependent contribution of TVNFKLY to Fe3O4 nanoparticle association. This newly designed 21-bp coding region is placed in the same DogTag fusion architecture as TVN, preserving the upstream expression and processing sequence and linker.",
+      "description": "A seven-residue unrelated control peptide, GTWSLLL, for evaluating the sequence-dependent contribution of TVNFKLY to Fe₃O₄ nanoparticle association. This newly designed 21-bp coding region is placed in the same DogTag fusion architecture as TVN, preserving the upstream expression and processing sequence and linker.",
       "components": [],
       "shortName": "GTWSLLL control",
       "category": "Magnetic response",
@@ -162,7 +162,7 @@
           "lane": 0
         }
       ],
-      "summary": "A seven-residue unrelated control peptide, GTWSLLL, for evaluating the sequence-dependent contribution of TVNFKLY to Fe3O4 nanoparticle association."
+      "summary": "A seven-residue unrelated control peptide, GTWSLLL, for evaluating the sequence-dependent contribution of TVNFKLY to Fe₃O₄ nanoparticle association."
     },
     {
       "kind": "basic",
@@ -814,7 +814,7 @@
       "order": 9,
       "id": "BBa_26R5QAZM",
       "title": "DogTag-TVN magnetic-response module",
-      "description": "A recombinant magnetic-response module combining DogTag with the magnetite-binding peptide TVNFKLY through an SGGGGS linker. The 441-bp complete CDS encodes a 146-residue His-SUMO-tagged precursor. DogTag supplies the scaffold-ligation interface, while TVN supplies the Fe3O4-binding motif, enabling integration of magnetic nanoparticles into the scaffold for magnetic alignment studies.",
+      "description": "A recombinant magnetic-response module combining DogTag with the magnetite-binding peptide TVNFKLY through an SGGGGS linker. The 441-bp complete CDS encodes a 146-residue His-SUMO-tagged precursor. DogTag supplies the scaffold-ligation interface, while TVN supplies the Fe₃O₄-binding motif, enabling integration of magnetic nanoparticles into the scaffold for magnetic alignment studies.",
       "components": ["BBa_2668RPJW", "BBa_261FVLIT", "BBa_261SXVOZ"],
       "shortName": "DogTag–TVN",
       "category": "Magnetic response",

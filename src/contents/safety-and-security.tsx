@@ -208,7 +208,7 @@ export function SafetyAndSecurity() {
             decoding="async"
           />
           <figcaption className="figure-caption">
-            Figure 1. Color development in a 96-well plate after the CCK-8
+            Figure 1 | Color development in a 96-well plate after the CCK-8
             assay. Each well shows the color reaction after CCK-8 treatment
             (Figure 2.1.1 in the scaffold-group results).
           </figcaption>

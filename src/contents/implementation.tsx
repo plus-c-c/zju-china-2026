@@ -89,7 +89,7 @@ export function Implementation() {
             decoding="async"
           />
           <figcaption className="figure-caption">
-            Figure 1. Proposed NEST implementation workflow. Different
+            Figure 1 | Proposed NEST implementation workflow. Different
             application-specific formulations share manufacturing and
             use-support systems and will each undergo validation for their
             intended applications.
@@ -147,7 +147,7 @@ export function Implementation() {
             decoding="async"
           />
           <figcaption className="figure-caption">
-            Figure 2. Four-step workflow in the publicly available app
+            Figure 2 | Four-step workflow in the publicly available app
             interface. Formulation information is loaded after QR-code scanning,
             and users proceed to premixing instructions after verifying each
             reagent.
@@ -206,7 +206,7 @@ export function Implementation() {
             decoding="async"
           />
           <figcaption className="figure-caption">
-            Figure 3. The upper image shows the material-preparation unit, and
+            Figure 3 | The upper image shows the material-preparation unit, and
             the lower image shows the microfluidic mixing-chip structure. The
             three component streams converge in the microchannels before
             proceeding to storage and delivery. Images adapted from the

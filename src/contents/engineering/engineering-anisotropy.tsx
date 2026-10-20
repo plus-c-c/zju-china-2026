@@ -97,7 +97,7 @@ export const anisotropyModule: DbtlModule = {
             </p>
             <DbtlFigure
               src="engineering/02/01.avif"
-              caption="Comparison of the electric-field and magnetic-field alignment routes. Both strategies were assessed within the same injection–alignment–illumination workflow; the magnetic-field route acts on responsive components within the precursor and does not require electrodes in the material."
+              caption="Figure 1 | Comparison of the electric-field and magnetic-field alignment routes. Both strategies were assessed within the same injection–alignment–illumination workflow; the magnetic-field route acts on responsive components within the precursor and does not require electrodes in the material."
             />
           </>
         ),
@@ -154,7 +154,7 @@ export const anisotropyModule: DbtlModule = {
             </p>
             <DbtlFigure
               src="engineering/02/02.avif"
-              caption="The magnetically responsive composite-fiber approach. Fe₃O₄-loaded fibers were designed as directional carriers that also participate in network formation through Ru/SPS-mediated photocrosslinking."
+              caption="Figure 2 | The magnetically responsive composite-fiber approach. Fe₃O₄-loaded fibers were designed as directional carriers that also participate in network formation through Ru/SPS-mediated photocrosslinking."
             />
           </>
         ),
@@ -276,7 +276,7 @@ export const anisotropyModule: DbtlModule = {
             </p>
             <DbtlFigure
               src="engineering/02/03.avif"
-              caption="Screening of particle–protein coupling strategies, from covalent modification of the nanoparticles to a genetically encoded Fe₃O₄-binding peptide sequence."
+              caption="Figure 3 | Screening of particle–protein coupling strategies, from covalent modification of the nanoparticles to a genetically encoded Fe₃O₄-binding peptide sequence."
             />
           </>
         ),
@@ -333,7 +333,7 @@ export const anisotropyModule: DbtlModule = {
             </p>
             <DbtlFigure
               src="engineering/02/04.avif"
-              caption="Design of the TVN–DogTag magnetic module. The Fe₃O₄-binding heptapeptide TVN is fused to DogTag, which is covalently ligated to the SnoopTag2-bearing SELP scaffold by SnoopLigase2."
+              caption="Figure 4 | Design of the TVN–DogTag magnetic module. The Fe₃O₄-binding heptapeptide TVN is fused to DogTag, which is covalently ligated to the SnoopTag2-bearing SELP scaffold by SnoopLigase2."
             />
           </>
         ),
@@ -402,7 +402,7 @@ export const anisotropyModule: DbtlModule = {
             </p>
             <DbtlFigure
               src="engineering/02/05.avif"
-              caption="Peptide-based detection of TVN binding to Fe₃O₄ nanoparticles and optimization of the fluorescence readout conditions."
+              caption="Figure 5 | Peptide-based detection of TVN binding to Fe₃O₄ nanoparticles and optimization of the fluorescence readout conditions."
             />
           </>
         ),
@@ -447,7 +447,7 @@ export const anisotropyModule: DbtlModule = {
             </p>
             <DbtlFigure
               src={["engineering/02/06.avif", "engineering/02/07.avif"]}
-              caption="Expression and purification of the TVN–DogTag module. SDS–PAGE analysis of the expression screen and of the purified protein."
+              caption="Figure 6 | Expression and purification of the TVN–DogTag module. SDS–PAGE analysis of the expression screen and of the purified protein."
             />
           </>
         ),
@@ -517,7 +517,7 @@ export const anisotropyModule: DbtlModule = {
             </p>
             <DbtlFigure
               src="engineering/02/08.avif"
-              caption="Ligation testing with a GFP model substrate. Higher-molecular-weight products appear in the SnoopLigase-containing reactions, supporting DogTag-mediated ligation."
+              caption="Figure 7 | Ligation testing with a GFP model substrate. Higher-molecular-weight products appear in the SnoopLigase-containing reactions, supporting DogTag-mediated ligation."
             />
           </>
         ),
@@ -576,7 +576,7 @@ export const anisotropyModule: DbtlModule = {
             </p>
             <DbtlFigure
               src={["engineering/02/09.avif", "engineering/02/10.avif"]}
-              caption="Fluorescence detection of particle-associated samples. Labeling, binding, and washing conditions were compared to separate sample-preparation performance from imaging performance."
+              caption="Figure 8 | Fluorescence detection of particle-associated samples. Labeling, binding, and washing conditions were compared to separate sample-preparation performance from imaging performance."
             />
           </>
         ),

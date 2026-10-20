@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { keyOutWhite } from "./whitenImages";
+import { imageSourceRect, imageTrim } from "./imageTrim";
+import { TrimmedImage } from "./TrimmedImage";
 
 /**
  * General white-background removal for static images.
@@ -77,6 +79,9 @@ export function TransparentImage({
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [ready, setReady] = useState(false);
   const [failed, setFailed] = useState(false);
+  const measured = imageTrim(src, cropTop);
+  const displayWidth = measured?.[4] ?? width;
+  const displayHeight = measured?.[5] ?? height;
 
   useEffect(() => {
     let cancelled = false;
@@ -89,9 +94,14 @@ export function TransparentImage({
       image.decoding = decoding;
       image.onload = () => {
         if (cancelled) return;
-        const sourceY = Math.round(image.naturalHeight * cropTop);
-        canvas.width = image.naturalWidth;
-        canvas.height = Math.max(1, image.naturalHeight - sourceY);
+        const rect = imageSourceRect(
+          src,
+          image.naturalWidth,
+          image.naturalHeight,
+          cropTop,
+        );
+        canvas.width = rect.width;
+        canvas.height = Math.max(1, rect.height);
         const ctx = canvas.getContext("2d", { willReadFrequently: true });
         if (!ctx) {
           setFailed(true);
@@ -99,8 +109,8 @@ export function TransparentImage({
         }
         ctx.drawImage(
           image,
-          0,
-          sourceY,
+          rect.x,
+          rect.y,
           canvas.width,
           canvas.height,
           0,
@@ -156,7 +166,7 @@ export function TransparentImage({
 
   if (failed) {
     return (
-      <img
+      <TrimmedImage
         src={src}
         alt={ariaHidden ? "" : alt}
         aria-hidden={ariaHidden || undefined}
@@ -177,15 +187,16 @@ export function TransparentImage({
       aria-hidden={ariaHidden || undefined}
       aria-label={ariaHidden ? undefined : alt}
       className={className}
-      width={width}
-      height={height}
+      data-original-src={src}
+      width={displayWidth}
+      height={displayHeight}
       style={
         ready
           ? style
           : {
               ...style,
-              ...(width && height
-                ? { aspectRatio: `${width} / ${height}` }
+              ...(displayWidth && displayHeight
+                ? { aspectRatio: `${displayWidth} / ${displayHeight}` }
                 : null),
               visibility: "hidden",
             }

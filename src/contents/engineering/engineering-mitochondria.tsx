@@ -96,11 +96,11 @@ export const mitochondriaModule: DbtlModule = {
             </p>
             <DbtlFigure
               src="result/04/09.avif"
-              caption="Figure 1.1.1. Confocal fluorescence imaging of the liposome–mitochondria complexes. Partial overlap between the liposomal and mitochondrial signals supports a spatial association between the two components."
+              caption="Figure 1.1.1 | Confocal fluorescence imaging of the liposome–mitochondria complexes. Partial overlap between the liposomal and mitochondrial signals supports a spatial association between the two components."
             />
             <DbtlFigure
               src="result/04/10.avif"
-              caption="Figure 1.1.2. Transmission electron microscopy of the liposome–mitochondria complexes. Peripheral membrane-like outlines surrounding internal structures provide morphological support for complex formation."
+              caption="Figure 1.1.2 | Transmission electron microscopy of the liposome–mitochondria complexes. Peripheral membrane-like outlines surrounding internal structures provide morphological support for complex formation."
             />
           </>
         ),
@@ -158,7 +158,7 @@ export const mitochondriaModule: DbtlModule = {
             </p>
             <DbtlFigure
               src="design/04/02.avif"
-              caption="Figure 1.2.1. Design of the responsive construct and the Control construct. Both share the same attachment sites and expression framework; the responsive region RRGPLGLSLGKR is replaced by the scrambled sequence RKGLSLGLPGRR in the Control construct."
+              caption="Figure 1.2.1 | Design of the responsive construct and the Control construct. Both share the same attachment sites and expression framework; the responsive region RRGPLGLSLGKR is replaced by the scrambled sequence RKGLSLGLPGRR in the Control construct."
             />
           </>
         ),
@@ -233,7 +233,7 @@ export const mitochondriaModule: DbtlModule = {
             </p>
             <DbtlFigure
               src="result/04/05.avif"
-              caption="Figure 2.1.1. Expression screening and TEV cleavage of the linker peptides. Target bands are prominent at 0.25 and 0.5 mM IPTG; TEV treatment produces band changes consistent with SUMO release."
+              caption="Figure 2.1.1 | Expression screening and TEV cleavage of the linker peptides. Target bands are prominent at 0.25 and 0.5 mM IPTG; TEV treatment produces band changes consistent with SUMO release."
             />
           </>
         ),
@@ -294,7 +294,7 @@ export const mitochondriaModule: DbtlModule = {
             </p>
             <DbtlFigure
               src="result/04/06.avif"
-              caption="Figure 2.2.1. GFP-SnoopTag ligation reactions with and without SnoopLigase. Higher-molecular-weight bands appear in the ligase-containing reactions for both the responsive and Control peptides."
+              caption="Figure 2.2.1 | GFP-SnoopTag ligation reactions with and without SnoopLigase. Higher-molecular-weight bands appear in the ligase-containing reactions for both the responsive and Control peptides."
             />
           </>
         ),
@@ -358,7 +358,7 @@ export const mitochondriaModule: DbtlModule = {
             </p>
             <DbtlFigure
               src="result/04/12.avif"
-              caption="Figure 2.3.1. MMP cleavage assay of the ligated peptides. Two closely spaced bands near 35 kDa in the responsive peptide group indicate partial substrate cleavage."
+              caption="Figure 2.3.1 | MMP cleavage assay of the ligated peptides. Two closely spaced bands near 35 kDa in the responsive peptide group indicate partial substrate cleavage."
             />
           </>
         ),
@@ -421,7 +421,7 @@ export const mitochondriaModule: DbtlModule = {
             </p>
             <DbtlFigure
               src="result/04/13.avif"
-              caption="Figure 3.1.1. Cellular delivery of the liposome–mitochondria complexes. Green fluorescence within the cellular regions is consistent with the entry of exogenous mitochondria into cells."
+              caption="Figure 3.1.1 | Cellular delivery of the liposome–mitochondria complexes. Green fluorescence within the cellular regions is consistent with the entry of exogenous mitochondria into cells."
             />
           </>
         ),
@@ -482,7 +482,7 @@ export const mitochondriaModule: DbtlModule = {
             </p>
             <DbtlFigure
               src="result/04/14.avif"
-              caption="Figure 3.2.1. CCK-8 cytocompatibility evaluation of the linker peptide. Viability readings show an initial decrease followed by recovery at 48–72 h."
+              caption="Figure 3.2.1 | CCK-8 cytocompatibility evaluation of the linker peptide. Viability readings show an initial decrease followed by recovery at 48–72 h."
             />
           </>
         ),

@@ -42,7 +42,7 @@ export function FuturePlan() {
             decoding="async"
           />
           <figcaption className="figure-caption">
-            Figure 1. Transition from validation of individual components to
+            Figure 1 | Transition from validation of individual components to
             evaluation of the complete material. Six complementary readouts will
             guide formulation screening and assess scaffold, connector, and
             functional-module performance within a unified system.
@@ -182,7 +182,7 @@ export function FuturePlan() {
             decoding="async"
           />
           <figcaption className="figure-caption">
-            Figure 2. Material validation and manufacturing-process development
+            Figure 2 | Material validation and manufacturing-process development
             will proceed in parallel. Before moving to in vivo studies, we will
             verify both tissue-interface performance and reproducible production
             of qualified batches. Bioreactor production, ITC scale-up, and
@@ -261,7 +261,7 @@ export function FuturePlan() {
             decoding="async"
           />
           <figcaption className="figure-caption">
-            Figure 3. Four-stage development roadmap and its key completion
+            Figure 3 | Four-stage development roadmap and its key completion
             criteria. Process optimization will proceed in parallel with
             material integration from the outset and will be assessed together
             with tissue validation. Subsequent decisions will be guided by
@@ -325,7 +325,7 @@ export function FuturePlan() {
             decoding="async"
           />
           <figcaption className="figure-caption">
-            Figure 4. A shared scaffold and functional interfaces support three
+            Figure 4 | A shared scaffold and functional interfaces support three
             proposed application directions.
             <FigureSourceCitation
               source={1}

@@ -9,7 +9,7 @@ export function AnisotropyContent() {
           To validate the key steps in the design of the magnetically responsive anisotropy module,
           we carried out expression, purification, and fluorescence-based binding experiments for a
           magnetic-nanoparticle-binding protein. We first obtained a recombinant fusion protein
-          containing the Fe3O4-binding peptide TVNFKLY and completed its expression, purification,
+          containing the Fe₃O₄-binding peptide TVNFKLY and completed its expression, purification,
           and desalting. We then examined its binding to magnetic nanoparticles through FITC
           fluorescence labeling, co-incubation with the particles, magnetic separation, and washing,
           thereby providing an experimental basis for subsequently introducing
@@ -27,7 +27,7 @@ export function AnisotropyContent() {
             </div>
             <div className="source-block">
               <p>
-                The Fe3O4-binding capability of TVNFKLY has previously been validated through
+                The Fe₃O₄-binding capability of TVNFKLY has previously been validated through
                 phage-display screening and multiple characterization methods [1]. We used TVNFKLY
                 as the functional peptide in the experimental group and included GTWSLLL, which was
                 expected not to bind magnetic nanoparticles, as a control to evaluate the
@@ -68,7 +68,7 @@ export function AnisotropyContent() {
                 <img src="https://static.igem.wiki/teams/6102/wiki/images/result/02/anisotropy-v2-03-d8f6e016.avif" alt="Figure 4.1.1." loading="lazy" decoding="async" />
               </a>
               <figcaption className="figure-caption">
-                <strong>Figure 4.1.1.</strong> Representative plates following plasmid amplification and transformation
+                <strong>Figure 4.1.1 |</strong> Representative plates following plasmid amplification and transformation
                 into the expression host. The figure shows the Trelief 5α plate used for plasmid
                 amplification, the BL21(DE3) expression-host plate, and the negative control. Colony
                 growth on the experimental plates enabled subsequent colony selection and culture.
@@ -85,7 +85,7 @@ export function AnisotropyContent() {
                 <img src="https://static.igem.wiki/teams/6102/wiki/images/result/02/anisotropy-v2-01-bce663fd.avif" alt="Figure 4.1.2." loading="lazy" decoding="async" />
               </a>
               <figcaption className="figure-caption">
-                <strong>Figure 4.1.2.</strong> Map of the pET28a-SUMO-DogTag-TVNFKLY expression plasmid. The plasmid is
+                <strong>Figure 4.1.2 |</strong> Map of the pET28a-SUMO-DogTag-TVNFKLY expression plasmid. The plasmid is
                 approximately 5,683 bp in length and contains T7 expression elements, a
                 kanamycin-resistance (KanR) selection marker, and a 6×His-SUMO-DogTag-TVNFKLY fusion
                 expression cassette.
@@ -108,7 +108,7 @@ export function AnisotropyContent() {
                 <img src="https://static.igem.wiki/teams/6102/wiki/images/result/02/anisotropy-v2-02-008d394b.avif" alt="Figure 4.1.3." loading="lazy" decoding="async" />
               </a>
               <figcaption className="figure-caption">
-                <strong>Figure 4.1.3.</strong> Preliminary colony PCR screening of candidate pET28a-SUMO-DogTag-TVNFKLY
+                <strong>Figure 4.1.3 |</strong> Preliminary colony PCR screening of candidate pET28a-SUMO-DogTag-TVNFKLY
                 transformants. The amplification products from the candidate colonies are shown on
                 the left, and the DNA marker is shown on the right. The red arrows indicate the
                 bands of interest annotated in the original experimental records.
@@ -172,7 +172,7 @@ export function AnisotropyContent() {
                 <img src="https://static.igem.wiki/teams/6102/wiki/images/result/02/anisotropy-v2-04-5bef46b7.avif" alt="Figure 4.2.1." loading="lazy" decoding="async" />
               </a>
               <figcaption className="figure-caption">
-                <strong>Figure 4.2.1.</strong> Ni-affinity purification of the SUMO-DogTag-TVN fusion protein. The gel
+                <strong>Figure 4.2.1 |</strong> Ni-affinity purification of the SUMO-DogTag-TVN fusion protein. The gel
                 sequentially shows the elution, wash, flow-through, lysate, and protein-marker
                 lanes. An enriched band is present in the approximately 25-35 kDa region of the
                 elution fraction, and the red box indicates the main region of interest.
@@ -193,7 +193,7 @@ export function AnisotropyContent() {
                 <img src="https://static.igem.wiki/teams/6102/wiki/images/result/02/anisotropy-v2-05-3a1f5277.avif" alt="Figure 4.2.2." loading="lazy" decoding="async" />
               </a>
               <figcaption className="figure-caption">
-                <strong>Figure 4.2.2.</strong> BCA protein quantification before and after ultrafiltration. (a) BCA
+                <strong>Figure 4.2.2 |</strong> BCA protein quantification before and after ultrafiltration. (a) BCA
                 reaction plate and absorbance records; (b) protein standard curve; and (c)
                 calculated concentrations of the sample before concentration, the retentate after
                 concentration, and the filtrate. The results show that the protein was mainly
@@ -256,7 +256,7 @@ export function AnisotropyContent() {
                 <img src="https://static.igem.wiki/teams/6102/wiki/images/result/02/anisotropy-v2-06-84dc206e.avif" alt="Figure 4.3.1." loading="lazy" decoding="async" />
               </a>
               <figcaption className="figure-caption">
-                <strong>Figure 4.3.1.</strong> SnoopLigase2-mediated DogTag ligation reaction. GFP-SnoopTag2 was
+                <strong>Figure 4.3.1 |</strong> SnoopLigase2-mediated DogTag ligation reaction. GFP-SnoopTag2 was
                 reacted with SUMO-DogTag-TVN or SUMO-DogTag in the presence or absence of
                 SnoopLigase2 for 15 min or 6 h. Higher-molecular-weight ligation-product bands
                 appeared after SnoopLigase2 was added, whereas the no-ligase control did not show
@@ -326,7 +326,7 @@ export function AnisotropyContent() {
                 <img src="https://static.igem.wiki/teams/6102/wiki/images/result/02/anisotropy-v2-07-b6c92224.avif" alt="Figure 4.4.1." loading="lazy" decoding="async" />
               </a>
               <figcaption className="figure-caption">
-                <strong>Figure 4.4.1.</strong> Verification of FITC labeling of the SUMO-DogTag-TVN fusion protein. (a)
+                <strong>Figure 4.4.1 |</strong> Verification of FITC labeling of the SUMO-DogTag-TVN fusion protein. (a)
                 The 532 nm imaging channel recorded in the original experiment; (b) the 302 nm
                 imaging channel. The FITC-labeled protein lane showed a clear fluorescence signal,
                 whereas the unlabeled protein lane showed no fluorescence, indicating that the
@@ -349,7 +349,7 @@ export function AnisotropyContent() {
               <p>
                 To preliminarily evaluate the binding of SUMO-DogTag-TVN to magnetic nanoparticles
                 and its retention after washing, the FITC-labeled fusion protein was co-incubated
-                with Fe3O4 magnetic nanoparticles. The experimental group used the fusion protein
+                with Fe₃O₄ magnetic nanoparticles. The experimental group used the fusion protein
                 containing TVNFKLY, whereas the control group used the control protein containing
                 GTWSLLL. Protein input, particle amount, incubation time, and buffer system were
                 kept as consistent as possible.
@@ -389,7 +389,7 @@ export function AnisotropyContent() {
                 <img src="https://static.igem.wiki/teams/6102/wiki/images/result/02/anisotropy-v2-08-23def463.avif" alt="Figure 4.4.2." loading="lazy" decoding="async" />
               </a>
               <figcaption className="figure-caption">
-                <strong>Figure 4.4.2.</strong> MNPs group. The red arrows indicate the direction of the magnetic field.
+                <strong>Figure 4.4.2 |</strong> MNPs group. The red arrows indicate the direction of the magnetic field.
                 No fluorescence was observed from the magnetic nanoparticles, indicating that FITC
                 alone did not detectably bind to the nanoparticles under these conditions.
               </figcaption>
@@ -399,7 +399,7 @@ export function AnisotropyContent() {
                 <img src="https://static.igem.wiki/teams/6102/wiki/images/result/02/anisotropy-v2-09-b271a139.avif" alt="Figure 4.4.3." loading="lazy" decoding="async" />
               </a>
               <figcaption className="figure-caption">
-                <strong>Figure 4.4.3.</strong> GTWSLLL group. The red arrows indicate the direction of the magnetic
+                <strong>Figure 4.4.3 |</strong> GTWSLLL group. The red arrows indicate the direction of the magnetic
                 field. No fluorescence was observed from the magnetic nanoparticles, indicating that
                 GTWSLLL did not detectably bind to the nanoparticles under these conditions.
               </figcaption>
@@ -414,7 +414,7 @@ export function AnisotropyContent() {
                 <img src="https://static.igem.wiki/teams/6102/wiki/images/result/02/anisotropy-v2-11-1aef8f37.avif" alt="Figure 4.4.4." loading="lazy" decoding="async" />
               </a>
               <figcaption className="figure-caption">
-                <strong>Figure 4.4.4.</strong> TVNFKLY group. The red arrows indicate the direction of the magnetic
+                <strong>Figure 4.4.4 |</strong> TVNFKLY group. The red arrows indicate the direction of the magnetic
                 field. The magnetic nanoparticles exhibited fluorescence, indicating that TVNFKLY
                 bound to the nanoparticles and that the resulting complexes underwent directional
                 alignment under the applied magnetic field.
@@ -474,7 +474,7 @@ export function AnisotropyContent() {
                 <img src="https://static.igem.wiki/teams/6102/wiki/images/result/04/delivery-v2-14-6c94c3ad.avif" alt="Figure 4.5.1." loading="lazy" decoding="async" />
               </a>
               <figcaption className="figure-caption">
-                <strong>Figure 4.5.1.</strong> In vitro cytocompatibility of the functional peptide. (A) Photograph of
+                <strong>Figure 4.5.1 |</strong> In vitro cytocompatibility of the functional peptide. (A) Photograph of
                 the assay plate. Yellow, blue, and red boxes indicate control, blank, and
                 peptide-treated wells, respectively. (B) Relative cell viability following treatment
                 with 5 or 10 μM experimental peptide for 24, 48, and 72 h.

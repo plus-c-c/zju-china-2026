@@ -17,7 +17,7 @@ export function EngineeringReferences() {
             </a>
           </li>
           <li id="ref-anisotropy-2">
-            Biopanning and characterization of peptides with Fe3O4
+            Biopanning and characterization of peptides with Fe₃O₄
             nanoparticles-binding capability via phage display random peptide
             library technique.{" "}
             <a

@@ -1,0 +1,24 @@
+.page-article .article-image-link {
+  display: block;
+  margin-inline: auto;
+  border-radius: 4px;
+}
+
+.page-article .article-image-link:focus-visible {
+  outline: 3px solid #365dc9;
+  outline-offset: 5px;
+}
+
+.article-image-viewport {
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.page-article .article-image-link :is(img, canvas) {
+  display: block;
+  height: auto;
+  max-height: min(620px, 70svh);
+  object-fit: contain;
+  object-position: center;
+}

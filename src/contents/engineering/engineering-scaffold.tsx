@@ -237,7 +237,7 @@ export const scaffoldModule: DbtlModule = {
             </p>
             <DbtlFigure
               src={["result/01/05.avif", "result/01/06.avif"]}
-              caption="Figure 1.2.1. Systematic optimization of the ITC purification conditions. (A) SDS–PAGE analysis of the temperature × salt-concentration gradient screen. (B) SDS–PAGE verification of the complete ITC workflow under the optimized conditions (65 °C in PBS containing 2 M NaCl), together with the resulting lyophilized protein product. H-Sup., supernatant after heating; C-Sup., supernatant after cooling."
+              caption="Figure 1.2.1 | Systematic optimization of the ITC purification conditions. (A) SDS–PAGE analysis of the temperature × salt-concentration gradient screen. (B) SDS–PAGE verification of the complete ITC workflow under the optimized conditions (65 °C in PBS containing 2 M NaCl), together with the resulting lyophilized protein product. H-Sup., supernatant after heating; C-Sup., supernatant after cooling."
             />
           </>
         ),
@@ -396,7 +396,7 @@ export const scaffoldModule: DbtlModule = {
             </p>
             <DbtlFigure
               src="result/01/32.avif"
-              caption="Figure 1.3.1. Establishment of the Ru/SPS photocrosslinking route. Comparison of the crosslinking strategies available for protein hydrogels and the mechanism by which Ru/SPS-mediated photoinitiation generates covalent dityrosine crosslinks between tyrosine residues under visible light; comparison of gelation with the original and the upgraded light source in the inverted-tube test; and the cytocompatibility of the resulting hydrogel evaluated by the CCK-8 assay."
+              caption="Figure 1.3.1 | Establishment of the Ru/SPS photocrosslinking route. Comparison of the crosslinking strategies available for protein hydrogels and the mechanism by which Ru/SPS-mediated photoinitiation generates covalent dityrosine crosslinks between tyrosine residues under visible light; comparison of gelation with the original and the upgraded light source in the inverted-tube test; and the cytocompatibility of the resulting hydrogel evaluated by the CCK-8 assay."
             />
           </>
         ),
@@ -540,7 +540,7 @@ export const scaffoldModule: DbtlModule = {
             </p>
             <DbtlFigure
               src="result/01/12.avif"
-              caption="Figure 1.4.1. Construction of the 2KY-10 plasmid by one round of PRe-RDL. The parental plasmid is divided into two aliquots and digested with AcuI + XbaI (digest A) and with BseRI + XbaI (digest B); the 1008-bp gene-containing fragment from digest A and the 6483-bp backbone fragment from digest B are ligated to reconstitute the plasmid carrying a doubled repeat array."
+              caption="Figure 1.4.1 | Construction of the 2KY-10 plasmid by one round of PRe-RDL. The parental plasmid is divided into two aliquots and digested with AcuI + XbaI (digest A) and with BseRI + XbaI (digest B); the 1008-bp gene-containing fragment from digest A and the 6483-bp backbone fragment from digest B are ligated to reconstitute the plasmid carrying a doubled repeat array."
             />
           </>
         ),
@@ -574,7 +574,7 @@ export const scaffoldModule: DbtlModule = {
             </p>
             <DbtlFigure
               src="result/01/16.avif"
-              caption="Figure 1.4.2. Recursive doubling cycle of the PRe-RDL platform. Both enzyme recognition sites lie within the flanking linkers, outside the repeat array, so that the doubling cycle can be repeated indefinitely without introducing extra bases at the junction."
+              caption="Figure 1.4.2 | Recursive doubling cycle of the PRe-RDL platform. Both enzyme recognition sites lie within the flanking linkers, outside the repeat array, so that the doubling cycle can be repeated indefinitely without introducing extra bases at the junction."
             />
           </>
         ),

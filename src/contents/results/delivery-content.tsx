@@ -58,7 +58,7 @@ export function DeliveryContent() {
                 <img src="https://static.igem.wiki/teams/6102/wiki/images/result/04/delivery-v2-01-ceb8a502.avif" alt="Figure 6.1.1." loading="lazy" decoding="async" />
               </a>
               <figcaption className="figure-caption">
-                <strong>Figure 6.1.1.</strong> Map of the MMP-responsive peptide expression plasmid pET28a-MMP13sp.
+                <strong>Figure 6.1.1 |</strong> Map of the MMP-responsive peptide expression plasmid pET28a-MMP13sp.
               </figcaption>
             </figure>
             <figure className="figure-block">
@@ -66,7 +66,7 @@ export function DeliveryContent() {
                 <img src="https://static.igem.wiki/teams/6102/wiki/images/result/04/delivery-v2-02-fbba0648.avif" alt="Figure 6.1.2." loading="lazy" decoding="async" />
               </a>
               <figcaption className="figure-caption">
-                <strong>Figure 6.1.2.</strong> Map of the control peptide expression plasmid pET28a-Control.
+                <strong>Figure 6.1.2 |</strong> Map of the control peptide expression plasmid pET28a-Control.
               </figcaption>
             </figure>
           </div>
@@ -106,7 +106,7 @@ export function DeliveryContent() {
                 <img src="https://static.igem.wiki/teams/6102/wiki/images/result/04/delivery-v2-03-ee44da00.avif" alt="Figure 6.1.3." loading="lazy" decoding="async" />
               </a>
               <figcaption className="figure-caption">
-                <strong>Figure 6.1.3.</strong> Colony selection results following transformation with the expression
+                <strong>Figure 6.1.3 |</strong> Colony selection results following transformation with the expression
                 plasmids.
               </figcaption>
             </figure>
@@ -161,7 +161,7 @@ export function DeliveryContent() {
                 <img src="https://static.igem.wiki/teams/6102/wiki/images/result/04/delivery-v2-04-19d249d5.avif" alt="Figure 6.1.4." loading="lazy" decoding="async" />
               </a>
               <figcaption className="figure-caption">
-                <strong>Figure 6.1.4.</strong> Expression and Ni-NTA affinity purification of the MMP-responsive and
+                <strong>Figure 6.1.4 |</strong> Expression and Ni-NTA affinity purification of the MMP-responsive and
                 control fusion proteins. (A) MMP-responsive fusion protein. (B) Scrambled-sequence
                 control fusion protein. Red arrows indicate target protein bands at apparent
                 molecular weights between 15 and 25 kDa, supporting the expression of both fusion
@@ -213,7 +213,7 @@ export function DeliveryContent() {
                 <img src="https://static.igem.wiki/teams/6102/wiki/images/result/04/delivery-v2-05-15449c38.avif" alt="Figure 6.1.5." loading="lazy" decoding="async" />
               </a>
               <figcaption className="figure-caption">
-                <strong>Figure 6.1.5.</strong> TEV protease-mediated removal of the SUMO tag from the fusion protein in
+                <strong>Figure 6.1.5 |</strong> TEV protease-mediated removal of the SUMO tag from the fusion protein in
                 the experimental group. Red arrows indicate the released SUMO tag, which exhibits an
                 apparent molecular weight of 15–25 kDa and migrates differently from the uncleaved
                 fusion protein, supporting successful TEV-mediated cleavage. Yellow arrows indicate
@@ -254,7 +254,7 @@ export function DeliveryContent() {
             <div className="source-block">
               <p>
                 An additional band above the main GFP-SnoopTag band appeared in the peptide reaction
-                containing SnoopLigase relative to the negative control (Figure 6.1.6). This 
+                containing SnoopLigase relative to the negative control (Figure 6.1.6). This
                 mobility shift was <strong>consistent with the formation of a peptide–GFP-SnoopTag conjugate.</strong> SnoopLigase migrated to the 10–15 kDa range.
               </p>
             </div>
@@ -263,7 +263,7 @@ export function DeliveryContent() {
                 <img src="https://static.igem.wiki/teams/6102/wiki/images/result/04/delivery-v2-06-78e26024.avif" alt="Figure 6.1.6." loading="lazy" decoding="async" />
               </a>
               <figcaption className="figure-caption">
-                <strong>Figure 6.1.6.</strong> SnoopLigase-mediated ligation of the recovered peptide to GFP-SnoopTag.
+                <strong>Figure 6.1.6 |</strong> SnoopLigase-mediated ligation of the recovered peptide to GFP-SnoopTag.
               </figcaption>
             </figure>
           </div>
@@ -318,7 +318,7 @@ export function DeliveryContent() {
                 <img src="https://static.igem.wiki/teams/6102/wiki/images/result/04/delivery-v2-07-ec62d720.avif" alt="Figure 6.2.1." loading="lazy" decoding="async" />
               </a>
               <figcaption className="figure-caption">
-                <strong>Figure 6.2.1.</strong> Western blot analysis of mitochondrial markers following mitochondrial
+                <strong>Figure 6.2.1 |</strong> Western blot analysis of mitochondrial markers following mitochondrial
                 isolation. (A) Detection of COX IV (approximately 17 kDa). (B) Detection of TOMM20
                 (approximately 16 kDa). Arrows indicate the corresponding target protein bands. Both
                 markers were detected in the input and pellet fractions, with weaker signals in the
@@ -366,7 +366,7 @@ export function DeliveryContent() {
                 <img src="https://static.igem.wiki/teams/6102/wiki/images/result/04/delivery-v2-08-10bd8ce4.avif" alt="Figure 6.2.2." loading="lazy" decoding="async" />
               </a>
               <figcaption className="figure-caption">
-                <strong>Figure 6.2.2.</strong> Appearance of the prepared functionalized liposome suspension.
+                <strong>Figure 6.2.2 |</strong> Appearance of the prepared functionalized liposome suspension.
               </figcaption>
             </figure>
           </div>
@@ -413,7 +413,7 @@ export function DeliveryContent() {
                 <img src="https://static.igem.wiki/teams/6102/wiki/images/result/04/delivery-v2-09-94ca1cee.avif" alt="Figure 6.2.3." loading="lazy" decoding="async" />
               </a>
               <figcaption className="figure-caption">
-                <strong>Figure 6.2.3.</strong> Fluorescence characterization of liposome–mitochondria complexes.
+                <strong>Figure 6.2.3 |</strong> Fluorescence characterization of liposome–mitochondria complexes.
                 Mitochondria and liposomes were labeled with MitoTracker Green (green) and DiD
                 (red), respectively. Individual fluorescence channel images, a bright-field image
                 (BF), and the merged image are shown.
@@ -456,7 +456,7 @@ export function DeliveryContent() {
                 <img src="https://static.igem.wiki/teams/6102/wiki/images/result/04/delivery-v2-10-2e5d434b.avif" alt="Figure 6.2.4." loading="lazy" decoding="async" />
               </a>
               <figcaption className="figure-caption">
-                <strong>Figure 6.2.4.</strong> Transmission electron microscopy characterization of
+                <strong>Figure 6.2.4 |</strong> Transmission electron microscopy characterization of
                 liposome–mitochondria complexes. TEM images of (A) functionalized liposomes, (B)
                 isolated mitochondria, and (C) liposome–mitochondria complexes. Scale bars: 200 nm
                 in all panels.
@@ -541,7 +541,7 @@ export function DeliveryContent() {
                 <img src="https://static.igem.wiki/teams/6102/wiki/images/result/04/delivery-v2-11-32417c50.avif" alt="Figure 6.3.1." loading="lazy" decoding="async" />
               </a>
               <figcaption className="figure-caption">
-                <strong>Figure 6.3.1.</strong> Validation of SnoopLigase-mediated ligation using GFP-SnoopTag as a
+                <strong>Figure 6.3.1 |</strong> Validation of SnoopLigase-mediated ligation using GFP-SnoopTag as a
                 reporter protein.
               </figcaption>
             </figure>
@@ -592,7 +592,7 @@ export function DeliveryContent() {
                 <img src="https://static.igem.wiki/teams/6102/wiki/images/result/04/delivery-v2-12-e15a9f6d.avif" alt="Figure 6.3.2." loading="lazy" decoding="async" />
               </a>
               <figcaption className="figure-caption">
-                <strong>Figure 6.3.2.</strong> MMP-13 cleavage analysis of peptide–GFP-SnoopTag conjugates. Red arrows
+                <strong>Figure 6.3.2 |</strong> MMP-13 cleavage analysis of peptide–GFP-SnoopTag conjugates. Red arrows
                 indicate higher-molecular-weight bands near 35 kDa in the Control samples,
                 corresponding to uncleaved conjugates.
               </figcaption>
@@ -636,7 +636,7 @@ export function DeliveryContent() {
                 <img src="https://static.igem.wiki/teams/6102/wiki/images/result/04/delivery-v2-13-9fae80ae.avif" alt="Figure 6.3.3." loading="lazy" decoding="async" />
               </a>
               <figcaption className="figure-caption">
-                <strong>Figure 6.3.3.</strong> Fluorescence assessment of cellular delivery by liposome–mitochondria
+                <strong>Figure 6.3.3 |</strong> Fluorescence assessment of cellular delivery by liposome–mitochondria
                 complexes. (A) Cells treated with liposome–mitochondria complexes. (B) Control
                 cells.
               </figcaption>
@@ -690,7 +690,7 @@ export function DeliveryContent() {
                 <img src="https://static.igem.wiki/teams/6102/wiki/images/result/04/delivery-v2-14-6c94c3ad.avif" alt="Figure 6.3.4." loading="lazy" decoding="async" />
               </a>
               <figcaption className="figure-caption">
-                <strong>Figure 6.3.4.</strong> Preliminary assessment of functional peptide cytocompatibility using the
+                <strong>Figure 6.3.4 |</strong> Preliminary assessment of functional peptide cytocompatibility using the
                 CCK-8 assay. (A) Photograph of the assay plate. Yellow, blue, and red boxes indicate
                 control, blank, and peptide-treated wells, respectively. (B) Relative cell viability
                 following treatment with 5 or 10 μM experimental peptide for 24, 48, and 72 h.

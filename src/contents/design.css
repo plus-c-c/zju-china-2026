@@ -1,0 +1,21 @@
+.page-article .design-article > figure {
+  margin-block: 1.25rem !important;
+}
+
+.page-article .design-article > figure > .figure-caption {
+  margin-top: 0.75rem;
+}
+
+.design-equation-compact {
+  display: none;
+}
+
+@media (max-width: 575.98px) {
+  .design-equation-wide {
+    display: none;
+  }
+
+  .design-equation-compact {
+    display: block;
+  }
+}

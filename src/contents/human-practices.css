@@ -277,3 +277,14 @@ html[data-ihp-swipe="up"] .nest-navbar {
   padding: 8px 2.75rem;
   margin: -8px -2.75rem 0;
 }
+
+@media (max-width: 767.98px) {
+  .ihp-section-viewport {
+    padding-inline: 12px;
+    margin-inline: -12px;
+  }
+
+  .ihp-section-viewport .chain {
+    margin-inline: 0;
+  }
+}

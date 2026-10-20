@@ -30,7 +30,7 @@ export function Contribution() {
             decoding="async"
           />
           <figcaption className="figure-caption">
-            Figure 1. Community resources organized around a shared materials
+            Figure 1 | Community resources organized around a shared materials
             platform. Parts, protocols, computational examples, and
             software/hardware documentation are interconnected, enabling future
             teams to progress from material construction to preparation and
@@ -168,7 +168,7 @@ export function Contribution() {
             decoding="async"
           />
           <figcaption className="figure-caption">
-            Figure 2. Assembly and validation logic for integrating new
+            Figure 2 | Assembly and validation logic for integrating new
             functions into the platform. A shared interface allows functional
             sequences to be replaced, while ligation assays and functional
             assays address two distinct questions.
@@ -239,7 +239,7 @@ export function Contribution() {
             decoding="async"
           />
           <figcaption className="figure-caption">
-            Figure 3. SELP recovery and preparation workflow. Target-protein
+            Figure 3 | SELP recovery and preparation workflow. Target-protein
             bands in the supernatants collected after heating (H-Sup) and
             cooling (C-Sup) help identify protein loss during phase transition
             and resolubilization, respectively.
@@ -285,7 +285,7 @@ export function Contribution() {
             decoding="async"
           />
           <figcaption className="figure-caption">
-            Figure 4. Schematic of a representative SELP modeling and
+            Figure 4 | Schematic of a representative SELP modeling and
             computational workflow.
             <FigureSourceCitation
               source={1}
@@ -333,7 +333,7 @@ export function Contribution() {
             decoding="async"
           />
           <figcaption className="figure-caption">
-            Figure 5. Photograph of our reagent-preparation prototype and
+            Figure 5 | Photograph of our reagent-preparation prototype and
             screenshots of the application interface, illustrating material
             configuration, step-by-step guidance, and material handling.
             <FigureSourceCitation

@@ -144,7 +144,7 @@ export function Software() {
               decoding="async"
             />
             <figcaption className="figure-caption">
-              Figure 1: Pipeline overview — ① flow name and the three-step chain
+              Figure 1 | Pipeline overview — ① flow name and the three-step chain
               (TIGER2 FAMD → GROMACS → Magnetomech, with products passed along
               the chain); ② completion (2 / 3 steps complete); ③ each step card
               with its run status.
@@ -317,7 +317,7 @@ export function Software() {
               decoding="async"
             />
             <figcaption className="figure-caption">
-              Figure 2: Step 1 parameter panel — ① sequence and annotation
+              Figure 2 | Step 1 parameter panel — ① sequence and annotation
               input; ② Where this step runs (the step can only start once it
               shows configured); ③ the Derive sub-panel; ④ Motif annotations; ⑤
               Save / Save &amp; restart.
@@ -506,7 +506,7 @@ export function Software() {
               decoding="async"
             />
             <figcaption className="figure-caption">
-              Figure 3: Step 3 run summary — ① the step and its locally computed
+              Figure 3 | Step 3 run summary — ① the step and its locally computed
               result (cache/…); ② applied magnetic field parameters (incl.
               particle volume fraction 0.05); ③ applied field profile (generated
               from the parameters in uniform mode, not read from a CSV file).
@@ -715,7 +715,7 @@ export function Software() {
               decoding="async"
             />
             <figcaption className="figure-caption">
-              Figure 4: Ordering screen — ① select the preconditioned SELP
+              Figure 4 | Ordering screen — ① select the preconditioned SELP
               scaffold (2KY-5-Tag / 2KY-10-Tag — the corresponding 2KY-5 /
               2KY-10 scaffolds with SnoopTag2 added); ② select the functional
               module (Mitochondrial Therapy / Magnetically Responsive Anisotropy
@@ -824,7 +824,7 @@ export function Software() {
               decoding="async"
             />
             <figcaption className="figure-caption">
-              Figure 5: The app wizard — ① scan the QR code (manual entry also
+              Figure 5 | The app wizard — ① scan the QR code (manual entry also
               possible); ② load the formulation-specific Instructions for Use; ③
               add the reagents in order and confirm each one; ④ premixing — wait
               for the premixer&rsquo;s green light.

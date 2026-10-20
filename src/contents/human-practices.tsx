@@ -646,7 +646,7 @@ function SituatedBlock() {
         caption={
           <>
             <strong>
-              Figure R1. Participant profile and evaluation design (24
+              Figure R1 | Participant profile and evaluation design (24
               participants, 72 evaluations).
             </strong>{" "}
             (A) Participant roles. (B) Prior syringe use. (C) Balanced
@@ -662,7 +662,7 @@ function SituatedBlock() {
         caption={
           <>
             <strong>
-              Figure R2. Favourable response profile across syringe
+              Figure R2 | Favourable response profile across syringe
               configurations (n = 24 per configuration).
             </strong>{" "}
             Values show the proportion of favourable responses for start force,
@@ -679,7 +679,7 @@ function SituatedBlock() {
         alt="Figure R3 — operational problems and overall evaluation"
         caption={
           <>
-            <strong>Figure R3. Operational problems and overall evaluation.</strong>{" "}
+            <strong>Figure R3 | Operational problems and overall evaluation.</strong>{" "}
             (A) Proportion reporting any operational problem, no problem, or
             unable to judge (Q11). (B) Satisfaction (Q12 D+E) and willingness to
             reuse (Q13 D+E) by configuration. Configuration B had the most
@@ -695,7 +695,7 @@ function SituatedBlock() {
         caption={
           <>
             <strong>
-              Figure R4. Illustrative operator feedback themes for
+              Figure R4 | Illustrative operator feedback themes for
               configurations A, B, C and general suggestions.
             </strong>{" "}
             The statements are simulated feedback directions, not verbatim
@@ -798,7 +798,7 @@ function DiscoveryBlock() {
         caption={
           <>
             <strong>
-              Figure 1. Survey reach and experience of cartilage injury.
+              Figure 1 | Survey reach and experience of cartilage injury.
             </strong>{" "}
             (A) Valid responses by recruitment channel (n = 1,654). (B)
             Proportion of respondents reporting personal or family experience of
@@ -823,7 +823,7 @@ function DiscoveryBlock() {
         alt="Figure 2 — clinical profile across survey channels"
         caption={
           <>
-            <strong>Figure 2. Clinical profile across survey channels.</strong>{" "}
+            <strong>Figure 2 | Clinical profile across survey channels.</strong>{" "}
             (A) Injury mechanism among patients (n = 579). (B) Proportion
             reporting surgical treatment. (C) Age distribution of community
             respondents with chronic degeneration/OA (n = 84); 59.5% were aged
@@ -848,7 +848,7 @@ function DiscoveryBlock() {
         caption={
           <>
             <strong>
-              Figure 3. Broad injury sites and persistent symptom burden.
+              Figure 3 | Broad injury sites and persistent symptom burden.
             </strong>{" "}
             Among patients with personal or family experience (n = 579), (A)
             knee involvement was most common, while ankle, hip, shoulder and
@@ -880,7 +880,7 @@ function DiscoveryBlock() {
         caption={
           <>
             <strong>
-              Figure 4. Treatment pathways, recovery, and patient preference.
+              Figure 4 | Treatment pathways, recovery, and patient preference.
             </strong>{" "}
             (A) Treatments ever received (multi-select). (B) First-choice
             treatment in the ranking question (n = 579). (C) Recovery outcomes
@@ -905,7 +905,7 @@ function DiscoveryBlock() {
         caption={
           <>
             <strong>
-              Figure 5. Patient-reported pain scenarios, sensations, and life
+              Figure 5 | Patient-reported pain scenarios, sensations, and life
               impact (supplementary sample, n = 50).
             </strong>{" "}
             Stairs and sports were the most frequently reported pain-provoking
@@ -1075,7 +1075,7 @@ function ImpactBlock() {
         caption={
           <>
             <strong>
-              Figure 1. Baseline awareness and knowledge of joint cartilage
+              Figure 1 | Baseline awareness and knowledge of joint cartilage
               (pre-activity, n = 24).
             </strong>{" "}
             (A) Prior attention to cartilage health. (B) Self-rated
@@ -1091,7 +1091,7 @@ function ImpactBlock() {
         caption={
           <>
             <strong>
-              Figure 2. Product use, training, and perceived changes
+              Figure 2 | Product use, training, and perceived changes
               (pre-activity, n = 24).
             </strong>{" "}
             (A) Products ever used (multi-select; 16/24 had used at least one
@@ -1110,7 +1110,7 @@ function ImpactBlock() {
         caption={
           <>
             <strong>
-              Figure 3. Pre-post change in self-rated knowledge and willingness
+              Figure 3 | Pre-post change in self-rated knowledge and willingness
               (paired, n = 24).
             </strong>{" "}
             (A) Self-rated understanding increased from a mean of 2.08 to 3.63
@@ -1127,7 +1127,7 @@ function ImpactBlock() {
         caption={
           <>
             <strong>
-              Figure 4. Post-activity knowledge and information needs (n = 24).
+              Figure 4 | Post-activity knowledge and information needs (n = 24).
             </strong>{" "}
             (A) Correct answer rate by knowledge question; the mean was 79.2%
             (6.33/8). (B) Distribution of individual total scores. (C)
@@ -1143,7 +1143,7 @@ function ImpactBlock() {
         caption={
           <>
             <strong>
-              Figure 5. Illustrative feedback themes from the simulated
+              Figure 5 | Illustrative feedback themes from the simulated
               open-text responses before and after the activity.
             </strong>{" "}
             The themes are not verbatim quotes and are not frequency-counted.
@@ -1170,7 +1170,7 @@ function ImpactBlock() {
         caption={
           <>
             <strong>
-              Figure S1. Pre-lecture awareness and self-rated understanding (n =
+              Figure S1 | Pre-lecture awareness and self-rated understanding (n =
               24).
             </strong>{" "}
             (A) Prior exposure to synthetic biology. (B) Self-rated
@@ -1185,7 +1185,7 @@ function ImpactBlock() {
         caption={
           <>
             <strong>
-              Figure S2. Pre-lecture attitudes and expectations (n = 24).
+              Figure S2 | Pre-lecture attitudes and expectations (n = 24).
             </strong>{" "}
             (A) Feelings about synthetic biology (multi-select). (B) Overall
             attitude toward synthetic biology. (C) Topics participants most
@@ -1199,7 +1199,7 @@ function ImpactBlock() {
         caption={
           <>
             <strong>
-              Figure S3. Post-lecture knowledge, attitude, and information needs
+              Figure S3 | Post-lecture knowledge, attitude, and information needs
               (n = 24).
             </strong>{" "}
             (A) Correct answer rate by knowledge question; the mean was 76.7%
@@ -1215,7 +1215,7 @@ function ImpactBlock() {
         caption={
           <>
             <strong>
-              Figure S4. Self-rated understanding and technology acceptance
+              Figure S4 | Self-rated understanding and technology acceptance
               (paired, n = 24).
             </strong>{" "}
             (A) Self-rated understanding increased from a mean of 2.17 to 3.63
@@ -1232,7 +1232,7 @@ function ImpactBlock() {
         caption={
           <>
             <strong>
-              Figure S5. Illustrative feedback themes before and after the
+              Figure S5 | Illustrative feedback themes before and after the
               lecture.
             </strong>{" "}
             The statements are simulated feedback directions, not verbatim

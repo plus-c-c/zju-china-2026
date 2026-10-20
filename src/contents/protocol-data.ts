@@ -70,7 +70,7 @@ export const protocolGroups = [
         url: "https://static.igem.wiki/teams/6102/wiki/protocol/site-directed-mutagenesis.pdf",
       },
       {
-        title: "FITC Peptide Fe3O4 Generalized Table Updated",
+        title: "FITC Peptide Fe₃O₄ Generalized Table Updated",
         url: "https://static.igem.wiki/teams/6102/wiki/protocol/fitc-peptide-fe3o4-generalized-table-updated.pdf",
       },
     ],

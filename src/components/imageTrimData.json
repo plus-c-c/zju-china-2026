@@ -1,0 +1,172 @@
+{
+  "/teams/6102/wiki/images/design/01/00001.avif": {
+    "bounds": [
+      4000,
+      2263,
+      50,
+      84,
+      3932,
+      2114
+    ]
+  },
+  "/teams/6102/wiki/images/design/01/01-02.avif": {
+    "bounds": [
+      1280,
+      896,
+      0,
+      0,
+      1280,
+      833
+    ],
+    "afterTop": {
+      "0.152": [
+        1280,
+        896,
+        0,
+        136,
+        1280,
+        697
+      ]
+    }
+  },
+  "/teams/6102/wiki/images/design/01/01-03.avif": {
+    "bounds": [
+      1280,
+      896,
+      102,
+      79,
+      1059,
+      696
+    ]
+  },
+  "/teams/6102/wiki/images/design/01/01-04.avif": {
+    "bounds": [
+      1280,
+      1280,
+      0,
+      83,
+      1280,
+      1197
+    ]
+  },
+  "/teams/6102/wiki/images/design/01/01-05.avif": {
+    "bounds": [
+      1280,
+      896,
+      0,
+      0,
+      1280,
+      835
+    ]
+  },
+  "/teams/6102/wiki/images/design/01/32.avif": {
+    "bounds": [
+      1117,
+      327,
+      30,
+      53,
+      1037,
+      226
+    ]
+  },
+  "/teams/6102/wiki/images/design/02/01.avif": {
+    "bounds": [
+      1492,
+      1005,
+      76,
+      63,
+      1367,
+      883
+    ]
+  },
+  "/teams/6102/wiki/images/design/02/03.avif": {
+    "bounds": [
+      2350,
+      558,
+      14,
+      17,
+      2326,
+      513
+    ]
+  },
+  "/teams/6102/wiki/images/design/03/01.avif": {
+    "bounds": [
+      1280,
+      724,
+      0,
+      0,
+      1280,
+      629
+    ],
+    "afterTop": {
+      "0.138": [
+        1280,
+        724,
+        0,
+        100,
+        1280,
+        529
+      ]
+    }
+  },
+  "/teams/6102/wiki/images/design/03/02.avif": {
+    "bounds": [
+      1036,
+      1280,
+      0,
+      0,
+      1036,
+      1121
+    ],
+    "afterTop": {
+      "0.102": [
+        1036,
+        1280,
+        42,
+        196,
+        937,
+        925
+      ]
+    }
+  },
+  "/teams/6102/wiki/images/design/03/04.avif": {
+    "bounds": [
+      1014,
+      230,
+      25,
+      32,
+      962,
+      176
+    ]
+  },
+  "/teams/6102/wiki/images/design/04/01.avif": {
+    "bounds": [
+      3947,
+      2100,
+      101,
+      143,
+      3680,
+      1785
+    ]
+  },
+  "/teams/6102/wiki/images/design/04/02.avif": {
+    "bounds": [
+      4000,
+      2800,
+      120,
+      353,
+      3746,
+      2128
+    ]
+  },
+  "/teams/6102/wiki/images/design/04/03.avif": {
+    "bounds": [
+      4000,
+      3362,
+      174,
+      202,
+      3609,
+      2752
+    ]
+  }
+}

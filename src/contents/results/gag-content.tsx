@@ -215,7 +215,7 @@ export function GagContent() {
                 <img src="https://static.igem.wiki/teams/6102/wiki/images/result/03/01.avif" alt="Figure 5.1.1." loading="lazy" decoding="async" />
               </a>
               <figcaption className="figure-caption">
-                <strong>Figure 5.1.1.</strong> Maps of the three expression plasmids. From left to right:
+                <strong>Figure 5.1.1 |</strong> Maps of the three expression plasmids. From left to right:
                 pET-28a(+)-CPC+LinkN, pET-28a(+)-LinkN, and pET-28a(+)-CPC. The maps indicate the T7
                 promoter, lac operator, KanR, origin of replication (ori), and components of the
                 target fusion proteins, including the His tag, TEV cleavage site, linker, CPC,
@@ -238,7 +238,7 @@ export function GagContent() {
                 <img src="https://static.igem.wiki/teams/6102/wiki/images/result/03/02-new.avif" alt="Figure 5.1.2." loading="lazy" decoding="async" />
               </a>
               <figcaption className="figure-caption">
-                <strong>Figure 5.1.2.</strong> Colonies after transformation of <em>E. coli</em> BL21(DE3) with
+                <strong>Figure 5.1.2 |</strong> Colonies after transformation of <em>E. coli</em> BL21(DE3) with
                 pET-28a(+)-CPC, pET-28a(+)-LinkN, and pET-28a(+)-CPC+LinkN. All plates contained
                 Kan. Upper left: negative control without plasmid transformation (CK); upper right:
                 CPC; lower left: LinkN; lower right: CPC+LinkN.
@@ -280,7 +280,7 @@ export function GagContent() {
                 <img src="https://static.igem.wiki/teams/6102/wiki/images/result/03/03.avif" alt="Figure 5.1.3." loading="lazy" decoding="async" />
               </a>
               <figcaption className="figure-caption">
-                <strong>Figure 5.1.3.</strong> Establishment and optimization of the CPC recombinant-protein expression
+                <strong>Figure 5.1.3 |</strong> Establishment and optimization of the CPC recombinant-protein expression
                 system. (A) SDS-PAGE analysis of small-scale screening of CPC, LinkN, and CPC+LinkN
                 recombinant-protein expression in <em>E. coli</em> BL21(DE3) under different induction
                 conditions. Temperatures were 16 °C and 30 °C, and IPTG concentrations were 0.25 mM
@@ -308,7 +308,7 @@ export function GagContent() {
                 <img src="https://static.igem.wiki/teams/6102/wiki/images/result/03/04.avif" alt="Figure 5.1.4." loading="lazy" decoding="async" />
               </a>
               <figcaption className="figure-caption">
-                <strong>Figure 5.1.4.</strong> SDS-PAGE analysis of His-tag affinity purification and target-protein
+                <strong>Figure 5.1.4 |</strong> SDS-PAGE analysis of His-tag affinity purification and target-protein
                 recovery from different constructs. Large-scale CPC, LinkN, and CPC+LinkN
                 recombinant proteins were purified by His-tag affinity chromatography. Fractions are
                 shown in the following order for each construct: lysate, flow-through, wash, and
@@ -335,7 +335,7 @@ export function GagContent() {
                 <img src="https://static.igem.wiki/teams/6102/wiki/images/result/03/05.avif" alt="Figure 5.1.5." loading="lazy" decoding="async" />
               </a>
               <figcaption className="figure-caption">
-                <strong>Figure 5.1.5.</strong> Concentration and BCA quantification of SUMO fusion proteins. His-tag
+                <strong>Figure 5.1.5 |</strong> Concentration and BCA quantification of SUMO fusion proteins. His-tag
                 affinity eluates were concentrated and buffer-exchanged using 0.5-mL centrifugal
                 ultrafiltration units with a 5-kDa cutoff, followed by BCA protein quantification.
                 (a) BCA standard curve based on raw absorbance: y = 0.833238x + 0.145746, R² =
@@ -401,7 +401,7 @@ export function GagContent() {
                 <img src="https://static.igem.wiki/teams/6102/wiki/images/result/03/06.avif" alt="Figure 5.1.6." loading="lazy" decoding="async" />
               </a>
               <figcaption className="figure-caption">
-                <strong>Figure 5.1.6.</strong> Validation of SUMO-tag removal, reverse purification, and target-protein
+                <strong>Figure 5.1.6 |</strong> Validation of SUMO-tag removal, reverse purification, and target-protein
                 recovery. The SUMO tags were cleaved from purified fusion proteins using ULP1
                 protease. Reverse His-tag purification was then used to remove ULP1 and other
                 His-tagged components, followed by ultrafiltration, concentration, and buffer
@@ -430,7 +430,7 @@ export function GagContent() {
                 <img src="https://static.igem.wiki/teams/6102/wiki/images/result/03/07.avif" alt="Figure 5.1.7." loading="lazy" decoding="async" />
               </a>
               <figcaption className="figure-caption">
-                <strong>Figure 5.1.7.</strong> Recovery and BCA quantification of target proteins after reverse
+                <strong>Figure 5.1.7 |</strong> Recovery and BCA quantification of target proteins after reverse
                 affinity purification and ultrafiltration. Following SUMO cleavage, reverse affinity
                 purification was performed to remove ULP1 and other His-tagged components, followed
                 by ultrafiltration, concentration, and buffer exchange. (a) BCA standard curve based
@@ -508,7 +508,7 @@ export function GagContent() {
                 <img src="https://static.igem.wiki/teams/6102/wiki/images/result/03/08.avif" alt="Figure 5.2.1." loading="lazy" decoding="async" />
               </a>
               <figcaption className="figure-caption">
-                <strong>Figure 5.2.1.</strong> Validation of DogTag-mediated ligation activity by SDS-PAGE using the
+                <strong>Figure 5.2.1 |</strong> Validation of DogTag-mediated ligation activity by SDS-PAGE using the
                 SnoopTag2-GFP reporter system. The table below the gel lists the protein components
                 added to each lane (1–8), where “+” indicates presence and “−” indicates absence.
                 The red box marks the ligation-product bands in the 55–70 kDa region.
@@ -596,7 +596,7 @@ export function GagContent() {
                 <img src="https://static.igem.wiki/teams/6102/wiki/images/result/03/09.avif" alt="Figure 5.2.2." loading="lazy" decoding="async" />
               </a>
               <figcaption className="figure-caption">
-                <strong>Figure 5.2.2.</strong> Establishment and optimization of the CS-A agarose electrophoretic
+                <strong>Figure 5.2.2 |</strong> Establishment and optimization of the CS-A agarose electrophoretic
                 mobility assay. Different amounts of CS-A (1, 2, 5, and 10 µg) were electrophoresed
                 individually on an agarose gel and stained with toluidine blue.
               </figcaption>
@@ -687,7 +687,7 @@ export function GagContent() {
                 <img src="https://static.igem.wiki/teams/6102/wiki/images/result/03/10.avif" alt="Figure 5.2.3." loading="lazy" decoding="async" />
               </a>
               <figcaption className="figure-caption">
-                <strong>Figure 5.2.3.</strong> Validation of AviTag-mediated site-specific biotinylation by SDS-PAGE.
+                <strong>Figure 5.2.3 |</strong> Validation of AviTag-mediated site-specific biotinylation by SDS-PAGE.
                 LinkN, CPC, and CPC–LinkN recombinant proteins containing AviTag were
                 site-specifically biotinylated using BirA ligase. The biotinylated proteins and a
                 non-biotinylated control were then incubated with free streptavidin (SA) for 30 min.
@@ -728,7 +728,7 @@ export function GagContent() {
                 <img src="https://static.igem.wiki/teams/6102/wiki/images/result/03/11.avif" alt="Figure 5.2.4." loading="lazy" decoding="async" />
               </a>
               <figcaption className="figure-caption">
-                <strong>Figure 5.2.4.</strong> CS-A capture assay using the AviTag-based immobilization system,
+                <strong>Figure 5.2.4 |</strong> CS-A capture assay using the AviTag-based immobilization system,
                 measured by the DMMB assay. Site-specifically biotinylated proteins were immobilized
                 on streptavidin magnetic beads and incubated with CS-A. After magnetic separation,
                 the supernatant was collected for DMMB detection. CK: bare beads; L: CPC-free LinkN
@@ -802,7 +802,7 @@ export function GagContent() {
                 <img src="https://static.igem.wiki/teams/6102/wiki/images/result/03/12.avif" alt="Figure 5.2.5." loading="lazy" decoding="async" />
               </a>
               <figcaption className="figure-caption">
-                <strong>Figure 5.2.5.</strong> Statistical analysis of the reduction in residual supernatant CS-A
+                <strong>Figure 5.2.5 |</strong> Statistical analysis of the reduction in residual supernatant CS-A
                 associated with CPC and CPC–Link-N (paired t-test). One-sided paired t-tests were
                 performed on residual supernatant CS-A concentrations measured by DMMB (n = 3) to
                 compare CPC and CPC–Link-N treatment groups with CK. The p-values for the two

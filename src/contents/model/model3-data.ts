@@ -202,7 +202,7 @@ export const m3Steps: M3Step[] = [
         parts: [
           {
             t: "text",
-            v: "：unpaired Fe3O4 nanoparticle phase",
+            v: "：unpaired Fe₃O₄ nanoparticle phase",
           },
         ],
       },
