@@ -844,22 +844,6 @@ function SituatedBlock() {
             </>
           }
         />
-        <Figure
-          src={`${SYRINGE_FIG}/r4-feedback-themes-en.avif`}
-          alt="Figure 10 — illustrative operator feedback themes"
-          width={4000}
-          height={1844}
-          caption={
-            <>
-              <strong>
-                Figure 10 | Illustrative operator feedback themes for
-                configurations A, B, C and general suggestions.
-              </strong>{" "}
-              The statements are simulated feedback directions, not verbatim
-              quotes, and are not frequency-counted.
-            </>
-          }
-        />
       </ExtendCard>
       <p>
         Configuration B had the most balanced profile, which informed the scheme
@@ -1363,13 +1347,13 @@ function ImpactBlock() {
       <ExtendCard title="Questionnaire figures: baseline, change and information needs">
         <Figure
           src={`${ACTIVITY_FIG}/fig1-baseline-awareness-en.avif`}
-          alt="Figure 11 — baseline awareness and knowledge of joint cartilage (pre-activity)"
+          alt="Figure 10 — baseline awareness and knowledge of joint cartilage (pre-activity)"
           width={4000}
           height={1248}
           caption={
             <>
               <strong>
-                Figure 11 | Baseline awareness and knowledge of joint cartilage
+                Figure 10 | Baseline awareness and knowledge of joint cartilage
                 (pre-activity, n = 24).
               </strong>{" "}
               (A) Prior attention to cartilage health. (B) Self-rated
@@ -1381,13 +1365,13 @@ function ImpactBlock() {
         />
         <Figure
           src={`${ACTIVITY_FIG}/fig2-product-training-en.avif`}
-          alt="Figure 12 — product use, training, and perceived changes (pre-activity)"
+          alt="Figure 11 — product use, training, and perceived changes (pre-activity)"
           width={4000}
           height={2165}
           caption={
             <>
               <strong>
-                Figure 12 | Product use, training, and perceived changes
+                Figure 11 | Product use, training, and perceived changes
                 (pre-activity, n = 24).
               </strong>{" "}
               (A) Products ever used (multi-select; 16/24 had used at least one
@@ -1402,13 +1386,13 @@ function ImpactBlock() {
         />
         <Figure
           src={`${ACTIVITY_FIG}/fig3-pre-post-change-en.avif`}
-          alt="Figure 13 — pre-post change in self-rated knowledge and willingness"
+          alt="Figure 12 — pre-post change in self-rated knowledge and willingness"
           width={4000}
           height={859}
           caption={
             <>
               <strong>
-                Figure 13 | Pre-post change in self-rated knowledge and
+                Figure 12 | Pre-post change in self-rated knowledge and
                 willingness (paired, n = 24).
               </strong>{" "}
               (A) Self-rated understanding increased from a mean of 2.08 to 3.63
@@ -1421,13 +1405,13 @@ function ImpactBlock() {
         />
         <Figure
           src={`${ACTIVITY_FIG}/fig4-post-knowledge-needs-en.avif`}
-          alt="Figure 14 — post-activity knowledge and information needs"
+          alt="Figure 13 — post-activity knowledge and information needs"
           width={4000}
           height={1321}
           caption={
             <>
               <strong>
-                Figure 14 | Post-activity knowledge and information needs (n =
+                Figure 13 | Post-activity knowledge and information needs (n =
                 24).
               </strong>{" "}
               (A) Correct answer rate by knowledge question; the mean was 79.2%
@@ -1440,13 +1424,13 @@ function ImpactBlock() {
         />
         <Figure
           src={`${ACTIVITY_FIG}/fig5-feedback-themes-en.avif`}
-          alt="Figure 15 — illustrative feedback themes before and after the activity"
+          alt="Figure 14 — illustrative feedback themes before and after the activity"
           width={4000}
           height={1869}
           caption={
             <>
               <strong>
-                Figure 15 | Illustrative feedback themes from the simulated
+                Figure 14 | Illustrative feedback themes from the simulated
                 open-text responses before and after the activity.
               </strong>{" "}
               The themes are not verbatim quotes and are not frequency-counted.
@@ -1471,13 +1455,13 @@ function ImpactBlock() {
       <ExtendCard title="Questionnaire figures: knowledge, acceptance and feedback">
         <Figure
           src={`${LECTURE_FIG}/s1-pre-awareness-en.avif`}
-          alt="Figure 16 — pre-lecture awareness and self-rated understanding"
+          alt="Figure 15 — pre-lecture awareness and self-rated understanding"
           width={4000}
           height={1297}
           caption={
             <>
               <strong>
-                Figure 16 | Pre-lecture awareness and self-rated understanding
+                Figure 15 | Pre-lecture awareness and self-rated understanding
                 (n = 24).
               </strong>{" "}
               (A) Prior exposure to synthetic biology. (B) Self-rated
@@ -1488,13 +1472,13 @@ function ImpactBlock() {
         />
         <Figure
           src={`${LECTURE_FIG}/s2-pre-attitudes-en.avif`}
-          alt="Figure 17 — pre-lecture attitudes and expectations"
+          alt="Figure 16 — pre-lecture attitudes and expectations"
           width={4000}
           height={1300}
           caption={
             <>
               <strong>
-                Figure 17 | Pre-lecture attitudes and expectations (n = 24).
+                Figure 16 | Pre-lecture attitudes and expectations (n = 24).
               </strong>{" "}
               (A) Feelings about synthetic biology (multi-select). (B) Overall
               attitude toward synthetic biology. (C) Topics participants most
@@ -1504,13 +1488,13 @@ function ImpactBlock() {
         />
         <Figure
           src={`${LECTURE_FIG}/s3-post-knowledge-needs-en.avif`}
-          alt="Figure 18 — post-lecture knowledge, attitude, and information needs"
+          alt="Figure 17 — post-lecture knowledge, attitude, and information needs"
           width={4000}
           height={1300}
           caption={
             <>
               <strong>
-                Figure 18 | Post-lecture knowledge, attitude, and information
+                Figure 17 | Post-lecture knowledge, attitude, and information
                 needs (n = 24).
               </strong>{" "}
               (A) Correct answer rate by knowledge question; the mean was 76.7%
@@ -1522,13 +1506,13 @@ function ImpactBlock() {
         />
         <Figure
           src={`${LECTURE_FIG}/s4-understanding-acceptance-en.avif`}
-          alt="Figure 19 — self-rated understanding and technology acceptance"
+          alt="Figure 18 — self-rated understanding and technology acceptance"
           width={4000}
           height={992}
           caption={
             <>
               <strong>
-                Figure 19 | Self-rated understanding and technology acceptance
+                Figure 18 | Self-rated understanding and technology acceptance
                 (paired, n = 24).
               </strong>{" "}
               (A) Self-rated understanding increased from a mean of 2.17 to 3.63
@@ -1541,13 +1525,13 @@ function ImpactBlock() {
         />
         <Figure
           src={`${LECTURE_FIG}/s5-feedback-themes-en.avif`}
-          alt="Figure 20 — illustrative feedback themes before and after the lecture"
+          alt="Figure 19 — illustrative feedback themes before and after the lecture"
           width={4000}
           height={1844}
           caption={
             <>
               <strong>
-                Figure 20 | Illustrative feedback themes before and after the
+                Figure 19 | Illustrative feedback themes before and after the
                 lecture.
               </strong>{" "}
               The statements are simulated feedback directions, not verbatim
