@@ -1,3 +1,4 @@
+import { FigureCaption } from "../../components/FigureCaption";
 import { References } from "../../components/References";
 import {
   useCallback,
@@ -87,7 +88,7 @@ function FigureBlock({ block }: { block: M3Block }) {
         style={block.width ? { maxWidth: block.width } : undefined}
       />
       {block.caption ? (
-        <figcaption className="figure-caption">{block.caption}</figcaption>
+        <FigureCaption className="figure-caption">{block.caption}</FigureCaption>
       ) : null}
     </figure>
   );

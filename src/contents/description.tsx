@@ -1,5 +1,9 @@
+import { FigureCaption } from "../components/FigureCaption";
 import { References } from "../components/References";
-import { FigureSourceCitation } from "../components/FigureSourceCitation";
+import {
+  FigureSourceCitation,
+  FigureSourceEntry,
+} from "../components/FigureSourceCitation";
 import { useState, type ReactNode } from "react";
 import { BirdLanding } from "../components/BirdCursor";
 import "./description.css";
@@ -68,7 +72,7 @@ function DescriptionFigure({
           decoding="async"
         />
       )}
-      <figcaption className="figure-caption article-figure__caption">
+      <FigureCaption className="figure-caption article-figure__caption">
         <strong>
           Figure {number} | {title}.
         </strong>{" "}
@@ -79,7 +83,7 @@ function DescriptionFigure({
             href={`#description-figure-${String(number).replace(/\./g, "-")}-sources`}
           />
         )}
-      </figcaption>
+      </FigureCaption>
     </figure>
   );
 }
@@ -832,11 +836,8 @@ export function Description() {
             id="figure-sources-and-credits"
             showBird={false}
           >
-            <div className="references-list figure-credits">
-              <section id="description-figure-1-sources">
-                <h3>
-                  Figure 1 | Knee Support and Discomfort Across Life Stages
-                </h3>
+            <ul className="references-list figure-sources-list">
+              <FigureSourceEntry source={1} id="description-figure-1-sources">
                 <p>
                   Source photographs: young adult, cottonbro studio / Pexels,
                   photo 7339492; adult, Towfiqu barbhuiya / Pexels, photo
@@ -846,38 +847,37 @@ export function Description() {
                   and should not be presented as clinical evidence or
                   confirmation of a diagnosis.
                 </p>
-                <p className="description-credit-links">
+                <p className="figure-source-links">
                   <a href="https://www.pexels.com/photo/7339492/">
                     Young adult
                   </a>
+                  {"; "}
                   <a href="https://www.pexels.com/photo/11349880/">Adult</a>
+                  {"; "}
                   <a href="https://www.pexels.com/photo/18851495/">
                     Older adult
                   </a>
+                  {"; "}
                   <a href="https://www.pexels.com/license/">Pexels License</a>
                 </p>
-              </section>
-              <section id="description-figure-2-sources">
-                <h3>Figure 2 | Global Burden of Osteoarthritis</h3>
+              </FigureSourceEntry>
+              <FigureSourceEntry source={2} id="description-figure-2-sources">
                 <p>
                   Chen et al. (2026), Figure 1, licensed CC BY-NC-ND 4.0. Retain
                   the original figure and complete attribution, and observe the
                   restrictions on commercial use and derivative works.
                 </p>
-                <p className="description-credit-links">
+                <p className="figure-source-links">
                   <a href="https://doi.org/10.1016/j.jot.2025.11.005">
                     Figure 2 source
                   </a>
+                  {"; "}
                   <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">
                     CC BY-NC-ND 4.0
                   </a>
                 </p>
-              </section>
-              <section id="description-figure-3-sources">
-                <h3>
-                  Figure 3 | Severity and Anatomical Distribution of Cartilage
-                  Injuries
-                </h3>
+              </FigureSourceEntry>
+              <FigureSourceEntry source={3} id="description-figure-3-sources">
                 <p>
                   Jiang et al. (2026), Figure 3, licensed CC BY-NC-ND 4.0. The
                   original figure shows the distribution and severity grades of
@@ -886,34 +886,35 @@ export function Description() {
                   prevalence estimate. Observe the restrictions on commercial
                   use and modification.
                 </p>
-                <p className="description-credit-links">
+                <p className="figure-source-links">
                   <a href="https://doi.org/10.1111/os.70272">Figure 3 source</a>
+                  {"; "}
                   <a href="https://onlinelibrary.wiley.com/doi/epdf/10.1111/os.70272">
                     Original figure in the article PDF (p. 676)
                   </a>
+                  {"; "}
                   <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">
                     CC BY-NC-ND 4.0
                   </a>
                 </p>
-              </section>
-              <section id="description-figure-4-sources">
-                <h3>Figure 4 | Zonal Architecture</h3>
+              </FigureSourceEntry>
+              <FigureSourceEntry source={4} id="description-figure-4-sources">
                 <p>
                   Morouço, Fernandes &amp; Lattanzi (2021), Figure 1, licensed
                   CC BY 4.0. Consult the original legend for third-party artwork
                   attribution.
                 </p>
-                <p className="description-credit-links">
+                <p className="figure-source-links">
                   <a href="https://doi.org/10.3390/jfb12010017">
                     Original article
                   </a>
+                  {"; "}
                   <a href="https://creativecommons.org/licenses/by/4.0/">
                     CC BY 4.0
                   </a>
                 </p>
-              </section>
-              <section id="description-figure-5-sources">
-                <h3>Figure 5 | Current Treatment Pathways</h3>
+              </FigureSourceEntry>
+              <FigureSourceEntry source={5} id="description-figure-5-sources">
                 <p>
                   Left: Medvedeva et al. (2018), Figure 3, CC BY 4.0. Upper
                   right: Funkcinės Terapijos Centras / Pexels, photo 20860595,
@@ -925,49 +926,51 @@ export function Description() {
                   BY-SA 4.0; the other panels retain their respective licenses.
                   The composite layout was arranged by ZJU-China.
                 </p>
-                <p className="description-credit-links">
+                <p className="figure-source-links">
                   <a href="https://doi.org/10.3390/ijms19082366">
                     Medvedeva article
                   </a>
+                  {"; "}
                   <a href="https://www.pexels.com/photo/20860595/">
                     Rehabilitation photo
                   </a>
+                  {"; "}
                   <a href="https://commons.wikimedia.org/wiki/File:Osteoarthritis.png">
                     BruceBlaus: Osteoarthritis
                   </a>
+                  {"; "}
                   <a href="https://commons.wikimedia.org/wiki/File:Knee_Replacement.png">
                     BruceBlaus: Knee Replacement
                   </a>
+                  {"; "}
                   <a href="https://creativecommons.org/licenses/by-sa/4.0/">
                     CC BY-SA 4.0 (lower-right panel)
                   </a>
+                  {"; "}
                   <a href="https://creativecommons.org/licenses/by/4.0/">
                     CC BY 4.0
                   </a>
+                  {"; "}
                   <a href="https://www.pexels.com/license/">Pexels License</a>
                 </p>
-              </section>
-              <section id="description-figure-6-sources">
-                <h3>Figure 6 | Hydrogel Strategies</h3>
+              </FigureSourceEntry>
+              <FigureSourceEntry source={6} id="description-figure-6-sources">
                 <p>
                   Cavallo et al. (2026), Figure 1, CC BY 4.0. Credit the authors
                   and source and indicate modifications. Included third-party
                   graphics may require separate permission.
                 </p>
-                <p className="description-credit-links">
+                <p className="figure-source-links">
                   <a href="https://doi.org/10.3390/gels12050350">
                     Figure 6 source
                   </a>
+                  {"; "}
                   <a href="https://creativecommons.org/licenses/by/4.0/">
                     CC BY 4.0
                   </a>
                 </p>
-              </section>
-              <section id="description-figure-7-sources">
-                <h3>
-                  Figure 7 | Pathological Factors and Hydrogel Intervention
-                  Needs
-                </h3>
+              </FigureSourceEntry>
+              <FigureSourceEntry source={7} id="description-figure-7-sources">
                 <p>
                   Gan et al. (2024), Figure 1, licensed CC BY 4.0. If the figure
                   includes third-party graphics, such as BioRender elements,
@@ -975,16 +978,17 @@ export function Description() {
                   open-access license for the article does not necessarily
                   authorise unrestricted reuse of every component.
                 </p>
-                <p className="description-credit-links">
+                <p className="figure-source-links">
                   <a href="https://doi.org/10.3390/biomedicines12040923">
                     Figure 7 source
                   </a>
+                  {"; "}
                   <a href="https://creativecommons.org/licenses/by/4.0/">
                     CC BY 4.0
                   </a>
                 </p>
-              </section>
-            </div>
+              </FigureSourceEntry>
+            </ul>
           </References>
         </article>
       </div>

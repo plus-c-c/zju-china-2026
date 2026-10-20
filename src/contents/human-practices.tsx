@@ -1,3 +1,4 @@
+import { FigureCaption } from "../components/FigureCaption";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { flushSync } from "react-dom";
@@ -35,7 +36,7 @@ function Figure({
   return (
     <figure className="ihp-figure">
       <img src={src} alt={alt} loading="lazy" />
-      <figcaption>{caption}</figcaption>
+      <FigureCaption>{caption}</FigureCaption>
     </figure>
   );
 }

@@ -1,3 +1,4 @@
+import { FigureCaptionText } from "../../components/FigureCaption";
 import { References } from "../../components/References";
 import { CitationText } from "../../components/CitationText";
 import {
@@ -14,7 +15,10 @@ import {
   STEP_ADVANCE_ENABLED,
   useBoundaryStepAdvance,
 } from "../../components/useBoundaryStepAdvance";
-import { useCardWheel, useStepperProgress } from "../../components/stepperWheel";
+import {
+  useCardWheel,
+  useStepperProgress,
+} from "../../components/stepperWheel";
 import "./model.css";
 
 /** Scroll distance per protein step, in vh. */
@@ -386,11 +390,13 @@ function ProteinStepper({ steps }: { steps: ProteinStep[] }) {
               <div className="protein-caption-stack">
                 {transition.outgoing && (
                   <div className="protein-caption-out" aria-hidden="true">
-                    {transition.outgoing.caption}
+                    <FigureCaptionText>
+                      {transition.outgoing.caption}
+                    </FigureCaptionText>
                   </div>
                 )}
                 <div className="protein-caption-in" key={step?.key}>
-                  {step?.caption}
+                  <FigureCaptionText>{step?.caption}</FigureCaptionText>
                 </div>
               </div>
             </figcaption>

@@ -1,4 +1,8 @@
-import { FigureSourceCitation } from "../components/FigureSourceCitation";
+import { FigureCaption } from "../components/FigureCaption";
+import {
+  FigureSourceCitation,
+  FigureSourceEntry,
+} from "../components/FigureSourceCitation";
 import { References } from "../components/References";
 const CIF = "https://static.igem.wiki/teams/6102/wiki/images/cif/";
 const BASE = import.meta.env.BASE_URL;
@@ -88,12 +92,12 @@ export function Implementation() {
             loading="lazy"
             decoding="async"
           />
-          <figcaption className="figure-caption">
+          <FigureCaption className="figure-caption">
             Figure 1 | Proposed NEST implementation workflow. Different
             application-specific formulations share manufacturing and
             use-support systems and will each undergo validation for their
             intended applications.
-          </figcaption>
+          </FigureCaption>
         </figure>
 
         <h3 className="mt-5 mb-3">
@@ -146,7 +150,7 @@ export function Implementation() {
             loading="lazy"
             decoding="async"
           />
-          <figcaption className="figure-caption">
+          <FigureCaption className="figure-caption">
             Figure 2 | Four-step workflow in the publicly available app
             interface. Formulation information is loaded after QR-code scanning,
             and users proceed to premixing instructions after verifying each
@@ -155,7 +159,7 @@ export function Implementation() {
               source={1}
               href="#implementation-figure-sources"
             />
-          </figcaption>
+          </FigureCaption>
         </figure>
         <p>
           The app provides a standardized verification workflow for different
@@ -205,13 +209,16 @@ export function Implementation() {
             loading="lazy"
             decoding="async"
           />
-          <figcaption className="figure-caption">
+          <FigureCaption className="figure-caption">
             Figure 3 | The upper image shows the material-preparation unit, and
             the lower image shows the microfluidic mixing-chip structure. The
             three component streams converge in the microchannels before
-            proceeding to storage and delivery. Images adapted from the
-            team&rsquo;s Hardware report.
-          </figcaption>
+            proceeding to storage and delivery.
+            <FigureSourceCitation
+              source={2}
+              href="#implementation-hardware-sources"
+            />
+          </FigureCaption>
         </figure>
         <p>
           The device is also connected to a web interface. The STM32 controls
@@ -413,15 +420,17 @@ export function Implementation() {
           title="Figure Sources and Credits"
           id="figure-sources-and-credits"
         >
-          <div className="references-list figure-credits">
-            <section id="implementation-figure-sources">
-              <h3>[S1] Figure 2 | Application interface</h3>
+          <ul className="references-list figure-sources-list">
+            <FigureSourceEntry source={1} id="implementation-figure-sources">
               <p>
                 Image source: the team&rsquo;s publicly accessible{" "}
                 <a href={`${BASE}software`}>Wiki software page</a>.
               </p>
-            </section>
-          </div>
+            </FigureSourceEntry>
+            <FigureSourceEntry source={2} id="implementation-hardware-sources">
+              <p>Images adapted from the team&rsquo;s Hardware report.</p>
+            </FigureSourceEntry>
+          </ul>
         </References>
       </div>
     </div>

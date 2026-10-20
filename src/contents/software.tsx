@@ -1,3 +1,4 @@
+import { FigureCaption } from "../components/FigureCaption";
 /**
  * Software page — usage documentation for both software tools, converted from
  * `Software-new-en.md` (2026-10-16):
@@ -143,12 +144,12 @@ export function Software() {
               loading="lazy"
               decoding="async"
             />
-            <figcaption className="figure-caption">
-              Figure 1 | Pipeline overview — ① flow name and the three-step chain
+            <FigureCaption className="figure-caption">
+              Figure 1 | Pipeline overview. ① flow name and the three-step chain
               (TIGER2 FAMD → GROMACS → Magnetomech, with products passed along
               the chain); ② completion (2 / 3 steps complete); ③ each step card
               with its run status.
-            </figcaption>
+            </FigureCaption>
           </figure>
 
           <h3 className="mt-5 mb-3">1.2 Components and Implementation</h3>
@@ -316,12 +317,12 @@ export function Software() {
               loading="lazy"
               decoding="async"
             />
-            <figcaption className="figure-caption">
-              Figure 2 | Step 1 parameter panel — ① sequence and annotation
+            <FigureCaption className="figure-caption">
+              Figure 2 | Step 1 parameter panel. ① sequence and annotation
               input; ② Where this step runs (the step can only start once it
               shows configured); ③ the Derive sub-panel; ④ Motif annotations; ⑤
               Save / Save &amp; restart.
-            </figcaption>
+            </FigureCaption>
           </figure>
 
           <h5 className="mt-4 mb-2">
@@ -505,12 +506,12 @@ export function Software() {
               loading="lazy"
               decoding="async"
             />
-            <figcaption className="figure-caption">
-              Figure 3 | Step 3 run summary — ① the step and its locally computed
+            <FigureCaption className="figure-caption">
+              Figure 3 | Step 3 run summary. ① the step and its locally computed
               result (cache/…); ② applied magnetic field parameters (incl.
               particle volume fraction 0.05); ③ applied field profile (generated
               from the parameters in uniform mode, not read from a CSV file).
-            </figcaption>
+            </FigureCaption>
           </figure>
 
           <h4 className="mt-4 mb-3">1.3.3 Running and Monitoring: Control</h4>
@@ -714,14 +715,14 @@ export function Software() {
               loading="lazy"
               decoding="async"
             />
-            <figcaption className="figure-caption">
-              Figure 4 | Ordering screen — ① select the preconditioned SELP
+            <FigureCaption className="figure-caption">
+              Figure 4 | Ordering screen. ① select the preconditioned SELP
               scaffold (2KY-5-Tag / 2KY-10-Tag — the corresponding 2KY-5 /
               2KY-10 scaffolds with SnoopTag2 added); ② select the functional
               module (Mitochondrial Therapy / Magnetically Responsive Anisotropy
               / GAG Retention); ③ enter the order quantity (vials); ④ live order
               summary.
-            </figcaption>
+            </FigureCaption>
           </figure>
 
           <h3 className="mt-5 mb-3">
@@ -823,12 +824,12 @@ export function Software() {
               loading="lazy"
               decoding="async"
             />
-            <figcaption className="figure-caption">
-              Figure 5 | The app wizard — ① scan the QR code (manual entry also
+            <FigureCaption className="figure-caption">
+              Figure 5 | The app wizard. ① scan the QR code (manual entry also
               possible); ② load the formulation-specific Instructions for Use; ③
               add the reagents in order and confirm each one; ④ premixing — wait
               for the premixer&rsquo;s green light.
-            </figcaption>
+            </FigureCaption>
           </figure>
 
           <h3 className="mt-5 mb-3">2.3 Tech Stack</h3>

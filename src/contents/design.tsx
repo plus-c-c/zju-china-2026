@@ -1,3 +1,4 @@
+import { FigureCaption } from "../components/FigureCaption";
 import { References } from "../components/References";
 import { FigureImage } from "../components/FigureImage";
 import { MathFormula } from "../components/MathFormula";
@@ -48,12 +49,12 @@ export function Design() {
               className="figure-img img-fluid rounded"
               style={{ width: "100%" }}
             />
-            <figcaption className="figure-caption">
+            <FigureCaption className="figure-caption">
               Figure 0.1 | Overview of the NEST platform. Recombinant SELP
               scaffolds and functional modules form a hydrogel precursor for
               injection, magnetic alignment, and in situ photocrosslinking under
               450 nm blue light.
-            </figcaption>
+            </FigureCaption>
           </figure>
           <h2
             id="1-programmable-material-foundation-the-selp-scaffold"
@@ -290,7 +291,7 @@ export function Design() {
               style={{ width: "100%" }}
               cropTop={0.152}
             />
-            <figcaption className="figure-caption">
+            <FigureCaption className="figure-caption">
               Figure 1.1 | Domain composition and sequence nomenclature of
               SELPs. Schematic of the elastin-like, adhesion, and silk-like
               domains; the insertion positions of functional residues and of the
@@ -299,7 +300,7 @@ export function Design() {
               elastic modulus (E), and gelation time (GEL) of each construct. K
               and Y denote lysine and tyrosine; RGD is the cell-adhesion motif;
               m is the number of repeat units.
-            </figcaption>
+            </FigureCaption>
           </figure>
           <h3 className="mt-5 mb-3">
             1.2 In Situ Gelation: Ru/SPS Visible-Light Crosslinking
@@ -352,13 +353,13 @@ export function Design() {
               className="figure-img img-fluid rounded"
               style={{ width: "100%" }}
             />
-            <figcaption className="figure-caption">
+            <FigureCaption className="figure-caption">
               Figure 1.2 | Ru/SPS-mediated visible-light crosslinking and in
               situ gelation of SELPs. Tyrosine residues on the protein chains
               form dityrosine crosslinks under Ru/SPS and 450 nm blue light,
               converting the SELP precursor solution into a covalent network;
               photographs show the material before and after irradiation.
-            </figcaption>
+            </FigureCaption>
           </figure>
           <h3 className="mt-5 mb-3">
             1.3 Expression, Purification, and Degradation
@@ -395,14 +396,14 @@ export function Design() {
               className="figure-img img-fluid rounded"
               style={{ width: "100%" }}
             />
-            <figcaption className="figure-caption">
+            <FigureCaption className="figure-caption">
               Figure 1.3 | Purification of SELPs by inverse transition cycling
               (ITC), exploiting their thermoresponsiveness. Cell lysis is
               followed by heating (65 °C, 2 h) to induce SELP aggregation,
               cooling (4 °C, overnight) to redissolve SELPs, and centrifugation
               to remove precipitate, progressively removing contaminant proteins
               and recovering the target protein.
-            </figcaption>
+            </FigureCaption>
           </figure>
           <p>
             Regarding degradation, the SELP scaffold can{" "}
@@ -549,11 +550,11 @@ export function Design() {
               className="figure-img img-fluid rounded"
               style={{ width: "70%" }}
             />
-            <figcaption className="figure-caption">
+            <FigureCaption className="figure-caption">
               Figure 2.1 | Structural origin of the Snoop ligation system.
               SnoopTagJr/DogTag are illustrated as derived from the split of the
               RrgA domain; NEST assembly uses the SnoopTag2/DogTag interface.
-            </figcaption>
+            </FigureCaption>
           </figure>
           <p>
             Building on the first-generation system, we performed directed
@@ -648,7 +649,7 @@ export function Design() {
               className="figure-img img-fluid rounded"
               style={{ width: "100%" }}
             />
-            <figcaption className="figure-caption">
+            <FigureCaption className="figure-caption">
               Figure 2.2 | Placement of standardized interfaces and strategies
               for assembling functional modules. Top: terminal insertion,
               dual-terminal interfaces, inter-domain insertion, and two
@@ -656,7 +657,7 @@ export function Design() {
               interface to an interface standard. Bottom: pluggable functional
               modules (e.g., Fe₃O₄-binding, GAG retention, and cargo) connect
               through interfaces such as DogTag.
-            </figcaption>
+            </FigureCaption>
           </figure>
           <p>
             The properties of the scaffold and the assembly of its functions are
@@ -673,9 +674,9 @@ export function Design() {
           </h3>
           <p>
             Osteoarthritis (OA) is a progressive degenerative joint disease
-            frequently accompanied by pain, restricted mobility, and declining
-            joint function; global burden-of-disease analyses estimate that
-            about 607 million people had OA in 2021
+            often accompanied by pain, restricted mobility, and declining joint
+            function. Global burden-of-disease analyses estimate that about 607
+            million people had OA in 2021
             <sup>
               [
               <a
@@ -687,39 +688,34 @@ export function Design() {
               </a>
               ]
             </sup>
-            . During the project, we consulted Prof. Hongwei Ouyang of Zhejiang
-            University about the design of NEST. Prof. Ouyang has long worked on
-            articular cartilage tissue engineering and regenerative medicine and
-            has carried out clinical transplantation of tissue-engineered
-            articular cartilage. In our discussion, Prof. Ouyang suggested that
-            cartilage repair should not stop at filling the defect but must also
-            address the persistent degenerative microenvironment during repair;
-            he also noted that the degradation rate of the material should be
-            coordinated with new tissue formation and that the material should
-            integrate reliably with the surrounding cartilage. This prompted us
-            to shift the design question from “how to fill a cartilage defect”
-            to “how to cope with a continuously deteriorating local
-            microenvironment”: besides an injectable, in-situ-formable
-            biomimetic scaffold, the material must incorporate functionally
-            distinct modules that address the interrelated problems of
-            mechanical imbalance, matrix loss, and impaired cell function.
+            . We consulted Prof. Hongwei Ouyang of Zhejiang University about
+            NEST. He has long worked on articular cartilage tissue engineering
+            and regenerative medicine, including clinical transplantation of
+            tissue-engineered articular cartilage. He suggested that repair must
+            go beyond defect filling to address the persistent degenerative
+            microenvironment, coordinate material degradation with new tissue
+            formation, and integrate reliably with surrounding cartilage. This
+            shifted our design question from “how to fill a cartilage defect” to
+            “how to cope with a continuously deteriorating local
+            microenvironment.” Alongside an injectable, in-situ-formable
+            biomimetic scaffold, NEST therefore needs distinct modules to
+            address the interrelated problems of mechanical imbalance, matrix
+            loss, and impaired cell function.
           </p>
           <p>
             In healthy cartilage, the zonal arrangement of collagen fibrils, the
-            proteoglycan-rich ECM, and chondrocytes together maintain load
-            bearing and homeostasis. As OA progresses, microdamage and abnormal
-            loading increase the pressure toward matrix breakdown; loss of
-            glycosaminoglycans (GAGs) reduces the fixed charge density,
-            hydration, and compressive resistance of the tissue; and
-            inflammatory signaling and cellular dysfunction in turn suppress
-            matrix synthesis and promote further degradation. Within such a
-            cycle, increasing material stiffness alone, or supplementing a
-            single matrix component, may not suffice to change the local
-            degenerative trajectory.
+            proteoglycan-rich ECM, and chondrocytes maintain load bearing and
+            homeostasis. In OA, microdamage and abnormal loading promote matrix
+            breakdown; loss of glycosaminoglycans (GAGs) reduces the fixed
+            charge density, hydration, and compressive resistance; and
+            inflammatory signaling and cellular dysfunction suppress matrix
+            synthesis and accelerate degradation. In this cycle, increasing
+            material stiffness alone or supplementing a single matrix component
+            may not change the local degenerative trajectory.
           </p>
           <p>
-            NEST therefore maps this pathological cycle onto three cooperating
-            but mechanistically distinct design goals:
+            NEST maps this cycle onto three cooperating but mechanistically
+            distinct design goals:
           </p>
           <p>
             <strong>Module 1</strong> uses a magnetically responsive component
@@ -733,10 +729,9 @@ export function Design() {
           <p>
             <strong>Module 3</strong> uses an enzyme-responsive linker to
             control the attachment of mitochondria-loaded liposomes to the
-            scaffold, exploring the delivery of cellular metabolic support in
-            the degenerative microenvironment. The design rationale,
-            implementation, and validation boundaries of each module are
-            described below.
+            scaffold, exploring local delivery of cellular metabolic support.
+            The rationale, implementation, and validation boundaries of each
+            module are described below.
           </p>
           <h3
             id="3-2-module-1-magnetically-responsive-anisotropy-directional-load-bearing"
@@ -785,7 +780,7 @@ export function Design() {
               className="figure-img img-fluid rounded"
               style={{ width: "100%" }}
             />
-            <figcaption className="figure-caption">
+            <FigureCaption className="figure-caption">
               Figure 3.2.1 | Native articular cartilage architecture and the
               directional organization that serves as the biomimetic reference.
               Schematic of the position of articular cartilage in the joint and
@@ -794,7 +789,7 @@ export function Design() {
               depends not only on matrix composition but also on spatial
               arrangement. This architecture provides a biomimetic reference for
               NEST in exploring directional load bearing.
-            </figcaption>
+            </FigureCaption>
           </figure>
           <h4 className="mt-4 mb-3">3.2.2 Magnetically Guided Gelation</h4>
           <p>
@@ -821,7 +816,7 @@ export function Design() {
               className="figure-img img-fluid rounded"
               style={{ width: "100%" }}
             />
-            <figcaption className="figure-caption">
+            <FigureCaption className="figure-caption">
               Figure 3.2.2 | Design schematic of how the magnetically responsive
               component and an external magnetic field jointly establish
               internal orientation in the scaffold. After injection of the SELP
@@ -829,7 +824,7 @@ export function Design() {
               the defect, an external magnetic field aligns the particles and
               the structures coupled to them, and subsequent photocrosslinking
               fixes the material network.
-            </figcaption>
+            </FigureCaption>
           </figure>
           <h4 className="mt-4 mb-3">
             3.2.3 Molecular Coupling of Magnetic Particles to the Scaffold
@@ -878,14 +873,14 @@ export function Design() {
               className="figure-img img-fluid rounded"
               style={{ width: "100%" }}
             />
-            <figcaption className="figure-caption">
+            <FigureCaption className="figure-caption">
               Figure 3.2.3 | Molecular design for coupling magnetic
               nanoparticles to the SELP scaffold via TVNFKLY. TVNFKLY binds
               Fe₃O₄, and the DogTag on the fusion protein forms a covalent
               linkage with SnoopTag2 on SELP in the presence of the ligase,
               thereby attaching the magnetically responsive component to the
               protein scaffold.
-            </figcaption>
+            </FigureCaption>
           </figure>
           <h4 className="mt-4 mb-3">3.2.4 Magneto-Mechanical Coupling Model</h4>
           <p>
@@ -902,14 +897,14 @@ export function Design() {
               className="figure-img img-fluid rounded"
               style={{ width: "100%" }}
             />
-            <figcaption className="figure-caption">
+            <FigureCaption className="figure-caption">
               Figure 3.2.4 | Magneto-mechanical coupling model: multiscale
               analysis from magnetic field distribution to material response.
               Magnetic field distribution, the spatial orientation of magnetic
               particles and their coupled structures, and the modeling approach
               that uses orientation information to analyze stress, deformation,
               and aqueous-phase flow.
-            </figcaption>
+            </FigureCaption>
           </figure>
           <h3
             id="3-3-module-2-cpc-link-n-maintaining-matrix-retention-and-renewal"
@@ -962,7 +957,7 @@ export function Design() {
               style={{ width: "100%" }}
               cropTop={0.138}
             />
-            <figcaption className="figure-caption">
+            <FigureCaption className="figure-caption">
               Figure 3.3.1 | Mechanism of CPC-associated water retention and
               osmotic pressure build-up. Negatively charged groups on GAG
               chains, the electrostatic complexes they form with multiple
@@ -970,7 +965,7 @@ export function Design() {
               fixed charges, mobile cations (Na⁺), and water molecules: high
               osmotic pressure → massive water influx → higher swelling pressure
               → higher water content → higher compressive modulus.
-            </figcaption>
+            </FigureCaption>
           </figure>
           <h4 className="mt-4 mb-3">
             3.3.2 CPC: Reversible Binding to Sulfated GAG
@@ -1057,14 +1052,14 @@ export function Design() {
               style={{ width: "100%" }}
               cropTop={0.102}
             />
-            <figcaption className="figure-caption">
+            <FigureCaption className="figure-caption">
               Figure 3.3.2 | Electrostatic interaction between CPC and GAG and
               the matrix-retention design. CPC anchored on the SELP scaffold
               interacts reversibly with negatively charged GAG, increasing the
               fixed charge density of the system; the schematic also shows the
               expected links between this design and local matrix retention,
               hydration, swelling pressure, and compressive performance.
-            </figcaption>
+            </FigureCaption>
           </figure>
           <h4 className="mt-4 mb-3">
             3.3.3 Link-N and Assembly of the Dual-Function Module
@@ -1145,17 +1140,18 @@ export function Design() {
             <FigureImage
               src="https://static.igem.wiki/teams/6102/wiki/images/design/03/04.avif"
               alt="Assembly of the CPC and Link-N dual-function module onto the SELP scaffold."
+              maxWidth={700}
               className="figure-img img-fluid rounded"
-              style={{ width: "100%" }}
+              style={{ width: "88%" }}
             />
-            <figcaption className="figure-caption">
+            <FigureCaption className="figure-caption">
               Figure 3.3.3 | Design of the CPC/Link-N dual-function module
               attached to the SELP scaffold. Assembly of a
               dogtag–CPC–linker–Link-N fusion protein onto SELP through the
               standardized SnoopTag2/dogtag interface. CPC focuses on
               interaction with sulfated GAG; Link-N supports HA-related matrix
               retention and matrix synthesis.
-            </figcaption>
+            </FigureCaption>
           </figure>
           <h3
             id="3-4-module-3-mmp-13-responsive-mitochondrial-delivery-linking-local-response-to-cellular-support"
@@ -1236,7 +1232,7 @@ export function Design() {
               className="figure-img img-fluid rounded"
               style={{ width: "100%" }}
             />
-            <figcaption className="figure-caption">
+            <FigureCaption className="figure-caption">
               Figure 3.4.1 | Overall design of the MMP-13-responsive
               mitochondrial delivery module. Three stages are shown: local
               anchoring, detachment of the responsive linker, and cellular
@@ -1245,7 +1241,7 @@ export function Design() {
               is cleaved by MMP-13, the carrier is expected to separate from the
               scaffold, and its ability to deliver cargo to chondrocytes is
               further explored.
-            </figcaption>
+            </FigureCaption>
           </figure>
           <h4 className="mt-4 mb-3">3.4.2 Design of the Responsive Protein</h4>
           <p>
@@ -1353,7 +1349,7 @@ export function Design() {
               className="figure-img img-fluid rounded"
               style={{ width: "100%" }}
             />
-            <figcaption className="figure-caption">
+            <FigureCaption className="figure-caption">
               Figure 3.4.2 | Expression precursor and control design of the
               responsive linker peptide. (A) Functional regions of the His/SUMO
               fusion precursor and the TEV cleavage design; after cleavage at
@@ -1362,7 +1358,7 @@ export function Design() {
               retain Cys, the GGGGS spacers, and dogtag; the variable regions
               are RRGPLGLSLGKR and RKGLSLGLPGRR, which have identical length and
               amino acid composition and differ only in residue order.
-            </figcaption>
+            </FigureCaption>
           </figure>
           <h4 className="mt-4 mb-3">
             3.4.3 Design of the Liposomal Delivery System
@@ -1431,7 +1427,7 @@ export function Design() {
               className="figure-img img-fluid rounded"
               style={{ width: "100%" }}
             />
-            <figcaption className="figure-caption">
+            <FigureCaption className="figure-caption">
               Figure 3.4.3 | Assembly interface between liposome and scaffold,
               and the responsive detachment mechanism. (A) Functionalized
               liposomes composed of DOPE, DOTAP, and DSPE-PEG-Mal are coupled
@@ -1441,7 +1437,7 @@ export function Design() {
               MMP-13 cleaves the responsive region, the liposome-side and
               scaffold-side linker fragments separate, and the carrier is
               expected to be uncoupled from the hydrogel network.
-            </figcaption>
+            </FigureCaption>
           </figure>
           <h3 className="mt-5 mb-3">
             3.5 Whole-Process System: From Formulation to Structure Formation in
@@ -1506,9 +1502,9 @@ export function Design() {
               className="figure-img img-fluid rounded"
               style={{ width: "100%" }}
             />
-            <figcaption className="figure-caption">
+            <FigureCaption className="figure-caption">
               Figure 3.5.2 | Hardware overview diagram.
-            </figcaption>
+            </FigureCaption>
           </figure>
           <h4 className="mt-4 mb-3">
             3.5.3 Software and Modeling: Using One Logic for Parameter Selection

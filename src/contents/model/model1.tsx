@@ -1,3 +1,4 @@
+import { FigureCaptionText } from "../../components/FigureCaption";
 import { References } from "../../components/References";
 import { CitationText } from "../../components/CitationText";
 import {
@@ -12,7 +13,10 @@ import {
   STEP_ADVANCE_ENABLED,
   useBoundaryStepAdvance,
 } from "../../components/useBoundaryStepAdvance";
-import { useCardWheel, useStepperProgress } from "../../components/stepperWheel";
+import {
+  useCardWheel,
+  useStepperProgress,
+} from "../../components/stepperWheel";
 import { MathFormula } from "../../components/MathFormula";
 import { DataTable } from "../../components/table";
 import {
@@ -56,38 +60,39 @@ function Parts({
   parts: M1Part[];
   citationize?: boolean;
 }) {
-  return (
-    <>
-      {parts.map((part, index) => {
-        if (part.t === "math") {
-          return <MathFormula key={index}>{part.v}</MathFormula>;
-        }
-        if (part.t === "em") {
-          return <em key={index}>{part.v}</em>;
-        }
-        if (part.t === "strong") {
-          return <strong key={index}>{part.v}</strong>;
-        }
-        if (part.t === "link") {
-          return (
-            <a key={index} href={part.href} target="_blank" rel="noreferrer">
-              {part.v}
-            </a>
-          );
-        }
-        return (
-          <span key={index}>
-            {citationize ? (
-              <CitationText validReferences={[1, 2, 3, 4, 5, 6]}>
-                {part.v}
-              </CitationText>
-            ) : (
-              part.v
-            )}
-          </span>
-        );
-      })}
-    </>
+  const content = parts.map((part, index) => {
+    if (part.t === "math") {
+      return <MathFormula key={index}>{part.v}</MathFormula>;
+    }
+    if (part.t === "em") {
+      return <em key={index}>{part.v}</em>;
+    }
+    if (part.t === "strong") {
+      return <strong key={index}>{part.v}</strong>;
+    }
+    if (part.t === "link") {
+      return (
+        <a key={index} href={part.href} target="_blank" rel="noreferrer">
+          {part.v}
+        </a>
+      );
+    }
+    return (
+      <span key={index}>
+        {citationize ? (
+          <CitationText validReferences={[1, 2, 3, 4, 5, 6]}>
+            {part.v}
+          </CitationText>
+        ) : (
+          part.v
+        )}
+      </span>
+    );
+  });
+  return /^\s*Figure\s+\S+\s*\|/.test(parts.map((part) => part.v).join("")) ? (
+    <FigureCaptionText>{content}</FigureCaptionText>
+  ) : (
+    <>{content}</>
   );
 }
 
@@ -278,7 +283,8 @@ function SlideInner({
             parseFloat(captionStyle.marginTop) +
             parseFloat(captionStyle.marginBottom);
         }
-        const available = content.clientHeight - figureMargins - captionHeight - 16;
+        const available =
+          content.clientHeight - figureMargins - captionHeight - 16;
         img.style.maxHeight = `${Math.max(140, Math.floor(available))}px`;
       });
     };

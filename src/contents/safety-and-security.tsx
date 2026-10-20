@@ -1,3 +1,4 @@
+import { FigureCaption } from "../components/FigureCaption";
 // English content from the team's Safety document:
 // https://rcny9dy1085s.feishu.cn/docx/TXrudTDOjo5wACxma42c7oFjn6g
 export function SafetyAndSecurity() {
@@ -207,11 +208,11 @@ export function SafetyAndSecurity() {
             loading="lazy"
             decoding="async"
           />
-          <figcaption className="figure-caption">
+          <FigureCaption className="figure-caption">
             Figure 1 | Color development in a 96-well plate after the CCK-8
             assay. Each well shows the color reaction after CCK-8 treatment
             (Figure 2.1.1 in the scaffold-group results).
-          </figcaption>
+          </FigureCaption>
         </figure>
         <p>
           <strong>Component safety.</strong> The SELP scaffold is a recombinant

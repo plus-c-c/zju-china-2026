@@ -1,4 +1,8 @@
-import { FigureSourceCitation } from "../components/FigureSourceCitation";
+import { FigureCaption } from "../components/FigureCaption";
+import {
+  FigureSourceCitation,
+  FigureSourceEntry,
+} from "../components/FigureSourceCitation";
 import { References } from "../components/References";
 const CIF = "https://static.igem.wiki/teams/6102/wiki/images/cif/";
 
@@ -29,7 +33,7 @@ export function Contribution() {
             loading="lazy"
             decoding="async"
           />
-          <figcaption className="figure-caption">
+          <FigureCaption className="figure-caption">
             Figure 1 | Community resources organized around a shared materials
             platform. Parts, protocols, computational examples, and
             software/hardware documentation are interconnected, enabling future
@@ -39,7 +43,7 @@ export function Contribution() {
               source={1}
               href="#contribution-figure-sources"
             />
-          </figcaption>
+          </FigureCaption>
         </figure>
         <div className="table-responsive mb-4">
           <table
@@ -167,7 +171,7 @@ export function Contribution() {
             loading="lazy"
             decoding="async"
           />
-          <figcaption className="figure-caption">
+          <FigureCaption className="figure-caption">
             Figure 2 | Assembly and validation logic for integrating new
             functions into the platform. A shared interface allows functional
             sequences to be replaced, while ligation assays and functional
@@ -176,7 +180,7 @@ export function Contribution() {
               source={1}
               href="#contribution-figure-sources"
             />
-          </figcaption>
+          </FigureCaption>
         </figure>
         <p>
           The ligation tools are available through{" "}
@@ -238,7 +242,7 @@ export function Contribution() {
             loading="lazy"
             decoding="async"
           />
-          <figcaption className="figure-caption">
+          <FigureCaption className="figure-caption">
             Figure 3 | SELP recovery and preparation workflow. Target-protein
             bands in the supernatants collected after heating (H-Sup) and
             cooling (C-Sup) help identify protein loss during phase transition
@@ -247,7 +251,7 @@ export function Contribution() {
               source={1}
               href="#contribution-figure-sources"
             />
-          </figcaption>
+          </FigureCaption>
         </figure>
         <p>
           Future teams can use{" "}
@@ -284,14 +288,14 @@ export function Contribution() {
             loading="lazy"
             decoding="async"
           />
-          <figcaption className="figure-caption">
+          <FigureCaption className="figure-caption">
             Figure 4 | Schematic of a representative SELP modeling and
             computational workflow.
             <FigureSourceCitation
               source={1}
               href="#contribution-figure-sources"
             />
-          </figcaption>
+          </FigureCaption>
         </figure>
         <p>
           Using wet-lab results as a reference, we calibrated the dry-lab
@@ -332,7 +336,7 @@ export function Contribution() {
             loading="lazy"
             decoding="async"
           />
-          <figcaption className="figure-caption">
+          <FigureCaption className="figure-caption">
             Figure 5 | Photograph of our reagent-preparation prototype and
             screenshots of the application interface, illustrating material
             configuration, step-by-step guidance, and material handling.
@@ -340,7 +344,7 @@ export function Contribution() {
               source={1}
               href="#contribution-figure-sources"
             />
-          </figcaption>
+          </FigureCaption>
         </figure>
         <p>
           <a href="https://2026.igem.wiki/zju-china/hardware">Hardware</a>{" "}
@@ -374,9 +378,8 @@ export function Contribution() {
           title="Figure Sources and Credits"
           id="figure-sources-and-credits"
         >
-          <div className="references-list figure-credits">
-            <section id="contribution-figure-sources">
-              <h3>[S1] Figure assets and team materials</h3>
+          <ul className="references-list figure-sources-list">
+            <FigureSourceEntry source={1} id="contribution-figure-sources">
               <p>
                 Icons and illustrations from Bioicons. Marcel Tisch, Simon
                 D&uuml;rr, jaiganesh, and Daniel-Marcos (CC0); DBCLS (CC BY
@@ -388,8 +391,8 @@ export function Contribution() {
                 and application screenshots are from our team&rsquo;s materials.{" "}
                 <a href="https://github.com/googlefonts/noto-emoji">Source</a>
               </p>
-            </section>
-          </div>
+            </FigureSourceEntry>
+          </ul>
         </References>
       </div>
     </div>
