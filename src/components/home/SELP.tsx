@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { TransparentImage } from "../TransparentImage";
 import { getStoryHandoffTop } from "./UseStoryNavigation";
+import { getPipelineFlightDamping } from "./PipelineFlightRoute";
 import "./SELP.css";
 
 const STATIC_HOME = "https://static.igem.wiki/teams/6102/wiki/images/home";
@@ -389,12 +390,12 @@ export function SelpPipeline({ readingWidth }: { readingWidth?: number } = {}) {
       frame = 0;
       root.querySelectorAll<HTMLElement>(".selp-pipeline__stage").forEach((stage) => {
         const bounds = stage.getBoundingClientRect();
-        const progress = reduced.matches ? 1 : Math.max(0, Math.min(1, (innerHeight * 0.8 - bounds.top) / (bounds.height * 1.25)));
+        const progress = reduced.matches ? 1 : Math.max(0, Math.min(1, (innerHeight * 0.9 - bounds.top) / (bounds.height * 0.8)));
         stage.style.setProperty("--pipeline-reveal", String(progress));
         const connector = stage.querySelector<HTMLElement>(".selp-pipeline__connector");
         if (connector) {
           const lineBounds = connector.getBoundingClientRect();
-          const lineProgress = reduced.matches ? 1 : Math.max(0, Math.min(1, (innerHeight * 0.8 - lineBounds.top) / Math.max(1, lineBounds.height)));
+          const lineProgress = reduced.matches ? 1 : Math.max(0, Math.min(1, (innerHeight * 0.93 - lineBounds.top) / Math.max(1, lineBounds.height)));
           connector.style.clipPath = `inset(-18px -18px calc(${(1 - lineProgress) * 100}% - 18px) -18px)`;
         }
       });
@@ -436,7 +437,8 @@ export function SelpPipeline({ readingWidth }: { readingWidth?: number } = {}) {
         previousTime = 0;
         return;
       }
-      const step = Math.sign(distance) * Math.min(Math.abs(distance), Math.max(1, Math.abs(distance) * (1 - Math.exp(-elapsed / 210))));
+      const damping = pipeline ? getPipelineFlightDamping(pipeline, window.scrollY) : 1;
+      const step = Math.sign(distance) * Math.min(Math.abs(distance), Math.max(1, Math.abs(distance) * (1 - Math.exp(-elapsed / 210)) * damping));
       window.scrollTo({ top: window.scrollY + step, behavior: "instant" });
       appliedScroll = window.scrollY;
       animation = requestAnimationFrame(animate);
@@ -493,7 +495,7 @@ export function SelpPipeline({ readingWidth }: { readingWidth?: number } = {}) {
       }
       // Do not let an old inertia target pull against the accepted wheel intent.
       target = direction > 0 ? Math.max(target, window.scrollY) : Math.min(target, window.scrollY);
-      const proposed = target + delta * (inEntry ? 0.25 : inClosing ? 0.23 : 0.32);
+      const proposed = target + delta * 0.28;
       // Keep closing links/video deliberate without changing the module scroll.
       const lead = innerHeight * (inEntry ? 0.155 : inClosing ? 0.16 : 0.22);
       target = Math.max(start, Math.min(limit, Math.max(window.scrollY - lead, Math.min(window.scrollY + lead, proposed))));

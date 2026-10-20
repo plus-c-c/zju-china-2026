@@ -348,11 +348,11 @@ body.home-story-open .app {
 .story-guide-bird { pointer-events: auto; cursor: pointer; }
 .story-guide-bird > img, .story-guide-bird__flight { pointer-events: none; }
 
-/* Change facing with a small bank rather than accumulating full rotations. */
-.story-guide-bird__flight { transition: transform 220ms ease-out; }
+/* The flight controller supplies the tangent directly, including angle wraps. */
+.story-guide-bird__flight { transition: none; }
 @media (prefers-reduced-motion: reduce) { .story-guide-bird__flight { transition: none; } }
 
-/* The module route already filters its tangent; avoid a second delayed rotation. */
+/* Keep the module route's tangent free of an additional CSS rotation delay. */
 .pipeline-bird-active .story-guide-bird__flight { transition: none; }
 
 /* Center the story and its shared bird in the full viewport, independently of navigation. */

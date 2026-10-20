@@ -192,7 +192,6 @@ export function StoryBird({ position, direction, scale }: { position: number; di
     let previousTime = began;
     let flightElapsed = 0;
     let rate = 1;
-    let heading = Math.atan2(dy - Math.PI * height, dx) * 180 / Math.PI;
     const tick = (time: number) => {
       if (document.body.classList.contains("pipeline-bird-active")) {
         // The document route owns this same bird now, regardless of which
@@ -209,10 +208,8 @@ export function StoryBird({ position, direction, scale }: { position: number; di
       let segment = samples.findIndex(value => value >= traveled);
       segment = Math.max(1, segment);
       const t = elapsed === 1 ? 1 : (segment - 1 + (traveled - samples[segment - 1]) / Math.max(0.001, samples[segment] - samples[segment - 1])) / 100;
-      const desiredHeading = Math.atan2(dy - Math.PI * height * Math.cos(Math.PI * t), dx) * 180 / Math.PI;
-      const headingDifference = ((desiredHeading - heading + 540) % 360 + 360) % 360 - 180;
-      heading += headingDifference * (1 - Math.exp(-dt / 0.18));
       const liveTarget = atHome ? destination : perch(destinationStop);
+      const heading = Math.atan2(liveTarget.y - start.y - Math.PI * height * Math.cos(Math.PI * t), liveTarget.x - start.x) * 180 / Math.PI;
       const next = {
         ...destination,
         x: start.x + (liveTarget.x - start.x) * t,
