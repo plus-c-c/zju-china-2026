@@ -791,7 +791,7 @@ const SNOOP_STEPS: ProteinStep[] = [
       <StructureFigure
         src="https://static.igem.wiki/teams/6102/wiki/images/model/snoopligase/8.avif"
         alt="Q827 mutant and local interface detail"
-        bounds={[72, 39, 2913, 1713]}
+        bounds={[72, 170, 2913, 1713]}
         structureFraction={0.22}
         focusX={0.206}
         wide
