@@ -81,7 +81,7 @@ function prepareWorldMapMarkup(markup: string) {
   return svg.outerHTML;
 }
 
-export function InteractiveWorldMap() {
+export function InteractiveWorldMap({ interactive = true }: { interactive?: boolean }) {
   const mapRef = useRef<HTMLDivElement>(null);
   const [worldMapMarkup, setWorldMapMarkup] = useState("");
   const [tooltip, setTooltip] = useState<MapTooltip | null>(null);
@@ -163,19 +163,20 @@ export function InteractiveWorldMap() {
 
   return (
     <div
-      aria-label="Interactive world map of osteoarthritis patient counts"
+      aria-label={interactive ? "Interactive world map of osteoarthritis patient counts" : "World map of osteoarthritis patient counts"}
+      inert={!interactive}
       className="opening-burden__world"
       data-active-iso={activeIso ?? undefined}
       onBlurCapture={() => {
         setTooltip(null);
         setActiveIso(null);
       }}
-      onFocusCapture={handleFocus}
+      onFocusCapture={interactive ? handleFocus : undefined}
       onPointerLeave={() => {
         setTooltip(null);
         setActiveIso(null);
       }}
-      onPointerMove={handlePointerMove}
+      onPointerMove={interactive ? handlePointerMove : undefined}
       ref={mapRef}
       role="img"
     >
@@ -183,7 +184,7 @@ export function InteractiveWorldMap() {
         className="opening-burden__world-svg"
         dangerouslySetInnerHTML={{ __html: worldMapMarkup }}
       />
-      {tooltip && (
+      {interactive && tooltip && (
         <div
           className="opening-burden__map-tip"
           role="status"

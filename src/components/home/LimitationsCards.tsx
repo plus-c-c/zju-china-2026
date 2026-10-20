@@ -115,22 +115,14 @@ const yellowCards: CardCopy[] = [
     ),
     frontArt: [
       {
-        name: "blue-card-3.avif",
+        name: "dynamic-microenvironment.avif",
         className: "limitations-art--yellow-dynamic",
       },
     ],
     backArt: [
       {
-        name: "home-limit-back-dna.avif",
-        className: "limitations-art--dna",
-      },
-      {
-        name: "home-limit-back-cell-outline.avif",
-        className: "limitations-art--cell-outline",
-      },
-      {
-        name: "home-limit-back-nucleus.avif",
-        className: "limitations-art--nucleus",
+        name: "home/group-1.avif",
+        className: "limitations-art--dynamic-back-group",
       },
     ],
   },
@@ -140,21 +132,15 @@ const blueCards: CardCopy[] = [
   {
     title: (
       <>
-        Synthetic
-        <br />
-        Biology
+        Synthetic<br />Biology
       </>
     ),
     body: (
       <>
-        Complex fabrication
-        <br />
-        limits batch
-        <br />
-        consistency and
-        <br />
-        large-scale
-        <br />
+        Complex fabrication<br />
+        limits batch<br />
+        consistency and<br />
+        large-scale<br />
         production.
       </>
     ),
@@ -180,18 +166,12 @@ const blueCards: CardCopy[] = [
     ),
     body: (
       <>
-        SELP offers tunable stiffness
-        <br />
-        and toughness, while RGD
-        <br />
-        motifs within its chains
-        <br />
-        promote
-        <br />
-        adhesion
-        <br />
-        and tissue
-        <br />
+        SELP offers tunable stiffness<br />
+        and toughness, while RGD<br />
+        motifs within its chains<br />
+        promote<br />
+        adhesion<br />
+        and tissue<br />
         integration.
       </>
     ),
@@ -211,19 +191,14 @@ const blueCards: CardCopy[] = [
   {
     title: (
       <>
-        Modular
-        <br />
-        Design
+        Modular<br />Design
       </>
     ),
     body: (
       <>
-        Matrix loss, degradation,
-        <br />
-        and inflammation
-        <br />
-        demand adaptable
-        <br />
+        Matrix loss, degradation,<br />
+        and inflammation<br />
+        demand adaptable<br />
         repair strategies.
       </>
     ),
@@ -327,26 +302,28 @@ function CardLayer({
 
 export function MaterialLimitations({
   drawProgress,
+  yellowRemoved: removed,
 }: {
-  drawProgress: number;
+  drawProgress?: number;
+  yellowRemoved?: boolean;
 }) {
   const [yellowFlipped, setYellowFlipped] = useState([false, false, false]);
   const [blueFlipped, setBlueFlipped] = useState([false, false, false]);
   const reducedMotion =
     typeof window !== "undefined" &&
     window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const progress = reducedMotion ? 1 : drawProgress;
+  const progress = reducedMotion ? 1 : (drawProgress ?? (removed ? 1 : 0));
   const yellowRemoved = progress >= 0.72;
   const clamp = (value: number) => Math.min(1, Math.max(0, value));
-  const drawEase = (value: number) => value * value;
+  const drawEase = (value: number) => value * value * (3 - 2 * value);
   const pageStyle = {
     "--limitations-title-opacity": 1 - clamp((progress - 0.5) / 0.08),
     "--solution-title-opacity": clamp((progress - 0.62) / 0.08),
   } as CSSProperties;
 
   const cardMotion = (index: number) => {
-    const start = 0.22 + index * 0.12;
-    const amount = drawEase(clamp((progress - start) / 0.24));
+    const start = index * 0.08;
+    const amount = drawEase(clamp((progress - start) / 0.84));
     const direction = index - 1;
     return {
       "--card-draw-x": `${direction * 84 * amount}px`,

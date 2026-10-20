@@ -55,8 +55,8 @@
   position: absolute;
   z-index: 2;
   color: #054db0;
-  font-family: "Silkscreen", monospace;
-  font-weight: 700;
+  font-family: "Seymour One", sans-serif;
+  font-weight: 400;
 }
 
 .nest-solution-selp-title {
@@ -93,7 +93,9 @@
 }
 
 .nest-solution-ligase-title {
-  left: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
   top: -20px;
   width: 500px;
   font-size: 44px;
@@ -235,15 +237,16 @@
 .oa-panel-copy {
   position: absolute;
   left: 450px;
-  top: 49px;
+  top: 50%;
   width: 576px;
+  transform: translateY(-50%);
   color: #05080d;
-  font-size: 24px;
-  line-height: 40px;
+  font-size: 23.5px;
+  line-height: 39px;
 }
 
 .oa-panel-copy p + p {
-  margin-top: 28px;
+  margin-top: 0.5lh;
 }
 
 .oa-panel-copy strong {
@@ -289,21 +292,21 @@
 
 .selp-pipeline__stage--gag {
   aspect-ratio: 1366 / 780;
-  margin-top: -3.37cqw;
+  margin-top: -6.3cqw;
 }
 
 .selp-pipeline__stage--mitochondrial {
   aspect-ratio: 1366 / 784;
-  margin-top: -2.49cqw;
+  margin-top: -5.4cqw;
 }
 
 .selp-pipeline__card {
   position: absolute;
   z-index: 1;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+  width: 44.33%;
+  border-radius: 2.49cqw;
   background: transparent;
+  box-shadow: none;
   color: #000;
 }
 
@@ -427,7 +430,7 @@
   top: 62%;
   width: 10%;
   height: 32.91%;
-  transform: rotate(15deg);
+  transform: rotate(-15deg);
 }
 
 .selp-pipeline__art--gag-reactor {
@@ -449,7 +452,7 @@
   top: 62%;
   width: 10%;
   height: 35%;
-  transform: rotate(15deg);
+  transform: rotate(-5deg);
 }
 
 .selp-pipeline__art--purple-flask,
@@ -526,6 +529,7 @@
 .selp-pipeline__connector {
   z-index: 0;
   left: 33.2%;
+  color: #7ca8df;
   overflow: visible;
   width: 39.45%;
   height: auto;
@@ -548,25 +552,26 @@
 
 .selp-shortcuts {
   display: grid;
-  width: min(64%, 874px);
+  width: 100%;
   margin: 0 auto;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(24px, 4.32cqw, 59px) clamp(24px, 7.45cqw, 102px);
+  gap: clamp(24px, 4.32cqw, 59px) clamp(24px, 4cqw, 55px);
 }
 
 .selp-shortcut {
-  display: flex;
-  height: clamp(54px, 5.34cqw, 73px);
-  min-height: clamp(54px, 5.34cqw, 73px);
+  --shortcut-icon-size: clamp(34px, 3.37cqw, 46px);
+  display: grid;
+  grid-template-columns: var(--shortcut-icon-size) minmax(0, 1fr);
+  height: clamp(64px, 6.3cqw, 86px);
+  min-height: clamp(64px, 6.3cqw, 86px);
   align-items: center;
-  justify-content: center;
   gap: clamp(8px, 1.02cqw, 14px);
   padding: clamp(6px, 0.59cqw, 8px) clamp(10px, 1.32cqw, 18px);
   border: clamp(2px, 0.22cqw, 3px) solid #87b9e9;
   border-radius: 999px;
   background: rgb(255 255 255 / 32%);
   color: #173b64;
-  font-size: clamp(12px, 1.17cqw, 16px);
+  font-size: clamp(14px, 1.4cqw, 19px);
   font-weight: 600;
   line-height: 1.05;
   text-align: center;
@@ -587,10 +592,17 @@
 
 .selp-shortcut img,
 .selp-shortcut canvas {
-  width: clamp(34px, 3.37cqw, 46px) !important;
-  height: clamp(34px, 3.37cqw, 46px) !important;
-  flex: 0 0 auto;
+  width: var(--shortcut-icon-size) !important;
+  height: var(--shortcut-icon-size) !important;
+  translate: clamp(4px, 0.66cqw, 9px) 0;
   object-fit: contain;
+}
+
+.selp-shortcut > span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  hyphens: auto;
+  text-align: center;
 }
 
 .selp-promotion {
@@ -750,7 +762,7 @@
 
 @media (max-width: 1200px) and (min-width: 701px) {
   .selp-shortcuts {
-    width: min(84%, 874px);
+    width: 100%;
     column-gap: clamp(28px, 4cqw, 48px);
   }
 }
@@ -859,17 +871,12 @@
   }
 
   .selp-shortcut {
+    --shortcut-icon-size: 30px;
     height: 54px;
     min-height: 54px;
     gap: 8px;
     padding: 6px 10px;
     font-size: 12px;
-  }
-
-  .selp-shortcut img,
-  .selp-shortcut canvas {
-    width: 30px !important;
-    height: 30px !important;
   }
 
   .selp-promotion {
@@ -882,3 +889,75 @@
     text-shadow: 0 1px 0 #5c9ff0;
   }
 }
+
+/* Follow the blue connectors as the modules unfold into view. */
+.selp-pipeline__stage > :not(.selp-pipeline__connector) {
+  opacity: var(--pipeline-reveal, 0);
+  translate: 0 calc((1 - var(--pipeline-reveal, 0)) * 64px);
+  will-change: opacity, translate;
+}
+.selp-pipeline__stage--gag > :not(.selp-pipeline__connector) {
+  translate: calc((1 - var(--pipeline-reveal, 0)) * 40px) calc((1 - var(--pipeline-reveal, 0)) * 64px);
+}
+.selp-pipeline__stage--mitochondrial > :not(.selp-pipeline__connector) {
+  translate: calc((1 - var(--pipeline-reveal, 0)) * -40px) calc((1 - var(--pipeline-reveal, 0)) * 64px);
+}
+
+.selp-pipeline__stage > :not(.selp-pipeline__connector) {
+  transition: opacity 180ms ease-out, translate 180ms ease-out;
+}
+.selp-pipeline__connector { transition: clip-path 180ms ease-out; }
+@media (prefers-reduced-motion: reduce) {
+  .selp-pipeline__stage > * { transition: none; }
+}
+
+/* Text coordinates are percentages of the full module, not a narrow nested card. */
+.selp-pipeline__stage .selp-pipeline__card {
+  width: 100%;
+  height: 100%;
+}
+
+/* The ending shares the same stationary sky as the story and the modules. */
+.selp-after-pipeline { background: transparent; }
+
+/* Use the NEST typeface with the original promotion title colors. */
+.selp-promotion > h2 {
+  width: 84%;
+  font-family: "Seymour One", sans-serif;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: #ffbc05;
+  -webkit-text-stroke: 2px #5c9ff0;
+  text-shadow: 0 2px 0 #5c9ff0;
+}
+
+.selp-pipeline__connector {
+  filter: none;
+  overflow: visible;
+}
+
+.selp-pipeline__animation > img,
+.selp-pipeline__animation > canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.selp-pipeline__animation > canvas { visibility: hidden; }
+.selp-pipeline__animation[data-paused="true"] > img { visibility: hidden; }
+.selp-pipeline__animation[data-paused="true"] > canvas { visibility: visible; }
+
+/* Shared centerline for each solution card's heading, copy box and action. */
+.story-viewport .nest-solution-card > :is(
+  .nest-solution-selp-title,
+  .nest-solution-selp-subtitle,
+  .nest-solution-selp-copy,
+  .nest-solution-ligase-copy,
+  .nest-solution-button
+) {
+  left: 50%;
+  transform: translateX(-50%);
+}
+.story-viewport .nest-solution-selp-copy { width: calc(100% - 72px); }
+.story-viewport .nest-solution-ligase-copy { width: calc(100% - 72px); }

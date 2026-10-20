@@ -1,10 +1,37 @@
+import { useLayoutEffect } from "react";
 import "./LoadingScreen.css";
 
 type LoadingScreenProps = {
   visible: boolean;
+  failed?: boolean;
 };
 
-export function LoadingScreen({ visible }: LoadingScreenProps) {
+export function LoadingScreen({ visible, failed = false }: LoadingScreenProps) {
+  useLayoutEffect(() => {
+    if (!visible) return;
+    // The page underneath may not be mounted yet. Consume input here rather
+    // than letting native scrolling race the homepage's initial positioning.
+    const blockScroll = (event: Event) => { event.preventDefault(); event.stopImmediatePropagation(); };
+    const blockKey = (event: KeyboardEvent) => {
+      if (["ArrowUp", "ArrowDown", "PageUp", "PageDown", "Home", "End", " "].includes(event.key)) {
+        event.preventDefault();
+        event.stopImmediatePropagation();
+      }
+    };
+    const root = document.documentElement;
+    const previousOverflow = root.style.overflow;
+    root.style.overflow = "hidden";
+    window.addEventListener("wheel", blockScroll, { capture: true, passive: false });
+    window.addEventListener("touchmove", blockScroll, { capture: true, passive: false });
+    window.addEventListener("keydown", blockKey, true);
+    return () => {
+      root.style.overflow = previousOverflow;
+      window.removeEventListener("wheel", blockScroll, true);
+      window.removeEventListener("touchmove", blockScroll, true);
+      window.removeEventListener("keydown", blockKey, true);
+    };
+  }, [visible]);
+
   return (
     <div
       className={`loading-screen${visible ? " loading-screen--visible" : ""}`}
@@ -30,6 +57,7 @@ export function LoadingScreen({ visible }: LoadingScreenProps) {
             <span>.</span>
           </span>
         </div>
+        {failed && <button type="button" onClick={() => window.location.reload()}>资源加载失败，点击重新加载</button>}
       </div>
     </div>
   );

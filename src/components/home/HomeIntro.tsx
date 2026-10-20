@@ -1,5 +1,6 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import "./HomeIntro.css";
+const openingAnimationUrl = `${import.meta.env.BASE_URL}home-opening/index.html`;
 
 type HomeIntroProps = {
   onEnter: () => void;
@@ -7,16 +8,84 @@ type HomeIntroProps = {
 
 export function HomeIntro({ onEnter }: HomeIntroProps) {
   const [finished, setFinished] = useState(false);
+  const openingFrame = useRef<HTMLIFrameElement>(null);
 
   const finishIntro = useCallback(() => {
     setFinished(true);
     window.dispatchEvent(new Event("home-intro-ready"));
   }, []);
 
-  useEffect(() => {
-    const frame = window.requestAnimationFrame(finishIntro);
-    return () => window.cancelAnimationFrame(frame);
+  useLayoutEffect(() => {
+    window.scrollTo({ top: 0, behavior: "instant" });
+    const start = () => openingFrame.current?.contentWindow?.postMessage(
+      { source: "nest-home", type: "start" }, location.origin,
+    );
+    const receive = (event: MessageEvent) => {
+      if (event.source !== openingFrame.current?.contentWindow || event.origin !== location.origin) return;
+      if (event.data?.source !== "nest-opening") return;
+      if (event.data.type === "ready") {
+        window.dispatchEvent(new Event("home-opening-assets-ready"));
+        if (!document.querySelector(".loading-screen--visible")) start();
+      }
+      if (event.data.type === "complete") finishIntro();
+    };
+    window.addEventListener("message", receive);
+    window.addEventListener("page-loading-complete", start);
+    return () => {
+      window.removeEventListener("message", receive);
+      window.removeEventListener("page-loading-complete", start);
+    };
   }, [finishIntro]);
+
+  useEffect(() => {
+    if (finished) return;
+    let lastWheelAt = 0;
+    let rate = 1;
+    let resetTimer = 0;
+    let touchY = 0;
+    const accelerate = () => {
+      const now = performance.now();
+      rate = now - lastWheelAt < 260 ? Math.min(2, rate + 0.1) : 1;
+      lastWheelAt = now;
+      const sendRate = (value: number) => openingFrame.current?.contentWindow?.postMessage(
+        { source: "nest-home", type: "speed", rate: value }, location.origin,
+      );
+      sendRate(rate);
+      clearTimeout(resetTimer);
+      resetTimer = window.setTimeout(() => { rate = 1; sendRate(1); }, 300);
+    };
+    const wheel = (event: WheelEvent) => {
+      if (event.ctrlKey) return;
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      if (event.deltaY > 2) accelerate();
+    };
+    const touchStart = (event: TouchEvent) => { touchY = event.touches[0]?.clientY ?? 0; };
+    const touchMove = (event: TouchEvent) => {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      const nextY = event.touches[0]?.clientY ?? touchY;
+      if (nextY < touchY) accelerate();
+      touchY = nextY;
+    };
+    const key = (event: KeyboardEvent) => {
+      if (["ArrowDown", "ArrowUp", "PageDown", "PageUp", " ", "Home", "End"].includes(event.key)) {
+        event.preventDefault(); event.stopImmediatePropagation();
+        if (["ArrowDown", "PageDown", " "].includes(event.key)) accelerate();
+      }
+    };
+    window.addEventListener("wheel", wheel, { capture: true, passive: false });
+    window.addEventListener("touchstart", touchStart, { capture: true, passive: true });
+    window.addEventListener("touchmove", touchMove, { capture: true, passive: false });
+    window.addEventListener("keydown", key, true);
+    return () => {
+      clearTimeout(resetTimer);
+      window.removeEventListener("wheel", wheel, true);
+      window.removeEventListener("touchstart", touchStart, true);
+      window.removeEventListener("touchmove", touchMove, true);
+      window.removeEventListener("keydown", key, true);
+    };
+  }, [finished]);
 
   useEffect(() => {
     document.documentElement.classList.toggle("home-intro-open", !finished);
@@ -35,6 +104,9 @@ export function HomeIntro({ onEnter }: HomeIntroProps) {
         finished ? "NEST homepage introduction" : "Homepage animation playing"
       }
     >
+      <iframe ref={openingFrame} className="home-intro__animation" src={openingAnimationUrl}
+        onLoad={() => openingFrame.current?.contentWindow?.postMessage({ source: "nest-home", type: "status" }, location.origin)}
+        title="NEST hydrogel opening animation" tabIndex={-1} aria-hidden="true" />
       <div className="home-intro__landing" aria-hidden={!finished}>
         <div className="home-intro__brand" aria-label="NEST">
           <span
@@ -56,7 +128,7 @@ export function HomeIntro({ onEnter }: HomeIntroProps) {
           </span>
         </div>
         <p className="home-intro__tagline" data-node-id="741:5">
-          Native-like programmablE cartilage Scaffold for Tissue repair
+          <span className="home-intro__initial">N</span>ative-like programmabl<span className="home-intro__initial">E</span> cartilage <span className="home-intro__initial">S</span>caffold<br />for <span className="home-intro__initial">T</span>issue repair
         </p>
         <button
           className="home-intro__next"
@@ -65,6 +137,7 @@ export function HomeIntro({ onEnter }: HomeIntroProps) {
           tabIndex={finished ? 0 : -1}
           onClick={onEnter}
         >
+          <span className="home-intro__bird-anchor" aria-hidden="true" />
           <span data-node-id="644:25">NEXT</span>
         </button>
       </div>
