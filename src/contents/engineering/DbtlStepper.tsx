@@ -4,6 +4,7 @@ import {
   useMemo,
   useRef,
   useState,
+  type CSSProperties,
   type ReactNode,
 } from "react";
 import {
@@ -14,6 +15,11 @@ import type { DbtlModule, DbtlPhase } from "./dbtl";
 import { useCardWheel, useStepperProgress } from "../../components/stepperWheel";
 import { buildSteps, sequenceSpan, type Step } from "./steps";
 import { DbtlRing } from "./DbtlRing";
+import {
+  DBTL_PHASE_TOP_ANGLE,
+  DBTL_RING_SNAP_EPSILON,
+  DBTL_RING_START_ANGLE,
+} from "./ringStage";
 
 interface DbtlStepperProps {
   /** Sub-module view: the DBTL module whose cycles drive the sequence. */
@@ -35,6 +41,10 @@ interface DbtlStepperProps {
   content?: ReactNode;
   /** Level-3 tab row rendered above the panel. */
   topNav?: ReactNode;
+  /** Level-1 navigation rendered above the ring in the split layout. */
+  ringTop?: ReactNode;
+  /** Level-2 navigation rendered below the ring in the split layout. */
+  ringBottom?: ReactNode;
 }
 
 /**
@@ -49,10 +59,6 @@ interface DbtlStepperProps {
  * stepper once the last step (or, scrolling up, the first step) has been
  * passed.
  */
-/** Rotation that puts each phase's visible centre on 12 o'clock
- *  (the mirrored label angles, measured from the artwork). */
-const PHASE_TOP_ANGLE = [61.03, 140.62, 235.64, 323.92];
-
 export function DbtlStepper({
   module,
   steps: stepsProp,
@@ -62,6 +68,8 @@ export function DbtlStepper({
   outlook,
   content,
   topNav,
+  ringTop,
+  ringBottom,
 }: DbtlStepperProps) {
   const builtSteps = useMemo(
     () => (module ? buildSteps(module, lead, outlook) : []),
@@ -87,7 +95,7 @@ export function DbtlStepper({
         /* The mirrored labels' own centres (design, build, test, learn), so
            each phase's visible centre lands exactly on 12 o'clock. */
         align[i] =
-          PHASE_TOP_ANGLE[phaseIndex % 4] + 360 * Math.floor(phaseIndex / 4);
+          DBTL_PHASE_TOP_ANGLE[phaseIndex % 4] + 360 * Math.floor(phaseIndex / 4);
         phaseIndex += 1;
       }
     });
@@ -224,7 +232,8 @@ export function DbtlStepper({
       const { cum } = timelineRef.current;
       if (cum.length < 2) return;
       const slot = Math.min(Math.floor(position + 1e-4), cum.length - 2);
-      const fraction = Math.min(1, Math.max(0, position - slot));
+      const rawFraction = Math.min(1, Math.max(0, position - slot));
+      const fraction = rawFraction < DBTL_RING_SNAP_EPSILON ? 0 : rawFraction;
       const rotation = cum[slot] + (cum[slot + 1] - cum[slot]) * fraction;
       rootRef.current?.style.setProperty(
         "--dbtl-rotation",
@@ -303,11 +312,33 @@ export function DbtlStepper({
         ? (step.title ?? "")
         : "";
 
+  const splitRing = Boolean(ringTop || ringBottom);
+
   return (
-    <div className="dbtl" ref={rootRef}>
-      <div className="dbtl-ring-wrap">
-        <DbtlRing active={phaseBadge} onSelect={goToPhase} />
-      </div>
+    <div
+      className={`dbtl${splitRing ? " dbtl--ring-nav" : ""}`}
+      ref={rootRef}
+      /* First paint of every group uses the shared starting heading; the
+         scroll progress takes over on the next frame. */
+      style={
+        {
+          "--dbtl-rotation": `${DBTL_RING_START_ANGLE}deg`,
+        } as CSSProperties
+      }
+    >
+      {splitRing ? (
+        <div className="dbtl-ring-wrap dbtl-ring-wrap--split">
+          {ringTop}
+          <div className="dbtl-ring-center">
+            <DbtlRing active={phaseBadge} onSelect={goToPhase} />
+          </div>
+          {ringBottom}
+        </div>
+      ) : (
+        <div className="dbtl-ring-wrap">
+          <DbtlRing active={phaseBadge} onSelect={goToPhase} />
+        </div>
+      )}
       <div className="dbtl-main">
         {topNav && <div className="dbtl-subnav">{topNav}</div>}
         <div className="dbtl-panel" ref={cardRef}>

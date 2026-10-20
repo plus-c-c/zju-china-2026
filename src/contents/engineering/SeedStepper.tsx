@@ -34,6 +34,10 @@ interface SeedStepperProps {
   content?: ReactNode;
   /** Level-3 tab row rendered above the panel. */
   topNav?: ReactNode;
+  /** Level-1 navigation rendered above the ring in the split layout. */
+  ringTop?: ReactNode;
+  /** Level-2 navigation rendered below the ring in the split layout. */
+  ringBottom?: ReactNode;
 }
 
 /**
@@ -53,6 +57,8 @@ export function SeedStepper({
   outlook,
   content,
   topNav,
+  ringTop,
+  ringBottom,
 }: SeedStepperProps) {
   const builtSteps = useMemo(
     () => (module ? buildSeedSteps(module, lead, outlook) : []),
@@ -237,11 +243,23 @@ export function SeedStepper({
         ? (step.title ?? "")
         : "";
 
+  const splitRing = Boolean(ringTop || ringBottom);
+
   return (
-    <div className="dbtl" ref={rootRef}>
-      <div className="dbtl-ring-wrap">
-        <SeedRing active={phaseBadge} onSelect={goToPhase} />
-      </div>
+    <div className={`dbtl${splitRing ? " dbtl--ring-nav" : ""}`} ref={rootRef}>
+      {splitRing ? (
+        <div className="dbtl-ring-wrap dbtl-ring-wrap--split">
+          {ringTop}
+          <div className="dbtl-ring-center">
+            <SeedRing active={phaseBadge} onSelect={goToPhase} />
+          </div>
+          {ringBottom}
+        </div>
+      ) : (
+        <div className="dbtl-ring-wrap">
+          <SeedRing active={phaseBadge} onSelect={goToPhase} />
+        </div>
+      )}
       <div className="dbtl-main">
         {topNav && <div className="dbtl-subnav">{topNav}</div>}
         <div className="dbtl-panel">

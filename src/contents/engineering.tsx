@@ -1,7 +1,8 @@
-import { useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import type { Group, Part } from "./engineering/group";
 import { DbtlStepper } from "./engineering/DbtlStepper";
 import { buildSteps, sequenceSpan, STEP_DVH, type Step } from "./engineering/steps";
+import { DBTL_TAB_SCROLL_NUDGE } from "./engineering/ringStage";
 import type { DbtlModule } from "./engineering/dbtl";
 import { SeedStepper } from "./engineering/SeedStepper";
 import {
@@ -58,6 +59,36 @@ interface Section {
  * site alike).
  */
 const SHOW_HUMAN_PRACTICES = false;
+
+/** Desktop breakpoint shared with the CSS grid: the split ring navigation is
+ *  only used when the ring and card sit side by side. */
+function useIsDesktop() {
+  const [isDesktop, setIsDesktop] = useState(() =>
+    typeof window === "undefined"
+      ? true
+      : window.matchMedia("(min-width: 992px)").matches,
+  );
+  useEffect(() => {
+    const media = window.matchMedia("(min-width: 992px)");
+    const update = () => setIsDesktop(media.matches);
+    update();
+    media.addEventListener("change", update);
+    return () => media.removeEventListener("change", update);
+  }, []);
+  return isDesktop;
+}
+
+/**
+ * Engineering layout switch.
+ *
+ * true  — level-1 buttons sit above the DBTL/SEED ring and level-2 buttons
+ *         below it, inside the ring column. The two navigation rows no
+ *         longer take vertical space above the stepper, so the text card
+ *         can use a taller stack.
+ * false — the original layout: both navigation rows stacked above the ring
+ *         and text card.
+ */
+const RING_NAV_LAYOUT = false;
 
 const ALL_SECTIONS: Section[] = [
   { key: "project-design", label: "Project Design", groups: [] },
@@ -277,10 +308,9 @@ export function Engineering() {
   // from scrolling the page on load.)
   useLayoutEffect(() => {
     const prev = prevNavRef.current;
-    const changed =
-      prev.activeKey !== activeKey ||
-      prev.groupIndex !== groupIndex ||
-      prev.tabIndex !== tabIndex;
+    const navChanged =
+      prev.activeKey !== activeKey || prev.groupIndex !== groupIndex;
+    const changed = navChanged || prev.tabIndex !== tabIndex;
     prevNavRef.current = { activeKey, groupIndex, tabIndex };
     if (!changed) return;
     if (autoTabRef.current) {
@@ -292,7 +322,10 @@ export function Engineering() {
       const total = runway.offsetHeight - window.innerHeight;
       const top = runway.getBoundingClientRect().top + window.scrollY;
       window.scrollTo({
-        top: top + (total * startIndex) / Math.max(1, scrollSpan) + 2,
+        top:
+          top +
+          (total * startIndex) / Math.max(1, scrollSpan) +
+          (navChanged ? 0 : DBTL_TAB_SCROLL_NUDGE),
         behavior: "instant",
       });
       return;
@@ -322,36 +355,47 @@ export function Engineering() {
     </button>
   ));
 
-  const content = (
-    <>
-      <div className="eng-module-nav">
-        {SECTIONS.filter((section) => !section.hidden).map((section) => (
+  const moduleNav = (
+    <div className="eng-module-nav">
+      {SECTIONS.filter((section) => !section.hidden).map((section) => (
+        <button
+          key={section.key}
+          type="button"
+          className={`eng-module-button ${activeKey === section.key ? "active" : ""}`}
+          aria-pressed={activeKey === section.key}
+          onClick={() => selectSection(section.key)}
+        >
+          {section.label}
+        </button>
+      ))}
+    </div>
+  );
+  const groupNav =
+    activeSection.groups.length > 1 ? (
+      <div className="eng-subnav">
+        {activeSection.groups.map((group, index) => (
           <button
-            key={section.key}
+            key={group.label}
             type="button"
-            className={`eng-module-button ${activeKey === section.key ? "active" : ""}`}
-            aria-pressed={activeKey === section.key}
-            onClick={() => selectSection(section.key)}
+            className={`eng-subnav-button ${groupIndex === index ? "active" : ""}`}
+            aria-pressed={groupIndex === index}
+            onClick={() => selectGroup(index)}
           >
-            {section.label}
+            {group.label}
           </button>
         ))}
       </div>
-      {activeSection.groups.length > 1 && (
-        <div className="eng-subnav">
-          {activeSection.groups.map((group, index) => (
-            <button
-              key={group.label}
-              type="button"
-              className={`eng-subnav-button ${groupIndex === index ? "active" : ""}`}
-              aria-pressed={groupIndex === index}
-              onClick={() => selectGroup(index)}
-            >
-              {group.label}
-            </button>
-          ))}
-        </div>
-      )}
+    ) : null;
+  /* Split layout needs a ring, so it is only used by the stepper views on
+     the two-column desktop grid; tablet/mobile keep the stacked rows. */
+  const isDesktop = useIsDesktop();
+  const ringNav =
+    RING_NAV_LAYOUT && isDesktop && stepCount > 0 && Boolean(activeGroup);
+
+  const content = (
+    <>
+      {!ringNav && moduleNav}
+      {!ringNav && groupNav}
       {activeGroup &&
         (stepCount > 0 ? (
           seedFlavor ? (
@@ -363,6 +407,8 @@ export function Engineering() {
               }
               onStepChange={handleStepChange}
               topNav={<>{tabNav}</>}
+              ringTop={ringNav ? moduleNav : undefined}
+              ringBottom={ringNav ? groupNav : undefined}
             />
           ) : (
             <DbtlStepper
@@ -373,6 +419,8 @@ export function Engineering() {
               }
               onStepChange={handleStepChange}
               topNav={<>{tabNav}</>}
+              ringTop={ringNav ? moduleNav : undefined}
+              ringBottom={ringNav ? groupNav : undefined}
             />
           )
         ) : (
@@ -380,6 +428,7 @@ export function Engineering() {
         ))}
     </>
   );
+  const aggregateClass = `eng-aggregate${ringNav ? " eng-aggregate--ring-nav" : ""}`;
 
   return (
     <div className="row mt-4 mb-5">
@@ -394,12 +443,12 @@ export function Engineering() {
                 }}
               >
                 <div className="eng-pin">
-                  <div className="eng-aggregate">{content}</div>
+                  <div className={aggregateClass}>{content}</div>
                 </div>
               </div>
             ) : (
               <div className="eng-static">
-                <div className="eng-aggregate">{content}</div>
+                <div className={aggregateClass}>{content}</div>
               </div>
             )
           ) : (
