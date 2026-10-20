@@ -79,19 +79,19 @@ export const pageDetails: Record<
   },
   "/human-practices": {
     icon: "20_integrated_human_practices.png",
-    description: "",
+    description: "Needs, design and responsibility",
   },
   "/entrepreneurship": {
     icon: "21_entrepreneurship.png",
-    description: "",
+    description: "Business plans and social impact",
   },
   "/education": {
     icon: "22_education.png",
-    description: "",
+    description: "Teaching, sharing and reflection",
   },
   "/collaboration": {
     icon: "23_collaboration.png",
-    description: "",
+    description: "Joint work, exchange and support",
   },
   "/members": {
     icon: "26_members.png",
