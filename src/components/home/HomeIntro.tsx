@@ -2,11 +2,15 @@ import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react
 import "./HomeIntro.css";
 const openingAnimationUrl = `${import.meta.env.BASE_URL}home-opening/index.html`;
 
+// Keep this across route changes, while allowing a fresh page load to replay.
+let openingVisited = false;
+
 type HomeIntroProps = {
   onEnter: () => void;
 };
 
 export function HomeIntro({ onEnter }: HomeIntroProps) {
+  const [skipAnimation] = useState(() => openingVisited);
   const [finished, setFinished] = useState(false);
   const openingFrame = useRef<HTMLIFrameElement>(null);
 
@@ -16,9 +20,10 @@ export function HomeIntro({ onEnter }: HomeIntroProps) {
   }, []);
 
   useLayoutEffect(() => {
+    openingVisited = true;
     window.scrollTo({ top: 0, behavior: "instant" });
     const start = () => openingFrame.current?.contentWindow?.postMessage(
-      { source: "nest-home", type: "start" }, location.origin,
+      { source: "nest-home", type: skipAnimation ? "finish" : "start" }, location.origin,
     );
     const receive = (event: MessageEvent) => {
       if (event.source !== openingFrame.current?.contentWindow || event.origin !== location.origin) return;
@@ -35,7 +40,7 @@ export function HomeIntro({ onEnter }: HomeIntroProps) {
       window.removeEventListener("message", receive);
       window.removeEventListener("page-loading-complete", start);
     };
-  }, [finishIntro]);
+  }, [finishIntro, skipAnimation]);
 
   useEffect(() => {
     if (finished) return;
