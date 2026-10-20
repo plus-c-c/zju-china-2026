@@ -121,7 +121,7 @@
   border: 1px solid #d6e0f5;
   background-color: #f7faff;
   color: #223c81;
-  font-size: 1rem;
+  font-size: var(--article-body-size, 20px);
   font-weight: 600;
   cursor: pointer;
   transition: all 0.25s ease;
@@ -679,9 +679,9 @@
 
 .dbtl .dbtl-panel-inner .project-design-figure img {
   display: block;
-  width: auto;
+  width: 100%;
   max-width: 100%;
-  max-height: clamp(220px, calc(var(--dbtl-stack-h) - 240px), 500px);
+  max-height: var(--figure-fit-height, 500px);
   object-fit: contain;
   margin: 0 auto;
   border: 1px solid #e3e8f4;
@@ -954,7 +954,7 @@
 .dbtl-subnav .dbtl-subnav-button {
   flex: 0 1 auto;
   padding: 0.38rem 0.05rem;
-  font-size: clamp(0.7rem, 0.78vw, 0.96rem);
+  font-size: 1rem;
   white-space: nowrap;
 }
 
@@ -1050,9 +1050,9 @@
   /* Tall figures (e.g. Figure 1.4.1) are capped so the complete image and
      its caption fit inside the card at the same time; the width follows the
      capped height and stays centred. */
-  width: auto;
+  width: 100%;
   max-width: 100%;
-  max-height: clamp(160px, calc(var(--dbtl-stack-h) - 330px), 380px);
+  max-height: var(--figure-fit-height, 500px);
   object-fit: contain;
   margin-right: auto;
   margin-bottom: 0.7rem;
@@ -1208,7 +1208,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.55rem;
+  gap: 1.75rem;
   width: var(--dbtl-ring-size);
   height: auto;
   min-height: 0;
@@ -1262,7 +1262,7 @@
 .dbtl--legacy .dbtl-left--legacy .dbtl-cycle-button {
   width: 100%;
   padding: 0.32rem 0.15rem;
-  font-size: 0.86rem;
+  font-size: 1.05rem;
   white-space: nowrap;
 }
 
@@ -1363,5 +1363,28 @@
   .eng-pin--legacy {
     justify-content: flex-start;
     padding-top: 12px;
+  }
+}
+
+.dbtl .dbtl-panel-inner .dbtl-figure-imgs > img {
+  margin-bottom: 0;
+}
+
+/* Spread only level-2 navigation across the viewport; all reading geometry
+   stays unchanged. The offset is measured from the original article edge. */
+@media (min-width: 992px) {
+  .eng-aggregate .eng-subnav {
+    display: grid;
+    justify-items: center;
+    gap: 1.25rem;
+  }
+  .eng-aggregate .eng-subnav-button {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .dbtl-subnav {
+    flex-wrap: wrap;
   }
 }

@@ -140,6 +140,32 @@ export function Engineering() {
   const [tabIndex, setTabIndex] = useState(0);
   const [activeCycle, setActiveCycle] = useState(0);
   const prevNavRef = useRef({ activeKey, groupIndex, tabIndex });
+  const groupNavRef = useRef<HTMLDivElement>(null);
+
+  // Only the secondary navigation spans the viewport. The article, card and
+  // ring keep their existing widths and positions.
+  useLayoutEffect(() => {
+    const nav = groupNavRef.current;
+    const parent = nav?.parentElement;
+    if (!nav || !parent) return;
+    const update = () => {
+      if (window.innerWidth < 992) {
+        nav.style.width = "";
+        nav.style.marginLeft = "";
+        return;
+      }
+      nav.style.width = `${document.documentElement.clientWidth - 64}px`;
+      nav.style.marginLeft = `${32 - parent.getBoundingClientRect().left}px`;
+    };
+    update();
+    const observer = new ResizeObserver(update);
+    observer.observe(parent);
+    window.addEventListener("resize", update);
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", update);
+    };
+  }, [activeKey]);
 
   const activeSection =
     SECTIONS.find((section) => section.key === activeKey) ?? SECTIONS[0];
@@ -434,7 +460,13 @@ export function Engineering() {
   );
   const groupNav =
     activeSection.groups.length > 1 ? (
-      <div className="eng-subnav">
+      <div
+        className="eng-subnav"
+        ref={groupNavRef}
+        style={{
+          gridTemplateColumns: `repeat(${activeSection.groups.length}, minmax(0, 1fr))`,
+        }}
+      >
         {activeSection.groups.map((group, index) => (
           <button
             key={group.label}

@@ -7,13 +7,10 @@ import {
   type CSSProperties,
   type ReactNode,
 } from "react";
-import {
-  STEP_ADVANCE_ENABLED,
-  useBoundaryStepAdvance,
-} from "../../components/useBoundaryStepAdvance";
+import { useEngineeringScroll } from "./useEngineeringScroll";
 import type { DbtlModule, DbtlPhase } from "./dbtl";
 import type { EngineeringLayout } from "./layout";
-import { useCardWheel, useStepperProgress } from "../../components/stepperWheel";
+import { useStepperProgress } from "../../components/stepperWheel";
 import { buildSteps, sequenceSpan, type Step } from "./steps";
 import { DbtlRing } from "./DbtlRing";
 import {
@@ -57,12 +54,9 @@ interface DbtlStepperProps {
  * story sections: the page-level runway wraps the whole pinned cluster
  * (nav rows, tabs, ring, panel, cycle buttons), and the scroll progress
  * through the runway turns the ring and, when a quarter turn completes,
- * switches the Design–Build–Test–Learn step. The ring rotation is bound to
- * the wheel: the panel scrolls first, then the overflowing wheel chains to
- * the page and the wheel keeps turning. No wheel is captured: scrolling is
- * native from beginning to end, and the page only continues past the
- * stepper once the last step (or, scrolling up, the first step) has been
- * passed.
+ * switches the Design–Build–Test–Learn step. Text scrolls first; a
+ * boundary gesture advances once and absorbs its remaining momentum.
+ * Ring, tab and cycle clicks use the same runway positions.
  */
 export function DbtlStepper({
   module,
@@ -188,19 +182,20 @@ export function DbtlStepper({
 
   /** Boundary stepping: the wheel / touch advances one step per gesture once
    *  the text panel reaches its bottom (or its top, scrolling up). */
-  const suppressUntilRef = useBoundaryStepAdvance({
+  useEngineeringScroll({
     stageRef: rootRef,
     panelRef,
     getIndex: () => indexRef.current,
     getCount: () => stepsRef.current.length,
     onAdvance: (target) => {
+      indexRef.current = target;
       setIndex(target);
-      scrollToStep(target, "smooth");
+      scrollToStep(target);
     },
   });
 
   // The text panel resets whenever a new step is shown: forward lands at the
-  // top, backward at the bottom (continuing an upward read). The outgoing
+  // top, ready for the next reading gesture. The outgoing
   // card stays mounted for one pan so it can slide off with the incoming one.
   const prevIndexRef = useRef(0);
   const outgoingTimerRef = useRef(0);
@@ -208,11 +203,10 @@ export function DbtlStepper({
   useEffect(() => {
     const panel = panelRef.current;
     const previous = prevIndexRef.current;
-    const backward = index < previous;
     prevIndexRef.current = index;
     if (panel) {
       panel.scrollTo({
-        top: STEP_ADVANCE_ENABLED && backward ? panel.scrollHeight : 0,
+        top: 0,
       });
     }
     if (previous === index) return;
@@ -220,11 +214,6 @@ export function DbtlStepper({
     window.clearTimeout(outgoingTimerRef.current);
     outgoingTimerRef.current = window.setTimeout(() => setOutgoing(null), 380);
   }, [index]);
-
-  /* Wheel: shared behaviour — the whole card scrolls the text first (1.5×
-     gain, indivisible notch); at either end the notch drives the page and
-     therefore the ring. */
-  useCardWheel(panelRef, cardRef);
 
   /* Hidden step progress shared with the Model decks: one interval per
      step, the step switches when its interval completes, and the position
@@ -248,7 +237,6 @@ export function DbtlStepper({
         `${rotation.toFixed(2)}deg`,
       );
     },
-    suppressUntilRef,
   });
 
   const step = steps[index];

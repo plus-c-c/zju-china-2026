@@ -249,7 +249,6 @@ export const gagRetentionModule: DbtlModule = {
             </p>
             <DbtlFigure
               src="result/03/09.avif"
-              width="50%"
               caption="Figure 2.1.1 | Establishment and optimization of the CS-A agarose electrophoretic mobility assay. CS-A alone (1, 2, 5, and 10 µg) was separated by agarose-gel electrophoresis and stained with toluidine blue, confirming that the assay could detect CS-A bands."
             />
           </>

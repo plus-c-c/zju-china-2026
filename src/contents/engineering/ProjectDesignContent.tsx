@@ -1,4 +1,5 @@
 import { Fragment, type ReactNode } from "react";
+import { PanelFigure } from "./Figure";
 
 function inline(value: string): ReactNode[] {
   return value
@@ -28,19 +29,19 @@ export function ProjectDesignCard({ source }: { source: string }) {
 
     if (/^Figure \d+/i.test(block) && IMAGE_URL.test(blocks[index + 1] ?? "")) {
       content.push(
-        <figure className="project-design-figure" key={`figure-${index}`}>
+        <PanelFigure className="project-design-figure" key={`figure-${index}`}>
           <img src={blocks[index + 1]} alt="" loading="lazy" />
           <figcaption>{inline(block)}</figcaption>
-        </figure>,
+        </PanelFigure>,
       );
       index += 1;
       continue;
     }
     if (IMAGE_URL.test(block)) {
       content.push(
-        <figure className="project-design-figure" key={`image-${index}`}>
+        <PanelFigure className="project-design-figure" key={`image-${index}`}>
           <img src={block} alt="" loading="lazy" />
-        </figure>,
+        </PanelFigure>,
       );
       continue;
     }

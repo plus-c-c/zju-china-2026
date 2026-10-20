@@ -7,11 +7,8 @@ import {
   type ReactNode,
 } from "react";
 import { TocPanel, type TocEntry } from "../../components/toc";
-import { useBoundaryStepAdvance } from "../../components/useBoundaryStepAdvance";
-import {
-  useCardWheel,
-  useStepperProgress,
-} from "../../components/stepperWheel";
+import { useEngineeringScroll } from "./useEngineeringScroll";
+import { useStepperProgress } from "../../components/stepperWheel";
 import dbtlRingSvg from "./assets/dbtl-ring.svg?raw";
 import seedRingSvg from "./assets/seed-ring-hp.svg?raw";
 import { DBTL_PHASES, type DbtlPhase } from "./dbtl";
@@ -234,18 +231,17 @@ export function ProjectDesignStepper({
     [scrollToStep],
   );
 
-  const suppressUntilRef = useBoundaryStepAdvance({
+  useEngineeringScroll({
     stageRef: rootRef,
     panelRef,
     getIndex: () => indexRef.current,
     getCount: () => PROJECT_DESIGN_STEP_COUNT,
     onAdvance: (target) => {
+      indexRef.current = target;
       setIndex(target);
-      scrollToStep(target, "smooth");
+      scrollToStep(target);
     },
   });
-
-  useCardWheel(panelRef, cardRef);
 
   useStepperProgress({
     getRunway: () =>
@@ -277,7 +273,6 @@ export function ProjectDesignStepper({
         `${innerRotation.toFixed(2)}deg`,
       );
     },
-    suppressUntilRef,
   });
 
   useEffect(() => {
