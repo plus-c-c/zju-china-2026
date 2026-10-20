@@ -15,7 +15,6 @@ import {
 import { useCardWheel, useStepperProgress } from "../../components/stepperWheel";
 import { MathFormula } from "../../components/MathFormula";
 import { DataTable } from "../../components/table";
-import { BirdLanding } from "../../components/BirdCursor";
 import {
   m1Overview,
   m1References,
@@ -92,13 +91,12 @@ function Parts({
   );
 }
 
-function ValidationHighlight({ active }: { active: boolean }) {
+function ValidationHighlight() {
   return (
     <section
       className="m1-validation"
       aria-label="Independent validation with 2KY16"
     >
-      {active && <BirdLanding className="m1-validation__bird" whenVisible />}
       <h4 className="m1-validation__heading">
         2KY16: independent dry-lab prediction validated by wet-lab data
       </h4>
@@ -319,7 +317,7 @@ function SlideInner({
           contentRef?.(el);
         }}
       >
-        {step.num === 7 && <ValidationHighlight active={variant === "in"} />}
+        {step.num === 7 && <ValidationHighlight />}
         <Blocks blocks={step.blocks} />
       </div>
     </div>

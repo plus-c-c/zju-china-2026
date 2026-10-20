@@ -331,54 +331,19 @@
   border-radius: 10px;
 }
 
-/* Validation remains part of Step 7; the bird has its own clear landing spot. */
+/* Validation remains part of Step 7 and reads as a result card, not as a
+   reference block: no landing bird and no watermark behind the numbers. */
 .m1-validation {
   position: relative;
-  isolation: isolate;
   margin: 8px 0 24px;
   padding: 18px 0 20px;
   border: 0;
   border-radius: 0;
-  background: radial-gradient(
-    ellipse 50% 50% at center,
-    rgb(153 191 248 / 58%) 0%,
-    rgb(198 221 255 / 42%) 46%,
-    rgb(238 245 255 / 0%) 100%
-  );
+  /* No gradient/mask behind the Step 7 heading: the card reads as plain
+     body content. */
+  background: none;
 }
 
-.m1-validation::after {
-  content: "";
-  position: absolute;
-  z-index: -2;
-  inset: 0;
-  opacity: 0;
-  pointer-events: none;
-  background: radial-gradient(
-    ellipse 50% 50% at center,
-    rgb(125 171 241 / 22%),
-    transparent 100%
-  );
-}
-
-.m1-validation::before {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  top: 50%;
-  left: 50%;
-  width: min(76%, 430px);
-  aspect-ratio: 3456 / 2120;
-  transform: translate(-50%, -50%);
-  opacity: 0.09;
-  pointer-events: none;
-  /* Crop the original 4000 × 3499 logo to (224, 369)–(3680, 2489),
-     preserving the graphic while excluding the NEST lettering below it. */
-  background-image: url("https://static.igem.wiki/teams/6102/wiki/team-logo.avif");
-  background-repeat: no-repeat;
-  background-size: 115.7407% auto;
-  background-position: 41.1765% 26.7585%;
-}
 
 /* Real heading semantics and heading styling: this line is a conclusion of
    the validation, not a bibliographic reference. */
@@ -390,20 +355,6 @@
   font-weight: 700;
   font-style: normal;
   line-height: 1.4;
-}
-
-.m1-validation__bird {
-  position: absolute;
-  top: 8px;
-  right: 12px;
-  width: 48px;
-  aspect-ratio: 1;
-  pointer-events: none;
-}
-
-.m1-validation__bird > .bird-rest {
-  inset: 0;
-  --home-pose: 0;
 }
 
 .m1-validation__metrics {
@@ -455,20 +406,6 @@
   line-height: 1.5;
 }
 
-.m1-validation:has(.m1-validation__bird[data-state="landed"])::after {
-  animation: m1-validation-glow 1.8s ease-out;
-}
-
-@keyframes m1-validation-glow {
-  0%,
-  100% {
-    opacity: 0;
-  }
-  35% {
-    opacity: 0.7;
-  }
-}
-
 @media (max-width: 600px) {
   .m1-validation {
     padding: 14px 0;
@@ -488,9 +425,6 @@
 }
 
 @media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) {
-  .m1-validation:has(.m1-validation__bird[data-state="landed"])::after {
-    animation: none;
-  }
 }
 
 /* ===== 移动端 ===== */
