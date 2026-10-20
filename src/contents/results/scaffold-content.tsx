@@ -183,9 +183,9 @@ export function ScaffoldContent() {
             <div className="table-scroll">
               <table>
                 <caption>
-                  <strong>Table 1.1.1.</strong> Positions of the three SnoopTag2 docking sites
-                  relative to the cut sites, their behavior during a doubling
-                  round, and the resulting constructs.
+                  <strong>Table 1.1.1.</strong> Positions of the three SnoopTag2
+                  docking sites relative to the cut sites, their behavior during
+                  a doubling round, and the resulting constructs.
                 </caption>
                 <thead>
                   <tr>
@@ -460,11 +460,9 @@ export function ScaffoldContent() {
                 SDS-PAGE. The solution obtained after ITC was further subjected
                 to ultrafiltration, which served to purify, concentrate and
                 exchange the buffer, yielding a scaffold protein solution whose
-                final solvent was{" "}
-                water; the protein was then <strong>lyophilized to a powder</strong>, the
-                  storage form used for the
-                {" "}
-                subsequent preparation of hydrogel solutions.
+                final solvent was water; the protein was then{" "}
+                <strong>lyophilized to a powder</strong>, the storage form used
+                for the subsequent preparation of hydrogel solutions.
               </p>
               <p>
                 The purified supernatant was concentrated using ultrafiltration
@@ -611,10 +609,10 @@ export function ScaffoldContent() {
             </div>
             <div className="source-block" data-block="36">
               <FigureCaption as="p" className="figure-caption">
-                <strong>Figure 1.2.6 |</strong> BCA quantification of the protein
-                concentration before and after ultrafiltration concentration.
-                The concentration factor was approximately 3.5, with essentially
-                no protein loss.
+                <strong>Figure 1.2.6 |</strong> BCA quantification of the
+                protein concentration before and after ultrafiltration
+                concentration. The concentration factor was approximately 3.5,
+                with essentially no protein loss.
               </FigureCaption>
             </div>
             <div className="source-block" data-block="37">
@@ -716,7 +714,7 @@ export function ScaffoldContent() {
                   system was fully crosslinked after 2 s of blue-light
                   irradiation
                 </strong>{" "}
-                (Figure 1.2.9; Supplementary Movies S1 and S2).
+                (Figure 1.2.9; Videos 1 and 2).
               </p>
             </div>
             <div className="source-block figure-block" data-block="44">
@@ -767,24 +765,42 @@ export function ScaffoldContent() {
                 blue-light irradiation.
               </FigureCaption>
             </div>
-            <div className="source-block" data-block="48">
-              <p>
-                <span className="wetlab-results__video-pending">
-                  Before photoexcitation: the Ru/SPS hydrogel precursor solution
-                  flows when inverted (S1).
-                </span>{" "}
-                <span className="badge">Video awaiting platform review</span>
-              </p>
-            </div>
-            <div className="source-block" data-block="49">
-              <p>
-                <span className="wetlab-results__video-pending">
-                  After photoexcitation: no flow when inverted, indicating
-                  successful gelation via crosslinking at tyrosine residues
-                  (S2).
-                </span>{" "}
-                <span className="badge">Video awaiting platform review</span>
-              </p>
+            <div
+              className="source-block wetlab-results__video-grid"
+              data-block="48"
+            >
+              <figure className="wetlab-results__video">
+                <div className="wetlab-results__video-frame">
+                  <iframe
+                    title="ZJU-China: Before photoexcitation (2026)"
+                    src="https://video.igem.org/videos/embed/cL8M7Rr5r7cAAHbWSqJXzG"
+                    allow="fullscreen"
+                    sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
+                    loading="lazy"
+                  />
+                </div>
+                <figcaption>
+                  <strong>Video 1 |</strong> Before
+                  photoexcitation: the Ru/SPS hydrogel precursor solution flows
+                  when inverted.
+                </figcaption>
+              </figure>
+              <figure className="wetlab-results__video">
+                <div className="wetlab-results__video-frame">
+                  <iframe
+                    title="ZJU-China: After photoexcitation (2026)"
+                    src="https://video.igem.org/videos/embed/j1VesEumqkQvm1oG7m24Tj"
+                    allow="fullscreen"
+                    sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
+                    loading="lazy"
+                  />
+                </div>
+                <figcaption>
+                  <strong>Video 2 |</strong> After
+                  photoexcitation: no flow when inverted, indicating successful
+                  gelation via crosslinking at tyrosine residues.
+                </figcaption>
+              </figure>
             </div>
           </div>
         </div>
@@ -921,7 +937,11 @@ export function ScaffoldContent() {
             </div>
             <div className="source-block" data-block="60">
               <FigureCaption as="p" className="figure-caption">
-                <strong>Figure 1.2.10 |</strong> Digital photograph of SELP hydrogels and SEM images, (A) and (B) are hydrogels made from SELP with different repeats of unit.The hydrogel has an interconnected, three-dimensional porous network with pores of varying size.
+                <strong>Figure 1.2.10 |</strong> Digital photograph of SELP
+                hydrogels and SEM images, (A) and (B) are hydrogels made from
+                SELP with different repeats of unit.The hydrogel has an
+                interconnected, three-dimensional porous network with pores of
+                varying size.
               </FigureCaption>
             </div>
             <div className="source-block" data-block="61">
@@ -1130,14 +1150,20 @@ export function ScaffoldContent() {
                 <div className="source-block" data-block="70">
                   <FigureCaption as="p" className="figure-caption">
                     <strong>Figure 1.2.13 |</strong>
-                    Stress–strain curves and Young’s moduli of the hydrogels. Upper panel: Stress–strain curves over a strain range of 0–0.3. Lower panel: Young’s moduli. ns, not significant;  ***, p &lt; 0.001.
+                    Stress–strain curves and Young’s moduli of the hydrogels.
+                    Upper panel: Stress–strain curves over a strain range of
+                    0–0.3. Lower panel: Young’s moduli. ns, not significant;
+                    ***, p &lt; 0.001.
                   </FigureCaption>
                 </div>
               </div>
               <div className="figure-unit figure-unit--caption">
                 <div className="source-block" data-block="74">
                   <FigureCaption as="p" className="figure-caption">
-                    <strong>Figure 1.2.14 |</strong> Shear adhesion performance of the hydrogels. Upper panel: Shear force–displacement curves. Lower panel:  Shear strength. ns, not significant; ***, p &lt; 0.001.
+                    <strong>Figure 1.2.14 |</strong> Shear adhesion performance
+                    of the hydrogels. Upper panel: Shear force–displacement
+                    curves. Lower panel: Shear strength. ns, not significant;
+                    ***, p &lt; 0.001.
                   </FigureCaption>
                 </div>
               </div>
@@ -1152,8 +1178,8 @@ export function ScaffoldContent() {
                 significant difference between 2Y-5 and 2KY-5;{" "}
                 <strong>2KY-16 significantly higher than both</strong>, p &lt;
                 0.001) (Figure 1.2.14B). In addition, probing the hydrogel with
-                a pipette tip (Supplementary Movie S3) and adhering it to the
-                surface of a culture dish (Supplementary Movie S4) both
+                a pipette tip (Video 3) and adhering it to the surface of a
+                culture dish (Video 4) both
                 demonstrated that the{" "}
                 <strong>hydrogel has good elasticity and adhesiveness</strong>.
               </p>
@@ -1165,21 +1191,40 @@ export function ScaffoldContent() {
                 properties.
               </p>
             </div>
-            <div className="source-block" data-block="76">
-              <p>
-                <span className="wetlab-results__video-pending">
-                  Fabricated hydrogel and demonstration of elasticity (S3).
-                </span>{" "}
-                <span className="badge">Video awaiting platform review</span>
-              </p>
-            </div>
-            <div className="source-block" data-block="77">
-              <p>
-                <span className="wetlab-results__video-pending">
-                  Demonstration of the hydrogel’s adhesive properties (S4).
-                </span>{" "}
-                <span className="badge">Video awaiting platform review</span>
-              </p>
+            <div
+              className="source-block wetlab-results__video-grid"
+              data-block="76"
+            >
+              <figure className="wetlab-results__video">
+                <div className="wetlab-results__video-frame">
+                  <iframe
+                    title="ZJU-China: Fabricated hydrogel and demonstration of elasticity (2026)"
+                    src="https://video.igem.org/videos/embed/7BjVTcHroxYdJi5VXjB3KM"
+                    allow="fullscreen"
+                    sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
+                    loading="lazy"
+                  />
+                </div>
+                <figcaption>
+                  <strong>Video 3 |</strong> Fabricated hydrogel and
+                  demonstration of elasticity.
+                </figcaption>
+              </figure>
+              <figure className="wetlab-results__video">
+                <div className="wetlab-results__video-frame">
+                  <iframe
+                    title="ZJU-China: Demonstration of the hydrogel’s adhesive properties (2026)"
+                    src="https://video.igem.org/videos/embed/epdPPqgZqqtuMQhAyjdd6q"
+                    allow="fullscreen"
+                    sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
+                    loading="lazy"
+                  />
+                </div>
+                <figcaption>
+                  <strong>Video 4 |</strong> Demonstration of the hydrogel’s
+                  adhesive properties.
+                </figcaption>
+              </figure>
             </div>
           </div>
         </div>
@@ -1191,7 +1236,8 @@ export function ScaffoldContent() {
           data-toc="include"
           data-toc-depth="3"
         >
-          1.3 Construction and Production of Hydrogels with Different Repeat Numbers
+          1.3 Construction and Production of Hydrogels with Different Repeat
+          Numbers
         </h4>
         <h5
           data-block="109"
@@ -1199,7 +1245,8 @@ export function ScaffoldContent() {
           data-toc="include"
           data-toc-depth="4"
         >
-          1.3.1 Plasmid Construction, Expression and Purification of the Scaffold Protein 2KY-10
+          1.3.1 Plasmid Construction, Expression and Purification of the
+          Scaffold Protein 2KY-10
         </h5>
       </div>
       <section className="pair">
@@ -1338,7 +1385,8 @@ export function ScaffoldContent() {
               <p>
                 The purification results are shown in Figure 1.3.3: the
                 purification was effective, with a yield of approximately 480 mg
-                per liter of bacterial culture, <strong>close to that of 2KY-5</strong>.
+                per liter of bacterial culture,{" "}
+                <strong>close to that of 2KY-5</strong>.
               </p>
             </div>
             <div className="source-block figure-block" data-block="118">
@@ -1359,9 +1407,9 @@ export function ScaffoldContent() {
             </div>
             <div className="source-block" data-block="119">
               <FigureCaption as="p" className="figure-caption">
-                <strong>Figure 1.3.3 |</strong> SDS-PAGE analysis of the purified
-                2KY-10 protein. The yield was approximately 480 mg per liter of
-                bacterial culture, close to that of 2KY-5.
+                <strong>Figure 1.3.3 |</strong> SDS-PAGE analysis of the
+                purified 2KY-10 protein. The yield was approximately 480 mg per
+                liter of bacterial culture, close to that of 2KY-5.
               </FigureCaption>
             </div>
           </div>
@@ -1374,7 +1422,8 @@ export function ScaffoldContent() {
           data-toc="include"
           data-toc-depth="4"
         >
-          1.3.2 Plasmid Construction, Expression and Purification of the Scaffold Proteins 2KY-5-Tag and 2KY-10-Tag
+          1.3.2 Plasmid Construction, Expression and Purification of the
+          Scaffold Proteins 2KY-5-Tag and 2KY-10-Tag
         </h5>
       </div>
       <section className="pair">
@@ -1468,10 +1517,10 @@ export function ScaffoldContent() {
             </div>
             <div className="source-block" data-block="124">
               <FigureCaption as="p" className="figure-caption">
-                <strong>Figure 1.3.4 |</strong> Two-fragment amplification of the
-                2KY-5-Tag plasmid. Agarose gel electrophoresis of the B→I (956
-                bp) and I→B (5792 bp) fragments before gel purification; all
-                amplified bands were of the expected size.
+                <strong>Figure 1.3.4 |</strong> Two-fragment amplification of
+                the 2KY-5-Tag plasmid. Agarose gel electrophoresis of the B→I
+                (956 bp) and I→B (5792 bp) fragments before gel purification;
+                all amplified bands were of the expected size.
               </FigureCaption>
             </div>
             <div className="source-block" data-block="125">
@@ -1516,7 +1565,10 @@ export function ScaffoldContent() {
             </div>
             <div className="source-block" data-block="128">
               <p>
-                The purification was effective, with yields of approximately 520 mg and 490 mg per liter of bacterial culture for 2KY-5-Tag and 2KY-10-Tag, respectively, close to that of 2KY-5.（Figure 1.3.6）
+                The purification was effective, with yields of approximately 520
+                mg and 490 mg per liter of bacterial culture for 2KY-5-Tag and
+                2KY-10-Tag, respectively, close to that of 2KY-5.（Figure
+                1.3.6）
               </p>
             </div>
             <div className="source-block figure-block" data-block="129">
@@ -1537,10 +1589,10 @@ export function ScaffoldContent() {
             </div>
             <div className="source-block" data-block="130">
               <FigureCaption as="p" className="figure-caption">
-                <strong>Figure 1.3.6 |</strong> SDS-PAGE analysis of the purified
-                2KY-5-Tag and 2KY-10-Tag proteins. Yields were approximately 520
-                mg and 490 mg per liter of bacterial culture, respectively,
-                close to that of 2KY-5.
+                <strong>Figure 1.3.6 |</strong> SDS-PAGE analysis of the
+                purified 2KY-5-Tag and 2KY-10-Tag proteins. Yields were
+                approximately 520 mg and 490 mg per liter of bacterial culture,
+                respectively, close to that of 2KY-5.
               </FigureCaption>
             </div>
           </div>
@@ -1639,10 +1691,10 @@ export function ScaffoldContent() {
             </div>
             <div className="source-block" data-block="83">
               <FigureCaption as="p" className="figure-caption">
-                <strong>Figure 2.1.1 |</strong> Relative viability of mesenchymal
-                stem cells co-cultured with the SELP protein, measured by the
-                CCK-8 assay at 24, 48 and 72 h. Percentages are relative to the
-                control group (mean ± SD, n = 3).
+                <strong>Figure 2.1.1 |</strong> Relative viability of
+                mesenchymal stem cells co-cultured with the SELP protein,
+                measured by the CCK-8 assay at 24, 48 and 72 h. Percentages are
+                relative to the control group (mean ± SD, n = 3).
               </FigureCaption>
             </div>
           </div>
@@ -1710,18 +1762,25 @@ export function ScaffoldContent() {
                 difference between the 2KY-16 and 2Y-5 groups.
               </p>
               <p>
-                These results indicate that the 2KY hydrogels <strong>promote the
-                expression of cartilage matrix-related genes (ACAN, COL2 and
-                SOX9) in chondrocytes and suppress COL1 expression.</strong> Increased
-                COL1 expression is a hallmark of the loss of the cartilage
-                phenotype (dedifferentiation) of chondrocytes in
-                culture,[11] and SOX9 is a key transcriptional activator of
-                COL2 expression;[12] this expression profile is therefore
-                conducive to <strong>maintaining the chondrocyte phenotype</strong>. Among the
-                groups, 2KY-16 had the stronger promoting effect on ACAN and
-                COL2 expression, indicating that <strong>to a certain extent the
-                effect is better as the repeat number increases, which makes
-                it more suitable for our clinical choice</strong>.
+                These results indicate that the 2KY hydrogels{" "}
+                <strong>
+                  promote the expression of cartilage matrix-related genes
+                  (ACAN, COL2 and SOX9) in chondrocytes and suppress COL1
+                  expression.
+                </strong>{" "}
+                Increased COL1 expression is a hallmark of the loss of the
+                cartilage phenotype (dedifferentiation) of chondrocytes in
+                culture,[11] and SOX9 is a key transcriptional activator of COL2
+                expression;[12] this expression profile is therefore conducive
+                to <strong>maintaining the chondrocyte phenotype</strong>. Among
+                the groups, 2KY-16 had the stronger promoting effect on ACAN and
+                COL2 expression, indicating that{" "}
+                <strong>
+                  to a certain extent the effect is better as the repeat number
+                  increases, which makes it more suitable for our clinical
+                  choice
+                </strong>
+                .
               </p>
             </div>
             <div className="source-block figure-block" data-block="87">
@@ -1869,8 +1928,8 @@ export function ScaffoldContent() {
             </div>
             <div className="source-block" data-block="95">
               <FigureCaption as="p" className="figure-caption">
-                <strong>Figure 3.1.1 |</strong> Western blot analysis of the IPTG
-                induction gradient. Lysates and purified eluates of
+                <strong>Figure 3.1.1 |</strong> Western blot analysis of the
+                IPTG induction gradient. Lysates and purified eluates of
                 SnoopTag2-sfGFP, SUMO-DogTag and SnoopLigase2 were probed with
                 an anti-His primary antibody; the optimal induction
                 concentrations were 0.1, 0.1 and 1.0 mM, respectively.
@@ -2049,10 +2108,10 @@ export function ScaffoldContent() {
             </div>
             <div className="source-block" data-block="107">
               <FigureCaption as="p" className="figure-caption">
-                <strong>Figure 3.3.1 |</strong> SDS-PAGE analysis of the ligation
-                reaction time course. Samples were taken at 10, 30 and 60 min;
-                the approximately 45-kDa ligation product appeared within 10 min
-                and the reaction was complete within 1 h.
+                <strong>Figure 3.3.1 |</strong> SDS-PAGE analysis of the
+                ligation reaction time course. Samples were taken at 10, 30 and
+                60 min; the approximately 45-kDa ligation product appeared
+                within 10 min and the reaction was complete within 1 h.
               </FigureCaption>
             </div>
           </div>
@@ -2335,8 +2394,8 @@ export function ScaffoldReferences() {
       <div className="source-block" data-block="135">
         <p>
           [26] Nakano T, et al. Mitochondrial surface coating with artificial
-          lipid membrane improves the transfer efficacy. Communications
-          Biology. 2022;5:745.
+          lipid membrane improves the transfer efficacy. Communications Biology.
+          2022;5:745.
         </p>
       </div>
       <div className="source-block" data-block="136">
@@ -2359,8 +2418,7 @@ export function ScaffoldReferences() {
         <p>
           [29] Ishiyama M, Miyazono Y, Sasamoto K, Ohkura Y, Ueno K. A highly
           water-soluble disulfonated tetrazolium salt as a chromogenic indicator
-          for NADH as well as cell viability. Talanta.
-          1997;44(7):1299–1305.
+          for NADH as well as cell viability. Talanta. 1997;44(7):1299–1305.
         </p>
       </div>
     </>

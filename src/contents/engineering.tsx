@@ -69,7 +69,7 @@ interface Section {
  * off the tab is removed from the navigation (locally and on the deployed
  * site alike).
  */
-const SHOW_HUMAN_PRACTICES = true;
+const SHOW_HUMAN_PRACTICES = false;
 
 /** Desktop breakpoint shared with the CSS grid: the split ring navigation is
  *  only used when the ring and card sit side by side. */
