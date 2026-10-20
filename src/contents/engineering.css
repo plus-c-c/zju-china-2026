@@ -1,6 +1,14 @@
 /* Engineering page — Wet Lab / Dry Lab module navigation.
    Card style referenced from the 2025 ZJU-China engineering page,
    adapted to the 2026 site palette. */
+.eng-overview {
+  margin-bottom: 2rem;
+}
+
+.eng-overview p:last-child {
+  margin-bottom: 0;
+}
+
 .eng-module-nav {
   display: flex;
   justify-content: center;
@@ -447,6 +455,261 @@
   opacity: 1;
 }
 
+/* Project Design: the exact Figma outer artwork wraps the existing DBTL
+   inner artwork. The outer ring turns through the SEED stages first; while
+   Engineering & Implementation is active, the outer ring stays fixed and
+   the inner ring advances through four DBTL cycles. */
+.project-design-ring {
+  position: relative;
+  width: var(--dbtl-ring-size);
+  max-width: 100%;
+  aspect-ratio: 1;
+  margin: 0;
+}
+
+.project-design-ring__outer {
+  position: absolute;
+  inset: 0;
+}
+
+.project-design-ring__outer > svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  transform: rotate(var(--project-outer-rotation, 0deg));
+  transform-origin: 50% 50%;
+  will-change: transform;
+}
+
+/* Reuse the iHP outer wheel's stacking, palette, label proportions and text
+   paths. The source artwork intentionally makes the long Engineering label
+   smaller; its paths also place every label just ahead of the geometric
+   quadrant centre so it sits on the visible arc. */
+.project-design-ring__outer .seed-base [data-seg],
+.project-design-ring__outer .seed-texts [data-seg] {
+  cursor: pointer;
+}
+
+.project-design-ring__outer .seed-hi {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+/* The iHP artwork keeps this closing cap in the base colour to preserve its
+   normal overlap. During the Engineering highlight it belongs to the active
+   segment, so deepen it too and let the highlight cover the adjoining end. */
+.project-design-ring__outer .seed-hi-engineering circle {
+  fill: #004688;
+}
+
+.project-design-ring__outer .seed-texts text {
+  font-family: "Outfit", sans-serif;
+  transition: fill 0.2s ease;
+}
+
+.project-design-ring__outer[data-active="spark"] .seed-hi-spark,
+.project-design-ring__outer[data-active="explore"] .seed-hi-explore,
+.project-design-ring__outer[data-active="engineering"] .seed-hi-engineering,
+.project-design-ring__outer[data-active="dialogue"] .seed-hi-dialogue,
+.project-design-ring__outer:has(.seed-base [data-seg="spark"]:hover)
+  .seed-hi-spark,
+.project-design-ring__outer:has(.seed-texts [data-seg="spark"]:hover)
+  .seed-hi-spark,
+.project-design-ring__outer:has(.seed-base [data-seg="explore"]:hover)
+  .seed-hi-explore,
+.project-design-ring__outer:has(.seed-texts [data-seg="explore"]:hover)
+  .seed-hi-explore,
+.project-design-ring__outer:has(.seed-base [data-seg="engineering"]:hover)
+  .seed-hi-engineering,
+.project-design-ring__outer:has(.seed-texts [data-seg="engineering"]:hover)
+  .seed-hi-engineering,
+.project-design-ring__outer:has(.seed-base [data-seg="dialogue"]:hover)
+  .seed-hi-dialogue,
+.project-design-ring__outer:has(.seed-texts [data-seg="dialogue"]:hover)
+  .seed-hi-dialogue {
+  opacity: 1;
+}
+
+.project-design-ring__outer[data-active="spark"]
+  .seed-texts
+  text[data-seg="spark"],
+.project-design-ring__outer[data-active="explore"]
+  .seed-texts
+  text[data-seg="explore"],
+.project-design-ring__outer[data-active="engineering"]
+  .seed-texts
+  text[data-seg="engineering"],
+.project-design-ring__outer[data-active="dialogue"]
+  .seed-texts
+  text[data-seg="dialogue"],
+.project-design-ring__outer:has([data-seg="spark"]:hover)
+  .seed-texts
+  text[data-seg="spark"],
+.project-design-ring__outer:has([data-seg="explore"]:hover)
+  .seed-texts
+  text[data-seg="explore"],
+.project-design-ring__outer:has([data-seg="engineering"]:hover)
+  .seed-texts
+  text[data-seg="engineering"],
+.project-design-ring__outer:has([data-seg="dialogue"]:hover)
+  .seed-texts
+  text[data-seg="dialogue"] {
+  fill: #ffe39a;
+}
+
+.project-design-ring__inner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 47%;
+  transform: translate(-50%, -50%);
+  opacity: 0.62;
+  transition: opacity 0.25s ease;
+}
+
+.project-design-ring[data-outer="engineering"] .project-design-ring__inner {
+  opacity: 1;
+}
+
+.project-design-ring__inner svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  transform: rotate(var(--project-inner-rotation, 0deg));
+  transform-origin: 50% 50%;
+  will-change: transform;
+}
+
+.project-design-ring__inner [data-seg] {
+  cursor: pointer;
+}
+
+.project-design-ring__inner .dbtl-hi {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.project-design-ring__inner .dbtl-hi-design path[stroke] {
+  stroke: #136aee;
+}
+
+.project-design-ring__inner .dbtl-hi-build path[stroke] {
+  stroke: #0043bb;
+}
+
+.project-design-ring__inner .dbtl-hi-test path[stroke] {
+  stroke: #0768df;
+}
+
+.project-design-ring__inner .dbtl-hi-test circle {
+  fill: #0768df;
+}
+
+.project-design-ring__inner .dbtl-hi-learn path[stroke] {
+  stroke: #64b4ff;
+}
+
+.project-design-ring[data-inner="design"] .dbtl-hi-design,
+.project-design-ring[data-inner="build"] .dbtl-hi-build,
+.project-design-ring[data-inner="test"] .dbtl-hi-test,
+.project-design-ring[data-inner="learn"] .dbtl-hi-learn {
+  opacity: 1;
+}
+
+.project-design-ring__inner:has(.dbtl-base [data-seg="design"]:hover)
+  .dbtl-hi-design,
+.project-design-ring__inner:has(.dbtl-base [data-seg="build"]:hover)
+  .dbtl-hi-build,
+.project-design-ring__inner:has(.dbtl-base [data-seg="test"]:hover)
+  .dbtl-hi-test,
+.project-design-ring__inner:has(.dbtl-base [data-seg="learn"]:hover)
+  .dbtl-hi-learn {
+  opacity: 1;
+}
+
+.project-design-ring__inner .dbtl-hi :is(path[fill="white"], text) {
+  fill: #ffe39a;
+}
+
+/* Project Design gives the double wheel more visual weight than the regular
+   DBTL navigation. On wide screens it may enter the card column slightly,
+   matching the wrapped-ring treatment used on the iHP page. */
+.project-design-stepper {
+  --dbtl-ring-size: clamp(340px, 36vw, 520px);
+  --dbtl-gap: clamp(1rem, 1.5vw, 1.5rem);
+  /* Project Design desktop tuning:
+     smaller copy width = narrower text; larger gap = more space from ring. */
+  --project-copy-width: 850px;
+  --project-copy-gap: 8px;
+}
+
+.project-design-subheading {
+  margin: 1.1rem 0 0.55rem;
+  color: #365dc9;
+  font-size: 1.25rem;
+  line-height: 1.45;
+}
+
+.project-design-numbered {
+  padding-left: 2.15rem;
+  text-indent: -2.15rem;
+}
+
+.project-design-numbered > span {
+  display: inline-block;
+  width: 1.8rem;
+  color: #365dc9;
+  font-weight: 700;
+  text-indent: 0;
+}
+
+.dbtl .dbtl-panel-inner .project-design-figure {
+  margin: 1.35rem 0;
+}
+
+.dbtl .dbtl-panel-inner .project-design-figure img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  max-height: clamp(220px, calc(var(--dbtl-stack-h) - 240px), 500px);
+  object-fit: contain;
+  margin: 0 auto;
+  border: 1px solid #e3e8f4;
+  border-radius: 12px;
+  background: #fbfcfe;
+}
+
+.dbtl .dbtl-panel-inner .project-design-figure figcaption {
+  margin-top: 0.7rem;
+  color: #5c6f96;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+@media (min-width: 992px) {
+  .project-design-stepper {
+    position: relative;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .project-design-stepper .dbtl-ring-wrap {
+    position: absolute;
+    top: 50%;
+    right: calc(var(--project-copy-width) + var(--project-copy-gap));
+    z-index: 0;
+    margin: 0;
+    transform: translateY(-50%);
+  }
+
+  .project-design-stepper .dbtl-main {
+    position: relative;
+    z-index: 1;
+    width: min(100%, var(--project-copy-width));
+    justify-self: end;
+  }
+}
+
 /* SEED phase badges (Human Practices stepper): one width for all four so the
    cycle title never shifts between Spark / Explore / Engineering / Dialogue. */
 .dbtl-phase-Spark,
@@ -866,6 +1129,19 @@
        panel keeps its own height instead of collapsing to its borders. */
     flex: 0 0 auto;
     height: clamp(260px, 54vh, 480px);
+  }
+
+  .project-design-stepper .dbtl-panel {
+    height: clamp(210px, 34vh, 330px);
+  }
+
+  .project-design-ring {
+    width: min(100%, 360px);
+    margin: 0 auto;
+  }
+
+  .project-design-stepper .dbtl-ring-wrap {
+    transform: none;
   }
 
   .dbtl-subnav {

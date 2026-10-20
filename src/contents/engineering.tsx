@@ -1,7 +1,12 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import type { Group, Part } from "./engineering/group";
 import { DbtlStepper } from "./engineering/DbtlStepper";
-import { buildSteps, sequenceSpan, STEP_DVH, type Step } from "./engineering/steps";
+import {
+  buildSteps,
+  sequenceSpan,
+  STEP_DVH,
+  type Step,
+} from "./engineering/steps";
 import { DBTL_TAB_SCROLL_NUDGE } from "./engineering/ringStage";
 import type { DbtlModule } from "./engineering/dbtl";
 import { SeedStepper } from "./engineering/SeedStepper";
@@ -11,6 +16,10 @@ import {
   type SeedStep,
 } from "./engineering/seed";
 import { EngineeringReferences } from "./engineering/EngineeringReferences";
+import {
+  PROJECT_DESIGN_STEP_COUNT,
+  ProjectDesignStepper,
+} from "./engineering/ProjectDesignStepper";
 import { gagRetentionGroup } from "./engineering/groups/gag-retention";
 import { hardwareGroup } from "./engineering/groups/hardware";
 import { humanPracticesGroups } from "./engineering/groups/human-practices";
@@ -27,7 +36,7 @@ import "./engineering.css";
  *
  *   - sections following the 2025 ZJU-China engineering page: Project
  *     Design / Wet Lab / Dry Lab / Human Practices; Human Practices is
- *     currently hidden behind the SHOW_HUMAN_PRACTICES switch below;
+ *     controlled by the SHOW_HUMAN_PRACTICES switch below;
  *   - Wet Lab is split into four groups following the Notebook page, with
  *     SELP hydrogels and the ligation system merged into one group; Dry Lab
  *     holds Protein Hydrogel Modeling, Hardware, and Software (the SELP MD
@@ -42,7 +51,9 @@ import "./engineering.css";
  *   - each sub-module's own lead / outlook (引导段 / 展望段) sit at the
  *     cycle-button row: they are the first / last steps of the sequence, so
  *     the DBTL ring stays unlit and the panel shows no phase badge on them;
- *   - Project Design stays blank until its content is added.
+ *   - Project Design uses the nested SEED / DBTL cycle: the outer SEED ring
+ *     advances first, then the inner DBTL ring runs four cycles during
+ *     Engineering & Implementation.
  */
 interface Section {
   key: string;
@@ -58,7 +69,7 @@ interface Section {
  * off the tab is removed from the navigation (locally and on the deployed
  * site alike).
  */
-const SHOW_HUMAN_PRACTICES = false;
+const SHOW_HUMAN_PRACTICES = true;
 
 /** Desktop breakpoint shared with the CSS grid: the split ring navigation is
  *  only used when the ring and card sit side by side. */
@@ -111,7 +122,6 @@ const ALL_SECTIONS: Section[] = [
     key: "human-practices",
     label: "Human Practices",
     groups: humanPracticesGroups,
-    hidden: true,
   },
 ];
 
@@ -120,13 +130,14 @@ const SECTIONS = ALL_SECTIONS.filter(
 );
 
 export function Engineering() {
-  const [activeKey, setActiveKey] = useState("wet-lab");
+  const [activeKey, setActiveKey] = useState("project-design");
   const [groupIndex, setGroupIndex] = useState(0);
   const [tabIndex, setTabIndex] = useState(0);
   const prevNavRef = useRef({ activeKey, groupIndex, tabIndex });
 
   const activeSection =
     SECTIONS.find((section) => section.key === activeKey) ?? SECTIONS[0];
+  const projectDesignActive = activeSection.key === "project-design";
   const activeGroup =
     activeSection.groups[groupIndex] ?? activeSection.groups[0];
 
@@ -318,6 +329,13 @@ export function Engineering() {
       return;
     }
     const runway = document.querySelector(".eng-runway") as HTMLElement | null;
+    if (runway && projectDesignActive) {
+      window.scrollTo({
+        top: runway.getBoundingClientRect().top + window.scrollY,
+        behavior: "instant",
+      });
+      return;
+    }
     if (runway && startIndex >= 0 && stepCount > 1) {
       const total = runway.offsetHeight - window.innerHeight;
       const top = runway.getBoundingClientRect().top + window.scrollY;
@@ -337,7 +355,15 @@ export function Engineering() {
         behavior: "instant",
       });
     }
-  }, [activeKey, groupIndex, tabIndex, startIndex, stepCount, scrollSpan]);
+  }, [
+    activeKey,
+    groupIndex,
+    tabIndex,
+    startIndex,
+    stepCount,
+    scrollSpan,
+    projectDesignActive,
+  ]);
 
   const tabNav = tabs.map((tab, index) => (
     <button
@@ -396,7 +422,10 @@ export function Engineering() {
     <>
       {!ringNav && moduleNav}
       {!ringNav && groupNav}
-      {activeGroup &&
+      {projectDesignActive ? (
+        <ProjectDesignStepper />
+      ) : (
+        activeGroup &&
         (stepCount > 0 ? (
           seedFlavor ? (
             <SeedStepper
@@ -425,7 +454,8 @@ export function Engineering() {
           )
         ) : (
           <div className="eng-partnav">{tabNav}</div>
-        ))}
+        ))
+      )}
     </>
   );
   const aggregateClass = `eng-aggregate${ringNav ? " eng-aggregate--ring-nav" : ""}`;
@@ -434,12 +464,60 @@ export function Engineering() {
     <div className="row mt-4 mb-5">
       <div className="col-12">
         <article>
-          {activeGroup ? (
-            stepCount > 0 ? (
+          <section
+            className="eng-overview"
+            aria-labelledby="engineering-overview-title"
+          >
+            <h2 id="engineering-overview-title">
+              From Real-World Needs to Engineering Solutions
+            </h2>
+            <p>
+              For NEST, engineering is not simply about designing a
+              protein-based material. It is a process of translating real-world
+              challenges in cartilage repair into engineering problems that can
+              be designed, constructed, and tested, while continuously refining
+              solutions through experimental evidence and feedback.
+            </p>
+            <p>
+              To ensure that our engineering work remains responsive to real
+              needs, we integrated the SEED framework throughout our project.
+              SEED consists of four interconnected stages:{" "}
+              <strong>
+                Spark a Question, Explore &amp; Analyze, Engineering &amp;
+                Implementation, and Dialogue &amp; Feedback.
+              </strong>{" "}
+              The framework connects problem identification, engineering
+              practice, and external feedback, creating a continuous cycle of
+              improvement.
+            </p>
+            <p>
+              Within the Engineering &amp; Implementation stage, we further
+              adopted the Design–Build–Test–Learn (DBTL) cycle to translate
+              engineering requirements into concrete experimental tasks.
+            </p>
+            <p>
+              NEST therefore operates through two interconnected cycles:{" "}
+              <strong>
+                SEED connects real-world needs with engineering practice and
+                external feedback, while DBTL drives the construction, testing,
+                and optimization of specific designs.
+              </strong>{" "}
+              Together, they establish an iterative pathway from identifying
+              unmet needs to developing a programmable biomaterial platform.
+            </p>
+          </section>
+          {activeGroup || projectDesignActive ? (
+            stepCount > 0 || projectDesignActive ? (
               <div
                 className="eng-runway"
                 style={{
-                  height: `calc(${100 + sequenceSpan(steps) * STEP_DVH}dvh)`,
+                  height: `calc(${
+                    100 +
+                    (projectDesignActive
+                      ? PROJECT_DESIGN_STEP_COUNT
+                      : sequenceSpan(steps)) *
+                      STEP_DVH
+                  }dvh)`,
                 }}
               >
                 <div className="eng-pin">
@@ -454,9 +532,9 @@ export function Engineering() {
           ) : (
             content
           )}
-          {/* The shared references list accompanies sections that have
-              content; Project Design stays blank until its module is added,
-              and Human Practices is hidden behind SHOW_HUMAN_PRACTICES. */}
+          {/* The shared references list accompanies sections backed by the
+              group data; Project Design owns its separate nested cycle, and
+              Human Practices is controlled by SHOW_HUMAN_PRACTICES. */}
           {activeSection.groups.length > 0 && <EngineeringReferences />}
         </article>
       </div>
