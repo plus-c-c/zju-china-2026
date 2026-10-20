@@ -69,8 +69,11 @@ export const mitochondriaModule: DbtlModule = {
         Build: (
           <>
             <p>
-              We prepared functionalized liposomes using DOPE, DOTAP, and
-              DSPE-PEG-Mal. The combination of DOPE and DOTAP was intended to
+              We prepared functionalized liposomes using
+              DOPE(1,2-dioleoyl-<em>sn</em>-glycero-3-phosphoethanolamine),
+              DOTAP(1,2-dioleoyl-3-trimethylammonium-propane (chloride)), and
+              DSPE-PEG-Mal(1,2-distearoyl-<em>sn</em>-glycero-3-phosphoethanolamine-N-[maleimide(polyethylene
+              glycol)]). The combination of DOPE and DOTAP was intended to
               support interactions between the carrier and biological membranes,
               while DSPE-PEG-Mal provided maleimide groups for subsequent
               peptide conjugation. We co-incubated the liposomes with labeled
@@ -129,10 +132,10 @@ export const mitochondriaModule: DbtlModule = {
               potential for subsequent detachment. We incorporated both
               requirements into a single linker peptide, with attachment sites
               for the liposome and scaffold at opposite ends and a cleavable
-              region between them. The selection of <strong>MMP-13</strong>{" "}
-              (<strong>matrix metalloproteinase-13</strong>){" "}
-              <strong>as the target enzyme</strong> was informed by its
-              mechanistic <strong>association with cartilage erosion</strong>.
+              region between them. The selection of
+              <strong>MMP-13</strong>(matrix metalloproteinase-13) <strong>as the
+              target enzyme</strong> was informed by its mechanistic
+              <strong>association with cartilage erosion</strong>.
             </p>
           </>
         ),
@@ -451,9 +454,9 @@ export const mitochondriaModule: DbtlModule = {
               contact cells as an unreacted component or as cleavage fragments.
               We needed to understand the cellular response to this component
               before extending cytocompatibility assessment to the liposomes,
-              complexes, and final scaffold. We therefore used the CCK-8 assay
-              to compare relative cell viability across peptide concentrations
-              and treatment durations.
+              complexes, and final scaffold. We therefore used the CCK-8 (Cell
+              Counting Kit-8) assay to compare relative cell viability across
+              peptide concentrations and treatment durations.
             </p>
           </>
         ),

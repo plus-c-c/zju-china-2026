@@ -722,13 +722,13 @@ export function ScaffoldContent() {
               <p>
                 <a
                   className="figure-link"
-                  href="https://static.igem.wiki/teams/6102/wiki/images/result/01/33-new.avif"
+                  href="https://static.igem.wiki/teams/6102/wiki/images/result/01/34-new.avif"
                   target="_blank"
                   rel="noopener"
                 >
                   <img
                     loading="lazy"
-                    src="https://static.igem.wiki/teams/6102/wiki/images/result/01/33-new.avif"
+                    src="https://static.igem.wiki/teams/6102/wiki/images/result/01/34-new.avif"
                     alt="Figure 1.2.8. Mechanism of Ru/SPS-mediated dityrosine photocrosslinking. Under visible light, the Ru/SPS system catalyses the formation of covalent dityrosine crosslinks between adjacent tyrosine residues."
                   />
                 </a>
@@ -746,13 +746,13 @@ export function ScaffoldContent() {
               <p>
                 <a
                   className="figure-link"
-                  href="https://static.igem.wiki/teams/6102/wiki/images/result/01/34-new.avif"
+                  href="https://static.igem.wiki/teams/6102/wiki/images/result/01/33-new.avif"
                   target="_blank"
                   rel="noopener"
                 >
                   <img
                     loading="lazy"
-                    src="https://static.igem.wiki/teams/6102/wiki/images/result/01/34-new.avif"
+                    src="https://static.igem.wiki/teams/6102/wiki/images/result/01/33-new.avif"
                     alt="Figure 1.2.9. Appearance before and after photocrosslinking. Left, hydrogel precursor solution before illumination; right, hydrogel formed after 2 s of 450-nm blue-light irradiation."
                   />
                 </a>
