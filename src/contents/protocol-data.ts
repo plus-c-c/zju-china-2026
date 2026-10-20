@@ -80,11 +80,11 @@ export const protocolGroups = [
     protocols: [
       {
         title: "CS-A Electrophoretic Mobility Assay",
-        url: "https://static.igem.wiki/teams/6102/wiki/protocol/cs-a-electrophoretic-mobility-assay.pdf",
+        url: "https://static.igem.wiki/teams/6102/wiki/protocol/cs-a-electrophoretic-mobility-assay-v2.pdf",
       },
       {
         title: "Streptavidin Magnetic Bead–DMMB GAG Capture Assay",
-        url: "https://static.igem.wiki/teams/6102/wiki/protocol/streptavidin-magnetic-bead-dmmb-gag-capture-assay.pdf",
+        url: "https://static.igem.wiki/teams/6102/wiki/protocol/streptavidin-magnetic-bead-dmmb-gag-capture-assay-v2.pdf",
       },
     ],
   },
