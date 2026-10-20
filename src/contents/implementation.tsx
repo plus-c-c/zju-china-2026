@@ -263,6 +263,11 @@ export function Implementation() {
           material, device, and instructions will be validated together around
           this workflow.
         </p>
+        <p>
+          <strong>
+            Table 1 | Product Requirements and Validation Criteria for NEST
+          </strong>
+        </p>
         <div className="table-responsive mb-4">
           <table
             className="table table-bordered align-middle"
