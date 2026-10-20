@@ -101,6 +101,11 @@
   margin: 0 0 16px;
 }
 
+.wetlab-split .column > :last-child,
+.wetlab-split .column > .source-block:last-child > :last-child {
+  margin-bottom: 0;
+}
+
 .wetlab-split .figure-block {
   margin: 16px 0 8px;
 }

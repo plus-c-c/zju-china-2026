@@ -78,9 +78,9 @@ export function GagContent() {
             <div className="column-label">
               Experiment
             </div>
-            <h4 id="wetlab-gag-production" data-toc="include" data-toc-depth="3">
-              Plasmid Construction and Recombinant Protein Production
-            </h4>
+            <h5 id="wetlab-gag-1-1" data-toc="include" data-toc-depth="4">
+              5.1.1 Plasmid Construction
+            </h5>
             <div className="source-block">
               <p>
                 The GAG-retention module required a recombinant protein that could be stably
@@ -91,6 +91,11 @@ export function GagContent() {
                 biotinylation, the DogTag-containing region was used for modular conjugation, and
                 the CPC sequence served as the core GAG-interacting domain.
               </p>
+            </div>
+            <h5 id="wetlab-gag-1-2" data-toc="include" data-toc-depth="4">
+              5.1.2 Recombinant Protein Production and Optimization of Induction Conditions
+            </h5>
+            <div className="source-block">
               <p>
                 After plasmid construction, the recombinant expression plasmid was confirmed and the
                 correct construct was introduced into <em>E. coli</em> BL21(DE3). Expression samples were
@@ -98,6 +103,11 @@ export function GagContent() {
                 solubility distribution, and the established expression conditions were used for
                 subsequent large-scale protein preparation.
               </p>
+            </div>
+            <h5 id="wetlab-gag-1-3" data-toc="include" data-toc-depth="4">
+              5.1.3 His-Tag Affinity Purification and Concentration
+            </h5>
+            <div className="source-block">
               <p>
                 The obtained <strong>His-SUMO-AviTag-TEVsite-linker-DogTag-CPC</strong> fusion protein was further purified by His-tag affinity
                 chromatography. By comparing the distribution of the target protein among different
@@ -346,9 +356,9 @@ export function GagContent() {
             <div className="column-label">
               Experiment
             </div>
-            <h4 id="wetlab-gag-sumo-removal" data-toc="include" data-toc-depth="3">
-              Protein Concentration and SUMO Removal
-            </h4>
+            <h5 id="wetlab-gag-1-4" data-toc="include" data-toc-depth="4">
+              5.1.4 Protein Concentration and SUMO Removal
+            </h5>
             <div className="source-block">
               <p>
                 After affinity purification, the recombinant protein was subjected to centrifugal
@@ -452,9 +462,9 @@ export function GagContent() {
             <div className="column-label">
               Experiment
             </div>
-            <h4 id="wetlab-gag-ligation" data-toc="include" data-toc-depth="3">
-              Conjugation Activity Validation
-            </h4>
+            <h5 id="wetlab-gag-2-1" data-toc="include" data-toc-depth="4">
+              5.2.1 Conjugation Activity Validation
+            </h5>
             <div className="source-block">
               <p>
                 Because the target CPC peptide is relatively small and therefore difficult to detect
@@ -514,9 +524,9 @@ export function GagContent() {
             <div className="column-label">
               Experiment
             </div>
-            <h4 id="wetlab-gag-emsa" data-toc="include" data-toc-depth="3">
-              CS-A Electrophoretic Mobility Analysis
-            </h4>
+            <h5 id="wetlab-gag-2-2" data-toc="include" data-toc-depth="4">
+              5.2.2 CS-A Electrophoretic Mobility Analysis
+            </h5>
             <div className="source-block">
               <p>
                 We first examined whether the recombinant protein could interact with CS-A. CS-A is
@@ -614,9 +624,9 @@ export function GagContent() {
             <div className="column-label">
               Experiment
             </div>
-            <h4 id="wetlab-gag-capture" data-toc="include" data-toc-depth="3">
-              AviTag-Mediated GAG Capture Assay
-            </h4>
+            <h5 id="wetlab-gag-2-3" data-toc="include" data-toc-depth="4">
+              5.2.3 AviTag-Mediated GAG Capture Assay
+            </h5>
             <div className="source-block">
               <p>
                 To complement the electrophoretic mobility assay, we established a second functional

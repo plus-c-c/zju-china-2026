@@ -100,8 +100,25 @@ def split_pair(seg: str, keep: str) -> str:
     assert second.endswith("</div></div></div>")
     second = second[: -len("</div></div>")]
     assert ">Experiment<" in first, "first column is not the experiment side"
-    body = first if keep == "experiment" else second
-    return f'<div class="pair"><div class="columns">{body}</div></div>'
+    selected = first if keep == "experiment" else second
+    assert selected.startswith('<div class="column">') and selected.endswith("</div>")
+    inner = selected[len('<div class="column">') : -len("</div>")]
+    sections = re.split(r'(<h5\b[^>]*>.*?</h5>)', inner)
+    assert len(sections) >= 3, "function column has no level-three section"
+
+    prefix = sections[0]
+    out = []
+    for index in range(1, len(sections), 2):
+        heading = sections[index]
+        content = sections[index + 1]
+        label = prefix if index == 1 else ""
+        card = (
+            '<div class="pair"><div class="columns"><div class="column">'
+            f"{label}{content}"
+            "</div></div></div>"
+        )
+        out.append(f"{heading}{card}")
+    return "".join(out)
 
 
 def split_pairs(html: str, keep: str) -> str:
