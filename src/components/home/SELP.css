@@ -430,7 +430,7 @@
   top: 62%;
   width: 10%;
   height: 32.91%;
-  transform: rotate(15deg);
+  transform: rotate(-15deg);
 }
 
 .selp-pipeline__art--gag-reactor {
@@ -452,7 +452,7 @@
   top: 62%;
   width: 10%;
   height: 35%;
-  transform: rotate(15deg);
+  transform: rotate(-5deg);
 }
 
 .selp-pipeline__art--purple-flask,
@@ -559,11 +559,12 @@
 }
 
 .selp-shortcut {
-  display: flex;
+  --shortcut-icon-size: clamp(34px, 3.37cqw, 46px);
+  display: grid;
+  grid-template-columns: var(--shortcut-icon-size) minmax(0, 1fr);
   height: clamp(64px, 6.3cqw, 86px);
   min-height: clamp(64px, 6.3cqw, 86px);
   align-items: center;
-  justify-content: center;
   gap: clamp(8px, 1.02cqw, 14px);
   padding: clamp(6px, 0.59cqw, 8px) clamp(10px, 1.32cqw, 18px);
   border: clamp(2px, 0.22cqw, 3px) solid #87b9e9;
@@ -591,10 +592,16 @@
 
 .selp-shortcut img,
 .selp-shortcut canvas {
-  width: clamp(34px, 3.37cqw, 46px) !important;
-  height: clamp(34px, 3.37cqw, 46px) !important;
-  flex: 0 0 auto;
+  width: var(--shortcut-icon-size) !important;
+  height: var(--shortcut-icon-size) !important;
   object-fit: contain;
+}
+
+.selp-shortcut > span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  hyphens: auto;
+  text-align: center;
 }
 
 .selp-promotion {
@@ -863,17 +870,12 @@
   }
 
   .selp-shortcut {
+    --shortcut-icon-size: 30px;
     height: 54px;
     min-height: 54px;
     gap: 8px;
     padding: 6px 10px;
     font-size: 12px;
-  }
-
-  .selp-shortcut img,
-  .selp-shortcut canvas {
-    width: 30px !important;
-    height: 30px !important;
   }
 
   .selp-promotion {

@@ -167,8 +167,8 @@ function PipelineConnector({ variant }: { variant: "first" | "second" }) {
           strokeLinecap="round"
           vectorEffect="non-scaling-stroke"
         />
-        <circle cx="12" cy="8" r="3" fill="currentColor" />
-        <circle cx="528" cy="344" r="3" fill="currentColor" />
+        <circle cx="12" cy="8" r="4.5" fill="currentColor" />
+        <circle cx="528" cy="344" r="4.5" fill="currentColor" />
       </g>
     </svg>
   );
