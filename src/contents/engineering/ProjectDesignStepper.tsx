@@ -6,6 +6,7 @@ import {
   type CSSProperties,
   type ReactNode,
 } from "react";
+import { TocPanel, type TocEntry } from "../../components/toc";
 import { useBoundaryStepAdvance } from "../../components/useBoundaryStepAdvance";
 import {
   useCardWheel,
@@ -333,6 +334,37 @@ export function ProjectDesignStepper() {
     goToStep(2 + currentCycle * DBTL_PHASES.length + phaseIndex);
   };
 
+  /* Same TOC component and styles as the page TOC; Project Design has no
+     level-2 group buttons, so the title is the fixed stage name. */
+  const tocItems: TocEntry[] = [];
+  OUTER_PHASES.forEach((phase) => {
+    const active = step.outer === phase;
+    tocItems.push({
+      id: `project-design-${phase}`,
+      text: SEED_LABELS[phase],
+      level: 1,
+      current: active,
+      onSelect: (event) => {
+        event.preventDefault();
+        goToOuter(phase);
+      },
+    });
+    if (active && phase === "Engineering") {
+      Array.from({ length: 4 }, (_, cycleIndex) => {
+        tocItems.push({
+          id: `project-design-${phase}-${cycleIndex}`,
+          text: `Cycle ${cycleIndex + 1}`,
+          level: 2,
+          current: currentCycle === cycleIndex,
+          onSelect: (event) => {
+            event.preventDefault();
+            goToStep(2 + cycleIndex * DBTL_PHASES.length);
+          },
+        });
+      });
+    }
+  });
+
   return (
     <div
       className="dbtl project-design-stepper"
@@ -344,6 +376,7 @@ export function ProjectDesignStepper() {
         } as CSSProperties
       }
     >
+      <div className="dbtl-left">
       <div className="dbtl-ring-wrap">
         <ProjectDesignRing
           outer={step.outer}
@@ -352,20 +385,16 @@ export function ProjectDesignStepper() {
           onInnerSelect={goToInner}
         />
       </div>
+      <div className="eng-toc-slot">
+        <TocPanel
+          title="Project Design"
+          ariaLabel="Project Design stages"
+          className="page-toc--embedded"
+          items={tocItems}
+        />
+      </div>
+      </div>
       <div className="dbtl-main">
-        <div className="dbtl-subnav" aria-label="Project Design stages">
-          {OUTER_PHASES.map((phase) => (
-            <button
-              key={phase}
-              type="button"
-              className={`dbtl-subnav-button${step.outer === phase ? " active" : ""}`}
-              aria-pressed={step.outer === phase}
-              onClick={() => goToOuter(phase)}
-            >
-              {SEED_LABELS[phase]}
-            </button>
-          ))}
-        </div>
         <div className="dbtl-panel" ref={cardRef}>
           <div className="dbtl-panel-head">
             {engineeringStep ? (
@@ -403,21 +432,7 @@ export function ProjectDesignStepper() {
             </div>
           </div>
         </div>
-        {engineeringStep && (
-          <div className="dbtl-cycles" role="group" aria-label="DBTL cycles">
-            {Array.from({ length: 4 }, (_, cycleIndex) => (
-              <button
-                key={cycleIndex}
-                type="button"
-                className={`dbtl-cycle-button${currentCycle === cycleIndex ? " active" : ""}`}
-                aria-pressed={currentCycle === cycleIndex}
-                onClick={() => goToStep(2 + cycleIndex * DBTL_PHASES.length)}
-              >
-                Cycle {cycleIndex + 1}
-              </button>
-            ))}
-          </div>
-        )}
+
       </div>
     </div>
   );

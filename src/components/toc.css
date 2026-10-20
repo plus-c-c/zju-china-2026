@@ -329,3 +329,18 @@ html.page-swipe-enter-right.page-swipe-run [data-page-swipe-stage] {
     transition: none;
   }
 }
+
+/* Embedded TOC (Engineering stepper): the panel keeps every page-toc style,
+   title, entry sizes and colors; only the docked fixed positioning is
+   replaced by the caller's slot. */
+.page-toc--embedded {
+  position: static;
+  display: flex;
+  width: 100%;
+  max-height: none;
+  height: 100%;
+  z-index: auto;
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}

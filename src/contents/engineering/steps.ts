@@ -52,9 +52,6 @@ export function buildSteps(
   return steps;
 }
 
-/** Scroll distance per step, as a fraction of the viewport height. */
-export const STEP_DVH = 30;
-
 /**
  * Number of scroll intervals covered by a sequence. Every step — including
  * the closing Introduction / Conclusion views — owns one full interval, so
