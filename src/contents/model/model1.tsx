@@ -50,7 +50,6 @@ const M1_STAGES = [
   { id: "stability", label: "Stability", step: 4 },
   { id: "compression", label: "Compression", step: 5 },
   { id: "calibration", label: "Calibration", step: 6 },
-  { id: "validation", label: "Validation", step: 7 },
 ];
 
 function Parts({
@@ -323,7 +322,6 @@ function SlideInner({
           contentRef?.(el);
         }}
       >
-        {step.num === 7 && <ValidationHighlight />}
         <Blocks blocks={step.blocks} />
       </div>
     </div>
@@ -350,7 +348,10 @@ export function SelpHydrogelModeling() {
   const lastStepRef = useRef(1);
   /* 当前步（供边界步进读取） */
   const stepRef = useRef(1);
-  const total = m1Steps.length;
+  // Keep validation outside the pipeline, like the final section in Model 3.
+  const deckSteps = m1Steps.slice(0, -1);
+  const finalStep = m1Steps[m1Steps.length - 1];
+  const total = deckSteps.length;
 
   useEffect(() => {
     stepRef.current = activeStep;
@@ -463,10 +464,10 @@ export function SelpHydrogelModeling() {
     suppressUntilRef,
   });
 
-  const step = m1Steps.find((s) => s.num === view.current) ?? m1Steps[0];
+  const step = deckSteps.find((s) => s.num === view.current) ?? deckSteps[0];
   const prevStep =
     view.prev !== null
-      ? (m1Steps.find((s) => s.num === view.prev) ?? null)
+      ? (deckSteps.find((s) => s.num === view.prev) ?? null)
       : null;
 
   return (
@@ -503,7 +504,7 @@ export function SelpHydrogelModeling() {
               })}
             </div>
             <div className="m1-dots" role="navigation" aria-label="Model steps">
-              {m1Steps.map((s) => (
+              {deckSteps.map((s) => (
                 <button
                   key={s.num}
                   type="button"
@@ -552,7 +553,7 @@ export function SelpHydrogelModeling() {
         </div>
 
         {/* 目录锚点：每步滚动进度位置处的隐藏标题 */}
-        {m1Steps.map((s) => (
+        {deckSteps.map((s) => (
           <h3
             key={s.num}
             className="visually-hidden m1-anchor"
@@ -563,6 +564,10 @@ export function SelpHydrogelModeling() {
           </h3>
         ))}
       </div>
+
+      <h3 className="mt-5 mb-3">{finalStep.title}</h3>
+      <ValidationHighlight />
+      <Blocks blocks={finalStep.blocks} />
 
       <References level={3}>
         <div className="references-list references-list--paragraphs">
