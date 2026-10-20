@@ -17,7 +17,7 @@ export function SoftwareReferences() {
           Software I: SELP molecular dynamics simulation platform
         </h3>
         <h4 className="mt-4 mb-3">
-          1. All-atom simulation and enhanced sampling
+          1 All-atom simulation and enhanced sampling
         </h4>
         <ol className="references-list">
           <li>
@@ -144,7 +144,7 @@ export function SoftwareReferences() {
             </span>
           </li>
         </ol>
-        <h4 className="mt-4 mb-3">2. Coarse-graining and network simulation</h4>
+        <h4 className="mt-4 mb-3">2 Coarse-graining and network simulation</h4>
         <ol
           className="references-list"
           start={8}
@@ -189,7 +189,7 @@ export function SoftwareReferences() {
           </li>
         </ol>
         <h4 className="mt-4 mb-3">
-          3. Network elasticity and modulus estimation
+          3 Network elasticity and modulus estimation
         </h4>
         <ol
           className="references-list"
@@ -301,7 +301,7 @@ export function SoftwareReferences() {
             </span>
           </li>
         </ol>
-        <h4 className="mt-4 mb-3">4. Magnetomechanics and poroelasticity</h4>
+        <h4 className="mt-4 mb-3">4 Magnetomechanics and poroelasticity</h4>
         <ol
           className="references-list"
           start={16}

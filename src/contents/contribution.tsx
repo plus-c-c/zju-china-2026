@@ -23,7 +23,7 @@ export function Contribution() {
           develop materials tailored to their own research questions.
         </p>
 
-        <h3 className="mt-5 mb-3">1. Overview of Available Resources</h3>
+        <h3 className="mt-5 mb-3">1 Overview of Available Resources</h3>
         <figure className="figure d-block my-4 text-center">
           <img
             src={`${CIF}01-nest-contributions-equal.avif`}
@@ -153,7 +153,7 @@ export function Contribution() {
         </figure>
 
         <h3 className="mt-5 mb-3">
-          2. Designing Scaffold Length and Connector Placement Together
+          2 Designing Scaffold Length and Connector Placement Together
         </h3>
         <p>
           We used the PRe-RDL repeat-sequence amplification method to generate
@@ -175,7 +175,7 @@ export function Contribution() {
         </p>
 
         <h3 className="mt-5 mb-3">
-          3. Providing Ligation Tools and Controls for New Modules
+          3 Providing Ligation Tools and Controls for New Modules
         </h3>
         <p>
           We used the established SnoopLigase2 catalytic system to assemble NEST
@@ -244,7 +244,7 @@ export function Contribution() {
         </p>
 
         <h3 className="mt-5 mb-3">
-          4. Sharing Optimization Insights for SELP Phase-Transition
+          4 Sharing Optimization Insights for SELP Phase-Transition
           Purification
         </h3>
         <p>
@@ -296,7 +296,7 @@ export function Contribution() {
         </p>
 
         <h3 className="mt-5 mb-3">
-          5. Demonstrating Computational Design with a Worked Example
+          5 Demonstrating Computational Design with a Worked Example
         </h3>
         <p>
           We connect sequence-level design, single-chain conformations,
@@ -337,7 +337,7 @@ export function Contribution() {
         </p>
 
         <h3 className="mt-5 mb-3">
-          6. Making Material-Use Support Available as a Software Resource
+          6 Making Material-Use Support Available as a Software Resource
         </h3>
         <p>
           We have made the{" "}

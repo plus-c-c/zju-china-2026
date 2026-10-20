@@ -77,7 +77,7 @@ export function MagneticPoroelasticityFundamentals() {
         element analysis.
       </p>
 
-      <h2 className="mt-5 mb-3">1. Basic Assumptions</h2>
+      <h2 className="mt-5 mb-3">1 Basic Assumptions</h2>
       <h3 className="mt-5 mb-3">1.1 Einstein Summation Convention</h3>
       <p>
         We adopt the Einstein summation convention. Repeated indices are summed
@@ -154,7 +154,7 @@ export function MagneticPoroelasticityFundamentals() {
         {"\\varepsilon_{kk}=\\nabla\\cdot\\mathbf{u}"}
       </MathFormula>
 
-      <h2 className="mt-5 mb-3">2. SELP Non-Fibrous Matrix</h2>
+      <h2 className="mt-5 mb-3">2 SELP Non-Fibrous Matrix</h2>
       <p>
         An isotropic linear elastic model is adopted. The matrix free energy
         density per unit volume is:
@@ -193,7 +193,7 @@ export function MagneticPoroelasticityFundamentals() {
       </MathFormula>
       {/* Figure reference placeholder from the draft: 图 1 — schematic of the SELP non-fibrous matrix, the fiber phase, and the free particle phase */}
 
-      <h2 className="mt-5 mb-3">3. Magnetic Field Terms</h2>
+      <h2 className="mt-5 mb-3">3 Magnetic Field Terms</h2>
       <p>The applied magnetic field is:</p>
       <MathFormula display>
         {"\\mathbf{H}=\\mathbf{H}(\\mathbf{x},t)"}
@@ -218,7 +218,7 @@ export function MagneticPoroelasticityFundamentals() {
       </MathFormula>
 
       <h2 className="mt-5 mb-3">
-        4. Orientation Free Energy of Magnetic Fibers under a Nonuniform Field
+        4 Orientation Free Energy of Magnetic Fibers under a Nonuniform Field
       </h2>
       <h3 className="mt-5 mb-3">
         4.1 Single-Fiber Magnetic Interaction Energy
@@ -370,7 +370,7 @@ export function MagneticPoroelasticityFundamentals() {
       </p>
 
       <h2 className="mt-5 mb-3">
-        5. Wilson Fiber Free Energy per Unit Volume and Stress Tensor
+        5 Wilson Fiber Free Energy per Unit Volume and Stress Tensor
       </h2>
       <p>
         Let the unit fiber direction be <MathFormula>{"n_i"}</MathFormula>. The
@@ -449,7 +449,7 @@ export function MagneticPoroelasticityFundamentals() {
       </MathFormula>
       {/* Figure reference placeholder from the draft: 图 4 — Wilson fiber network, single-fiber axial strain, and statistical averaging */}
 
-      <h2 className="mt-5 mb-3">6. Free Fe₃O₄ Particle Model</h2>
+      <h2 className="mt-5 mb-3">6 Free Fe₃O₄ Particle Model</h2>
       <p>
         This section separately considers free Fe₃O₄ nanoparticles that are not
         paired with SELP. Their magnetic response is described by the classical

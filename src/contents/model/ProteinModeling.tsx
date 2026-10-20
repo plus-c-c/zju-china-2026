@@ -77,7 +77,7 @@ export function ProteinModeling() {
         respectively, giving an explicit basis for the structure selected for
         the coarse-graining stage.
       </p>
-      <h2 className="mt-5 mb-3">2. Martini Coarse-Graining</h2>
+      <h2 className="mt-5 mb-3">2 Martini Coarse-Graining</h2>
       <h3 className="mt-5 mb-3">2.1 Necessity of a Multichain System</h3>
       <p>
         The modulus to be measured in the wet-lab experiments comes from a
@@ -134,7 +134,7 @@ export function ProteinModeling() {
         so that the water, ions, and protein could adjust their positions,
         before entering production simulation.
       </p>
-      <h2 className="mt-5 mb-3">3. Constructing the Crosslinked Network</h2>
+      <h2 className="mt-5 mb-3">3 Constructing the Crosslinked Network</h2>
       <h3 className="mt-5 mb-3">3.1 Prescribing the Post-Crosslinking State</h3>
       <p>
         Before the wet-lab experiments began, we first posed a conditional
@@ -173,7 +173,7 @@ export function ProteinModeling() {
       <MathFormula display>
         {"N_{\\mathrm{xlink}}\\approx\\frac{14n\\,p_{\\mathrm{Tyr}}}{2}"}
       </MathFormula>
-      <h2 className="mt-5 mb-3">4. Production Simulations</h2>
+      <h2 className="mt-5 mb-3">4 Production Simulations</h2>
       <h3 className="mt-5 mb-3">
         4.1 Temperature Response of the Crosslinked System
       </h3>

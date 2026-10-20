@@ -560,7 +560,7 @@ export function SelpHydrogelModeling() {
             data-toc-track="true"
             style={{ "--m1-seg": s.num - 1 } as CSSProperties}
           >
-            {s.num}. {s.title}
+            {s.num} {s.title}
           </h3>
         ))}
       </div>

@@ -17,7 +17,6 @@ export function SafetyAndSecurity() {
         <h2 id="design-safety" className="mt-5">
           Design Safety
         </h2>
-        <hr />
         <p>
           <strong>Production chassis.</strong> All protein components of NEST —
           the SELP scaffold (2KY series), the SnoopLigase ligation system, and
@@ -95,7 +94,6 @@ export function SafetyAndSecurity() {
         <h2 id="laboratory-safety" className="mt-5">
           Laboratory Safety
         </h2>
-        <hr />
         <p>
           Our work strictly follows national and university regulations. The
           Ministry of Education’s Regulations on Laboratory Safety in
@@ -181,7 +179,6 @@ export function SafetyAndSecurity() {
         <h2 id="product-safety" className="mt-5">
           Product Safety
         </h2>
-        <hr />
         <p>
           Product safety is the core of NEST’s safety case — it is supported not
           only by design-level commitments but also by experimental data.

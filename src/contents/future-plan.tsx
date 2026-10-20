@@ -24,7 +24,7 @@ export function FuturePlan() {
         </p>
 
         <h3 className="mt-5 mb-3">
-          1. Integration of the Complete Material and Formulation Screening
+          1 Integration of the Complete Material and Formulation Screening
         </h3>
         <p>
           The initial phase will focus on the focal cartilage-defect application
@@ -134,7 +134,7 @@ export function FuturePlan() {
         </p>
 
         <h3 className="mt-5 mb-3">
-          2. Validation at Tissue Interfaces alongside Fermentation Development
+          2 Validation at Tissue Interfaces alongside Fermentation Development
         </h3>
         <h4 className="mt-4 mb-2">
           2.1 Evaluating Candidate Materials in Models of Actual Defects
@@ -219,7 +219,7 @@ export function FuturePlan() {
         </p>
 
         <h3 className="mt-5 mb-3">
-          3. Assessing Repair Quality through In Vivo Studies
+          3 Assessing Repair Quality through In Vivo Studies
         </h3>
         <p>
           Animal studies will be designed around the selected defect indication,
@@ -241,7 +241,7 @@ export function FuturePlan() {
         </p>
 
         <h3 className="mt-5 mb-3">
-          4. Establishing Product Specifications and a Supply Framework for
+          4 Establishing Product Specifications and a Supply Framework for
           Deployment
         </h3>
         <p>
@@ -307,7 +307,7 @@ export function FuturePlan() {
         </p>
 
         <h3 className="mt-5 mb-3">
-          5. Expanding the Platform into a Material Family for Different Injury
+          5 Expanding the Platform into a Material Family for Different Injury
           Types
         </h3>
         <p>

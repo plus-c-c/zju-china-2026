@@ -426,7 +426,7 @@ export function Model3() {
             data-toc-track="true"
             style={{ "--m3-seg": s.num - 1 } as CSSProperties}
           >
-            {s.num}. {s.title}
+            {s.num} {s.title}
           </h3>
         ))}
       </div>
