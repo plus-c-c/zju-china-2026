@@ -678,7 +678,7 @@ export function Design() {
                 </ol>
                 <figure className="figure d-block my-4 text-center">
                   <FigureImage
-                    src="https://static.igem.wiki/teams/6102/wiki/images/design/01/01-05.avif"
+                    src="https://static.igem.wiki/teams/6102/wiki/images/design/01/33.avif"
                     alt="Interface placement and functional assembly designs for the SELP scaffold."
                     className="figure-img img-fluid rounded"
                     style={{ width: "100%" }}
