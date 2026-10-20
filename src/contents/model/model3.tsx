@@ -428,9 +428,7 @@ export function Model3() {
       </div>
 
       {/* 第 10 步移到卡片之外：卡片与 references 之间 */}
-      <h3 className="mt-5 mb-3">
-        {finalStep.num}. {finalStep.title}
-      </h3>
+      <h3 className="mt-5 mb-3">{finalStep.title}</h3>
       <p className="m3-final-goal">
         <em>{finalStep.goal}</em>
       </p>

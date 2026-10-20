@@ -214,8 +214,12 @@ function Blocks({
             />
           );
         }
+        const followsFigure = index > 0 && blocks[index - 1].t === "figure";
         return (
-          <p key={index}>
+          <p
+            key={index}
+            className={followsFigure ? "m1-figure-caption" : undefined}
+          >
             <Parts parts={block.parts ?? []} citationize={citationize} />
           </p>
         );
@@ -242,8 +246,57 @@ function SlideInner({
   initialScroll?: number;
   contentRef?: (el: HTMLDivElement | null) => void;
 }) {
+  const innerRef = useRef<HTMLDivElement>(null);
+
+  /* Keep a tall figure and its caption inside the visible content area: the
+     caption keeps its height and the image takes whatever room is left. */
+  useLayoutEffect(() => {
+    const content =
+      innerRef.current?.querySelector<HTMLElement>(".m1-slide__content");
+    if (!content) return;
+    const fit = () => {
+      const figures = Array.from(
+        content.querySelectorAll<HTMLElement>(".m1-figure"),
+      );
+      figures.forEach((figure) => {
+        const img = figure.querySelector<HTMLImageElement>("img");
+        if (!img) return;
+        img.style.maxHeight = "";
+        const next = figure.nextElementSibling;
+        const caption =
+          next instanceof HTMLElement &&
+          next.classList.contains("m1-figure-caption")
+            ? next
+            : null;
+        const figureStyle = getComputedStyle(figure);
+        const figureMargins =
+          parseFloat(figureStyle.marginTop) +
+          parseFloat(figureStyle.marginBottom);
+        let captionHeight = 0;
+        if (caption) {
+          const captionStyle = getComputedStyle(caption);
+          captionHeight =
+            caption.offsetHeight +
+            parseFloat(captionStyle.marginTop) +
+            parseFloat(captionStyle.marginBottom);
+        }
+        const available = content.clientHeight - figureMargins - captionHeight - 16;
+        img.style.maxHeight = `${Math.max(140, Math.floor(available))}px`;
+      });
+    };
+    fit();
+    const observer = new ResizeObserver(fit);
+    observer.observe(content);
+    window.addEventListener("resize", fit);
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", fit);
+    };
+  }, [step.num]);
+
   return (
     <div
+      ref={innerRef}
       className={`m1-slide__inner m1-slide__inner--${variant}${
         animate
           ? dir === 1

@@ -9,9 +9,9 @@ import "./StakeholderChain.css";
 const stages = [
   { id: "patient", label: "Patient" },
   { id: "rd", label: "R&D" },
+  { id: "treatment", label: "Treatment" },
   { id: "manufacturing", label: "Manufacturing" },
   { id: "market", label: "Market Authorization & Access" },
-  { id: "treatment", label: "Treatment" },
   { id: "rehabilitation", label: "Rehabilitation" },
 ];
 

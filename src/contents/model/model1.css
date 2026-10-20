@@ -319,10 +319,15 @@
 }
 
 .m1-figure img {
-  /* width: 100% 使图形不超过卡片宽度（数据里的较大 max-width 也不会溢出） */
-  width: 100%;
+  /* 高图由 SlideInner 按卡片可视高度收紧，宽度随高度等比缩放并居中；
+     矮图仍按自然宽度铺满。 */
+  display: block;
+  width: auto;
   max-width: 100%;
   height: auto;
+  max-height: 45vh;
+  object-fit: contain;
+  margin-inline: auto;
   border-radius: 10px;
 }
 

@@ -681,9 +681,27 @@
   margin: 1.3rem 0;
 }
 
+.dbtl .dbtl-panel-inner .dbtl-figure-imgs {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.dbtl .dbtl-panel-inner .dbtl-figure-imgs--row > img {
+  flex: 0 1 calc(50% - 5px);
+  min-width: 0;
+}
+
 .dbtl .dbtl-panel-inner .dbtl-figure img {
   display: block;
-  width: 100%;
+  /* Tall figures (e.g. Figure 1.4.1) are capped so the complete image and
+     its caption fit inside the card at the same time; the width follows the
+     capped height and stays centred. */
+  width: auto;
+  max-width: 100%;
+  max-height: clamp(160px, calc(var(--dbtl-stack-h) - 330px), 380px);
+  object-fit: contain;
   margin-right: auto;
   margin-bottom: 0.7rem;
   margin-left: auto;
