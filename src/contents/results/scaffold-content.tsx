@@ -1,3 +1,4 @@
+import { FigureCaption } from "../../components/FigureCaption";
 export function ScaffoldIntro() {
   return (
     <>
@@ -150,14 +151,14 @@ export function ScaffoldContent() {
               </p>
             </div>
             <div className="source-block" data-block="7">
-              <p className="figure-caption">
+              <FigureCaption as="p" className="figure-caption">
                 <strong>Figure 1.1.1 |</strong> Recursive doubling of the 2KY
                 repeat array by PRe-RDL. A copy of the gene is excised with AcuI
                 + XbaI and with BseRI + XbaI; ligation of the two
                 gene-containing halves doubles the repeat array and
                 reconstitutes the plasmid, leaving no extra bases at the
                 junction and keeping the reading frame unchanged.
-              </p>
+              </FigureCaption>
             </div>
             <div className="source-block" data-block="8">
               <p>
@@ -252,10 +253,10 @@ export function ScaffoldContent() {
               </p>
             </div>
             <div className="source-block" data-block="13">
-              <p className="figure-caption">
+              <FigureCaption as="p" className="figure-caption">
                 <strong>Figure 1.1.2 |</strong> The parental plasmid
                 pET19b-2KY5-RDL (6636 bp).
-              </p>
+              </FigureCaption>
             </div>
           </div>
         </div>
@@ -345,11 +346,11 @@ export function ScaffoldContent() {
               </p>
             </div>
             <div className="source-block" data-block="19">
-              <p className="figure-caption">
+              <FigureCaption as="p" className="figure-caption">
                 <strong>Figure 1.2.1 |</strong> Colonies of <em>E. coli</em>{" "}
                 BL21(DE3) obtained after transformation with the synthesized
                 pET19b-2KY5-RDL plasmid.
-              </p>
+              </FigureCaption>
             </div>
             <div className="source-block figure-block" data-block="20">
               <p>
@@ -368,12 +369,12 @@ export function ScaffoldContent() {
               </p>
             </div>
             <div className="source-block" data-block="21">
-              <p className="figure-caption">
+              <FigureCaption as="p" className="figure-caption">
                 <strong>Figure 1.2.2 |</strong> Colony PCR verification of the
                 2KY-5 plasmid. The T7 promoter/T7 terminator primer pair gave a
                 single band at 1152 bp, consistent with the theoretical size of
                 2KY-5.
-              </p>
+              </FigureCaption>
             </div>
             <div className="source-block" data-block="22">
               <p>
@@ -405,13 +406,13 @@ export function ScaffoldContent() {
               </p>
             </div>
             <div className="source-block" data-block="24">
-              <p className="figure-caption">
+              <FigureCaption as="p" className="figure-caption">
                 <strong>Figure 1.2.3 |</strong> SDS-PAGE analysis of 2KY-5
                 expression. Samples: culture before induction, culture after
                 induction, lysate supernatant and lysate pellet. A target band
                 appears only after induction and is mainly present in the
                 supernatant.
-              </p>
+              </FigureCaption>
             </div>
           </div>
         </div>
@@ -532,12 +533,12 @@ export function ScaffoldContent() {
               </p>
             </div>
             <div className="source-block" data-block="30">
-              <p className="figure-caption">
+              <FigureCaption as="p" className="figure-caption">
                 <strong>Figure 1.2.4 |</strong> SDS-PAGE analysis of the ITC
                 condition screen. The heating temperature and the buffer NaCl
                 concentration were varied; the buffer containing 2 M NaCl gave
                 the highest purification yield.
-              </p>
+              </FigureCaption>
             </div>
             <div className="source-block" data-block="31">
               <p>
@@ -575,13 +576,13 @@ export function ScaffoldContent() {
               </p>
             </div>
             <div className="source-block" data-block="33">
-              <p className="figure-caption">
+              <FigureCaption as="p" className="figure-caption">
                 <strong>Figure 1.2.5 |</strong> SDS-PAGE verification of ITC
                 purification under the optimized conditions (65 °C, PBS
                 containing 2 M NaCl). Contaminating protein bands are removed
                 and the 2KY-5 band is retained in the final solution with almost
                 no loss.
-              </p>
+              </FigureCaption>
             </div>
             <div className="source-block" data-block="34">
               <p>
@@ -609,12 +610,12 @@ export function ScaffoldContent() {
               </p>
             </div>
             <div className="source-block" data-block="36">
-              <p className="figure-caption">
+              <FigureCaption as="p" className="figure-caption">
                 <strong>Figure 1.2.6 |</strong> BCA quantification of the protein
                 concentration before and after ultrafiltration concentration.
                 The concentration factor was approximately 3.5, with essentially
                 no protein loss.
-              </p>
+              </FigureCaption>
             </div>
             <div className="source-block" data-block="37">
               <p>
@@ -648,11 +649,11 @@ export function ScaffoldContent() {
               </p>
             </div>
             <div className="source-block" data-block="39">
-              <p className="figure-caption">
+              <FigureCaption as="p" className="figure-caption">
                 <strong>Figure 1.2.7 |</strong> Workflow and equipment used in
                 our laboratory for the expression, purification and
                 lyophilization of the scaffold protein.
-              </p>
+              </FigureCaption>
             </div>
             <div className="source-block" data-block="40">
               <p>
@@ -735,12 +736,12 @@ export function ScaffoldContent() {
               </p>
             </div>
             <div className="source-block" data-block="45">
-              <p className="figure-caption">
+              <FigureCaption as="p" className="figure-caption">
                 <strong>Figure 1.2.8 |</strong> Mechanism of Ru/SPS-mediated
                 dityrosine photocrosslinking. Under visible light, the Ru/SPS
                 system catalyses the formation of covalent dityrosine crosslinks
                 between adjacent tyrosine residues.
-              </p>
+              </FigureCaption>
             </div>
             <div className="source-block figure-block" data-block="46">
               <p>
@@ -759,12 +760,12 @@ export function ScaffoldContent() {
               </p>
             </div>
             <div className="source-block" data-block="47">
-              <p className="figure-caption">
+              <FigureCaption as="p" className="figure-caption">
                 <strong>Figure 1.2.9 |</strong> Appearance before and after
                 photocrosslinking. Left, hydrogel precursor solution before
                 illumination; right, hydrogel formed after 2 s of 450-nm
                 blue-light irradiation.
-              </p>
+              </FigureCaption>
             </div>
             <div className="source-block" data-block="48">
               <p>
@@ -919,9 +920,9 @@ export function ScaffoldContent() {
               </p>
             </div>
             <div className="source-block" data-block="60">
-              <p className="figure-caption">
+              <FigureCaption as="p" className="figure-caption">
                 <strong>Figure 1.2.10 |</strong> Digital photograph of SELP hydrogels and SEM images, (A) and (B) are hydrogels made from SELP with different repeats of unit.The hydrogel has an interconnected, three-dimensional porous network with pores of varying size.
-              </p>
+              </FigureCaption>
             </div>
             <div className="source-block" data-block="61">
               <p>
@@ -985,23 +986,23 @@ export function ScaffoldContent() {
               </div>
               <div className="figure-unit figure-unit--caption">
                 <div className="source-block" data-block="63">
-                  <p className="figure-caption">
+                  <FigureCaption as="p" className="figure-caption">
                     <strong>Figure 1.2.11 |</strong> Three-dimensional
                     excitation–emission matrix (EEM) fluorescence spectra of the
                     hydrogel precursor solution and of the hydrogel after
                     gelation. The main fluorescence peak shifts from
                     approximately 280/300–310 nm to approximately 330/400 nm
                     upon gelation.
-                  </p>
+                  </FigureCaption>
                 </div>
               </div>
               <div className="figure-unit figure-unit--caption">
                 <div className="source-block" data-block="66">
-                  <p className="figure-caption">
+                  <FigureCaption as="p" className="figure-caption">
                     <strong>Figure 1.2.12 |</strong> Frequency-sweep rheology of
                     the hydrogels. Storage modulus (G′) and loss modulus (G″) as
                     a function of angular frequency for 2Y-5, 2KY-5 and 2KY-16.
-                  </p>
+                  </FigureCaption>
                 </div>
               </div>
             </div>
@@ -1127,17 +1128,17 @@ export function ScaffoldContent() {
               </div>
               <div className="figure-unit figure-unit--caption">
                 <div className="source-block" data-block="70">
-                  <p className="figure-caption">
+                  <FigureCaption as="p" className="figure-caption">
                     <strong>Figure 1.2.13 |</strong>
                     Stress–strain curves and Young’s moduli of the hydrogels. Upper panel: Stress–strain curves over a strain range of 0–0.3. Lower panel: Young’s moduli. ns, not significant;  ***, p &lt; 0.001.
-                  </p>
+                  </FigureCaption>
                 </div>
               </div>
               <div className="figure-unit figure-unit--caption">
                 <div className="source-block" data-block="74">
-                  <p className="figure-caption">
+                  <FigureCaption as="p" className="figure-caption">
                     <strong>Figure 1.2.14 |</strong> Shear adhesion performance of the hydrogels. Upper panel: Shear force–displacement curves. Lower panel:  Shear strength. ns, not significant; ***, p &lt; 0.001.
-                  </p>
+                  </FigureCaption>
                 </div>
               </div>
             </div>
@@ -1288,13 +1289,13 @@ export function ScaffoldContent() {
               </p>
             </div>
             <div className="source-block" data-block="113">
-              <p className="figure-caption">
+              <FigureCaption as="p" className="figure-caption">
                 <strong>Figure 1.3.1 |</strong> Construction of the 2KY-10
                 plasmid by one round of PRe-RDL and its transformation into DH5α
                 and BL21. The 1008-bp gene-containing fragment from digest A and
                 the 6483-bp backbone fragment from digest B are ligated to
                 reconstitute the plasmid carrying a doubled repeat array.
-              </p>
+              </FigureCaption>
             </div>
             <div className="source-block" data-block="114">
               <p>
@@ -1325,13 +1326,13 @@ export function ScaffoldContent() {
               </p>
             </div>
             <div className="source-block" data-block="116">
-              <p className="figure-caption">
+              <FigureCaption as="p" className="figure-caption">
                 <strong>Figure 1.3.2 |</strong> Colony PCR verification of the
                 2KY-10 plasmid. The band shifts from 1152 bp (2KY-5) to 2007 bp
                 (2KY-10), a difference of 855 bp corresponding exactly to one
                 2KY-5 unit; sequencing confirmed a repeat region of 10 complete
                 monomers.
-              </p>
+              </FigureCaption>
             </div>
             <div className="source-block" data-block="117">
               <p>
@@ -1357,11 +1358,11 @@ export function ScaffoldContent() {
               </p>
             </div>
             <div className="source-block" data-block="119">
-              <p className="figure-caption">
+              <FigureCaption as="p" className="figure-caption">
                 <strong>Figure 1.3.3 |</strong> SDS-PAGE analysis of the purified
                 2KY-10 protein. The yield was approximately 480 mg per liter of
                 bacterial culture, close to that of 2KY-5.
-              </p>
+              </FigureCaption>
             </div>
           </div>
         </div>
@@ -1466,12 +1467,12 @@ export function ScaffoldContent() {
               </p>
             </div>
             <div className="source-block" data-block="124">
-              <p className="figure-caption">
+              <FigureCaption as="p" className="figure-caption">
                 <strong>Figure 1.3.4 |</strong> Two-fragment amplification of the
                 2KY-5-Tag plasmid. Agarose gel electrophoresis of the B→I (956
                 bp) and I→B (5792 bp) fragments before gel purification; all
                 amplified bands were of the expected size.
-              </p>
+              </FigureCaption>
             </div>
             <div className="source-block" data-block="125">
               <p>
@@ -1507,11 +1508,11 @@ export function ScaffoldContent() {
               </p>
             </div>
             <div className="source-block" data-block="127">
-              <p className="figure-caption">
+              <FigureCaption as="p" className="figure-caption">
                 <strong>Figure 1.3.5 |</strong> Single colonies of{" "}
                 <em>E. coli</em> BL21 obtained after transformation with the
                 2KY-5-Tag and 2KY-10-Tag plasmids.
-              </p>
+              </FigureCaption>
             </div>
             <div className="source-block" data-block="128">
               <p>
@@ -1535,12 +1536,12 @@ export function ScaffoldContent() {
               </p>
             </div>
             <div className="source-block" data-block="130">
-              <p className="figure-caption">
+              <FigureCaption as="p" className="figure-caption">
                 <strong>Figure 1.3.6 |</strong> SDS-PAGE analysis of the purified
                 2KY-5-Tag and 2KY-10-Tag proteins. Yields were approximately 520
                 mg and 490 mg per liter of bacterial culture, respectively,
                 close to that of 2KY-5.
-              </p>
+              </FigureCaption>
             </div>
           </div>
         </div>
@@ -1637,12 +1638,12 @@ export function ScaffoldContent() {
               </p>
             </div>
             <div className="source-block" data-block="83">
-              <p className="figure-caption">
+              <FigureCaption as="p" className="figure-caption">
                 <strong>Figure 2.1.1 |</strong> Relative viability of mesenchymal
                 stem cells co-cultured with the SELP protein, measured by the
                 CCK-8 assay at 24, 48 and 72 h. Percentages are relative to the
                 control group (mean ± SD, n = 3).
-              </p>
+              </FigureCaption>
             </div>
           </div>
         </div>
@@ -1740,13 +1741,13 @@ export function ScaffoldContent() {
               </p>
             </div>
             <div className="source-block" data-block="88">
-              <p className="figure-caption">
+              <FigureCaption as="p" className="figure-caption">
                 <strong>Figure 2.2.1 |</strong> Relative expression of
                 cartilage-related genes in chondrocytes co-cultured with the
                 hydrogels, determined by qPCR. ACAN, COL2, SOX9, COL1 and COLX
                 are shown with the 2Y-5 group as the reference (relative
                 expression set to 1).
-              </p>
+              </FigureCaption>
             </div>
           </div>
         </div>
@@ -1867,13 +1868,13 @@ export function ScaffoldContent() {
               </p>
             </div>
             <div className="source-block" data-block="95">
-              <p className="figure-caption">
+              <FigureCaption as="p" className="figure-caption">
                 <strong>Figure 3.1.1 |</strong> Western blot analysis of the IPTG
                 induction gradient. Lysates and purified eluates of
                 SnoopTag2-sfGFP, SUMO-DogTag and SnoopLigase2 were probed with
                 an anti-His primary antibody; the optimal induction
                 concentrations were 0.1, 0.1 and 1.0 mM, respectively.
-              </p>
+              </FigureCaption>
             </div>
             <div className="source-block figure-block" data-block="96">
               <p>
@@ -1892,12 +1893,12 @@ export function ScaffoldContent() {
               </p>
             </div>
             <div className="source-block" data-block="97">
-              <p className="figure-caption">
+              <FigureCaption as="p" className="figure-caption">
                 <strong>Figure 3.1.2 |</strong> Large-scale expression of the
                 ligation-system proteins. SnoopTag2-sfGFP, SUMO-DogTag and
                 SnoopLigase2 were expressed under the optimized induction
                 conditions.
-              </p>
+              </FigureCaption>
             </div>
           </div>
         </div>
@@ -1966,12 +1967,12 @@ export function ScaffoldContent() {
               </p>
             </div>
             <div className="source-block" data-block="102">
-              <p className="figure-caption">
+              <FigureCaption as="p" className="figure-caption">
                 <strong>Figure 3.2.1 |</strong> Purified and dialyzed
                 ligation-system proteins. Final concentrations determined by the
                 BCA assay: SnoopTag2-sfGFP (30 kDa), 1.33 mg/mL; SnoopLigase2
                 (12.9 kDa), 0.66 mg/mL; SUMO-DogTag (14.7 kDa), 0.60 mg/mL.
-              </p>
+              </FigureCaption>
             </div>
           </div>
         </div>
@@ -2047,12 +2048,12 @@ export function ScaffoldContent() {
               </p>
             </div>
             <div className="source-block" data-block="107">
-              <p className="figure-caption">
+              <FigureCaption as="p" className="figure-caption">
                 <strong>Figure 3.3.1 |</strong> SDS-PAGE analysis of the ligation
                 reaction time course. Samples were taken at 10, 30 and 60 min;
                 the approximately 45-kDa ligation product appeared within 10 min
                 and the reaction was complete within 1 h.
-              </p>
+              </FigureCaption>
             </div>
           </div>
         </div>

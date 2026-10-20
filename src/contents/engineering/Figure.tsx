@@ -1,3 +1,4 @@
+import { FigureCaption } from "../../components/FigureCaption";
 import { useLayoutEffect, useRef, type ReactNode } from "react";
 
 /** Team static host; all page figures live under `wiki/images/`. */
@@ -78,7 +79,7 @@ export function DbtlFigure({ src, caption, alt, width }: DbtlFigureProps) {
           />
         ))}
       </div>
-      {caption && <figcaption>{caption}</figcaption>}
+      {caption && <FigureCaption>{caption}</FigureCaption>}
     </figure>
   );
 }

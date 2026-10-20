@@ -1,3 +1,4 @@
+import { FigureCaption } from "../../components/FigureCaption";
 export function BackgroundAndPrinciples() {
   return (
     <>
@@ -41,9 +42,9 @@ export function BackgroundAndPrinciples() {
           width={1920}
           height={2399}
         />
-        <figcaption className="figure-caption mt-2">
+        <FigureCaption className="figure-caption mt-2">
           Figure 0.1.1 | Overall view of the hardware.
-        </figcaption>
+        </FigureCaption>
       </figure>
       <div className="hardware-media-grid">
         <figure className="hardware-media-panel">
@@ -56,9 +57,9 @@ export function BackgroundAndPrinciples() {
             width={1920}
             height={1080}
           />
-          <figcaption className="figure-caption mt-2">
+          <FigureCaption className="figure-caption mt-2">
             Figure 0.1.2a | Magnetic leg band.
-          </figcaption>
+          </FigureCaption>
         </figure>
         <figure className="hardware-media-panel">
           <img
@@ -70,9 +71,9 @@ export function BackgroundAndPrinciples() {
             width={1920}
             height={1080}
           />
-          <figcaption className="figure-caption mt-2">
+          <FigureCaption className="figure-caption mt-2">
             Figure 0.1.2b | Transparent schematic view of the magnetic leg band.
-          </figcaption>
+          </FigureCaption>
         </figure>
       </div>
       <figure className="hardware-media hardware-media--square">
@@ -85,9 +86,9 @@ export function BackgroundAndPrinciples() {
           width={3072}
           height={3253}
         />
-        <figcaption className="figure-caption mt-2">
+        <FigureCaption className="figure-caption mt-2">
           Figure 0.1.3 | Photograph of the assembled hardware.
-        </figcaption>
+        </FigureCaption>
       </figure>
       <h2 className="mt-5 mb-3">1 Core Design Principles</h2>
       <h3 className="mt-5 mb-3">1.1 Modular Design</h3>

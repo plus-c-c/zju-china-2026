@@ -1,3 +1,4 @@
+import { FigureCaption } from "../../components/FigureCaption";
 export function WorkflowAndOutlook() {
   return (
     <>
@@ -61,9 +62,9 @@ export function WorkflowAndOutlook() {
           width={4000}
           height={2834}
         />
-        <figcaption className="figure-caption mt-2">
+        <FigureCaption className="figure-caption mt-2">
           Figure 4.1 | Hardware overview.
-        </figcaption>
+        </FigureCaption>
       </figure>
       <h2 className="mt-5 mb-3">5 Future Outlook</h2>
       <p>

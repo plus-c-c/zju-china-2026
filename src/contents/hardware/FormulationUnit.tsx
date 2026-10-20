@@ -1,3 +1,4 @@
+import { FigureCaption } from "../../components/FigureCaption";
 import { HardwareVideo } from "./HardwareVideo";
 
 export function FormulationUnit() {
@@ -53,10 +54,10 @@ export function FormulationUnit() {
           width={1080}
           height={1080}
         />
-        <figcaption className="figure-caption mt-2">
+        <FigureCaption className="figure-caption mt-2">
           Figure 2.1 | Exploded view of the preparation unit’s internal
           structure.
-        </figcaption>
+        </FigureCaption>
       </figure>
       <h3 className="mt-5 mb-3">2.2 Three-Channel Ingredient Dispensing</h3>
       <p>
@@ -86,10 +87,10 @@ export function FormulationUnit() {
           width={1792}
           height={1265}
         />
-        <figcaption className="figure-caption mt-2">
+        <FigureCaption className="figure-caption mt-2">
           Figure 2.2 | Photograph of the three independent stepper-motor-driven
           lead-screw linear stages.
-        </figcaption>
+        </FigureCaption>
       </figure>
       <figure className="hardware-media hardware-media--video">
         <HardwareVideo
@@ -98,10 +99,10 @@ export function FormulationUnit() {
           poster="https://video.igem.org/lazy-static/thumbnails/9c6115c5-666b-467e-82fd-c4399ed6bb76.png"
           aspectRatio={1.7777777777777777}
         />
-        <figcaption className="figure-caption mt-2">
+        <FigureCaption className="figure-caption mt-2">
           Video 2.2 | Demonstration of the stepper-motor-driven lead-screw
           linear stage.
-        </figcaption>
+        </FigureCaption>
       </figure>
       <h3 className="mt-5 mb-3">2.3 Mixing and Storage</h3>
       <p>
@@ -122,9 +123,9 @@ export function FormulationUnit() {
           width={3971}
           height={2476}
         />
-        <figcaption className="figure-caption mt-2">
+        <FigureCaption className="figure-caption mt-2">
           Figure 2.3.1 | Microfluidic chip design.
-        </figcaption>
+        </FigureCaption>
       </figure>
       <div className="hardware-media-grid hardware-media-grid--streams">
         <div className="hardware-media-cell">
@@ -138,10 +139,10 @@ export function FormulationUnit() {
               width={1200}
               height={650}
             />
-            <figcaption className="figure-caption mt-2">
+            <FigureCaption className="figure-caption mt-2">
               Animation 2.3.2a | Simulation of component A flowing through the
               microfluidic chip.
-            </figcaption>
+            </FigureCaption>
           </figure>
         </div>
         <div className="hardware-media-cell">
@@ -155,10 +156,10 @@ export function FormulationUnit() {
               width={1200}
               height={650}
             />
-            <figcaption className="figure-caption mt-2">
+            <FigureCaption className="figure-caption mt-2">
               Animation 2.3.2b | Simulation of component B flowing through the
               microfluidic chip.
-            </figcaption>
+            </FigureCaption>
           </figure>
         </div>
         <div className="hardware-media-cell">
@@ -172,10 +173,10 @@ export function FormulationUnit() {
               width={1200}
               height={650}
             />
-            <figcaption className="figure-caption mt-2">
+            <FigureCaption className="figure-caption mt-2">
               Animation 2.3.2c | Simulation of component C flowing through the
               microfluidic chip.
-            </figcaption>
+            </FigureCaption>
           </figure>
         </div>
       </div>
@@ -189,9 +190,9 @@ export function FormulationUnit() {
           width={1200}
           height={650}
         />
-        <figcaption className="figure-caption mt-2">
+        <FigureCaption className="figure-caption mt-2">
           Animation 2.3.3 | Demonstration of mixing in the microfluidic chip.
-        </figcaption>
+        </FigureCaption>
       </figure>
       <p>
         After mixing in the microfluidic chip, the hydrogel precursor flows
@@ -240,9 +241,9 @@ export function FormulationUnit() {
           width={4000}
           height={2364}
         />
-        <figcaption className="figure-caption mt-2">
+        <FigureCaption className="figure-caption mt-2">
           Figure 2.3.4 | The reservoir module.
-        </figcaption>
+        </FigureCaption>
       </figure>
       <figure className="hardware-media hardware-media--video">
         <HardwareVideo
@@ -251,9 +252,9 @@ export function FormulationUnit() {
           poster="https://video.igem.org/lazy-static/thumbnails/77339ebd-3b63-4011-9492-7c4614535975.png"
           aspectRatio={1.7777777777777777}
         />
-        <figcaption className="figure-caption mt-2">
+        <FigureCaption className="figure-caption mt-2">
           Video 2.3.1 | Demonstration of reservoir operation.
-        </figcaption>
+        </FigureCaption>
       </figure>
       <div className="hardware-media-grid">
         <figure className="hardware-media-panel">
@@ -266,10 +267,10 @@ export function FormulationUnit() {
             width={3072}
             height={1770}
           />
-          <figcaption className="figure-caption mt-2">
+          <FigureCaption className="figure-caption mt-2">
             Figure 2.3.5a | Web visualization of the reservoir module when
             connected to the ESP32.
-          </figcaption>
+          </FigureCaption>
         </figure>
         <figure className="hardware-media-panel">
           <img
@@ -281,10 +282,10 @@ export function FormulationUnit() {
             width={3116}
             height={1800}
           />
-          <figcaption className="figure-caption mt-2">
+          <FigureCaption className="figure-caption mt-2">
             Figure 2.3.5b | Web-based 3D simulation of the reservoir module when
             the ESP32 is disconnected.
-          </figcaption>
+          </FigureCaption>
         </figure>
       </div>
       <figure className="hardware-media hardware-media--video">
@@ -294,9 +295,9 @@ export function FormulationUnit() {
           poster="https://video.igem.org/lazy-static/thumbnails/471633f2-c33d-46c9-931d-0718cef916e5.png"
           aspectRatio={1.7777777777777777}
         />
-        <figcaption className="figure-caption mt-2">
+        <FigureCaption className="figure-caption mt-2">
           Video 2.3.2 | Demonstration of the reservoir web interface.
-        </figcaption>
+        </FigureCaption>
       </figure>
       <h3 className="mt-5 mb-3">2.4 Electronic Control System</h3>
       <p>
@@ -338,9 +339,9 @@ export function FormulationUnit() {
             width={1699}
             height={900}
           />
-          <figcaption className="figure-caption mt-2">
+          <FigureCaption className="figure-caption mt-2">
             Figure 2.4a | Electronic control system of the preparation unit.
-          </figcaption>
+          </FigureCaption>
         </figure>
         <figure className="hardware-media-panel">
           <img
@@ -352,9 +353,9 @@ export function FormulationUnit() {
             width={2160}
             height={2089}
           />
-          <figcaption className="figure-caption mt-2">
+          <FigureCaption className="figure-caption mt-2">
             Figure 2.4b | Circuit board of the preparation unit.
-          </figcaption>
+          </FigureCaption>
         </figure>
       </div>
       <h3 className="mt-5 mb-3">2.5 Bill of Materials</h3>

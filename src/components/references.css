@@ -233,23 +233,21 @@
   padding-inline-start: 0;
 }
 
-/* Image sources share one layout across every article page. */
-.figure-credits {
-  display: grid;
-  gap: 1.5rem;
+/* Image endnotes use [S1] labels and the same typography as references. */
+.page-article .figure-sources-list {
+  list-style: none;
 }
 
-.figure-credits section {
+.page-article .figure-sources-list > .figure-source-entry {
+  display: grid;
+  grid-template-columns: 2.5em minmax(0, 1fr);
+  padding: 0;
+  text-indent: 0;
   scroll-margin-top: 112px;
 }
 
-.figure-credits p:last-child {
+.page-article .figure-source-entry__body > p:last-child {
   margin-bottom: 0;
-}
-
-.page-article .references-panel .references-content .figure-credits h3 {
-  margin: 0 0 0.75rem !important;
-  font-size: 1.125rem;
 }
 
 .page-article .references-panel .references-content :is(h3, h4) {

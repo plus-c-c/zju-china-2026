@@ -1,4 +1,8 @@
-import { FigureSourceCitation } from "../components/FigureSourceCitation";
+import { FigureCaption } from "../components/FigureCaption";
+import {
+  FigureSourceCitation,
+  FigureSourceEntry,
+} from "../components/FigureSourceCitation";
 import { References } from "../components/References";
 import { TransparentImage } from "../components/TransparentImage";
 import "./proof-of-concept.css";
@@ -37,7 +41,7 @@ export function ProofOfConcept() {
               className="img-fluid rounded"
               style={{ width: "100%" }}
             />
-            <figcaption className="figure-caption mt-2">
+            <FigureCaption className="figure-caption mt-2">
               <strong>
                 Figure 1 | Overview of Proof-of-Concept Validation.
               </strong>{" "}
@@ -45,7 +49,7 @@ export function ProofOfConcept() {
               functional configuration, respectively; cytocompatibility is
               evaluated across both tracks.
               <FigureSourceCitation source={1} href="#poc-reference-1" />
-            </figcaption>
+            </FigureCaption>
           </figure>
           <h2 className="mt-5 mb-3">1. Programmable Biomimetic Platform</h2>
           <p>
@@ -91,7 +95,7 @@ export function ProofOfConcept() {
               className="img-fluid rounded"
               style={{ width: "100%" }}
             />
-            <figcaption className="figure-caption mt-2">
+            <FigureCaption className="figure-caption mt-2">
               <strong>
                 Figure 2 | Successful Production of Scaffolds with Different
                 Repeat Numbers.
@@ -99,7 +103,7 @@ export function ProofOfConcept() {
               (A) 2KY-5; (B) 2KY-10. We also produced 2KY-16. Sup/Pel denotes
               supernatant/pellet. Arrows and red boxes indicate the target
               bands.
-            </figcaption>
+            </FigureCaption>
           </figure>
           <figure className="my-4 text-center">
             <TransparentImage
@@ -108,14 +112,14 @@ export function ProofOfConcept() {
               className="img-fluid rounded"
               style={{ width: "100%" }}
             />
-            <figcaption className="figure-caption mt-2">
+            <FigureCaption className="figure-caption mt-2">
               <strong>
                 Figure 3 | Successful Expression and Recovery of
                 SnoopTag2-Bearing Scaffolds.
               </strong>{" "}
               (A) 2KY-5-Tag; (B) 2KY-10-Tag. Lyophilized products and protein
               electrophoresis results are shown.
-            </figcaption>
+            </FigureCaption>
           </figure>
           <h4 className="mt-5 mb-3">
             1.1.2 Rapid Gelation within 2 Seconds of Blue-Light Irradiation
@@ -135,11 +139,11 @@ export function ProofOfConcept() {
               className="img-fluid rounded"
               style={{ width: "100%" }}
             />
-            <figcaption className="figure-caption mt-2">
+            <FigureCaption className="figure-caption mt-2">
               <strong>Figure 4 | Rapid Gelation of SELP.</strong> After 2 s of
               blue-light irradiation, the material remained in place and did not
               flow upon inversion.
-            </figcaption>
+            </FigureCaption>
           </figure>
           <p>
             Together, the successful production of multiple sequences and the
@@ -175,7 +179,7 @@ export function ProofOfConcept() {
               className="img-fluid rounded"
               style={{ width: "100%" }}
             />
-            <figcaption className="figure-caption mt-2">
+            <FigureCaption className="figure-caption mt-2">
               <strong>
                 Figure 5 | The Scaffold Forms a Porous Elastic Network with
                 Sequence-Tunable Mechanical Properties.
@@ -184,7 +188,7 @@ export function ProofOfConcept() {
               spectroscopy; (C) rheology; (D, E) stress-strain behavior and
               Young's modulus; (F, G) shear force and shear strength. Panels C-G
               were measured by our collaborators.
-            </figcaption>
+            </FigureCaption>
           </figure>
           <p>
             The scaffold's performance was also reflected at the cellular level.
@@ -202,7 +206,7 @@ export function ProofOfConcept() {
               className="img-fluid rounded"
               style={{ width: "100%" }}
             />
-            <figcaption className="figure-caption mt-2">
+            <FigureCaption className="figure-caption mt-2">
               <strong>
                 Figure 6 | The 2KY Scaffold Supports Cartilage-Related Gene
                 Expression.
@@ -211,7 +215,7 @@ export function ProofOfConcept() {
               to 2Y-5 = 1. Measurements were conducted by our collaborators. ns,
               not significant; <code>*</code>, p &lt; 0.05; <code>**</code>, p
               &lt; 0.01; <code>***</code>, p &lt; 0.001.
-            </figcaption>
+            </FigureCaption>
           </figure>
           <p>
             Mechanical properties changed with sequence configuration, and
@@ -247,7 +251,7 @@ export function ProofOfConcept() {
               className="img-fluid rounded"
               style={{ width: "100%" }}
             />
-            <figcaption className="figure-caption mt-2">
+            <FigureCaption className="figure-caption mt-2">
               <strong>
                 Figure 7 | SnoopLigase2 Catalyzes Formation of the Expected
                 Ligation Product.
@@ -255,7 +259,7 @@ export function ProofOfConcept() {
               SnoopTag2-sfGFP and SUMO-DogTag were used as substrates; +/-
               indicates the presence or absence of each component in the
               corresponding lane.
-            </figcaption>
+            </FigureCaption>
           </figure>
           <p>
             The shared interface achieved the expected enzyme-mediated protein
@@ -297,7 +301,7 @@ export function ProofOfConcept() {
               className="img-fluid rounded"
               style={{ width: "100%" }}
             />
-            <figcaption className="figure-caption mt-2">
+            <FigureCaption className="figure-caption mt-2">
               <strong>
                 Figure 8 | Mapping the Needs of OA to Functional Modules.
               </strong>{" "}
@@ -305,7 +309,7 @@ export function ProofOfConcept() {
               the design needs being addressed, and the right column shows the
               corresponding functions validated on this page.
               <FigureSourceCitation source={1} href="#poc-reference-1" />
-            </figcaption>
+            </FigureCaption>
           </figure>
           <h3 className="mt-5 mb-3">
             2.1 Key Components for All Three Functional Modules Were Obtained
@@ -332,14 +336,14 @@ export function ProofOfConcept() {
               className="img-fluid rounded"
               style={{ width: "100%" }}
             />
-            <figcaption className="figure-caption mt-2">
+            <FigureCaption className="figure-caption mt-2">
               <strong>
                 Figure 9 | Successful Preparation of Key Components for Each
                 Functional Module.
               </strong>{" "}
               (A) TVN; (B) CPC, CPC-Link-N, and Link-N; (C) the delivery fusion
               protein; (D) mitochondrial marker proteins COX IV and TOMM20.
-            </figcaption>
+            </FigureCaption>
           </figure>
           <h3 className="mt-5 mb-3">
             2.2 Different Functional Constructs Are Compatible with the Same
@@ -367,7 +371,7 @@ export function ProofOfConcept() {
               className="img-fluid rounded"
               style={{ width: "100%" }}
             />
-            <figcaption className="figure-caption mt-2">
+            <FigureCaption className="figure-caption mt-2">
               <strong>
                 Figure 10 | All Three Functional Modules Retain Ligation
                 Activity at the Shared Interface.
@@ -376,7 +380,7 @@ export function ProofOfConcept() {
               construct and scrambled-sequence control. A GFP reporter system
               was used; +/- indicates the presence or absence of each component
               in the corresponding lane.
-            </figcaption>
+            </FigureCaption>
           </figure>
           <p>
             Different functional sequences, one consistent ligation mechanism.
@@ -411,14 +415,14 @@ export function ProofOfConcept() {
               className="img-fluid rounded"
               style={{ width: "100%" }}
             />
-            <figcaption className="figure-caption mt-2">
+            <FigureCaption className="figure-caption mt-2">
               <strong>
                 Figure 11 | Control Group for Magnetic Particle Binding.
               </strong>{" "}
               The left column shows bright-field images and the right column
               shows fluorescence images; A/a and B/b are the panel labels in the
               original figure.
-            </figcaption>
+            </FigureCaption>
           </figure>
           <figure className="my-4 text-center">
             <TransparentImage
@@ -427,7 +431,7 @@ export function ProofOfConcept() {
               className="img-fluid rounded"
               style={{ width: "100%" }}
             />
-            <figcaption className="figure-caption mt-2">
+            <FigureCaption className="figure-caption mt-2">
               <strong>
                 Figure 12 | TVN-Associated Protein Fluorescence Remains on
                 Particles after Washing, and TVN-Magnetic Nanoparticle Complexes
@@ -438,7 +442,7 @@ export function ProofOfConcept() {
               shows bright-field images and the right column shows fluorescence
               images; red arrows indicate the direction of the external magnetic
               field.
-            </figcaption>
+            </FigureCaption>
           </figure>
           <p>
             After establishing this association, we investigated whether the
@@ -456,12 +460,12 @@ export function ProofOfConcept() {
               className="img-fluid rounded"
               style={{ width: "100%" }}
             />
-            <figcaption className="figure-caption mt-2">
+            <FigureCaption className="figure-caption mt-2">
               <strong>
                 Figure 13 | Bright-Field Dynamic Recording of Magnetic Particle
                 Aggregates Reorienting in Response to an Applied Field.
               </strong>
-            </figcaption>
+            </FigureCaption>
           </figure>
           <figure className="my-4 text-center">
             <TransparentImage
@@ -470,12 +474,12 @@ export function ProofOfConcept() {
               className="img-fluid rounded"
               style={{ width: "100%" }}
             />
-            <figcaption className="figure-caption mt-2">
+            <FigureCaption className="figure-caption mt-2">
               <strong>
                 Figure 14 | Fluorescence Dynamic Recording of Protein-Labeled
                 SELP-TVN-Magnetic Nanoparticle Complexes Reorienting.
               </strong>
-            </figcaption>
+            </FigureCaption>
           </figure>
           <p>
             TVN enabled the association of proteins with magnetic particles and
@@ -505,14 +509,14 @@ export function ProofOfConcept() {
               className="img-fluid rounded"
               style={{ width: "100%" }}
             />
-            <figcaption className="figure-caption mt-2">
+            <FigureCaption className="figure-caption mt-2">
               <strong>
                 Figure 15 | Validation of the Biotinylation and Immobilization
                 Interface for GAG Constructs.
               </strong>{" "}
               SA denotes streptavidin; the red box marks the
               high-molecular-weight complex.
-            </figcaption>
+            </FigureCaption>
           </figure>
           <figure className="my-4 text-center">
             <TransparentImage
@@ -521,14 +525,14 @@ export function ProofOfConcept() {
               className="img-fluid rounded"
               style={{ width: "100%" }}
             />
-            <figcaption className="figure-caption mt-2">
+            <FigureCaption className="figure-caption mt-2">
               <strong>
                 Figure 16 | Immobilized CPC and CPC-Link-N Reduce Residual CS-A
                 in the Supernatant.
               </strong>{" "}
               R1-R3 represent the three corresponding measurements. Individual
               points show measured values, and bars indicate the mean.
-            </figcaption>
+            </FigureCaption>
           </figure>
           <p>
             The GAG-retention activity of CPC was demonstrated in immobilized
@@ -561,14 +565,14 @@ export function ProofOfConcept() {
               className="img-fluid rounded"
               style={{ width: "100%" }}
             />
-            <figcaption className="figure-caption mt-2">
+            <FigureCaption className="figure-caption mt-2">
               <strong>
                 Figure 17 | Fluorescence Colocalization of Liposomes and
                 Mitochondria.
               </strong>{" "}
               Green: MitoTracker Green; red: DiD; overlapping signals appear
               yellow-orange.
-            </figcaption>
+            </FigureCaption>
           </figure>
           <figure className="my-4 text-center">
             <TransparentImage
@@ -577,13 +581,13 @@ export function ProofOfConcept() {
               className="img-fluid rounded"
               style={{ width: "100%" }}
             />
-            <figcaption className="figure-caption mt-2">
+            <FigureCaption className="figure-caption mt-2">
               <strong>
                 Figure 18 | TEM Reveals the Composite Encapsulation Structure.
               </strong>{" "}
               (A) Functionalized liposome; (B) free mitochondria; (C)
               liposome-mitochondria complex. All scale bars are 200 nm.
-            </figcaption>
+            </FigureCaption>
           </figure>
           <p>
             Next, we tested whether the responsive linker peptide could be
@@ -601,13 +605,13 @@ export function ProofOfConcept() {
               className="img-fluid rounded"
               style={{ width: "100%" }}
             />
-            <figcaption className="figure-caption mt-2">
+            <FigureCaption className="figure-caption mt-2">
               <strong>Figure 19 | MMP-13-Responsive Cleavage.</strong> Pep
               denotes the responsive peptide group; Control denotes the
               scrambled-sequence control. Differences in band patterns emerged
               from 2 h onward; the arrow indicates the uncleaved product in the
               control group.
-            </figcaption>
+            </FigureCaption>
           </figure>
           <p>
             Finally, we examined recipient cells following delivery treatment.
@@ -623,14 +627,14 @@ export function ProofOfConcept() {
               className="img-fluid rounded"
               style={{ width: "100%" }}
             />
-            <figcaption className="figure-caption mt-2">
+            <FigureCaption className="figure-caption mt-2">
               <strong>
                 Figure 20 | Mitochondrial Labeling Detected in Recipient-Cell
                 Regions.
               </strong>{" "}
               (A) Complex-treated group; (B) control group. Blue: cell nuclei;
               green: mitochondrial labeling.
-            </figcaption>
+            </FigureCaption>
           </figure>
           <p>
             Fluorescence imaging and TEM confirmed construction of the carrier,
@@ -682,7 +686,7 @@ export function ProofOfConcept() {
               className="img-fluid rounded"
               style={{ width: "100%" }}
             />
-            <figcaption className="figure-caption mt-2">
+            <FigureCaption className="figure-caption mt-2">
               <strong>
                 Figure 21 | CCK-8 Results for the Scaffold and Functional
                 Modules.
@@ -692,7 +696,7 @@ export function ProofOfConcept() {
               at 48 and 72 h. S denotes stock solution; L/M/H indicate
               low/medium/high concentration groups. Bars show means, and error
               bars indicate standard deviations.
-            </figcaption>
+            </FigureCaption>
           </figure>
           <p>
             These results indicate that the NEST scaffold and its principal
@@ -733,16 +737,18 @@ export function ProofOfConcept() {
             title="Figure Sources and Credits"
             id="figure-sources-and-credits"
           >
-            <div className="references-list references-list--paragraphs">
-              <p id="poc-reference-1" style={{ scrollMarginTop: "112px" }}>
-                [S1] <strong>Icon credits for Figure 1 and Figure 8 |</strong>{" "}
-                Protein chain: DBCLS (CC BY 4.0); hydrogel: Marcel Tisch (CC0);
-                proteoglycan: Daniel-Marcos (CC0); mitochondrion: Servier (CC BY
-                3.0). Link, puzzle, magnet, and adjustment icons: Google Noto
-                Emoji (Google, Apache 2.0). Icons were resized and recolored in
-                shades of blue.
-              </p>
-            </div>
+            <ul className="references-list figure-sources-list">
+              <FigureSourceEntry source={1} id="poc-reference-1">
+                <p>
+                  Icons used in Figure 1 and Figure 8. Protein chain: DBCLS (CC
+                  BY 4.0); hydrogel: Marcel Tisch (CC0); proteoglycan:
+                  Daniel-Marcos (CC0); mitochondrion: Servier (CC BY 3.0). Link,
+                  puzzle, magnet, and adjustment icons: Google Noto Emoji
+                  (Google, Apache 2.0). Icons were resized and recolored in
+                  shades of blue.
+                </p>
+              </FigureSourceEntry>
+            </ul>
           </References>
         </article>
       </div>

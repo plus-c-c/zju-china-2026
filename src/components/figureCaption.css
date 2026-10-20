@@ -8,6 +8,32 @@
   color: #52617f;
   font-size: 1rem;
   line-height: 1.55;
+  font-weight: 400;
+}
+
+/* Only the figure label and the first summary sentence share the bold tier. */
+.page-article
+  :is(figcaption, .figure-caption, .m1-figure-caption, .protein-caption)
+  strong.figure-caption__lead {
+  font-weight: 700;
+}
+
+.page-article .m1-figure-caption {
+  color: #52617f;
+  font-size: 1rem;
+  line-height: 1.55;
+  font-weight: 400;
+  text-align: center;
+}
+
+.page-article :is(.m1-figure-caption, .protein-caption) em {
+  font-style: normal;
+}
+
+.page-article .protein-caption p {
+  font-size: inherit;
+  line-height: inherit;
+  font-weight: 400;
 }
 
 /* Captions written as a single <em> paragraph under a figure (Model
@@ -69,6 +95,6 @@
 .page-article
   .m1-figure:has(> img[src$="/2ky16-validation-20261019.avif"])
   + p
-  > em:only-child {
+  em {
   font-style: italic;
 }

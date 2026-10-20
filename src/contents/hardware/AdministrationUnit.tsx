@@ -1,3 +1,4 @@
+import { FigureCaption } from "../../components/FigureCaption";
 import { HardwareVideo } from "./HardwareVideo";
 
 export function AdministrationUnit() {
@@ -38,10 +39,10 @@ export function AdministrationUnit() {
             width={3685}
             height={1356}
           />
-          <figcaption className="figure-caption mt-2">
+          <FigureCaption className="figure-caption mt-2">
             Figure 3.1a | Schematic of the three-way valve configured to pump
             hydrogel into the syringe.
-          </figcaption>
+          </FigureCaption>
         </figure>
         <figure className="hardware-media-panel">
           <img
@@ -53,10 +54,10 @@ export function AdministrationUnit() {
             width={3290}
             height={1324}
           />
-          <figcaption className="figure-caption mt-2">
+          <FigureCaption className="figure-caption mt-2">
             Figure 3.1b | Schematic of the three-way valve configured to inject
             hydrogel into the lesion site.
-          </figcaption>
+          </FigureCaption>
         </figure>
       </div>
       <figure className="hardware-media hardware-media--video">
@@ -66,9 +67,9 @@ export function AdministrationUnit() {
           poster="https://video.igem.org/lazy-static/thumbnails/cfc03f62-6e8a-4be3-9a03-79396aa4b564.jpg"
           aspectRatio={2.4625}
         />
-        <figcaption className="figure-caption mt-2">
+        <FigureCaption className="figure-caption mt-2">
           Video 3.1a | Demonstration of pumping hydrogel into the syringe.
-        </figcaption>
+        </FigureCaption>
       </figure>
       <figure className="hardware-media hardware-media--video">
         <HardwareVideo
@@ -77,9 +78,9 @@ export function AdministrationUnit() {
           poster="https://video.igem.org/lazy-static/thumbnails/06a8626b-7b1f-4ad4-bcfd-aa1aec4acc9d.jpg"
           aspectRatio={1.7777777777777777}
         />
-        <figcaption className="figure-caption mt-2">
+        <FigureCaption className="figure-caption mt-2">
           Video 3.1b | Demonstration of hydrogel injection.
-        </figcaption>
+        </FigureCaption>
       </figure>
       <p>
         The hydrogel passes through the three-way valve and exits through the
@@ -132,9 +133,9 @@ export function AdministrationUnit() {
           width={2763}
           height={3772}
         />
-        <figcaption className="figure-caption mt-2">
+        <FigureCaption className="figure-caption mt-2">
           Figure 3.2.1 | Endoscope module.
-        </figcaption>
+        </FigureCaption>
       </figure>
       <div className="hardware-media-grid hardware-media-grid--endoscope">
         <figure className="hardware-media-panel">
@@ -147,9 +148,9 @@ export function AdministrationUnit() {
             width={3000}
             height={4000}
           />
-          <figcaption className="figure-caption mt-2">
+          <FigureCaption className="figure-caption mt-2">
             Figure 3.2.2 | Endoscope camera head and illumination.
-          </figcaption>
+          </FigureCaption>
         </figure>
         <figure className="hardware-media-panel">
           <img
@@ -161,9 +162,9 @@ export function AdministrationUnit() {
             width={3300}
             height={2475}
           />
-          <figcaption className="figure-caption mt-2">
+          <FigureCaption className="figure-caption mt-2">
             Figure 3.2.3 | Endoscope module and blue-light control module.
-          </figcaption>
+          </FigureCaption>
         </figure>
       </div>
       <h3 className="mt-5 mb-3">3.3 Bill of Materials</h3>

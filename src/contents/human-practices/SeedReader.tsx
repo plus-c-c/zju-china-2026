@@ -121,20 +121,42 @@ export function SeedReaderRail() {
     let frame = 0;
     const update = () => {
       frame = 0;
-      const rects = paras.map((p) => p.getBoundingClientRect());
+      /* Measure layout boxes, not client rects: the emphasis transform on the
+         active paragraph shrinks/grows its client rect, and feeding that back
+         into the keypoints made the wheel twitch whenever the highlight
+         changed hands. offsetTop/offsetHeight ignore transforms, so the
+         rotation stays a pure function of the document layout. */
+      const docTop = (el: HTMLElement) => {
+        let top = 0;
+        let node: HTMLElement | null = el;
+        while (node) {
+          top += node.offsetTop;
+          node = node.offsetParent as HTMLElement | null;
+        }
+        return top;
+      };
+      const scrollY = window.scrollY;
+      const boxes = paras.map((p) => {
+        const top = docTop(p);
+        return { top, bottom: top + p.offsetHeight };
+      });
+      const rects = boxes.map((box) => ({
+        top: box.top - scrollY,
+        bottom: box.bottom - scrollY,
+        height: box.bottom - box.top,
+      }));
       const ringRect = ring.getBoundingClientRect();
       if (!ringRect.height) return;
       const rightY = ringRect.top + ringRect.height / 2;
-      const scrollY = window.scrollY;
 
       /* Keypoints: paragraph centres (p = index) and the mid-points of the
          blank lines between paragraphs (p = index + 0.5). */
       const keys: { y: number; p: number }[] = [];
-      rects.forEach((r, i) => {
-        keys.push({ y: r.top + scrollY + r.height / 2, p: i });
-        if (i < rects.length - 1) {
+      boxes.forEach((box, i) => {
+        keys.push({ y: box.top + (box.bottom - box.top) / 2, p: i });
+        if (i < boxes.length - 1) {
           keys.push({
-            y: (r.bottom + rects[i + 1].top) / 2 + scrollY,
+            y: (box.bottom + boxes[i + 1].top) / 2,
             p: i + 0.5,
           });
         }
@@ -165,14 +187,35 @@ export function SeedReaderRail() {
         : 90 - 90 * phasePos - SEED_LABEL_OFFSET_DEG;
       ring.style.setProperty("--seed-rotation", `${rotation.toFixed(2)}deg`);
 
-      /* The wheel shows while at least one cycle paragraph is on screen (or
-         just about to be); long stretches that carry no paragraph at all —
-         figure blocks such as the syringe questionnaire — collapse it, and it
-         comes back as the reading reaches the next paragraph. */
+      /* The wheel shows while a cycle paragraph is on screen. Reading gaps
+         that carry figures or collapsed questionnaires (e.g. the syringe
+         questionnaire) stay open as well when their hidden stretch is shorter
+         than two wheel notches, so the wheel neither flickers through short
+         gaps nor floats over long figure blocks such as an expanded card. */
+      const WHEEL_NOTCH_PX = 110;
       const margin = 60;
-      const open = rects.some(
+      const viewportSpan = window.innerHeight - margin * 2;
+      /* Short gaps keep the wheel out; the allowed stretch scales with the
+         viewport so the collapsed questionnaires never flicker it, while an
+         expanded figure block still hides it. */
+      const keepOpenStretch = Math.max(
+        WHEEL_NOTCH_PX * 2,
+        window.innerHeight * 0.55,
+      );
+      let open = rects.some(
         (r) => r.bottom > margin && r.top < window.innerHeight - margin,
       );
+      if (!open) {
+        for (let i = 0; i < rects.length - 1; i += 1) {
+          const a = rects[i];
+          const b = rects[i + 1];
+          if (a.bottom <= margin && b.top >= window.innerHeight - margin) {
+            const hiddenStretch = b.top - a.bottom - viewportSpan;
+            if (hiddenStretch < keepOpenStretch) open = true;
+            break;
+          }
+        }
+      }
       const wrap = ring.closest(".seed-reader__ring");
       wrap?.classList.toggle("is-open", open);
 

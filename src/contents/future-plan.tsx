@@ -1,4 +1,8 @@
-import { FigureSourceCitation } from "../components/FigureSourceCitation";
+import { FigureCaption } from "../components/FigureCaption";
+import {
+  FigureSourceCitation,
+  FigureSourceEntry,
+} from "../components/FigureSourceCitation";
 import { References } from "../components/References";
 const CIF = "https://static.igem.wiki/teams/6102/wiki/images/cif/";
 
@@ -41,7 +45,7 @@ export function FuturePlan() {
             loading="lazy"
             decoding="async"
           />
-          <figcaption className="figure-caption">
+          <FigureCaption className="figure-caption">
             Figure 1 | Transition from validation of individual components to
             evaluation of the complete material. Six complementary readouts will
             guide formulation screening and assess scaffold, connector, and
@@ -50,7 +54,7 @@ export function FuturePlan() {
               source={1}
               href="#future-plan-figure-sources"
             />
-          </figcaption>
+          </FigureCaption>
         </figure>
         <p>
           Formulation screening will link material architecture and assembly
@@ -181,7 +185,7 @@ export function FuturePlan() {
             loading="lazy"
             decoding="async"
           />
-          <figcaption className="figure-caption">
+          <FigureCaption className="figure-caption">
             Figure 2 | Material validation and manufacturing-process development
             will proceed in parallel. Before moving to in vivo studies, we will
             verify both tissue-interface performance and reproducible production
@@ -191,7 +195,7 @@ export function FuturePlan() {
               source={1}
               href="#future-plan-figure-sources"
             />
-          </figcaption>
+          </FigureCaption>
         </figure>
         <p>
           Downstream scale-up will build on the ITC process already adopted. We
@@ -260,7 +264,7 @@ export function FuturePlan() {
             loading="lazy"
             decoding="async"
           />
-          <figcaption className="figure-caption">
+          <FigureCaption className="figure-caption">
             Figure 3 | Four-stage development roadmap and its key completion
             criteria. Process optimization will proceed in parallel with
             material integration from the outset and will be assessed together
@@ -270,7 +274,7 @@ export function FuturePlan() {
               source={1}
               href="#future-plan-figure-sources"
             />
-          </figcaption>
+          </FigureCaption>
         </figure>
         <p>
           Storage strategies will be developed for each component separately.
@@ -324,14 +328,14 @@ export function FuturePlan() {
             loading="lazy"
             decoding="async"
           />
-          <figcaption className="figure-caption">
+          <FigureCaption className="figure-caption">
             Figure 4 | A shared scaffold and functional interfaces support three
             proposed application directions.
             <FigureSourceCitation
               source={1}
               href="#future-plan-figure-sources"
             />
-          </figcaption>
+          </FigureCaption>
         </figure>
         <h4 className="mt-4 mb-2">
           5.1 Establishing the First Product for Focal Cartilage Defects
@@ -417,9 +421,8 @@ export function FuturePlan() {
           title="Figure Sources and Credits"
           id="figure-sources-and-credits"
         >
-          <div className="references-list figure-credits">
-            <section id="future-plan-figure-sources">
-              <h3>[S1] Figure assets and team materials</h3>
+          <ul className="references-list figure-sources-list">
+            <FigureSourceEntry source={1} id="future-plan-figure-sources">
               <p>
                 Figure assets from Bioicons: Marcel Tisch, Simon D&uuml;rr,
                 jaiganesh, and Daniel-Marcos (CC0); DBCLS (CC BY 4.0); and
@@ -430,8 +433,8 @@ export function FuturePlan() {
                 and application interfaces are from project materials.{" "}
                 <a href="https://github.com/googlefonts/noto-emoji">Source</a>
               </p>
-            </section>
-          </div>
+            </FigureSourceEntry>
+          </ul>
         </References>
       </div>
     </div>

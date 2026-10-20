@@ -1,3 +1,4 @@
+import { FigureCaption } from "../components/FigureCaption";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { flushSync } from "react-dom";
@@ -9,6 +10,7 @@ import {
 } from "../components/StakeholderChain";
 import { TransparentImage } from "../components/TransparentImage";
 import { SeedReaderRail } from "./human-practices/SeedReader";
+import { scrollToSection } from "./human-practices/scrollToSection";
 import "./human-practices.css";
 
 /** All figures live on the team static host. */
@@ -49,7 +51,7 @@ function Figure({
         height={height}
         loading="lazy"
       />
-      <figcaption>{caption}</figcaption>
+      <FigureCaption>{caption}</FigureCaption>
     </figure>
   );
 }
@@ -1620,39 +1622,6 @@ const HP_PAGES = [
   { key: "engagement", label: "Stakeholder Engagement" },
 ];
 
-/* One continuous body per page: the sub-navigation is a scroll spy over the
-   stacked blocks, so the wheel reaches every block and the TOC lists all of
-   their headings. */
-function useSectionSpy(ids: string[]) {
-  const [active, setActive] = useState(0);
-  const key = ids.join("|");
-  useEffect(() => {
-    const list = key.split("|");
-    let frame = 0;
-    const update = () => {
-      frame = 0;
-      let index = 0;
-      list.forEach((id, i) => {
-        const el = document.getElementById(id);
-        if (el && el.getBoundingClientRect().top <= 150) index = i;
-      });
-      setActive(index);
-    };
-    const schedule = () => {
-      if (!frame) frame = window.requestAnimationFrame(update);
-    };
-    update();
-    window.addEventListener("scroll", schedule, { passive: true });
-    window.addEventListener("resize", schedule);
-    return () => {
-      window.removeEventListener("scroll", schedule);
-      window.removeEventListener("resize", schedule);
-      if (frame) window.cancelAnimationFrame(frame);
-    };
-  }, [key]);
-  return active;
-}
-
 function SectionSubnav({
   items,
   className = "eng-subnav",
@@ -1660,41 +1629,28 @@ function SectionSubnav({
   items: { id: string; label: string }[];
   className?: string;
 }) {
-  const active = useSectionSpy(items.map((item) => item.id));
   const jump = (id: string) => {
-    const el = document.getElementById(id);
-    if (!el) return;
+    if (!document.getElementById(id)) return;
     history.replaceState(null, "", `#${id}`);
-    /* Figures above the target load lazily, so re-align once the layout has
-       settled instead of stopping short. */
-    const align = (attempt = 0) => {
-      const target = document.getElementById(id);
-      if (!target) return;
-      const top = target.getBoundingClientRect().top;
-      if (Math.abs(top - 130) > 24) {
-        window.scrollTo({
-          top: top + window.scrollY - 130,
-          behavior: attempt === 0 ? "smooth" : "instant",
-        });
-      }
-      if (attempt < 4) window.setTimeout(() => align(attempt + 1), 600);
-    };
-    align();
+    /* One easing curve that keeps tracking the heading, so late layout
+       changes above the target never turn into an instant correction. */
+    scrollToSection(id);
   };
+  /* The second-level buttons are pure jump links: the page TOC already marks
+     the section being read, so they carry no selected state of their own. */
   return (
-    <div className={className}>
-      {items.map((item, index) => (
+    <nav className={className} aria-label="Page sections">
+      {items.map((item) => (
         <button
           key={item.id}
           type="button"
-          className={`eng-subnav-button ${active === index ? "active" : ""}`}
-          aria-pressed={active === index}
+          className="eng-subnav-button"
           onClick={() => jump(item.id)}
         >
           {item.label}
         </button>
       ))}
-    </div>
+    </nav>
   );
 }
 
@@ -1848,44 +1804,29 @@ const NEST_TABS = [
   { id: "ihp-nest-trust", letter: "T", label: "Trust and Lasting Impact" },
 ];
 
-/* NEST module switcher: one card per module, letter badge + label, with the
-   section scroll spy keeping the current module highlighted. */
+/* NEST module switcher: one card per module, letter badge + label. The tabs
+   are pure jump links — the page TOC already marks the module being read, so
+   no tab carries a selected state. */
 function NestSubnav() {
-  const active = useSectionSpy(NEST_TABS.map((tab) => tab.id));
   const jump = (id: string) => {
-    const el = document.getElementById(id);
-    if (!el) return;
+    if (!document.getElementById(id)) return;
     history.replaceState(null, "", `#${id}`);
-    const align = (attempt = 0) => {
-      const target = document.getElementById(id);
-      if (!target) return;
-      const top = target.getBoundingClientRect().top;
-      if (Math.abs(top - 130) > 24) {
-        window.scrollTo({
-          top: top + window.scrollY - 130,
-          behavior: attempt === 0 ? "smooth" : "instant",
-        });
-      }
-      if (attempt < 4) window.setTimeout(() => align(attempt + 1), 600);
-    };
-    align();
+    scrollToSection(id);
   };
   return (
-    <div className="ihp-nest-tabs" role="tablist" aria-label="NEST modules">
-      {NEST_TABS.map((tab, index) => (
+    <nav className="ihp-nest-tabs" aria-label="NEST modules">
+      {NEST_TABS.map((tab) => (
         <button
           key={tab.id}
           type="button"
-          role="tab"
-          aria-selected={active === index}
-          className={`ihp-nest-tab${active === index ? " is-active" : ""}`}
+          className="ihp-nest-tab"
           onClick={() => jump(tab.id)}
         >
           <NestGlyph letter={tab.letter} />
           <span className="ihp-nest-tab__label">{tab.label}</span>
         </button>
       ))}
-    </div>
+    </nav>
   );
 }
 
