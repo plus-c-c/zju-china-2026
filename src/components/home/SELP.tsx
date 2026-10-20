@@ -151,28 +151,25 @@ function PipelinePill({ label, to }: { label: string; to: string }) {
 }
 
 function PipelineConnector({ variant }: { variant: "first" | "second" }) {
-  const paths = {
-    first:
-      "M3.99805 0V159.302C3.99805 172.552 14.7376 183.292 27.9876 183.292H514.805C528.055 183.292 538.795 194.031 538.795 207.276V352.729",
-    second:
-      "M542.79 0V171.328C542.79 184.578 532.05 195.318 518.805 195.318H27.9876C14.7376 195.318 3.99805 206.057 3.99805 219.302V356.937",
-  } as const;
-
   return (
     <svg
       aria-hidden="true"
       className={`selp-pipeline__connector selp-pipeline__connector--${variant}`}
-      viewBox={
-        variant === "first" ? "0 0 542.793 352.729" : "0 0 546.788 356.937"
-      }
+      viewBox="0 0 540 352"
       preserveAspectRatio="none"
     >
-      <path d={paths[variant]} transform="translate(12 12)" fill="none" stroke="#aac8ec"
-        strokeLinecap="round" strokeLinejoin="round" strokeWidth="10" />
-      <path d={paths[variant]} transform="translate(6 6)" fill="none" stroke="#6d9bd5"
-        strokeLinecap="round" strokeLinejoin="round" strokeWidth="10" />
-      <path d={paths[variant]} fill="none" stroke="#7eb5ff"
-        strokeLinecap="round" strokeLinejoin="round" strokeWidth="8" />
+      <g transform={variant === "second" ? "translate(540 0) scale(-1 1)" : undefined}>
+        <path
+          d="M12 8C12 170 528 182 528 344"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="3"
+          strokeLinecap="round"
+          vectorEffect="non-scaling-stroke"
+        />
+        <circle cx="12" cy="8" r="3" fill="currentColor" />
+        <circle cx="528" cy="344" r="3" fill="currentColor" />
+      </g>
     </svg>
   );
 }

@@ -292,12 +292,12 @@
 
 .selp-pipeline__stage--gag {
   aspect-ratio: 1366 / 780;
-  margin-top: -3.37cqw;
+  margin-top: -6.3cqw;
 }
 
 .selp-pipeline__stage--mitochondrial {
   aspect-ratio: 1366 / 784;
-  margin-top: -2.49cqw;
+  margin-top: -5.4cqw;
 }
 
 .selp-pipeline__card {
@@ -529,6 +529,7 @@
 .selp-pipeline__connector {
   z-index: 0;
   left: 33.2%;
+  color: #7ca8df;
   overflow: visible;
   width: 39.45%;
   height: auto;
