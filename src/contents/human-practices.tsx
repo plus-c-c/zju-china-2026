@@ -1438,8 +1438,75 @@ function SectionSubnav({
   );
 }
 
+function NestFrameworkBlock() {
+  const rows = [
+    {
+      letter: "N",
+      module: "Need-led Discovery",
+      what: "Research the background of the problem and uncover the real pain points that still need solving.",
+    },
+    {
+      letter: "E",
+      module: "Evidence-based Co-design",
+      what: "Study the literature and the real world, bring product-design questions back to the engineering team, and find solutions together.",
+    },
+    {
+      letter: "S",
+      module: "Situated Implementation",
+      what: "Consider the concrete situations in which the product is implemented — production, market access and user experience — and adapt it so that access improves in practice.",
+    },
+    {
+      letter: "T",
+      module: "Trust and Lasting Impact",
+      what: "Consider the lasting contribution the product can make to the target group, the industry and the iGEM community — earning the trust of users and partners and carrying social responsibility.",
+    },
+  ];
+  return (
+    <>
+      <h3 className="mt-4 mb-3">NEST — the iHP framework</h3>
+      <p>
+        The four NEST modules organise the human-practices narrative: each one
+        asks a different question about the product, from the first real need to
+        the impact that outlasts the competition.
+      </p>
+      <div className="table-responsive mb-4">
+        <table
+          className="table table-bordered align-middle"
+          aria-label="The NEST human-practices framework"
+        >
+          <thead className="table-primary">
+            <tr>
+              <th scope="col" style={{ width: "4.5rem" }}>
+                Letter
+              </th>
+              <th scope="col">Module</th>
+              <th scope="col">What we do</th>
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((row) => (
+              <tr key={row.letter}>
+                <th scope="row">{row.letter}</th>
+                <td>
+                  <strong>{row.module}</strong>
+                </td>
+                <td>{row.what}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </>
+  );
+}
+
 function ToolboxPage() {
   const sections = [
+    {
+      id: "ihp-toolbox-nest",
+      label: "NEST framework",
+      node: <NestFrameworkBlock />,
+    },
     { id: "ihp-toolbox-seed", label: "SEED", node: <SeedMethodBlock /> },
     {
       id: "ihp-toolbox-mixed",
