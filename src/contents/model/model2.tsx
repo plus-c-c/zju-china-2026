@@ -16,13 +16,11 @@ import {
   useBoundaryStepAdvance,
 } from "../../components/useBoundaryStepAdvance";
 import {
+  STEPPER_STEP_PX,
   useCardWheel,
   useStepperProgress,
 } from "../../components/stepperWheel";
 import "./model.css";
-
-/** Scroll distance per protein step, in vh. */
-const STEP_DVH = 40;
 
 /** Section headings of the module and the protein step each belongs to.
  *  Rendered as hidden anchors so the left TOC lists every heading and a
@@ -367,7 +365,7 @@ function ProteinStepper({ steps }: { steps: ProteinStep[] }) {
       className="protein-runway"
       ref={runwayRef}
       style={{
-        height: `calc(${100 + steps.length * STEP_DVH}dvh)`,
+        height: `calc(100dvh + ${steps.length * STEPPER_STEP_PX}px)`,
       }}
     >
       <div

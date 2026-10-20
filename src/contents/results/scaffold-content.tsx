@@ -1,3 +1,4 @@
+import { TableCaption } from "../../components/FigureCaption";
 import { FigureCaption } from "../../components/FigureCaption";
 export function ScaffoldIntro() {
   return (
@@ -182,11 +183,11 @@ export function ScaffoldContent() {
             </div>
             <div className="table-scroll">
               <table>
-                <caption>
+                <TableCaption as="caption">
                   <strong>Table 1.1.1.</strong> Positions of the three SnoopTag2
                   docking sites relative to the cut sites, their behavior during
                   a doubling round, and the resulting constructs.
-                </caption>
+                </TableCaption>
                 <thead>
                   <tr>
                     <th scope="col">Tag insertion site</th>

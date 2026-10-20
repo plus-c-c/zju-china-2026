@@ -1,3 +1,4 @@
+import { TableCaption } from "../components/FigureCaption";
 import { FigureCaption } from "../components/FigureCaption";
 import {
   FigureSourceCitation,
@@ -27,8 +28,7 @@ export function Implementation() {
         </p>
 
         <h3 className="mt-5 mb-3">
-          1 Developing Material Formulations for Three Cartilage-Injury
-          Settings
+          1 Developing Material Formulations for Three Cartilage-Injury Settings
         </h3>
         <h4 className="mt-4 mb-2">
           1.1 Focal Cartilage Defects Following Sports-Related or Traumatic
@@ -263,11 +263,11 @@ export function Implementation() {
           material, device, and instructions will be validated together around
           this workflow.
         </p>
-        <p>
+        <TableCaption>
           <strong>
             Table 1 | Product Requirements and Validation Criteria for NEST
           </strong>
-        </p>
+        </TableCaption>
         <div className="table-responsive mb-4">
           <table
             className="table table-bordered align-middle"

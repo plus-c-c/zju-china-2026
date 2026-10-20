@@ -11,10 +11,13 @@
 
 .eng-module-nav {
   display: flex;
+  width: max-content;
+  max-width: 100%;
   justify-content: center;
   gap: 1rem;
   margin-top: 1.5rem;
   margin-bottom: 1rem;
+  margin-inline: auto;
 }
 
 .eng-module-button {
@@ -174,7 +177,7 @@
    scroll advances the Design–Build–Test–Learn steps (the same pattern as
    the home page story sections). */
 .dbtl {
-  --dbtl-stack-h: clamp(380px, calc(90vh - 10.5rem), 700px);
+  --dbtl-stack-h: clamp(420px, calc(100dvh - 9.5rem), 760px);
   /* One ring size for both layouts (stacked rows and split ring rows). */
   --dbtl-ring-size: clamp(230px, 19vw, 310px);
   /* About eight spaces of the panel's body text: used both for the ring's
@@ -187,14 +190,32 @@
   --dbtl-bleed: max(0px, (100vw - 100%) / 2 - var(--dbtl-gap));
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
-  gap: var(--dbtl-gap);
-  align-items: center;
-  margin-top: 1.5rem;
+  grid-template-rows: auto minmax(0, 1fr);
+  grid-template-areas:
+    "tabs tabs"
+    "left main";
+  column-gap: var(--dbtl-gap);
+  row-gap: 0;
+  align-items: stretch;
+  height: var(--dbtl-stack-h);
+  margin-top: 0.75rem;
   margin-left: calc(-1 * var(--dbtl-bleed));
 }
 
+.dbtl-left {
+  grid-area: left;
+  position: relative;
+  width: var(--dbtl-ring-size);
+  min-height: 0;
+  height: 100%;
+}
+
 .dbtl-ring-wrap {
+  position: absolute;
+  left: 0;
+  bottom: 0;
   display: flex;
+  flex: 0 0 auto;
   justify-content: flex-start;
   /* The cluster is already inset by --dbtl-gap from the page edge. */
   margin-left: 0;
@@ -632,18 +653,6 @@
   fill: #ffe39a;
 }
 
-/* Project Design gives the double wheel more visual weight than the regular
-   DBTL navigation. On wide screens it may enter the card column slightly,
-   matching the wrapped-ring treatment used on the iHP page. */
-.project-design-stepper {
-  --dbtl-ring-size: clamp(340px, 36vw, 520px);
-  --dbtl-gap: clamp(1rem, 1.5vw, 1.5rem);
-  /* Project Design desktop tuning:
-     smaller copy width = narrower text; larger gap = more space from ring. */
-  --project-copy-width: 850px;
-  --project-copy-gap: 8px;
-}
-
 .project-design-subheading {
   margin: 1.1rem 0 0.55rem;
   color: #365dc9;
@@ -687,29 +696,6 @@
   line-height: 1.6;
 }
 
-@media (min-width: 992px) {
-  .project-design-stepper {
-    position: relative;
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .project-design-stepper .dbtl-ring-wrap {
-    position: absolute;
-    top: 50%;
-    right: calc(var(--project-copy-width) + var(--project-copy-gap));
-    z-index: 0;
-    margin: 0;
-    transform: translateY(-50%);
-  }
-
-  .project-design-stepper .dbtl-main {
-    position: relative;
-    z-index: 1;
-    width: min(100%, var(--project-copy-width));
-    justify-self: end;
-  }
-}
-
 /* SEED phase badges (Human Practices stepper): one width for all four so the
    cycle title never shifts between Spark / Explore / Engineering / Dialogue. */
 .dbtl-phase-Spark,
@@ -736,15 +722,18 @@
 }
 
 .dbtl-main {
+  grid-area: main;
   display: flex;
   flex-direction: column;
   min-width: 0;
-  height: var(--dbtl-stack-h);
+  min-height: 0;
+  height: 100%;
 }
 
 .dbtl-panel {
   display: flex;
   flex: 1 1 0;
+  height: 100%;
   flex-direction: column;
   min-height: 0;
   /* Open text area: no card frame or fill. */
@@ -921,22 +910,52 @@
   }
 }
 
-.dbtl-cycles {
+/* The TOC itself is the shared TocPanel from components/toc.tsx. This slot
+   only reserves the space above the ring; all typography and colors come
+   from toc.css. */
+.eng-toc-slot {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: calc(var(--dbtl-ring-size) + 0.65rem);
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.35rem 1.4rem;
-  margin-top: 1.1rem;
+  min-height: 0;
 }
 
-/* Level-3 tab row above the panel; shares the cycle-button styling and
-   centring. */
+.dbtl-cycles {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  justify-items: stretch;
+  gap: 0.3rem 0.55rem;
+  margin-top: 0.55rem;
+  width: 100%;
+}
+
+.dbtl-cycle-button {
+  width: 100%;
+  padding: 0.32rem 0.15rem;
+  font-size: 0.86rem;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* Level-3 tab row above the ring and panel: all tabs stay on one line. */
 .dbtl-subnav {
+  grid-area: tabs;
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content: center;
-  gap: 0.35rem 1.4rem;
-  margin-bottom: 0.8rem;
+  gap: clamp(0.45rem, 0.9vw, 1.1rem);
+  width: 100%;
+  margin: 0 0 0.45rem;
+}
+
+.dbtl-subnav .dbtl-subnav-button {
+  flex: 0 1 auto;
+  padding: 0.38rem 0.05rem;
+  font-size: clamp(0.7rem, 0.78vw, 0.96rem);
+  white-space: nowrap;
 }
 
 /* The cluster (nav rows + level-3 tabs + stepper) is engaged as one scroll
@@ -948,10 +967,9 @@
 }
 
 .eng-aggregate .eng-module-nav {
-  /* Same spacing as between the level-2 buttons and the level-3 tabs
-     (0.35rem + 0.2rem below). */
+  /* L1 sits at the top of the pinned cluster. */
   margin-top: 0;
-  margin-bottom: 0.55rem;
+  margin-bottom: 0.45rem;
 }
 
 .eng-aggregate .eng-subnav {
@@ -974,8 +992,9 @@
   z-index: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   height: 100dvh;
+  padding-top: 6px;
 }
 
 .eng-pin > .eng-aggregate {

@@ -41,6 +41,8 @@ interface DbtlStepperProps {
   content?: ReactNode;
   /** Level-3 tab row rendered above the panel. */
   topNav?: ReactNode;
+  /** Nested level-3 / level-4 TOC rendered in the left column. */
+  sideNav?: ReactNode;
   /** Level-1 navigation rendered above the ring in the split layout. */
   ringTop?: ReactNode;
   /** Level-2 navigation rendered below the ring in the split layout. */
@@ -68,6 +70,7 @@ export function DbtlStepper({
   outlook,
   content,
   topNav,
+  sideNav,
   ringTop,
   ringBottom,
 }: DbtlStepperProps) {
@@ -326,6 +329,8 @@ export function DbtlStepper({
         } as CSSProperties
       }
     >
+      {topNav && <div className="dbtl-subnav">{topNav}</div>}
+      <div className="dbtl-left">
       {splitRing ? (
         <div className="dbtl-ring-wrap dbtl-ring-wrap--split">
           {ringTop}
@@ -339,8 +344,50 @@ export function DbtlStepper({
           <DbtlRing active={phaseBadge} onSelect={goToPhase} />
         </div>
       )}
+        {sideNav}
+        {!sideNav && stepModule && (
+          <div className="dbtl-cycles" role="group" aria-label="Steps">
+            {leadIndex >= 0 && (
+              <button
+                type="button"
+                className={`dbtl-cycle-button${
+                  step?.kind === "lead" ? " active" : ""
+                }`}
+                aria-pressed={step?.kind === "lead"}
+                onClick={() => goToStep(leadIndex)}
+              >
+                Introduction
+              </button>
+            )}
+            {stepModule.cycles.map((cycle, cycleIndex) => (
+              <button
+                key={cycle.title}
+                type="button"
+                className={`dbtl-cycle-button${
+                  cycleIndex === currentCycleIndex ? " active" : ""
+                }`}
+                aria-pressed={cycleIndex === currentCycleIndex}
+                onClick={() => goToCycle(cycleIndex)}
+              >
+                Cycle {cycleIndex + 1}
+              </button>
+            ))}
+            {outlookIndex >= 0 && (
+              <button
+                type="button"
+                className={`dbtl-cycle-button${
+                  step?.kind === "outlook" ? " active" : ""
+                }`}
+                aria-pressed={step?.kind === "outlook"}
+                onClick={() => goToStep(outlookIndex)}
+              >
+                Conclusion
+              </button>
+            )}
+          </div>
+        )}
+      </div>
       <div className="dbtl-main">
-        {topNav && <div className="dbtl-subnav">{topNav}</div>}
         <div className="dbtl-panel" ref={cardRef}>
           {(phaseBadge || caption) && (
             <div className="dbtl-panel-head">
@@ -397,47 +444,6 @@ export function DbtlStepper({
             )}
           </div>
         </div>
-        {stepModule && (
-          <div className="dbtl-cycles" role="group" aria-label="Steps">
-            {leadIndex >= 0 && (
-              <button
-                type="button"
-                className={`dbtl-cycle-button${
-                  step?.kind === "lead" ? " active" : ""
-                }`}
-                aria-pressed={step?.kind === "lead"}
-                onClick={() => goToStep(leadIndex)}
-              >
-                Introduction
-              </button>
-            )}
-            {stepModule.cycles.map((cycle, cycleIndex) => (
-              <button
-                key={cycle.title}
-                type="button"
-                className={`dbtl-cycle-button${
-                  cycleIndex === currentCycleIndex ? " active" : ""
-                }`}
-                aria-pressed={cycleIndex === currentCycleIndex}
-                onClick={() => goToCycle(cycleIndex)}
-              >
-                Cycle {cycleIndex + 1}
-              </button>
-            ))}
-            {outlookIndex >= 0 && (
-              <button
-                type="button"
-                className={`dbtl-cycle-button${
-                  step?.kind === "outlook" ? " active" : ""
-                }`}
-                aria-pressed={step?.kind === "outlook"}
-                onClick={() => goToStep(outlookIndex)}
-              >
-                Conclusion
-              </button>
-            )}
-          </div>
-        )}
       </div>
     </div>
   );

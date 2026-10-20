@@ -1,3 +1,4 @@
+import { TableCaption } from "../../components/FigureCaption";
 import type { DbtlModule } from "./dbtl";
 
 export const ligationModule: DbtlModule = {
@@ -155,12 +156,12 @@ export const ligationModule: DbtlModule = {
               intracellularly, and the optimal induction concentrations were
               determined from the band intensities:
             </p>
-            <p>
+            <TableCaption>
               <strong>
                 Table 2.2.1. Optimal IPTG concentration for the induction of
                 each ligation-system protein.
               </strong>
-            </p>
+            </TableCaption>
             <div className="table-responsive mb-4">
               <table
                 className="table table-bordered align-middle"

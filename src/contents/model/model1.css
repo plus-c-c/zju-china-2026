@@ -5,12 +5,12 @@
   position: relative;
   margin-top: 22px;
   /* 跑道：首屏 + 每步一段滚动行程（与 engineering 的 runway 相同） */
-  height: calc(100dvh + var(--m1-count) * 45vh);
+  height: calc(100dvh + var(--m1-count) * 200px);
 }
 
 /* 目录锚点：每步滚动进度位置处的隐藏标题 */
 .m1-anchor {
-  top: calc(var(--m1-seg) * 45vh);
+  top: calc(var(--m1-seg) * 200px);
 }
 
 /* 抵消 .page-article h3 的 !important 标题间距（48px），否则锚点整体下移、

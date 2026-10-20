@@ -1,3 +1,4 @@
+import { TableCaption } from "../components/FigureCaption";
 import { useId, useState, type ReactNode } from "react";
 import { MathFormula } from "../components/MathFormula";
 import { References } from "../components/References";
@@ -708,6 +709,7 @@ export function Entrepreneurship() {
                 className="table table-bordered align-middle"
                 aria-label="Regional market screening for NEST"
               >
+<TableCaption as="caption">Table 1 | Regional market screening for NEST.</TableCaption>
                 <thead className="table-primary">
                   <tr>
                     <th scope="col">Region</th>
@@ -809,6 +811,7 @@ export function Entrepreneurship() {
                 className="table table-bordered align-middle"
                 aria-label="Domestic competitors in cartilage repair"
               >
+<TableCaption as="caption">Table 2 | Domestic competitors in cartilage repair.</TableCaption>
                 <colgroup>
                   <col style={{ width: "27%" }} />
                   <col style={{ width: "41%" }} />
@@ -846,6 +849,7 @@ export function Entrepreneurship() {
                 className="table table-bordered align-middle"
                 aria-label="International competitors in cartilage repair"
               >
+<TableCaption as="caption">Table 3 | International competitors in cartilage repair.</TableCaption>
                 <colgroup>
                   <col style={{ width: "27%" }} />
                   <col style={{ width: "41%" }} />
@@ -1037,6 +1041,7 @@ export function Entrepreneurship() {
                 className="table table-bordered align-middle"
                 aria-label="Initial capital investment for the first-generation NEST line"
               >
+<TableCaption as="caption">Table 4 | Initial capital investment for the first-generation NEST line.</TableCaption>
                 <thead className="table-primary">
                   <tr>
                     <th scope="col">Cost item</th>
@@ -1136,6 +1141,7 @@ export function Entrepreneurship() {
                     className="table table-bordered align-middle"
                     aria-label="Labour intensity of NEST production operations"
                   >
+<TableCaption as="caption">Table 5 | Labour intensity of NEST production operations.</TableCaption>
                     <thead className="table-primary">
                       <tr>
                         <th scope="col">Operation</th>
@@ -1301,6 +1307,7 @@ export function Entrepreneurship() {
                 className="table table-bordered align-middle"
                 aria-label="Annual operating expenditure for NEST"
               >
+<TableCaption as="caption">Table 6 | Annual operating expenditure for NEST.</TableCaption>
                 <thead className="table-primary">
                   <tr>
                     <th scope="col">Cost item</th>
@@ -1344,6 +1351,7 @@ export function Entrepreneurship() {
                 className="table table-bordered align-middle"
                 aria-label="Annual capital expenditure for NEST"
               >
+<TableCaption as="caption">Table 7 | Annual capital expenditure for NEST.</TableCaption>
                 <thead className="table-primary">
                   <tr>
                     <th scope="col">Cost item</th>
@@ -1417,6 +1425,7 @@ export function Entrepreneurship() {
               className="table table-bordered align-middle"
               aria-label="NEST development phases, decision gates and resources"
             >
+<TableCaption as="caption">Table 8 | NEST development phases, decision gates and resources.</TableCaption>
               <thead className="table-primary">
                 <tr>
                   <th scope="col">Phase and window</th>
@@ -1462,6 +1471,7 @@ export function Entrepreneurship() {
               className="table table-bordered align-middle"
               aria-label="Profit scenario for NEST at the 2033 SOM"
             >
+<TableCaption as="caption">Table 9 | Profit scenario for NEST at the 2033 SOM.</TableCaption>
               <thead className="table-primary">
                 <tr>
                   <th scope="col">Profit item</th>
@@ -1513,6 +1523,7 @@ export function Entrepreneurship() {
               className="table table-bordered align-middle"
               aria-label="NEST risk register"
             >
+<TableCaption as="caption">Table 10 | NEST risk register.</TableCaption>
               <thead className="table-primary">
                 <tr>
                   <th scope="col">Stage and priority</th>
@@ -1597,6 +1608,7 @@ export function Entrepreneurship() {
               className="table table-bordered align-middle"
               aria-label="Sustainable business model canvas for NEST"
             >
+<TableCaption as="caption">Table 11 | Sustainable business model canvas for NEST.</TableCaption>
               <thead className="table-primary">
                 <tr>
                   <th scope="col">Canvas module</th>

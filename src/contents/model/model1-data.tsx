@@ -357,7 +357,7 @@ export const m1Steps: M1Step[] = [
         parts: [
           {
             t: "text",
-            v: "The symbols are defined as follows:",
+            v: "Table 1 | Symbols used to define the simulation-box deformation.",
           },
         ],
       },
@@ -597,7 +597,7 @@ export const m1Steps: M1Step[] = [
         parts: [
           {
             t: "em",
-            v: "Table 1 | Comparison of wet-lab and modeling conditions.",
+            v: "Table 2 | Comparison of wet-lab and modeling conditions.",
           },
         ],
       },

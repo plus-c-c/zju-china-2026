@@ -67,3 +67,35 @@ table tbody tr:hover td {
   background: #fff;
   box-shadow: 0 4px 12px rgb(0 0 0 / 5%);
 }
+
+/* Table titles follow the established figure-caption typography. */
+.page-article .table-caption,
+.page-article table caption.table-caption {
+  caption-side: top;
+  color: #52617f;
+  font-size: 1rem !important;
+  line-height: 1.55 !important;
+  font-weight: 400;
+  text-align: center;
+  padding: 0.75rem 1rem;
+  margin: 0;
+}
+.page-article .table-caption em {
+  font-style: normal;
+}
+.page-article .table-caption .figure-caption__lead {
+  font-weight: 700;
+}
+
+/* Override page-specific and Bootstrap alignment, including nested prose. */
+.page-article table :is(th, td) {
+  text-align: center !important;
+  vertical-align: middle !important;
+}
+.page-article table :is(th, td) * {
+  text-align: center !important;
+}
+.page-article table :is(th, td) :is(ul, ol) {
+  list-style-position: inside;
+  padding-inline-start: 0;
+}

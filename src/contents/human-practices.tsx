@@ -1,3 +1,4 @@
+import { TableCaption } from "../components/FigureCaption";
 import { FigureCaption } from "../components/FigureCaption";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { Link } from "react-router-dom";
@@ -1709,6 +1710,7 @@ function NestFrameworkBlock() {
           className="table table-bordered align-middle"
           aria-label="The NEST human-practices framework"
         >
+<TableCaption as="caption">Table 1 | The NEST human-practices framework.</TableCaption>
           <thead className="table-primary">
             <tr>
               <th scope="col" style={{ width: "4.5rem" }}>
