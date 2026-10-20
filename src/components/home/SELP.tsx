@@ -164,6 +164,7 @@ function PipelineConnector({ variant }: { variant: "first" | "second" }) {
           fill="none"
           stroke="currentColor"
           strokeWidth="3"
+          strokeDasharray="6 10"
           strokeLinecap="round"
           vectorEffect="non-scaling-stroke"
         />
@@ -393,7 +394,7 @@ export function SelpPipeline({ readingWidth }: { readingWidth?: number } = {}) {
         const connector = stage.querySelector<HTMLElement>(".selp-pipeline__connector");
         if (connector) {
           const lineBounds = connector.getBoundingClientRect();
-          const lineProgress = reduced.matches ? 1 : Math.max(0, Math.min(1, (innerHeight * 0.8 - lineBounds.top) / Math.max(1, lineBounds.height * 1.5)));
+          const lineProgress = reduced.matches ? 1 : Math.max(0, Math.min(1, (innerHeight * 0.8 - lineBounds.top) / Math.max(1, lineBounds.height)));
           connector.style.clipPath = `inset(-18px -18px calc(${(1 - lineProgress) * 100}% - 18px) -18px)`;
         }
       });

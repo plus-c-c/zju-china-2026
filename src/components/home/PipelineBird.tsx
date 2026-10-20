@@ -2,6 +2,48 @@ import { useEffect } from "react";
 import { perch } from "./StoryBird";
 import { getStoryHandoffTop } from "./UseStoryNavigation";
 
+type RoutePoint = { x: number; y: number };
+type ConnectorRoute = {
+  start: RoutePoint;
+  end: RoutePoint;
+  sample: (y: number) => { x: number; dx: number; dy: number };
+};
+
+/** Read the rendered SVG, including its responsive scale and mirrored group. */
+function connectorRoute(path: SVGPathElement, scroll: number, centerOffset: number): ConnectorRoute | null {
+  const matrix = path.getScreenCTM();
+  if (!matrix || !path.getClientRects().length) return null;
+  const length = path.getTotalLength();
+  const pointAt = (distance: number): RoutePoint => {
+    const point = path.getPointAtLength(distance);
+    return {
+      x: matrix.a * point.x + matrix.c * point.y + matrix.e,
+      y: matrix.b * point.x + matrix.d * point.y + matrix.f + scroll + centerOffset,
+    };
+  };
+  const start = pointAt(0);
+  const end = pointAt(length);
+  return {
+    start,
+    end,
+    sample: (y) => {
+      // These curves run downward without doubling back, so document Y selects
+      // one exact point in either scroll direction. No second flight clock.
+      let low = 0, high = length;
+      for (let i = 0; i < 14; i++) {
+        const middle = (low + high) / 2;
+        if (pointAt(middle).y < y) low = middle;
+        else high = middle;
+      }
+      const distance = (low + high) / 2;
+      const point = pointAt(distance);
+      const before = pointAt(Math.max(0, distance - 1));
+      const after = pointAt(Math.min(length, distance + 1));
+      return { x: point.x, dx: after.x - before.x, dy: after.y - before.y };
+    },
+  };
+}
+
 /** A reversible document-space route, shared with the OA bird. */
 export function PipelineBird() {
   useEffect(() => {
@@ -24,7 +66,7 @@ export function PipelineBird() {
     const clamp = (n: number) => Math.max(0, Math.min(1, n));
     const tick = (time: number) => {
       frame = 0;
-      const dt = previousTime ? Math.min(0.05, (time - previousTime) / 1000) : 0.016;
+      const dt = previousTime ? Math.max(0, Math.min(0.05, (time - previousTime) / 1000)) : 0.016;
       previousTime = time;
       const root = document.querySelector(".selp-pipeline");
       const footer = document.querySelector(".footer");
@@ -84,11 +126,20 @@ export function PipelineBird() {
       const arch = Math.min(104, Math.max(64, innerWidth * 0.07));
       const landingY = foot.top + scroll + arch * 0.35 - 3;
       const stages = [...root.querySelectorAll(".selp-pipeline__stage")].map(e => e.getBoundingClientRect());
+      // The bird's position is its feet; put its body center on the drawn line.
+      const centerOffset = bird.offsetHeight * 0.4 * scale / 2;
+      const connectors = [...root.querySelectorAll<SVGPathElement>(".selp-pipeline__connector path")]
+        .map(path => connectorRoute(path, scroll, centerOffset))
+        .filter((route): route is ConnectorRoute => route !== null);
+      const modulePoints = [
+        { x: connectors[0]?.start.x ?? innerWidth * 0.85, y: stages[0].top + scroll + stages[0].height * 0.42 },
+        { x: connectors[0]?.end.x ?? innerWidth * 0.17, y: stages[1].top + scroll + stages[1].height * 0.45 },
+        { x: connectors[1]?.end.x ?? innerWidth * 0.85, y: stages[2].top + scroll + stages[2].height * 0.45 },
+      ];
       const points = [
         { x: oaX, y: start + oaScreenY },
-        { x: innerWidth * 0.85, y: stages[0].top + scroll + stages[0].height * 0.42 },
-        { x: innerWidth * 0.17, y: stages[1].top + scroll + stages[1].height * 0.45 },
-        { x: innerWidth * 0.85, y: stages[2].top + scroll + stages[2].height * 0.45 },
+        ...modulePoints.flatMap((point, index) => connectors[index]
+          ? [point, connectors[index].start, connectors[index].end] : [point]),
         { x: foot.left + foot.width * 0.12, y: landingY },
       ];
       const requestedY = Math.max(points[0].y, Math.min(landingY, scroll + oaScreenY));
@@ -105,11 +156,15 @@ export function PipelineBird() {
       const a = points[i], b = points[i + 1];
       const t = clamp((routeY - a.y) / Math.max(1, b.y - a.y));
       const ease = t*t*t*(10 + t*(-15 + 6*t));
-      const targetX = a.x + (b.x - a.x) * ease;
+      const connector = connectors.find(route => routeY! >= route.start.y && routeY! <= route.end.y);
+      const onLine = connector?.sample(routeY);
+      const targetX = onLine?.x ?? a.x + (b.x - a.x) * ease;
       // A short horizontal catch-up prevents wheel bursts or layout updates
       // from teleporting the bird across the long video-to-footer arc. Keep
       // document Y exact so scrolling cannot introduce vertical catch-up hops.
-      displayedX = displayedX === null || reduced ? targetX
+      // The modules follow the actual line exactly; preserve the softer catch-up
+      // only on the long closing arc where there is no visible guide line.
+      displayedX = displayedX === null || reduced || routeY <= modulePoints[2].y ? targetX
         : displayedX + (targetX - displayedX) * (1 - Math.exp(-dt / 0.065));
       const x = displayedX;
       const y = Math.min(routeY - scroll, landingY - scroll);
@@ -122,8 +177,8 @@ export function PipelineBird() {
       bird.classList.toggle("story-guide-bird--flying", moving && !reduced);
       if (!moving) bird.style.setProperty("--bird-flight-angle", "0deg");
       if (moving && lastX !== null && lastY !== null) {
-        const dx = (b.x - a.x) * 30*t*t*(1-t)*(1-t) * routeDirection;
-        const dy = Math.max(1, b.y - a.y) * routeDirection;
+        const dx = (onLine?.dx ?? (b.x - a.x) * 30*t*t*(1-t)*(1-t)) * routeDirection;
+        const dy = (onLine?.dy ?? Math.max(1, b.y - a.y)) * routeDirection;
         // Follow the rendered motion, including scrolling, rather than a future target.
         if (Math.hypot(dx, dy) > 0.3) {
           const desired = Math.atan2(dy, dx) * 180 / Math.PI;

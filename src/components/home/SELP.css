@@ -594,7 +594,7 @@
 .selp-shortcut canvas {
   width: var(--shortcut-icon-size) !important;
   height: var(--shortcut-icon-size) !important;
-  translate: clamp(3px, 0.44cqw, 6px) 0;
+  translate: clamp(4px, 0.66cqw, 9px) 0;
   object-fit: contain;
 }
 
