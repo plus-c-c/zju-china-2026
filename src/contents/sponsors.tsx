@@ -70,15 +70,17 @@ export function Sponsors() {
       >
         <h2
           id="sponsors-special-thanks"
-          data-toc-label="School of Life Sciences, Zhejiang University"
+          data-toc-label="College of Life Sciences, Zhejiang University"
         >
-          Special Thanks to the School of Life Sciences, Zhejiang University
+          Special Thanks to
+          <br />
+          the College of Life Sciences, Zhejiang University
         </h2>
         <div className="sponsors-entry sponsors-entry--special">
           <div className="sponsors-entry__media">
             <img
               src="https://static.igem.wiki/teams/6102/wiki/images/footer/001.avif"
-              alt="School of Life Sciences, Zhejiang University logo"
+              alt="College of Life Sciences, Zhejiang University logo"
               width={1206}
               height={330}
               loading="lazy"
@@ -88,7 +90,7 @@ export function Sponsors() {
           <div className="sponsors-entry__content">
             <p>
               We thank the{" "}
-              <strong>School of Life Sciences, Zhejiang University</strong> for
+              <strong>College of Life Sciences, Zhejiang University</strong> for
               providing funding, faculty mentorship, and support for team
               administration throughout our project.
             </p>

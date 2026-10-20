@@ -39,3 +39,22 @@ dist-ssr
 *.ico
 # Small SVG diagrams in src/contents/engineering/assets are imported as raw
 # source code by the SEED / D-B-T-L components and remain part of the codebase.
+
+# Documents and audio/video are hosted externally as well and must not be
+# committed to this repository.
+*.pdf
+*.doc
+*.docx
+*.ppt
+*.pptx
+*.xls
+*.xlsx
+*.csv
+*.mp4
+*.mov
+*.webm
+*.mkv
+*.avi
+*.m4v
+*.mp3
+*.wav

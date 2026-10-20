@@ -1,4 +1,6 @@
 // English content from the team's Safety document (Safety.md).
+import { FigureCaption } from "../components/FigureCaption";
+
 export function SafetyAndSecurity() {
   return (
     <div className="row mt-4 mb-5">
@@ -23,12 +25,12 @@ export function SafetyAndSecurity() {
           <p>
             All recombinant protein components of NEST—including the
             silk–elastin-like protein (SELP) scaffold, the SnoopLigase ligation
-            system, and the functional peptides used in each module—are
-            produced using <em>Escherichia coli</em> DH5α for cloning and
-            BL21(DE3) for protein expression. These laboratory strains are
-            generally classified as Risk Group 1 organisms. All related
-            procedures are conducted under appropriate BSL-1 laboratory
-            practices and institutional biosafety requirements.
+            system, and the functional peptides used in each module—are produced
+            using <em>Escherichia coli</em> DH5α for cloning and BL21(DE3) for
+            protein expression. These laboratory strains are generally
+            classified as Risk Group 1 organisms. All related procedures are
+            conducted under appropriate BSL-1 laboratory practices and
+            institutional biosafety requirements.
           </p>
 
           <h3 id="selp-scaffold" className="mt-4">
@@ -48,8 +50,8 @@ export function SafetyAndSecurity() {
             The scaffold composition, crosslinking sites, and functional
             interfaces are encoded in its DNA sequence. This sequence-defined
             design facilitates reproducible production and characterization,
-            reducing reliance on formulation-dependent mixing alone to
-            determine material composition.
+            reducing reliance on formulation-dependent mixing alone to determine
+            material composition.
           </p>
 
           <h3 id="functional-peptides" className="mt-4">
@@ -70,18 +72,17 @@ export function SafetyAndSecurity() {
             In the GAG Retention Module, CPC+14A and Link-N are employed to
             support glycosaminoglycan (GAG) retention and
             cartilage-matrix-related functions. CPC+14A is an arginine-rich
-            cationic peptide designed to promote electrostatic interactions
-            with sulfated GAGs. Its charge design aims to balance GAG binding
-            with the risk of excessive intermolecular association or
-            aggregation. Link-N is a 16-amino-acid N-terminal fragment of
-            cartilage link protein, based on a naturally occurring protein
-            sequence.
+            cationic peptide designed to promote electrostatic interactions with
+            sulfated GAGs. Its charge design aims to balance GAG binding with
+            the risk of excessive intermolecular association or aggregation.
+            Link-N is a 16-amino-acid N-terminal fragment of cartilage link
+            protein, based on a naturally occurring protein sequence.
           </p>
           <p>
             In the Mitochondrial Therapeutic Module, an MMP-13-responsive
             peptide is designed to respond to the elevated matrix
-            metalloproteinase 13 (MMP-13) activity associated with osteoarthritic
-            degeneration. The intended function is to enable
+            metalloproteinase 13 (MMP-13) activity associated with
+            osteoarthritic degeneration. The intended function is to enable
             environment-responsive cleavage and cargo release. A
             scrambled-sequence control, with the same amino-acid composition but
             a different sequence order, is included to distinguish
@@ -158,8 +159,8 @@ export function SafetyAndSecurity() {
           <p>
             Our work follows applicable national regulations and Zhejiang
             University laboratory safety requirements. The Ministry of
-            Education&rsquo;s regulations on laboratory safety in institutions of
-            higher education provide a general framework for safe laboratory
+            Education&rsquo;s regulations on laboratory safety in institutions
+            of higher education provide a general framework for safe laboratory
             operations, while laboratory safety supervision and management at
             Zhejiang University are supported by the university&rsquo;s relevant
             administrative offices.
@@ -271,53 +272,173 @@ export function SafetyAndSecurity() {
           <p>
             Before formal experiments began, she provided safety instruction to
             team members covering laboratory-specific rules, safe operating
-            practices, and emergency response procedures. During experimentation,
-            she supervises critical operations and advises team members on risk
-            reduction and the appropriate handling of equipment and reagents.
+            practices, and emergency response procedures. During
+            experimentation, she supervises critical operations and advises team
+            members on risk reduction and the appropriate handling of equipment
+            and reagents.
           </p>
 
           <h2 id="product-safety" className="mt-5">
             Product Safety
           </h2>
           <p>
-            Product safety is considered throughout NEST&rsquo;s design and
-            assembly. The system uses separately prepared components and a
-            defined assembly process to support traceability, material
-            consistency, and the evaluation of component-specific risks.
+            Product safety is central to NEST&rsquo;s development. We combined
+            component selection and quality control with experimental assessment
+            to evaluate cytocompatibility and identify conditions requiring
+            further optimization.
           </p>
 
-          <h3 id="component-safety" className="mt-4">
-            Component Safety
+          <h3 id="component-selection-and-quality-control" className="mt-4">
+            Component Selection and Quality Control
           </h3>
           <p>
-            The SELP scaffold is a recombinant protein composed of natural amino
-            acids and is designed to undergo degradation under appropriate
-            biological conditions. Its actual degradation behavior depends on
-            the final sequence, material structure, and local environment and
-            should not be assumed to be identical under all conditions.
+            <strong>SELP scaffold.</strong> The SELP scaffold is a recombinant
+            protein composed of naturally occurring amino acids and is designed
+            to undergo degradation under appropriate biological conditions. Its
+            degradation behavior depends on the final sequence, material
+            structure, and surrounding environment and therefore requires
+            evaluation in the intended formulation and application setting.
           </p>
           <p>
-            The lipid components used in the delivery system, including DOPE,
-            DOTAP, and DSPE-PEG-Mal, have established applications in
-            lipid-based delivery research. Their inclusion does not by itself
-            establish the safety of the final formulation; compatibility, dose,
-            formulation properties, and potential component-specific effects
-            remain relevant to product assessment.
+            <strong>Lipid components.</strong> DOPE, DOTAP, and DSPE-PEG-Mal
+            have established applications in lipid-based delivery research,
+            providing a basis for their selection. The safety of the resulting
+            formulation must be assessed in relation to lipid composition, dose,
+            physicochemical properties, and potential component-specific
+            effects.
           </p>
           <p>
-            The exogenous mitochondria are unmodified natural organelles. Their
-            use does not involve the engineering or environmental release of a
-            living recombinant organism. Nevertheless, the safety of the final
-            assembly depends on the origin and quality of the starting
-            materials, the preparation and handling procedures, and the intended
+            <strong>Exogenous mitochondria.</strong> The mitochondria used in
+            NEST are isolated, genetically unmodified organelles. Their use does
+            not involve the engineering or environmental release of a living
+            recombinant organism. The safety of the mitochondrial preparation
+            and its final assembly depends on the source and quality of the
+            starting material, preparation and handling procedures, and intended
             route of administration.
           </p>
           <p>
-            Each functional module is expressed or prepared, purified where
-            applicable, and quality-checked separately before assembly according
-            to the intended formulation. This modular workflow facilitates the
-            identification of component-specific problems and reduces the
-            likelihood of unintended carryover between preparation steps.
+            <strong>Modular preparation and quality control.</strong> Each
+            functional module is expressed or prepared, purified where
+            applicable, and quality-checked separately before assembly into the
+            intended formulation. This workflow facilitates the identification
+            of component-specific problems and helps manage potential carryover
+            between preparation steps. Quality assessment of the final assembly
+            remains essential because its properties may differ from those of
+            the individual components.
+          </p>
+
+          <h3 id="cytocompatibility-assessment" className="mt-4">
+            Cytocompatibility Assessment
+          </h3>
+          <p>
+            We used the Cell Counting Kit-8 (CCK-8) assay to measure the
+            relative viability of mesenchymal stem cells (MSCs) exposed to
+            hydrogel-related preparations, magnetic nanoparticles (MNP), and
+            functional peptides from different NEST modules. Measurements were
+            taken after 24, 48, and 72 h, with control, blank, and treatment
+            groups included.
+          </p>
+          <p>
+            Given the limitations of our experimental resources, the CCK-8
+            assays were conducted by Wenwen Huang&rsquo;s team. We gratefully
+            acknowledge their support in performing these experiments and
+            providing data for NEST&rsquo;s preliminary cytocompatibility
+            assessment.
+          </p>
+          <p>
+            <strong>
+              Hydrogel-related preparations and magnetic nanoparticles.
+            </strong>{" "}
+            The hydrogel-related preparations generally maintained relative cell
+            viability above approximately 85% across the tested time points
+            (Figure 1A). MNP treatments at concentrations of 0.0864–0.648 mM
+            yielded values of approximately 90%–120% (Figure 1B). These findings
+            provide preliminary support for the cytocompatibility of these
+            components under the tested conditions.
+          </p>
+          <p>
+            <strong>TVN, CPC, and LinkN peptides.</strong> The functional
+            peptides exhibited different viability profiles across
+            concentrations and exposure durations. TVN and CPC generally
+            maintained relative cell viability within approximately 75%–105% at
+            concentrations of 2.5–10 μM (Figure 1C,D). LinkN yielded values of
+            approximately 70%–100%, with lower readings observed at 5 μM after
+            24 h and at 10 μM after 72 h (Figure 1E). Combined CPC and LinkN
+            treatment produced values of approximately 70%–80% at 24 h, 85%–95%
+            at 48 h, and around 80% at 72 h (Figure 1F). These observations
+            highlight the importance of considering both concentration and
+            exposure duration when selecting conditions for subsequent
+            experiments.
+          </p>
+          <p>
+            <strong>
+              Responsive peptide from the mitochondrial delivery module.
+            </strong>{" "}
+            For the engineered responsive peptide (Mito), relative cell
+            viability at 24 h was approximately 70% in the 5 μM group and 55% in
+            the 10 μM group. Both groups reached approximately 85%–90% at 48 h
+            and maintained approximately 85%–95% at 72 h (Figure 1G). These
+            later measurements provide preliminary evidence of limited
+            cytotoxicity under the corresponding treatment conditions. The early
+            reduction requires further investigation, as the current data do not
+            distinguish the effects of initial cell condition from those of
+            peptide exposure.
+          </p>
+          <p>
+            Figure 1H shows the assay plate, with control, blank, and
+            peptide-treated wells outlined in yellow, blue, and red,
+            respectively. Together, these experiments provide an initial basis
+            for assessing the cytocompatibility of individual NEST components
+            and guide the optimization of treatment conditions.
+          </p>
+
+          <figure className="my-4 text-center">
+            <a
+              className="article-image-link"
+              href="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/19-2.avif"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <img
+                src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/19-2.avif"
+                alt="Figure 1 | CCK-8 cytocompatibility of NEST components"
+                className="figure-img img-fluid rounded"
+                width={3080}
+                height={2434}
+                loading="lazy"
+                decoding="async"
+              />
+            </a>
+            <FigureCaption className="figure-caption mt-2">
+              <strong>Figure 1 | CCK-8 cytocompatibility assessment.</strong>{" "}
+              (A) Hydrogel-related preparations; (B) magnetic nanoparticles
+              (MNP) at 0.0864&ndash;0.648 mM; (C) TVN; (D) CPC; (E) LinkN; (F)
+              combined CPC and LinkN; (G) Mito peptide at 5 and 10 &mu;M; (H)
+              the assay plate, with control, blank, and peptide-treated wells
+              outlined in yellow, blue, and red, respectively. Relative cell
+              viability was measured at 24, 48, and 72 h.
+            </FigureCaption>
+          </figure>
+
+          <h3 id="further-safety-evaluation" className="mt-4">
+            Further Safety Evaluation
+          </h3>
+          <p>
+            The current CCK-8 results support the cytocompatibility of several
+            individual components under specific experimental conditions. Lower
+            viability readings in some treatment groups indicate that
+            compatibility should be evaluated for each concentration and
+            exposure duration. Repeat experiments under controlled initial cell
+            conditions are underway to clarify the early reduction observed with
+            the Mito peptide.
+          </p>
+          <p>
+            Further assessment will extend to the fully assembled NEST
+            formulation, including interactions among its components and
+            longer-term cellular responses. Evaluation of material degradation
+            and the resulting products will also be needed in the intended
+            application setting. These studies will help establish the safety
+            profile of the complete system and inform its continued development.
           </p>
         </article>
       </div>
