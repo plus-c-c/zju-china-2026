@@ -341,10 +341,6 @@ html[data-ihp-swipe="up"] .nest-navbar {
   opacity: 0.75;
 }
 
-.ihp-nest-tab.is-active .ihp-nest-tab__letter {
-  opacity: 1;
-}
-
 .ihp-nest-tab__label {
   font-size: 0.86rem;
   font-weight: 600;
@@ -354,21 +350,6 @@ html[data-ihp-swipe="up"] .nest-navbar {
 
 .ihp-nest-tab:hover {
   color: #365dc9;
-}
-
-.ihp-nest-tab.is-active {
-  color: #223c81;
-}
-
-.ihp-nest-tab.is-active::after {
-  content: "";
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  height: 3px;
-  border-radius: 3px;
-  background: #365dc9;
 }
 
 @media (max-width: 992px) {
