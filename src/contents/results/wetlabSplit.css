@@ -49,6 +49,14 @@
   font-weight: 600;
 }
 
+.page-article .wetlab-split .wetlab-page-section h2 {
+  font-size: var(--article-heading-size);
+}
+
+.page-article .wetlab-split .wetlab-page-section p {
+  font-size: var(--article-body-size);
+}
+
 .page-article .wetlab-split h3#wetlab-scaffold-02 {
   font-size: 1.25rem;
 }
@@ -174,7 +182,8 @@
   background: #fff;
 }
 
-.wetlab-split img {
+/* The bird uses a cropped sprite, with its own dimensions and transparency. */
+.wetlab-split img:not(:where(.bird-art img)) {
   display: block;
   width: auto;
   /* Every figure is capped so the images stay clearly smaller than the text

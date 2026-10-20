@@ -52,6 +52,8 @@ interface TransparentImageProps {
   /** Fraction (0–1) of the source height cut from the top before
    *  processing — removes baked-in titles and their gradient bands. */
   cropTop?: number;
+  /** Keep the full bitmap when a parent already crops a sprite or diagram. */
+  trim?: boolean;
   /** Mark the image as decorative: no role/label is exposed to assistive
    *  technology (the adjacent text already names it). */
   ariaHidden?: boolean;
@@ -72,6 +74,7 @@ export function TransparentImage({
   loading = "lazy",
   rootMargin = "600px",
   cropTop = 0,
+  trim = true,
   ariaHidden = false,
   whiteThreshold = 250,
   opaqueThreshold = 240,
@@ -79,7 +82,7 @@ export function TransparentImage({
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [ready, setReady] = useState(false);
   const [failed, setFailed] = useState(false);
-  const measured = imageTrim(src, cropTop);
+  const measured = trim ? imageTrim(src, cropTop) : undefined;
   const displayWidth = measured?.[4] ?? width;
   const displayHeight = measured?.[5] ?? height;
 
@@ -94,12 +97,20 @@ export function TransparentImage({
       image.decoding = decoding;
       image.onload = () => {
         if (cancelled) return;
-        const rect = imageSourceRect(
-          src,
-          image.naturalWidth,
-          image.naturalHeight,
-          cropTop,
-        );
+        const sourceY = Math.round(image.naturalHeight * cropTop);
+        const rect = trim
+          ? imageSourceRect(
+              src,
+              image.naturalWidth,
+              image.naturalHeight,
+              cropTop,
+            )
+          : {
+              x: 0,
+              y: sourceY,
+              width: image.naturalWidth,
+              height: image.naturalHeight - sourceY,
+            };
         canvas.width = rect.width;
         canvas.height = Math.max(1, rect.height);
         const ctx = canvas.getContext("2d", { willReadFrequently: true });
@@ -160,13 +171,15 @@ export function TransparentImage({
     loading,
     rootMargin,
     cropTop,
+    trim,
     whiteThreshold,
     opaqueThreshold,
   ]);
 
   if (failed) {
+    const FallbackImage = trim ? TrimmedImage : "img";
     return (
-      <TrimmedImage
+      <FallbackImage
         src={src}
         alt={ariaHidden ? "" : alt}
         aria-hidden={ariaHidden || undefined}

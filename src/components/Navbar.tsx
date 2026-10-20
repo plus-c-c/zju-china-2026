@@ -109,27 +109,27 @@ export function Navbar({ introEntrance = false, opening = false }: { introEntran
             pointer.y <= (navRef.current?.offsetHeight ?? 88)));
       // The wake-up area matches the navigation bar itself: the full page
       // width across the bar's height, so hovering anywhere over the bar's
-      // resting place brings it back. Interactive controls and the Results
-      // sticky bar stay excluded below.
+      // resting place brings it back. Interactive controls and sticky section
+      // navigation stay excluded below, so their buttons do not move on hover.
       let overRevealArea =
         !!pointer &&
         pointer.y >= 0 &&
         pointer.y <= (navRef.current?.offsetHeight ?? 88);
       if (overRevealArea && pointer) {
-        // No overlay intercepts clicks. Exclude the entire Results sticky bar,
+        // No overlay intercepts clicks. Exclude the entire section sticky bar,
         // including its padding, and other interactive controls at the edge.
         const protectedBar = document.querySelector(
-          ".wetlab-results__navigation",
+          ".wetlab-results__navigation, .project-tracks__navigation",
         );
         const rect = protectedBar?.getBoundingClientRect();
-        const overResultsBar =
+        const overSectionBar =
           rect &&
           pointer.x >= rect.left - 8 &&
           pointer.x <= rect.right + 8 &&
           pointer.y >= rect.top - 8 &&
           pointer.y <= rect.bottom + 8;
         overRevealArea =
-          !overResultsBar &&
+          !overSectionBar &&
           !target?.closest(
             "a, button, input, select, textarea, [role='button'], [contenteditable='true']",
           );

@@ -1,6 +1,10 @@
 import { ReferenceArticleHtml } from "../components/References";
 import { useEffect, useRef } from "react";
 import { SectionJump } from "../components/SectionJump";
+import {
+  PlatformFunctionSections,
+  SharedProjectSections,
+} from "../components/PlatformFunctionSections";
 import { observeAndWhitenImages } from "../components/whitenImages";
 import { Is_Primitive_ExprRes } from "../utils/featureFlags";
 import { ResultsPrimitive } from "./resultsPrimitive";
@@ -20,6 +24,7 @@ export function Results() {
 
 function ResultsPair() {
   const articleRef = useRef<HTMLElement>(null);
+  const { introductionEnd, platformEnd, functionEnd } = split.resultTracks;
   useEffect(() => {
     return observeAndWhitenImages(articleRef.current);
   }, []);
@@ -41,7 +46,28 @@ function ResultsPair() {
           };
         }}
       />
-      <ReferenceArticleHtml html={split.results} />
+      <ReferenceArticleHtml
+        html={split.results.slice(0, introductionEnd)}
+        referenceSource={split.results}
+      />
+      <PlatformFunctionSections
+        id="results"
+        platform={
+          <ReferenceArticleHtml
+            html={split.results.slice(introductionEnd, platformEnd)}
+            referenceSource={split.results}
+          />
+        }
+        functionContent={
+          <ReferenceArticleHtml
+            html={split.results.slice(platformEnd, functionEnd)}
+            referenceSource={split.results}
+          />
+        }
+      />
+      <SharedProjectSections>
+        <ReferenceArticleHtml html={split.results.slice(functionEnd)} />
+      </SharedProjectSections>
     </article>
   );
 }

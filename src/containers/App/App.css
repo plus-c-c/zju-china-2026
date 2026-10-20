@@ -54,6 +54,8 @@ body {
 
 /* Shared typography for Design and all other article-style content pages. */
 .page-article {
+  --article-heading-size: clamp(2.2rem, 3vw, 2.5rem);
+  --article-body-size: 20px;
   --article-heading-color: #63A0FF;
   --article-subheading-color: #223c81;
   --article-body-color: #263552;
@@ -86,7 +88,7 @@ body {
 .page-article p,
 .page-article li {
   color: var(--article-body-color);
-  font-size: 20px;
+  font-size: var(--article-body-size);
   line-height: 1.7;
 }
 
@@ -98,7 +100,7 @@ body {
   margin-top: var(--article-heading-top-space) !important;
   margin-bottom: var(--article-heading-bottom-space) !important;
   color: var(--article-heading-color);
-  font-size: clamp(2.2rem, 3vw, 2.5rem);
+  font-size: var(--article-heading-size);
   font-weight: 800;
   line-height: 1.12;
 }

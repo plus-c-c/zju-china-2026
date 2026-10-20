@@ -105,12 +105,33 @@ export function References({
 }
 
 /** Keep the exported wet-lab HTML while rendering its bibliography in React. */
-export function ReferenceArticleHtml({ html }: { html: string }) {
+export function ReferenceArticleHtml({
+  html,
+  referenceSource,
+}: {
+  html: string;
+  referenceSource?: string;
+}) {
   const match =
     /<details class="wetlab-results__references references-list"><summary>References<\/summary>([\s\S]*?)<\/details>/.exec(
       html,
     );
-  if (!match) return <div dangerouslySetInnerHTML={{ __html: html }} />;
+  if (!match) {
+    const sharedReferences =
+      referenceSource &&
+      /<details class="wetlab-results__references references-list"><summary>References<\/summary>([\s\S]*?)<\/details>/.exec(
+        referenceSource,
+      );
+    return (
+      <div
+        dangerouslySetInnerHTML={{
+          __html: sharedReferences
+            ? formatArticleCitations(html, sharedReferences[1])
+            : html,
+        }}
+      />
+    );
+  }
   return (
     <>
       <div

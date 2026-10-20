@@ -175,12 +175,12 @@ def add_shared_shell(html: str) -> str:
     matching the coverage of the original Results layout.
     """
     intro = (
-        '<div class="section-heading"><h2 id="wetlab-introduction" '
+        '<div class="section-heading wetlab-page-section"><h2 id="wetlab-introduction" '
         'data-toc="include" data-toc-depth="1">Introduction</h2>'
         f'<div class="source-block"><p>{scaffold["intro"]}</p></div></div>'
     )
     conclusion = (
-        '<div class="section-heading"><h2 id="wetlab-conclusion" '
+        '<div class="section-heading wetlab-page-section"><h2 id="wetlab-conclusion" '
         'data-toc="include" data-toc-depth="1">Conclusion</h2>'
         f'<div class="source-block"><p>{scaffold["conclusion"]}</p></div></div>'
     )
@@ -311,9 +311,31 @@ def jump_fallbacks(ids: list[str], other: set[str]) -> dict[str, str]:
 ids_experiments = heading_ids(experiments_html)
 ids_results = heading_ids(results_html)
 
+
+def track_boundaries(html: str) -> dict[str, int]:
+    # JavaScript String.slice uses UTF-16 offsets, including for any future
+    # non-BMP symbols in the manuscripts.
+    offsets = {
+        "introductionEnd": html.index("\n") + 1,
+        "platformEnd": html.index('<h2 id="wetlab-anisotropy-overview"'),
+        "functionEnd": html.index(
+            '<div class="section-heading wetlab-page-section"><h2 id="wetlab-conclusion"'
+        ),
+    }
+    return {
+        name: len(html[:offset].encode("utf-16-le")) // 2
+        for name, offset in offsets.items()
+    }
+
+
 payload = {
     "experiments": experiments_html,
     "results": results_html,
+    # Boundaries retain the exact generated HTML and the shared anchor ids.
+    # Both pages present Platform / Function while retaining the manuscript
+    # and the paired page's section anchors.
+    "experimentTracks": track_boundaries(experiments_html),
+    "resultTracks": track_boundaries(results_html),
     "targetIds": {"experiments": ids_experiments, "results": ids_results},
     "jumpFallbacks": {
         "experiments": jump_fallbacks(ids_experiments, set(ids_results)),

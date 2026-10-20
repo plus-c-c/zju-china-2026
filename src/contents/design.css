@@ -1,7 +1,9 @@
+.page-article .design-article [data-project-track] > figure,
 .page-article .design-article > figure {
   margin-block: 1.25rem !important;
 }
 
+.page-article .design-article [data-project-track] > figure > .figure-caption,
 .page-article .design-article > figure > .figure-caption {
   margin-top: 0.75rem;
 }

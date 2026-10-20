@@ -306,7 +306,7 @@
   background: #fff;
 }
 
-.wetlab-results img {
+.wetlab-results img:not(:where(.bird-art img)) {
   display: block;
   width: auto;
   max-width: 100%;
