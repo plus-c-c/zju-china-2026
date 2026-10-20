@@ -6,7 +6,8 @@ type RoutePoint = { x: number; y: number };
 type ConnectorRoute = {
   start: RoutePoint;
   end: RoutePoint;
-  sample: (y: number) => { x: number; dx: number; dy: number };
+  speed: number;
+  sample: (progress: number) => RoutePoint & { dx: number; dy: number };
 };
 
 /** Read the rendered SVG, including its responsive scale and mirrored group. */
@@ -26,20 +27,15 @@ function connectorRoute(path: SVGPathElement, scroll: number, centerOffset: numb
   return {
     start,
     end,
-    sample: (y) => {
-      // These curves run downward without doubling back, so document Y selects
-      // one exact point in either scroll direction. No second flight clock.
-      let low = 0, high = length;
-      for (let i = 0; i < 14; i++) {
-        const middle = (low + high) / 2;
-        if (pointAt(middle).y < y) low = middle;
-        else high = middle;
-      }
-      const distance = (low + high) / 2;
+    speed: length * Math.hypot(matrix.c, matrix.d) / Math.max(1, end.y - start.y),
+    sample: (progress) => {
+      // Equal scroll distances cover equal flight distances, including the
+      // broad middle of each curve. Document Y may vary gently with the path.
+      const distance = length * progress;
       const point = pointAt(distance);
       const before = pointAt(Math.max(0, distance - 1));
       const after = pointAt(Math.min(length, distance + 1));
-      return { x: point.x, dx: after.x - before.x, dy: after.y - before.y };
+      return { ...point, dx: after.x - before.x, dy: after.y - before.y };
     },
   };
 }
@@ -55,7 +51,6 @@ export function PipelineBird() {
     let lastX: number | null = null;
     let lastY: number | null = null;
     let wasMoving = false;
-    let displayedX: number | null = null;
     let previousScroll = window.scrollY;
     let lastScrollTime = -Infinity;
     let routeDirection = 1;
@@ -116,7 +111,7 @@ export function PipelineBird() {
           window.dispatchEvent(new CustomEvent("home-bird-handoff", { detail: { x: anchor.x, y: anchor.y } }));
         }
         routeY = null; activeBefore = false; previousTime = 0;
-        lastX = null; lastY = null; wasMoving = false; displayedX = null;
+        lastX = null; lastY = null; wasMoving = false;
         document.body.classList.remove("pipeline-bird-active");
         return;
       }
@@ -125,21 +120,14 @@ export function PipelineBird() {
       const oaScreenY = c.top + oaPerch.y * scale;
       const arch = Math.min(104, Math.max(64, innerWidth * 0.07));
       const landingY = foot.top + scroll + arch * 0.35 - 3;
-      const stages = [...root.querySelectorAll(".selp-pipeline__stage")].map(e => e.getBoundingClientRect());
       // The bird's position is its feet; put its body center on the drawn line.
       const centerOffset = bird.offsetHeight * 0.4 * scale / 2;
       const connectors = [...root.querySelectorAll<SVGPathElement>(".selp-pipeline__connector path")]
         .map(path => connectorRoute(path, scroll, centerOffset))
         .filter((route): route is ConnectorRoute => route !== null);
-      const modulePoints = [
-        { x: connectors[0]?.start.x ?? innerWidth * 0.85, y: stages[0].top + scroll + stages[0].height * 0.42 },
-        { x: connectors[0]?.end.x ?? innerWidth * 0.17, y: stages[1].top + scroll + stages[1].height * 0.45 },
-        { x: connectors[1]?.end.x ?? innerWidth * 0.85, y: stages[2].top + scroll + stages[2].height * 0.45 },
-      ];
       const points = [
         { x: oaX, y: start + oaScreenY },
-        ...modulePoints.flatMap((point, index) => connectors[index]
-          ? [point, connectors[index].start, connectors[index].end] : [point]),
+        ...connectors.flatMap(connector => [connector.start, connector.end]),
         { x: foot.left + foot.width * 0.12, y: landingY },
       ];
       const requestedY = Math.max(points[0].y, Math.min(landingY, scroll + oaScreenY));
@@ -148,8 +136,8 @@ export function PipelineBird() {
         angle = parseFloat(bird.style.getPropertyValue("--bird-flight-angle")) || 0;
       }
       activeBefore = true;
-      // Scroll already supplies a continuous timeline. Filtering document Y and
-      // then subtracting unfiltered scroll made the bird bounce and catch up.
+      // Keep one reversible scroll timeline. Position never catches up after
+      // the user stops; only the path itself contributes vertical movement.
       routeY = requestedY;
       let i = points.findIndex((_point, index) => index < points.length - 1 && routeY! <= points[index + 1].y);
       if (i < 0) i = points.length - 2;
@@ -157,17 +145,29 @@ export function PipelineBird() {
       const t = clamp((routeY - a.y) / Math.max(1, b.y - a.y));
       const ease = t*t*t*(10 + t*(-15 + 6*t));
       const connector = connectors.find(route => routeY! >= route.start.y && routeY! <= route.end.y);
-      const onLine = connector?.sample(routeY);
-      const targetX = onLine?.x ?? a.x + (b.x - a.x) * ease;
-      // A short horizontal catch-up prevents wheel bursts or layout updates
-      // from teleporting the bird across the long video-to-footer arc. Keep
-      // document Y exact so scrolling cannot introduce vertical catch-up hops.
-      // The modules follow the actual line exactly; preserve the softer catch-up
-      // only on the long closing arc where there is no visible guide line.
-      displayedX = displayedX === null || reduced || routeY <= modulePoints[2].y ? targetX
-        : displayedX + (targetX - displayedX) * (1 - Math.exp(-dt / 0.065));
-      const x = displayedX;
-      const y = Math.min(routeY - scroll, landingY - scroll);
+      const onLine = connector?.sample(clamp((routeY - connector.start.y) / (connector.end.y - connector.start.y)));
+      let verticalOffset = 0;
+      let offsetSlope = 0;
+      if (!onLine) {
+        // Match the vertical tangent speed on both sides of each curve. These
+        // short, deterministic blends stay below a few dozen screen pixels.
+        const gaps = connectors.slice(1).map((route, index) => route.start.y - connectors[index].end.y);
+        const blend = Math.min(110 * scale, ...gaps.map(gap => gap * 0.4));
+        for (const route of connectors) {
+          const approach = (routeY - route.start.y + blend) / blend;
+          const departure = (routeY - route.end.y) / blend;
+          const slope = route.speed - 1;
+          if (approach >= 0 && approach <= 1) {
+            verticalOffset += blend * slope * (approach**3 - approach**2);
+            offsetSlope += slope * (3*approach**2 - 2*approach);
+          } else if (departure >= 0 && departure <= 1) {
+            verticalOffset += blend * slope * (departure**3 - 2*departure**2 + departure);
+            offsetSlope += slope * (3*departure**2 - 4*departure + 1);
+          }
+        }
+      }
+      const x = onLine?.x ?? a.x + (b.x - a.x) * ease;
+      const y = Math.min((onLine?.y ?? routeY + verticalOffset) - scroll, landingY - scroll);
       const onRoute = routeY > points[0].y + 0.5 && routeY < landingY - 0.5;
       const moving = onRoute && time - lastScrollTime < 350;
       bird.dataset.pipelineControlled = "true";
@@ -178,12 +178,12 @@ export function PipelineBird() {
       if (!moving) bird.style.setProperty("--bird-flight-angle", "0deg");
       if (moving && lastX !== null && lastY !== null) {
         const dx = (onLine?.dx ?? (b.x - a.x) * 30*t*t*(1-t)*(1-t)) * routeDirection;
-        const dy = (onLine?.dy ?? Math.max(1, b.y - a.y)) * routeDirection;
+        const dy = (onLine?.dy ?? Math.max(1, b.y - a.y) * (1 + offsetSlope)) * routeDirection;
         // Follow the rendered motion, including scrolling, rather than a future target.
         if (Math.hypot(dx, dy) > 0.3) {
           const desired = Math.atan2(dy, dx) * 180 / Math.PI;
           const difference = ((desired - angle + 540) % 360 + 360) % 360 - 180;
-          angle = wasMoving ? angle + difference * (1 - Math.exp(-dt / 0.12)) : desired;
+          angle = wasMoving ? angle + difference * (1 - Math.exp(-dt / 0.18)) : desired;
           bird.style.setProperty("--bird-flight-angle", `${angle}deg`);
         }
       }
