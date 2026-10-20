@@ -54,7 +54,9 @@ export function Sponsors() {
         aria-labelledby="sponsors-introduction"
       >
         <h2 id="sponsors-introduction" data-toc="exclude">
-          Every Contribution Matters. Every Partnership Drives Innovation.
+          Every Contribution Matters.
+          <br />
+          Every Partnership Drives Innovation.
         </h2>
         <p>
           ZJU-China thanks the colleges, academic and research institutions at
