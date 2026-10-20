@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { OA_BIRD_STOP, perch } from "./StoryBird";
+import { OA_BIRD_STOP, perch } from "./storyBirdGeometry";
 import { getStoryHandoffTop } from "./UseStoryNavigation";
 import { getPipelineFlightRoute } from "./PipelineFlightRoute";
 

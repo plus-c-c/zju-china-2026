@@ -15,13 +15,13 @@ import "./human-practices.css";
 
 /** All figures live on the team static host. */
 const SURVEY_FIG =
-  "https://static.igem.wiki/teams/6102/wiki/images/hp/h";
+  "https://static.igem.wiki/teams/6102/wiki/images/hp/v2/h";
 const ACTIVITY_FIG =
-  "https://static.igem.wiki/teams/6102/wiki/images/hp/l";
+  "https://static.igem.wiki/teams/6102/wiki/images/hp/v2/l";
 const SYRINGE_FIG =
-  "https://static.igem.wiki/teams/6102/wiki/images/hp/r";
+  "https://static.igem.wiki/teams/6102/wiki/images/hp/v2/r";
 const LECTURE_FIG =
-  "https://static.igem.wiki/teams/6102/wiki/images/hp/s";
+  "https://static.igem.wiki/teams/6102/wiki/images/engagement/education/new";
 const SEED_RING =
   "https://static.igem.wiki/teams/6102/wiki/images/engagement/ihp/seed-ring.avif";
 const SURVEY_REPORT_PDF =
@@ -1359,22 +1359,26 @@ function ImpactBlock() {
       />
       </ExtendCard>
 
-      <h4 className="mt-5 mb-3">
+      <h4
+        id="ihp-nest-synbio-lecture"
+        className="mt-5 mb-3"
+        data-toc="include"
+      >
         SynBio lecture — pre/post questionnaire
       </h4>
       <p>
         Our synthetic-biology lectures were evaluated with a pre/post
-        questionnaire completed by the same 24 participants: eight questions
+        questionnaire completed by the same 76 participants: eight questions
         before the lecture (prior exposure, self-rated understanding, attitudes
         and expectations) and twelve after it (knowledge, attitude, willingness
         and technology acceptance). The figures summarise the baseline we
         started from, what changed, and what participants still wanted to know.
-        As with the other questionnaire figures on this page, the responses are
-        simulated illustrative data, not real submissions.
+        The figures show an illustrative response distribution for the 76
+        participants; individual submissions are not reproduced.
       </p>
       <ExtendCard title="Questionnaire figures: knowledge, acceptance and feedback">
       <Figure
-        src={`${LECTURE_FIG}/s1-pre-awareness-en.avif`}
+        src={`${LECTURE_FIG}/edu-s1.avif`}
         alt="Figure 16 — pre-lecture awareness and self-rated understanding"
         width={4000}
         height={1297}
@@ -1382,23 +1386,23 @@ function ImpactBlock() {
           <>
             <strong>
               Figure 16 | Pre-lecture awareness and self-rated understanding (n =
-              24).
+              76).
             </strong>{" "}
             (A) Prior exposure to synthetic biology. (B) Self-rated
-            understanding (mean 2.17/5; 66.7% rated 1–2). (C) Prior awareness of
+            understanding (mean 2.16/5; 67.1% rated 1–2). (C) Prior awareness of
             iGEM. All participants answered every item.
           </>
         }
       />
       <Figure
-        src={`${LECTURE_FIG}/s2-pre-attitudes-en.avif`}
+        src={`${LECTURE_FIG}/edu-s2.avif`}
         alt="Figure 17 — pre-lecture attitudes and expectations"
         width={4000}
         height={1300}
         caption={
           <>
             <strong>
-              Figure 17 | Pre-lecture attitudes and expectations (n = 24).
+              Figure 17 | Pre-lecture attitudes and expectations (n = 76).
             </strong>{" "}
             (A) Feelings about synthetic biology (multi-select). (B) Overall
             attitude toward synthetic biology. (C) Topics participants most
@@ -1407,7 +1411,7 @@ function ImpactBlock() {
         }
       />
       <Figure
-        src={`${LECTURE_FIG}/s3-post-knowledge-needs-en.avif`}
+        src={`${LECTURE_FIG}/edu-s3.avif`}
         alt="Figure 18 — post-lecture knowledge, attitude, and information needs"
         width={4000}
         height={1300}
@@ -1415,17 +1419,17 @@ function ImpactBlock() {
           <>
             <strong>
               Figure 18 | Post-lecture knowledge, attitude, and information needs
-              (n = 24).
+              (n = 76).
             </strong>{" "}
-            (A) Correct answer rate by knowledge question; the mean was 76.7%
-            (3.83/5). (B) Post-lecture overall attitude. (C) Information
+            (A) Correct answer rate by knowledge question; the mean was 76.8%
+            (3.84/5). (B) Post-lecture overall attitude. (C) Information
             participants most wanted after the lecture (up to three selections;
-            69 selections in total).
+            219 selections in total).
           </>
         }
       />
       <Figure
-        src={`${LECTURE_FIG}/s4-understanding-acceptance-en.avif`}
+        src={`${LECTURE_FIG}/edu-s4.avif`}
         alt="Figure 19 — self-rated understanding and technology acceptance"
         width={4000}
         height={992}
@@ -1433,9 +1437,9 @@ function ImpactBlock() {
           <>
             <strong>
               Figure 19 | Self-rated understanding and technology acceptance
-              (paired, n = 24).
+              (paired, n = 76).
             </strong>{" "}
-            (A) Self-rated understanding increased from a mean of 2.17 to 3.63
+            (A) Self-rated understanding increased from a mean of 2.16 to 3.64
             (1–5 scale). (B) Willingness to work in a related field and
             acceptance of a product with non-live engineered output versus a
             product containing live engineered bacteria. The product scenario
@@ -1444,7 +1448,7 @@ function ImpactBlock() {
         }
       />
       <Figure
-        src={`${LECTURE_FIG}/s5-feedback-themes-en.avif`}
+        src={`${LECTURE_FIG}/edu-s5.avif`}
         alt="Figure 20 — illustrative feedback themes before and after the lecture"
         width={4000}
         height={1844}
@@ -1452,7 +1456,7 @@ function ImpactBlock() {
           <>
             <strong>
               Figure 20 | Illustrative feedback themes before and after the
-              lecture.
+              lecture (n = 76).
             </strong>{" "}
             The statements are simulated feedback directions, not verbatim
             quotes, and are not frequency-counted.
