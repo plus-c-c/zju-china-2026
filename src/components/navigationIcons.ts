@@ -79,19 +79,19 @@ export const pageDetails: Record<
   },
   "/human-practices": {
     icon: "20_integrated_human_practices.png",
-    description: "Stakeholder insights into NEST",
+    description: "",
   },
   "/entrepreneurship": {
     icon: "21_entrepreneurship.png",
-    description: "A path to the healthcare market",
+    description: "",
   },
   "/education": {
     icon: "22_education.png",
-    description: "Making SynBio accessible",
+    description: "",
   },
   "/collaboration": {
     icon: "23_collaboration.png",
-    description: "Growing through shared experience",
+    description: "",
   },
   "/members": {
     icon: "26_members.png",

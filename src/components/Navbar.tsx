@@ -471,7 +471,7 @@ export function Navbar({ introEntrance = false, opening = false }: { introEntran
                             return (
                               <li key={page.path}>
                                 <Link
-                                  className={`nest-nav-tile${active ? " is-active" : ""}`}
+                                  className={`nest-nav-tile${!details?.description ? " nest-nav-tile--title-only" : ""}${active ? " is-active" : ""}`}
                                   to={page.path}
                                   aria-current={active ? "page" : undefined}
                                   onClick={closeMenus}
@@ -493,7 +493,7 @@ export function Navbar({ introEntrance = false, opening = false }: { introEntran
                                     <span className="nest-tile-title">
                                       {page.name}
                                     </span>
-                                    {details && (
+                                    {details?.description && (
                                       <span className="nest-tile-description">
                                         {details.description}
                                       </span>

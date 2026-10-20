@@ -203,6 +203,12 @@
     border-color 180ms ease;
 }
 
+.nest-nav-tile--title-only {
+  align-items: center;
+  justify-content: flex-start;
+  text-align: left;
+}
+
 .nest-tile-icon {
   display: block;
   flex: 0 0 var(--nest-icon-size);
@@ -249,6 +255,10 @@
 .nest-nav-tile:hover .nest-tile-icon {
   transform: translateY(-3px);
 }
+.nest-nav-tile--title-only:hover .nest-tile-icon {
+  transform: none;
+}
+
 .nest-navbar a:focus-visible,
 .nest-navbar button:focus-visible {
   outline: 2px solid #fff;
