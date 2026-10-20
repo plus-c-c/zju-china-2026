@@ -1545,7 +1545,7 @@ function EngagementBlock() {
     <>
       <h3 className="mt-4 mb-3">Stakeholder Engagement</h3>
 
-      <h4 className="mt-4 mb-3" data-toc="include">
+      <h4 id="ihp-stakeholders-map" className="mt-4 mb-3" data-toc="include">
         Stakeholders MAP
       </h4>
       <p>

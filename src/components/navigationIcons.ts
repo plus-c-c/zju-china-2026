@@ -89,6 +89,10 @@ export const pageDetails: Record<
     icon: "22_education.png",
     description: "Making SynBio accessible",
   },
+  "/collaboration": {
+    icon: "23_collaboration.png",
+    description: "Growing through shared experience",
+  },
   "/members": {
     icon: "26_members.png",
     description: "The people behind NEST",

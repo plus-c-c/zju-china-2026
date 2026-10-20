@@ -1,0 +1,58 @@
+.collaboration-subtitle {
+  max-width: 920px;
+  margin: 0 0 1.5rem;
+  color: #405b87;
+  font-size: clamp(1.35rem, 1.2vw + 1rem, 1.75rem);
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.collaboration-quote {
+  max-width: 920px;
+  margin: 0 auto 2rem;
+  padding: 1.15rem 1.5rem;
+  border-left: 4px solid #63a0ff;
+  border-radius: 0 12px 12px 0;
+  background: #f7faff;
+}
+
+.page-article .collaboration-quote p {
+  margin: 0;
+  color: #223c81;
+  font-size: 1.25rem;
+  font-style: italic;
+  line-height: 1.6;
+}
+
+.page-article .collaboration-quote footer {
+  margin-top: 0.75rem;
+  color: #5c6f96;
+  font-size: 0.95rem;
+}
+
+.collab-figure {
+  margin: 2rem auto;
+}
+
+.collab-figure__single img,
+.collab-figure__pair img {
+  width: 100%;
+}
+
+.collab-figure__pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem;
+  align-items: start;
+}
+
+.collab-figure .figure-caption {
+  max-width: 900px;
+  margin: 0.75rem auto 0;
+}
+
+@media (max-width: 575.98px) {
+  .collab-figure__pair {
+    grid-template-columns: 1fr;
+  }
+}
