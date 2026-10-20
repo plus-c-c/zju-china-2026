@@ -1,7 +1,7 @@
 /* AUTO-GENERATED from model.tsx (Model 3 section) — content data for model3.tsx. */
 
 export interface M3Part {
-  t: "text" | "math" | "em" | "link";
+  t: "text" | "math" | "em" | "link" | "strong";
   v: string;
   href?: string;
 }

@@ -2,7 +2,7 @@ export function AnisotropyContent() {
   return (
     <>
       <h3 id="wetlab-anisotropy-overview" data-toc="include" data-toc-depth="2">
-        4 Magnetically responsive anisotropy
+        4 Magnetically Responsive Anisotropy
       </h3>
       <div className="source-block">
         <p>

@@ -22,7 +22,7 @@ export function ScaffoldContent() {
           data-toc="include"
           data-toc-depth="2"
         >
-          1 Hydrogel scaffold
+          1 Hydrogel Scaffold
         </h3>
       </div>
       <div className="section-heading">
@@ -57,12 +57,12 @@ export function ScaffoldContent() {
           data-toc="include"
           data-toc-depth="3"
         >
-          1.1 Design of the scaffold plasmid
+          1.1 Design of the Scaffold Plasmid
         </h4>
       </div>
       <section className="pair">
         <h5 className="pair-label" id="wetlab-scaffold-03">
-          Scaffold plasmid design
+          Scaffold Plasmid Design
         </h5>
         <div className="columns">
           <div className="column experiment">
@@ -267,7 +267,7 @@ export function ScaffoldContent() {
           data-toc="include"
           data-toc-depth="3"
         >
-          1.2 Scaffold protein 2KY-5
+          1.2 Scaffold Protein 2KY-5
         </h4>
         <h5
           data-block="15"
@@ -275,7 +275,7 @@ export function ScaffoldContent() {
           data-toc="include"
           data-toc-depth="4"
         >
-          1.2.1 Expression of the scaffold protein 2KY-5
+          1.2.1 Expression of the Scaffold Protein 2KY-5
         </h5>
       </div>
       <section className="pair">
@@ -423,7 +423,7 @@ export function ScaffoldContent() {
           data-toc="include"
           data-toc-depth="4"
         >
-          1.2.2 Purification of the scaffold protein 2KY-5
+          1.2.2 Purification of the Scaffold Protein 2KY-5
         </h5>
       </div>
       <section className="pair">
@@ -675,7 +675,7 @@ export function ScaffoldContent() {
           data-toc="include"
           data-toc-depth="4"
         >
-          1.2.3 Photocrosslinking of 2KY-5 and preparation of the hydrogel
+          1.2.3 Photocrosslinking of 2KY-5 and Preparation of the Hydrogel
         </h5>
       </div>
       <section className="pair">
@@ -795,7 +795,7 @@ export function ScaffoldContent() {
           data-toc="include"
           data-toc-depth="4"
         >
-          1.2.4 Characterization of the hydrogel
+          1.2.4 Characterization of the Hydrogel
         </h5>
       </div>
       <section className="pair">
@@ -1190,8 +1190,7 @@ export function ScaffoldContent() {
           data-toc="include"
           data-toc-depth="3"
         >
-          1.3 Construction and production of hydrogels with different repeat
-          numbers
+          1.3 Construction and Production of Hydrogels with Different Repeat Numbers
         </h4>
         <h5
           data-block="109"
@@ -1199,8 +1198,7 @@ export function ScaffoldContent() {
           data-toc="include"
           data-toc-depth="4"
         >
-          1.3.1 Plasmid construction, expression and purification of the
-          scaffold protein 2KY-10
+          1.3.1 Plasmid Construction, Expression and Purification of the Scaffold Protein 2KY-10
         </h5>
       </div>
       <section className="pair">
@@ -1375,8 +1373,7 @@ export function ScaffoldContent() {
           data-toc="include"
           data-toc-depth="4"
         >
-          1.3.2 Plasmid construction, expression and purification of the
-          scaffold proteins 2KY-5-Tag and 2KY-10-Tag
+          1.3.2 Plasmid Construction, Expression and Purification of the Scaffold Proteins 2KY-5-Tag and 2KY-10-Tag
         </h5>
       </div>
       <section className="pair">
@@ -1569,7 +1566,7 @@ export function ScaffoldContent() {
           data-toc="include"
           data-toc-depth="2"
         >
-          2 Safety and functional evaluation of the hydrogel
+          2 Safety and Functional Evaluation of the Hydrogel
         </h3>
         <h4
           data-block="79"
@@ -1577,7 +1574,7 @@ export function ScaffoldContent() {
           data-toc="include"
           data-toc-depth="3"
         >
-          2.1 Cytotoxicity assessment
+          2.1 Cytotoxicity Assessment
         </h4>
       </div>
       <section className="pair">
@@ -1657,7 +1654,7 @@ export function ScaffoldContent() {
           data-toc="include"
           data-toc-depth="3"
         >
-          2.2 Functional validation in chondrocytes
+          2.2 Functional Validation in Chondrocytes
         </h4>
       </div>
       <section className="pair">
@@ -1773,7 +1770,7 @@ export function ScaffoldContent() {
           data-toc="include"
           data-toc-depth="2"
         >
-          3 Ligation system
+          3 Ligation System
         </h3>
       </div>
       <div className="section-heading">
@@ -1803,7 +1800,7 @@ export function ScaffoldContent() {
           data-toc="include"
           data-toc-depth="3"
         >
-          3.1 Expression of the ligation-system proteins
+          3.1 Expression of the Ligation-System Proteins
         </h4>
       </div>
       <section className="pair">
@@ -1912,7 +1909,7 @@ export function ScaffoldContent() {
           data-toc="include"
           data-toc-depth="3"
         >
-          3.2 Purification and dialysis of the ligation-system proteins
+          3.2 Purification and Dialysis of the Ligation-System Proteins
         </h4>
       </div>
       <section className="pair">
@@ -1986,7 +1983,7 @@ export function ScaffoldContent() {
           data-toc="include"
           data-toc-depth="3"
         >
-          3.3 Ligation reaction
+          3.3 Ligation Reaction
         </h4>
       </div>
       <section className="pair">

@@ -451,7 +451,6 @@ export const gagRetentionModule: DbtlModule = {
   ],
   outro: (
     <>
-      <h3 className="mt-5 mb-3">Next design</h3>
       <p>
         Taken together, the results support three conclusions: (1) sequence
         redesign enabled production of detectable CPC-containing recombinant

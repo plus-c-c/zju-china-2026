@@ -3,7 +3,6 @@ import type { DbtlModule } from "./dbtl";
 
 export const mitochondriaModule: DbtlModule = {
   title: "Mitochondrial therapeutic module",
-  introTitle: "From local loading to cellular delivery",
   intro: (
     <>
       <p>

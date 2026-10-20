@@ -4,7 +4,6 @@ import { gagRetentionModule } from "../engineering-gag-retention";
 /** Wet Lab group: GAG Retention Module (Protein expression / Functional validation). */
 export const gagRetentionGroup: Group = {
   label: "GAG Retention Module",
-  heading: "Engineering goal",
   lead: infoContent(gagRetentionModule, "Engineering goal"),
   parts: [
     {

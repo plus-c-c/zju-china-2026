@@ -701,7 +701,7 @@ export function ProofOfConcept() {
             function, we have therefore experimentally evaluated how the
             materials behave in the presence of cells.
           </p>
-          <h2 className="mt-5 mb-3">4. Conclusion</h2>
+          <h2 className="mt-5 mb-3">Conclusion</h2>
           <p>
             In testing NEST's core concept, we successfully produced SELP
             hydrogels and demonstrated that material properties can be altered

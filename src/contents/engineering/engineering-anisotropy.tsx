@@ -3,7 +3,6 @@ import type { DbtlModule } from "./dbtl";
 
 export const anisotropyModule: DbtlModule = {
   title: "Magnetically responsive anisotropy module",
-  introTitle: "Cartilage mechanics and anisotropy",
   intro: (
     <>
       <p>
@@ -641,7 +640,6 @@ export const anisotropyModule: DbtlModule = {
   ],
   outro: (
     <>
-      <h3 className="mt-5 mb-3">Conclusions and next steps</h3>
       <p>
         TVN comprises only seven amino acids but offers a compact recognition
         element for connecting a protein module with magnetic nanoparticles. By

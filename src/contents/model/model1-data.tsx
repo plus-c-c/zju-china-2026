@@ -63,10 +63,6 @@ export const m1Overview: M1Block[] = [
       },
     ],
   },
-  {
-    t: "h3",
-    v: "Model development",
-  },
 ];
 
 export const m1Steps: M1Step[] = [
@@ -576,7 +572,7 @@ export const m1Steps: M1Step[] = [
   },
   {
     num: 7,
-    title: "How modeling connects to the wet lab",
+    title: "How Modeling Connects to the Wet Lab",
     blocks: [
       {
         t: "p",

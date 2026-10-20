@@ -354,7 +354,7 @@ export function Contribution() {
           continue expanding the material capabilities of NEST.
         </p>
 
-        <References level={3}>
+        <References level={2}>
           <div className="references-list references-list--paragraphs">
             <p>
               [1] Meyer DE, Chilkoti A. <em>Nature Biotechnology</em>.
@@ -370,7 +370,7 @@ export function Contribution() {
           </div>
         </References>
         <References
-          level={3}
+          level={2}
           title="Figure Sources and Credits"
           id="figure-sources-and-credits"
         >

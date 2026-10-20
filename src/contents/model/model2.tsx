@@ -677,7 +677,7 @@ const SNOOP_STEPS: ProteinStep[] = [
     body: (
       <>
         <h3 className="mt-5 mb-3" data-toc="exclude">
-          {"4 Effects of Stabilization on the Catalytic Region."}
+          {"4 Effects of Stabilization on the Catalytic Region"}
         </h3>
         <p>
           {

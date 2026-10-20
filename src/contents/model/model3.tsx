@@ -62,6 +62,9 @@ function Parts({ parts }: { parts: M3Part[] }) {
         if (part.t === "em") {
           return <em key={index}>{part.v}</em>;
         }
+        if (part.t === "strong") {
+          return <strong key={index}>{part.v}</strong>;
+        }
         if (part.t === "link") {
           return (
             <a key={index} href={part.href} target="_blank" rel="noreferrer">
