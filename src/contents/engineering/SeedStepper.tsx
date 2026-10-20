@@ -10,6 +10,7 @@ import {
   STEP_ADVANCE_ENABLED,
   useBoundaryStepAdvance,
 } from "../../components/useBoundaryStepAdvance";
+import type { EngineeringLayout } from "./layout";
 import type { SeedModule, SeedPhase, SeedStep } from "./seed";
 import { buildSeedSteps } from "./seed";
 import { SeedRing } from "./SeedRing";
@@ -32,6 +33,8 @@ interface SeedStepperProps {
   outlook?: ReactNode;
   /** Group-level lead / outlook view: static panel, ring unlit, no cycles. */
   content?: ReactNode;
+  /** Layout variant: left TOC or the previous tabs-above/cycles-below layout. */
+  layout?: EngineeringLayout;
   /** Level-3 tab row rendered above the panel. */
   topNav?: ReactNode;
   /** Nested level-3 / level-4 TOC rendered in the left column. */
@@ -58,11 +61,13 @@ export function SeedStepper({
   lead,
   outlook,
   content,
+  layout = "toc",
   topNav,
   sideNav,
   ringTop,
   ringBottom,
 }: SeedStepperProps) {
+  const legacy = layout === "legacy";
   const builtSteps = useMemo(
     () => (module ? buildSeedSteps(module, lead, outlook) : []),
     [module, lead, outlook],
@@ -230,12 +235,15 @@ export function SeedStepper({
     );
   };
 
-  /* Report the shown step so the parent can sync the level-3 tabs. */
+  /* Report the shown step so the parent can sync the level-3 tabs. Depend on
+     the stable key so a parent re-render cannot report the previous step and
+     undo a tab click before its scroll lands. */
+  const stepKey = step?.key;
   const onStepChangeRef = useRef(onStepChange);
   onStepChangeRef.current = onStepChange;
   useEffect(() => {
-    if (step) onStepChangeRef.current?.(step, index);
-  }, [step, index]);
+    if (stepKey) onStepChangeRef.current?.(stepsRef.current[index], index);
+  }, [stepKey, index]);
 
   const phaseBadge =
     stepModule && step?.kind === "phase" && step.phase ? step.phase : null;
@@ -247,69 +255,89 @@ export function SeedStepper({
         : "";
 
   const splitRing = Boolean(ringTop || ringBottom);
+  const ring = splitRing ? (
+    <div className="dbtl-ring-wrap dbtl-ring-wrap--split">
+      {ringTop}
+      <div className="dbtl-ring-center">
+        <SeedRing active={phaseBadge} onSelect={goToPhase} />
+      </div>
+      {ringBottom}
+    </div>
+  ) : (
+    <div className="dbtl-ring-wrap">
+      <SeedRing active={phaseBadge} onSelect={goToPhase} />
+    </div>
+  );
+  const cycles = stepModule ? (
+    <div className="dbtl-cycles" role="group" aria-label="Steps">
+      {leadIndex >= 0 && (
+        <button
+          type="button"
+          className={`dbtl-cycle-button${
+            step?.kind === "lead" ? " active" : ""
+          }`}
+          aria-pressed={step?.kind === "lead"}
+          onClick={() => goToStep(leadIndex)}
+        >
+          Introduction
+        </button>
+      )}
+      {stepModule.cycles.map((cycle, cycleIndex) => (
+        <button
+          key={cycle.title}
+          type="button"
+          className={`dbtl-cycle-button${
+            cycleIndex === currentCycleIndex ? " active" : ""
+          }`}
+          aria-pressed={cycleIndex === currentCycleIndex}
+          onClick={() => goToCycle(cycleIndex)}
+        >
+          Cycle {cycleIndex + 1}
+        </button>
+      ))}
+      {outlookIndex >= 0 && (
+        <button
+          type="button"
+          className={`dbtl-cycle-button${
+            step?.kind === "outlook" ? " active" : ""
+          }`}
+          aria-pressed={step?.kind === "outlook"}
+          onClick={() => goToStep(outlookIndex)}
+        >
+          Conclusion
+        </button>
+      )}
+    </div>
+  ) : null;
 
   return (
-    <div className={`dbtl${splitRing ? " dbtl--ring-nav" : ""}`} ref={rootRef}>
-      {topNav && <div className="dbtl-subnav">{topNav}</div>}
-      <div className="dbtl-left">
-      {splitRing ? (
-        <div className="dbtl-ring-wrap dbtl-ring-wrap--split">
-          {ringTop}
-          <div className="dbtl-ring-center">
-            <SeedRing active={phaseBadge} onSelect={goToPhase} />
-          </div>
-          {ringBottom}
-        </div>
-      ) : (
-        <div className="dbtl-ring-wrap">
-          <SeedRing active={phaseBadge} onSelect={goToPhase} />
-        </div>
+    <>
+      {legacy && topNav && (
+        <div className="dbtl-subnav dbtl-subnav--legacy">{topNav}</div>
       )}
-        {sideNav}
-        {!sideNav && stepModule && (
-          <div className="dbtl-cycles" role="group" aria-label="Steps">
-            {leadIndex >= 0 && (
-              <button
-                type="button"
-                className={`dbtl-cycle-button${
-                  step?.kind === "lead" ? " active" : ""
-                }`}
-                aria-pressed={step?.kind === "lead"}
-                onClick={() => goToStep(leadIndex)}
-              >
-                Introduction
-              </button>
-            )}
-            {stepModule.cycles.map((cycle, cycleIndex) => (
-              <button
-                key={cycle.title}
-                type="button"
-                className={`dbtl-cycle-button${
-                  cycleIndex === currentCycleIndex ? " active" : ""
-                }`}
-                aria-pressed={cycleIndex === currentCycleIndex}
-                onClick={() => goToCycle(cycleIndex)}
-              >
-                Cycle {cycleIndex + 1}
-              </button>
-            ))}
-            {outlookIndex >= 0 && (
-              <button
-                type="button"
-                className={`dbtl-cycle-button${
-                  step?.kind === "outlook" ? " active" : ""
-                }`}
-                aria-pressed={step?.kind === "outlook"}
-                onClick={() => goToStep(outlookIndex)}
-              >
-                Conclusion
-              </button>
-            )}
+      <div
+        className={`dbtl${legacy ? " dbtl--legacy" : ""}${
+          splitRing ? " dbtl--ring-nav" : ""
+        }`}
+        ref={rootRef}
+      >
+        {!legacy && topNav && (
+          <div className="dbtl-subnav">{topNav}</div>
+        )}
+        {legacy ? (
+          <div className="dbtl-left dbtl-left--legacy">
+            {ring}
+            {cycles}
+          </div>
+        ) : (
+          <div className="dbtl-left">
+            {ring}
+            {sideNav}
+            {!sideNav && cycles}
           </div>
         )}
-      </div>
-      <div className="dbtl-main">
-        <div className="dbtl-panel">
+        <div className="dbtl-main">
+          <div className="dbtl-panel">
           {(phaseBadge || caption) && (
             <div className="dbtl-panel-head">
               {phaseBadge && (
@@ -353,6 +381,7 @@ export function SeedStepper({
           </div>
         </div>
       </div>
-    </div>
+      </div>
+    </>
   );
 }
