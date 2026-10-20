@@ -1,9 +1,9 @@
 import type { Group } from "../group";
 import { mitochondriaModule } from "../engineering-mitochondria";
 
-/** Wet Lab group: Mitochondrial Therapy Module (three sub-modules). */
+/** Wet Lab group: Mitochondrial Therapeutic Module (three sub-modules). */
 export const mitochondrialTherapyGroup: Group = {
-  label: "Mitochondrial Therapy Module",
+  label: "Mitochondrial Therapeutic Module",
   parts: [
     {
       label: "Construction of a mitochondrial delivery carrier",

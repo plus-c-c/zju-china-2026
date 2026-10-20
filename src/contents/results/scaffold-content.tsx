@@ -182,7 +182,7 @@ export function ScaffoldContent() {
             <div className="table-scroll">
               <table>
                 <caption>
-                  Table 1.1.1. Positions of the three SnoopTag2 docking sites
+                  <strong>Table 1.1.1.</strong> Positions of the three SnoopTag2 docking sites
                   relative to the cut sites, their behavior during a doubling
                   round, and the resulting constructs.
                 </caption>
@@ -460,17 +460,16 @@ export function ScaffoldContent() {
                 to ultrafiltration, which served to purify, concentrate and
                 exchange the buffer, yielding a scaffold protein solution whose
                 final solvent was{" "}
-                <strong>
-                  water; the protein was then lyophilized to a powder, the
+                water; the protein was then <strong>lyophilized to a powder</strong>, the
                   storage form used for the
-                </strong>{" "}
+                {" "}
                 subsequent preparation of hydrogel solutions.
               </p>
               <p>
                 The purified supernatant was concentrated using ultrafiltration
                 tubes with a 10-kDa molecular weight cut-off (3,500 × g, 30
                 min), and the protein concentrations before and after
-                concentration were determined by the BCA assay.([6])
+                concentration were determined by the BCA assay.[6]
               </p>
               <p>
                 The solution was then dialyzed for 24 h to remove residual salt,

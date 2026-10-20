@@ -16,10 +16,10 @@ export const mitochondriaModule: DbtlModule = {
       </p>
       <p>
         NEST&rsquo;s mitochondrial therapeutic module builds on this concept:
-        liposomes serve as mitochondrial delivery carriers, engineered linker
-        peptides connect the carriers to the SELP scaffold, and enzymatic
-        cleavage is intended to enable carrier detachment and subsequent
-        cellular delivery.
+        liposomes <strong>serve as mitochondrial delivery carriers</strong>,
+        engineered linker peptides <strong>connect the carriers to the SELP
+        scaffold</strong>, and enzymatic cleavage is intended to <strong>enable
+        carrier detachment</strong> and subsequent cellular delivery.
       </p>
       <p>
         This module uses mitochondrial delivery as an application example while
@@ -36,10 +36,11 @@ export const mitochondriaModule: DbtlModule = {
       </p>
       <p>
         With mitochondria as our current focus, this approach raises three
-        interconnected questions: How can mitochondria be delivered? How can the
-        delivery carrier support both local retention and subsequent detachment?
-        Once the system enters cellular evaluation, how should delivery
-        performance and cellular tolerance be assessed?
+        interconnected questions: <strong>How can mitochondria be
+        delivered?</strong> <strong>How can the delivery carrier support both
+        local retention and subsequent detachment?</strong> Once the system
+        enters cellular evaluation, <strong>how should delivery performance and
+        cellular tolerance be assessed?</strong>
       </p>
       <p>
         The engineering cycles below address these questions, documenting how
@@ -83,16 +84,16 @@ export const mitochondriaModule: DbtlModule = {
         Test: (
           <>
             <p>
-              The fluorescence images showed partial overlap between the
-              liposomal and mitochondrial signals, supporting a spatial
-              association between the two components (Figure 1.1.1).
+              The fluorescence images showed <strong>partial overlap between the
+              liposomal and mitochondrial signals</strong>, supporting a
+              spatial association between the two components (Figure 1.1.1).
               Transmission electron microscopy revealed peripheral membrane-like
               outlines surrounding internal structures in the complex samples,
               providing morphological support for complex formation (Figure
               1.1.2). These results supported further investigation of the
-              liposomal approach, although they did not establish the proportion
-              of fully encapsulated mitochondria or the extent to which
-              mitochondrial function was preserved.
+              liposomal approach, although they <strong>did not establish the
+              proportion of fully encapsulated mitochondria</strong> or the
+              extent to which mitochondrial function was preserved.
             </p>
             <DbtlFigure
               src="result/04/09.avif"
@@ -129,22 +130,23 @@ export const mitochondriaModule: DbtlModule = {
               potential for subsequent detachment. We incorporated both
               requirements into a single linker peptide, with attachment sites
               for the liposome and scaffold at opposite ends and a cleavable
-              region between them. The selection of MMP-13 as the target enzyme
-              was informed by its mechanistic association with cartilage
-              erosion.
+              region between them. The selection of <strong>MMP-13 as the target
+              enzyme</strong> was informed by its mechanistic <strong>association
+              with cartilage erosion</strong>.
             </p>
           </>
         ),
         Build: (
           <>
             <p>
-              We combined a Cys conjugation site, an MMP-responsive region, and
-              DogTag into an independent module. Cys was intended to react with
-              maleimide groups on the liposome surface, while DogTag was
-              designed to form a covalent linkage with SnoopTagJr on SELP
-              through SnoopLigase-mediated ligation. Previous research has
-              established the ability of SnoopLigase to catalyze isopeptide bond
-              formation between this tag pair.
+              We combined a <strong>Cys conjugation site</strong>, <strong>an
+              MMP-responsive region</strong>, and <strong>DogTag</strong> into an
+              independent module. Cys was intended to react with maleimide
+              groups on the liposome surface, while DogTag was designed to form
+              a covalent linkage with SnoopTagJr on SELP through
+              SnoopLigase-mediated ligation. Previous research has established
+              the ability of SnoopLigase to catalyze isopeptide bond formation
+              between this tag pair.
             </p>
             <p>
               We also designed a Control construct with the same attachment
@@ -223,10 +225,11 @@ export const mitochondriaModule: DbtlModule = {
               IPTG, so these conditions were selected for larger-scale
               expression. TEV treatment produced band changes consistent with
               SUMO release, supporting tag removal (Figure 2.1.1). However, the
-              recovered peptide concentration was low, and recovery during
-              ultrafiltration was inconsistent. These limitations made it
-              difficult to obtain reliable readouts from the original liposome
-              conjugation assessment, which depended on separation and recovery.
+              <strong>recovered peptide concentration was low</strong>, and
+              <strong>recovery during ultrafiltration was inconsistent</strong>.
+              These limitations made it difficult to obtain reliable readouts
+              from the original liposome conjugation assessment, which depended
+              on separation and recovery.
             </p>
             <DbtlFigure
               src="result/04/05.avif"
@@ -238,13 +241,13 @@ export const mitochondriaModule: DbtlModule = {
           <>
             <p>
               This difficulty prompted us to reconsider the detection strategy.
-              When sample recovery and ligation both influence the results, a
-              weak signal cannot readily be attributed to either step. We
-              therefore introduced lyophilization to concentrate the peptide
-              samples and assessed the two linker interfaces separately. In the
-              next cycle, we introduced a GFP reporter protein to evaluate
-              DogTag-mediated ligation through a distinguishable change in
-              molecular weight.
+              When sample recovery and ligation both influence the results,
+              <strong>a weak signal cannot readily be attributed to either
+              step</strong>. We therefore introduced lyophilization to
+              concentrate the peptide samples and assessed the two linker
+              interfaces separately. In the next cycle, we introduced a GFP
+              reporter protein to evaluate DogTag-mediated ligation through a
+              distinguishable change in molecular weight.
             </p>
           </>
         ),
@@ -281,13 +284,13 @@ export const mitochondriaModule: DbtlModule = {
         Test: (
           <>
             <p>
-              Higher-molecular-weight bands appeared in the
-              SnoopLigase-containing reactions for both responsive and control
-              peptides. Their mobility shifts were consistent with ligation
-              product formation. These results supported the retention of
-              DogTag-mediated ligation activity in the recovered peptides and
-              indicated that both constructs could be used to generate reporter
-              substrates for subsequent assays.
+              <strong>Higher-molecular-weight bands appeared in the
+              SnoopLigase-containing reactions</strong> for both responsive and
+              control peptides. Their mobility shifts were consistent with
+              ligation product formation. These results supported the
+              <strong>retention of DogTag-mediated ligation activity</strong> in
+              the recovered peptides and indicated that both constructs could
+              be used to generate reporter substrates for subsequent assays.
             </p>
             <DbtlFigure
               src="result/04/06.avif"
@@ -342,16 +345,16 @@ export const mitochondriaModule: DbtlModule = {
         Test: (
           <>
             <p>
-              Two closely spaced bands were observed near 35 kDa in the
-              responsive peptide group, whereas the Control group predominantly
-              showed the corresponding higher-molecular-weight band. This
-              difference was consistent with partial substrate cleavage and
-              provided a preliminary indication that the responsive region could
-              be cleaved (Figure 2.3.1). However, differences between the groups
-              were already present in the 0 h samples. Matched controls without
-              the enzyme and consistent starting substrates are therefore needed
-              to further assess enzyme dependence and the time course of
-              cleavage.
+              <strong>Two closely spaced bands were observed near 35 kDa</strong>
+              in the responsive peptide group, whereas the Control group
+              predominantly showed the corresponding higher-molecular-weight
+              band. This difference was consistent with partial substrate
+              cleavage and provided a preliminary indication that the responsive
+              region could be cleaved (Figure 2.3.1). However, differences
+              between the groups were <strong>already present in the 0 h
+              samples</strong>. Matched controls without the enzyme and
+              consistent starting substrates are therefore needed to further
+              assess enzyme dependence and the time course of cleavage.
             </p>
             <DbtlFigure
               src="result/04/12.avif"
@@ -406,14 +409,15 @@ export const mitochondriaModule: DbtlModule = {
         Test: (
           <>
             <p>
-              Green fluorescence was observed within the cellular regions of the
-              complex-treated group. Its distribution was consistent with the
-              expected entry of exogenous mitochondria into cells, providing
-              preliminary evidence of cellular delivery (Figure 3.1.1). Further
-              confirmation of intracellular localization requires
-              three-dimensional imaging and free-dye controls. These
-              observations also do not yet establish delivery efficiency or
-              improvements in metabolic function.
+              <strong>Green fluorescence</strong> was observed <strong>within the
+              cellular regions</strong> of the complex-treated group. Its
+              distribution was consistent with the expected entry of exogenous
+              mitochondria into cells, providing preliminary evidence of
+              cellular delivery (Figure 3.1.1). Further confirmation of
+              intracellular localization requires three-dimensional imaging and
+              free-dye controls. These observations also <strong>do not yet
+              establish delivery efficiency</strong> or improvements in
+              metabolic function.
             </p>
             <DbtlFigure
               src="result/04/13.avif"
@@ -467,14 +471,14 @@ export const mitochondriaModule: DbtlModule = {
         Test: (
           <>
             <p>
-              The peptide-treated groups showed an initial decrease in viability
-              readings followed by a recovery. Readings at 48&ndash;72 h were
-              closer to the control levels than those at the early time point
-              (Figure 3.2.1). The initial changes may have been related to the
-              starting condition of the cells, cell attachment, or experimental
-              handling, while the effects of peptide exposure also need to be
-              considered. The available results do not support attributing the
-              changes to a single factor.
+              The peptide-treated groups showed <strong>an initial decrease in
+              viability readings followed by a recovery</strong>. Readings at
+              48&ndash;72 h were closer to the control levels than those at the
+              early time point (Figure 3.2.1). The initial changes may have been
+              related to the starting condition of the cells, cell attachment,
+              or experimental handling, while the effects of peptide exposure
+              also need to be considered. The available results <strong>do not
+              support attributing the changes to a single factor</strong>.
             </p>
             <DbtlFigure
               src="result/04/14.avif"
@@ -519,10 +523,11 @@ export const mitochondriaModule: DbtlModule = {
     <>
       <p>
         Through these engineering cycles, the mitochondrial module developed
-        into a set of components that could be evaluated individually: liposomes
-        provided the carrier interface, the linker peptide coordinated anchoring
-        and detachment, and the GFP model converted ligation and cleavage into
-        observable changes. Difficulties with ultrafiltration recovery prompted
+        into a set of components that could be evaluated individually:
+        <strong>liposomes provided the carrier interface</strong>, <strong>the
+        linker peptide coordinated anchoring and detachment</strong>, and the GFP
+        model <strong>converted ligation and cleavage into observable
+        changes</strong>. Difficulties with ultrafiltration recovery prompted
         adjustments to the detection strategy and clarified which interfaces
         were supported by evidence and which still required independent
         validation.
@@ -530,12 +535,12 @@ export const mitochondriaModule: DbtlModule = {
       <p>
         Next, we will refine the quantification methods and controls for
         peptide&ndash;liposome conjugation, integrate the carrier with SELP, and
-        compare retention and release in the presence and absence of MMP. The
-        released carriers will then be evaluated for cellular delivery,
-        mitochondrial function, and cytocompatibility. This approach will bring
-        attachment, detachment, and delivery into the same experimental system
-        and progressively determine whether the module can provide the metabolic
-        support needed by damaged chondrocytes.
+        compare <strong>retention and release in the presence and absence of
+        MMP</strong>. The released carriers will then be evaluated for cellular
+        delivery, mitochondrial function, and cytocompatibility. This approach
+        will bring attachment, detachment, and delivery into the same
+        experimental system and progressively determine whether the module can
+        provide the metabolic support needed by damaged chondrocytes.
       </p>
     </>
   ),
