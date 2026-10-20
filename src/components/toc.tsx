@@ -110,7 +110,7 @@ export function Toc({
       });
       const next = elements.map((element) => ({
         id: element.id,
-        text: element.textContent || "",
+        text: element.dataset.tocLabel || element.textContent || "",
         level:
           element.tagName === "H2" ? 1 : Number(element.dataset.tocDepth) || 2,
       }));
