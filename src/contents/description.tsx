@@ -19,6 +19,7 @@ const figureDimensions: Record<string, [number, number]> = {
   "5": [3000, 1770],
   "6": [2570, 1814],
   "7": [3849, 3275],
+  "8": [1280, 534],
 };
 
 function Citation({ refs }: { refs: number[] }) {
@@ -777,10 +778,10 @@ export function Description() {
             </ExpandableCard>
           </div>
           <DescriptionFigure
-            number="0.1"
+            number={8}
             title="Comparison between traditional blending design and sequence-programmed design"
-            alt=""
-            empty
+            src="https://static.igem.wiki/teams/6102/wiki/images/design/01/01-01.avif"
+            alt="Comparison of conventional polymer blending and grafting with DNA-encoded protein production and photocrosslinking"
           >
             Left: Traditional design relies on the mixing and grafting of
             polymers, initiators, crosslinkers, and modifying groups. Right:
@@ -986,6 +987,17 @@ export function Description() {
                   <a href="https://creativecommons.org/licenses/by/4.0/">
                     CC BY 4.0
                   </a>
+                </p>
+              </FigureSourceEntry>
+              <FigureSourceEntry source={8} id="description-figure-8-sources">
+                <p>
+                  Comparison between traditional blending design and
+                  sequence-programmed design. Image supplied by ZJU-China and
+                  hosted on the team&rsquo;s iGEM static repository.{" "}
+                  <a href="https://static.igem.wiki/teams/6102/wiki/images/design/01/01-01.avif">
+                    Original image
+                  </a>
+                  .
                 </p>
               </FigureSourceEntry>
             </ul>
