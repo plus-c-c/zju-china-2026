@@ -16,84 +16,84 @@ type CollabPhoto = {
 const collabImg = (name: string) => `${COLLAB_IMG}/${name}`;
 
 const IRAQ_MEETING: CollabPhoto = {
-  name: "fig-1-1-1-iraq-online-meeting.jpg",
+  name: "fig-1-1-1-iraq-online-meeting.avif",
   alt: "Online meeting between our team and the Al-Nahrain University iGEM team, with several participants and presentation slides on screen.",
   width: 2265,
   height: 1280,
 };
 
 const AL_NAHRAIN_LETTER: CollabPhoto = {
-  name: "fig-1-1-2-al-nahrain-letter.jpg",
+  name: "fig-1-1-2-al-nahrain-letter.avif",
   alt: "Message from the Al-Nahrain University team thanking us for supporting Iraq's first iGEM team.",
   width: 1458,
   height: 1076,
 };
 
 const WESTLAKE_EXCHANGE: CollabPhoto = {
-  name: "fig-1-2-1-westlake-exchange.jpg",
+  name: "fig-1-2-1-westlake-exchange.avif",
   alt: "Group photograph from our in-person exchange with Westlake University iGEM team members and advisers.",
   width: 1933,
   height: 1280,
 };
 
 const HKU_EXCHANGE: CollabPhoto = {
-  name: "fig-1-3-1-hku-exchange.jpg",
+  name: "fig-1-3-1-hku-exchange.avif",
   alt: "Group photograph from our exchange with the University of Hong Kong iGEM team.",
   width: 1280,
   height: 959,
 };
 
 const USTC_EXCHANGE: CollabPhoto = {
-  name: "fig-1-4-1-ustc-hardware-discussion.jpg",
+  name: "fig-1-4-1-ustc-hardware-discussion.avif",
   alt: "Our discussion with the University of Science and Technology of China team in front of a presentation screen.",
   width: 1706,
   height: 1279,
 };
 
 const JILIN_EXCHANGE: CollabPhoto = {
-  name: "fig-1-5-1-jilin-exchange.jpg",
+  name: "fig-1-5-1-jilin-exchange.avif",
   alt: "Meeting room used for our exchange with the Jilin University team, with participants seated around a large table.",
   width: 1280,
   height: 959,
 };
 
 const SMART_MIRROR: CollabPhoto = {
-  name: "fig-1-6-1-smart-mirror.jpg",
+  name: "fig-1-6-1-smart-mirror.avif",
   alt: "Smart mirror prototype displaying joint-angle, heart-rate and exercise-guidance data during a rehabilitation session.",
   width: 722,
   height: 1280,
 };
 
 const SHENZHEN_TEAM: CollabPhoto = {
-  name: "fig-2-1-1-1-shenzhen-team.jpg",
+  name: "fig-2-1-1-1-shenzhen-team.avif",
   alt: "Team photograph in front of the SynBio Challenges 2026 backdrop at the Shenzhen Synthetic Biology Innovation Competition.",
   width: 1923,
   height: 1280,
 };
 
 const SHENZHEN_PRESENTATION_1: CollabPhoto = {
-  name: "fig-2-1-1-2-shenzhen-presentation-1.jpg",
+  name: "fig-2-1-1-2-shenzhen-presentation-1.avif",
   alt: "Team member presenting the SnoopLigase-ZJU project on stage at the Shenzhen Synthetic Biology Innovation Competition.",
   width: 1706,
   height: 1279,
 };
 
 const SHENZHEN_PRESENTATION_2: CollabPhoto = {
-  name: "fig-2-1-1-3-shenzhen-presentation-2.jpg",
+  name: "fig-2-1-1-3-shenzhen-presentation-2.avif",
   alt: "Team member presenting modelling results on stage at the Shenzhen Synthetic Biology Innovation Competition.",
   width: 1706,
   height: 1279,
 };
 
 const EAST_CHINA_MEETUP_1: CollabPhoto = {
-  name: "fig-2-1-2-1-east-china-meetup-1.jpg",
+  name: "fig-2-1-2-1-east-china-meetup-1.avif",
   alt: "Participating teams gathered in front of an East China iGEM Meetup banner.",
   width: 1932,
   height: 1279,
 };
 
 const EAST_CHINA_MEETUP_2: CollabPhoto = {
-  name: "fig-2-1-2-2-east-china-meetup-2.jpg",
+  name: "fig-2-1-2-2-east-china-meetup-2.avif",
   alt: "Participants seated in the auditorium during the East China iGEM Meetup.",
   width: 1280,
   height: 682,
