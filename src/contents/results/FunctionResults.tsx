@@ -1,21 +1,23 @@
-import anisotropy from "./anisotropy-content.json";
-import gag from "./gag-content.json";
-import delivery from "./delivery-content.json";
+import { AnisotropyContent } from "./anisotropy-content";
+import { DeliveryContent } from "./delivery-content";
+import { GagContent } from "./gag-content";
 
 /* One content file per supplied manuscript; the renderer only knows how to
    present them. */
 const content = {
-  anisotropy: anisotropy.anisotropy,
-  gag: gag.gag,
-  delivery: delivery.delivery,
+  anisotropy: AnisotropyContent,
+  gag: GagContent,
+  delivery: DeliveryContent,
 };
 
-export function FunctionResults({ module }: { module: keyof typeof content }) {
+type FunctionModule = keyof typeof content;
+
+export function FunctionResults({ module }: { module: FunctionModule }) {
+  const Content = content[module];
+
   return (
-    <div
-      className="wetlab-results__original wetlab-results__function-original"
-      // Generated from the supplied English manuscripts with HTML escaping.
-      dangerouslySetInnerHTML={{ __html: content[module] }}
-    />
+    <div className="wetlab-results__original wetlab-results__function-original">
+      <Content />
+    </div>
   );
 }

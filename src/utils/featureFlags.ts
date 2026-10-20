@@ -10,8 +10,8 @@
  *                    `src/contents/resultsPrimitive.tsx` and
  *                    `src/contents/experimentsPrimitive.tsx`.
  *
- * The two formats share the same content files (scaffold-content.json,
- * anisotropy-content.json, gag-content.json, delivery-content.json), so
+ * The two formats share the same TSX content components (scaffold, anisotropy,
+ * GAG retention, and delivery), so
  * flipping this constant only changes the presentation.
  */
 export const Is_Primitive_ExprRes = false;

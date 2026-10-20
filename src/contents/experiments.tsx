@@ -4,7 +4,7 @@ import { SectionJump } from "../components/SectionJump";
 import { observeAndWhitenImages } from "../components/whitenImages";
 import { Is_Primitive_ExprRes } from "../utils/featureFlags";
 import { ExperimentsPrimitive } from "./experimentsPrimitive";
-import split from "./results/wetlabSplit.json";
+import split from "./results/wetlabSplit";
 import "./results/wetlabSplit.css";
 
 // The paired Results page carries the same section ids; page-only ids fall

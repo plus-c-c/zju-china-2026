@@ -4,7 +4,10 @@
   "license": "CC-BY-4.0",
   "type": "module",
   "scripts": {
+    "generate:wetlab": "python3 scripts/split-wetlab.py",
+    "predev": "npm run generate:wetlab",
     "dev": "vite",
+    "prebuild": "npm run generate:wetlab",
     "build": "tsc && vite build",
     "lint": "eslint . --max-warnings 0",
     "format": "prettier --write \"**/*.{ts,tsx,md,json,css}\"",

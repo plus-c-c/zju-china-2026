@@ -1,8 +1,12 @@
 import { References } from "../components/References";
-import { formatReferenceHtml } from "../components/referenceFormatting";
 import { useEffect, useRef, useState } from "react";
 import { FunctionResults } from "./results/FunctionResults";
-import scaffold from "./results/scaffold-content.json";
+import {
+  ScaffoldConclusion,
+  ScaffoldContent,
+  ScaffoldIntro,
+  ScaffoldReferences,
+} from "./results/scaffold-content";
 import "./results/results.css";
 
 const functionModules = [
@@ -125,7 +129,7 @@ export function ResultsPrimitive() {
       <p className="wetlab-results__eyebrow">Wet Lab Work Summary</p>
       <section className="wetlab-results__introduction">
         <h2 id="wetlab-introduction">Introduction</h2>
-        <p>{scaffold.intro}</p>
+        <p><ScaffoldIntro /></p>
       </section>
       <div id="wetlab-modules" className="wetlab-results__modules">
         <nav
@@ -165,11 +169,9 @@ export function ResultsPrimitive() {
           </h2>
           <div id="wetlab-platform-content" hidden={!platformOpen}>
             {platformOpen && (
-              <div
-                className="wetlab-results__original"
-                // Generated from the manuscript with HTML escaping; wording is preserved.
-                dangerouslySetInnerHTML={{ __html: scaffold.platformHtml }}
-              />
+              <div className="wetlab-results__original">
+                <ScaffoldContent />
+              </div>
             )}
           </div>
         </section>
@@ -235,11 +237,11 @@ export function ResultsPrimitive() {
         </section>
       </div>
       <References>
-        <div className="references-list" dangerouslySetInnerHTML={{ __html: formatReferenceHtml(scaffold.referencesHtml) }} />
+        <div className="references-list"><ScaffoldReferences /></div>
       </References>
       <section className="wetlab-results__conclusion">
         <h2 id="wetlab-conclusion">Conclusion</h2>
-        <p>{scaffold.conclusion}</p>
+        <p><ScaffoldConclusion /></p>
       </section>
     </article>
   );
