@@ -24,3 +24,18 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Image assets are hosted on static.igem.wiki and must not be committed.
+# Binary formats:
+*.avif
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.webp
+*.bmp
+*.tif
+*.tiff
+*.ico
+# Small SVG diagrams in src/contents/engineering/assets are imported as raw
+# source code by the SEED / D-B-T-L components and remain part of the codebase.
