@@ -373,7 +373,10 @@ export function RehabilitationScene({ play }: { play: boolean }) {
               className="opening-text-line"
               style={openingLineStyle(2, "right")}
             >
-              <strong>~£2</strong>
+              {/* GBP 2bn × 1.3318 = USD 2.6636bn, rounded for display.
+                  Bank of England spot rate, 19 Oct 2026:
+                  https://www.bankofengland.co.uk/boeapps/database/Rates.asp?into=GBP&rateview=A */}
+              <strong>~$2.7</strong>
               <b>billion/yr.</b>
             </div>
             <span
