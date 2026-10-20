@@ -114,6 +114,15 @@
   color: #223c81;
 }
 
+.page-article .references-list .reference-entry {
+  scroll-margin-top: 112px;
+}
+
+.page-article .article-citation a:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+
 .page-article .references-list :is(strong, b) {
   background: none !important;
   font-weight: inherit;
