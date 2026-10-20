@@ -1,6 +1,7 @@
 import { useLayoutEffect, useRef, useState, type ReactNode } from "react";
 import { BirdLanding } from "./BirdCursor";
 import {
+  compactReferenceLinks,
   formatArticleCitations,
   formatReferenceHtml,
 } from "./referenceFormatting";
@@ -10,7 +11,7 @@ export function References({
   level = 2,
   title = "References",
   id = "references",
-  showBird = true,
+  showBird = title === "References",
 }: {
   children: ReactNode;
   level?: 2 | 3;
@@ -22,6 +23,10 @@ export function References({
   const content = useRef<HTMLDivElement>(null);
   const [logos, setLogos] = useState(1);
   const Heading = level === 3 ? "h3" : "h2";
+
+  useLayoutEffect(() => {
+    if (content.current) compactReferenceLinks(content.current);
+  }, [children]);
 
   useLayoutEffect(() => {
     let frame = 0;
