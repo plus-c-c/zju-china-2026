@@ -2,20 +2,24 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { flushSync } from "react-dom";
 import { Timeline, type TimelineItem } from "../components/Timeline";
-import { StakeholderChain } from "../components/StakeholderChain";
+import { ExtendCard } from "./entrepreneurship";
+import {
+  StakeholderChain,
+  type ChainStage,
+} from "../components/StakeholderChain";
 import { TransparentImage } from "../components/TransparentImage";
 import { SeedReaderRail } from "./human-practices/SeedReader";
 import "./human-practices.css";
 
 /** All figures live on the team static host. */
 const SURVEY_FIG =
-  "https://static.igem.wiki/teams/6102/wiki/images/engagement/ihp/questionnaire/h";
+  "https://static.igem.wiki/teams/6102/wiki/images/hp/h";
 const ACTIVITY_FIG =
-  "https://static.igem.wiki/teams/6102/wiki/images/engagement/ihp/questionnaire/l";
+  "https://static.igem.wiki/teams/6102/wiki/images/hp/l";
 const SYRINGE_FIG =
-  "https://static.igem.wiki/teams/6102/wiki/images/engagement/ihp/questionnaire/r";
+  "https://static.igem.wiki/teams/6102/wiki/images/hp/r";
 const LECTURE_FIG =
-  "https://static.igem.wiki/teams/6102/wiki/images/engagement/ihp/questionnaire/s";
+  "https://static.igem.wiki/teams/6102/wiki/images/hp/s";
 const SEED_RING =
   "https://static.igem.wiki/teams/6102/wiki/images/engagement/ihp/seed-ring.avif";
 const SURVEY_REPORT_PDF =
@@ -27,14 +31,24 @@ function Figure({
   src,
   alt,
   caption,
+  width,
+  height,
 }: {
   src: string;
   alt: string;
   caption: React.ReactNode;
+  width: number;
+  height: number;
 }) {
   return (
     <figure className="ihp-figure">
-      <img src={src} alt={alt} loading="lazy" />
+      <img
+        src={src}
+        alt={alt}
+        width={width}
+        height={height}
+        loading="lazy"
+      />
       <figcaption>{caption}</figcaption>
     </figure>
   );
@@ -57,6 +71,7 @@ function Figure({
  */
 function stakeholder(
   date: string,
+  stage: string,
   title: string,
   summary: string,
   rationale: string,
@@ -66,6 +81,7 @@ function stakeholder(
 ): TimelineItem {
   return {
     date,
+    stage,
     title,
     summary: <p>{summary}</p>,
     ...(imageId
@@ -82,9 +98,92 @@ function stakeholder(
   };
 }
 
+const STAKEHOLDER_PHOTO =
+  "https://static.igem.wiki/teams/6102/wiki/images/engagement/ihp";
+
+const photo = (id: string) => `${STAKEHOLDER_PHOTO}/${id}.avif`;
+
+/* People engaged at each stage; the map's dropdown cards show their avatars. */
+const chainStages: ChainStage[] = [
+  {
+    id: "patient",
+    label: "Patient",
+    people: [
+      { name: "Xuan Ge", image: photo("ihp-01") },
+      { name: "Yue Wang, Yu Xu & Fangrui Liang" },
+      { name: "Grandpa Gu" },
+    ],
+  },
+  {
+    id: "rd",
+    label: "R&D",
+    people: [
+      { name: "Prof. Ouyang Hongwei", image: photo("ihp-12") },
+      { name: "Songlin Shi", image: photo("ihp-22") },
+      { name: "Prof. Patrick Butaye", image: photo("ihp-15") },
+      { name: "Prof. Huang Wenwen", image: photo("ihp-17") },
+      { name: "Dr. Yi Junzhi", image: photo("ihp-36") },
+      { name: "Prof. Lin Si'en", image: photo("ihp-13") },
+      { name: "Prof. Li Xiaoming", image: photo("ihp-16") },
+      { name: "Prof. Wu Congjun", image: photo("ihp-20") },
+      { name: "Dr. Hong Yi", image: photo("ihp-19") },
+      { name: "Prof. Ma Guanghui", image: photo("ihp-35") },
+      { name: "Prof. Chen Ming", image: photo("ihp-37") },
+      { name: "Prof. Zhou Hong & Lin Lei", image: photo("ihp-24") },
+    ],
+  },
+  {
+    id: "treatment",
+    label: "Treatment",
+    people: [
+      { name: "Dr. Huang Jun", image: photo("ihp-02") },
+      { name: "Dr. Qiu Xiaoming", image: photo("ihp-08") },
+      { name: "Dr. Li Zhiguo", image: photo("ihp-43") },
+      { name: "Dr. Ren Bo", image: photo("ihp-09") },
+      { name: "Dr. Zhang Yumei", image: photo("ihp-10") },
+      { name: "Nurse Xue Han + 18 nurses", image: photo("ihp-11") },
+    ],
+  },
+  {
+    id: "manufacturing",
+    label: "Manufacturing",
+    people: [
+      { name: "Beijing Weixinkang" },
+      { name: "Shaanxi Lanyanwei", image: photo("ihp-38") },
+      { name: "Yuanyi Biology", image: photo("ihp-30") },
+      { name: "Shanghai Lingjiu", image: photo("ihp-28") },
+    ],
+  },
+  {
+    id: "market",
+    label: "Market Authorization & Access",
+    people: [
+      { name: "Li Zhuoya", image: photo("ihp-27") },
+      { name: "ZJU Innovation & Entrepreneurship College" },
+      { name: "Zhang Jie", image: photo("ihp-26") },
+      { name: "Prof. Erik Forsberg", image: photo("ihp-44") },
+      { name: "Prof. Li Jianqin", image: photo("ihp-34") },
+      { name: "Zhang Binghong", image: photo("ihp-39") },
+      { name: "Mavis Wu", image: photo("ihp-40") },
+      { name: "Tung Wah Hospital", image: photo("ihp-33") },
+      { name: "Legislator Lam Chit-yuen", image: photo("ihp-32") },
+    ],
+  },
+  {
+    id: "rehabilitation",
+    label: "Rehabilitation",
+    people: [
+      { name: "Dr. Shen Yang" },
+      { name: "Dr. Chen Bohang" },
+      { name: "Chen Xi (artist)" },
+    ],
+  },
+];
+
 const timelineItems: TimelineItem[] = [
   stakeholder(
     "Early February 2026",
+    "Patient",
     "Xuan Ge — cartilage injury in a competitive tennis player",
     "Xuan Ge described long-term discomfort after his injuries, the lack of early intervention and the burden of two hours of daily rehabilitation. The interview confirmed the need for focal cartilage repair and led us to develop a smart rehabilitation mirror that corrects exercise posture at home.",
     "After our survey showed that focal cartilage defects are a common form of hyaline cartilage injury, we looked for a high-risk group to interview and approached a key member of the Zhejiang University tennis team with ten years of competitive play.",
@@ -94,6 +193,7 @@ const timelineItems: TimelineItem[] = [
   ),
   stakeholder(
     "Mid-April 2026",
+    "Patient",
     "Yue Wang, Yu Xu and Fangrui Liang — the invisible pain after surgery",
     "The three post-operative patients described persistent pain, limited function and the extra burden of having their invisible pain dismissed. The interviews moved us to address the psychological and social side of treatment through science videos, public lectures and rehabilitation discussions with medical students.",
     "We met Yu Xu at the iGEM East China meet-up and found Yue Wang and Fangrui Liang through a Xiaohongshu discussion thread; all three had direct experience of post-operative cartilage injury.",
@@ -102,6 +202,7 @@ const timelineItems: TimelineItem[] = [
   ),
   stakeholder(
     "Late April 2026",
+    "Patient",
     "Grandpa Gu — cartilage care in a remote village",
     "The Yantan village visit revealed long travel distances to care, chronic joint problems managed with painkillers and low awareness of cartilage health. We wrote these observations on rural access into our survey report and pushed for community cartilage screening and education.",
     "To understand regional differences in care, we visited Yantan village — a small, seasonal-tourism village with many left-behind elderly people and limited transport.",
@@ -110,6 +211,7 @@ const timelineItems: TimelineItem[] = [
   ),
   stakeholder(
     "Early May 2026",
+    "Treatment",
     "Dr. Huang Jun — sports-medicine advice from a national team doctor",
     "Dr. Huang Jun started from athletes' needs and pointed out the limits of an operating-room injection, portability and quick recovery. The interview pushed us to explore acute-repair materials and drug-carrying modules that speed conservative treatment and reduce overtreatment.",
     "We wanted authoritative advice on sports injuries caused by cartilage defects, so we consulted Dr. Huang Jun, head of the joint department at the Zhejiang Sports Hospital and a member of the Zhejiang Medical Association's sports-medicine branch.",
@@ -119,6 +221,7 @@ const timelineItems: TimelineItem[] = [
   ),
   stakeholder(
     "Mid-May 2026",
+    "Treatment",
     "Dr. Qiu Xiaoming — tunable SELP for different joints",
     "Dr. Qiu Xiaoming pointed out that different joints bear different loads and need tunable strength. The interview led us to tune SELP through the 2KY repeat number and to match different defects with modelling.",
     "The first step of NEST was to choose a filler that meets the complex requirements of cartilage repair — filling the defect directly and relieving pain immediately. Dr. Qiu Xiaoming is an orthopaedic doctor at Sir Run Run Shaw Hospital in Hangzhou with extensive clinical experience and academic work, so we visited him.",
@@ -128,6 +231,7 @@ const timelineItems: TimelineItem[] = [
   ),
   stakeholder(
     "Late May 2026",
+    "Treatment",
     "Dr. Li Zhiguo — the diagnostic gap in early cartilage injury",
     "Dr. Li Zhiguo described patients with clear discomfort who do not meet clinical intervention standards. The interview confirmed the need to fill defects early and prompted us to verify the biocompatibility of non-autologous materials.",
     "Dr. Li Zhiguo is an orthopaedic physician in the joint department of Beijing Tongren Hospital's Mentougou campus and an authority on osteoarthritis with extensive surgical experience. We wanted to understand the inversion behind the sparse records — many cartilage-injury cases but few documented — and to have our first design assessed for feasibility.",
@@ -137,6 +241,7 @@ const timelineItems: TimelineItem[] = [
   ),
   stakeholder(
     "Early June 2026",
+    "Treatment",
     "Dr. Ren Bo — age-related immunity and material complexity",
     "Dr. Ren Bo warned that material complexity and age-related immune differences affect repair. The interview focused us on hyaline cartilage defects, led to a dose-adjustable immune module, and strengthened cartilage-health education for younger people.",
     "Dr. Ren Bo is director of the sports-medicine centre at Xi'an Honghui Hospital and a member of ICRS and APKASS, with expertise in immune research on biomimetic and regenerative cartilage. We sought his help on the linker connection and modular design.",
@@ -146,6 +251,7 @@ const timelineItems: TimelineItem[] = [
   ),
   stakeholder(
     "Mid-June 2026",
+    "Treatment",
     "Dr. Zhang Yumei — who the material complements rehabilitation",
     "Dr. Zhang Yumei defined the patients for whom the material complements conservative rehabilitation and warned that unsupervised home training with poor form can worsen wear. The interview led to the rehabilitation-mirror concept, which uses movement correction to reduce ongoing damage.",
     "Almost everyone we interviewed had been through rehabilitation, so we asked a rehabilitation physician about clinical practice. Dr. Zhang Yumei of Nanjing Medical University's First Affiliated Hospital has extensive experience in post-operative cartilage injury and early-to-mid osteoarthritis rehabilitation.",
@@ -155,6 +261,7 @@ const timelineItems: TimelineItem[] = [
   ),
   stakeholder(
     "Late June 2026",
+    "Treatment",
     "Nurse Xue Han and 18 nurses — redesigning the hardware around the ward",
     "Eighteen nurses gave feedback on workflow, training and device compatibility. Their input led to the integrated endoscope and instrument, the electronic manual and Bluetooth screen mirroring, and a syringe-damping blind test that improved precise dosing.",
     "The hardware is used by clinical staff, so we took our first design to a professional nursing team rather than deciding its details internally.",
@@ -184,6 +291,7 @@ const timelineItems: TimelineItem[] = [
   ),
   stakeholder(
     "Late June 2026",
+    "R&D",
     "Prof. Ouyang Hongwei — defining the indication and the degradation window",
     "Prof. Ouyang Hongwei helped us narrow the indication to focal, partial-thickness cartilage defects and early degeneration, and required degradation to match tissue regeneration. The interview led to degradation curves that clarify the platform's treatment boundary.",
     "NEST began as an injectable, in-situ hydrogel, but internally “cartilage repair” and “treating osteoarthritis” were used almost interchangeably. We consulted Prof. Ouyang Hongwei to clarify the repair scenario and the boundary of the indication.",
@@ -193,6 +301,7 @@ const timelineItems: TimelineItem[] = [
   ),
   stakeholder(
     "Early July 2026",
+    "R&D",
     "Songlin Shi — questioning the magnetic and protein routes",
     "Songlin Shi questioned the trade-off between magnetic particle orientation and clearance, and the reliability of protein performance after denaturation and refolding. The interview led to a low-field, fast-crosslinking scheme and to ITC purification that protects protein structure.",
     "We met Songlin Shi, a doctoral researcher at Westlake University's School of Medicine and a former CCiC chair, while the three functional modules were taking shape but their compatibility, hardware support and protein feasibility had not been thought through.",
@@ -202,6 +311,7 @@ const timelineItems: TimelineItem[] = [
   ),
   stakeholder(
     "Early July 2026",
+    "R&D",
     "Prof. Patrick Butaye — de-risking SELP expression",
     "Prof. Butaye advised validating SELP expression and phase behaviour at small scale before scaling up. The team completed expression and ITC-purification validation accordingly, lowering the risk of discovering protein problems only after large batches.",
     "The whole NEST route rested on an unverified assumption — that SELP, a large, highly repetitive protein, could be expressed normally in E. coli. Prof. Patrick Butaye, vice-dean of City University of Hong Kong's veterinary school and an expert in the field, was asked whether expression would work and whether abnormal folding or membrane issues should be expected.",
@@ -211,6 +321,7 @@ const timelineItems: TimelineItem[] = [
   ),
   stakeholder(
     "Mid-July 2026",
+    "R&D",
     "Prof. Huang Wenwen — scalability and the salt/crosslinking link",
     "Prof. Huang Wenwen pointed out that residual salt from ITC purification hinders photocrosslinking. We added dialysis to remove it, solved the gelation problem, reached about two-second visible-light gelation, and now optimise purification and gelation as one continuous flow.",
     "NEST makes SELP chain length, domain ratio, functional residues and peptide interfaces designable parameters. We asked Prof. Huang Wenwen, a researcher in the SELP field, about platform scalability and about the process link between purification and rapid photocrosslinking.",
@@ -220,6 +331,7 @@ const timelineItems: TimelineItem[] = [
   ),
   stakeholder(
     "Mid-July 2026",
+    "R&D",
     "Dr. Yi Junzhi — proving modularity by assembly efficiency",
     "Dr. Yi Junzhi required modularity to be proven by assembly efficiency, function retention and reproducibility. The interview led us to a high-efficiency ligation system, a comparison of tag insertion positions, and a flexible linker to reduce steric shielding.",
     "“Modules can be plugged in” was still a claim on a design drawing: the scaffold stays, the functional units change, but we could not say what proved it. We consulted Dr. Yi Junzhi, a researcher at Zhejiang University's Liangzhu Laboratory working on modular protein engineering and bone tissue engineering.",
@@ -229,6 +341,7 @@ const timelineItems: TimelineItem[] = [
   ),
   stakeholder(
     "Late July 2026",
+    "R&D",
     "Prof. Lin Si'en — from particle alignment to a real anisotropic network",
     "Prof. Lin Si'en distinguished particle orientation, network orientation and direction-dependent mechanics, showing each must be verified separately. The interview led us to a magnetic-particle-binding peptide that anchors particles to the SELP scaffold and transmits the field force.",
     "Our early magnetic module simply mixed Fe₃O₄ nanoparticles into the SELP precursor, applied a field and crosslinked — with no anchoring mechanism and no plan to prove that anything had aligned. We asked Prof. Lin Si'en at the University of Hong Kong how structural orientation becomes measurable tissue-engineering function.",
@@ -238,6 +351,7 @@ const timelineItems: TimelineItem[] = [
   ),
   stakeholder(
     "Late July 2026",
+    "R&D",
     "Prof. Li Xiaoming — linking field-induced structure to local mechanics",
     "The discussion with Prof. Li Xiaoming connected the magnetic field, structural orientation and local mechanical response, leading to a four-phase model that includes the crosslinking sequence. The model guides sampling; YAP/TAZ cell responses still require separate validation.",
     "We wanted to connect external-field control, structural change and the local mechanical environment that cells sense, so that modelling could guide experiments. Prof. Li Xiaoming's Advanced Science work on biomimetic gradient hydrogels drew our attention, and we contacted him online.",
@@ -247,6 +361,7 @@ const timelineItems: TimelineItem[] = [
   ),
   stakeholder(
     "Early August 2026",
+    "R&D",
     "Prof. Wu Congjun — timing the light trigger",
     "Prof. Wu Congjun helped distinguish the filling and orientation window before illumination from the fast fixation required after it. The workflow now fixes injection, observation and magnetic orientation before the blue light, with an independently controlled light source.",
     "NEST's precursor must stay flowable for injection and shaping, then form a stable network on demand. We discussed with Prof. Wu Congjun, chair of Westlake University's theoretical physics department, how blue light should trigger crosslinking and when it should be switched on.",
@@ -256,6 +371,7 @@ const timelineItems: TimelineItem[] = [
   ),
   stakeholder(
     "Early August 2026",
+    "R&D",
     "Dr. Hong Yi — what “adhesion” actually means",
     "Dr. Hong Yi split the vague idea of adhesion into wet-state bonding, shape retention and long-term interface integration, prompting lap-shear, compression and rheology tests and a clearer covalent mechanism for bonding to host cartilage.",
     "We assumed that because SELP gels, fills the defect and looks attached, adhesion was solved. The joint environment is wet and cyclically loaded, so we asked Dr. Hong Yi, a researcher at Zhejiang University's Liangzhu Laboratory working on biomimetic cartilage and medical tissue adhesives, to examine the interface.",
@@ -265,6 +381,7 @@ const timelineItems: TimelineItem[] = [
   ),
   stakeholder(
     "Mid-August 2026",
+    "R&D",
     "Prof. Ma Guanghui — from a module list to a process",
     "Prof. Ma Guanghui asked whether the components are compatible under temperature, salt, light and storage. The interview turned the module list into a stepwise process with batch quality indicators, and mitochondrial payload integrity is now evaluated separately.",
     "The three functional modules had each taken shape, but we were still thinking module by module. We asked Prof. Ma Guanghui about feasibility, because it depends not only on each component working but on their compatibility in order, stability and storage.",
@@ -274,6 +391,7 @@ const timelineItems: TimelineItem[] = [
   ),
   stakeholder(
     "Mid-August 2026",
+    "R&D",
     "Prof. Chen Ming — making models verifiable",
     "Across four meetings, Prof. Chen Ming required clear variables, model assumptions and experimental evidence. The team split five design variables, assigned each modelling scale its question, and calibrated predictions with rheology, gelation and directional mechanics.",
     "We expected modelling to tell us directly which sequence was best and saw the software mainly as a display. We asked Prof. Chen Ming at Zhejiang University whether that view holds up from a systems-modelling and data-analysis perspective.",
@@ -283,6 +401,7 @@ const timelineItems: TimelineItem[] = [
   ),
   stakeholder(
     "Mid-August 2026",
+    "R&D",
     "Prof. Zhou Hong and Lin Lei — the AI rehabilitation mirror",
     "Because rehabilitation is long and hard to sustain, the team worked with Lin Lei's group on a smart rehabilitation mirror. Clinical advice and patient research defined the training content, while motion monitoring and demonstration feedback help patients train correctly and keep going at home.",
     "Our patient interviews showed that rehabilitation is effective but long, repetitive and hard to sustain, especially when it requires repeated trips to hospital. We approached Prof. Zhou Hong and Lin Lei's team at the School of Biomedical Engineering to explore a home-based alternative.",
@@ -292,6 +411,7 @@ const timelineItems: TimelineItem[] = [
   ),
   stakeholder(
     "Mid-August 2026",
+    "Manufacturing",
     "Beijing Weixinkang — planning the first factory samples",
     "Beijing Weixinkang raised purification, transport and hospital-acceptance requirements from a factory perspective, leading to different purification routes for SELP and the functional proteins and helping estimate equipment, annual output and first-generation sample costs.",
     "As we considered factory-scale production, our literature review showed we needed a mature partner to produce the first samples, so we approached Beijing Weixinkang Medical.",
@@ -300,6 +420,7 @@ const timelineItems: TimelineItem[] = [
   ),
   stakeholder(
     "Late August 2026",
+    "Manufacturing",
     "Shaanxi Lanyanwei — what a product must define before translation",
     "Lanyanwei's chief scientist helped clarify whether the first delivery is the material, the functional components or the complete system. The discussion led to separate use, assembly, storage, operating requirements and open questions, with clear responsibilities for the team and partners.",
     "NEST already linked material, functional modules and a companion device, but how a research plan becomes a product with clear boundaries, production requirements and sales conditions still needed work. We drew on Lanyanwei's experience in translating research and clinical results.",
@@ -309,6 +430,7 @@ const timelineItems: TimelineItem[] = [
   ),
   stakeholder(
     "Late August 2026",
+    "Manufacturing",
     "Yuanyi Biology — scale-up and batch consistency",
     "Yuanyi Biology asked about expression yield, purification recovery and formulation consistency. The team now plans cross-batch records and sample traceability and includes purification losses, testing and storage in the scale-up cost estimate.",
     "NEST's SELP scaffold and functional components depend on recombinant expression and assembly. As sample demand grows, we needed to understand what happens when laboratory expression and purification are scaled, so we met founder Zhang Li online at Yuanyi Biology.",
@@ -318,6 +440,7 @@ const timelineItems: TimelineItem[] = [
   ),
   stakeholder(
     "Early September 2026",
+    "Manufacturing",
     "Shanghai Lingjiu — scoping a CDMO collaboration",
     "The discussion with Shanghai Lingjiu turned contract manufacturing into material responsibilities, trial formulation, scale and acceptance criteria. The team plans a technology-transfer package, a small trial batch compared with lab samples, and then quality and delivery responsibilities.",
     "To move NEST from research samples to repeatable delivery, we assessed external manufacturing partners and identified Shanghai Lingjiu Medical Technology as a potential CDMO.",
@@ -327,6 +450,7 @@ const timelineItems: TimelineItem[] = [
   ),
   stakeholder(
     "Early September 2026",
+    "Market access",
     "Li Zhuoya — keeping a student team going",
     "Li Zhuoya started from how a student team keeps going after the competition, asking about technical responsibilities, experiment reproducibility and how results are presented. The interview led to a handover and version-management plan with owners, stage goals and priorities for each route.",
     "We wanted to understand how a student team continues to build technology, organise people and attract partners after the competition, so that the project does not stop when members graduate.",
@@ -336,6 +460,7 @@ const timelineItems: TimelineItem[] = [
   ),
   stakeholder(
     "Mid-September 2026",
+    "Market access",
     "ZJU Innovation & Entrepreneurship College — matching support to stages",
     "Through Mr Wang Feifan, the team joined research training, survey and entrepreneurship programmes. The discussion led to mapping university support onto concrete deliverables and sharing experiment, budget and result records to support continued development and handover.",
     "NEST spans material research, device development and start-up preparation, and needs sustained collaboration and resources. We approached Zhejiang University's Innovation and Entrepreneurship College to understand the support available at different stages.",
@@ -344,6 +469,7 @@ const timelineItems: TimelineItem[] = [
   ),
   stakeholder(
     "Mid-September 2026",
+    "Market access",
     "Zhang Jie — what to prove first",
     "Zhang Jie asked, from an investor's view, about the first product's value, competitor differences and full use cost. The interview narrowed the validation scope, separated the near-term product from later module expansion, and led to an initial cooperation intent for the first sample batch.",
     "NEST is a platform, but its modules differ in maturity, validation cost and value. We wanted an investor's view of what the project should prove first and which progress limited funding should support.",
@@ -353,6 +479,7 @@ const timelineItems: TimelineItem[] = [
   ),
   stakeholder(
     "Late September 2026",
+    "Market access",
     "Erik Forsberg — cost structure and pilot markets",
     "Prof. Erik Forsberg supplied data and an analytical framework for cost modelling, guiding market sizing and commercial feasibility and bringing Hong Kong into the comparison of potential pilot markets.",
     "Our cost estimates were limited by a lack of practical knowledge, so we asked Erik Forsberg, an experienced hardware professor who teaches entrepreneurship at Zhejiang University, to act as our business adviser.",
@@ -362,6 +489,7 @@ const timelineItems: TimelineItem[] = [
   ),
   stakeholder(
     "Late September 2026",
+    "Market access",
     "Prof. Li Jianqin — a staged commercialisation path",
     "Prof. Li Jianqin helped organise pre-launch preparation and equity arrangements, stressing that contributions, intellectual property and partnerships must be clarified first. The team now plans staged deliverables, funding and owners that keep continuity through departures and later financing.",
     "As NEST moved from research toward entrepreneurship, the team had to consider technology development order, funding, intellectual property and organisation. We consulted Prof. Li Jianqin at Zhejiang University's School of Economics.",
@@ -371,6 +499,7 @@ const timelineItems: TimelineItem[] = [
   ),
   stakeholder(
     "Early October 2026",
+    "Market access",
     "Zhang Binghong — writing a report government can use",
     "Zhang Binghong guided the team to organise the survey around government needs and propose a replicable action plan. The team completed the cartilage-health report and received a reply from the Hangzhou Health Commission, providing a basis for community outreach.",
     "We wanted our survey findings to reach the people who can act on them. Zhang Binghong, secretary of the RTC Talent Development Business School and an international senior entrepreneurship coach with experience in government relations and support for vulnerable groups, was a judge at our Dandelion competition and discussed the report with us afterwards.",
@@ -380,6 +509,7 @@ const timelineItems: TimelineItem[] = [
   ),
   stakeholder(
     "Early October 2026",
+    "Market access",
     "Mavis Wu — the payment perspective",
     "Mavis Wu explained how hospital adoption and insurance payment are linked and advised preparing payer-facing product information. The team now includes material, consumable and procedure costs and organises the patient-benefit data needed for reimbursement discussions.",
     "Access also depends on who pays. Mainland resident medical insurance requires mature therapies and long approval cycles, so we looked at commercial insurance and asked Mavis Wu, a branch director at Prudential and a 2026 QAA award winner, about payment arrangements.",
@@ -389,6 +519,7 @@ const timelineItems: TimelineItem[] = [
   ),
   stakeholder(
     "Mid-October 2026",
+    "Market access",
     "Tung Wah Hospital — hospital adoption in Hong Kong",
     "The discussion with Tung Wah Hospital turned hospital cooperation into target departments, a first formulation, product classification and safety and efficacy evidence, and mapped procurement, training and batch-traceability requirements for later clinical collaboration.",
     "After speaking with Mavis Wu, we wanted to understand hospital admission standards, so we contacted the medical services team of Tung Wah Hospital and the centre director to explore how NEST could enter a hospital.",
@@ -398,6 +529,7 @@ const timelineItems: TimelineItem[] = [
   ),
   stakeholder(
     "Mid-October 2026",
+    "Market access",
     "Legislator Lam Chit-yuen — Hong Kong's device listing",
     "The discussion with Legislator Lam focused on Hong Kong device access and the classification of composite materials. It led the team to revisit the first product and consider launching the simpler SELP material first, spreading translation cost and access work across stages.",
     "Entering a hospital still requires MDACS listing under the Hong Kong Department of Health, and device access standards have been changing. We consulted Lam Chit-yuen, a legislator for the medical and health sector.",
@@ -620,33 +752,23 @@ function SituatedBlock() {
         scheme — which stakeholders also approved.
       </p>
 
-      <h4
-        id="ihp-syringe-questionnaire"
-        className="mt-5 mb-3"
-        data-toc="include"
-      >
+      <h4 id="ihp-syringe-questionnaire" className="mt-5 mb-3">
         Syringe operation questionnaire
       </h4>
       <p>
         The syringe is the part of the hardware the clinician actually holds, so
-        before fixing its design we ran an operation-experience questionnaire.
-        In the simulated run 24 participants — clinicians, researchers, device
-        developers, students and other users — each evaluated three
-        configurations (A, B, C) in a balanced repeated-measures design, giving
-        72 evaluations. The figures compare the configurations on start-up
-        force, resistance, speed and stop control, hand fatigue, operational
-        problems and overall satisfaction; configuration B had the most
-        balanced profile, which informed the scheme we carried forward. These
-        are simulated results for layout and comparison, not clinical
-        evidence.
+        before fixing its design we ran an operation-experience questionnaire
+        with 24 participants, each evaluating three configurations (A, B, C).
       </p>
       <Figure
         src={`${SYRINGE_FIG}/r1-participant-design-en.avif`}
-        alt="Figure R1 — participant profile and evaluation design"
+        alt="Figure 7 — participant profile and evaluation design"
+        width={4000}
+        height={1297}
         caption={
           <>
             <strong>
-              Figure R1 | Participant profile and evaluation design (24
+              Figure 7 | Participant profile and evaluation design (24
               participants, 72 evaluations).
             </strong>{" "}
             (A) Participant roles. (B) Prior syringe use. (C) Balanced
@@ -656,13 +778,24 @@ function SituatedBlock() {
           </>
         }
       />
+      <ExtendCard title="Questionnaire details: design, figures and comparison">
+        <p>
+          In the simulated run 24 participants — clinicians, researchers, device
+          developers, students and other users — each evaluated three
+          configurations (A, B, C) in a balanced repeated-measures design, giving
+          72 evaluations. The figures compare the configurations on start-up
+          force, resistance, speed and stop control, hand fatigue, operational
+          problems and overall satisfaction.
+        </p>
       <Figure
         src={`${SYRINGE_FIG}/r2-performance-profile-en.avif`}
-        alt="Figure R2 — favourable response profile across syringe configurations"
+        alt="Figure 8 — favourable response profile across syringe configurations"
+        width={4000}
+        height={1205}
         caption={
           <>
             <strong>
-              Figure R2 | Favourable response profile across syringe
+              Figure 8 | Favourable response profile across syringe
               configurations (n = 24 per configuration).
             </strong>{" "}
             Values show the proportion of favourable responses for start force,
@@ -676,10 +809,12 @@ function SituatedBlock() {
       />
       <Figure
         src={`${SYRINGE_FIG}/r3-problems-overall-en.avif`}
-        alt="Figure R3 — operational problems and overall evaluation"
+        alt="Figure 9 — operational problems and overall evaluation"
+        width={4000}
+        height={1036}
         caption={
           <>
-            <strong>Figure R3 | Operational problems and overall evaluation.</strong>{" "}
+            <strong>Figure 9 | Operational problems and overall evaluation.</strong>{" "}
             (A) Proportion reporting any operational problem, no problem, or
             unable to judge (Q11). (B) Satisfaction (Q12 D+E) and willingness to
             reuse (Q13 D+E) by configuration. Configuration B had the most
@@ -691,11 +826,13 @@ function SituatedBlock() {
       />
       <Figure
         src={`${SYRINGE_FIG}/r4-feedback-themes-en.avif`}
-        alt="Figure R4 — illustrative operator feedback themes"
+        alt="Figure 10 — illustrative operator feedback themes"
+        width={4000}
+        height={1844}
         caption={
           <>
             <strong>
-              Figure R4 | Illustrative operator feedback themes for
+              Figure 10 | Illustrative operator feedback themes for
               configurations A, B, C and general suggestions.
             </strong>{" "}
             The statements are simulated feedback directions, not verbatim
@@ -703,6 +840,13 @@ function SituatedBlock() {
           </>
         }
       />
+
+      </ExtendCard>
+      <p>
+        Configuration B had the most balanced profile, which informed the
+        scheme we carried forward. These are simulated results for layout and
+        comparison, not clinical evidence.
+      </p>
 
       <h4 className="mt-4 mb-2">Cycle 2 — Manufacturing</h4>
       <p data-seed-phase="spark">S: We wanted our material to be
@@ -785,8 +929,12 @@ function DiscoveryBlock() {
         (~150 responses), community sites in Hangzhou (Qigudeng Street, Sandun
         Town) and Tianjin (~1,200), and Chinese online platforms (Xiaohongshu,
         CDM patient groups; ~300). In total we collected{" "}
-        <strong>1,654 valid responses</strong>. 23.8% reported personal or
-        family experience of cartilage injury. The university sample was
+        <strong>1,654 valid responses</strong>.
+      </p>
+      <ExtendCard title="Survey details: responses, figures and clinical context">
+        <p>
+          23.8% reported personal or family experience of cartilage injury. The
+          university sample was
         dominated by focal traumatic defects; community OA concentrated in older
         adults; and the online platforms discussed OA and post-operative
         injuries (ACL reconstruction, patellar surgery, tenosynovitis surgery)
@@ -795,6 +943,8 @@ function DiscoveryBlock() {
       <Figure
         src={`${SURVEY_FIG}/fig1-survey-reach-prevalence-en.avif`}
         alt="Figure 1 — survey reach and experience of cartilage injury"
+        width={4000}
+        height={1635}
         caption={
           <>
             <strong>
@@ -821,6 +971,8 @@ function DiscoveryBlock() {
       <Figure
         src={`${SURVEY_FIG}/fig2-clinical-landscape-en.avif`}
         alt="Figure 2 — clinical profile across survey channels"
+        width={4000}
+        height={2179}
         caption={
           <>
             <strong>Figure 2 | Clinical profile across survey channels.</strong>{" "}
@@ -845,6 +997,8 @@ function DiscoveryBlock() {
       <Figure
         src={`${SURVEY_FIG}/fig3-sites-symptoms-en.avif`}
         alt="Figure 3 — broad injury sites and persistent symptom burden"
+        width={4000}
+        height={1321}
         caption={
           <>
             <strong>
@@ -877,6 +1031,8 @@ function DiscoveryBlock() {
       <Figure
         src={`${SURVEY_FIG}/fig4-treatment-recovery-en.avif`}
         alt="Figure 4 — treatment pathways, recovery, and patient preference"
+        width={4000}
+        height={2192}
         caption={
           <>
             <strong>
@@ -902,6 +1058,8 @@ function DiscoveryBlock() {
       <Figure
         src={`${SURVEY_FIG}/fig5-patient-experience-en.avif`}
         alt="Figure 5 — patient-reported pain scenarios, sensations, and life impact"
+        width={4000}
+        height={1296}
         caption={
           <>
             <strong>
@@ -915,11 +1073,39 @@ function DiscoveryBlock() {
         }
       />
       <p>
+        We also asked whether people would use an injectable, sterile material
+        produced by synthetic biology. Willing and willing-to-try answers add up
+        to 28.6%, while the largest group — 52.4% — said they were somewhat
+        afraid. Being afraid signals concern rather than refusal, and this
+        question does not show what people fear; we read it together with the
+        education and trust work in Trust and Lasting Impact.
+      </p>
+      <Figure
+        src={`${SURVEY_FIG}/fig6.avif`}
+        alt="Figure 6 — willingness to use an injectable, sterile material produced by synthetic biology"
+        width={3570}
+        height={1591}
+        caption={
+          <>
+            <strong>
+              Figure 6 | Willingness to use an injectable, sterile material
+              produced by synthetic biology (n = 1,654).
+            </strong>{" "}
+            (A) Very willing: 4.78% (79). (B) Willing to try: 23.82% (394). (C)
+            Somewhat afraid: 52.36% (866). (D) Definitely would not use: 19.04%
+            (315). Willing and willing-to-try together are 28.60%; “somewhat
+            afraid” expresses concern rather than refusal, and the question does
+            not show what participants fear.
+          </>
+        }
+      />
+      <p>
         The literature tells the same story: statistics are relatively complete
         only for OA, while focal traumatic and post-operative defects are barely
         recorded. For design safety we chose OA — the best-documented and most
-        widespread condition — as NEST&rsquo;s first application.
-      </p>
+          widespread condition — as NEST&rsquo;s first application.
+        </p>
+      </ExtendCard>
       <p>
         The clinic itself is not settled. No authority defines how much
         cartilage loss counts as disease; even for OA, the authoritative
@@ -1003,15 +1189,22 @@ function ImpactBlock() {
         Medicine and Health Services Management. We also ran medical-anthropology
         lectures and seminars to raise future doctors&rsquo; awareness.
       </p>
-      <h4 className="mt-5 mb-3" data-toc="include">
+      <h4 className="mt-5 mb-3">
         Reports behind the neglected pain
       </h4>
       <p>
-        Two documents record this work in full: our survey report on the
-        neglected pain of cartilage injury, and the report we submitted to the
-        Hangzhou Health Commission. Both are embedded below and can be opened in
-        a new tab.
+        Two documents record this work in full: the{" "}
+        <a href={SURVEY_REPORT_PDF} target="_blank" rel="noreferrer">
+          survey report on the neglected pain of cartilage injury
+        </a>{" "}
+        and the{" "}
+        <a href={HEALTH_COMMISSION_PDF} target="_blank" rel="noreferrer">
+          report submitted to the Hangzhou Health Commission
+        </a>
+        . Open the card below to read both reports here, or use the links to
+        open them in a new tab.
       </p>
+      <ExtendCard title="Read the full reports (PDF)">
       <div className="ihp-pdf">
         <div className="ihp-pdf__head">
           <strong>Survey report — the neglected pain of cartilage injury</strong>
@@ -1040,6 +1233,7 @@ function ImpactBlock() {
           loading="lazy"
         />
       </div>
+      </ExtendCard>
 
       <p>
         <strong>SynBio education.</strong> In our education practice we were
@@ -1058,7 +1252,7 @@ function ImpactBlock() {
         <a href="#ihp-toolbox-anthro">Learn more</a>.
       </p>
 
-      <h4 className="mt-5 mb-3" data-toc="include">
+      <h4 className="mt-5 mb-3">
         Education activity — pre/post questionnaire
       </h4>
       <p>
@@ -1069,13 +1263,16 @@ function ImpactBlock() {
         from, the learning gain the activity produced, and the information
         participants most wanted. These are simulated illustrative results.
       </p>
+      <ExtendCard title="Questionnaire figures: baseline, change and information needs">
       <Figure
         src={`${ACTIVITY_FIG}/fig1-baseline-awareness-en.avif`}
-        alt="Figure 1 — baseline awareness and knowledge of joint cartilage (pre-activity)"
+        alt="Figure 11 — baseline awareness and knowledge of joint cartilage (pre-activity)"
+        width={4000}
+        height={1248}
         caption={
           <>
             <strong>
-              Figure 1 | Baseline awareness and knowledge of joint cartilage
+              Figure 11 | Baseline awareness and knowledge of joint cartilage
               (pre-activity, n = 24).
             </strong>{" "}
             (A) Prior attention to cartilage health. (B) Self-rated
@@ -1087,11 +1284,13 @@ function ImpactBlock() {
       />
       <Figure
         src={`${ACTIVITY_FIG}/fig2-product-training-en.avif`}
-        alt="Figure 2 — product use, training, and perceived changes (pre-activity)"
+        alt="Figure 12 — product use, training, and perceived changes (pre-activity)"
+        width={4000}
+        height={2165}
         caption={
           <>
             <strong>
-              Figure 2 | Product use, training, and perceived changes
+              Figure 12 | Product use, training, and perceived changes
               (pre-activity, n = 24).
             </strong>{" "}
             (A) Products ever used (multi-select; 16/24 had used at least one
@@ -1106,11 +1305,13 @@ function ImpactBlock() {
       />
       <Figure
         src={`${ACTIVITY_FIG}/fig3-pre-post-change-en.avif`}
-        alt="Figure 3 — pre-post change in self-rated knowledge and willingness"
+        alt="Figure 13 — pre-post change in self-rated knowledge and willingness"
+        width={4000}
+        height={859}
         caption={
           <>
             <strong>
-              Figure 3 | Pre-post change in self-rated knowledge and willingness
+              Figure 13 | Pre-post change in self-rated knowledge and willingness
               (paired, n = 24).
             </strong>{" "}
             (A) Self-rated understanding increased from a mean of 2.08 to 3.63
@@ -1123,11 +1324,13 @@ function ImpactBlock() {
       />
       <Figure
         src={`${ACTIVITY_FIG}/fig4-post-knowledge-needs-en.avif`}
-        alt="Figure 4 — post-activity knowledge and information needs"
+        alt="Figure 14 — post-activity knowledge and information needs"
+        width={4000}
+        height={1321}
         caption={
           <>
             <strong>
-              Figure 4 | Post-activity knowledge and information needs (n = 24).
+              Figure 14 | Post-activity knowledge and information needs (n = 24).
             </strong>{" "}
             (A) Correct answer rate by knowledge question; the mean was 79.2%
             (6.33/8). (B) Distribution of individual total scores. (C)
@@ -1139,19 +1342,22 @@ function ImpactBlock() {
       />
       <Figure
         src={`${ACTIVITY_FIG}/fig5-feedback-themes-en.avif`}
-        alt="Figure 5 — illustrative feedback themes before and after the activity"
+        alt="Figure 15 — illustrative feedback themes before and after the activity"
+        width={4000}
+        height={1869}
         caption={
           <>
             <strong>
-              Figure 5 | Illustrative feedback themes from the simulated
+              Figure 15 | Illustrative feedback themes from the simulated
               open-text responses before and after the activity.
             </strong>{" "}
             The themes are not verbatim quotes and are not frequency-counted.
           </>
         }
       />
+      </ExtendCard>
 
-      <h4 className="mt-5 mb-3" data-toc="include">
+      <h4 className="mt-5 mb-3">
         SynBio lecture — pre/post questionnaire
       </h4>
       <p>
@@ -1164,13 +1370,16 @@ function ImpactBlock() {
         As with the other questionnaire figures on this page, the responses are
         simulated illustrative data, not real submissions.
       </p>
+      <ExtendCard title="Questionnaire figures: knowledge, acceptance and feedback">
       <Figure
         src={`${LECTURE_FIG}/s1-pre-awareness-en.avif`}
-        alt="Figure S1 — pre-lecture awareness and self-rated understanding"
+        alt="Figure 16 — pre-lecture awareness and self-rated understanding"
+        width={4000}
+        height={1297}
         caption={
           <>
             <strong>
-              Figure S1 | Pre-lecture awareness and self-rated understanding (n =
+              Figure 16 | Pre-lecture awareness and self-rated understanding (n =
               24).
             </strong>{" "}
             (A) Prior exposure to synthetic biology. (B) Self-rated
@@ -1181,11 +1390,13 @@ function ImpactBlock() {
       />
       <Figure
         src={`${LECTURE_FIG}/s2-pre-attitudes-en.avif`}
-        alt="Figure S2 — pre-lecture attitudes and expectations"
+        alt="Figure 17 — pre-lecture attitudes and expectations"
+        width={4000}
+        height={1300}
         caption={
           <>
             <strong>
-              Figure S2 | Pre-lecture attitudes and expectations (n = 24).
+              Figure 17 | Pre-lecture attitudes and expectations (n = 24).
             </strong>{" "}
             (A) Feelings about synthetic biology (multi-select). (B) Overall
             attitude toward synthetic biology. (C) Topics participants most
@@ -1195,11 +1406,13 @@ function ImpactBlock() {
       />
       <Figure
         src={`${LECTURE_FIG}/s3-post-knowledge-needs-en.avif`}
-        alt="Figure S3 — post-lecture knowledge, attitude, and information needs"
+        alt="Figure 18 — post-lecture knowledge, attitude, and information needs"
+        width={4000}
+        height={1300}
         caption={
           <>
             <strong>
-              Figure S3 | Post-lecture knowledge, attitude, and information needs
+              Figure 18 | Post-lecture knowledge, attitude, and information needs
               (n = 24).
             </strong>{" "}
             (A) Correct answer rate by knowledge question; the mean was 76.7%
@@ -1211,11 +1424,13 @@ function ImpactBlock() {
       />
       <Figure
         src={`${LECTURE_FIG}/s4-understanding-acceptance-en.avif`}
-        alt="Figure S4 — self-rated understanding and technology acceptance"
+        alt="Figure 19 — self-rated understanding and technology acceptance"
+        width={4000}
+        height={992}
         caption={
           <>
             <strong>
-              Figure S4 | Self-rated understanding and technology acceptance
+              Figure 19 | Self-rated understanding and technology acceptance
               (paired, n = 24).
             </strong>{" "}
             (A) Self-rated understanding increased from a mean of 2.17 to 3.63
@@ -1228,11 +1443,13 @@ function ImpactBlock() {
       />
       <Figure
         src={`${LECTURE_FIG}/s5-feedback-themes-en.avif`}
-        alt="Figure S5 — illustrative feedback themes before and after the lecture"
+        alt="Figure 20 — illustrative feedback themes before and after the lecture"
+        width={4000}
+        height={1844}
         caption={
           <>
             <strong>
-              Figure S5 | Illustrative feedback themes before and after the
+              Figure 20 | Illustrative feedback themes before and after the
               lecture.
             </strong>{" "}
             The statements are simulated feedback directions, not verbatim
@@ -1240,6 +1457,7 @@ function ImpactBlock() {
           </>
         }
       />
+      </ExtendCard>
     </>
   );
 }
@@ -1297,37 +1515,79 @@ function AnthroBlock() {
   );
 }
 
+/* The stakeholder interviews are grouped along the product path, matching
+   the stakeholder map above the timeline. */
+const TIMELINE_STAGES = [
+  "Patient",
+  "R&D",
+  "Treatment",
+  "Manufacturing",
+  "Market access",
+];
+
 function EngagementBlock() {
   return (
     <>
       <h3 className="mt-4 mb-3">Stakeholder Engagement</h3>
+
+      <h4 className="mt-4 mb-3" data-toc="include">
+        Stakeholders MAP
+      </h4>
       <p>
-        We organize stakeholders along the path a medical material takes from
-        the bench to the patient: Patient → R&amp;D → Treatment → Manufacturing →
-        Market Authorization &amp; Access → Rehabilitation. Hover (or tap) a
-        stage to see whom we engaged with at that stage and what we learned.
-        Talking with stakeholders showed how willing many scholars are to work
-        with a student team, which encouraged us to keep reaching out. For
-        patient privacy, every patient is anonymised unless they consented to
-        appear.
+        We wanted the stakeholders we interview to be comprehensive and the
+        process to be orderly. We therefore arranged the interviews for each
+        module according to the progress of the project design. In the end,{" "}
+        <strong>56 stakeholders</strong> took part in our interviews and
+        technical tests — patients, doctors, nurses, researchers, government
+        officials and administrative bodies, manufacturers, business advisers,
+        humanities scholars and artists.
       </p>
-      <StakeholderChain />
+      <StakeholderChain
+        stages={chainStages}
+        note="Out of respect for patient privacy, every patient is anonymised unless they consented to appear on camera."
+      />
+      <p className="mt-4">
+        In the Stakeholder Interviews we found it very hard to keep the
+        interviews comprehensive and orderly in our work plan, so we developed a
+        tool — <strong>StakeBridge</strong> — to help later teams organise their
+        stakeholder-interview material. Talking with stakeholders showed us how
+        willing many scholars are to communicate with student teams, while teams
+        we met at other iGEM events told us that reaching stakeholders is
+        difficult. Inspired by BioBricks and the parts registry, we want to
+        build a stakeholder-engagement library that keeps accumulating
+        experience and shows the stakeholders in a field who are willing to talk
+        to teams. Organised along the product's path from R&amp;D to
+        implementation, it collects roles, interview questions and integration
+        cases, so a team that does not yet know whom to ask, what to ask or how
+        to act can find a participation path that fits its own project.
+      </p>
+      {/* StakeBridge app: the interactive program is being implemented and
+          will be embedded below this paragraph. */}
 
       <h4
         id="ihp-engagement-timeline"
         className="mt-5 mb-3"
         data-toc="include"
       >
-        Engagement timeline
+        Stakeholder Interviews
       </h4>
       <p>
         What follows is a timeline of our interactions with the stakeholders who
-        made our NEST-based Integrated Human Practice possible. Each entry records whom we
-        met and what we discussed; open “Read more” for the rationale behind the
-        conversation, the interview summary and how the feedback changed the
-        project.
+        made our <a href="#nest">NEST-based</a> Integrated Human Practice
+        possible. Each entry records whom we met and what we discussed; open
+        “Read more” for the rationale behind the conversation, the interview
+        summary and how the feedback changed the project.
       </p>
-      <Timeline items={timelineItems} />
+      {TIMELINE_STAGES.map((stage) => {
+        const items = timelineItems.filter((item) => item.stage === stage);
+        if (!items.length) return null;
+        return (
+          <section key={stage} className="ihp-timeline-stage">
+            <h5 className="ihp-timeline-stage__title">{stage}</h5>
+            <Timeline items={items.map((item) => ({ ...item, date: "" }))} />
+          </section>
+        );
+      })}
 
       <h4 className="mt-5 mb-3" data-toc="include">
         Further reading
@@ -1355,9 +1615,9 @@ function EngagementBlock() {
 /* ------------------------------------------------------------------ */
 
 const HP_PAGES = [
-  { key: "engagement", label: "Stakeholder Engagement" },
   { key: "toolbox", label: "Toolbox" },
   { key: "nest", label: "NEST" },
+  { key: "engagement", label: "Stakeholder Engagement" },
 ];
 
 /* One continuous body per page: the sub-navigation is a scroll spy over the
@@ -1531,6 +1791,104 @@ function ToolboxPage() {
   );
 }
 
+const NEST_GLYPHS: Record<string, { w: number; h: number; d: string }> = {
+  N: {
+    w: 340,
+    h: 400,
+    d: "M409 3636 c-2 -3 -23 -7 -47 -10 -23 -3 -53 -13 -66 -23 -41 -30 -44 -45 -52 -298 -1 -49 -3 -103 -3 -118 0 -16 -4 -33 -7 -39 -4 -6 -6 -108 -6 -227 1 -119 1 -234 1 -256 -1 -22 -1 -48 0 -57 1 -21 1 -71 0 -95 -1 -10 0 -82 2 -161 1 -78 -1 -145 -4 -148 -3 -4 -1 -16 4 -27 8 -14 8 -22 -1 -27 -8 -5 -9 -10 -2 -14 7 -4 9 -140 6 -399 -5 -425 -7 -508 -18 -525 -3 -6 -2 -13 3 -16 5 -4 9 -93 9 -209 -1 -235 0 -463 1 -527 3 -207 0 -383 -9 -404 -22 -58 -37 -56 432 -56 l429 0 -6 82 c-3 45 -9 86 -13 92 -3 6 -7 117 -8 246 -1 129 -3 242 -4 250 0 8 2 71 6 140 7 117 8 279 5 730 -2 304 2 390 17 378 6 -6 12 -17 12 -24 0 -8 5 -14 10 -14 6 0 16 -12 22 -27 7 -16 20 -40 31 -55 10 -16 16 -28 13 -28 -3 0 4 -11 16 -25 12 -14 31 -40 42 -59 12 -19 37 -58 56 -87 19 -30 41 -67 49 -84 7 -16 17 -37 22 -45 5 -8 12 -22 16 -30 4 -8 12 -21 19 -30 52 -63 74 -95 74 -110 0 -10 9 -20 20 -23 11 -3 25 -19 31 -36 6 -17 15 -31 20 -31 5 0 9 -7 9 -15 0 -7 6 -18 13 -22 6 -4 21 -24 31 -43 10 -19 29 -46 41 -60 13 -14 26 -34 29 -45 3 -11 22 -37 41 -57 19 -20 35 -41 35 -46 0 -4 11 -19 25 -32 14 -13 25 -27 25 -32 0 -10 16 -31 43 -56 9 -9 17 -22 17 -29 0 -7 4 -13 10 -13 5 0 21 -23 35 -50 14 -28 33 -59 43 -69 9 -10 28 -37 40 -61 13 -23 45 -69 70 -102 26 -33 55 -75 64 -93 10 -18 26 -39 36 -47 10 -7 28 -30 41 -50 12 -21 27 -38 32 -38 5 0 9 -7 9 -15 0 -9 6 -18 14 -21 8 -3 18 -18 21 -34 3 -16 13 -34 21 -41 8 -6 14 -20 14 -30 0 -11 9 -27 20 -36 11 -10 20 -25 20 -34 0 -35 41 -39 429 -39 l379 0 14 23 c24 36 37 143 34 282 -2 72 -5 130 -6 130 -9 0 -27 1027 -19 1105 1 14 -1 37 -4 52 -3 16 -1 43 4 60 8 27 11 306 7 626 0 28 -6 70 -14 91 -8 23 -13 79 -13 133 1 51 0 192 0 313 -2 254 5 423 19 480 13 56 12 168 -2 202 -18 43 -74 93 -104 93 -14 0 -33 4 -42 9 -10 5 -46 5 -87 -1 -45 -6 -96 -6 -144 1 -50 6 -80 6 -87 0 -8 -7 -14 -6 -19 0 -3 6 -16 11 -28 11 -12 0 -53 3 -91 6 -96 9 -173 -9 -209 -48 -15 -17 -27 -37 -27 -44 0 -8 -4 -14 -8 -14 -9 0 -7 -251 3 -455 4 -66 8 -187 10 -270 1 -82 6 -202 9 -265 8 -127 9 -143 7 -180 -2 -64 -4 -117 -3 -135 0 -11 1 -54 1 -95 0 -41 0 -79 1 -85 5 -49 5 -265 0 -320 -4 -38 -8 -63 -8 -54 -1 8 -15 28 -32 44 -16 16 -30 34 -30 41 0 6 -20 32 -45 56 -25 25 -45 53 -45 63 0 10 -3 16 -6 12 -4 -3 -12 -1 -18 6 -23 24 -76 95 -76 102 0 3 -12 20 -27 36 -16 15 -41 47 -58 69 -16 22 -40 54 -52 69 -13 16 -23 36 -23 44 0 8 -18 34 -40 58 -22 24 -40 50 -40 56 0 7 -4 13 -9 13 -6 0 -16 11 -23 25 -23 43 -150 229 -169 248 -11 10 -19 26 -19 37 0 10 -3 20 -7 22 -10 4 -80 110 -106 158 -10 19 -24 40 -31 45 -6 6 -22 31 -36 58 -14 26 -37 62 -52 80 -16 17 -28 37 -28 43 0 5 -13 23 -28 40 -16 16 -44 58 -63 94 -18 36 -39 71 -46 78 -7 7 -13 20 -13 28 0 8 -4 14 -10 14 -5 0 -10 7 -10 15 0 9 -7 18 -15 21 -8 4 -15 15 -15 26 0 11 -13 39 -29 63 -16 24 -32 53 -36 64 -3 12 -11 21 -16 21 -5 0 -9 5 -9 12 0 7 -9 21 -20 33 -11 11 -28 31 -39 44 -24 32 -120 41 -180 18 -21 -9 -40 -14 -42 -12 -10 9 -183 27 -264 27 -49 0 -95 4 -101 9 -6 5 -13 7 -15 5z",
+  },
+  E: {
+    w: 335,
+    h: 400,
+    d: "M2915 3619 c-22 -5 -96 -9 -165 -8 -69 0 -129 0 -135 0 -5 0 -68 -3 -140 -6 -152 -6 -230 -6 -540 -1 -126 2 -306 4 -400 5 -93 0 -179 0 -190 1 -433 10 -486 10 -491 -5 -4 -8 -24 -18 -46 -21 -32 -6 -42 -13 -59 -45 -18 -36 -19 -59 -18 -336 1 -164 1 -381 1 -483 0 -102 2 -309 4 -460 6 -401 6 -443 -1 -1035 -7 -634 -8 -753 -6 -978 1 -92 0 -171 -4 -176 -3 -5 7 -23 21 -40 l26 -31 1157 0 c887 0 1160 3 1169 12 7 7 12 22 12 35 0 12 5 34 12 48 9 19 9 31 1 44 -7 11 -8 23 -1 34 5 10 5 17 0 17 -10 0 -8 185 3 288 6 57 4 67 -21 110 -15 26 -35 52 -43 59 -25 19 -80 15 -120 -9 -26 -17 -52 -23 -96 -23 -33 -1 -65 -4 -71 -7 -8 -5 -83 -3 -104 2 -9 3 -316 -1 -570 -7 -229 -5 -307 -8 -420 -16 -25 -2 -49 0 -55 4 -5 3 -35 3 -65 -2 -30 -4 -74 -8 -98 -8 l-43 -1 6 77 c12 164 17 327 18 555 0 131 1 238 1 238 1 0 33 3 71 6 39 3 84 9 100 13 17 4 145 9 285 10 298 3 248 3 390 -5 63 -3 149 -7 192 -8 42 0 80 -4 83 -8 4 -4 15 -3 24 1 9 5 52 12 96 16 102 9 140 31 156 88 14 50 18 338 5 422 -10 68 -26 89 -90 125 -43 23 -49 23 -93 11 -45 -12 -190 -20 -378 -20 -44 -1 -129 -1 -190 -2 -60 0 -159 0 -220 0 -60 0 -144 0 -185 -1 -41 0 -84 0 -95 1 -11 0 -40 1 -64 1 -24 0 -49 4 -55 9 -6 5 -22 11 -36 13 -23 3 -25 8 -28 58 -7 150 -4 605 5 647 5 20 12 22 111 27 59 3 123 7 142 10 19 3 118 8 220 11 102 3 212 8 245 10 33 3 65 5 70 6 6 0 23 -2 38 -6 16 -3 44 0 63 7 25 9 37 9 45 1 8 -8 19 -9 37 -2 15 6 60 9 102 8 41 -1 134 -2 205 -1 72 0 150 -1 175 -4 25 -3 70 -8 100 -11 l55 -4 28 42 c26 42 27 46 29 209 4 401 -2 440 -65 479 -37 23 -42 23 -102 10z",
+  },
+  S: {
+    w: 320,
+    h: 400,
+    d: "M1680 3736 c-3 -2 -50 -6 -105 -9 -55 -3 -116 -10 -135 -16 -19 -6 -49 -11 -66 -11 -30 0 -67 -12 -141 -46 -17 -8 -40 -14 -52 -14 -12 0 -21 -5 -21 -11 0 -5 -17 -17 -37 -25 -20 -9 -61 -31 -90 -50 -29 -19 -60 -34 -67 -34 -8 0 -16 -6 -19 -14 -3 -7 -19 -16 -35 -19 -16 -3 -36 -12 -44 -20 -8 -8 -28 -18 -45 -21 -18 -4 -51 -28 -81 -59 -167 -171 -202 -210 -202 -221 0 -8 -9 -25 -20 -39 -11 -14 -20 -30 -20 -37 0 -6 -11 -26 -25 -44 -14 -18 -25 -43 -25 -54 0 -12 -8 -31 -17 -41 -39 -46 -54 -112 -59 -257 -2 -82 1 -162 7 -190 6 -27 12 -60 14 -74 1 -14 5 -32 8 -40 3 -8 8 -43 12 -77 3 -35 12 -75 20 -90 8 -16 15 -34 15 -40 0 -27 70 -160 104 -198 20 -22 36 -43 36 -47 0 -5 7 -8 15 -8 8 0 15 -6 15 -13 0 -14 68 -80 94 -90 9 -4 16 -11 16 -17 0 -5 16 -16 35 -24 19 -8 35 -20 35 -25 0 -6 4 -11 9 -11 6 0 22 -11 37 -25 25 -24 38 -32 117 -72 17 -9 36 -22 40 -30 4 -7 21 -13 36 -13 16 0 50 -8 77 -19 79 -30 116 -40 174 -46 30 -4 66 -11 80 -15 14 -5 39 -12 55 -14 48 -9 146 -32 195 -47 25 -7 55 -14 68 -15 39 -5 126 -23 251 -53 46 -11 93 -28 105 -38 38 -32 115 -118 121 -135 4 -10 11 -18 16 -18 5 0 9 -9 9 -19 0 -10 7 -21 15 -25 8 -3 15 -13 15 -22 0 -10 7 -25 15 -34 23 -26 23 -128 -1 -171 -10 -18 -25 -38 -31 -42 -7 -4 -13 -19 -13 -32 0 -18 -6 -25 -19 -25 -10 0 -21 -6 -24 -14 -10 -26 -100 -136 -111 -136 -6 0 -38 -14 -70 -30 -32 -17 -67 -30 -77 -30 -10 0 -20 -4 -23 -9 -12 -18 -291 -37 -302 -20 -3 5 -9 7 -14 4 -14 -8 -195 31 -275 60 -38 14 -76 25 -82 25 -7 0 -36 11 -65 24 -85 39 -202 86 -214 86 -6 0 -42 29 -80 65 -39 37 -78 65 -89 65 -12 0 -29 6 -39 13 -15 11 -24 11 -52 -2 -18 -9 -33 -20 -34 -24 0 -14 -64 -97 -103 -134 -20 -20 -37 -40 -37 -44 0 -5 -17 -26 -38 -47 -112 -116 -124 -132 -127 -160 -1 -16 -4 -33 -7 -38 -3 -5 -8 -22 -12 -37 -8 -35 5 -53 52 -72 18 -8 46 -27 61 -42 46 -47 105 -93 119 -93 6 0 12 -4 12 -8 0 -5 18 -14 40 -21 22 -6 40 -16 40 -21 0 -6 11 -10 25 -10 15 0 47 -17 76 -40 28 -22 57 -40 65 -40 12 0 62 -22 126 -56 14 -8 33 -14 42 -14 9 0 41 -9 71 -19 52 -18 90 -20 659 -21 479 0 607 2 617 12 8 7 47 28 87 47 39 19 72 40 72 47 0 7 14 22 30 34 17 12 30 27 30 33 1 7 12 21 26 32 14 11 31 26 37 33 7 7 22 23 35 34 12 12 22 27 22 34 0 7 11 26 25 42 13 16 29 40 35 53 13 31 33 62 44 70 4 4 21 35 36 69 15 34 34 70 43 80 8 10 18 28 22 41 4 13 11 29 16 34 9 13 49 156 56 205 15 106 14 239 -2 286 -9 27 -20 53 -24 59 -4 5 -23 56 -41 112 -22 65 -44 113 -62 132 -15 16 -28 34 -28 38 -1 4 -24 29 -53 55 -29 26 -70 64 -92 84 -22 20 -53 42 -70 49 -16 7 -47 27 -69 44 -21 17 -42 31 -45 31 -3 0 -19 12 -34 26 -38 35 -198 116 -274 139 -35 10 -63 22 -63 27 0 4 -11 8 -25 8 -14 0 -25 4 -25 8 0 4 -8 8 -17 9 -37 4 -129 22 -163 32 -19 6 -56 11 -82 11 -26 0 -50 5 -53 10 -4 6 -18 10 -33 10 -29 -1 -42 1 -147 26 -38 9 -71 21 -73 25 -2 5 -12 9 -23 9 -22 0 -192 79 -197 91 -2 5 -10 9 -18 9 -8 0 -14 7 -14 15 0 8 -6 15 -14 15 -8 0 -16 7 -20 15 -3 8 -11 15 -18 15 -20 0 -47 69 -54 140 -9 101 -7 129 15 176 12 24 21 51 21 59 0 8 5 15 10 15 6 0 10 4 10 10 0 20 35 90 46 90 11 0 54 45 54 58 0 11 94 91 152 128 29 19 64 35 78 35 14 1 30 2 35 3 96 16 178 15 265 -4 52 -12 115 -25 139 -30 24 -6 50 -15 57 -21 8 -6 21 -9 29 -5 8 3 15 1 15 -5 0 -6 5 -7 10 -4 6 3 17 -1 26 -9 8 -9 25 -16 38 -16 12 0 31 -7 42 -15 10 -8 29 -15 40 -15 12 0 27 -7 34 -15 7 -8 20 -15 30 -15 10 0 23 -7 30 -15 7 -8 18 -15 25 -15 7 0 27 -13 45 -30 18 -16 40 -30 50 -30 10 0 20 -5 22 -11 6 -17 107 -13 127 5 10 9 22 16 27 16 22 0 109 111 140 180 19 41 39 82 44 90 6 8 14 25 20 37 5 12 23 29 39 38 19 9 33 26 37 43 3 15 10 40 15 56 5 16 9 33 9 38 0 15 -68 78 -85 78 -8 0 -15 4 -15 8 0 14 -136 142 -151 142 -4 0 -41 16 -82 35 -42 19 -87 37 -101 41 -14 3 -30 12 -37 20 -6 8 -16 14 -21 14 -5 0 -16 7 -24 15 -9 8 -29 15 -45 15 -16 0 -29 4 -29 9 0 5 -26 15 -57 21 -58 11 -150 38 -168 48 -5 3 -16 7 -25 7 -8 1 -40 7 -70 13 -61 12 -263 26 -270 18z",
+  },
+  T: {
+    w: 303,
+    h: 400,
+    d: "M274 3566 c-61 -28 -76 -58 -74 -142 1 -33 3 -117 5 -189 1 -71 5 -141 8 -155 3 -14 6 -44 6 -67 1 -29 8 -50 21 -63 11 -11 20 -22 20 -25 0 -3 8 -14 17 -25 14 -16 30 -20 74 -20 30 0 59 3 63 8 11 11 78 11 98 1 10 -6 162 -11 339 -12 231 -2 322 -6 327 -14 4 -7 7 -38 5 -70 -1 -32 2 -71 7 -88 10 -34 22 -241 22 -357 -1 -43 3 -80 9 -83 5 -4 7 -11 4 -16 -6 -8 -10 -167 -5 -179 6 -17 5 -139 -2 -159 -5 -14 -5 -28 1 -35 12 -14 12 -123 0 -154 -9 -25 -16 -203 -24 -652 -3 -146 -8 -292 -13 -325 -4 -33 -7 -157 -7 -275 0 -166 3 -221 14 -240 10 -18 14 -54 12 -127 l-2 -103 310 0 309 0 17 27 c21 31 23 75 30 748 3 248 5 459 6 470 2 45 -11 204 -22 265 -12 68 -20 1100 -9 1100 6 0 11 65 14 183 0 44 6 71 14 76 8 4 84 7 170 5 146 -2 196 -5 312 -18 49 -6 282 -8 314 -2 11 1 22 8 24 14 2 7 8 12 14 12 29 0 62 68 53 110 -15 70 -12 228 7 320 22 109 21 101 14 158 -5 48 -32 81 -81 100 -40 16 -184 25 -199 13 -6 -5 -34 -13 -61 -16 -28 -3 -59 -8 -71 -10 -58 -12 -587 -2 -864 17 -8 0 -20 5 -27 10 -7 5 -14 5 -18 -2 -4 -6 -13 -7 -23 -2 -9 5 -262 9 -562 10 l-545 2 -51 -24z",
+  },
+};
+
+const NEST_GLYPH_COLORS: Record<string, string> = {
+  N: "#004898",
+  E: "#3090d8",
+  S: "#0088f0",
+  T: "#0068d0",
+};
+
+/* Hand-drawn NEST letters taken from the Figma wordmark, embedded as vectors
+   so they stay crisp and need no extra assets. */
+function NestGlyph({ letter }: { letter: string }) {
+  const glyph = NEST_GLYPHS[letter];
+  if (!glyph) return null;
+  return (
+    <svg
+      className="ihp-nest-tab__letter"
+      viewBox={`0 0 ${glyph.w} ${glyph.h}`}
+      style={{ color: NEST_GLYPH_COLORS[letter] }}
+      aria-hidden="true"
+      focusable="false"
+    >
+      <g transform={`translate(0 ${glyph.h}) scale(0.1 -0.1)`}>
+        <path d={glyph.d} fill="currentColor" />
+      </g>
+    </svg>
+  );
+}
+
+const NEST_TABS = [
+  { id: "ihp-nest-need", letter: "N", label: "Need-led Discovery" },
+  { id: "ihp-nest-codesign", letter: "E", label: "Evidence-based Co-design" },
+  { id: "ihp-nest-situated", letter: "S", label: "Situated Implementation" },
+  { id: "ihp-nest-trust", letter: "T", label: "Trust and Lasting Impact" },
+];
+
+/* NEST module switcher: one card per module, letter badge + label, with the
+   section scroll spy keeping the current module highlighted. */
+function NestSubnav() {
+  const active = useSectionSpy(NEST_TABS.map((tab) => tab.id));
+  const jump = (id: string) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    history.replaceState(null, "", `#${id}`);
+    const align = (attempt = 0) => {
+      const target = document.getElementById(id);
+      if (!target) return;
+      const top = target.getBoundingClientRect().top;
+      if (Math.abs(top - 130) > 24) {
+        window.scrollTo({
+          top: top + window.scrollY - 130,
+          behavior: attempt === 0 ? "smooth" : "instant",
+        });
+      }
+      if (attempt < 4) window.setTimeout(() => align(attempt + 1), 600);
+    };
+    align();
+  };
+  return (
+    <div className="ihp-nest-tabs" role="tablist" aria-label="NEST modules">
+      {NEST_TABS.map((tab, index) => (
+        <button
+          key={tab.id}
+          type="button"
+          role="tab"
+          aria-selected={active === index}
+          className={`ihp-nest-tab${active === index ? " is-active" : ""}`}
+          onClick={() => jump(tab.id)}
+        >
+          <NestGlyph letter={tab.letter} />
+          <span className="ihp-nest-tab__label">{tab.label}</span>
+        </button>
+      ))}
+    </div>
+  );
+}
+
 function NestPage() {
   const sections = [
     {
@@ -1556,10 +1914,7 @@ function NestPage() {
   ];
   return (
     <>
-      <SectionSubnav
-        className="eng-subnav ihp-subnav-row"
-        items={sections.map(({ id, label }) => ({ id, label }))}
-      />
+      <NestSubnav />
       {sections.map((entry) => (
         <section className="ihp-subpage" id={entry.id} key={entry.id}>
           {entry.node}
@@ -1578,15 +1933,14 @@ const HP_PAGE_SWIPE_MS = 640;
 const HP_SECTION_OFFSET = 96;
 
 export function HumanPractices() {
-  /* Toolbox is preselected on mount (second position after the swap): the page
-     never starts in the bare overview state, which avoids the layout/scroll
-     edge cases around it. */
-  const [page, setPage] = useState<number | null>(1);
+  /* Toolbox is preselected on mount: the page never starts in the bare
+     overview state, which avoids the layout/scroll edge cases around it. */
+  const [page, setPage] = useState<number | null>(0);
   const navRef = useRef<HTMLDivElement>(null);
   const articleRef = useRef<HTMLElement>(null);
   const busyRef = useRef(false);
   const timerRef = useRef(0);
-  const pageRef = useRef<number | null>(1);
+  const pageRef = useRef<number | null>(0);
   const openScrollRef = useRef<number | null>(null);
   const actionsRef = useRef<{
     open: (index: number) => void;
@@ -1736,7 +2090,7 @@ export function HumanPractices() {
     const id =
       index === null
         ? ""
-        : ["stakeholder-engagement", "toolbox", "nest"][index] ?? "";
+        : ["toolbox", "nest", "stakeholder-engagement"][index] ?? "";
     const url = id
       ? `#${id}`
       : `${window.location.pathname}${window.location.search}`;
@@ -1824,7 +2178,7 @@ export function HumanPractices() {
         scrollToQuestionnaire();
         return;
       }
-      actionsRef.current.open(2);
+      actionsRef.current.open(1);
       window.setTimeout(() => {
         history.replaceState(null, "", "#ihp-syringe-questionnaire");
         scrollToQuestionnaire();
@@ -1841,15 +2195,15 @@ export function HumanPractices() {
      until the heading settles below the sticky header. */
   useEffect(() => {
     const pageOf = (id: string): number | null => {
-      if (id === "stakeholder-engagement" || id.startsWith("ihp-engagement"))
-        return 0;
+      if (id === "toolbox" || id.startsWith("ihp-toolbox")) return 0;
       if (
         id === "nest" ||
         id.startsWith("ihp-nest") ||
         id === "ihp-syringe-questionnaire"
       )
+        return 1;
+      if (id === "stakeholder-engagement" || id.startsWith("ihp-engagement"))
         return 2;
-      if (id === "toolbox" || id.startsWith("ihp-toolbox")) return 1;
       return null;
     };
     let timer = 0;
@@ -1963,22 +2317,22 @@ export function HumanPractices() {
             should answer a real problem. Early in our field work we noticed an
             odd inversion — the people around us who described cartilage pain
             were many, while the cases recorded in the medical system were few.
-            Below this overview the page is split into three pages:{" "}
-            <a href="#stakeholder-engagement">
-              <strong>Stakeholder Engagement</strong>
+            Below this overview the page is split into three pages: the{" "}
+            <a href="#toolbox">
+              <strong>Toolbox</strong>
             </a>{" "}
-            collects the stakeholder map and the interviews behind every step,{" "}
+            explains the methods we used,{" "}
             <a href="#nest">
               <strong>NEST</strong>
             </a>{" "}
             tells the story of its four narrative modules — Need-led Discovery,
             Evidence-based Co-design, Situated Implementation and Trust and
-            Lasting Impact — and the{" "}
-            <a href="#toolbox">
-              <strong>Toolbox</strong>
+            Lasting Impact — and{" "}
+            <a href="#stakeholder-engagement">
+              <strong>Stakeholder Engagement</strong>
             </a>{" "}
-            explains the methods we used. Use the three buttons to open a
-            page.
+            collects the stakeholder map and the interviews behind every step.
+            Use the three buttons to open a page.
           </p>
           <div
             className={`eng-module-nav ihp-page-nav${
@@ -2003,9 +2357,9 @@ export function HumanPractices() {
           {page !== null && (
             <div className="ihp-section-viewport">
               <div className="ihp-section">
-                {page === 0 && <EngagementBlock />}
-                {page === 1 && <ToolboxPage />}
-                {page === 2 && <NestPage />}
+                {page === 0 && <ToolboxPage />}
+                {page === 1 && <NestPage />}
+                {page === 2 && <EngagementBlock />}
               </div>
             </div>
           )}

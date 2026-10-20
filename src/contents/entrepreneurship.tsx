@@ -4,7 +4,7 @@ import "./entrepreneurship.css";
 type CardLevel = "primary" | "secondary";
 
 /** Expandable card; secondary cards can be nested inside a primary card. */
-function ExtendCard({
+export function ExtendCard({
   title,
   children,
   level = "primary",

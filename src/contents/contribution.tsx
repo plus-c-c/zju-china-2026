@@ -22,19 +22,20 @@ export function Contribution() {
         <h3 className="mt-5 mb-3">1. Overview of Available Resources</h3>
         <figure className="figure d-block my-4 text-center">
           <img
-            src={`${CIF}8.avif`}
-            alt="Community resources organized around a shared materials platform."
+            src={`${CIF}01-nest-contributions-equal.avif`}
+            alt="NEST contributions: reusable resources for the iGEM community."
             className="figure-img img-fluid rounded"
             style={{ width: "100%" }}
             loading="lazy"
             decoding="async"
           />
           <figcaption className="figure-caption">
-            Figure 1 | Community resources organized around a shared materials
-            platform. Parts, protocols, computational examples, and
-            software/hardware documentation are interconnected, enabling future
-            teams to progress from material construction to preparation and
-            application support.
+            Figure 1 | NEST contributions — reusable resources for the iGEM
+            community. The iHP toolkit (NEST + SEED, methods, registry), the
+            experimental platform (parts, interfaces and protocols), the
+            modelling workflow, and the app and hardware are interconnected, so
+            future teams can progress from material construction to preparation
+            and application support.
             <FigureSourceCitation
               source={1}
               href="#contribution-figure-sources"
@@ -125,6 +126,28 @@ export function Contribution() {
           </table>
         </div>
 
+        <figure className="figure d-block my-4 text-center">
+          <img
+            src={`${CIF}02-seed-prd-harmonized.avif`}
+            alt="The SEED cycle with the PRD document and the DBTL loop harmonised inside it."
+            className="figure-img img-fluid rounded"
+            style={{ width: "100%" }}
+            loading="lazy"
+            decoding="async"
+          />
+          <figcaption className="figure-caption">
+            Figure 2 | The SEED cycle with the PRD document and the DBTL loop
+            harmonised inside it. Future teams can reuse this method: a question
+            is explored with stakeholders and the literature, the needs are
+            written into a PRD, the engineering team runs the DBTL loop, and the
+            results return to the stakeholders for dialogue.
+            <FigureSourceCitation
+              source={1}
+              href="#contribution-figure-sources"
+            />
+          </figcaption>
+        </figure>
+
         <h3 className="mt-5 mb-3">
           2. Designing Scaffold Length and Connector Placement Together
         </h3>
@@ -168,7 +191,7 @@ export function Contribution() {
             decoding="async"
           />
           <figcaption className="figure-caption">
-            Figure 2 | Assembly and validation logic for integrating new
+            Figure 3 | Assembly and validation logic for integrating new
             functions into the platform. A shared interface allows functional
             sequences to be replaced, while ligation assays and functional
             assays address two distinct questions.
@@ -239,7 +262,7 @@ export function Contribution() {
             decoding="async"
           />
           <figcaption className="figure-caption">
-            Figure 3 | SELP recovery and preparation workflow. Target-protein
+            Figure 4 | SELP recovery and preparation workflow. Target-protein
             bands in the supernatants collected after heating (H-Sup) and
             cooling (C-Sup) help identify protein loss during phase transition
             and resolubilization, respectively.
@@ -285,7 +308,7 @@ export function Contribution() {
             decoding="async"
           />
           <figcaption className="figure-caption">
-            Figure 4 | Schematic of a representative SELP modeling and
+            Figure 5 | Schematic of a representative SELP modeling and
             computational workflow.
             <FigureSourceCitation
               source={1}
@@ -333,7 +356,7 @@ export function Contribution() {
             decoding="async"
           />
           <figcaption className="figure-caption">
-            Figure 5 | Photograph of our reagent-preparation prototype and
+            Figure 6 | Photograph of our reagent-preparation prototype and
             screenshots of the application interface, illustrating material
             configuration, step-by-step guidance, and material handling.
             <FigureSourceCitation

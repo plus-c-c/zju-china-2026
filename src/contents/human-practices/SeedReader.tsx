@@ -1,13 +1,18 @@
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import seedRingSvg from "../engineering/assets/seed-ring-hp.svg?raw";
+import seedRingMirrored from "../engineering/assets/seed-ring-hp.svg?raw";
+import seedRingOriginal from "../engineering/assets/seed-ring-hp-original.svg?raw";
+import { SEED_RING_MIRRORED } from "../engineering/ringArtwork";
+
+/* Pick the ring artwork version (see ringArtwork.ts). */
+const seedRingSvg = SEED_RING_MIRRORED ? seedRingMirrored : seedRingOriginal;
 import "./seed-reader.css";
 
 /** The SEED labels sit this far from their segment's visible centre in the
- *  source artwork (+9.33° clockwise: cap radius 63.5 over ring radius 390).
- *  Mirroring the ring moves them to the other side, so the reader stores the
- *  negated value and subtracts it when turning the wheel. */
-const SEED_LABEL_OFFSET_DEG = -9.33;
+ *  original artwork (+9.33° clockwise: cap radius 63.5 over ring radius 390).
+ *  The mirrored artwork moves them to the other side and turns the wheel the
+ *  other way, so both the offset and the direction follow the ring version. */
+const SEED_LABEL_OFFSET_DEG = 9.33;
 
 /**
  * SEED reader — a large half wheel fixed to the left edge of the page, right
@@ -151,14 +156,14 @@ export function SeedReaderRail() {
         }
       }
 
-      /* One quarter turn per phase, clockwise after the artwork mirror
-         (scrolling down turns the wheel clockwise). Subtracting the negated
-         label offset brings the visible centre exactly onto the 3 o'clock
-         line. */
-      ring.style.setProperty(
-        "--seed-rotation",
-        `${(90 + 90 * phasePos - SEED_LABEL_OFFSET_DEG).toFixed(2)}deg`,
-      );
+      /* One quarter turn per phase; scrolling down turns the wheel clockwise
+         for the original artwork and counter-clockwise for the mirrored one,
+         and the label offset flips with it, so the visible centre always lands
+         exactly on the 3 o'clock line. */
+      const rotation = SEED_RING_MIRRORED
+        ? 90 + 90 * phasePos + SEED_LABEL_OFFSET_DEG
+        : 90 - 90 * phasePos - SEED_LABEL_OFFSET_DEG;
+      ring.style.setProperty("--seed-rotation", `${rotation.toFixed(2)}deg`);
 
       /* The wheel shows while at least one cycle paragraph is on screen (or
          just about to be); long stretches that carry no paragraph at all —
