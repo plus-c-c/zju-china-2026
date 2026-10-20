@@ -2325,6 +2325,60 @@ export function ScaffoldReferences() {
           assembly. Bioconjugate Chem. 2023, 34 (6), 1019–1036.
         </p>
       </div>
+      <div className="source-block" data-block="132">
+        <p>
+          [23] Buldun CM, Jean JX, Bedford MR, Howarth M. SnoopLigase Catalyzes
+          Peptide–Peptide Locking and Enables Solid-Phase Conjugate Isolation.
+          Journal of the American Chemical Society. 2018;140(8):3008–3018.
+        </p>
+      </div>
+      <div className="source-block" data-block="133">
+        <p>
+          [24] Abe Y, Shodai T, Muto T, Mihara K, Torii H, Nishikawa S, Endo T,
+          Kohda D. Structural Basis of Presequence Recognition by the
+          Mitochondrial Protein Import Receptor Tom20. Cell.
+          2000;100(5):551–560.
+        </p>
+      </div>
+      <div className="source-block" data-block="134">
+        <p>
+          [25] Okutani A, Naima J, Ogihara A, Motoichi T, Ohsawa I, Ohta Y. A
+          method for isolating and cryopreserving intact mitochondria with
+          improved integrity and functionality. Biophysics and Physicobiology.
+          2025;22(2):e220012.
+        </p>
+      </div>
+      <div className="source-block" data-block="135">
+        <p>
+          [26] Nakano T, et al. Mitochondrial surface coating with artificial
+          lipid membrane improves the transfer efficacy. Communications
+          Biology. 2022;5:745.
+        </p>
+      </div>
+      <div className="source-block" data-block="136">
+        <p>
+          [27] Miyasaki K, Han S, Carton O, Kandell RM, Gunn J, Kwon EJ.
+          Formulation methods for peptide-modified lipid nanoparticles. Journal
+          of Controlled Release. 2025;385:114030.
+        </p>
+      </div>
+      <div className="source-block" data-block="137">
+        <p>
+          [28] Little CB, Barai A, Burkhardt D, Smith SM, Fosang AJ, Werb Z,
+          Shah M, Thompson EW. Matrix metalloproteinase 13–deficient mice are
+          resistant to osteoarthritic cartilage erosion but not chondrocyte
+          hypertrophy or osteophyte development. Arthritis &amp; Rheumatism.
+          2009;60(12):3723–3733.
+        </p>
+      </div>
+      <div className="source-block" data-block="138">
+        <p>
+          [29] Ishiyama M, Miyazono Y, Sasamoto K, Ohkura Y, Ueno K. A highly
+          water-soluble disulfonated tetrazolium salt as a chromogenic indicator
+          for NADH as well as cell viability. Talanta.
+          1997;44(7):1299–1305.
+        </p>
+      </div>
     </>
   );
 }

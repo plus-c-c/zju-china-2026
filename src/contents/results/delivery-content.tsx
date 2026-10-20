@@ -10,7 +10,7 @@ export function DeliveryContent() {
           representative therapeutic cargo, prepared an engineered responsive peptide, evaluated its
           protein ligation activity and MMP-13 responsiveness, and characterized
           liposome–mitochondria complexes and their cellular delivery potential. With mitochondrial
-          delivery as the initial <strong>application, this module provides a foundation for a broader delivery platform that could be extended to other therapeutic cargoes through further optimization of the carrier formulation and cargo-specific validation.</strong>
+          delivery as the initial application, this module <strong>provides a foundation for a broader delivery platform</strong> that could be extended to other therapeutic cargoes through further optimization of the carrier formulation and cargo-specific validation.
         </p>
       </div>
       <h4 id="wetlab-delivery-02" data-toc="include" data-toc-depth="3">
@@ -203,8 +203,8 @@ export function DeliveryContent() {
             <div className="source-block">
               <p>
                 Bands attributed to the released His/SUMO tag were observed in TEV-treated samples
-                at 1, 2, and 4 h, with apparent molecular weights in the 15–25 kDa range and
-                migration distinct from that of the uncleaved fusion protein (Figure 6.1.5). A band
+                at 1, 2, and 4 h, with <strong>apparent molecular weights in the 15–25 kDa range and
+                migration distinct from that of the uncleaved fusion protein</strong> (Figure 6.1.5). A band
                 corresponding to the added TEV protease was observed at approximately 27 kDa.
               </p>
             </div>
@@ -236,7 +236,7 @@ export function DeliveryContent() {
               <p>
                 The published SnoopLigase system catalyzes covalent isopeptide-bond formation
                 between DogTag and SnoopTagJr. This work established a basis for using SDS-PAGE
-                mobility shifts to assess peptide ligation activity [1].
+                mobility shifts to assess peptide ligation activity <sup className="article-citation">[23]</sup>.
               </p>
               <p>
                 The recovered DogTag-containing peptide was mixed with GFP-SnoopTag and SnoopLigase
@@ -254,8 +254,8 @@ export function DeliveryContent() {
             <div className="source-block">
               <p>
                 An additional band above the main GFP-SnoopTag band appeared in the peptide reaction
-                containing SnoopLigase relative to the negative control (Figure 6.1.6). This
-                <strong>mobility shift was consistent with the formation of a peptide–GFP-SnoopTag conjugate.</strong> SnoopLigase migrated to the 10–15 kDa range.
+                containing SnoopLigase relative to the negative control (Figure 6.1.6). This 
+                mobility shift was <strong>consistent with the formation of a peptide–GFP-SnoopTag conjugate.</strong> SnoopLigase migrated to the 10–15 kDa range.
               </p>
             </div>
             <figure className="figure-block">
@@ -284,8 +284,8 @@ export function DeliveryContent() {
             <div className="source-block">
               <p>
                 TOMM20 (Tom20) is a receptor of the mitochondrial outer-membrane protein import
-                machinery [2], whereas cytochrome c oxidase subunit IV (COX IV) is located in the
-                inner mitochondrial membrane [3]. Their complementary localizations provided the
+                machinery <sup className="article-citation">[24]</sup>, whereas cytochrome c oxidase subunit IV (COX IV) is located in the
+                inner mitochondrial membrane <sup className="article-citation">[25]</sup>. Their complementary localizations provided the
                 rationale for assessing mitochondrial components from both membrane compartments.
               </p>
               <p>
@@ -299,7 +299,7 @@ export function DeliveryContent() {
               <p>
                 Marker detection was interpreted as evidence of mitochondrial components; organelle
                 purity, membrane integrity, and respiratory function require distinct assessments
-                [3].
+                <sup className="article-citation">[25]</sup>.
               </p>
             </div>
           </div>
@@ -342,9 +342,9 @@ export function DeliveryContent() {
                 DOTAP and DOPE were selected as cationic and fusogenic lipid components,
                 respectively. A previous study used DOTAP/DOPE coatings to improve mitochondrial
                 transfer, providing a rationale for investigating this lipid combination in our
-                carrier system [4]. DSPE-PEG-Mal was included to provide maleimide groups for
+                carrier system <sup className="article-citation">[26]</sup>. DSPE-PEG-Mal was included to provide maleimide groups for
                 conjugation with Cys-containing peptides, based on established peptide–PEG–lipid
-                coupling chemistry [5].
+                coupling chemistry <sup className="article-citation">[27]</sup>.
               </p>
               <p>
                 Functionalized liposomes were prepared using DOPE, DOTAP, and DSPE-PEG-Mal and
@@ -358,7 +358,7 @@ export function DeliveryContent() {
             </div>
             <div className="source-block">
               <p>
-                The prepared liposome suspension had a <strong>milky-white appearance (Figure 6.2.2).</strong>
+                The prepared liposome suspension had a <strong>milky-white appearance</strong> (Figure 6.2.2).
               </p>
             </div>
             <figure className="figure-block">
@@ -404,7 +404,7 @@ export function DeliveryContent() {
                 locations, appearing as yellow–orange regions in the merged image (Figure 6.2.3).
               </p>
               <p>
-                These observations support a spatial association between liposomes and <strong>mitochondria, providing preliminary imaging evidence for the formation of liposome–mitochondria complexes during co-incubation.</strong>
+                These observations support a spatial association between liposomes and mitochondria, <strong>providing preliminary imaging evidence for the formation of liposome–mitochondria complexes during co-incubation.</strong>
                 Whether this association involves membrane fusion requires further verification.
               </p>
             </div>
@@ -448,7 +448,7 @@ export function DeliveryContent() {
               <p>
                 Vesicle-like structures with visible membrane outlines were observed in the liposome
                 samples (Figure 6.2.4A). In the complex samples, peripheral membrane-like structures
-                surrounded internal components <strong>(Figure 6.2.4C). This morphology was consistent with liposomal enclosure of mitochondrial material.</strong>
+                surrounded internal components (Figure 6.2.4C). <strong>This morphology was consistent with liposomal enclosure of mitochondrial material.</strong>
               </p>
             </div>
             <figure className="figure-block">
@@ -477,7 +477,7 @@ export function DeliveryContent() {
             <div className="source-block">
               <p>
                 The conjugation strategy was based on thiol–maleimide coupling between a peptide
-                cysteine residue and a maleimide-functionalized PEG–lipid [5].
+                cysteine residue and a maleimide-functionalized PEG–lipid <sup className="article-citation">[27]</sup>.
               </p>
               <p>
                 The Cys-containing linker peptide was co-incubated with maleimide-functionalized
@@ -533,7 +533,7 @@ export function DeliveryContent() {
               <p>
                 A higher-molecular-weight band near 55 kDa was observed in both responsive and
                 control reactions containing SnoopLigase (Figure 6.3.1). No distinct band at the
-                same position was observed in the corresponding reactions <strong>without SnoopLigase. The enzyme-associated mobility shifts were consistent with formation of ligation products in both groups.</strong>
+                same position was observed in the corresponding reactions without SnoopLigase. <strong>The enzyme-associated mobility shifts were consistent with formation of ligation products in both groups.</strong>
               </p>
             </div>
             <figure className="figure-block">
@@ -560,7 +560,7 @@ export function DeliveryContent() {
             <div className="source-block">
               <p>
                 MMP-13 was selected as a disease-relevant enzyme because Mmp13-deficient mice show
-                reduced osteoarthritic cartilage erosion [6]. This finding motivated evaluation of
+                reduced osteoarthritic cartilage erosion <sup className="article-citation">[28]</sup>. This finding motivated evaluation of
                 MMP-13 responsiveness in the linker design.
               </p>
               <p>
@@ -583,7 +583,7 @@ export function DeliveryContent() {
                 band in the Pep group was weaker or not clearly detectable (Figure 6.3.2).
               </p>
               <p>
-                <strong>The observed difference was consistent with cleavage of the responsive conjugate, but the</strong> available comparisons did not establish whether it arose from MMP-13
+                <strong>The observed difference was consistent with cleavage of the responsive conjugate</strong>, but the available comparisons did not establish whether it arose from MMP-13
                 activity or differences in the initial composition of the reporter substrates.
               </p>
             </div>
@@ -628,7 +628,7 @@ export function DeliveryContent() {
               <p>
                 Green fluorescence was observed within the cell outlines and in perinuclear regions
                 of complex-treated cells (Figure 6.3.3A). No distinct corresponding green
-                fluorescence was observed in the control group (Figure <strong>3.3.1B). These images showed cell-associated localization of the mitochondrial tracer; they did not establish the intracellular integrity or function of the delivered mitochondria.</strong>
+                fluorescence was observed in the control group (Figure 3.3.1B). <strong>These images showed cell-associated localization of the mitochondrial tracer. They did not establish the intracellular integrity or function of the delivered mitochondria.</strong>
               </p>
             </div>
             <figure className="figure-block">
@@ -656,7 +656,7 @@ export function DeliveryContent() {
             <div className="source-block">
               <p>
                 Reduction of WST-8 produces a water-soluble formazan signal and has been established
-                as a colorimetric indicator of cell viability [7]. The assay was used here as a
+                as a colorimetric indicator of cell viability <sup className="article-citation">[29]</sup>. The assay was used here as a
                 preliminary measure of peptide cytocompatibility.
               </p>
               <p>
@@ -680,7 +680,7 @@ export function DeliveryContent() {
               <p>
                 The relatively high cell viability observed at 48 and 72 h provides preliminary
                 evidence of limited cytotoxicity of the functional peptide at these later time
-                points under the tested <strong>conditions, supporting its potential</strong> cytocompatibility. However, the reduced
+                points under the tested conditions, <strong>supporting its potential cytocompatibility</strong>. However, the reduced
                 viability at 24 h indicates that early cellular responses require further evaluation
                 before conclusions about overall cytocompatibility can be drawn.
               </p>

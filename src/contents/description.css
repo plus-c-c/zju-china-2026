@@ -233,6 +233,12 @@
   margin-right: auto;
 }
 
+.page-article .description-article > .description-closing {
+  width: calc(100% - 1.25rem);
+  margin-right: 0;
+  margin-left: auto;
+}
+
 @supports (grid-template-rows: subgrid) {
   .description-card-grid--treatments .description-card {
     grid-row: span 2;
@@ -315,6 +321,10 @@
   inset: 0;
 }
 @media (max-width: 767.98px) {
+  .page-article .description-article > .description-closing {
+    width: 100%;
+  }
+
   .page-article .description-article .description-platform-title {
     font-size: 2rem !important;
   }
