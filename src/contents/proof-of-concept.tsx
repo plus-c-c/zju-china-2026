@@ -720,8 +720,8 @@ export function ProofOfConcept() {
               <TransparentImage
                 src={BIOSAFETY_FIGURE_URL}
                 alt="Figure 21 | Preliminary cytocompatibility assessment of NEST components using the CCK-8 assay"
-                width={4000}
-                height={3158}
+                width={3080}
+                height={2434}
                 trim={false}
                 className="img-fluid rounded"
                 style={{ width: "100%" }}

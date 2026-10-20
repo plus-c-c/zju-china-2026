@@ -1,7 +1,7 @@
 import { FigureCaption } from "../../components/FigureCaption";
 
 export const BIOSAFETY_FIGURE_URL =
-  "https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/19.avif";
+  "https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/19-2.avif";
 
 export function BiosafetyIntroduction() {
   return (
@@ -133,8 +133,8 @@ export function BiosafetyContent() {
                 <img
                   src={BIOSAFETY_FIGURE_URL}
                   alt="Figure 7.1 | Preliminary cytocompatibility assessment of NEST components using the CCK-8 assay"
-                  width={4000}
-                  height={3158}
+                  width={3080}
+                  height={2434}
                   style={{ width: "100%" }}
                   loading="lazy"
                 />
