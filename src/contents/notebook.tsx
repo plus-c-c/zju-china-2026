@@ -23,7 +23,7 @@ const notebooks = [
   },
   {
     id: "mitochondrial-therapy",
-    title: "Mitochondrial Therapy Module",
+    title: "Mitochondrial Therapeutic Module",
     pdf: "https://static.igem.wiki/teams/6102/wiki/notebook/notebook-mitochondrial-therapy-module.pdf",
   },
 ];

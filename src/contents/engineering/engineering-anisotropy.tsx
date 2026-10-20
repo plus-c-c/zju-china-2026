@@ -73,10 +73,12 @@ export const anisotropyModule: DbtlModule = {
         Build: (
           <>
             <p>
-              We developed two conceptual routes. The electric-field strategy
-              used an applied electric field to orient material components; the
-              magnetic-field strategy incorporated magnetically responsive
-              components that could be organized by an external magnetic field.
+              We developed two conceptual routes.{" "}
+              <strong>The electric-field strategy</strong> used an applied
+              electric field to orient material components; the{" "}
+              <strong>magnetic-field strategy</strong> incorporated magnetically
+              responsive components that could be organized by an external
+              magnetic field.
               Both followed the same
               injection&ndash;alignment&ndash;illumination sequence, allowing
               comparison within a common application scenario.

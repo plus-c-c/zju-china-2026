@@ -130,9 +130,10 @@ export const mitochondriaModule: DbtlModule = {
               potential for subsequent detachment. We incorporated both
               requirements into a single linker peptide, with attachment sites
               for the liposome and scaffold at opposite ends and a cleavable
-              region between them. The selection of <strong>MMP-13 as the target
-              enzyme</strong> was informed by its mechanistic <strong>association
-              with cartilage erosion</strong>.
+              region between them. The selection of <strong>MMP-13</strong>{" "}
+              (<strong>matrix metalloproteinase-13</strong>){" "}
+              <strong>as the target enzyme</strong> was informed by its
+              mechanistic <strong>association with cartilage erosion</strong>.
             </p>
           </>
         ),
