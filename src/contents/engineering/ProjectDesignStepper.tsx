@@ -17,6 +17,7 @@ import seedRingSvg from "./assets/seed-ring-hp.svg?raw";
 import { DBTL_PHASES, type DbtlPhase } from "./dbtl";
 import { ProjectDesignCard } from "./ProjectDesignContent";
 import { projectDesignCopy } from "./projectDesignCopy";
+import type { EngineeringLayout } from "./layout";
 import { DBTL_PHASE_TOP_ANGLE } from "./ringStage";
 import { SEED_LABELS, type SeedPhase } from "./seed";
 
@@ -179,7 +180,12 @@ function ProjectDesignRing({
   );
 }
 
-export function ProjectDesignStepper() {
+export function ProjectDesignStepper({
+  layout = "toc",
+}: {
+  layout?: EngineeringLayout;
+}) {
+  const legacy = layout === "legacy";
   const [index, setIndex] = useState(0);
   const rootRef = useRef<HTMLDivElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
@@ -365,75 +371,124 @@ export function ProjectDesignStepper() {
     }
   });
 
-  return (
-    <div
-      className="dbtl project-design-stepper"
-      ref={rootRef}
-      style={
-        {
-          "--project-outer-rotation": "0deg",
-          "--project-inner-rotation": `${DBTL_PHASE_TOP_ANGLE[0]}deg`,
-        } as CSSProperties
-      }
-    >
-      <div className="dbtl-left">
-      <div className="dbtl-ring-wrap">
-        <ProjectDesignRing
-          outer={step.outer}
-          inner={engineeringStep?.inner ?? null}
-          onOuterSelect={goToOuter}
-          onInnerSelect={goToInner}
-        />
+  const ring = (
+    <div className="dbtl-ring-wrap">
+      <ProjectDesignRing
+        outer={step.outer}
+        inner={engineeringStep?.inner ?? null}
+        onOuterSelect={goToOuter}
+        onInnerSelect={goToInner}
+      />
+    </div>
+  );
+  const panel = (
+    <div className="dbtl-panel" ref={cardRef}>
+      <div className="dbtl-panel-head">
+        {engineeringStep ? (
+          <>
+            <span className={`dbtl-phase dbtl-phase-${engineeringStep.inner}`}>
+              {engineeringStep.inner}
+            </span>
+            <span className="dbtl-caption">
+              {projectDesignCopy.cycleTitles[engineeringStep.cycleIndex]}
+            </span>
+          </>
+        ) : (
+          <span className="dbtl-caption">{SEED_LABELS[step.outer]}</span>
+        )}
       </div>
-      <div className="eng-toc-slot">
-        <TocPanel
-          title="Project Design"
-          ariaLabel="Project Design stages"
-          className="page-toc--embedded"
-          items={tocItems}
-        />
-      </div>
-      </div>
-      <div className="dbtl-main">
-        <div className="dbtl-panel" ref={cardRef}>
-          <div className="dbtl-panel-head">
-            {engineeringStep ? (
-              <>
-                <span
-                  className={`dbtl-phase dbtl-phase-${engineeringStep.inner}`}
-                >
-                  {engineeringStep.inner}
-                </span>
-                <span className="dbtl-caption">
-                  {projectDesignCopy.cycleTitles[engineeringStep.cycleIndex]}
-                </span>
-              </>
-            ) : (
-              <span className="dbtl-caption">{SEED_LABELS[step.outer]}</span>
-            )}
-          </div>
-          <div
-            className="dbtl-panel-body"
-            ref={panelRef}
-            tabIndex={0}
-            role="region"
-            aria-label={
-              engineeringStep
-                ? `Cycle ${engineeringStep.cycleIndex + 1} ${engineeringStep.inner}`
-                : SEED_LABELS[step.outer]
-            }
-          >
-            <div
-              className="dbtl-panel-inner"
-              data-dir={direction}
-              key={step.key}
-            >
-              {step.content}
-            </div>
-          </div>
+      <div
+        className="dbtl-panel-body"
+        ref={panelRef}
+        tabIndex={0}
+        role="region"
+        aria-label={
+          engineeringStep
+            ? `Cycle ${engineeringStep.cycleIndex + 1} ${engineeringStep.inner}`
+            : SEED_LABELS[step.outer]
+        }
+      >
+        <div className="dbtl-panel-inner" data-dir={direction} key={step.key}>
+          {step.content}
         </div>
-
       </div>
     </div>
+  );
+  const stageNav = (
+    <div className="dbtl-subnav" aria-label="Project Design stages">
+      {OUTER_PHASES.map((phase) => (
+        <button
+          key={phase}
+          type="button"
+          className={`dbtl-subnav-button${step.outer === phase ? " active" : ""}`}
+          aria-pressed={step.outer === phase}
+          onClick={() => goToOuter(phase)}
+        >
+          {SEED_LABELS[phase]}
+        </button>
+      ))}
+    </div>
+  );
+  const cycleNav = engineeringStep ? (
+    <div className="dbtl-cycles" role="group" aria-label="DBTL cycles">
+      {Array.from({ length: 4 }, (_, cycleIndex) => (
+        <button
+          key={cycleIndex}
+          type="button"
+          className={`dbtl-cycle-button${
+            currentCycle === cycleIndex ? " active" : ""
+          }`}
+          aria-pressed={currentCycle === cycleIndex}
+          onClick={() => goToStep(2 + cycleIndex * DBTL_PHASES.length)}
+        >
+          Cycle {cycleIndex + 1}
+        </button>
+      ))}
+    </div>
+  ) : null;
+
+  return (
+    <>
+      {legacy && (
+        <div className="dbtl-subnav dbtl-subnav--legacy">{stageNav}</div>
+      )}
+      <div
+        className={`dbtl project-design-stepper${
+          legacy ? " dbtl--legacy" : ""
+        }`}
+        ref={rootRef}
+        style={
+          {
+            "--project-outer-rotation": "0deg",
+            "--project-inner-rotation": `${DBTL_PHASE_TOP_ANGLE[0]}deg`,
+          } as CSSProperties
+        }
+      >
+        {legacy ? (
+          <>
+            <div className="dbtl-left dbtl-left--legacy">
+              {ring}
+              {cycleNav}
+            </div>
+            <div className="dbtl-main">{panel}</div>
+          </>
+        ) : (
+          <>
+            <div className="dbtl-left">
+              {ring}
+              <div className="eng-toc-slot">
+                <TocPanel
+                  title="Project Design"
+                  ariaLabel="Project Design stages"
+                  className="page-toc--embedded"
+                  items={tocItems}
+                />
+              </div>
+            </div>
+            <div className="dbtl-main">{panel}</div>
+          </>
+        )}
+      </div>
+    </>
   );
 }

@@ -429,61 +429,6 @@ export function AnisotropyContent() {
           </div>
         </div>
       </section>
-      <h4 id="wetlab-anisotropy-4-5" data-toc="include" data-toc-depth="3">
-        4.5 In Vitro Cytocompatibility of the Functional Peptide
-      </h4>
-      <section className="pair">
-        <div className="columns">
-          <div className="column experiment">
-            <div className="column-label">
-              Experiment
-            </div>
-            <div className="source-block">
-              <p>
-                Reduction of WST-8 produces a water-soluble formazan signal and has been established
-                as a colorimetric indicator of cell viability [7]. The assay was used here as a
-                preliminary measure of peptide cytocompatibility.
-              </p>
-              <p>
-                Cells were treated with 5 or 10 µM functional peptide for 24, 48, or 72 h. A CCK-8
-                assay was used to assess relative cell viability, with control, blank, and
-                peptide-treated groups included in the experimental design (Figure 4.5.1A).
-              </p>
-            </div>
-          </div>
-          <div className="column results">
-            <div className="column-label">
-              Results
-            </div>
-            <div className="source-block">
-              <p>
-                At 24 h, relative cell viability was approximately 70% in the 5 µM group and 55% in
-                the 10 µM group. At 48 h, the values were approximately 85%–90% in both groups and
-                were approximately 85%–95% at 72 h (Figure 4.5.1B). At both concentrations, the
-                measured values were lower at 24 h than at the later time points.
-              </p>
-              <p>
-                The relatively high cell viability observed at 48 and 72 h provides preliminary
-                evidence of limited cytotoxicity of the functional peptide at these later time
-                points under the tested <strong>conditions, supporting its potential cytocompatibility. However, the</strong> reduced viability at 24 h indicates that early
-                cellular responses require further evaluation before conclusions about overall
-                cytocompatibility can be drawn.
-              </p>
-            </div>
-            <figure className="figure-block">
-              <a className="figure-link" href="https://static.igem.wiki/teams/6102/wiki/images/result/04/delivery-v2-14-6c94c3ad.avif" target="_blank" rel="noopener noreferrer" aria-label="Open full-size image: Figure 4.5.1">
-                <img src="https://static.igem.wiki/teams/6102/wiki/images/result/04/delivery-v2-14-6c94c3ad.avif" alt="Figure 4.5.1." loading="lazy" decoding="async" />
-              </a>
-              <FigureCaption className="figure-caption">
-                <strong>Figure 4.5.1 |</strong> In vitro cytocompatibility of the functional peptide. (A) Photograph of
-                the assay plate. Yellow, blue, and red boxes indicate control, blank, and
-                peptide-treated wells, respectively. (B) Relative cell viability following treatment
-                with 5 or 10 μM experimental peptide for 24, 48, and 72 h.
-              </FigureCaption>
-            </figure>
-          </div>
-        </div>
-      </section>
     </>
   );
 }

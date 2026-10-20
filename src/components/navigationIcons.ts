@@ -42,7 +42,7 @@ export const pageDetails: Record<
     description: "Resources others can build on",
   },
   "/experiments": {
-    icon: "11_experiment_result.png",
+    icon: "10-wet-lab.avif",
     description: "Building and testing NEST",
   },
   "/results": {

@@ -1,6 +1,7 @@
 import { ReferenceArticleHtml } from "../components/References";
 import { useEffect, useRef } from "react";
 import { SectionJump } from "../components/SectionJump";
+import { ProjectExperimentNotes } from "../components/ProjectExperimentNotes";
 import {
   PlatformFunctionSections,
   SharedProjectSections,
@@ -47,6 +48,7 @@ function ExperimentsPair() {
         html={split.experiments.slice(0, introductionEnd)}
         referenceSource={split.experiments}
       />
+      <ProjectExperimentNotes />
       <PlatformFunctionSections
         id="experiments"
         platform={

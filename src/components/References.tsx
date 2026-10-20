@@ -1,5 +1,6 @@
 import { useLayoutEffect, useRef, useState, type ReactNode } from "react";
 import { BirdLanding } from "./BirdCursor";
+import { linkArticleCitations } from "./referenceCitations";
 import {
   compactReferenceLinks,
   formatArticleCitations,
@@ -26,6 +27,45 @@ export function References({
 
   useLayoutEffect(() => {
     if (content.current) compactReferenceLinks(content.current);
+  }, [children]);
+
+  useLayoutEffect(() => {
+    const article = panel.current?.closest<HTMLElement>(".page-article");
+    if (
+      !article ||
+      !content.current?.querySelector(
+        ".references-list:not(.figure-sources-list)",
+      )
+    )
+      return;
+    let frame = 0;
+    const update = () => {
+      observer.disconnect();
+      linkArticleCitations(article);
+      observer.observe(article, {
+        childList: true,
+        subtree: true,
+        characterData: true,
+      });
+    };
+    const observer = new MutationObserver((mutations) => {
+      if (
+        mutations.every((mutation) =>
+          (mutation.target instanceof Element
+            ? mutation.target
+            : mutation.target.parentElement
+          )?.closest(".references-section"),
+        )
+      )
+        return;
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(update);
+    });
+    update();
+    return () => {
+      cancelAnimationFrame(frame);
+      observer.disconnect();
+    };
   }, [children]);
 
   useLayoutEffect(() => {

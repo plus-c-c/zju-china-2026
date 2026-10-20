@@ -47,6 +47,11 @@ export const mitochondriaModule: DbtlModule = {
         evaluation progressively informed our design assessment and experimental
         refinement.
       </p>
+      <p>
+        Owing to the constraints of our own laboratory facilities, all
+        experiments involving cells were outsourced to and performed by the
+        laboratory of Prof. Wenwen Huang.
+      </p>
     </>
   ),
   cycles: [

@@ -4,6 +4,7 @@ import { DbtlStepper } from "./engineering/DbtlStepper";
 import {
   buildSteps,
   sequenceSpan,
+  STEP_DVH,
   type Step,
 } from "./engineering/steps";
 import { STEPPER_STEP_PX } from "../components/stepperWheel";
@@ -16,6 +17,7 @@ import {
   type SeedStep,
 } from "./engineering/seed";
 import { EngineeringReferences } from "./engineering/EngineeringReferences";
+import { resolveEngineeringLayout } from "./engineering/layout";
 import { TocPanel, type TocEntry } from "../components/toc";
 import {
   PROJECT_DESIGN_STEP_COUNT,
@@ -131,6 +133,8 @@ const SECTIONS = ALL_SECTIONS.filter(
 );
 
 export function Engineering() {
+  const layout = resolveEngineeringLayout();
+  const legacyLayout = layout === "legacy";
   const [activeKey, setActiveKey] = useState("project-design");
   const [groupIndex, setGroupIndex] = useState(0);
   const [tabIndex, setTabIndex] = useState(0);
@@ -444,6 +448,21 @@ export function Engineering() {
         ))}
       </div>
     ) : null;
+  const tabNav = tabs.map((tab, index) => (
+    <button
+      key={tab.kind === "part" ? tab.part.label : tab.kind}
+      type="button"
+      className={`dbtl-subnav-button ${tabIndex === index ? "active" : ""}`}
+      aria-pressed={tabIndex === index}
+      onClick={() => setTabIndex(index)}
+    >
+      {tab.kind === "intro"
+        ? "Introduction"
+        : tab.kind === "conclusion"
+          ? "Conclusion"
+          : tab.part.label}
+    </button>
+  ));
   /* Reuse the page TOC's markup and styles; only the active level-3 entry
      expands its level-4 cycles. */
   const sideTocItems: TocEntry[] = [];
@@ -505,7 +524,7 @@ export function Engineering() {
       {!ringNav && moduleNav}
       {!ringNav && groupNav}
       {projectDesignActive ? (
-        <ProjectDesignStepper />
+        <ProjectDesignStepper layout={layout} />
       ) : (
         activeGroup &&
         (stepCount > 0 ? (
@@ -517,7 +536,9 @@ export function Engineering() {
                 moduleForStep as (step: SeedStep) => SeedModule | undefined
               }
               onStepChange={handleStepChange}
-              sideNav={sideToc}
+              layout={layout}
+              topNav={legacyLayout ? <>{tabNav}</> : undefined}
+              sideNav={legacyLayout ? undefined : sideToc}
               ringTop={ringNav ? moduleNav : undefined}
               ringBottom={ringNav ? groupNav : undefined}
             />
@@ -529,18 +550,30 @@ export function Engineering() {
                 moduleForStep as (step: Step) => DbtlModule | undefined
               }
               onStepChange={handleStepChange}
-              sideNav={sideToc}
+              layout={layout}
+              topNav={legacyLayout ? <>{tabNav}</> : undefined}
+              sideNav={legacyLayout ? undefined : sideToc}
               ringTop={ringNav ? moduleNav : undefined}
               ringBottom={ringNav ? groupNav : undefined}
             />
           )
         ) : (
-          <div className="eng-partnav">{sideToc}</div>
+          <div className="eng-partnav">
+            {legacyLayout ? tabNav : sideToc}
+          </div>
         ))
       )}
     </>
   );
-  const aggregateClass = `eng-aggregate${ringNav ? " eng-aggregate--ring-nav" : ""}`;
+  const aggregateClass = `eng-aggregate${
+    legacyLayout ? " eng-aggregate--legacy" : ""
+  }${ringNav ? " eng-aggregate--ring-nav" : ""}`;
+  const runwaySpan = projectDesignActive
+    ? PROJECT_DESIGN_STEP_COUNT
+    : sequenceSpan(steps);
+  const runwayHeight = legacyLayout
+    ? `calc(${100 + runwaySpan * STEP_DVH}dvh)`
+    : `calc(100dvh + ${runwaySpan * STEPPER_STEP_PX}px)`;
 
   return (
     <div className="row mt-4 mb-5">
@@ -590,17 +623,10 @@ export function Engineering() {
           </section>
           {activeGroup || projectDesignActive ? (
             stepCount > 0 || projectDesignActive ? (
-              <div
-                className="eng-runway"
-                style={{
-                  height: `calc(100dvh + ${
-                    (projectDesignActive
-                      ? PROJECT_DESIGN_STEP_COUNT
-                      : sequenceSpan(steps)) * STEPPER_STEP_PX
-                  }px)`,
-                }}
-              >
-                <div className="eng-pin">
+              <div className="eng-runway" style={{ height: runwayHeight }}>
+                <div
+                  className={`eng-pin${legacyLayout ? " eng-pin--legacy" : ""}`}
+                >
                   <div className={aggregateClass}>{content}</div>
                 </div>
               </div>
