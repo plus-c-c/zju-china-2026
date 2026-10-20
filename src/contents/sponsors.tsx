@@ -72,7 +72,7 @@ export function Sponsors() {
           id="sponsors-special-thanks"
           data-toc-label="College of Life Sciences, Zhejiang University"
         >
-          Special Thanks to
+          Special Thanks to{" "}
           <br />
           the College of Life Sciences, Zhejiang University
         </h2>
