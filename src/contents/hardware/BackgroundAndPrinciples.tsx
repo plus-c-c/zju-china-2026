@@ -148,6 +148,16 @@ export function BackgroundAndPrinciples() {
         system are <strong>open source</strong>, allowing future teams to
         reference, reuse, and further develop the design.
       </p>
+      <p>
+        <a
+          href="https://github.com/ccc8701/ZJU-China-2026-hardware"
+          className="btn btn-outline-primary"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          View Hardware Repository ↗
+        </a>
+      </p>
     </>
   );
 }
