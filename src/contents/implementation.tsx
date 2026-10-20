@@ -27,7 +27,7 @@ export function Implementation() {
         </p>
 
         <h3 className="mt-5 mb-3">
-          1. Developing Material Formulations for Three Cartilage-Injury
+          1 Developing Material Formulations for Three Cartilage-Injury
           Settings
         </h3>
         <h4 className="mt-4 mb-2">
@@ -101,7 +101,7 @@ export function Implementation() {
         </figure>
 
         <h3 className="mt-5 mb-3">
-          2. Ensuring a Stable Material Supply through Biomanufacturing
+          2 Ensuring a Stable Material Supply through Biomanufacturing
         </h3>
         <p>
           NEST has employed <em>Escherichia coli</em> expression and inverse
@@ -128,7 +128,7 @@ export function Implementation() {
         </p>
 
         <h3 className="mt-5 mb-3">
-          3. Connecting the Material to Clinician Workflows
+          3 Connecting the Material to Clinician Workflows
         </h3>
         <p>
           We have developed an Android application for clinicians that organizes
@@ -177,7 +177,7 @@ export function Implementation() {
         </p>
 
         <h3 className="mt-5 mb-3">
-          4. Translating Formulation Requirements into a Monitored Preparation
+          4 Translating Formulation Requirements into a Monitored Preparation
           Device
         </h3>
         <p>
@@ -251,7 +251,7 @@ export function Implementation() {
         </p>
 
         <h3 className="mt-5 mb-3">
-          5. Defining Product Requirements under Intended Use Conditions
+          5 Defining Product Requirements under Intended Use Conditions
         </h3>
         <p>
           In the proposed localized application workflow, after assessing and
@@ -348,7 +348,7 @@ export function Implementation() {
         </p>
 
         <h3 className="mt-5 mb-3">
-          6. Sharing a Common Manufacturing and Delivery Foundation across
+          6 Sharing a Common Manufacturing and Delivery Foundation across
           Applications
         </h3>
         <p>

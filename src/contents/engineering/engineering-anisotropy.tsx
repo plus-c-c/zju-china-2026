@@ -598,7 +598,7 @@ export const anisotropyModule: DbtlModule = {
   infos: [
     {
       afterCycle: 0,
-      title: "1. Selection of an alignment strategy",
+      title: "1 Selection of an alignment strategy",
       content: (
         <p>
           An alignment method that works under laboratory conditions must also
@@ -612,7 +612,7 @@ export const anisotropyModule: DbtlModule = {
     },
     {
       afterCycle: 3,
-      title: "2. Coupling magnetic nanoparticles to SELP",
+      title: "2 Coupling magnetic nanoparticles to SELP",
       content: (
         <p>
           Having selected a general alignment approach, we next asked how
@@ -625,7 +625,7 @@ export const anisotropyModule: DbtlModule = {
     },
     {
       afterCycle: 5,
-      title: "3. Protein expression and functional testing",
+      title: "3 Protein expression and functional testing",
       content: (
         <p>
           With the molecular interface defined, we established an experimental

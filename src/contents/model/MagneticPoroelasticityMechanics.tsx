@@ -3,7 +3,7 @@ import { MathFormula } from "../../components/MathFormula";
 export function MagneticPoroelasticityMechanics() {
   return (
     <>
-      <h2 className="mt-5 mb-3">7. Water Phase and Poroelastic Coupling</h2>
+      <h2 className="mt-5 mb-3">7 Water Phase and Poroelastic Coupling</h2>
       <p>
         In the SELP–Fe₃O₄ four-phase system, the water phase exists as a pore
         fluid within the porous structure formed by SELP fibers and Fe₃O₄
@@ -172,7 +172,7 @@ export function MagneticPoroelasticityMechanics() {
         the form of a pressure gradient.
       </p>
 
-      <h2 className="mt-5 mb-3">8. Photocrosslinking Free Energy</h2>
+      <h2 className="mt-5 mb-3">8 Photocrosslinking Free Energy</h2>
       <h3 className="mt-5 mb-3">8.1 Basic Idea of Photocrosslinking</h3>
       <p>
         The fiber orientation probability distribution before photocrosslinking
@@ -226,7 +226,7 @@ export function MagneticPoroelasticityMechanics() {
         is for the fiber orientation to change.
       </p>
 
-      <h2 className="mt-5 mb-3">9. Total Free Energy per Unit Volume</h2>
+      <h2 className="mt-5 mb-3">9 Total Free Energy per Unit Volume</h2>
       <h3 className="mt-5 mb-3">
         9.1 Before Photocrosslinking, with Magnetic Field
       </h3>
@@ -334,7 +334,7 @@ export function MagneticPoroelasticityMechanics() {
       </MathFormula>
 
       <h2 className="mt-5 mb-3">
-        10. Mechanical Equilibrium and Finite Element Governing Equations
+        10 Mechanical Equilibrium and Finite Element Governing Equations
       </h2>
       <p>
         Under quasi-static conditions with inertia neglected, the material

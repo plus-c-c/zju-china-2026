@@ -51,7 +51,7 @@ export function ProofOfConcept() {
               <FigureSourceCitation source={1} href="#poc-reference-1" />
             </FigureCaption>
           </figure>
-          <h2 className="mt-5 mb-3">1. Programmable Biomimetic Platform</h2>
+          <h2 className="mt-5 mb-3">1 Programmable Biomimetic Platform</h2>
           <p>
             NEST's programmability begins with the SELP scaffold itself. We need
             not only to turn different sequences into actual protein materials
@@ -278,7 +278,7 @@ export function ProofOfConcept() {
             of NEST's programmable design.
           </p>
           <h2 className="mt-5 mb-3">
-            2. Functional Configuration and Validation for Osteoarthritis
+            2 Functional Configuration and Validation for Osteoarthritis
           </h2>
           <p>
             Having established that scaffold properties can be tuned, the
@@ -658,7 +658,7 @@ export function ProofOfConcept() {
             compatibility through a standardized interface.
           </p>
           <h2 className="mt-5 mb-3">
-            3. The Scaffold and Functional Components Show Good In Vitro
+            3 The Scaffold and Functional Components Show Good In Vitro
             Cytocompatibility
           </h2>
           <p>
