@@ -10,6 +10,7 @@ import {
   type ChainStage,
 } from "../components/StakeholderChain";
 import { TransparentImage } from "../components/TransparentImage";
+import { StakeBridgeEmbed } from "../components/StakeBridgeEmbed";
 import { SeedReaderRail } from "./human-practices/SeedReader";
 import {
   cancelSectionScroll,
@@ -1395,8 +1396,7 @@ function EngagementBlock() {
         cases, so a team that does not yet know whom to ask, what to ask or how
         to act can find a participation path that fits its own project.
       </p>
-      {/* StakeBridge app: the interactive program is being implemented and
-          will be embedded below this paragraph. */}
+      <StakeBridgeEmbed />
 
       <h4 id="ihp-engagement-timeline" className="mt-5 mb-3" data-toc="include">
         Stakeholder Interviews

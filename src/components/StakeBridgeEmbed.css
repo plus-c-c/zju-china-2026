@@ -1,0 +1,43 @@
+.ihp-stakebridge {
+  margin: 1.75rem 0 2.5rem;
+  border: 1px solid #cbdcf4;
+  border-radius: 18px;
+  background: #f5faff;
+  overflow: hidden;
+}
+
+.ihp-stakebridge__toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 20px;
+  border-bottom: 1px solid #dbe6f5;
+  color: #223c81;
+  font-size: 16px;
+}
+
+.ihp-stakebridge__toolbar a {
+  color: #223c81;
+  font-weight: 500;
+  text-underline-offset: 4px;
+}
+
+.ihp-stakebridge__frame {
+  display: block;
+  width: 100%;
+  height: clamp(720px, 86dvh, 1000px);
+  border: 0;
+  background: #f5faff;
+}
+
+@media (max-width: 575.98px) {
+  .ihp-stakebridge__toolbar {
+    padding: 14px;
+  }
+
+  .ihp-stakebridge__frame {
+    height: 780px;
+  }
+}

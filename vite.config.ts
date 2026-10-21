@@ -54,5 +54,13 @@ export default ({ mode }) => {
   return defineConfig({
     base: basePath,
     plugins: [react(), regenerateWetlabSplit()],
+    build: {
+      rollupOptions: {
+        input: {
+          wiki: "index.html",
+          stakebridge: "stakebridge/index.html",
+        },
+      },
+    },
   });
 };
