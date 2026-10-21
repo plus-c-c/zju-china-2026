@@ -653,7 +653,7 @@ function CoDesignBlock() {
         E: We entered the SELP DBTL cycle. To realize the complex functions SELP
         needs as a broadly applicable filler, we surfaced many experimental
         questions and discussed them actively with several stakeholders (see the{" "}
-        <a href="#ihp-engagement-timeline">Engagement Timeline</a>).
+        <a href="#ihp-engagement-timeline">stakeholder interviews</a>).
       </p>
       <p data-seed-phase="dialogue">
         D: We showed the latest design to doctors and researchers; the feedback

@@ -659,39 +659,45 @@ export function ProofOfConcept() {
                   capture GAGs and retained this function after fusion with
                   Link-N (Figures 15 and 16).
                 </p>
-                <figure className="my-4 text-center">
-                  <TransparentImage
-                    src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-13.avif"
-                    alt="Figure 15 | Biotinylation and immobilization interface for GAG constructs"
-                    className="img-fluid rounded"
-                    style={{ width: "100%" }}
-                  />
-                  <FigureCaption className="figure-caption mt-2">
-                    <strong>
-                      Figure 15 | Validation of the Biotinylation and
-                      Immobilization Interface for GAG Constructs.
-                    </strong>{" "}
-                    SA denotes streptavidin; the red box marks the
-                    high-molecular-weight complex.
-                  </FigureCaption>
-                </figure>
-                <figure className="my-4 text-center">
-                  <TransparentImage
-                    src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-14.avif"
-                    alt="Figure 16 | Residual CS-A in the supernatant after CPC-mediated retention"
-                    className="img-fluid rounded"
-                    style={{ width: "100%" }}
-                  />
-                  <FigureCaption className="figure-caption mt-2">
-                    <strong>
-                      Figure 16 | Immobilized CPC and CPC-Link-N Reduce Residual
-                      CS-A in the Supernatant.
-                    </strong>{" "}
-                    R1-R3 represent the three corresponding measurements.
-                    Individual points show measured values, and bars indicate
-                    the mean.
-                  </FigureCaption>
-                </figure>
+                <div className="poc-animation-grid">
+                  <figure className="poc-animation-panel">
+                    <div className="poc-animation-frame">
+                      <TransparentImage
+                        src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-13.avif"
+                        alt="Figure 15 | Biotinylation and immobilization interface for GAG constructs"
+                        className="img-fluid rounded"
+                        style={{ width: "100%" }}
+                      />
+                    </div>
+                    <FigureCaption className="figure-caption">
+                      <strong>
+                        Figure 15 | Validation of the Biotinylation and
+                        Immobilization Interface for GAG Constructs.
+                      </strong>{" "}
+                      SA denotes streptavidin; the red box marks the
+                      high-molecular-weight complex.
+                    </FigureCaption>
+                  </figure>
+                  <figure className="poc-animation-panel">
+                    <div className="poc-animation-frame">
+                      <TransparentImage
+                        src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-14.avif"
+                        alt="Figure 16 | Residual CS-A in the supernatant after CPC-mediated retention"
+                        className="img-fluid rounded"
+                        style={{ width: "100%" }}
+                      />
+                    </div>
+                    <FigureCaption className="figure-caption">
+                      <strong>
+                        Figure 16 | Immobilized CPC and CPC-Link-N Reduce
+                        Residual CS-A in the Supernatant.
+                      </strong>{" "}
+                      R1-R3 represent the three corresponding measurements.
+                      Individual points show measured values, and bars indicate
+                      the mean.
+                    </FigureCaption>
+                  </figure>
+                </div>
                 <p>
                   The GAG-retention activity of CPC was demonstrated in
                   immobilized constructs and was preserved after fusion with
@@ -717,38 +723,40 @@ export function ProofOfConcept() {
                   complementary evidence for successful formation of the
                   liposome-mitochondria complex (Figures 17 and 18).
                 </p>
-                <figure className="my-4 text-center">
-                  <TransparentImage
-                    src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-15.avif"
-                    alt="Figure 17 | Fluorescence colocalization of liposomes and mitochondria"
-                    className="img-fluid rounded"
-                    style={{ width: "100%" }}
-                  />
-                  <FigureCaption className="figure-caption mt-2">
-                    <strong>
-                      Figure 17 | Fluorescence Colocalization of Liposomes and
-                      Mitochondria.
-                    </strong>{" "}
-                    Green: MitoTracker Green; red: DiD; overlapping signals
-                    appear yellow-orange.
-                  </FigureCaption>
-                </figure>
-                <figure className="my-4 text-center">
-                  <TransparentImage
-                    src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-16.avif"
-                    alt="Figure 18 | TEM visualization of encapsulation"
-                    className="img-fluid rounded"
-                    style={{ width: "100%" }}
-                  />
-                  <FigureCaption className="figure-caption mt-2">
-                    <strong>
-                      Figure 18 | TEM Reveals the Composite Encapsulation
-                      Structure.
-                    </strong>{" "}
-                    (A) Functionalized liposome; (B) free mitochondria; (C)
-                    liposome-mitochondria complex. All scale bars are 200 nm.
-                  </FigureCaption>
-                </figure>
+                <div className="poc-stack-halved">
+                  <figure className="poc-halved-figure text-center">
+                    <TransparentImage
+                      src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-15.avif"
+                      alt="Figure 17 | Fluorescence colocalization of liposomes and mitochondria"
+                      className="img-fluid rounded"
+                      style={{ width: "100%" }}
+                    />
+                    <FigureCaption className="figure-caption mt-2">
+                      <strong>
+                        Figure 17 | Fluorescence Colocalization of Liposomes and
+                        Mitochondria.
+                      </strong>{" "}
+                      Green: MitoTracker Green; red: DiD; overlapping signals
+                      appear yellow-orange.
+                    </FigureCaption>
+                  </figure>
+                  <figure className="poc-halved-figure text-center">
+                    <TransparentImage
+                      src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-16.avif"
+                      alt="Figure 18 | TEM visualization of encapsulation"
+                      className="img-fluid rounded"
+                      style={{ width: "100%" }}
+                    />
+                    <FigureCaption className="figure-caption mt-2">
+                      <strong>
+                        Figure 18 | TEM Reveals the Composite Encapsulation
+                        Structure.
+                      </strong>{" "}
+                      (A) Functionalized liposome; (B) free mitochondria; (C)
+                      liposome-mitochondria complex. All scale bars are 200 nm.
+                    </FigureCaption>
+                  </figure>
+                </div>
                 <p>
                   Next, we tested whether the responsive linker peptide could be
                   cleaved as designed. Following <strong>MMP-13</strong>{" "}
@@ -758,7 +766,7 @@ export function ProofOfConcept() {
                   consistent with the expected cleavage pattern and validated
                   the enzyme-responsive function of the sequence (Figure 19).
                 </p>
-                <figure className="my-4 text-center">
+                <figure className="poc-half-width my-4 text-center">
                   <TransparentImage
                     src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-17.avif"
                     alt="Figure 19 | MMP-13-responsive cleavage"

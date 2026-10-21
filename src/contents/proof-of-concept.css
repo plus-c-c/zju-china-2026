@@ -41,6 +41,7 @@
   height: 100% !important;
   margin: 0;
   object-fit: contain;
+  object-position: center bottom;
 }
 
 .poc-animation-panel .figure-caption {
@@ -52,5 +53,37 @@
   .poc-animation-grid {
     grid-template-columns: 1fr;
     max-width: 520px;
+  }
+}
+
+.poc-stack-halved {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+  width: 50%;
+  max-width: 520px;
+  margin: 1.75rem auto;
+}
+
+.poc-halved-figure {
+  margin: 0;
+}
+
+@media (max-width: 767.98px) {
+  .poc-stack-halved {
+    width: 100%;
+  }
+}
+
+.poc-half-width {
+  width: 50%;
+  max-width: 520px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (max-width: 767.98px) {
+  .poc-half-width {
+    width: 100%;
   }
 }

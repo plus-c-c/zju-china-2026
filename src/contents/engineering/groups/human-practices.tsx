@@ -167,7 +167,7 @@ const selpCycle = module(
     <p>
       We entered the SELP <strong>DBTL cycle</strong>. Developing SELP into a
       versatile defect-filling material raised many experimental questions,
-      which we discussed with stakeholders (see the Engagement Timeline).
+      which we discussed with stakeholders (see the stakeholder interviews).
     </p>,
     <p>
       We presented the revised design to clinicians and researchers and received
