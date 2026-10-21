@@ -1491,8 +1491,8 @@ function AnthroBlock() {
         reasons small illnesses go unnoticed.
       </p>
       <p>
-        The outcomes of that work — two papers written with anthropology
-        scholars and the medical-anthropology lectures and seminars we ran for
+        The outcomes of that work — one paper written with anthropology
+        scholars, and the medical-anthropology lecture and seminar we ran for
         future doctors — are described under{" "}
         <a href="#ihp-nest-trust">
           <strong>T — Trust and Lasting Impact</strong>
