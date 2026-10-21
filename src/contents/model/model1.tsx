@@ -13,7 +13,10 @@ import {
   type CSSProperties,
 } from "react";
 import { useContainedStepperScroll } from "../../components/useContainedStepperScroll";
-import { useStepperProgress } from "../../components/stepperWheel";
+import {
+  STEPPER_STEP_DVH,
+  useStepperProgress,
+} from "../../components/stepperWheel";
 import { MathFormula } from "../../components/MathFormula";
 import { DataTable } from "../../components/table";
 import {
@@ -480,7 +483,12 @@ export function SelpHydrogelModeling() {
       <div
         className="m1-deck"
         ref={deckRef}
-        style={{ "--m1-count": total } as CSSProperties}
+        style={
+          {
+            "--m1-count": total,
+            "--stepper-step-size": `${STEPPER_STEP_DVH}dvh`,
+          } as CSSProperties
+        }
       >
         <div className="m1-deck__stage" ref={stageRef}>
           {/* 流水线阶段条：随步骤逐步点亮 */}

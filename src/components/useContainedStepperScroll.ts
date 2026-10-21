@@ -1,10 +1,6 @@
 import { useEffect, useRef, type RefObject } from "react";
 import { STEPPER_WHEEL_GAIN } from "./stepperWheel";
-import {
-  getStepperEntryIndex,
-  StepperGutterGesture,
-  StepperWheelGesture,
-} from "./stepperGesture";
+import { getStepperEntryIndex, StepperWheelGesture } from "./stepperGesture";
 import { registerScrollDeckRegion } from "./scrollDeckRegions";
 
 interface StepperScrollOptions {
@@ -43,8 +39,6 @@ export function useContainedStepperScroll(options: StepperScrollOptions) {
     const root = global ? window : runway;
     const wheel = new StepperWheelGesture();
     const touch = new StepperWheelGesture();
-    const wheelGutter = new StepperGutterGesture();
-    const touchGutter = new StepperGutterGesture();
     let touchY: number | null = null;
 
     const move = (
@@ -52,7 +46,6 @@ export function useContainedStepperScroll(options: StepperScrollOptions) {
       event: Event,
       gesture: StepperWheelGesture,
       gain: number,
-      gutter: StepperGutterGesture,
     ) => {
       const { stageRef, panelRef, cardRef, getIndex, getCount, onAdvance } =
         live.current;
@@ -65,7 +58,6 @@ export function useContainedStepperScroll(options: StepperScrollOptions) {
       if (event.target instanceof Node && card.contains(event.target)) {
         event.preventDefault();
         gesture.reset();
-        gutter.reset();
         panel.scrollTop = Math.max(
           0,
           Math.min(
@@ -96,9 +88,7 @@ export function useContainedStepperScroll(options: StepperScrollOptions) {
           // momentum before allowing another gesture to change cards.
           event.preventDefault();
           const now = performance.now();
-          gutter.reset();
-          gutter.start(now, delta, entry);
-          gutter.consume(now);
+          gesture.consume(now, delta);
           onAdvance(entry);
           return;
         }
@@ -118,33 +108,8 @@ export function useContainedStepperScroll(options: StepperScrollOptions) {
       }
       if (bounds.top > top + 2 || bounds.bottom < window.innerHeight - 2)
         return;
-      if (global) {
-        const now = performance.now();
-        const start = gutter.start(now, delta, getIndex());
-        if (start === null) {
-          event.preventDefault();
-          return;
-        }
-        const direction = delta > 0 ? 1 : -1;
-        const next = start + direction;
-        // A fresh outward gesture at the first/last card leaves the deck.
-        if (next < 0 || next >= getCount()) return;
-        event.preventDefault();
-        const interval = (runway.offsetHeight - innerHeight) / getCount();
-        if (interval <= 0) return;
-        const runwayTop = bounds.top + scrollY;
-        const y = scrollY + delta;
-        const index = Math.max(0, Math.floor((y - runwayTop) / interval));
-        if (index !== start) {
-          gutter.consume(now);
-          onAdvance(next);
-        } else {
-          // Match Engineering: advance the page's hidden progress by the
-          // actual wheel distance instead of jumping after a 64px threshold.
-          window.scrollTo({ top: y, behavior: "instant" });
-        }
-        return;
-      }
+      // Engineering and all three Model decks use exactly the same input
+      // threshold and idle interval; inertia cannot reopen the Model guard.
       const next = getIndex() + (delta > 0 ? 1 : -1);
       const action = gesture.move(
         performance.now(),
@@ -178,12 +143,11 @@ export function useContainedStepperScroll(options: StepperScrollOptions) {
           : event.deltaMode === 2
             ? window.innerHeight
             : 1;
-      move(event.deltaY * unit, event, wheel, STEPPER_WHEEL_GAIN, wheelGutter);
+      move(event.deltaY * unit, event, wheel, STEPPER_WHEEL_GAIN);
     };
     const onTouchStart = (event: TouchEvent) => {
       touchY = event.touches.length === 1 ? event.touches[0].clientY : null;
       touch.reset();
-      touchGutter.reset();
     };
     const onTouchMove = (event: TouchEvent) => {
       if (touchY === null || event.touches.length !== 1) return;
@@ -191,7 +155,7 @@ export function useContainedStepperScroll(options: StepperScrollOptions) {
       const delta = touchY - y;
       if (Math.abs(delta) < 4) return;
       touchY = y;
-      move(delta, event, touch, 1, touchGutter);
+      move(delta, event, touch, 1);
     };
     const onTouchEnd = () => {
       touchY = null;

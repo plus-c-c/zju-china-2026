@@ -1255,7 +1255,8 @@
    The classes are only applied when the layout switch is set to "legacy".
    -------------------------------------------------------------------------- */
 .dbtl--legacy {
-  --dbtl-stack-h: clamp(348px, calc(90vh - 12.5rem), 668px);
+  /* Use the Introduction card height for every Project/Wet/Dry view. */
+  --dbtl-stack-h: clamp(340px, calc(90vh - 12.25rem), 672px);
   grid-template-columns: auto minmax(0, 1fr);
   grid-template-rows: none;
   grid-template-areas: none;
@@ -1263,10 +1264,6 @@
   align-items: center;
   height: auto;
   margin-top: 0;
-}
-
-.dbtl--legacy:not(.project-design-stepper) {
-  --dbtl-stack-h: clamp(340px, calc(90vh - 12.25rem), 672px);
 }
 
 /* The level-3 row is a sibling of the DBTL grid so it spans the whole page
@@ -1407,15 +1404,7 @@
 
   .dbtl--legacy .dbtl-panel {
     flex: 0 0 auto;
-    height: clamp(228px, calc(54vh - 32px), 448px);
-  }
-
-  .dbtl--legacy:not(.project-design-stepper) .dbtl-panel {
     height: clamp(220px, calc(54vh - 28px), 452px);
-  }
-
-  .project-design-stepper.dbtl--legacy .dbtl-panel {
-    height: clamp(178px, calc(34vh - 32px), 298px);
   }
 
   .dbtl--legacy .dbtl-ring-wrap {

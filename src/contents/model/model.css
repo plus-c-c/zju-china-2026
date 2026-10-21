@@ -473,5 +473,5 @@
 }
 
 .protein-anchor {
-  top: calc(var(--protein-step) * 40dvh);
+  top: calc(var(--protein-step) * var(--stepper-step-size));
 }

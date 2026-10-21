@@ -13,7 +13,7 @@ import {
 import { MathFormula } from "../../components/MathFormula";
 import { useContainedStepperScroll } from "../../components/useContainedStepperScroll";
 import {
-  STEPPER_STEP_PX,
+  STEPPER_STEP_DVH,
   useStepperProgress,
 } from "../../components/stepperWheel";
 import "./model.css";
@@ -341,9 +341,12 @@ function ProteinStepper({ steps }: { steps: ProteinStep[] }) {
     <div
       className="protein-runway"
       ref={runwayRef}
-      style={{
-        height: `calc(100dvh + ${steps.length * STEPPER_STEP_PX}px)`,
-      }}
+      style={
+        {
+          height: `calc(100dvh + ${steps.length * STEPPER_STEP_DVH}dvh)`,
+          "--stepper-step-size": `${STEPPER_STEP_DVH}dvh`,
+        } as CSSProperties
+      }
     >
       <div
         className={`protein-pin protein-slide-${transition.direction}${

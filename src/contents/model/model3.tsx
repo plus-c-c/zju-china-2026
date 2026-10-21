@@ -10,7 +10,10 @@ import {
   type ReactNode,
 } from "react";
 import { useContainedStepperScroll } from "../../components/useContainedStepperScroll";
-import { useStepperProgress } from "../../components/stepperWheel";
+import {
+  STEPPER_STEP_DVH,
+  useStepperProgress,
+} from "../../components/stepperWheel";
 import { MathFormula } from "../../components/MathFormula";
 import { TransparentImage } from "../../components/TransparentImage";
 import {
@@ -369,7 +372,12 @@ export function Model3() {
       <div
         className="m3-deck"
         ref={deckRef}
-        style={{ "--m3-count": total } as CSSProperties}
+        style={
+          {
+            "--m3-count": total,
+            "--stepper-step-size": `${STEPPER_STEP_DVH}dvh`,
+          } as CSSProperties
+        }
       >
         <div className="m3-deck__stage" ref={stageRef}>
           {/* 主方程：随步骤逐步积累各项 */}

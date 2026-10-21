@@ -5,12 +5,12 @@
   position: relative;
   margin-top: 22px;
   /* 跑道：首屏 + 每步一段滚动行程（与 engineering 的 runway 相同） */
-  height: calc(100dvh + var(--m1-count) * 200px);
+  height: calc(100dvh + var(--m1-count) * var(--stepper-step-size));
 }
 
 /* 目录锚点：每步滚动进度位置处的隐藏标题 */
 .m1-anchor {
-  top: calc(var(--m1-seg) * 200px);
+  top: calc(var(--m1-seg) * var(--stepper-step-size));
 }
 
 /* 抵消 .page-article h3 的 !important 标题间距（48px），否则锚点整体下移、
@@ -436,14 +436,6 @@
 
 /* ===== 移动端 ===== */
 @media (max-width: 900px) {
-  .m1-deck {
-    height: calc(100dvh + var(--m1-count) * 52vh);
-  }
-
-  .m1-anchor {
-    top: calc(var(--m1-seg) * 52vh);
-  }
-
   .m1-anchor:first-of-type {
     top: calc(20dvh - var(--page-sticky-top, 82px));
   }
