@@ -1120,9 +1120,10 @@ function DiscoveryBlock() {
         In the existing literature, there are no authoritative sources
         specifying what degree of cartilage defect qualifies as a pathological
         condition. Even for osteoarthritis (OA), which has the most
-        well-established standards and comprehensive data, no unified diagnostic
-        criteria are defined in the authoritative treatment guidelines of either
-        the US or China. Chinese guidelines adopt both the Kellgren- Lawrence
+        well-established diagnostic standards and comprehensive data, no unified
+        diagnostic criteria have been adopted across the authoritative clinical
+        guidelines of the United States and China. Chinese guidelines adopt both
+        the Kellgren- Lawrence
         (K–L) and Outerbridge grading systems [4], while the American Academy of
         Orthopaedic Surgeons (AAOS) guidelines primarily target patients with
         already diagnosed symptomatic OA [5]. Neither set of guidelines
