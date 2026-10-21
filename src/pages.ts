@@ -108,7 +108,7 @@ const Pages: (Page | Folder)[] = [
         component: Experiments,
       },
       {
-        name: "Result",
+        name: "Results",
         title: "Results",
         path: "/results",
         component: Results,
