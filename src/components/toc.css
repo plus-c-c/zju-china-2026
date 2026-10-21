@@ -356,3 +356,12 @@ html.page-swipe-enter-right.page-swipe-run [data-page-swipe-stage] {
   visibility: visible;
   transform: none;
 }
+
+/* The desktop TOC appears/disappears as the header leaves the viewport.
+   Fast scrolling can cross that boundary repeatedly, so do not fade it:
+   an instant state change avoids the left-hand flicker. */
+@media (min-width: 1025px) {
+  .page-toc:not(.page-toc--embedded) {
+    transition: none;
+  }
+}

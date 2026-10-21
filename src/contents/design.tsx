@@ -54,10 +54,10 @@ export function Design() {
               style={{ width: "100%" }}
             />
             <FigureCaption className="figure-caption">
-              Figure 0.1 | Overview of the NEST platform. Recombinant SELP
-              scaffolds and functional modules form a hydrogel precursor for
-              injection, magnetic alignment, and in situ photocrosslinking under
-              450 nm blue light.
+              Figure 0.1 | Overview of the NEST platform. SELP and functional
+              modules are expressed in <em>E. coli</em>, assembled through
+              SnoopTag/DogTag ligation, and combined into a hydrogel precursor
+              that is crosslinked in situ by Ru/SPS under 450 nm blue light.
             </FigureCaption>
           </figure>
           <PlatformFunctionSections
@@ -80,11 +80,14 @@ export function Design() {
                     programmable silk–elastin-like polypeptide (SELP) scaffold
                   </strong>{" "}
                   and <strong>standardized peptide ligation interfaces</strong>{" "}
-                  for assembling functional units. SELP provides support,
-                  elasticity, crosslinkable sites, and a basis for displaying
-                  functions; the interface relatively decouples the material
-                  body from external functions, so that functional modules can
-                  be <strong>assembled</strong>, <strong>replaced</strong>, and{" "}
+                  for assembling functional units.
+                </p>
+                <p>
+                  SELP provides support, elasticity, crosslinkable sites, and a
+                  basis for displaying functions; the interface relatively
+                  decouples the material body from external functions, so that
+                  functional modules can be{" "}
+                  <strong>assembled</strong>, <strong>replaced</strong>, and{" "}
                   <strong>iterated</strong>. This part first describes the
                   scaffold.
                 </p>
@@ -352,6 +355,62 @@ export function Design() {
                   supports long-term culture of human articular chondrocytes
                   <sup>
                     [
+                    <a
+                      href="#design-reference-6"
+                      aria-label="Reference 6"
+                      className="text-decoration-none"
+                    >
+                      6
+                    </a>
+                    ]
+                  </sup>
+                  . Compared with conventional ultraviolet (UV) crosslinking,
+                  this visible-light system avoids UV-associated toxicity,
+                  provides good cytocompatibility and high crosslinking
+                  efficiency, and can substantially improve the mechanical
+                  strength and stiffness of the hydrogel
+                  <sup>
+                    [
+                    <a
+                      href="#design-reference-1"
+                      aria-label="Reference 1"
+                      className="text-decoration-none"
+                    >
+                      1
+                    </a>
+                    ,{" "}
+                    <a
+                      href="#design-reference-2"
+                      aria-label="Reference 2"
+                      className="text-decoration-none"
+                    >
+                      2
+                    </a>
+                    ,{" "}
+                    <a
+                      href="#design-reference-3"
+                      aria-label="Reference 3"
+                      className="text-decoration-none"
+                    >
+                      3
+                    </a>
+                    ,{" "}
+                    <a
+                      href="#design-reference-4"
+                      aria-label="Reference 4"
+                      className="text-decoration-none"
+                    >
+                      4
+                    </a>
+                    ,{" "}
+                    <a
+                      href="#design-reference-5"
+                      aria-label="Reference 5"
+                      className="text-decoration-none"
+                    >
+                      5
+                    </a>
+                    ,{" "}
                     <a
                       href="#design-reference-6"
                       aria-label="Reference 6"

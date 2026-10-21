@@ -179,10 +179,10 @@
 .dbtl {
   --dbtl-stack-h: clamp(420px, calc(100dvh - 9.5rem), 760px);
   /* One ring size for both layouts (stacked rows and split ring rows). */
-  --dbtl-ring-size: clamp(230px, 19vw, 310px);
+  --dbtl-ring-size: clamp(210px, 16vw, 270px);
   /* About eight spaces of the panel's body text: used both for the ring's
      inset from the page edge and for the ring-to-card gutter. */
-  --dbtl-gap: 2rem;
+  --dbtl-gap: 1.5rem;
   /* Distance from the centred article to the page's left edge, minus the
      gutter: the cluster breaks out to the left so the ring stays the same
      eight-space distance from the page edge on wide screens, while the text
@@ -681,7 +681,7 @@
   display: block;
   width: auto;
   max-width: 100%;
-  max-height: clamp(220px, calc(var(--dbtl-stack-h) - 240px), 500px);
+  max-height: clamp(240px, calc(var(--dbtl-stack-h) - 200px), 560px);
   object-fit: contain;
   margin: 0 auto;
   border: 1px solid #e3e8f4;
@@ -1279,11 +1279,11 @@
 
 /* Project Design keeps its larger double ring and its narrower copy column. */
 .project-design-stepper.dbtl--legacy {
-  --dbtl-ring-size: clamp(340px, 36vw, 520px);
+  --dbtl-ring-size: clamp(280px, 28vw, 400px);
   --dbtl-gap: clamp(1rem, 1.5vw, 1.5rem);
   /* Leave room for the larger double ring at narrower desktop widths. */
   --project-copy-width: min(
-    850px,
+    960px,
     calc(100% - var(--dbtl-ring-size) - var(--project-copy-gap))
   );
   --project-copy-gap: 8px;

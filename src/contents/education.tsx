@@ -8,7 +8,7 @@ import "./education.css";
  *  files are served from this folder. */
 const EDUCATION_IMG =
   "https://static.igem.wiki/teams/6102/wiki/images/engagement/education/new";
-const REPORT_PDF = "https://static.igem.wiki/teams/6102/wiki/hp-file/res.pdf";
+const REPORT_PDF = "https://static.igem.wiki/teams/6102/wiki/hp-new/res.pdf";
 
 const eduImg = (number: number) =>
   `${EDUCATION_IMG}/edu-${String(number).padStart(2, "0")}.avif`;
@@ -507,8 +507,9 @@ export function Education() {
             The activity questionnaire explored changes in participants&rsquo;
             understanding and interest before and after the session. We also
             distributed a short cognitive measurement scale at the event;
-            responses indicated a clear increase in students&rsquo; awareness
-            after the lecture.
+            responses showed an increase in students&rsquo; awareness after the
+            lecture. This is a descriptive observation and does not establish
+            causality.
           </p>
           <p>
             Questions about learning pathways and whether the field suited them

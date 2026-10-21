@@ -149,6 +149,21 @@ export function References({
   );
 }
 
+/**
+ * The wet-lab HTML is exported from Word documents. Two presentational
+ * quirks are normalised here so Experiment and Results render consistently:
+ * empty paragraphs left by the exporter are dropped, and section labels that
+ * were placed inside a bordered pair become ordinary h3 headings above it.
+ */
+function normalizeWetlabHtml(html: string) {
+  return html
+    .replace(/<p>(?:\s|&nbsp;|<br\s*\/?>)*<\/p>/gi, "")
+    .replace(
+      /<section (class="pair"[^>]*)>\s*<h3 class="pair-label"([^>]*)>([\s\S]*?)<\/h3>/g,
+      "<h3$2>$3</h3><section $1>",
+    );
+}
+
 /** Keep the exported wet-lab HTML while rendering its bibliography in React. */
 export function ReferenceArticleHtml({
   html,
@@ -157,9 +172,10 @@ export function ReferenceArticleHtml({
   html: string;
   referenceSource?: string;
 }) {
+  const normalized = normalizeWetlabHtml(html);
   const match =
     /<details class="wetlab-results__references references-list"><summary>References<\/summary>([\s\S]*?)<\/details>/.exec(
-      html,
+      normalized,
     );
   if (!match) {
     const sharedReferences =
@@ -171,8 +187,8 @@ export function ReferenceArticleHtml({
       <div
         dangerouslySetInnerHTML={{
           __html: sharedReferences
-            ? formatArticleCitations(html, sharedReferences[1])
-            : html,
+            ? formatArticleCitations(normalized, sharedReferences[1])
+            : normalized,
         }}
       />
     );
@@ -181,7 +197,10 @@ export function ReferenceArticleHtml({
     <>
       <div
         dangerouslySetInnerHTML={{
-          __html: formatArticleCitations(html.slice(0, match.index), match[1]),
+          __html: formatArticleCitations(
+            normalized.slice(0, match.index),
+            match[1],
+          ),
         }}
       />
       <References>
@@ -192,11 +211,11 @@ export function ReferenceArticleHtml({
           }}
         />
       </References>
-      {html.slice(match.index + match[0].length).trim() && (
+      {normalized.slice(match.index + match[0].length).trim() && (
         <div
           dangerouslySetInnerHTML={{
             __html: formatArticleCitations(
-              html.slice(match.index + match[0].length),
+              normalized.slice(match.index + match[0].length),
               match[1],
             ),
           }}
