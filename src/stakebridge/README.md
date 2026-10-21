@@ -10,6 +10,10 @@ The application and wiki have separate documents, styles and hash navigation,
 and are published together by the existing iGEM Pages build. The embedded and
 separately opened views use the same browser origin and IndexedDB workspace.
 
+The default `#home` route introduces the tool, with separate Library, Workspace
+and Handbook destinations. Home's journey links open stage-filtered library
+results via `#registry?stage=…`; the catalogue is no longer stacked beneath Home.
+
 The reviewed registry snapshot is `data/entries.json`. It is bundled into the
 application; no GitHub-hosted application, external runtime API or third-party
 CDN is required. Fonts and source photographs use the team's iGEM static host.

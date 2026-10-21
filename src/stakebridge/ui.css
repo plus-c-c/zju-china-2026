@@ -98,24 +98,25 @@ input[type="checkbox"] {
 .app-header {
   display: flex;
   align-items: center;
-  gap: 36px;
-  padding: 23px max(4.5%, calc((100% - 1320px) / 2));
+  gap: 24px;
+  padding: 12px max(4.5%, calc((100% - 1320px) / 2));
   border-bottom: 1px solid var(--line);
   background: #f5faff;
 }
 .app-brand {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
   color: var(--ink);
   text-decoration: none;
-  font-size: 27px;
+  font-size: 24px;
+  line-height: 1.2;
   font-weight: 600;
   letter-spacing: -0.8px;
 }
 .app-brand img {
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
 }
 .app-header nav {
   display: flex;
@@ -127,7 +128,7 @@ input[type="checkbox"] {
   text-decoration: none;
   color: #526680;
   font-size: 16px;
-  padding: 8px 0;
+  padding: 4px 0;
 }
 .app-header nav a[aria-current] {
   color: var(--ink);
@@ -214,12 +215,12 @@ input[type="checkbox"] {
   margin: 0 auto;
   padding: 48px 30px 80px;
 }
-.library-hero {
+.home-hero {
   display: grid;
   grid-template-columns: 1.15fr 0.85fr;
   align-items: center;
-  gap: 70px;
-  padding: 20px 0 65px;
+  gap: 56px;
+  padding: 12px 0 16px;
 }
 .library-collection {
   display: inline-block;
@@ -227,61 +228,61 @@ input[type="checkbox"] {
   font-size: 16px;
   margin-bottom: 21px;
 }
-.library-hero h1 {
+.home-hero h1 {
   font-size: clamp(50px, 5.1vw, 72px);
   font-weight: 550;
   line-height: 1.04;
   letter-spacing: -3px;
   margin: 0 0 24px;
 }
-.library-hero h1 > span {
+.home-hero h1 > span {
   color: #4079ce;
 }
-.library-hero p {
+.home-hero p {
   font-size: 19px;
   color: var(--muted);
   margin-bottom: 28px;
 }
-.library-journey {
+.home-journey {
   padding: 27px;
   border: 1px solid #cedff7;
   border-radius: 20px;
   background: #e9f2ff;
 }
-.library-journey > span {
+.home-journey > span {
   display: block;
   color: var(--ink);
   font-size: 18px;
   margin-bottom: 19px;
   font-weight: 500;
 }
-.library-journey > div {
+.home-journey > div {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 10px;
 }
-.library-journey button {
+.home-journey a {
   display: flex;
   align-items: center;
   gap: 10px;
   background: #fff;
   border: 1px solid #dce8f9;
   border-radius: 10px;
-  padding: 16px 13px;
+  padding: 12px 13px;
   text-align: left;
   color: var(--ink);
+  text-decoration: none;
 }
-.library-journey button:hover,
-.library-journey button[aria-pressed="true"] {
+.home-journey a:hover {
   border-color: #7ba7e7;
   background: #f6faff;
 }
-.library-journey button b {
+.home-journey a b {
   font-size: 16px;
   font-weight: 500;
   flex: 1;
 }
-.library-journey button > span:last-child {
+.home-journey a > span:last-child {
   color: #5c7ea9;
   font-size: 16px;
 }
@@ -296,9 +297,16 @@ input[type="checkbox"] {
   color: #4b6e9b;
   font-size: 14px;
 }
-.library-catalogue {
-  border-top: 1px solid var(--line);
-  padding-top: 36px;
+.home-page {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 24px 30px;
+}
+.home-handbook {
+  display: inline-block;
+  margin-top: 22px;
+  font-size: 16px;
+  text-decoration: none;
 }
 .catalogue-heading {
   display: flex;
@@ -307,7 +315,7 @@ input[type="checkbox"] {
   gap: 20px;
   margin-bottom: 25px;
 }
-.catalogue-heading h2 {
+.catalogue-heading h1 {
   font-size: 30px;
   letter-spacing: -0.7px;
   margin: 0;
@@ -1377,17 +1385,17 @@ input[type="checkbox"] {
   .app-header nav {
     gap: 22px;
   }
-  .library-hero {
+  .home-hero {
     gap: 35px;
   }
-  .library-journey {
+  .home-journey {
     padding: 22px;
   }
-  .library-journey > div {
+  .home-journey > div {
     grid-template-columns: 1fr;
     gap: 7px;
   }
-  .library-journey button {
+  .home-journey a {
     padding: 10px 13px;
   }
   .record-metadata {
@@ -1419,7 +1427,7 @@ input[type="checkbox"] {
   }
   .app-header {
     flex-wrap: wrap;
-    gap: 18px;
+    gap: 10px;
   }
   .app-header nav {
     order: 3;
@@ -1430,21 +1438,18 @@ input[type="checkbox"] {
   .repository-link {
     margin-left: auto;
   }
-  .library-hero {
+  .home-hero {
     grid-template-columns: 1fr 1fr;
     gap: 25px;
   }
-  .library-hero h1 {
+  .home-hero h1 {
     font-size: 54px;
   }
-  .library-hero p {
+  .home-hero p {
     font-size: 18px;
   }
-  .library-hero .button-row {
+  .home-hero .button-row {
     gap: 6px;
-  }
-  .library-hero .text-button {
-    padding-left: 0;
   }
   .library-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1522,56 +1527,67 @@ input[type="checkbox"] {
     width: 100%;
   }
   .app-header {
-    padding: 20px;
+    padding: 12px 20px;
   }
   .app-brand {
-    font-size: 25px;
+    font-size: 23px;
   }
   .app-header nav {
-    gap: 10px;
+    gap: 8px;
     flex-wrap: wrap;
     justify-content: space-between;
   }
   .app-header nav a {
-    font-size: 15px;
+    font-size: 14px;
   }
   .repository-link {
     padding: 8px 11px;
     font-size: 14px;
   }
   .directory,
+  .home-page,
   .workspace-page,
   .contribute-page,
   .handbook-page {
     padding: 30px 20px 55px;
   }
-  .library-hero {
+  .home-hero {
     grid-template-columns: 1fr;
-    padding: 10px 0 35px;
+    padding: 10px 0;
     gap: 30px;
   }
-  .library-hero h1 {
-    font-size: 56px;
+  .home-page {
+    padding-block: 20px 24px;
+  }
+  .home-hero h1 {
+    font-size: clamp(42px, 12.7vw, 56px);
     line-height: 1.05;
   }
-  .library-hero p {
+  .home-hero p {
     font-size: 17px;
   }
-  .library-journey {
+  .home-journey {
     padding: 21px;
   }
-  .library-journey > div {
-    grid-template-columns: 1fr 1fr;
+  .home-journey > div {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-  .library-journey button {
+  .home-journey a {
     padding: 12px 10px;
-    gap: 8px;
+    gap: 6px;
+    flex-direction: column;
+    align-items: flex-start;
   }
-  .library-journey button b {
+  .home-journey a b {
     font-size: 14px;
   }
-  .library-journey button > span:last-child {
+  .home-journey a > span:last-child {
     display: none;
+  }
+  .home-hero .button-row .app-button {
+    flex: 1;
+    padding-inline: 10px;
+    font-size: 15px;
   }
   .journey-dot {
     width: 23px;
@@ -1581,7 +1597,7 @@ input[type="checkbox"] {
     align-items: flex-start;
     gap: 15px;
   }
-  .catalogue-heading h2 {
+  .catalogue-heading h1 {
     font-size: 27px;
   }
   .catalogue-heading a {
@@ -1827,18 +1843,6 @@ input[type="checkbox"] {
   font-size: 24px;
 }
 
-.app-brand-mark {
-  display: grid;
-  place-items: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 12px;
-  background: var(--ink);
-  color: white;
-  font-size: 16px;
-  letter-spacing: -0.5px;
-  flex-shrink: 0;
-}
 html {
   scrollbar-gutter: stable;
 }

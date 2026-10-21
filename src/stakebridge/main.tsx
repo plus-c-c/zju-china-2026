@@ -11,6 +11,7 @@ import {
 import { RegistryView } from "./registry/Directory";
 import { Contribute } from "./registry/Contribute";
 import { Handbook } from "./Handbook";
+import { Home } from "./Home";
 import { standardStageName } from "./journey";
 import {
   REPOSITORY,
@@ -22,9 +23,10 @@ import publishedRegistry from "./data/entries.json";
 import "./ui.css";
 
 function currentRoute() {
-  return location.hash.replace(/^#\/?/, "") || "workspace";
+  return location.hash.replace(/^#\/?/, "") || "home";
 }
 export function App() {
+  const embedded = window.self !== window.top;
   const store = useWorkspace();
   const [route, setRoute] = useState(currentRoute);
   const [{ registry, registryError }] = useState<{
@@ -58,7 +60,8 @@ export function App() {
     window.addEventListener("hashchange", update);
     return () => window.removeEventListener("hashchange", update);
   }, []);
-  const view = route.split("/")[0];
+  const [path, search = ""] = route.split("?");
+  const view = path.split("/")[0];
   function referenceDraft(entry: RegistryEntry, stageId: string): Stakeholder {
     return {
       ...newStakeholder(stageId),
@@ -166,13 +169,19 @@ export function App() {
         Skip to content
       </a>
       <header className="app-header">
-        <a className="app-brand" href="#registry">
-          <span className="app-brand-mark" aria-hidden="true">
-            SB
-          </span>
+        <a className="app-brand" href="#home">
+          <img
+            src="https://static.igem.wiki/teams/6102/wiki/images/hp/ihp/stakebridge-icon-1.svg"
+            width="32"
+            height="32"
+            alt=""
+          />
           <span>StakeBridge</span>
         </a>
         <nav aria-label="Main navigation">
+          <a href="#home" aria-current={view === "home" ? "page" : undefined}>
+            Home
+          </a>
           <a
             href="#registry"
             aria-current={view === "registry" ? "page" : undefined}
@@ -200,11 +209,12 @@ export function App() {
         </nav>
         <a
           className="repository-link"
-          href={REPOSITORY}
+          href={embedded ? `#${route}` : REPOSITORY}
           target="_blank"
           rel="noreferrer"
+          aria-label={embedded ? "Open StakeBridge in a new tab" : undefined}
         >
-          GitHub ↗
+          {embedded ? "Open ↗" : "GitHub ↗"}
         </a>
       </header>
       {message && (
@@ -248,7 +258,9 @@ export function App() {
             field.setCustomValidity("");
         }}
       >
-        {view === "workspace" ? (
+        {view === "home" ? (
+          <Home recordCount={registry?.entries.length} />
+        ) : view === "workspace" ? (
           <div className="workspace-page">
             <div className="workspace-page-title">
               <div>
@@ -266,7 +278,7 @@ export function App() {
             />
           </div>
         ) : view === "handbook" ? (
-          <Handbook key={route} slug={route.split("/")[1]} />
+          <Handbook key={route} slug={path.split("/")[1]} />
         ) : view === "contribute" ? (
           <Contribute />
         ) : view === "registry" ? (
@@ -274,7 +286,8 @@ export function App() {
             <RegistryView
               key={route}
               registry={registry}
-              entryId={route.split("/")[1]}
+              entryId={path.split("/")[1]}
+              initialStage={new URLSearchParams(search).get("stage") || ""}
               workspace={store.workspace}
               onAdd={addEntry}
               onPathway={usePathway}

@@ -87,18 +87,24 @@ function PublicContacts({ entry }: { entry: RegistryEntry }) {
 export function RegistryView({
   registry,
   entryId,
+  initialStage = "",
   workspace,
   onAdd,
   onPathway,
 }: {
   registry: Registry;
   entryId?: string;
+  initialStage?: string;
   workspace: Workspace | null;
   onAdd: (entry: RegistryEntry, stageId: string) => void;
   onPathway: (entry: RegistryEntry) => void;
 }) {
   const [query, setQuery] = useState("");
-  const [stage, setStage] = useState("");
+  const [stage, setStage] = useState(() =>
+    registry.entries.some((item) => item.stages.includes(initialStage))
+      ? initialStage
+      : "",
+  );
   const [contactFilter, setContactFilter] = useState("");
   const [roleFilter, setRoleFilter] = useState("");
   const [fieldFilter, setFieldFilter] = useState("");
@@ -461,47 +467,9 @@ export function RegistryView({
 
   return (
     <div className="directory">
-      <header className="library-hero">
-        <div>
-          <span className="library-collection">
-            Community library · {registry.entries.length} records
-          </span>
-          <h1>
-            Stakeholder
-            <br />
-            <span>library.</span>
-          </h1>
-          <p>People, perspectives and project experience.</p>
-          <div className="button-row">
-            <a className="app-button" href="#workspace">
-              Open workspace →
-            </a>
-            <a className="app-button text-button" href="#handbook">
-              Read the handbook
-            </a>
-          </div>
-        </div>
-        <div className="library-journey" aria-label="Project journey">
-          <span>From research to practice</span>
-          <div>
-            {stageOrder.map((name, index) => (
-              <button
-                key={name}
-                type="button"
-                aria-pressed={stage === name}
-                onClick={() => changeFilter(() => setStage(name))}
-              >
-                <span className="journey-dot">{index + 1}</span>
-                <b>{name}</b>
-                <span aria-hidden="true">↗</span>
-              </button>
-            ))}
-          </div>
-        </div>
-      </header>
       <section className="library-catalogue" aria-label="Stakeholder library">
         <div className="catalogue-heading">
-          <h2>Explore the library</h2>
+          <h1>Stakeholder library</h1>
           <a href="#contribute">Contribute a record ↗</a>
         </div>
         <div className="directory-tools">
