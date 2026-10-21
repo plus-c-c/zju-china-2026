@@ -466,7 +466,7 @@ const CONTENT: ContentBlock[] = [
   {
     "type": "card",
     "source_index": 84,
-    "title": "1. Initial Capital Investment",
+    "title": "1 Initial Capital Investment",
     "blocks": [
       {
         "type": "paragraph",
@@ -597,7 +597,7 @@ const CONTENT: ContentBlock[] = [
   {
     "type": "card",
     "source_index": 115,
-    "title": "2. Annual Operating Expenses (OPEX)",
+    "title": "2 Annual Operating Expenses (OPEX)",
     "blocks": [
       {
         "type": "paragraph",
@@ -903,7 +903,7 @@ const CONTENT: ContentBlock[] = [
   {
     "type": "card",
     "source_index": 184,
-    "title": "3. Annual Capital Expenditure (CAPEX)",
+    "title": "3 Annual Capital Expenditure (CAPEX)",
     "blocks": [
       {
         "type": "paragraph",
@@ -1601,7 +1601,7 @@ const CONTENT: ContentBlock[] = [
     "source_index": 312,
     "level": 3,
     "id": "1-dandelion-innovation-competition",
-    "text": "1. Dandelion Innovation Competition"
+    "text": "1 Dandelion Innovation Competition"
   },
   {
     "type": "figure",
@@ -1623,7 +1623,7 @@ const CONTENT: ContentBlock[] = [
     "source_index": 316,
     "level": 3,
     "id": "2-synbio-challenges-2026",
-    "text": "2.SynBio Challenges 2026"
+    "text": "2 SynBio Challenges 2026"
   },
   {
     "type": "figure",
