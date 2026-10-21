@@ -440,6 +440,69 @@ export function SafetyAndSecurity() {
             application setting. These studies will help establish the safety
             profile of the complete system and inform its continued development.
           </p>
+          <h2 id="safety-in-integrated-human-practices" className="mt-5">
+            Safety in Integrated Human Practices
+          </h2>
+          <hr />
+          <h3 id="personal-privacy" className="mt-4">
+            Personal Privacy
+          </h3>
+          <p>
+            During the research phase of our project, we conducted numerous
+            surveys and in-depth interviews. We fully recognize the importance
+            of protecting the personal privacy of every participant.
+          </p>
+          <div className="row align-items-center g-4 my-4">
+            <div className="col-md-6">
+              <img
+                src="https://static.igem.wiki/teams/6102/wiki/images/new-upload/.webp"
+                alt="Questionnaire privacy and anonymous participation information."
+                className="img-fluid rounded d-block mx-auto"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div className="col-md-6">
+              <h4 id="privacy-questionnaires">Questionnaires:</h4>
+              <p className="mb-0">
+                At the beginning of all online and offline questionnaires, we
+                clearly informed participants that they had the option to respond
+                anonymously. We fully respected their choices; all responses from
+                those who chose to remain anonymous are presented as "Anonymous",
+                ensuring their personal information is not disclosed.
+              </p>
+            </div>
+          </div>
+          <div className="row align-items-center g-4 my-4">
+            <div className="col-md-6">
+              <img
+                src="https://static.igem.wiki/teams/6102/wiki/images/new-upload/.avif"
+                alt="Interview consent and personal privacy information."
+                className="img-fluid rounded d-block mx-auto"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div className="col-md-6">
+              <h4 id="privacy-interviews">Interviews:</h4>
+              <p className="mb-0">
+                Before commencing any individual or group interviews, we first
+                explained in detail the purpose of the interview, how the
+                information would be used, and the potential channels for
+                dissemination. We only proceeded with audio, video, or written
+                recording after obtaining explicit verbal or written consent from
+                the interviewee. For any interviewee who wished to remain
+                anonymous, we rigorously anonymized their personal information.
+              </p>
+            </div>
+          </div>
+          <p>
+            We solemnly pledge that all data collected through questionnaires,
+            interviews, and community or open platforms was used strictly for
+            the academic research and analysis of this project. It will never
+            be used for any commercial or other purposes outside the project
+            without explicit authorization.
+          </p>
         </article>
       </div>
     </div>
