@@ -2036,9 +2036,14 @@ function renderBlock(block: ContentBlock, key: string): ReactNode {
       }
       return [
         <div className="entre-card entre-download-card" key={`${key}-download`}>
-          <div className="entre-card-header">
+          <a
+            className="entre-card-header"
+            href="https://static.igem.wiki/teams/6102/wiki/hp-file/nest-cost-sheet"
+            target="_blank"
+            rel="noreferrer"
+          >
             <span className="entre-card-title">Download Our Cost Sheet</span>
-          </div>
+          </a>
         </div>,
         card,
       ];

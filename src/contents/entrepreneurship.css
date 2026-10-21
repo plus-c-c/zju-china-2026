@@ -65,7 +65,8 @@
 }
 
 .entre-download-card > .entre-card-header {
-  cursor: default;
+  cursor: pointer;
+  text-decoration: none;
 }
 
 .entre-download-card > .entre-card-header:hover {
