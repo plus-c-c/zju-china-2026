@@ -526,7 +526,7 @@ export function Navbar({ introEntrance = false, opening = false }: { introEntran
                   onClick={closeMenus}
                 >
                   <img
-                    src={`${import.meta.env.BASE_URL}images/navigation/cart.svg`}
+                    src="https://static.igem.wiki/teams/6102/wiki/images/navigation/cart.svg"
                     alt=""
                     width="22"
                     height="22"
