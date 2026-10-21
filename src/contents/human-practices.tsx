@@ -1145,57 +1145,67 @@ function ImpactBlock() {
     <>
       <h3 className="mt-4 mb-3">T — Trust and Lasting Impact</h3>
       <p>
-        <strong>Sustaining the commercialization.</strong> Medical materials
-        take a long time to reach the market — far longer than the iGEM season —
-        so we need more sustainable commercial planning. To meet administrative
-        requirements we plan to file a patent in November 2026, and we are
-        carrying out competitor analysis and industry research, and writing a
-        business canvas and company development plan. All 14 team members are
-        willing to keep improving the project and to pursue profitability.
+        <strong>Sustained commercialization.</strong> Medical products take years
+        to reach the market — far longer than a single iGEM season — so NEST
+        needs a sustainable, long-term business plan. To meet the relevant
+        administrative requirements, we plan to file a patent application in
+        November 2026. We have also developed a detailed business plan, including
+        a dedicated ESG module that helps NexCode Biotechnologies assess its
+        broader social impact and operate as a responsible enterprise. All 16
+        team members remain committed to improving the project, reaching
+        profitability, and advancing the real-world translation of NEST.
       </p>
       <p>
-        <strong>The neglected pain.</strong> In the background research we
-        already found a strange inversion — many people around us described
-        symptoms, but few were recorded officially. When we checked with
-        hospital stakeholders, they confirmed that this pain — &ldquo;below the
-        diagnostic threshold, but real&rdquo; — is not rare in the clinic; the
-        clinical system simply has no good solution for early cartilage damage,
-        so both doctors and patients tend to overlook it. Cartilage health needs
-        all of us. To break this situation we ran education and appeals for
-        children, older people, the public and medical students. With Prof.
-        Zhang Binghong&rsquo;s guidance we wrote our findings into a survey
-        report and submitted it to the Hangzhou Municipal Health Commission; the
-        Commission replied that it would study the suggestions further and
-        outlined follow-up work on community education, screening and diagnostic
-        standards, and our team also provided reference cases — our age-specific
-        lectures and activities — for the Commission&rsquo;s next steps in
-        training community hospitals and neighbourhood committees. For doctors
-        and medical students we appealed that orthopaedic treatment should be
-        patient-centred, valuing patients&rsquo; actual health experience rather
-        than only repairing function. With anthropology scholars we wrote two papers on the
-        structural problems behind the neglect of the &ldquo;small
-        illnesses&rdquo; in medical systems, including{" "}
+        <strong>The pain that goes unnoticed.</strong> During our preliminary
+        research, we found a striking discrepancy: many people around us
+        reported symptoms, yet relatively few cases appeared in official
+        records. Consultations with hospital stakeholders confirmed that pain
+        which &ldquo;does not meet the diagnostic threshold but is nonetheless
+        real&rdquo; is common in clinical practice. Because effective solutions
+        for early-stage cartilage damage remain limited, both physicians and
+        patients tend to overlook these injuries.
+      </p>
+      <p>
+        Protecting cartilage health requires collective action. To break this
+        cycle of neglect, we ran targeted education and advocacy for children,
+        older adults, the general public and medical students. Under the
+        guidance of Zhang Binghong, we compiled our findings into a research
+        report and submitted it to the Hangzhou Municipal Health Commission. The
+        Commission accepted our recommendations and issued an official response;
+        under policy requirements, the response cannot be made public. We also
+        provided practical references — our age-specific lectures and activities
+        — for the government&rsquo;s planned training of community hospitals,
+        residents&rsquo; committees and other grassroots organizations.
+      </p>
+      <p>
+        We encouraged physicians and medical students to adopt patient-centred
+        orthopaedic care that values patients&rsquo; lived experience rather
+        than focusing only on functional restoration. With anthropology
+        scholars, we wrote one paper,{" "}
         <em>
           Pain beyond the diagnostic threshold: the medical invisibility of
           early joint symptoms
         </em>
-        , and fed the results back to Zhejiang University&rsquo;s Institute of
+        , on the structural factors that make hidden suffering from seemingly
+        minor conditions overlooked in health systems, and shared the findings
+        with Zhejiang University&rsquo;s Institute of
         Social Medicine and Health Services Management. We also ran
-        medical-anthropology lectures and seminars to raise future
-        doctors&rsquo; awareness, and discussed the ethics and philosophy of
-        synthetic biology with Dr. Chen Bohang of the Department of Philosophy
-        of Science and Technology.
+        medical-anthropology lectures and seminars to strengthen future
+        physicians&rsquo; awareness that illness is not merely physiological
+        harm but is shaped by social conditions and structural violence. We
+        discussed the ethics and philosophy of synthetic biology with Dr. Chen
+        Bohang of the Department of Philosophy of Science and Technology.
       </p>
-      <h4 className="mt-5 mb-3">Reports behind the neglected pain</h4>
+      <h4 className="mt-5 mb-3">Research report</h4>
       <p>
-        The survey report records this work in full. Open the card below to read
-        it here, or use the link to open it in a new tab:{" "}
+        The research report records this work in full. Open the card below to
+        read it here, or use the link to open it in a new tab:{" "}
         <a href={SURVEY_REPORT_PDF} target="_blank" rel="noreferrer">
-          survey report on the neglected pain of cartilage injury
+          research report on the neglected pain of cartilage injury
         </a>
         .
       </p>
-      <ExtendCard title="Read the full report (PDF)">
+      <ExtendCard title="Read the research report (PDF)">
         <div className="ihp-pdf">
           <div className="ihp-pdf__head">
             <strong>
@@ -1215,24 +1225,30 @@ function ImpactBlock() {
       </ExtendCard>
 
       <p>
-        <strong>SynBio education.</strong> In our education practice we were
-        welcomed by every institution we worked with, while other iGEM teams told
-        us they struggled to find suitable institutions. So we worked with other
-        teams to build{" "}
+        <strong>Our contribution to synthetic biology education.</strong> Every
+        institution we worked with responded enthusiastically. In conversations
+        with other iGEM teams, however, we learned that many struggled to find
+        suitable education partners. We therefore joined other teams to create{" "}
         <a href="https://syneduglobal.top" target="_blank" rel="noreferrer">
           <strong>SynEdu Global</strong>
         </a>
-        , a synthetic biology education website open to everyone: institutions
-        and iGEM teams can invite teams and share educational materials, and the
-        online format partly solves regional imbalance. Later we noticed that
-        the bio-industry is also deeply interested in synthetic biology and that
-        many industry practitioners need further education, so we worked with
-        Jiangnan University to build an industry module and signed a five-year
-        cooperation agreement to keep the platform running long term. Beyond
-        promoting synthetic biology and reducing public misunderstanding, we
-        also reflected on the field itself: we discussed the philosophy of
-        science and technology behind it and examined the ethical questions it
-        raises. <Link to="/education">Learn more</Link>.
+        , an open synthetic-biology education platform. It connects institutions
+        and iGEM teams, supports collaboration invitations and resource sharing,
+        and its online format helps reduce regional disparities in access.
+      </p>
+      <p>
+        We later recognized that the biotechnology industry also has a strong
+        interest in synthetic biology and that many professionals need further
+        education. We partnered with Jiangnan University to develop an
+        industry-oriented module and signed a five-year cooperation agreement to
+        support the platform&rsquo;s long-term operation.
+      </p>
+      <p>
+        Beyond promoting synthetic biology and reducing public misconceptions,
+        we reflected critically on the field itself. We held extensive
+        discussions with Researcher Chen Bohang of the Department of Philosophy
+        of Science and Technology, examining the ethical questions raised by
+        synthetic biology. <Link to="/education">Learn more</Link>.
       </p>
 
       <h4 className="mt-5 mb-3">High-school session — activity questionnaire</h4>
