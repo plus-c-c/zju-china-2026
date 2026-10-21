@@ -518,6 +518,21 @@ export function Navbar({ introEntrance = false, opening = false }: { introEntran
                 }
                 return null;
               })}
+              <li className="navigation-cart">
+                <Link
+                  to="/get-your-nest"
+                  aria-label="Get your NEST"
+                  title="Get your NEST"
+                  onClick={closeMenus}
+                >
+                  <img
+                    src={`${import.meta.env.BASE_URL}images/navigation/cart.svg`}
+                    alt=""
+                    width="22"
+                    height="22"
+                  />
+                </Link>
+              </li>
             </ul>
           </div>
         </div>

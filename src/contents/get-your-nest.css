@@ -1,0 +1,302 @@
+.gyn-page {
+  max-width: 980px;
+  margin-inline: auto;
+}
+
+.gyn-hero {
+  position: relative;
+  overflow: hidden;
+  margin: 0 0 1.5rem;
+  padding: clamp(1.6rem, 4vw, 3rem);
+  border-radius: 24px;
+  background: #eef7ff;
+  box-shadow: 4px 4px 0 #a9c8ed;
+}
+
+.page-article .gyn-hero-title {
+  margin: 0.35rem 0 0.75rem;
+  color: #173c64;
+  font-family: "Outfit", sans-serif;
+  font-size: clamp(2.1rem, 4.6vw, 3.8rem);
+  font-weight: 700;
+  line-height: 0.98;
+}
+
+.gyn-lede {
+  max-width: 700px;
+  margin: 0;
+  color: #2f4d70;
+  font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+  line-height: 1.65;
+}
+
+.gyn-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-top: 1.35rem;
+}
+
+.gyn-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0.65rem 1.05rem;
+  border: 1px solid #2257a8;
+  border-radius: 999px;
+  background: #2257a8;
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+  transition:
+    transform 160ms ease,
+    background-color 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.gyn-button:hover {
+  background: #173f7b;
+  color: #fff;
+  box-shadow: 0 5px 14px rgb(34 87 168 / 22%);
+  transform: translateY(-1px);
+}
+
+.gyn-button--quiet {
+  border-color: #a9c8ed;
+  background: #fff;
+  color: #2257a8;
+}
+
+.gyn-button--quiet:hover {
+  background: #f1f7ff;
+  color: #173f7b;
+}
+
+.gyn-notice {
+  margin: 0 0 2rem;
+  padding: 1rem 1.15rem;
+  border-left: 4px solid #e0a946;
+  border-radius: 0 12px 12px 0;
+  background: #fff8e8;
+  color: #5c4b2a;
+  line-height: 1.6;
+}
+
+.gyn-section {
+  margin: 2.5rem 0;
+}
+
+.gyn-section > p {
+  max-width: 780px;
+}
+
+.gyn-section-heading {
+  margin-bottom: 0.8rem;
+}
+
+.gyn-section-heading h2 {
+  margin: 0.25rem 0 0;
+  color: #173c64;
+  font-size: clamp(1.45rem, 2.4vw, 2rem);
+}
+
+.gyn-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.9rem;
+  margin: 1.2rem 0 0.65rem;
+}
+
+.gyn-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 180px;
+  padding: 1.15rem 1.1rem 1.1rem;
+  border: 1px solid #cfdff2;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 2px 2px 0 #e2edfa;
+  cursor: pointer;
+  transition:
+    border-color 160ms ease,
+    background-color 160ms ease,
+    transform 160ms ease;
+}
+
+.gyn-card:hover {
+  border-color: #8db5e3;
+  transform: translateY(-2px);
+}
+
+.gyn-card.is-selected {
+  border-color: #4d8ed0;
+  background: #f4f9ff;
+}
+
+.gyn-card input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+}
+
+.gyn-card-check {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 1.15rem;
+  height: 1.15rem;
+  margin-bottom: 0.75rem;
+  border: 2px solid #b9cfe7;
+  border-radius: 5px;
+  background: #fff;
+}
+
+.gyn-card.is-selected .gyn-card-check {
+  border-color: #2257a8;
+  background: #2257a8;
+}
+
+.gyn-card.is-selected .gyn-card-check::after {
+  width: 0.32rem;
+  height: 0.58rem;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  content: "";
+  transform: translateY(-1px) rotate(45deg);
+}
+
+.gyn-card:focus-within {
+  outline: 3px solid rgb(54 93 201 / 30%);
+  outline-offset: 2px;
+}
+
+.gyn-card-title {
+  color: #173c64;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.gyn-card-text {
+  margin-top: 0.4rem;
+  color: #425f82;
+  font-size: 0.94rem;
+  line-height: 1.55;
+}
+
+.gyn-small {
+  color: #657b94;
+  font-size: 0.84rem;
+  line-height: 1.5;
+}
+
+.gyn-inquiry {
+  padding: 1.1rem clamp(1.2rem, 3vw, 2rem) 1.6rem;
+  border: 1px solid #c9ddf4;
+  border-radius: 20px;
+  background: #f7fbff;
+}
+
+.page-article .gyn-inquiry .gyn-section-heading h2 {
+  margin-top: 0 !important;
+}
+
+.gyn-form {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.2rem;
+}
+
+.gyn-field-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+.gyn-form label {
+  display: grid;
+  gap: 0.35rem;
+  color: #274c78;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.gyn-form input,
+.gyn-form select,
+.gyn-form textarea {
+  width: 100%;
+  padding: 0.62rem 0.7rem;
+  border: 1px solid #bfd3e9;
+  border-radius: 9px;
+  background: #fff;
+  color: #213e60;
+  font: inherit;
+  font-weight: 400;
+}
+
+.gyn-form input:focus,
+.gyn-form select:focus,
+.gyn-form textarea:focus {
+  border-color: #4d8ed0;
+  box-shadow: 0 0 0 3px rgb(77 142 208 / 16%);
+  outline: none;
+}
+
+.gyn-form textarea {
+  resize: vertical;
+}
+
+.gyn-form-footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.gyn-form-footer .gyn-small {
+  max-width: 560px;
+  margin: 0;
+}
+
+.gyn-confirmation {
+  margin-top: 1.2rem;
+  padding: 1.2rem;
+  border: 1px solid #a9d5b9;
+  border-radius: 14px;
+  background: #f1fbf4;
+  color: #28533a;
+}
+
+.gyn-confirmation p {
+  margin: 0.5rem 0;
+}
+
+@media (max-width: 991.98px) {
+  .gyn-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .gyn-partner-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 575.98px) {
+  .gyn-hero {
+    border-radius: 18px;
+  }
+
+  .gyn-grid,
+  .gyn-field-row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .gyn-form-footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
