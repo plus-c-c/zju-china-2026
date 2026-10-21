@@ -985,7 +985,16 @@ cd igem-2026-app
             docs/simulation-principles.md, docs/sequence-annotation-workflow.md,
             docs/task-creation.md, docs/environment-setup.md and others;
             Software II is a standard Gradle project that builds without extra
-            environment configuration.
+            environment configuration. The source code for both tools is
+            available in the team&rsquo;s iGEM Software repository:{" "}
+            <a
+              href="https://gitlab.igem.org/2026/software/zju-china/nest"
+              target="_blank"
+              rel="noreferrer"
+            >
+              https://gitlab.igem.org/2026/software/zju-china/nest
+            </a>
+            .
           </p>
         </article>
       </div>
