@@ -1,5 +1,7 @@
 import { TableCaption } from "../components/FigureCaption";
 import { FigureCaption } from "../components/FigureCaption";
+import { Link } from "react-router-dom";
+import { References } from "../components/References";
 /**
  * Software page — usage documentation for both software tools, converted from
  * `Software-new-en.md` (2026-10-16):
@@ -152,6 +154,59 @@ export function Software() {
               with its run status.
             </FigureCaption>
           </figure>
+
+          <h4 className="mt-5 mb-3">Connection to the Model page</h4>
+          <p>
+            The software does not replace the Model page; it executes the same
+            staged calculation and exposes each model input, intermediate
+            product and final output. The mapping below makes the hand-off
+            explicit. Detailed equations, assumptions and references remain on
+            the <Link to="/model">Model page</Link>.
+          </p>
+          <div className="table-responsive mb-4">
+            <table
+              className="table table-bordered align-middle"
+              aria-label="Software and Model data contract"
+            >
+              <TableCaption as="caption">
+                Software–Model data contract.
+              </TableCaption>
+              <thead className="table-primary">
+                <tr>
+                  <th scope="col">Model component</th>
+                  <th scope="col">Software step</th>
+                  <th scope="col">Input passed to the step</th>
+                  <th scope="col">Output returned to the workflow</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>TIGER2 / FAMD single-chain sampling</td>
+                  <td><code>flow_tiger2</code></td>
+                  <td>Sequence, PSF topology, temperature range and replica settings</td>
+                  <td>Trajectory, radius of gyration, RMSD, secondary structure and convergence checks</td>
+                </tr>
+                <tr>
+                  <td>Martini 3 crosslinked network</td>
+                  <td><code>flow_gromacs_cg</code></td>
+                  <td>Chains, crosslink count, strain and thermostat temperature</td>
+                  <td>Network structure and the compressive-modulus curve used by Step 3</td>
+                </tr>
+                <tr>
+                  <td>Magneto-poroelastic model</td>
+                  <td><code>flow_magnetomech</code></td>
+                  <td>Polymer and nanoparticle fractions, sample height and magnetic-field profile</td>
+                  <td>Deformation, strain, stress and local axial modulus under the applied field</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p className="software-small-note">
+            Outputs are written to each step&rsquo;s <code>output/</code> or{" "}
+            <code>cache/</code> directory and read automatically by the next
+            step. This is a data-flow relationship, not an experimental
+            validation of the model.
+          </p>
 
           <h3 className="mt-5 mb-3">1.2 Components and Implementation</h3>
           <p>
@@ -668,6 +723,32 @@ export function Software() {
             Model page.
           </p>
 
+          <h3 className="mt-5 mb-3">1.4 Validation and limitations</h3>
+          <p>
+            The platform validates parameter types, units, required files and
+            successful execution, and it exposes convergence and structural
+            checks in the Results view. These checks establish that a run
+            completed and that its outputs are internally consistent; they do
+            not establish agreement with experiment.
+          </p>
+          <ul>
+            <li>
+              The all-atom and Martini stages are computational models with
+              finite sampling and force-field assumptions; a completed run is
+              not by itself evidence of biological or clinical performance.
+            </li>
+            <li>
+              Step 2 is run at fixed temperature without replica exchange; its
+              modulus estimates depend on the chosen network model and input
+              parameters.
+            </li>
+            <li>
+              Step 3 is a continuum-level magneto-poroelastic calculation. It
+              uses the outputs of the earlier steps and must be interpreted
+              alongside experimental material testing.
+            </li>
+          </ul>
+
           <h2 className="mt-5 mb-4">2 User Side: NEST Software</h2>
           <p>
             The simulation platform answers &ldquo;how will the material
@@ -703,6 +784,12 @@ export function Software() {
             entry notes its composition and purpose. After submission the flow
             moves automatically to Operating Instructions, and the order details
             are handled centrally by the project team (Figure 4).
+          </p>
+          <p>
+            <strong>Scope note.</strong> This screen demonstrates an internal
+            clinical ordering workflow. It is not a commercial store, payment
+            system or approved purchasing channel; NEST remains investigational
+            and is not for sale.
           </p>
           {/* Figure 4 为竖版手机截图（500×1000）：宽度取 25%，
               使渲染高度与横版 Figure 5（software/005，1752×876，2:1）一致 */}
@@ -834,8 +921,8 @@ export function Software() {
 
           <h3 className="mt-5 mb-3">2.3 Tech Stack</h3>
           <p>
-            The app is built for bedside use, prioritising on-device capability
-            and offline availability:
+            The app is built for bedside use, prioritising on-device scanning
+            and a clear preparation workflow:
           </p>
           <TableCaption>
             <strong>Table 8</strong>: Tech stack of the NEST Software app.
@@ -941,9 +1028,11 @@ export function Software() {
               not require re-running the whole flow.
             </li>
             <li>
-              <strong>Software II · offline scanning</strong>: QR codes are
-              recognised directly on the device, so instructions can still be
-              loaded offline; when no camera is available, manual entry works.
+              <strong>Software II · on-device scanning</strong>: QR codes are
+              recognised directly on the device, so scanning itself works
+              without a network; formulation-specific instruction lookup still
+              requires the material server. Manual code entry is available when
+              no camera is present.
             </li>
           </ul>
 
@@ -955,10 +1044,11 @@ export function Software() {
 
           <h4 className="mt-4 mb-3">3.3.1 Setup and Deployment</h4>
           <pre>
-            <code>{`# Software I · SELP molecular dynamics simulation platform
-git clone <repository-url>
-cd igem-2026-software
+            <code>{`git clone https://gitlab.igem.org/2026/software/zju-china/nest.git
+cd nest
 
+# Software I · SELP molecular dynamics simulation platform
+cd SELP-Molecular-Dynamics-Simulation-Platform
 cd backend && npm install      # backend dependencies
 cd ../frontend && npm install  # frontend dependencies
 
@@ -966,7 +1056,7 @@ cd ../backend && npm start     # start backend on :3001
 cd ../frontend && npm run dev  # start frontend on :5174
 
 # Software II · NEST Software
-cd igem-2026-app
+cd ../../NEST-Software
 ./gradlew assembleDebug`}</code>
           </pre>
 
@@ -994,8 +1084,52 @@ cd igem-2026-app
             >
               https://gitlab.igem.org/2026/software/zju-china/nest
             </a>
-            .
+            . The repository is released under the Apache License 2.0, and the
+            root README plus each tool&rsquo;s README provide the current build,
+            run and test instructions.
           </p>
+          <References>
+            <div className="references-list references-list--paragraphs">
+              <p>
+                [1] Li X, Latour RA, Stuart SJ. TIGER2: An improved algorithm
+                for temperature intervals with global exchange of replicas.{" "}
+                <em>The Journal of Chemical Physics</em>. 2009;130:174106.{" "}
+                <a href="https://doi.org/10.1063/1.3129342">
+                  doi:10.1063/1.3129342
+                </a>
+              </p>
+              <p>
+                [2] Phillips JC, Hardy DJ, Maia JDC, et al. Scalable molecular
+                dynamics on CPU and GPU architectures with NAMD.{" "}
+                <em>The Journal of Chemical Physics</em>. 2020;153:044130.{" "}
+                <a href="https://doi.org/10.1063/5.0014475">
+                  doi:10.1063/5.0014475
+                </a>
+              </p>
+              <p>
+                [3] Souza PCT, Alessandri R, Barnoud J, et al. Martini 3: a
+                general purpose force field for coarse-grained molecular
+                dynamics. <em>Nature Methods</em>. 2021;18:382&ndash;388.{" "}
+                <a href="https://doi.org/10.1038/s41592-021-01098-3">
+                  doi:10.1038/s41592-021-01098-3
+                </a>
+              </p>
+              <p>
+                [4] Abraham MJ, Murtola T, Schulz R, et al. GROMACS: High
+                performance molecular simulations through multi-level
+                parallelism from laptops to supercomputers.{" "}
+                <em>SoftwareX</em>. 2015;1&ndash;2:19&ndash;25.{" "}
+                <a href="https://doi.org/10.1016/j.softx.2015.06.001">
+                  doi:10.1016/j.softx.2015.06.001
+                </a>
+              </p>
+              <p>
+                The equations, assumptions and further physical-model
+                references are documented on the{" "}
+                <Link to="/model">Model page</Link>.
+              </p>
+            </div>
+          </References>
         </article>
       </div>
     </div>

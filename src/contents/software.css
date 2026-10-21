@@ -22,3 +22,12 @@
   padding: 0.08em 0.35em;
   font-size: 0.95em;
 }
+
+.software-small-note {
+  padding: 0.75rem 1rem;
+  border-left: 3px solid #a9c8ed;
+  border-radius: 0 8px 8px 0;
+  background: #f7faff;
+  color: #526b86;
+  font-size: 0.92rem;
+}
