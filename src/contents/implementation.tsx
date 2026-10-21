@@ -44,7 +44,8 @@ export function Implementation() {
           1.2 Local Degenerative Lesions Associated with Osteoarthritis (OA)
         </h3>
         <p>
-          Lesions characterized by matrix loss and altered cellular states may
+          While the first application focuses on well-demarcated defects,
+          lesions characterized by matrix loss and altered cellular states may
           require the material to further modulate the local microenvironment.
           Our OA proof-of-concept work provides an experimental starting point
           for magnetic responsiveness, GAG retention, and stimuli-responsive
@@ -58,7 +59,7 @@ export function Implementation() {
           1.3 Osteochondral Injuries Involving the Subchondral Bone
         </h3>
         <p>
-          For defects involving both cartilage and subchondral bone, we propose
+          For defects extending from cartilage into subchondral bone, we propose
           developing NEST as the cartilage layer of a stratified repair material
           in collaboration with a bone-repair materials team. SELP
           specifications and functional modules will address mechanical and
@@ -72,10 +73,12 @@ export function Implementation() {
         <p>
           All three application directions share a common foundation for
           scaffold manufacturing and assembly, while each will have a
-          standardized formulation with clearly defined composition, intended
-          use, and evaluation criteria. The development team will generate
-          material variants, and professional users will select products for
-          intended uses supported by completed validation.
+          standardized formulation with clearly defined composition, preparation
+          procedures, intended use, and evaluation criteria. The development
+          team will generate and evaluate material variants against these
+          criteria, while professional users will select products for intended
+          uses supported by completed validation. The resulting specifications
+          will provide a shared reference for production, preparation, and use.
         </p>
         <figure className="figure d-block my-4 text-center">
           <img
@@ -98,16 +101,17 @@ export function Implementation() {
           2 Ensuring a Stable Material Supply through Biomanufacturing
         </h2>
         <p>
-          NEST has employed <em>Escherichia coli</em> expression and inverse
-          transition cycling (ITC) purification to produce SELP. ITC exploits
-          the temperature- and salt-responsive behavior of the protein, enabling
-          scaffold recovery through reversible aggregation, separation, and
-          resolubilization. This non-chromatographic route reduces reliance on
-          affinity resins for bulk scaffold recovery and provides a foundation
-          for scale-up focused on heat transfer, mixing, and solid&ndash;liquid
-          separation, making it an important component of the project&rsquo;s
-          strategy for scalable biomanufacturing{" "}
-          <sup className="article-citation">[2, 3]</sup>.
+          Delivering these standardized formulations requires a stable supply of
+          the shared SELP scaffold. NEST has employed <em>Escherichia coli</em>{" "}
+          expression and inverse transition cycling (ITC) purification to
+          produce SELP. ITC exploits the temperature- and salt-responsive
+          behavior of the protein, enabling scaffold recovery through reversible
+          aggregation, separation, and resolubilization. This
+          non-chromatographic route reduces reliance on affinity resins for bulk
+          scaffold recovery and provides a foundation for scale-up focused on
+          heat transfer, mixing, and solid&ndash;liquid separation, making it an
+          important component of the project&rsquo;s strategy for scalable
+          biomanufacturing <sup className="article-citation">[2, 3]</sup>.
         </p>
         <p>
           The proposed supply system centers on centralized scaffold production,
@@ -125,15 +129,18 @@ export function Implementation() {
           3 Connecting the Material to Clinician Workflows
         </h2>
         <p>
-          We have developed an Android application for clinicians that organizes
-          formulation selection and preparation guidance in an actionable
-          interface. The app provides selection screens for the scaffold and
-          functional modules and loads the corresponding instructions via QR
-          code. It guides the user through scanning, reviewing instructions,
-          verifying components, and premixing. On the dispensing interface, PBS,
-          SELP, Ru/SPS, and functional components are confirmed step by step;
-          the next step is enabled only after all components have been verified,
-          helping operators confirm the current formulation.
+          With material supply defined, the next step is to translate
+          formulation requirements into a preparation workflow that clinicians
+          can follow. We have developed a clinician-facing application that
+          organizes formulation selection and preparation guidance in an
+          actionable interface. The app provides selection screens for the
+          scaffold and functional modules and loads the corresponding
+          instructions via QR code. It guides the user through scanning,
+          reviewing instructions, verifying components, and premixing. On the
+          dispensing interface, PBS, SELP, Ru/SPS, and functional components are
+          confirmed step by step; the next step is enabled only after all
+          components have been verified, helping operators confirm the current
+          formulation.
         </p>
         <figure className="figure d-block my-4 text-center">
           <img
@@ -171,7 +178,8 @@ export function Implementation() {
           Device
         </h2>
         <p>
-          We have built a modular, tiered material-preparation unit that
+          To carry the preparation workflow from component verification into
+          material processing, we have built a modular, tiered unit that
           integrates metering, mixing, storage, and delivery. Three independent
           motors in the lower module drive PBS solutions containing Ru/SPS,
           SELP, and functional components through separate channels before they
@@ -183,25 +191,31 @@ export function Implementation() {
           <sup className="article-citation">[4]</sup>.
         </p>
         <figure className="figure d-block my-4 text-center">
-          <img
-            src={`${CIF}6.avif`}
-            alt="The material-preparation unit."
-            className="figure-img img-fluid rounded"
-            style={{ width: "100%" }}
-            loading="lazy"
-            decoding="async"
-          />
-          <img
-            src={`${CIF}7.avif`}
-            alt="The microfluidic mixing-chip structure."
-            className="figure-img img-fluid rounded mt-3"
-            style={{ width: "100%" }}
-            loading="lazy"
-            decoding="async"
-          />
+          <div className="row g-3 align-items-center">
+            <div className="col-6">
+              <img
+                src={`${CIF}6.avif`}
+                alt="The material-preparation unit."
+                className="figure-img img-fluid rounded"
+                style={{ width: "100%" }}
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div className="col-6">
+              <img
+                src={`${CIF}7.avif`}
+                alt="The microfluidic mixing-chip structure."
+                className="figure-img img-fluid rounded"
+                style={{ width: "100%" }}
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          </div>
           <FigureCaption className="figure-caption">
-            Figure 3 | The upper image shows the material-preparation unit, and
-            the lower image shows the microfluidic mixing-chip structure. The
+            Figure 3 | The left image shows the material-preparation unit, and
+            the right image shows the microfluidic mixing-chip structure. The
             three component streams converge in the microchannels before
             proceeding to storage and delivery.
           </FigureCaption>
@@ -240,14 +254,17 @@ export function Implementation() {
           5 Defining Product Requirements under Intended Use Conditions
         </h2>
         <p>
-          In the proposed localized application workflow, after assessing and
+          With a preparation pathway in place, the next step is to evaluate the
+          material and its supporting workflow under intended use conditions. In
+          the proposed localized application workflow, after assessing and
           preparing the defect, the clinician delivers the precursor to the
           target site, controls its distribution, and induces in situ gelation
           under specified illumination conditions. The material will then be
           evaluated for fixation at the hydrated interface, retention under
           motion-related loading, and tissue responses in the repair region. The
           material, device, and instructions will be validated together around
-          this workflow.
+          this workflow, with the requirements below guiding product
+          development.
         </p>
         <TableCaption>
           <strong>
@@ -343,9 +360,10 @@ export function Implementation() {
           Applications
         </h2>
         <p>
-          The focal-defect product will establish the first set of material
-          specifications and use procedures; OA-oriented functional formulations
-          will further develop matrix retention and local delivery; and
+          These validation requirements will initially guide the material
+          specifications and use procedures for the focal-defect product.
+          Building on this starting point, OA-oriented functional formulations
+          will further develop matrix retention and local delivery, while
           collaboration on osteochondral repair will advance stratified
           materials. These product directions can build on established scaffold
           production, interface testing, and material-preparation support, with
