@@ -1891,25 +1891,35 @@ function renderBlock(block: ContentBlock, key: string): ReactNode {
         <figure className="entre-figure" key={key}>
           <div
             className={`entre-figure__media${
-              block.special ? " entre-figure__media--blue" : ""
+              block.special && block.files.length === 1
+                ? " entre-figure__media--blue"
+                : ""
             }${block.files.length > 1 ? " entre-figure__media--stack" : ""}`}
           >
             {block.files.map((file, index) => (
               <span
-                className={`entre-figure__image-frame${
-                  block.cropTopLeft
-                    ? " entre-figure__image-frame--crop-top-left"
+                className={`entre-figure__image-panel${
+                  block.special && block.files.length > 1
+                    ? " entre-figure__image-panel--blue"
                     : ""
                 }`}
                 key={file}
               >
-                <img
-                  src={`${ENTRE_FIG}/${file}`}
-                  alt={index === 0 ? block.caption : ""}
-                  className="entre-figure__image"
-                  loading="lazy"
-                  decoding="async"
-                />
+                <span
+                  className={`entre-figure__image-frame${
+                    block.cropTopLeft
+                      ? " entre-figure__image-frame--crop-top-left"
+                      : ""
+                  }`}
+                >
+                  <img
+                    src={`${ENTRE_FIG}/${file}`}
+                    alt={index === 0 ? block.caption : ""}
+                    className="entre-figure__image"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </span>
               </span>
             ))}
           </div>
