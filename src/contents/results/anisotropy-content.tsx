@@ -422,7 +422,7 @@ export function AnisotropyContent() {
               </FigureCaption>
             </figure>
             <div className="source-block">
-              <figure className="wetlab-results__video">
+              <figure className="wetlab-results__video wetlab-results__video--half">
                 <div className="wetlab-results__video-frame">
                   <iframe
                     title="ZJU-China: TVNFKLY-MNPs in magnetic field (2026)"

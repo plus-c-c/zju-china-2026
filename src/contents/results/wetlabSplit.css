@@ -294,6 +294,12 @@ img[data-whiten][data-whiten-state="pending"] {
   margin: 0;
 }
 
+.wetlab-split .wetlab-results__video--half {
+  width: 50%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
 .wetlab-split .wetlab-results__video-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
