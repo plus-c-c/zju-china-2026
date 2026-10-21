@@ -523,6 +523,9 @@ export function Navbar({ introEntrance = false, opening = false }: { introEntran
                   to="/get-your-nest"
                   aria-label="Get your NEST"
                   title="Get your NEST"
+                  aria-current={
+                    location.pathname === "/get-your-nest" ? "page" : undefined
+                  }
                   onClick={closeMenus}
                 >
                   <img
@@ -531,6 +534,16 @@ export function Navbar({ introEntrance = false, opening = false }: { introEntran
                     width="22"
                     height="22"
                   />
+                </Link>
+              </li>
+              <li className="navigation-game">
+                <Link
+                  to="/game"
+                  className={`nest-nav-trigger${location.pathname === "/game" ? " is-active" : ""}`}
+                  aria-current={location.pathname === "/game" ? "page" : undefined}
+                  onClick={closeMenus}
+                >
+                  <span>Game</span>
                 </Link>
               </li>
             </ul>
