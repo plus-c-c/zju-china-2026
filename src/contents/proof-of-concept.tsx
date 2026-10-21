@@ -322,7 +322,7 @@ export function ProofOfConcept() {
                   were consistent with the scaffold's design for cartilage
                   applications (Figure 6).
                 </p>
-                <figure className="my-4 text-center">
+                <figure className="poc-half-width my-4 text-center">
                   <TransparentImage
                     src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-05-v2.avif"
                     alt="Figure 6 | Cartilage-related gene expression associated with the 2KY scaffold"
