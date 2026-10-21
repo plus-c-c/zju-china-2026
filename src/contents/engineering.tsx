@@ -302,7 +302,11 @@ export function Engineering() {
       ? buildSeedSteps(module as SeedModule, lead, part.outlook)
       : buildSteps(module as DbtlModule, lead, part.outlook);
     const steps: Array<Step | SeedStep> = built.length
-      ? built
+      ? built.map((step) =>
+          step.kind === "lead" || step.kind === "outlook"
+            ? { ...step, title: step.title ?? part.label }
+            : step,
+        )
       : [{ key: "part", kind: "info", title: part.label, content: lead }];
     return { part, module, steps };
   });
@@ -360,24 +364,14 @@ export function Engineering() {
     autoTabRef.current = true;
     setTabIndex(tab);
   };
-  /* Where a tab starts in the sequence — the first phase step of the tab
-     (Cycle 1 Design for DBTL groups, Cycle 1 Spark for SEED groups; a
-     part-level lead step before it is skipped). */
-  const startIndexForTab = (tab: number) => {
-    const first = sequence.findIndex((entry) => entry.tab === tab);
-    if (first < 0) return -1;
-    const design = sequence.findIndex(
-      (entry, index) =>
-        index >= first && entry.tab === tab && entry.step.kind === "phase",
-    );
-    return design >= 0 ? design : first;
-  };
-  const startIndex = startIndexForTab(tabIndex);
-  /* A level-2 button opens the first step of the group: the group/part
-     Introduction when one exists, otherwise Cycle 1 of the first part. This
-     is deliberately different from clicking a level-3 tab, where the lead
-     step is skipped and the tab starts at its first phase. */
-  const groupStartIndex = sequence.findIndex((entry) => entry.tab === 0);
+  /* Where a tab starts in the sequence — the tab's Introduction when it has
+     one, otherwise its first phase (Cycle 1). */
+  const firstIndexForTab = (tab: number) =>
+    sequence.findIndex((entry) => entry.tab === tab);
+  const startIndex = firstIndexForTab(tabIndex);
+  /* A level-2 button opens the first step of the group. Level-3 tab clicks
+     use the same rule within their tab: Introduction first, then Cycle 1. */
+  const groupStartIndex = firstIndexForTab(0);
 
   // Any level switch returns to the top of the sequence — the Introduction
   // when the group has one, otherwise Cycle 1 of its first part. The scroll
@@ -448,7 +442,7 @@ export function Engineering() {
   };
 
   const selectTab = (index: number) => {
-    const target = startIndexForTab(index);
+    const target = firstIndexForTab(index);
     if (target < 0) return;
     autoTabRef.current = true;
     setTabIndex(index);

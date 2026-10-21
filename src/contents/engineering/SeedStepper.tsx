@@ -248,7 +248,11 @@ export function SeedStepper({
       ? stepModule.cycles[step.cycleIndex]?.title
       : step?.kind === "info"
         ? (step.title ?? "")
-        : "";
+        : step?.kind === "lead"
+          ? (step.title ?? "Introduction")
+          : step?.kind === "outlook"
+            ? (step.title ?? "Conclusion")
+            : "";
 
   const splitRing = Boolean(ringTop || ringBottom);
   const ring = splitRing ? (
