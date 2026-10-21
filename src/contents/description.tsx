@@ -524,8 +524,9 @@ export function Description() {
             shear, while deeper layers carry compressive loads.
             <Citation refs={[9]} />{" "}
             <strong>
-              New tissue has to work as part of the joint, carrying loads and
-              allowing movement.
+              A lasting repair needs to restore tissue with the structure and
+              function of native cartilage, able to withstand years of repeated
+              loading and movement.
             </strong>
           </p>
           <p>
@@ -549,11 +550,12 @@ export function Description() {
             extent of the defect all change what a repair needs to do.
             <Citation refs={[4, 8]} />{" "}
             <strong>
-              An effective repair must bring together mechanical support,
-              secure integration, and a local environment that supports healing,
-              with the balance tailored to the injury.
+              An effective repair must combine mechanical support, secure
+              fixation, and integration with the surrounding cartilage. It also
+              needs to address inflammation and ongoing matrix degradation where
+              necessary, with the balance tailored to each injury.
             </strong>
-            <Citation refs={[2, 8]} />
+            <Citation refs={[2, 9, 10]} />
           </p>
 
           <h2>Current Treatments: Benefits and Limitations</h2>
