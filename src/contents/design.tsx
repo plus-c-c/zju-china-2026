@@ -660,8 +660,8 @@ export function Design() {
                   <strong>SnoopLigase2-ZJU system</strong>, an engineered variant of
                   SnoopLigase2 with improved stability and turnover, whose
                   ligation rate is more than three orders of magnitude higher
-                  than that of the first generation; coupling is completed within minutes at room
-                  temperature in standard PBS (pH 7.4), and activity is retained
+                  than that of the first generation; ligation is completed within
+                  minutes at room temperature in standard PBS (pH 7.4), and activity is retained
                   at 4–45 °C, pH 4–10, and up to 1 M NaCl. This allows interface
                   assembly to be embedded directly in the main process flow of
                   "expression, ITC purification, assembly, precursor

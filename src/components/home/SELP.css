@@ -97,9 +97,10 @@
   transform: translateX(-50%);
   text-align: center;
   top: -20px;
-  width: 500px;
-  font-size: 44px;
+  width: 100%;
+  font-size: 38px;
   line-height: 42px;
+  white-space: nowrap;
 }
 
 .nest-solution-ligase-copy {

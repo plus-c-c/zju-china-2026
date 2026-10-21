@@ -234,7 +234,7 @@ export function FuturePlan() {
           consumption, energy use during heating/cooling cycles, lyophilization
           losses, and processing time will be tracked to estimate manufacturing
           cost per qualified material unit and prioritize improvements for
-          pilot-scale scale-up.
+          pilot-scale production.
         </p>
         <p>
           This stage will be considered complete when candidate materials meet

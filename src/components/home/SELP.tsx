@@ -63,9 +63,9 @@ export function SelpAndSnoopLigaseScene() {
         </article>
 
         <article className="nest-solution-card nest-solution-card--ligase">
-          <h2 className="nest-solution-ligase-title">Link system</h2>
+          <h2 className="nest-solution-ligase-title">Ligation system</h2>
           <p className="nest-solution-ligase-copy">
-            An engineered linker system enables modular functionalization of
+            An engineered ligation system enables modular functionalization of
             SELP for targeted cartilage repair.
           </p>
           <Link

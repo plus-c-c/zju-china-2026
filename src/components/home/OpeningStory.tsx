@@ -286,7 +286,7 @@ export function SportsTraumaScene({ play }: { play: boolean }) {
         <div className="opening-side opening-side--left">
           <h2 className="opening-sports__title" data-node-id="1009:27">
             <span className="opening-text-line" style={openingLineStyle(0)}>
-              Pain <strong>takes more</strong>
+              Pain <strong>affects more</strong>
             </span>
             <span className="opening-text-line" style={openingLineStyle(1)}>
               than movement.

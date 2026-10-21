@@ -89,7 +89,7 @@ export function MobileHome() {
           />
           <HomeScrollCue />
         </section>
-        <section aria-label="SELP and Link system">
+        <section aria-label="SELP and Ligation system">
           <SelpAndSnoopLigaseScene />
           <HomeScrollCue />
         </section>
