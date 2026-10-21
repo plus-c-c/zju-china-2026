@@ -41,8 +41,9 @@
 }
 
 .page-article .education-quote {
-  max-width: 920px;
-  margin: 1.5rem auto 2rem;
+  width: 100%;
+  max-width: none;
+  margin: 1.5rem 0 2rem;
   padding: 24px 28px;
   border: 0 !important;
   border-radius: 22px;
