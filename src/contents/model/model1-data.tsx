@@ -116,7 +116,7 @@ export const m1Steps: M1Step[] = [
           },
           {
             t: "text",
-            v: "[3] Each 2KY-5 and 2KY-10 chain comprised 579 and 964 coarse-grained beads, respectively. By adjusting the simulation-box volume and performing subsequent relaxation, we brought the mass concentrations of both systems close to 100 mg/mL.",
+            v: "[3] The 2KY-5 and 2KY-10 chains comprised 579 and 964 coarse-grained beads, respectively. By adjusting the simulation-box volume and performing subsequent relaxation, we brought the mass concentrations of both systems close to 100 mg/mL.",
           },
         ],
       },
@@ -172,7 +172,7 @@ export const m1Steps: M1Step[] = [
           },
           {
             t: "math",
-            v: "k_{\\mathrm{MD}}=4000\\ \\mathrm{kJ,mol^{-1},nm^{-2}}",
+            v: "k_{\\mathrm{MD}}=4000\\ \\mathrm{kJ\\,mol^{-1}\\,nm^{-2}}",
           },
           {
             t: "text",
