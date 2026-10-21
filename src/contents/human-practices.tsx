@@ -1144,10 +1144,11 @@ function ImpactBlock() {
   return (
     <>
       <h3 className="mt-4 mb-3">T — Trust and Lasting Impact</h3>
+      <h4 className="mt-4 mb-2">Sustained Commercialization</h4>
       <p>
-        <strong>Sustained commercialization.</strong> Medical products take years
-        to reach the market — far longer than a single iGEM season — so NEST
-        needs a sustainable, long-term business plan. To meet the relevant
+        Medical products take years to reach the market — far longer than a
+        single iGEM season — so NEST needs a sustainable, long-term business
+        plan. To meet the relevant
         administrative requirements, we plan to file a patent application in
         November 2026. We have also developed a detailed business plan, including
         a dedicated ESG module that helps NexCode Biotechnologies assess its
@@ -1155,11 +1156,11 @@ function ImpactBlock() {
         team members remain committed to improving the project, reaching
         profitability, and advancing the real-world translation of NEST.
       </p>
+      <h4 className="mt-4 mb-2">The Pain That Goes Unnoticed</h4>
       <p>
-        <strong>The pain that goes unnoticed.</strong> During our preliminary
-        research, we found a striking discrepancy: many people around us
-        reported symptoms, yet relatively few cases appeared in official
-        records. Consultations with hospital stakeholders confirmed that pain
+        During our preliminary research, we found a striking discrepancy: many
+        people around us reported symptoms, yet relatively few cases appeared
+        in official records. Consultations with hospital stakeholders confirmed that pain
         which &ldquo;does not meet the diagnostic threshold but is nonetheless
         real&rdquo; is common in clinical practice. Because effective solutions
         for early-stage cartilage damage remain limited, both physicians and
@@ -1196,7 +1197,7 @@ function ImpactBlock() {
         discussed the ethics and philosophy of synthetic biology with Dr. Chen
         Bohang of the Department of Philosophy of Science and Technology.
       </p>
-      <h4 className="mt-5 mb-3">Research report</h4>
+      <h4 className="mt-4 mb-2">Research Report</h4>
       <p>
         The research report records this work in full. Open the card below to
         read it here, or use the link to open it in a new tab:{" "}
@@ -1224,9 +1225,9 @@ function ImpactBlock() {
         </div>
       </ExtendCard>
 
+      <h4 className="mt-4 mb-2">Our Contribution to Synthetic Biology Education</h4>
       <p>
-        <strong>Our contribution to synthetic biology education.</strong> Every
-        institution we worked with responded enthusiastically. In conversations
+        Every institution we worked with responded enthusiastically. In conversations
         with other iGEM teams, however, we learned that many struggled to find
         suitable education partners. We therefore joined other teams to create{" "}
         <a href="https://syneduglobal.top" target="_blank" rel="noreferrer">
@@ -1250,173 +1251,6 @@ function ImpactBlock() {
         of Science and Technology, examining the ethical questions raised by
         synthetic biology. <Link to="/education">Learn more</Link>.
       </p>
-
-      <h4 className="mt-5 mb-3">High-school session — activity questionnaire</h4>
-      <p>
-        Our high-school cartilage-health and synthetic-biology session was
-        designed with a pre/post questionnaire for 24 participating students
-        (the same group before and after the session). The results below
-        document the baseline awareness we started from, the post-activity
-        knowledge results, and the information participants most wanted. The
-        results are descriptive and do not establish causality. These 24-person
-        evaluations are separate from the 1,647-response survey.
-      </p>
-      <ExtendCard title="Questionnaire figures: baseline, change and information needs">
-        <Figure
-          src={`${HP_FIG}/fig8.avif`}
-          alt="Figure 8 — baseline awareness and knowledge of joint cartilage (pre-activity)"
-          width={4000}
-          height={1198}
-          caption={
-            <>
-              <strong>
-                Figure 8 | Baseline awareness and knowledge of joint cartilage
-                (pre-activity, n = 24).
-              </strong>{" "}
-              (A) Prior attention to cartilage health. (B) Self-rated
-              understanding (mean 2.08/5; 70.8% rated 1–2). (C) Knowledge of
-              cartilage components: 79.2% could name at most a few components or
-              functions. All respondents answered every item.
-            </>
-          }
-        />
-        <Figure
-          src={`${HP_FIG}/fig9.avif`}
-          alt="Figure 9 — pre-post change in self-rated understanding and willingness"
-          width={4000}
-          height={918}
-          caption={
-            <>
-              <strong>
-                Figure 9 | Pre-post change in self-rated understanding and
-                willingness (n = 24).
-              </strong>{" "}
-              (A) Self-rated understanding was higher after the activity (mean
-              2.08 → 3.50; 1–5 scale). (B) Willingness to use an injectable,
-              sterile cartilage-repair material was 33.3% before and 54.2% after
-              (somewhat or very willing).
-            </>
-          }
-        />
-        <Figure
-          src={`${HP_FIG}/fig10.avif`}
-          alt="Figure 10 — post-activity knowledge and information needs"
-          width={4000}
-          height={1341}
-          caption={
-            <>
-              <strong>
-                Figure 10 | Post-activity knowledge and information needs (n =
-                24).
-              </strong>{" "}
-              (A) Correct answer rate by knowledge question; the mean was 79.2%
-              (152/192). (B) Information participants most wanted before using a
-              injectable material; reliable human evidence and long-term risks
-              were the most common topics (68 selections in total).
-            </>
-          }
-        />
-        <Figure
-          src={`${HP_FIG}/fig11.avif`}
-          alt="Figure 11 — feedback themes before and after the activity"
-          width={4000}
-          height={1785}
-          caption={
-            <>
-              <strong>
-                Figure 11 | Feedback themes from the open-text responses before and
-                after the activity.
-              </strong>{" "}
-              The themes are not verbatim quotes and are not frequency-counted.
-            </>
-          }
-        />
-      </ExtendCard>
-
-      <h4 id="ihp-nest-synbio-lecture" className="mt-5 mb-3">
-        High-school session — lecture questionnaire
-      </h4>
-      <p>
-        The same 24 students also completed a lecture-specific pre/post
-        questionnaire: eight questions before the lecture (prior exposure,
-        self-rated understanding, attitudes and expectations) and twelve after
-        it (knowledge, attitude, willingness and technology acceptance). The
-        activity questionnaire and the lecture questionnaire are two instruments
-        from the same high-school session; they are not independent events. The
-        two knowledge tests used different item sets (8 vs 5), so their means are
-        not directly comparable. The figures summarise the baseline, the
-        post-lecture results, and what participants still wanted to know.
-      </p>
-      <ExtendCard title="Questionnaire figures: knowledge, acceptance and feedback">
-        <Figure
-          src={`${HP_FIG}/fig12.avif`}
-          alt="Figure 12 — pre-lecture awareness and self-rated understanding"
-          width={4000}
-          height={1265}
-          caption={
-            <>
-              <strong>
-                Figure 12 | Pre-lecture awareness and self-rated understanding
-                (n = 24).
-              </strong>{" "}
-              (A) Prior exposure to synthetic biology. (B) Self-rated
-              understanding (mean 2.17/5; 66.7% rated 1–2). (C) Prior awareness
-              of iGEM. All participants answered every item.
-            </>
-          }
-        />
-        <Figure
-          src={`${HP_FIG}/fig13.avif`}
-          alt="Figure 13 — post-lecture knowledge, attitude, and information needs"
-          width={4000}
-          height={1235}
-          caption={
-            <>
-              <strong>
-                Figure 13 | Post-lecture knowledge, attitude, and information
-                needs (n = 24).
-              </strong>{" "}
-              (A) Correct answer rate by knowledge question; the mean was 76.7%
-              (92/120). (B) Post-lecture overall attitude. (C) Information
-              participants most wanted after the lecture (up to three
-              selections; 69 selections in total).
-            </>
-          }
-        />
-        <Figure
-          src={`${HP_FIG}/fig14.avif`}
-          alt="Figure 14 — self-rated understanding and technology acceptance"
-          width={4000}
-          height={926}
-          caption={
-            <>
-              <strong>
-                Figure 14 | Self-rated understanding and technology acceptance
-                (n = 24).
-              </strong>{" "}
-              (A) Self-rated understanding was higher after the lecture (mean
-              2.17 → 3.75; 1–5 scale). (B) Willingness to work in a related field and
-              acceptance of a product with non-live engineered output versus a
-              product containing live engineered bacteria.
-            </>
-          }
-        />
-        <Figure
-          src={`${HP_FIG}/fig15.avif`}
-          alt="Figure 15 — feedback themes before and after the lecture"
-          width={4000}
-          height={1762}
-          caption={
-            <>
-              <strong>
-                Figure 15 | Feedback themes before and after the lecture.
-              </strong>{" "}
-              The statements summarize feedback directions, not verbatim quotes,
-              and are not frequency-counted.
-            </>
-          }
-        />
-      </ExtendCard>
 
       <h4 className="mt-5 mb-3">Summary and reflection</h4>
       <p>

@@ -8,6 +8,7 @@ import "./education.css";
 const EDUCATION_IMG =
   "https://static.igem.wiki/teams/6102/wiki/images/engagement/education/new";
 const REPORT_PDF = "https://static.igem.wiki/teams/6102/wiki/hp-new/res.pdf";
+const IHP_FIG = "https://static.igem.wiki/teams/6102/wiki/hp-new";
 
 const eduImg = (number: number) =>
   `${EDUCATION_IMG}/edu-${String(number).padStart(2, "0")}.avif`;
@@ -48,6 +49,41 @@ function PhotoFigure({
           </a>
         ))}
       </div>
+      <figcaption className="figure-caption">
+        <strong>Figure {figure} |</strong> {caption}
+      </figcaption>
+    </figure>
+  );
+}
+
+type QuestionnaireFigureProps = {
+  figure: number;
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+  caption: string;
+};
+
+function QuestionnaireFigure({
+  figure,
+  src,
+  alt,
+  width,
+  height,
+  caption,
+}: QuestionnaireFigureProps) {
+  return (
+    <figure className="figure d-block my-4 text-center">
+      <img
+        src={src}
+        alt={alt}
+        className="figure-img img-fluid rounded"
+        width={width}
+        height={height}
+        loading="lazy"
+        decoding="async"
+      />
       <figcaption className="figure-caption">
         <strong>Figure {figure} |</strong> {caption}
       </figcaption>
@@ -517,17 +553,97 @@ export function Education() {
           </p>
 
           <h4 className="mt-4 mb-2">
-            Participant feedback: synthetic-biology lecture
+            Participant feedback: high-school questionnaires
           </h4>
           <p>
-            The pre/post questionnaire for our high-school synthetic-biology
-            lecture, including its figures and analysis, is presented in full on
-            the Integrated Human Practices page.{" "}
-            <Link to="/human-practices#ihp-nest-synbio-lecture">
-              Read the synthetic-biology lecture questionnaire on the IHP page
-            </Link>
-            .
+            The high-school session used two pre/post instruments: a
+            cartilage-health activity questionnaire and a synthetic-biology
+            lecture questionnaire, both completed by the same 24 students. They
+            are not independent events, and the two knowledge tests used
+            different item sets (8 vs 5), so their means are not directly
+            comparable. The results are descriptive and do not establish
+            causality.
           </p>
+
+          <h5 className="mt-4 mb-2">Cartilage-health activity questionnaire</h5>
+          <p>
+            Before the activity, 70.8% rated their understanding as 1–2; after
+            it, mean self-rated understanding was 3.50, and 152/192 knowledge
+            items were correct (79.2%). Participants most wanted reliable human
+            evidence and information on long-term risk.
+          </p>
+          <QuestionnaireFigure
+            figure={4}
+            src={`${IHP_FIG}/fig8.avif`}
+            alt="Baseline awareness and knowledge of joint cartilage before the activity"
+            width={4000}
+            height={1198}
+            caption="Baseline awareness and knowledge of joint cartilage (pre-activity, n = 24). (A) Prior attention to cartilage health. (B) Self-rated understanding (mean 2.08/5; 70.8% rated 1–2). (C) Knowledge of cartilage components: 79.2% could name at most a few components or functions. All respondents answered every item."
+          />
+          <QuestionnaireFigure
+            figure={5}
+            src={`${IHP_FIG}/fig9.avif`}
+            alt="Pre-post change in self-rated understanding and willingness"
+            width={4000}
+            height={918}
+            caption="Pre-post change in self-rated understanding and willingness (n = 24). (A) Self-rated understanding was higher after the activity (mean 2.08 → 3.50; 1–5 scale). (B) Willingness to use an injectable, sterile cartilage-repair material was 33.3% before and 54.2% after (somewhat or very willing)."
+          />
+          <QuestionnaireFigure
+            figure={6}
+            src={`${IHP_FIG}/fig10.avif`}
+            alt="Post-activity knowledge and information needs"
+            width={4000}
+            height={1341}
+            caption="Post-activity knowledge and information needs (n = 24). (A) Correct answer rate by knowledge question; the mean was 79.2% (152/192). (B) Information participants most wanted before using an injectable material; reliable human evidence and long-term risks were the most common topics (68 selections in total)."
+          />
+          <QuestionnaireFigure
+            figure={7}
+            src={`${IHP_FIG}/fig11.avif`}
+            alt="Feedback themes before and after the activity"
+            width={4000}
+            height={1785}
+            caption="Feedback themes from the open-text responses before and after the activity. The themes are not verbatim quotes and are not frequency-counted."
+          />
+
+          <h5 className="mt-4 mb-2">Synthetic-biology lecture questionnaire</h5>
+          <p>
+            The lecture questionnaire recorded prior exposure, self-rated
+            understanding, post-lecture knowledge, attitudes, and technology
+            acceptance. Mean self-rated understanding was 2.17 before and 3.75
+            after; 92/120 knowledge items were correct (76.7%).
+          </p>
+          <QuestionnaireFigure
+            figure={8}
+            src={`${IHP_FIG}/fig12.avif`}
+            alt="Pre-lecture awareness and self-rated understanding"
+            width={4000}
+            height={1265}
+            caption="Pre-lecture awareness and self-rated understanding (n = 24). (A) Prior exposure to synthetic biology. (B) Self-rated understanding (mean 2.17/5; 66.7% rated 1–2). (C) Prior awareness of iGEM. All participants answered every item."
+          />
+          <QuestionnaireFigure
+            figure={9}
+            src={`${IHP_FIG}/fig13.avif`}
+            alt="Post-lecture knowledge, attitude, and information needs"
+            width={4000}
+            height={1235}
+            caption="Post-lecture knowledge, attitude, and information needs (n = 24). (A) Correct answer rate by knowledge question; the mean was 76.7% (92/120). (B) Post-lecture overall attitude. (C) Information participants most wanted after the lecture (up to three selections; 69 selections in total)."
+          />
+          <QuestionnaireFigure
+            figure={10}
+            src={`${IHP_FIG}/fig14.avif`}
+            alt="Self-rated understanding and technology acceptance"
+            width={4000}
+            height={926}
+            caption="Self-rated understanding and technology acceptance (n = 24). (A) Self-rated understanding was higher after the lecture (mean 2.17 → 3.75; 1–5 scale). (B) Willingness to work in a related field and acceptance of a product with non-live engineered output versus a product containing live engineered bacteria."
+          />
+          <QuestionnaireFigure
+            figure={11}
+            src={`${IHP_FIG}/fig15.avif`}
+            alt="Feedback themes before and after the lecture"
+            width={4000}
+            height={1762}
+            caption="Feedback themes before and after the lecture. The statements summarize feedback directions, not verbatim quotes, and are not frequency-counted."
+          />
 
           <h3>
             1.4 The Wider Public: A Film on Cartilage Damage and Life after
@@ -615,7 +731,7 @@ export function Education() {
             what educators actually needed?
           </p>
           <PhotoFigure
-            figure={4}
+            figure={12}
             layout="pair"
             caption="Future Learning Center visit by education experts from 12 Asian countries, discussing educational approaches and needs."
             photos={[
@@ -645,7 +761,7 @@ export function Education() {
             arrangements still to be agreed together.
           </p>
           <PhotoFigure
-            figure={5}
+            figure={13}
             layout="trio"
             caption="Activities associated with the World Digital Education Conference."
             photos={[
@@ -767,7 +883,7 @@ export function Education() {
             contributors.
           </p>
           <PhotoFigure
-            figure={6}
+            figure={14}
             layout="single"
             caption="The syneduglobal.top educational platform. Our team designed the architecture and functions, with Westlake University, Xi’an Jiaotong-Liverpool University, and Jiangnan University contributing content. The live platform displays project collections, recruitment postings, and material download entry points."
             photos={[
@@ -801,7 +917,7 @@ export function Education() {
             platform; the photographs below record the signing.
           </p>
           <PhotoFigure
-            figure={7}
+            figure={15}
             layout="pair"
             caption="Signing of the five-year cooperation agreement among the four founding schools, with pages showing the parties and their planned responsibilities."
             photos={[
@@ -891,7 +1007,7 @@ export function Education() {
             the IHP page.
           </p>
           <PhotoFigure
-            figure={8}
+            figure={16}
             layout="pair"
             caption="Interviews with older adults about the effects of health concerns on daily life and their understanding of the issues."
             photos={[
@@ -929,7 +1045,7 @@ export function Education() {
             Practices discussions and our review of material design objectives.
           </p>
           <PhotoFigure
-            figure={9}
+            figure={17}
             layout="single"
             caption="Cover of the research report “Articular Cartilage Injury: Current Status, Problems and Countermeasures”, submitted to the Hangzhou Municipal Health Commission."
             photos={[
@@ -983,10 +1099,13 @@ export function Education() {
             injustice, to trace how statements about pain, restricted movement,
             and disruption to daily life are translated into information a
             clinic can recognize &mdash; and which parts of that experience may
-            be lost in translation. Its argument is modest: even before a
+            be lost in translation. The paper argues that even before a
             diagnosis is clear, a patient&rsquo;s need for care can be
-            identified and answered, and assessment should include reported
-            pain, its effect on daily life, and the need for follow-up.
+            identified and answered, and that assessment should include reported
+            pain, its effect on daily life, and the need for follow-up. Its
+            primary contribution is to shift attention beyond the number of
+            confirmed diagnoses toward the burden of symptoms that remains
+            inadequately documented.
           </p>
           <p>
             We brought the paper back to the Institute of Social Medicine and
@@ -1058,7 +1177,7 @@ export function Education() {
           </div>
 
           <PhotoFigure
-            figure={10}
+            figure={18}
             layout="single"
             caption="STS and Bodily Power session, Third Annual Social Research Conference, Department of Sociology, Zhejiang University."
             photos={[
@@ -1069,7 +1188,7 @@ export function Education() {
             ]}
           />
           <PhotoFigure
-            figure={11}
+            figure={19}
             layout="pair"
             caption="Lecture for medical students on medical power from an anthropological perspective."
             photos={[
@@ -1084,7 +1203,7 @@ export function Education() {
             ]}
           />
           <PhotoFigure
-            figure={12}
+            figure={20}
             layout="single"
             caption="Overseas ethnographic work involving interdisciplinary research and exchange."
             photos={[
