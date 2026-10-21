@@ -347,7 +347,7 @@ const RISK_ROWS = [
   },
   {
     id: "R4",
-    stage: "Mitochondrial delivery",
+    stage: "Mitochondrial Therapeutic Module",
     level: "Critical",
     risk: "Source traceability, functional potency, storage stability and the reproducibility of enzyme-responsive delivery remain highly uncertain. A validated scaffold does not validate a complete mitochondrial product.",
     action: "Define source, quality and potency requirements, and evaluate delivery separately from the scaffold. Do not include the module in the first candidate unless its benefit is demonstrated and complete manufacturing and regulatory documentation exists.",
@@ -1342,7 +1342,7 @@ export function Entrepreneurship() {
           </div>
           <p>
             IP review, financing and partner development continue throughout the
-            programme. Mitochondrial delivery and other advanced modules are
+            programme. The Mitochondrial Therapeutic Module and other advanced modules are
             pursued as parallel research streams and cannot inherit the evidence
             or approvals of the first formulation. Facility investment follows
             validated demand and process maturity. Without a defensible financial
@@ -1545,7 +1545,7 @@ export function Entrepreneurship() {
             In China, NEST must first determine its regulatory attributes and
             submission pathway before entering the clinical market. The base
             SELP-SnoopTag hydrogel and later versions with bioactive peptides,
-            liposomes or mitochondrial delivery modules may differ in primary
+            liposomes or the Mitochondrial Therapeutic Module may differ in primary
             mode of action and risk profile, so we cannot assume that all
             versions follow the same registration route. We will first conduct a
             product-attribute, classification and risk self-assessment under the
@@ -1758,8 +1758,7 @@ export function Entrepreneurship() {
             pharmacy, food science, ecology, biophysics, physics, computer
             science and philosophy. Around NEST we have built a relatively
             complete early-stage R&amp;D capability: wet-lab members cover the
-            SELP scaffold and ligation system, the GAG-retention module,
-            mitochondrial delivery and functional peptides; dry-lab members
+            SELP scaffold and ligation system, the GAG Retention Module, the Mitochondrial Therapeutic Module and functional peptides; dry-lab members
             handle protein modelling, mathematical modelling, data analysis and
             software development. The team also has hardware design, product
             design, project management, human practices, financial procurement
@@ -2044,12 +2043,6 @@ export function Entrepreneurship() {
                 <a href="https://doi.org/10.1055/s-0038-1632990">
                   doi:10.1055/s-0038-1632990
                 </a>
-              </p>
-              <p>
-                <strong>Figure sources.</strong> Figures 1 and 2 were prepared
-                by the team for this business plan. Figure 3 is a team photograph
-                taken at the Zhejiang University &ldquo;Dandelion&rdquo;
-                Undergraduate Innovation Competition.
               </p>
             </div>
           </References>

@@ -137,10 +137,10 @@ const blueCards: CardCopy[] = [
     ),
     body: (
       <>
-        Complex fabrication<br />
-        limits batch<br />
-        consistency and<br />
-        large-scale<br />
+        Genetically encoded,<br />
+        biocompatible proteins<br />
+        enable scalable,<br />
+        reproducible<br />
         production.
       </>
     ),
@@ -196,10 +196,10 @@ const blueCards: CardCopy[] = [
     ),
     body: (
       <>
-        Matrix loss, degradation,<br />
-        and inflammation<br />
-        demand adaptable<br />
-        repair strategies.
+        Customizable modules<br />
+        adapt repair strategies<br />
+        to different<br />
+        cartilage injuries.
       </>
     ),
     frontArt: [

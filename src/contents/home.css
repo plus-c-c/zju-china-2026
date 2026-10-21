@@ -69,7 +69,8 @@ body.home-story-open .app {
   top: 0;
   width: 100%;
   height: 100dvh;
-  overflow: hidden;
+  /* Clip the other scenes without letting focus scroll this fixed canvas. */
+  overflow: clip;
   touch-action: pan-y;
 }
 .story-track {
@@ -361,6 +362,10 @@ body.home-story-open .app {
   top: calc(50% - var(--story-center-lift));
 }
 .story-viewport #home-1 .home-scene-canvas { top: 0; }
+/* Lift the NEST artwork together; the shared bird follows its bone perch. */
+.story-viewport #home-7 .home-layer-46 {
+  transform: translateY(-40px);
+}
 .home-intro__landing { translate: 0 calc(-1 * var(--story-center-lift)); }
 .story-viewport .home-intro__landing { padding: 0 4vw; }
 .story-bird-canvas { top: calc(50% - var(--story-center-lift, 0px)); }

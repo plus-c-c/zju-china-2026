@@ -1,0 +1,62 @@
+.nest-home .home-scroll-cue {
+  position: absolute;
+  z-index: 9;
+  left: 50%;
+  bottom: max(22px, env(safe-area-inset-bottom));
+  display: grid;
+  place-items: center;
+  width: clamp(44px, 4vw, 58px);
+  height: clamp(44px, 4vw, 58px);
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+  transform: translateX(-50%);
+}
+
+.nest-home .home-scroll-cue > .home-scroll-cue__icon {
+  display: block;
+  width: 76%;
+  height: 76%;
+  filter: drop-shadow(0 2px 4px rgb(23 59 100 / 16%));
+  animation: home-scroll-cue-float 2.2s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.nest-home .home-scroll-cue:hover > .home-scroll-cue__icon {
+  filter: drop-shadow(0 3px 6px rgb(23 59 100 / 24%));
+}
+
+.nest-home .home-scroll-cue:focus-visible {
+  outline: 3px solid var(--homepage-ink, #173b64);
+  outline-offset: 6px;
+}
+
+.home-intro-open .home-scroll-cue {
+  visibility: hidden;
+}
+
+.mobile-home > section:not(.mobile-home__intro) {
+  padding-bottom: 100px;
+}
+
+@keyframes home-scroll-cue-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(7px); }
+}
+
+@media (max-height: 520px) {
+  .nest-home .home-scroll-cue {
+    bottom: max(12px, env(safe-area-inset-bottom));
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nest-home .home-scroll-cue > .home-scroll-cue__icon {
+    animation: none;
+  }
+}

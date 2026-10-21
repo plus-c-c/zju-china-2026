@@ -411,21 +411,21 @@ export function Contribution() {
         </References>
         <References
           level={2}
-          title="Figure Sources and Credits"
+          title="Figure Sources"
           id="figure-sources-and-credits"
         >
           <ul className="references-list figure-sources-list">
             <FigureSourceEntry source={1} id="contribution-figure-sources">
               <p>
-                Icons and illustrations from Bioicons. Marcel Tisch, Simon
-                D&uuml;rr, jaiganesh, and Daniel-Marcos (CC0); DBCLS (CC BY
-                4.0); Servier (CC BY 3.0).{" "}
-                <a href="https://bioicons.com/">Source</a>
+                Icons from <a href="https://bioicons.com/">Bioicons</a>:
+                Marcel Tisch, Simon D&uuml;rr, jaiganesh, and Daniel-Marcos
+                (<a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>);
+                DBCLS (<a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>);
+                Servier (<a href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>).
               </p>
               <p>
-                Illustrations from Google Noto Emoji (Apache 2.0). Photographs
-                and application screenshots are from our team&rsquo;s materials.{" "}
-                <a href="https://github.com/googlefonts/noto-emoji">Source</a>
+                Google. <a href="https://github.com/googlefonts/noto-emoji">Noto Emoji</a>.{" "}
+                <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache 2.0</a>.
               </p>
             </FigureSourceEntry>
           </ul>

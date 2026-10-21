@@ -9,7 +9,10 @@ export type PipelineFlightRoute = {
   exit: number;
   edge: number;
   stops: number[];
-  sample: (scroll: number) => Point & { dx: number; dy: number; speed: number };
+  sample: (scroll: number) => Point & {
+    dx: number; dy: number; speed: number;
+    headingDx: number; headingDy: number;
+  };
 };
 
 const routes = new WeakMap<Element, { key: string; route: PipelineFlightRoute }>();
@@ -138,7 +141,9 @@ export function getPipelineFlightRoute(
   const entryOrigin = { x: origin.x, y: origin.y - start };
   const entryTarget = { x: first.x, y: first.y - entryEnd };
   const drop = entryTarget.y - entryOrigin.y;
-  const turnRadius = Math.min(innerHeight * 0.14, drop * 0.45);
+  // Lift the last handle so the middle stays higher, then bends down into
+  // the first dot. Keep the takeoff tangent and both perch anchors unchanged.
+  const turnRadius = Math.min(innerHeight * 0.28, drop * 1.1);
   let entryLength = 0;
   const entry: FlightPoint[] = bezier(entryOrigin,
     { x: entryOrigin.x + (first.x - entryOrigin.x) * 0.32,
@@ -191,15 +196,16 @@ export function getPipelineFlightRoute(
       const t = clamp((traveled - a.distance) / (b.distance - a.distance));
       const dx = a.dx + (b.dx - a.dx) * t, dy = a.dy + (b.dy - a.dy) * t;
       const tangent = Math.hypot(dx, dy);
-      // The entry is designed on screen, but its returned y is in the document.
-      // Differentiate that same position: d(screenY + scroll)/d(scroll) adds 1.
-      // Otherwise the head follows a much flatter, unrelated screen tangent.
+      // Keep the document derivative for route geometry and scroll pacing.
+      // Takeoff itself is drawn in the fixed OA viewport: its head must use
+      // the screen curve's derivative, before adding the document scroll.
       const velocityX = dx / tangent * motion.speed;
       const velocityY = dy / tangent * motion.speed + (entering ? 1 : 0);
       const velocity = Math.hypot(velocityX, velocityY);
       return {
         x: a.x + (b.x - a.x) * t, y: a.y + (b.y - a.y) * t + (entering ? scroll : 0),
         dx: velocityX / velocity, dy: velocityY / velocity, speed: velocity,
+        headingDx: dx / tangent, headingDy: dy / tangent,
       };
     },
   };

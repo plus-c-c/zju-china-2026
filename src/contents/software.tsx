@@ -696,8 +696,7 @@ export function Software() {
             Ordering is how clinicians enter the material system: first select a
             Preconditioned SELP Scaffold (2KY-5-Tag / 2KY-10-Tag — the
             corresponding 2KY-5 / 2KY-10 scaffolds with SnoopTag2 added), then a
-            Functional Module (Mitochondrial Therapy / Magnetically Responsive
-            Anisotropy / GAG Retention), and fill in the order quantity (vials);
+            Functional Module (Mitochondrial Therapeutic Module / Magnetically Responsive Anisotropy Module / GAG Retention Module), and fill in the order quantity (vials);
             a summary of the order is shown live at the bottom of the page. Both
             selections carry explanations — the scaffold entry notes the number
             of repeat units and the SnoopTag2 docking sites, while the module
@@ -720,8 +719,8 @@ export function Software() {
               Figure 4 | Ordering screen. ① select the preconditioned SELP
               scaffold (2KY-5-Tag / 2KY-10-Tag — the corresponding 2KY-5 /
               2KY-10 scaffolds with SnoopTag2 added); ② select the functional
-              module (Mitochondrial Therapy / Magnetically Responsive Anisotropy
-              / GAG Retention); ③ enter the order quantity (vials); ④ live order
+              module (Mitochondrial Therapeutic Module / Magnetically Responsive Anisotropy Module
+              / GAG Retention Module); ③ enter the order quantity (vials); ④ live order
               summary.
             </FigureCaption>
           </figure>

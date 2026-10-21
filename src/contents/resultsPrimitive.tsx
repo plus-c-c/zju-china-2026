@@ -13,10 +13,10 @@ const functionModules = [
   {
     id: "anisotropy",
     number: "4",
-    label: "Magnetically responsive anisotropy",
+    label: "Magnetically Responsive Anisotropy Module",
   },
-  { id: "gag", number: "5", label: "GAG retention" },
-  { id: "delivery", number: "6", label: "Delivery" },
+  { id: "gag", number: "5", label: "GAG Retention Module" },
+  { id: "delivery", number: "6", label: "Mitochondrial Therapeutic Module" },
 ] as const;
 
 type FunctionModuleId = (typeof functionModules)[number]["id"];

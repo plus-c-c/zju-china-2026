@@ -1,9 +1,5 @@
 import { TableCaption } from "../components/FigureCaption";
 import { FigureCaption } from "../components/FigureCaption";
-import {
-  FigureSourceCitation,
-  FigureSourceEntry,
-} from "../components/FigureSourceCitation";
 import { References } from "../components/References";
 const CIF = "https://static.igem.wiki/teams/6102/wiki/images/cif/";
 const BASE = import.meta.env.BASE_URL;
@@ -155,10 +151,6 @@ export function Implementation() {
             interface. Formulation information is loaded after QR-code scanning,
             and users proceed to premixing instructions after verifying each
             reagent.
-            <FigureSourceCitation
-              source={1}
-              href="#implementation-figure-sources"
-            />
           </FigureCaption>
         </figure>
         <p>
@@ -214,10 +206,6 @@ export function Implementation() {
             the lower image shows the microfluidic mixing-chip structure. The
             three component streams converge in the microchannels before
             proceeding to storage and delivery.
-            <FigureSourceCitation
-              source={2}
-              href="#implementation-hardware-sources"
-            />
           </FigureCaption>
         </figure>
         <p>
@@ -419,23 +407,6 @@ export function Implementation() {
               <a href="https://english.nmpa.gov.cn/">Source</a>
             </p>
           </div>
-        </References>
-        <References
-          level={2}
-          title="Figure Sources and Credits"
-          id="figure-sources-and-credits"
-        >
-          <ul className="references-list figure-sources-list">
-            <FigureSourceEntry source={1} id="implementation-figure-sources">
-              <p>
-                Image source: the team&rsquo;s publicly accessible{" "}
-                <a href={`${BASE}software`}>Wiki software page</a>.
-              </p>
-            </FigureSourceEntry>
-            <FigureSourceEntry source={2} id="implementation-hardware-sources">
-              <p>Images adapted from the team&rsquo;s Hardware report.</p>
-            </FigureSourceEntry>
-          </ul>
         </References>
       </div>
     </div>

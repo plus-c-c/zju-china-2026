@@ -2,12 +2,15 @@ import {
   useEffect,
   useRef,
   useState,
+  lazy,
+  Suspense,
   type ReactNode,
   type CSSProperties,
 } from "react";
 import { PipelineBird } from "../components/home/PipelineBird";
 import { StoryBird } from "../components/home/StoryBird";
 import { HomeIntro } from "../components/home/HomeIntro";
+import { HomeScrollCue } from "../components/home/HomeScrollCue";
 import {
   GlobalBurdenScene,
   OpeningStatement,
@@ -32,6 +35,11 @@ import {
   STORY_SCROLL_RATIO,
   useStoryNavigation,
 } from "../components/home/UseStoryNavigation";
+
+// Local route inspection is opt-in and excluded from the production build.
+const FlightPathPreview = import.meta.env.DEV
+  ? lazy(() => import("../components/home/FlightPathPreview"))
+  : null;
 
 function Scene({
   children,
@@ -94,6 +102,7 @@ function DesktopHome() {
     birdLandingProgress,
     next,
     nextScene,
+    advance,
     scenePosition,
     crossfade,
     openingContent,
@@ -288,11 +297,15 @@ function DesktopHome() {
             ))}
           </div>
           <StoryBird position={position} direction={direction} scale={Math.min(size.width / 1280, size.height / 720)} />
+          <HomeScrollCue onClick={advance} />
         </div>
       </div>
       <SelpPipeline readingWidth={Math.min(size.width / 1280, size.height / 720) * 0.89 * 0.9375 * 1080} />
       <Footer />
       <PipelineBird />
+      {FlightPathPreview && new URLSearchParams(location.search).has("flight-path") && (
+        <Suspense fallback={null}><FlightPathPreview /></Suspense>
+      )}
     </>
   );
 }

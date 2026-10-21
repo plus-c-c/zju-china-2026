@@ -578,8 +578,9 @@ export function SelpPipeline({ readingWidth }: { readingWidth?: number } = {}) {
           <article className="selp-pipeline__card">
             <h2>Magnetically Responsive Anisotropy Module</h2>
             <p>
-              Under an external magnetic field, these peptides guide SELP to
-              form anisotropic structures, helping restore mechanical balance.
+              Under an external magnetic field, these peptides, bound to magnetic
+              nanoparticles, guide SELP to form anisotropic structures, helping
+              restore mechanical balance.
             </p>
           </article>
           <PipelineAnimation

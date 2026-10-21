@@ -3,11 +3,11 @@ export function AnisotropyContent() {
   return (
     <>
       <h3 id="wetlab-anisotropy-overview" data-toc="include" data-toc-depth="2">
-        4 Magnetically Responsive Anisotropy
+        4 Magnetically Responsive Anisotropy Module
       </h3>
       <div className="source-block">
         <p>
-          To validate the key steps in the design of the magnetically responsive anisotropy module,
+          To validate the key steps in the design of the Magnetically Responsive Anisotropy Module,
           we carried out expression, purification, and fluorescence-based binding experiments for a
           magnetic-nanoparticle-binding protein. We first obtained a recombinant fusion protein
           containing the Fe₃O₄-binding peptide TVNFKLY and completed its expression, purification,

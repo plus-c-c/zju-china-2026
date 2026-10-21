@@ -91,9 +91,9 @@ export function PipelineBird() {
       bird.style.setProperty("--bird-size", "0.4");
       bird.classList.toggle("story-guide-bird--flying", moving && !reduced);
       if (onRoute) {
-        // Position and tangent use document coordinates throughout, including
-        // takeoff and the SVG sections. Reverse only when travelling back up.
-        const heading = flightHeading(position.dx * routeDirection, position.dy * routeDirection);
+        // OA takeoff belongs to the fixed viewport. The later SVG sections
+        // belong to the scrolling document. Use each section's own tangent.
+        const heading = flightHeading(position.headingDx * routeDirection, position.headingDy * routeDirection);
         bird.style.setProperty("--pipeline-flight-angle", `${heading}deg`);
       }
       document.body.classList.add("pipeline-bird-active");

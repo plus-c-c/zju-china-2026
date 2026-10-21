@@ -1,4 +1,5 @@
 import { HomeIntro } from "./HomeIntro";
+import { HomeScrollCue } from "./HomeScrollCue";
 import {
   OpeningStatement,
   GlobalBurdenScene,
@@ -40,15 +41,19 @@ export function MobileHome() {
       <div className="mobile-home nest-home">
         <section className="mobile-home__intro" aria-label="NEST introduction">
           <HomeIntro onEnter={next} />
+          <HomeScrollCue />
         </section>
         <section id="mobile-cartilage" aria-label="Cartilage damage">
           <OpeningStatement />
+          <HomeScrollCue />
         </section>
         <section aria-label="Global burden">
           <GlobalBurdenScene />
+          <HomeScrollCue />
         </section>
         <section aria-label="Pain and recovery">
           <ImpactScene play />
+          <HomeScrollCue />
         </section>
         <section aria-label="Hydrogel materials">
           <StoryContext.Provider
@@ -66,12 +71,15 @@ export function MobileHome() {
           >
             <HydrogelMaterialsPage />
           </StoryContext.Provider>
+          <HomeScrollCue />
         </section>
         <section id="mobile-limitations" aria-label="Material limitations">
           <MaterialLimitations yellowRemoved={false} />
+          <HomeScrollCue />
         </section>
         <section aria-label="Our solution">
           <MaterialLimitations yellowRemoved />
+          <HomeScrollCue />
         </section>
         <section className="mobile-home__nest" aria-label="NEST scaffold">
           <h2>NEST</h2>
@@ -79,12 +87,15 @@ export function MobileHome() {
             src="https://static.igem.wiki/teams/6102/wiki/images/home/bird-return-bone-2.avif"
             alt="NEST bird resting on a cartilage scaffold"
           />
+          <HomeScrollCue />
         </section>
         <section aria-label="SELP and Link system">
           <SelpAndSnoopLigaseScene />
+          <HomeScrollCue />
         </section>
         <section aria-label="Osteoarthritis target">
           <OsteoarthritisTargetScene />
+          <HomeScrollCue />
         </section>
         <SelpPipeline />
         <img className="mobile-home__footer-bird" src={bird} alt="NEST bird" />

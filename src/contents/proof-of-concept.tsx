@@ -40,8 +40,7 @@ export function ProofOfConcept() {
             verified module-specific functions, and included the{" "}
             <em>in vitro</em> cytocompatibility of the major components in our
             evaluation. Using osteoarthritis (OA) as a representative
-            application, magnetically responsive components, glycosaminoglycan
-            (GAG) retention, and mitochondrial delivery address distinct repair
+            application, the Magnetically Responsive Anisotropy Module, GAG Retention Module, and Mitochondrial Therapeutic Module address distinct repair
             needs and together demonstrate how NEST's programmable design
             performs in practice.
           </p>
@@ -320,9 +319,9 @@ export function ProofOfConcept() {
                   selected OA as a representative application and matched its
                   mechanical and structural needs, matrix GAG retention needs,
                   and cell-function-related needs to three components:{" "}
-                  <strong>TVN-mediated magnetic response</strong>,{" "}
-                  <strong>GAG retention</strong>, and{" "}
-                  <strong>responsive mitochondrial delivery</strong>. Each
+                  <strong>Magnetically Responsive Anisotropy Module</strong>,{" "}
+                  <strong>GAG Retention Module</strong>, and{" "}
+                  <strong>Mitochondrial Therapeutic Module</strong>. Each
                   function plays a different role, but all use a shared ligation
                   mechanism. We therefore examined whether their components
                   could be produced, whether the interface remained compatible,
@@ -354,7 +353,7 @@ export function ProofOfConcept() {
                   each module and isolated the biological components needed for
                   mitochondrial delivery.{" "}
                   <strong>TVN, CPC, Link-N, CPC-Link-N</strong>, and the
-                  delivery module's responsive fusion protein were all
+                  Mitochondrial Therapeutic Module's responsive fusion protein were all
                   successfully obtained.
                 </p>
                 <p>
@@ -438,7 +437,7 @@ export function ProofOfConcept() {
                   in mitochondrial delivery.
                 </p>
                 <h4 className="mt-5 mb-3">
-                  2.3.1 Magnetic Response: Reorienting Protein-Particle
+                  2.3.1 Magnetically Responsive Anisotropy Module: Reorienting Protein-Particle
                   Complexes with a Magnetic Field
                 </h4>
                 <p>
@@ -529,14 +528,14 @@ export function ProofOfConcept() {
                   TVN enabled the association of proteins with magnetic
                   particles and allowed the protein-particle complexes to be
                   directionally controlled by an external field, fulfilling the
-                  key design goal of the magnetically responsive module.
+                  key design goal of the Magnetically Responsive Anisotropy Module.
                 </p>
                 <h4 className="mt-5 mb-3">
-                  2.3.2 GAG Retention: Capturing and Retaining Matrix-Associated
+                  2.3.2 GAG Retention Module: Capturing and Retaining Matrix-Associated
                   Components
                 </h4>
                 <p>
-                  The purpose of the GAG-retention module is to retain
+                  The purpose of the GAG Retention Module is to retain
                   matrix-associated components using functional proteins.
                   Following validation of the biotinylation and immobilization
                   interface, we used{" "}
@@ -584,11 +583,11 @@ export function ProofOfConcept() {
                   The GAG-retention activity of CPC was demonstrated in
                   immobilized constructs and was preserved after fusion with
                   Link-N. These results validate the ability of the
-                  GAG-retention module to capture and retain matrix-associated
+                  GAG Retention Module to capture and retain matrix-associated
                   components.
                 </p>
                 <h4 className="mt-5 mb-3">
-                  2.3.3 Mitochondrial Delivery: Validating Encapsulation,
+                  2.3.3 Mitochondrial Therapeutic Module: Validating Encapsulation,
                   Enzyme-Responsive Cleavage, and Cellular Delivery
                 </h4>
                 <p>
@@ -690,16 +689,15 @@ export function ProofOfConcept() {
                   carrier, band changes validated the cleavage response, and
                   recipient-cell imaging provided evidence supporting delivery.
                   All three steps were examined and validated, completing the
-                  key functional tests of the mitochondrial delivery module.
+                  key functional tests of the Mitochondrial Therapeutic Module.
                 </p>
                 <h3 className="mt-5 mb-3">Functional Configuration Summary</h3>
                 <p>
                   Using OA as a representative application, we successfully
                   constructed and validated three types of functional modules:
-                  the magnetic-response module controlled the orientation of
-                  composite components; the GAG-retention module captured
-                  matrix-associated substances; and the mitochondrial delivery
-                  module underwent validation of encapsulation,
+                  the Magnetically Responsive Anisotropy Module controlled the orientation of
+                  composite components; the GAG Retention Module captured
+                  matrix-associated substances; and the Mitochondrial Therapeutic Module underwent validation of encapsulation,
                   enzyme-responsive cleavage, and cellular delivery. Each
                   functional construct also retained activity at the shared
                   ligation interface. The combination of distinct functions and
@@ -734,8 +732,7 @@ export function ProofOfConcept() {
               hydrogels and demonstrated that material properties can be altered
               through sequence configuration. The shared ligation interface was
               compatible with different functional constructs, while the
-              magnetic-response, GAG-retention, and mitochondrial-delivery
-              modules each exhibited their key intended functions. The scaffold
+              Magnetically Responsive Anisotropy Module, GAG Retention Module, and Mitochondrial Therapeutic Module each exhibited their key intended functions. The scaffold
               and major functional components were also evaluated in preliminary{" "}
               <em>in vitro</em> cytocompatibility assays.
             </p>
@@ -759,18 +756,23 @@ export function ProofOfConcept() {
           </SharedProjectSections>
           <References
             level={2}
-            title="Figure Sources and Credits"
+            title="Figure Sources"
             id="figure-sources-and-credits"
           >
             <ul className="references-list figure-sources-list">
               <FigureSourceEntry source={1} id="poc-reference-1">
                 <p>
-                  Icons used in Figure 1 and Figure 8. Protein chain: DBCLS (CC
-                  BY 4.0); hydrogel: Marcel Tisch (CC0); proteoglycan:
-                  Daniel-Marcos (CC0); mitochondrion: Servier (CC BY 3.0). Link,
-                  puzzle, magnet, and adjustment icons: Google Noto Emoji
-                  (Google, Apache 2.0). Icons were resized and recolored in
-                  shades of blue.
+                  Figures 1 and 8: icons adapted from{" "}
+                  <a href="https://bioicons.com/">Bioicons</a>.
+                  Protein chain: DBCLS (<a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>);
+                  hydrogel: Marcel Tisch and proteoglycan: Daniel-Marcos
+                  (<a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>);
+                  mitochondrion: Servier (<a href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>).
+                </p>
+                <p>
+                  Link, puzzle, magnet, and adjustment icons: adapted from Google,{" "}
+                  <a href="https://github.com/googlefonts/noto-emoji">Noto Emoji</a>.{" "}
+                  <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache 2.0</a>.
                 </p>
               </FigureSourceEntry>
             </ul>

@@ -49,6 +49,7 @@ function DescriptionFigure({
   alt,
   src,
   empty = false,
+  showSourceCitation = true,
 }: {
   number: number | string;
   title: string;
@@ -57,6 +58,7 @@ function DescriptionFigure({
   /** Optional override of the default description<N>.avif asset. */
   src?: string;
   empty?: boolean;
+  showSourceCitation?: boolean;
 }) {
   return (
     <figure className="figure d-block my-4 text-center article-figure">
@@ -78,7 +80,7 @@ function DescriptionFigure({
           Figure {number} | {title}.
         </strong>{" "}
         {children}
-        {!empty && (
+        {!empty && showSourceCitation && (
           <FigureSourceCitation
             source={number}
             href={`#description-figure-${String(number).replace(/\./g, "-")}-sources`}
@@ -192,7 +194,12 @@ const treatmentCards = [
         Provides an important option for some patients with end-stage joint
         destruction, but replaces native articular surfaces with artificial
         components rather than regenerating natural cartilage.
-        <Citation refs={[12]} />
+        <Citation refs={[12]} />{" "}
+        It involves major surgery, substantial treatment costs, and demanding
+        rehabilitation, and is generally considered when symptoms severely
+        limit daily life and non-surgical treatments are ineffective or
+        unsuitable.
+        <Citation refs={[21, 22, 23]} />
       </>
     ),
   },
@@ -373,6 +380,31 @@ const references = [
     </strong>{" "}
     <em>Immune Network.</em> 2022;22(2):e14.{" "}
     <a href="https://doi.org/10.4110/in.2022.22.e14">DOI</a>
+  </>,
+  <>
+    National Institute for Health and Care Excellence (NICE).{" "}
+    <strong>Osteoarthritis in over 16s: diagnosis and management.</strong>{" "}
+    NICE guideline NG226, 2022. Section 1.6: Referral for joint replacement.{" "}
+    <a href="https://www.nice.org.uk/guidance/ng226/chapter/recommendations#referral-for-joint-replacement">
+      NICE recommendations
+    </a>
+  </>,
+  <>
+    American Academy of Orthopaedic Surgeons (AAOS), OrthoInfo.{" "}
+    <strong>Total Knee Replacement.</strong>{" "}
+    <a href="https://www.orthoinfo.org/treatment/total-knee-replacement/">
+      OrthoInfo
+    </a>
+  </>,
+  <>
+    Li A, Li G, Han D, Fu M, Chang J.{" "}
+    <strong>
+      A comparative study of hospitalization costs of TKA inpatients before
+      and after National Volume-based Procurement in Guangdong, China: an
+      interrupted time-series analysis.
+    </strong>{" "}
+    <em>Frontiers in Public Health.</em> 2025;12:1468606.{" "}
+    <a href="https://doi.org/10.3389/fpubh.2024.1468606">DOI</a>
   </>,
 ];
 
@@ -779,6 +811,7 @@ export function Description() {
           </div>
           <DescriptionFigure
             number={8}
+            showSourceCitation={false}
             title="Comparison between traditional blending design and sequence-programmed design"
             src="https://static.igem.wiki/teams/6102/wiki/images/design/01/01-01.avif"
             alt="Comparison of conventional polymer blending and grafting with DNA-encoded protein production and photocrosslinking"
@@ -833,169 +866,125 @@ export function Description() {
           </References>
 
           <References
-            title="Figure Sources and Credits"
+            title="Figure Sources"
             id="figure-sources-and-credits"
             showBird={false}
           >
             <ul className="references-list figure-sources-list">
               <FigureSourceEntry source={1} id="description-figure-1-sources">
                 <p>
-                  Source photographs: young adult, cottonbro studio / Pexels,
-                  photo 7339492; adult, Towfiqu barbhuiya / Pexels, photo
-                  11349880; older adult, Αλεξανδρος Μαμουνης / Pexels, photo
-                  18851495. The collage was adapted from these photographs using
-                  AI-assisted compositing (OpenAI imagegen). It is illustrative
-                  and should not be presented as clinical evidence or
-                  confirmation of a diagnosis.
-                </p>
-                <p className="figure-source-links">
+                  Adapted from photographs by{" "}
                   <a href="https://www.pexels.com/photo/7339492/">
-                    Young adult
+                    cottonbro studio
                   </a>
-                  {"; "}
-                  <a href="https://www.pexels.com/photo/11349880/">Adult</a>
-                  {"; "}
+                  ,{" "}
+                  <a href="https://www.pexels.com/photo/11349880/">
+                    Towfiqu barbhuiya
+                  </a>
+                  , and{" "}
                   <a href="https://www.pexels.com/photo/18851495/">
-                    Older adult
+                    Αλεξανδρος Μαμουνης
                   </a>
-                  {"; "}
-                  <a href="https://www.pexels.com/license/">Pexels License</a>
+                  , Pexels. <a href="https://www.pexels.com/license/">Pexels License</a>.
+                  AI-assisted composite.
                 </p>
               </FigureSourceEntry>
               <FigureSourceEntry source={2} id="description-figure-2-sources">
                 <p>
-                  Chen et al. (2026), Figure 1, licensed CC BY-NC-ND 4.0. Retain
-                  the original figure and complete attribution, and observe the
-                  restrictions on commercial use and derivative works.
-                </p>
-                <p className="figure-source-links">
+                  Reproduced from Chen et al. (2026), Fig. 1,{" "}
                   <a href="https://doi.org/10.1016/j.jot.2025.11.005">
-                    Figure 2 source
+                    <em>Journal of Orthopaedic Translation</em>
                   </a>
-                  {"; "}
+                  .{" "}
                   <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">
                     CC BY-NC-ND 4.0
                   </a>
+                  .
                 </p>
               </FigureSourceEntry>
               <FigureSourceEntry source={3} id="description-figure-3-sources">
                 <p>
-                  Jiang et al. (2026), Figure 3, licensed CC BY-NC-ND 4.0. The
-                  original figure shows the distribution and severity grades of
-                  cartilage lesions at different sites within the knee in an
-                  arthroscopy cohort; these data are not a population-based
-                  prevalence estimate. Observe the restrictions on commercial
-                  use and modification.
-                </p>
-                <p className="figure-source-links">
-                  <a href="https://doi.org/10.1111/os.70272">Figure 3 source</a>
-                  {"; "}
-                  <a href="https://onlinelibrary.wiley.com/doi/epdf/10.1111/os.70272">
-                    Original figure in the article PDF (p. 676)
+                  Reproduced from Jiang et al. (2026), Fig. 3,{" "}
+                  <a href="https://doi.org/10.1111/os.70272">
+                    <em>Orthopaedic Surgery</em>
                   </a>
-                  {"; "}
+                  .{" "}
                   <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">
                     CC BY-NC-ND 4.0
                   </a>
+                  .
                 </p>
               </FigureSourceEntry>
               <FigureSourceEntry source={4} id="description-figure-4-sources">
                 <p>
-                  Morouço, Fernandes &amp; Lattanzi (2021), Figure 1, licensed
-                  CC BY 4.0. Consult the original legend for third-party artwork
-                  attribution.
-                </p>
-                <p className="figure-source-links">
+                  Reproduced from Morouço et al. (2021), Fig. 1,{" "}
                   <a href="https://doi.org/10.3390/jfb12010017">
-                    Original article
+                    <em>Journal of Functional Biomaterials</em>
                   </a>
-                  {"; "}
+                  .{" "}
                   <a href="https://creativecommons.org/licenses/by/4.0/">
                     CC BY 4.0
                   </a>
+                  .
                 </p>
               </FigureSourceEntry>
               <FigureSourceEntry source={5} id="description-figure-5-sources">
                 <p>
-                  Left: Medvedeva et al. (2018), Figure 3, CC BY 4.0. Upper
-                  right: Funkcinės Terapijos Centras / Pexels, photo 20860595,
-                  under the Pexels License. Lower right: “Osteoarthritis” and
-                  “Knee Replacement” by BruceBlaus (2015), via Wikimedia
-                  Commons, CC BY-SA 4.0. ZJU-China cropped the illustrations,
-                  resized them without changing their aspect ratios, and added
-                  labels. The adapted lower-right panel is licensed under CC
-                  BY-SA 4.0; the other panels retain their respective licenses.
-                  The composite layout was arranged by ZJU-China.
-                </p>
-                <p className="figure-source-links">
+                  Left: reproduced from Medvedeva et al. (2018), Fig. 3,{" "}
                   <a href="https://doi.org/10.3390/ijms19082366">
-                    Medvedeva article
+                    <em>International Journal of Molecular Sciences</em>
                   </a>
-                  {"; "}
-                  <a href="https://www.pexels.com/photo/20860595/">
-                    Rehabilitation photo
-                  </a>
-                  {"; "}
-                  <a href="https://commons.wikimedia.org/wiki/File:Osteoarthritis.png">
-                    BruceBlaus: Osteoarthritis
-                  </a>
-                  {"; "}
-                  <a href="https://commons.wikimedia.org/wiki/File:Knee_Replacement.png">
-                    BruceBlaus: Knee Replacement
-                  </a>
-                  {"; "}
-                  <a href="https://creativecommons.org/licenses/by-sa/4.0/">
-                    CC BY-SA 4.0 (lower-right panel)
-                  </a>
-                  {"; "}
+                  .{" "}
                   <a href="https://creativecommons.org/licenses/by/4.0/">
                     CC BY 4.0
                   </a>
-                  {"; "}
-                  <a href="https://www.pexels.com/license/">Pexels License</a>
+                  .
+                </p>
+                <p>
+                  Upper right: photograph by{" "}
+                  <a href="https://www.pexels.com/photo/20860595/">
+                    Funkcinės Terapijos Centras
+                  </a>
+                  , Pexels. <a href="https://www.pexels.com/license/">Pexels License</a>.
+                </p>
+                <p>
+                  Lower right: adapted from BruceBlaus (2015),{" "}
+                  <a href="https://commons.wikimedia.org/wiki/File:Osteoarthritis.png">
+                    <em>Osteoarthritis</em>
+                  </a>
+                  {" and "}
+                  <a href="https://commons.wikimedia.org/wiki/File:Knee_Replacement.png">
+                    <em>Knee Replacement</em>
+                  </a>
+                  , Wikimedia Commons.{" "}
+                  <a href="https://creativecommons.org/licenses/by-sa/4.0/">
+                    CC BY-SA 4.0
+                  </a>
+                  .
                 </p>
               </FigureSourceEntry>
               <FigureSourceEntry source={6} id="description-figure-6-sources">
                 <p>
-                  Cavallo et al. (2026), Figure 1, CC BY 4.0. Credit the authors
-                  and source and indicate modifications. Included third-party
-                  graphics may require separate permission.
-                </p>
-                <p className="figure-source-links">
+                  Reproduced from Cavallo et al. (2026), Fig. 1,{" "}
                   <a href="https://doi.org/10.3390/gels12050350">
-                    Figure 6 source
+                    <em>Gels</em>
                   </a>
-                  {"; "}
+                  .{" "}
                   <a href="https://creativecommons.org/licenses/by/4.0/">
                     CC BY 4.0
                   </a>
+                  .
                 </p>
               </FigureSourceEntry>
               <FigureSourceEntry source={7} id="description-figure-7-sources">
                 <p>
-                  Gan et al. (2024), Figure 1, licensed CC BY 4.0. If the figure
-                  includes third-party graphics, such as BioRender elements,
-                  their reuse permissions must be checked separately; an
-                  open-access license for the article does not necessarily
-                  authorise unrestricted reuse of every component.
-                </p>
-                <p className="figure-source-links">
+                  Reproduced from Gan et al. (2024), Fig. 1,{" "}
                   <a href="https://doi.org/10.3390/biomedicines12040923">
-                    Figure 7 source
+                    <em>Biomedicines</em>
                   </a>
-                  {"; "}
+                  .{" "}
                   <a href="https://creativecommons.org/licenses/by/4.0/">
                     CC BY 4.0
-                  </a>
-                </p>
-              </FigureSourceEntry>
-              <FigureSourceEntry source={8} id="description-figure-8-sources">
-                <p>
-                  Comparison between traditional blending design and
-                  sequence-programmed design. Image supplied by ZJU-China and
-                  hosted on the team&rsquo;s iGEM static repository.{" "}
-                  <a href="https://static.igem.wiki/teams/6102/wiki/images/design/01/01-01.avif">
-                    Original image
                   </a>
                   .
                 </p>

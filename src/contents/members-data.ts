@@ -106,7 +106,7 @@ export const members: Member[] = [
     name: "Wenxin Zhang",
     role: "Wet Lab · GAG Retention",
     group: "students",
-    bio: "Hi! I'm Wenxin Zhang, a student majoring in Biological Sciences at Zhejiang University. I'm a member of the wet lab team, mainly working on the GAG retention module. We encountered many difficulties during the project, but it was also a valuable and unforgettable experience. Through iGEM, I've gained a deeper understanding of synthetic biology and teamwork, and I'm really glad to be part of this journey.",
+    bio: "Hi! I'm Wenxin Zhang, a student majoring in Biological Sciences at Zhejiang University. I'm a member of the wet lab team, mainly working on the GAG Retention Module. We encountered many difficulties during the project, but it was also a valuable and unforgettable experience. Through iGEM, I've gained a deeper understanding of synthetic biology and teamwork, and I'm really glad to be part of this journey.",
     imageUrl:
       "https://static.igem.wiki/teams/6102/wiki/images/member/zhangwenxin.avif",
     imagePosition: "100% 50%",

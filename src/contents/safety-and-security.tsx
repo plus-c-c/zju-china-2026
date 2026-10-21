@@ -62,7 +62,7 @@ export function SafetyAndSecurity() {
             molecular function.
           </p>
           <p>
-            In the TVN Magnetic Binding Module, the heptapeptide TVNFKLY serves
+            In the Magnetically Responsive Anisotropy Module, the heptapeptide TVNFKLY serves
             as the Fe₃O₄-binding motif. Fe₃O₄ is a magnetic material used in
             biomedical research, and peptide functionalization is intended to
             provide a means of associating the material with the SELP-based
@@ -372,7 +372,7 @@ export function SafetyAndSecurity() {
           </p>
           <p>
             <strong>
-              Responsive peptide from the mitochondrial delivery module.
+              Responsive peptide from the Mitochondrial Therapeutic Module.
             </strong>{" "}
             For the engineered responsive peptide (Mito), relative cell
             viability at 24 h was approximately 70% in the 5 μM group and 55% in
