@@ -28,9 +28,11 @@ export const anisotropyModule: DbtlModule = {
         regeneration.
       </p>
       <p>
-        The architecture of native cartilage led us to a specific question:
-        Could we introduce a preferred orientation into SELP before gelation and
-        subsequently lock that organization in place?
+        <strong>
+          The architecture of native cartilage led us to a specific question:
+          Could we introduce a preferred orientation into SELP before gelation and
+          subsequently lock that organization in place?
+        </strong>
       </p>
       <p>
         Answering this question required us to address three linked challenges:
@@ -64,8 +66,9 @@ export const anisotropyModule: DbtlModule = {
               positioned the alignment step between injection and curing: an
               external field would be applied while the precursor could still
               rearrange, followed by photocrosslinking to lock in the structure.
-              The candidate method needed to guide alignment, be compatible with
-              local defect treatment, and integrate with the curing step.
+              The candidate method needed to <strong>guide alignment</strong>,{" "}
+              <strong>be compatible with local defect treatment</strong>, and{" "}
+              <strong>integrate with the curing step</strong>.
             </p>
           </>
         ),
@@ -74,8 +77,8 @@ export const anisotropyModule: DbtlModule = {
             <p>
               We developed two conceptual routes.{" "}
               <strong>The electric-field strategy</strong> used an applied
-              electric field to orient material components; the{" "}
-              <strong>magnetic-field strategy</strong> incorporated magnetically
+              electric field to orient material components;{" "}
+              <strong>the magnetic-field strategy</strong> incorporated magnetically
               responsive components that could be organized by an external
               magnetic field.
               Both followed the same
@@ -108,7 +111,7 @@ export const anisotropyModule: DbtlModule = {
               workflow and was selected for further development. Separating
               alignment from photocrosslinking also allows the external field to
               be adjusted before the structure is fixed. The next challenge was
-              to couple the magnetic component to the protein network.
+              to <strong>couple the magnetic component to the protein</strong> network.
             </p>
           </>
         ),
@@ -132,8 +135,8 @@ export const anisotropyModule: DbtlModule = {
         Build: (
           <>
             <p>
-              We designed a candidate approach using gelatin or collagen fibers
-              loaded with Fe₃O₄ nanoparticles, and outlined the required
+              We designed a candidate approach using <strong>gelatin or collagen fibers
+              loaded with Fe₃O₄</strong> nanoparticles, and outlined the required
               tyrosine functionalization and particle-loading steps. The fibers
               would be blended with SELP, magnetically aligned, and then
               incorporated into the gel through Ru/SPS-mediated
@@ -191,8 +194,8 @@ export const anisotropyModule: DbtlModule = {
         Build: (
           <>
             <p>
-              We outlined a magnetic nanoparticle&ndash;binding
-              module&ndash;SELP assembly scheme, integrating a particle-binding
+              We outlined a magnetic <strong>nanoparticle&ndash;binding
+              module&ndash;SELP</strong> assembly scheme, integrating a particle-binding
               element and a scaffold-coupling element into one module. At this
               stage, we defined the functions and connectivity of these elements
               before selecting their specific sequences and coupling chemistry.
@@ -206,7 +209,7 @@ export const anisotropyModule: DbtlModule = {
               the composite-fiber route. Direct coupling avoids constructing a
               separate fibrous carrier while retaining flexibility in the
               module-to-scaffold ratio. It shifts the main technical challenges
-              to two interfaces: particle binding and protein ligation.
+              to two interfaces: <strong>particle binding and protein ligation</strong>.
             </p>
           </>
         ),
@@ -233,8 +236,8 @@ export const anisotropyModule: DbtlModule = {
               modular assembly. We compared the required pretreatment of
               particles and proteins, genetic encodability of the coupling
               interface, operating conditions, and compatibility with SELP
-              assembly. Our goal was a Magnetically Responsive Anisotropy Module that could be
-              produced, characterized, and reused independently within NEST.
+              assembly. Our goal was a Magnetically Responsive Anisotropy Module that could <strong>be
+              produced, characterized</strong>, and <strong>reused independently</strong> within NEST.
             </p>
           </>
         ),
@@ -245,7 +248,7 @@ export const anisotropyModule: DbtlModule = {
               biotin&ndash;streptavidin interactions, and SpyTag/SpyCatcher
               coupling. For each, we mapped the necessary functionalization of
               the particle and protein components. In parallel, we searched for
-              peptides capable of directly recognizing Fe₃O₄, assessing whether
+              <strong>peptides capable of directly recognizing Fe₃O₄</strong>, assessing whether
               nanoparticle-binding capability could be introduced into a
               recombinant protein through genetic encoding.
             </p>
@@ -267,8 +270,8 @@ export const anisotropyModule: DbtlModule = {
               and batch-to-batch consistency.
             </p>
             <p>
-              In contrast, an Fe₃O₄-binding peptide could be genetically fused
-              to a protein, allowing particle recognition to be encoded directly
+              In contrast, an <strong>Fe₃O₄-binding peptide could be genetically fused
+              to a protein</strong>, allowing particle recognition to be encoded directly
               into the expressed construct without requiring extensive covalent
               modification of the nanoparticles. Combining the binding peptide
               with a scaffold-coupling tag would produce a bifunctional module
@@ -323,7 +326,7 @@ export const anisotropyModule: DbtlModule = {
         Build: (
           <>
             <p>
-              We combined the Fe₃O₄-binding heptapeptide TVNFKLY (TVN) with
+              We combined the <strong>Fe₃O₄-binding heptapeptide TVNFKLY</strong> (TVN) with
               DogTag to create an independently expressed Magnetically Responsive Anisotropy Module. SELP
               carries SnoopTag2, and SnoopLigase2 catalyzes covalent ligation
               between the two peptide tags. We assessed TVN-dependent particle
@@ -394,8 +397,8 @@ export const anisotropyModule: DbtlModule = {
         Test: (
           <>
             <p>
-              The BCA assay did not provide sufficiently clear results, whereas
-              fluorescence offered a more direct observational readout. Among
+              The BCA assay did not provide sufficiently clear results,{" "}
+              <strong>whereas fluorescence offered a more direct observational readout</strong>. Among
               the concentrations tested (90, 215, 375, and 500 &micro;g/mL), the
               500 &micro;g/mL condition produced the clearest observations.
               Nanoparticle quantity and mixing procedures also affected sample
@@ -528,8 +531,8 @@ export const anisotropyModule: DbtlModule = {
           <>
             <p>
               The higher-molecular-weight bands observed in the presence of
-              ligase, but not in the matched ligase-free controls, are
-              consistent with covalent assembly of the model substrates. We
+              ligase, but not in the matched ligase-free controls,{" "}
+              <strong>are consistent with covalent assembly of the model substrates</strong>. We
               therefore standardized protein quantification, reaction
               conditions, and gel-loading parameters and incorporated
               enzyme-positive and enzyme-negative controls into the working
@@ -571,8 +574,8 @@ export const anisotropyModule: DbtlModule = {
         Test: (
           <>
             <p>
-              After adjusting the detection workflow, we observed fluorescence
-              signals in the magnetic nanoparticle samples. This enabled
+              After adjusting the detection workflow,{" "}
+              <strong>we observed fluorescence signals in the magnetic nanoparticle samples</strong>. This enabled
               continued evaluation of the particle-binding interface and
               provided a basis for subsequent integration of the module with
               SELP.
@@ -607,8 +610,8 @@ export const anisotropyModule: DbtlModule = {
           An alignment method that works under laboratory conditions must also
           be compatible with the intended material application. In NEST,
           alignment is designed to occur after injection but before
-          crosslinking. Our initial question was therefore how to establish a
-          preferred orientation within the defect while maintaining a practical
+          crosslinking. Our initial question was therefore how to{" "}
+          <strong>establish a preferred orientation</strong> within the defect while maintaining a practical
           window for light-induced fixation.
         </p>
       ),
