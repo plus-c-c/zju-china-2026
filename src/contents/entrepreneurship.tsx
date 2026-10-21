@@ -2131,10 +2131,6 @@ export function Entrepreneurship() {
             title="Judging Criteria"
           >
             <p>
-              For your convenience, we have summarised how we have addressed the
-              iGEM entrepreneurship criteria in the following section.
-            </p>
-            <p>
               For your convenience, the following section summarizes how we have
               addressed the iGEM entrepreneurship judging criteria.
             </p>
