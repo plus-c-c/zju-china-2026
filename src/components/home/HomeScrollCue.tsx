@@ -4,11 +4,15 @@ import "./HomeScrollCue.css";
 export function HomeScrollCue({ onClick }: { onClick?: MouseEventHandler<HTMLButtonElement> }) {
   const continueReading: MouseEventHandler<HTMLButtonElement> = (event) => {
     const next = event.currentTarget.closest("section")?.nextElementSibling;
-    const target = next?.querySelector(".selp-pipeline__stage") ?? next;
-    target?.scrollIntoView({
-      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
-        ? "instant"
-        : "smooth",
+    const behavior = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+      ? "instant"
+      : "smooth";
+    if (next?.matches(".selp-pipeline")) {
+      window.scrollBy({ top: Math.round(window.innerHeight * 0.35), behavior });
+      return;
+    }
+    next?.scrollIntoView({
+      behavior,
       block: "start",
     });
   };

@@ -443,9 +443,13 @@ export function useStoryNavigation() {
     advance: () => {
       const target = STORY_PAGE_STOPS.find((beat) => beat > position + 0.08);
       if (target === undefined) {
-        document.querySelector(".selp-pipeline__stage")?.scrollIntoView({
+        cancelAnimationFrame(scrollAnimation.current);
+        animationActive.current = false;
+        chaining.current = false;
+        window.dispatchEvent(new Event("home-story-seek"));
+        window.scrollBy({
+          top: Math.round(window.innerHeight * 0.35),
           behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth",
-          block: "start",
         });
         return;
       }
