@@ -143,13 +143,13 @@ const chainStages: ChainStage[] = [
     people: [
       { name: "Beijing Weixinkang" },
       { name: "Shaanxi Lanyanwei", image: photo("ihp-38") },
-      { name: "Yuanyi Biology", image: photo("ihp-30") },
+      { name: "Yuanyi Biology (Ueny)", image: photo("ihp-30") },
       { name: "Shanghai Lingjiu", image: photo("ihp-28") },
     ],
   },
   {
     id: "market",
-    label: "Market access",
+    label: "Market Authorization & Access",
     people: [
       { name: "Li Zhuoya", image: photo("ihp-27") },
       { name: "ZJU Innovation & Entrepreneurship College" },
@@ -415,9 +415,9 @@ const timelineItems: TimelineItem[] = [
   stakeholder(
     "Late August 2026",
     "Manufacturing",
-    "Expression Amplification and Batch Consistency: Genekor Biotech",
-    "From the perspective of raw material production, GenOne Biologics has raised inquiries regarding the consistency of expression yield, purification recovery rate, and assembly formulation. Based on these findings, the team plans to supplement cross-batch records and sample traceability, and incorporate purification loss, testing and storage into the scale-up cost assessment.",
-    "Founder Zhang Li held an online meeting with us. The SELP scaffold of NEST and its various functional components rely on recombinant expression and subsequent assembly. As sample demand grows, we need to understand the potential challenges that the laboratory expression and purification workflow may face during scale-up. Metabio is an established synthetic biology raw material production company, and is therefore able to assist us in evaluating the feasibility of raw material supply and process scaling.",
+    "Expression Amplification and Batch Consistency: Yuanyi Biology (Ueny)",
+    "From the perspective of raw material production, Yuanyi Biology has raised inquiries regarding the consistency of expression yield, purification recovery rate, and assembly formulation. Based on these findings, the team plans to supplement cross-batch records and sample traceability, and incorporate purification loss, testing and storage into the scale-up cost assessment.",
+    "Founder Zhang Li held an online meeting with us. The SELP scaffold of NEST and its various functional components rely on recombinant expression and subsequent assembly. As sample demand grows, we need to understand the potential challenges that the laboratory expression and purification workflow may face during scale-up. Ueny (Yuanyi Biology) is an established synthetic biology raw material production company, and is therefore able to assist us in evaluating the feasibility of raw material supply and process scaling.",
     "The discussion centered on expression, purification, and batch-to-batch consistency. Regarding NEST, outstanding questions that require further clarification include: whether the yield and recovery rate of different SELP constructs remain stable; whether the existing ITC purification can maintain its performance as the processing volume increases; and how to ensure the consistency of assembly ratio and final formulation after multiple functional components are produced separately. The exchanges also prompted us to view costs from the perspective of the complete production process: beyond the yield per expression run, inputs arising from purification losses, assembly efficiency, testing, and storage also need to be factored in.",
     "We will retain the existing recombinant expression and ITC purification workflow, and plan to add cross-batch records for yield, recovery rate and performance. For different constructs and functional components, we will establish traceable sample numbers and assembly records. Subsequently, based on the results of small-scale scale-up, we will jointly determine the priority optimization processes with the production party, and then update the cost estimation.",
     "ihp-30",
@@ -434,7 +434,7 @@ const timelineItems: TimelineItem[] = [
   ),
   stakeholder(
     "Early September 2026",
-    "Market access",
+    "Market Authorization & Access",
     "Team Handovers and Continuous Entrepreneurship: Li Zhuoya",
     "Starting from the continuous entrepreneurship of the student team, Li Zhuoya delves into technical division of labor, experiment reproducibility and result presentation. The interviews have facilitated the team to plan unified handover and version management, and clarify the person in charge, phased objectives and investment priority of each R&D route.",
     "Zhuoya Li, Partner of Yiwu Bio, is also a former iGEMer and has extensive experience in the entrepreneurial translation of iGEM teams. We would like to understand how student teams can continuously accumulate technologies, organize teams and promote external cooperation after completing scientific research design and competition presentations, so as to prevent projects from being interrupted due to members' graduation or personnel changes.",
@@ -444,7 +444,7 @@ const timelineItems: TimelineItem[] = [
   ),
   stakeholder(
     "Mid-September 2026",
-    "Market access",
+    "Market Authorization & Access",
     "Integration of Campus Resources and Long-Term R&D: Zhejiang University Innovation and Entrepreneurship Institute",
     "Facilitated by Teacher Wang Feifan, the team participated in research training, field investigations and entrepreneurial projects. Through exchanges, the team advanced the alignment of on-campus resources with specific deliverables, and plans to share laboratories, budgets and achievement records to support continuous R&D and member handover.",
     "NEST spans materials R&D, equipment development and entrepreneurship preparation, requiring continuous teamwork and resource support. We hope to learn about on-campus projects, competitions and entrepreneurship guidance resources through the Innovation and Entrepreneurship Institute of Zhejiang University, so that support at different stages can correspond to actual R&D needs.",
@@ -453,7 +453,7 @@ const timelineItems: TimelineItem[] = [
   ),
   stakeholder(
     "Mid-September 2026",
-    "Market access",
+    "Market Authorization & Access",
     "Key Focuses of Phase 1 Products and Financing: Zhang Jie, Huadan Angel Investment",
     "From an investment perspective, Ms. Zhang Jie probed into the product value in the first phase, the differences with competing products and the total cost of ownership, pushed the team to narrow down the verification scope, distinguish between the near-term product and subsequent module expansion, and reached a preliminary cooperation intent on the production of the first batch of samples.",
     "At the Hackathon entrepreneurship pitch event held at Zhejiang University, Ms. Zhang Jie listened to our project presentation and further discussed market, competing product and cost issues with the team. NEST features platform-based characteristics, yet the development progress, verification cost and application value of different functional modules vary. Therefore, we hope to clarify from an investment perspective what should be prioritized for validation in the early stage of the project, and which key milestones the limited funds should support.",
@@ -463,7 +463,7 @@ const timelineItems: TimelineItem[] = [
   ),
   stakeholder(
     "Late September 2026",
-    "Market access",
+    "Market Authorization & Access",
     "Cost Structure and Target Market Measurement: Erik Forsberg",
     "Professor Erik Forsberg provided the data and analytical framework required for cost modelling, guided the team in measuring market size, assessing commercial viability, and incorporating Hong Kong into the comparison and planning of potential pilot markets.",
     "When it comes to cost estimation, we have relatively limited data. We reached out to Erik Forsberg, a teacher in Zhejiang University's technology entrepreneurship program who is an experienced professor with a hardware background, to ask him to guide our project's monetization process and serve as our business consultant.",
@@ -473,7 +473,7 @@ const timelineItems: TimelineItem[] = [
   ),
   stakeholder(
     "Late September 2026",
-    "Market access",
+    "Market Authorization & Access",
     "Monetization Roadmap and Team Equity Stake Arrangements: Li Jianqin",
     "Professor Li Jianqin helped the team sort out pre-IPO preparations and equity stake arrangements, emphasizing the need to first clarify members' contributions, intellectual property rights and cooperative relationships. Based on this, the team planned phased deliverables, funds and responsible persons, so as to maintain continuity for members' exit and subsequent financing.",
     "As NEST moves from a research project to startup preparation, the team needs to simultaneously consider the sequence of technology development, fund utilization, intellectual property rights and organizational arrangements. We therefore consulted Li Jianqin, a professor of economics at Zhejiang University, hoping to organize the scattered monetization tasks into a promotion path with clear stages and well-defined responsibilities.",
@@ -483,7 +483,7 @@ const timelineItems: TimelineItem[] = [
   ),
   stakeholder(
     "Early October 2026",
-    "Market access",
+    "Market Authorization & Access",
     "Translating Health Research into Policy Recommendations: Zhang Binghong",
     "Under the guidance of Teacher Zhang Binghong, the team organized research centering on government demands and put forward a replicable action plan. Based on this, the team completed the cartilage health research report and received a reply from Hangzhou Municipal Health Commission, which provides a basis for subsequent community health promotion.",
     "Ms. Zhang Binghong is the secretary of RTC Talent Development Business School and an international senior entrepreneurship coach. She has extensive experience in government relations and assistance for vulnerable groups. The research report she authored once secured tens of millions of yuan in municipal government funding support for the disabled community. She served as a judge for us at the Zhejiang University Dandelion Entrepreneurship Competition. After the competition, we held in-depth discussions on a wide range of topics including government relations, research report writing, and support for vulnerable groups.",
@@ -493,7 +493,7 @@ const timelineItems: TimelineItem[] = [
   ),
   stakeholder(
     "Early October 2026",
-    "Market access",
+    "Market Authorization & Access",
     "Commercial Insurance Payment and Documentation Preparation: Mavis Wu",
     "Mavis Wu explained the correlation between the hospital's adoption of solutions and insurance reimbursement arrangements, and suggested preparing product materials for payers. Based on this advice, the team incorporated the full costs of materials, consumables and procedures, and organized the information required for communicating patient benefits and reimbursement matters.",
     "The accessibility of our products is also affected by affordability. We have observed that medical insurance largely determines the price that patients who are the most considerate of the materials have to pay. The access and approval mechanisms for resident medical insurance in Chinese Mainland require mature therapies, and the approval process takes a long time. Although it has broad coverage, it is not suitable for innovative therapies like ours. Therefore, we have turned to commercial medical insurance. We consulted Mavis Wu on issues related to commercial insurance. Mavis Wu is the Director of the Sales Department at Prudential Insurance and a recipient of the 2026 Quality Advisor Award (QAA).We hope to understand, from the perspective of insurance practitioners, the payment arrangements that may be involved in future applications, as well as what information the team should accumulate regarding treatment costs and application value.",
@@ -503,7 +503,7 @@ const timelineItems: TimelineItem[] = [
   ),
   stakeholder(
     "Mid-October 2026",
-    "Market access",
+    "Market Authorization & Access",
     "Hospital Admission and Clinical Procurement Preparation: Chen Yihua, Li Yongshi",
     "Through exchanges with Tung Wah Group of Hospitals, the hospital cooperation has been refined into the confirmation of target departments, initial formulas and product categories, as well as the preparation of safety and efficacy evidence; meanwhile, the requirements for procurement, training and batch traceability have been sorted out, establishing a task list for subsequent clinical cooperation.",
     "After talking with Mavis, we decided that we needed to further clarify the hospital admission criteria, so we contacted Chan Yik-wa, the Medical Services Supervisor of Tung Wah Group of Hospitals in Hong Kong, and Lai Wing-sze, the Center Director, to discuss the possibility of NEST being admitted to the hospital.",
@@ -513,7 +513,7 @@ const timelineItems: TimelineItem[] = [
   ),
   stakeholder(
     "Mid-October 2026",
-    "Market access",
+    "Market Authorization & Access",
     "Hong Kong Access Pathways and Phased Products: Lam Chit-huen",
     "The exchanges with Hon. Lam Chit-huen focused on the access of medical devices in Hong Kong and the classification of composite materials, prompting the team to re-examine its first-phase products, consider prioritizing the advancement of the simpler SELP material, and undertake the translation costs and access tasks in a phased manner.",
     "We have noted that even for hospital use, recognition under the MDACS listing administered by the Hong Kong Department of Health is still required, and there have been continuous changes to medical device access standards in Hong Kong in recent years. To gain a further understanding of the overall situation, we consulted Dr. David Lam Chit-huen, a Legislative Council member representing the medical and health services constituency in Hong Kong.",
@@ -547,7 +547,7 @@ const timelineItems: TimelineItem[] = [
 function SeedMethodBlock() {
   return (
     <>
-      <h3 className="mt-4 mb-3">SEED — the analysis method</h3>
+      <h3 className="mt-4 mb-3">Analytical Methods of SEED</h3>
       <TransparentImage
         src={SEED_RING}
         alt="The SEED cycle — Spark a Question, Explore & Analyze, Engineering & Implementation, Dialogue & Feedback — as the outer ring, with the Design–Build–Test–Learn cycle nested inside it"
@@ -557,17 +557,20 @@ function SeedMethodBlock() {
         loading="eager"
       />
       <p>
-        iHP is the bridge between the laboratory and the real world. Because our
-        material is a medical material, its design has to stay cautious. We want
-        our human-practices work not only to make this project fit the real
-        world, but also to give later teams a way of thinking and a reference
-        they can reuse. The iHP toolbox below collects the methods we used.
+        iHP connects laboratory research with the real world. Because our
+        material is intended for medical applications, we must approach its
+        design with care. To ensure that each design decision addresses a
+        real-world problem, we developed a new iterative cycle:{" "}
+        <strong>SEED</strong>. In engineering stages such as Evidence-based
+        Co-design and Situated Implementation, we embedded the conventional
+        Design–Build–Test–Learn (DBTL) cycle within SEED, making laboratory
+        iteration part of the project&rsquo;s broader development process.
       </p>
       <p>
-        To make sure every design step answers a real problem, we built a new
-        cycle — <strong>SEED</strong> — and wrapped the traditional engineering
-        cycle (Design–Build–Test–Learn) inside it, so that the laboratory loop
-        becomes one part of the project&rsquo;s overall iteration:
+        SEED is the seed of our product design. It enabled NEST to take the
+        first step in alleviating cartilage-related ailments, and we hope it
+        will also serve as a seed within the iGEM community, inspiring more
+        teams to identify real-world suffering and work to address it.
       </p>
       <ul>
         <li>
@@ -632,7 +635,7 @@ function CoDesignBlock() {
         alleviate patients' pain, and fill the gap in early-stage treatment. We
         presented the first version of the SELP design draft — a protein design
         only covering fixed variants 2ky5,2ky10 and 2ky16 — to Dr. Qiu Xiaoming
-        and the research team of Ouyang Hongwei.Doctors believe that cartilage
+        and the research team of Ouyang Hongwei. Doctors believe that cartilage
         in different parts of the body such as elbows and knees is subjected to
         varying levels of force and thus requires different levels of strength.
         If we only develop a material with a single strength, we will be unable
@@ -644,7 +647,7 @@ function CoDesignBlock() {
         proteins, we can alter the strength and toughness of our material. As
         the value increases, the pore size decreases, and cell adhesion
         increases accordingly, which is more conducive to GAG production, native
-        cartilage growth, and upregulation of anti- inflammatory factor levels,
+        cartilage growth, and upregulation of anti-inflammatory factor levels,
         and can also adapt to patients with different immune capacities and
         defect severities. We decided to find a method for programmatically
         regulating the series of proteins, and use modeling work to help us
@@ -1319,36 +1322,38 @@ function ImpactBlock() {
         We later recognized that the biotechnology industry also has a strong
         interest in synthetic biology and that many industry professionals
         require further education in the field. We therefore partnered with
-        Jiangnan University to develop an industry- focused module. Our four
+        Jiangnan University to develop an industry-focused module. Our four
         universities signed a five-year cooperation agreement to ensure the
-        platform’s sustainable, long-term operation.
-        <Link to="/education">Education</Link>
+        platform’s sustainable, long-term operation.{" "}
+        <Link to="/education">Learn more</Link>.
       </p>
       <p>
         Our educational program extended beyond lectures, hands-on activities,
         and fitness exercises. We also collaborated with artist Chen Xi to
-        create visual artwork. View Gallery. Beyond
-        promoting synthetic biology and reducing public misconceptions, we
+        create visual artwork.{" "}
+        <Link to="/education">View the gallery</Link>. Beyond promoting
+        synthetic biology and reducing public misconceptions, we
         critically reflected on the development of both the healthcare system
         and synthetic biology itself. To deepen this reflexive inquiry, we held
-        extensive discussions with Dr. Shen Yang and Dr. Chen Bohang.
-        <Link to="/education">Education</Link>
+        extensive discussions with Dr. Shen Yang and Dr. Chen Bohang.{" "}
+        <Link to="/education">Learn more</Link>.
       </p>
 
-      <h4 className="mt-5 mb-3">Summary and reflection</h4>
+      <h4 className="mt-5 mb-3">Summary and Reflection</h4>
       <p>
-        We have tried to make our iHP work as comprehensive and effective as we
-        could, attending to the many patient-centred dimensions of the project:
-        we cared not only about a biotechnology therapy but also about
-        patients&rsquo; place in society, and we contributed to the iGEM
-        community through platform building. We thank every member of our team —
-        this body of work exists because of you.
+        Our iHP work has been as comprehensive and effective as possible,
+        addressing all patient-centered aspects. We not only focus on
+        biotherapeutic approaches, but also care deeply about the social
+        circumstances of patients. We have also contributed to the iGEM
+        community through numerous platform-based initiatives. Thank you to all
+        members of our team; it is your dedication that has made this
+        comprehensive iHP work possible.
       </p>
       <p>
-        Our main limitations are two. We have not helped establish
-        synthetic-biology safety standards for biomimetic cartilage medical
-        materials, and our anthropological research has not yet found a form
-        that other teams can easily replicate.
+        Two limitations remain: we have not developed synthetic biology safety
+        standards for biomimetic cartilage biomaterials, and we have not yet
+        established a sufficiently transferable format for other teams to
+        reproduce our anthropological research approach.
       </p>
     </>
   );
@@ -1423,7 +1428,7 @@ const TIMELINE_STAGES = [
   "R&D",
   "Treatment",
   "Manufacturing",
-  "Market access",
+  "Market Authorization & Access",
   "Rehabilitation",
 ];
 
@@ -1433,7 +1438,7 @@ const TIMELINE_STAGE_IDS: Record<string, string> = {
   "R&D": "ihp-engagement-rd",
   Treatment: "ihp-engagement-treatment",
   Manufacturing: "ihp-engagement-manufacturing",
-  "Market access": "ihp-engagement-market-access",
+  "Market Authorization & Access": "ihp-engagement-market-access",
   Rehabilitation: "ihp-engagement-rehabilitation",
 };
 
@@ -1510,7 +1515,7 @@ function EngagementBlock() {
 /* ------------------------------------------------------------------ */
 
 const HP_PAGES = [
-  { key: "toolbox", label: "Toolbox" },
+  { key: "toolbox", label: "iHP Toolkit" },
   { key: "nest", label: "NEST" },
   { key: "engagement", label: "Stakeholder Engagement" },
 ];
@@ -1709,6 +1714,14 @@ function ToolboxPage() {
   ];
   return (
     <>
+      <p>
+        We wanted our Human Practices work to make NEST more responsive to
+        real-world needs and to provide useful approaches for future teams. We
+        therefore compiled the tools used throughout our Human Practices
+        activities, including analytical and iterative frameworks, software for
+        organizing stakeholder interviews, and a stakeholder network that other
+        teams can build upon.
+      </p>
       <SectionSubnav
         className="eng-subnav ihp-toolbox-tabs"
         items={sections.map(({ id, label }) => ({ id, label }))}
@@ -2274,40 +2287,35 @@ export function HumanPractices() {
           </blockquote>
           <h2>Overview</h2>
           <p>
-            Integrated Human Practices is how our project meets the world
-            outside the laboratory. Cartilage defects are a complex problem —
-            widespread, diffuse and easily overlooked, yet directly relevant to
-            our health — and NEST, as a material intended to enter the human
-            body, faces tests in patient experience, research, production,
-            market access, clinician use and public opinion. We therefore kept
-            the design deliberately cautious: every step should answer a real
-            problem. <strong>56 stakeholders</strong> took part in our
-            interviews and technical tests, our questionnaire reached more than{" "}
-            <strong>1,700 people</strong>, and our
-            online and offline activities and lectures reached more than{" "}
-            <strong>450 people</strong>. We hoped to treat patients through
-            technology, fill a gap through design, innovate in the industry,
-            raise awareness of cartilage health in society, deepen understanding
-            of the patient community and, finally, contribute to the
-            synthetic-biology community.
+            Cartilage defects are a complex health concern: they are widespread,
+            difficult to define, and often overlooked, yet they have a direct
+            impact on people&rsquo;s health. As a medical biomaterial, NEST must
+            address patient experience, research, manufacturing, market access,
+            clinical use, and societal perspectives. Balancing these factors to
+            bring NEST into real-world practice is a considerable challenge.
           </p>
           <p>
-            Below this overview the page is split into three pages: the{" "}
-            <a href="#toolbox">
-              <strong>Toolbox</strong>
-            </a>{" "}
-            explains the methods we used,{" "}
-            <a href="#nest">
-              <strong>NEST</strong>
-            </a>{" "}
-            tells the story of its four narrative modules — Need-led Discovery,
-            Evidence-based Co-design, Situated Implementation and Trust and
-            Lasting Impact — and{" "}
-            <a href="#stakeholder-engagement">
-              <strong>Stakeholder Engagement</strong>
-            </a>{" "}
-            collects the stakeholder map and the interviews behind every step.
-            Use the three buttons to open a page.
+            To this end, we engaged <strong>56 stakeholders</strong> in our
+            interviews and technical tests, covering patients, doctors,
+            researchers, government officials, administrative agencies,
+            manufacturers, business consultants, humanities scholars and
+            artists. Our questionnaires reached over{" "}
+            <strong>1,700 people</strong>, and our online and offline events and
+            lectures cumulatively covered more than{" "}
+            <strong>450 people</strong>.
+          </p>
+          <p>
+            We aim to develop a therapeutic approach for patients, address
+            unmet needs through design, support innovation in the field, raise
+            public awareness of cartilage health, deepen understanding of
+            patients&rsquo; experiences, and contribute to the synthetic biology
+            community.
+          </p>
+          <p>
+            The following sections describe our Integrated Human Practices (iHP)
+            work and how we pursued these goals. Use the three buttons below to
+            open the iHP Toolkit, Stakeholder Engagement, or NEST-based
+            Integrated Human Practices.
           </p>
           <div
             className={`eng-module-nav ihp-page-nav${
