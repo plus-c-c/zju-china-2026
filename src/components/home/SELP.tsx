@@ -323,7 +323,7 @@ function PipelineAnimation({
 
   return (
     <div ref={containerRef} data-home-preload-src={src} className={`${className} selp-pipeline__animation`} data-paused={!fetchFailed && (finished ? stopAtFirstFrame : paused || !started)} data-finished={finished} role="img" aria-label={alt}>
-      <img ref={imageRef} src={fetchFailed ? src : started && playbackSrc ? playbackSrc : undefined} alt="" onLoad={() => {
+      <img ref={imageRef} src={fetchFailed ? src : started && playbackSrc ? playbackSrc : undefined} alt="" loading="lazy" decoding="async" onLoad={() => {
         freeze();
         window.clearTimeout(finishTimer.current);
         finishTimer.current = window.setTimeout(() => setFinished(true), durationRef.current + 80);
@@ -593,11 +593,15 @@ export function SelpPipeline({ readingWidth }: { readingWidth?: number } = {}) {
             className="selp-pipeline__art selp-pipeline__art--purple-flask"
             src={`${PIPELINE_ASSETS}/pipeline-8ada8.avif`}
             alt=""
+            loading="lazy"
+            decoding="async"
           />
           <img
             className="selp-pipeline__art selp-pipeline__art--purple-vial"
             src={`${PIPELINE_ASSETS}/pipeline-98a2f.avif`}
             alt=""
+            loading="lazy"
+            decoding="async"
           />
           <PipelinePill
             label="About Anisotropy"
@@ -627,11 +631,15 @@ export function SelpPipeline({ readingWidth }: { readingWidth?: number } = {}) {
             className="selp-pipeline__art selp-pipeline__art--pink-vial"
             src={`${PIPELINE_ASSETS}/pipeline-4567c.avif`}
             alt=""
+            loading="lazy"
+            decoding="async"
           />
           <img
             className="selp-pipeline__art selp-pipeline__art--gag-reactor"
             src={`${PIPELINE_ASSETS}/pipeline-b9107.avif`}
             alt=""
+            loading="lazy"
+            decoding="async"
           />
           <PipelinePill
             label="About GAG"
@@ -657,11 +665,15 @@ export function SelpPipeline({ readingWidth }: { readingWidth?: number } = {}) {
             className="selp-pipeline__art selp-pipeline__art--mito-reactor"
             src={`${PIPELINE_ASSETS}/b8418.avif`}
             alt=""
+            loading="lazy"
+            decoding="async"
           />
           <img
             className="selp-pipeline__art selp-pipeline__art--yellow-vial"
             src={`${PIPELINE_ASSETS}/pipeline-fabb3.avif`}
             alt=""
+            loading="lazy"
+            decoding="async"
           />
           <PipelineAnimation
             className="selp-pipeline__art selp-pipeline__art--liposome"
@@ -712,6 +724,8 @@ export function SelpPipeline({ readingWidth }: { readingWidth?: number } = {}) {
                 className={`selp-promotion__decoration selp-promotion__decoration--${className}`}
                 key={fileName}
                 src={`${STATIC_HOME}/promotion/${fileName}`}
+                loading="lazy"
+                decoding="async"
               />
             ))}
           </section>

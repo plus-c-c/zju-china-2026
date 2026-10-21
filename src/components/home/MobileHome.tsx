@@ -86,6 +86,8 @@ export function MobileHome() {
           <img
             src="https://static.igem.wiki/teams/6102/wiki/images/home/bird-return-bone-2.avif"
             alt="NEST bird resting on a cartilage scaffold"
+            loading="lazy"
+            decoding="async"
           />
           <HomeScrollCue />
         </section>
@@ -98,7 +100,13 @@ export function MobileHome() {
           <HomeScrollCue />
         </section>
         <SelpPipeline />
-        <img className="mobile-home__footer-bird" src={bird} alt="NEST bird" />
+        <img
+          className="mobile-home__footer-bird"
+          src={bird}
+          alt="NEST bird"
+          loading="lazy"
+          decoding="async"
+        />
         <Footer />
       </div>
     </StoryContext.Provider>

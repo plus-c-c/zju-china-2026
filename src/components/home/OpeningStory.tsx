@@ -72,6 +72,7 @@ function LoopingIllustration({
       className={className}
       data-home-preload-src={gif}
       decoding="async"
+      loading="lazy"
       src={play && !reducedMotion && loopSource ? loopSource : poster}
     />
   );
@@ -267,7 +268,12 @@ export function GlobalBurdenScene() {
               </div>
               <div className="opening-burden__legend" aria-hidden="true">
                 <strong>OA PATIENT COUNTS</strong>
-                <img src={`${staticHome}/490d7.svg`} alt="" />
+                <img
+                  src={`${staticHome}/490d7.svg`}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
                 <span>&lt;100k</span>
                 <span>50m+</span>
               </div>

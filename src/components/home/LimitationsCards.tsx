@@ -236,7 +236,12 @@ const blueCards: CardCopy[] = [
 function Artwork({ art }: { art: CardArtwork }) {
   return (
     <span aria-hidden="true" className={`limitations-art ${art.className}`}>
-      <img alt="" decoding="async" src={`${LOCAL}/${art.name}`} />
+      <img
+        alt=""
+        decoding="async"
+        loading="lazy"
+        src={`${LOCAL}/${art.name}`}
+      />
     </span>
   );
 }

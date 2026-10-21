@@ -34,7 +34,10 @@ function NavigationPanel({
       aria-hidden={!isOpen}
       data-state={isOpen ? "open" : "closing"}
     >
-      {children}
+      {/* The mega-menu artwork is expensive to prepare (each icon is fetched
+          and trimmed on a canvas). Keep it out of the initial homepage load
+          and mount it only when the panel is actually opened. */}
+      {present ? children : null}
     </div>
   );
 }

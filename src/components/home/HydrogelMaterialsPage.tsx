@@ -12,12 +12,16 @@ export function HydrogelMaterialsPage() {
         alt=""
         aria-hidden="true"
         className="hydrogel-materials-page__bone"
+        loading="lazy"
+        decoding="async"
         src={`https://static.igem.wiki/teams/6102/wiki/images/home/home-05-solution-bone.avif`}
       />
       <img
         alt=""
         aria-hidden="true"
         className="hydrogel-materials-page__syringe"
+        loading="lazy"
+        decoding="async"
         src={`https://static.igem.wiki/teams/6102/wiki/images/home/home-05-solution-syringe.avif`}
       />
 
