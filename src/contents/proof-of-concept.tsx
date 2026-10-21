@@ -545,42 +545,48 @@ export function ProofOfConcept() {
                   the control group and confirming TVN-mediated particle binding
                   (Figures 11 and 12).
                 </p>
-                <figure className="my-4 text-center">
-                  <TransparentImage
-                    src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-09.avif"
-                    alt="Figure 11 | Control group for magnetic particle binding"
-                    className="img-fluid rounded"
-                    style={{ width: "100%" }}
-                  />
-                  <FigureCaption className="figure-caption mt-2">
-                    <strong>
-                      Figure 11 | Control Group for Magnetic Particle Binding.
-                    </strong>{" "}
-                    The left column shows bright-field images and the right
-                    column shows fluorescence images; A/a and B/b are the panel
-                    labels in the original figure.
-                  </FigureCaption>
-                </figure>
-                <figure className="my-4 text-center">
-                  <TransparentImage
-                    src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-10.avif"
-                    alt="Figure 12 | TVN-particle fluorescence and magnetic alignment"
-                    className="img-fluid rounded"
-                    style={{ width: "100%" }}
-                  />
-                  <FigureCaption className="figure-caption mt-2">
-                    <strong>
-                      Figure 12 | TVN-Associated Protein Fluorescence Remains on
-                      Particles after Washing, and TVN-Magnetic Nanoparticle
-                      Complexes Align with the Magnetic Field.
-                    </strong>{" "}
-                    The TVN-magnetic nanoparticle complexes could adopt a
-                    uniform orientation along the applied magnetic field. The
-                    left column shows bright-field images and the right column
-                    shows fluorescence images; red arrows indicate the direction
-                    of the external magnetic field.
-                  </FigureCaption>
-                </figure>
+                <div className="poc-animation-grid">
+                  <figure className="poc-animation-panel">
+                    <div className="poc-animation-frame">
+                      <TransparentImage
+                        src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-09.avif"
+                        alt="Figure 11 | Control group for magnetic particle binding"
+                        className="img-fluid rounded"
+                        style={{ width: "100%" }}
+                      />
+                    </div>
+                    <FigureCaption className="figure-caption">
+                      <strong>
+                        Figure 11 | Control Group for Magnetic Particle Binding.
+                      </strong>{" "}
+                      The left column shows bright-field images and the right
+                      column shows fluorescence images; A/a and B/b are the panel
+                      labels in the original figure.
+                    </FigureCaption>
+                  </figure>
+                  <figure className="poc-animation-panel">
+                    <div className="poc-animation-frame">
+                      <TransparentImage
+                        src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-10.avif"
+                        alt="Figure 12 | TVN-particle fluorescence and magnetic alignment"
+                        className="img-fluid rounded"
+                        style={{ width: "100%" }}
+                      />
+                    </div>
+                    <FigureCaption className="figure-caption">
+                      <strong>
+                        Figure 12 | TVN-Associated Protein Fluorescence Remains on
+                        Particles after Washing, and TVN-Magnetic Nanoparticle
+                        Complexes Align with the Magnetic Field.
+                      </strong>{" "}
+                      The TVN-magnetic nanoparticle complexes could adopt a
+                      uniform orientation along the applied magnetic field. The
+                      left column shows bright-field images and the right column
+                      shows fluorescence images; red arrows indicate the direction
+                      of the external magnetic field.
+                    </FigureCaption>
+                  </figure>
+                </div>
                 <p>
                   After establishing this association, we investigated whether
                   the composite components could change orientation in response
