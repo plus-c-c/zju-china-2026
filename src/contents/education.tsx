@@ -363,7 +363,7 @@ export function Education() {
             />
           </div>
 
-          <h4 className="edu-heading-small">Gallery</h4>
+          <h4 id="gallery" className="edu-heading-small">Gallery</h4>
           <div className="edu-image-grid edu-image-grid--2">
             <EduImage
               file="art-trajectory-02"

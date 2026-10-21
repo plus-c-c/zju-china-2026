@@ -658,7 +658,7 @@ function CoDesignBlock() {
         functions required for SELP as a versatile defect-filling material, we
         raised a number of issues at the experimental level and actively held
         discussions with multiple stakeholders. See{" "}
-        <a href="#ihp-engagement-timeline">Engagement Timeline</a>.
+        <a href="#ihp-engagement-timeline">Engagement Interview</a>.
       </p>
       <p data-seed-phase="dialogue">
         D: We showed our latest design to Dr. Qiu Xiaoming and the team led by
@@ -953,6 +953,7 @@ function DiscoveryBlock() {
         including osteoarthritis, focal traumatic defects, and post-surgical
         adaptive defects.
       </p>
+      <h4 className="mt-4 mb-2">1.1 Field Research</h4>
       <p>
         We conducted questionnaire surveys in the following areas and platforms:
         a university community (around 150 respondents), Qigudeng Subdistrict,
@@ -1112,6 +1113,7 @@ function DiscoveryBlock() {
           development target of NEST.
         </p>
       </ExtendCard>
+      <h4 className="mt-4 mb-2">1.2 Literature Review</h4>
       <p>
         In the existing literature, there are no authoritative sources
         specifying what degree of cartilage defect qualifies as a pathological
@@ -1324,22 +1326,20 @@ function ImpactBlock() {
         require further education in the field. We therefore partnered with
         Jiangnan University to develop an industry-focused module. Our four
         universities signed a five-year cooperation agreement to ensure the
-        platform’s sustainable, long-term operation.{" "}
-        <Link to="/education">Learn more</Link>.
+        platform’s sustainable, long-term operation.
       </p>
       <p>
         Our educational program extended beyond lectures, hands-on activities,
         and fitness exercises. We also collaborated with artist Chen Xi to
-        create visual artwork.{" "}
-        <Link to="/education">View the gallery</Link>. Beyond promoting
-        synthetic biology and reducing public misconceptions, we
+        create visual artwork. <Link to="/education#gallery">View Gallery</Link>. Beyond
+        promoting synthetic biology and reducing public misconceptions, we
         critically reflected on the development of both the healthcare system
         and synthetic biology itself. To deepen this reflexive inquiry, we held
         extensive discussions with Dr. Shen Yang and Dr. Chen Bohang.{" "}
         <Link to="/education">Learn more</Link>.
       </p>
 
-      <h4 className="mt-5 mb-3">Summary and Reflection</h4>
+      <h2 className="mt-5 mb-3">Summary and reflection</h2>
       <p>
         Our iHP work has been as comprehensive and effective as possible,
         addressing all patient-centered aspects. We not only focus on
