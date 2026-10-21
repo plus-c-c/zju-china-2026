@@ -40,6 +40,7 @@ type CardBlock = {
   type: "card";
   source_index: number;
   title: string;
+  variant?: "secondary";
   blocks: ContentBlock[];
 };
 type ContentBlock =
@@ -647,21 +648,22 @@ const CONTENT: ContentBlock[] = [
         "text": "Working capital (WC) is the amount of circulating funding continuously required for routine operations after a facility begins production. It differs from annual operating expenses (OPEX), which represent costs actually incurred during a year, such as raw materials, labor, utilities, and transport. WC primarily supports inventories, operating cash, and outstanding receivables."
       },
       {
-        "type": "heading",
+        "type": "card",
         "source_index": 110,
-        "level": 4,
-        "id": "major-equipment-costs",
-        "text": "Major Equipment Costs"
-      },
-      {
-        "type": "paragraph",
-        "source_index": 111,
-        "text": "To estimate equipment requirements for the first-generation NEST product, we calculate annual output from the target patient population. Approximately 2.183 million sports-medicine arthroscopic procedures are projected in China for 2026 [9], of which around 60% involve the knee [6]. Approximately 19% of knee arthroscopy patients have focal cartilage or osteochondral defects [5], yielding an initial target population of approximately 248,900 patients per year. The mean defect area is about 2.1 cm² [5], and human knee cartilage thickness is around 2.2–2.5 mm [8]. At 2.5 mm, each patient would require approximately 0.525 mL of hydrogel. At 10% (w/v) SELP, this corresponds to 52.5 mg SELP per treatment or approximately 13,070 g annually. Allowing a further 20% for process losses and safety margin gives an annual production target of approximately 15,680 g. Based on our experimental yield of approximately 0.5 g SELP per liter of culture, annual culture volume would be approximately 31,360 L. At 100 batches per year, each batch would require about 314 L. We therefore envisage a 500 L-scale bioreactor supported by a media preparation tank, centrifuge, high-pressure homogenizer, temperature-controlled purification tank, filtration and endotoxin-removal systems, lyophilizer, aseptic filling equipment, and quality-control instruments."
-      },
-      {
-        "type": "paragraph",
-        "source_index": 112,
-        "text": "With input from Beijing Weixinkang Medical Co., Ltd., we estimate major equipment costs for first-generation NEST at CNY 7.45 million (approximately USD 1.115 million or EUR 991,600)."
+        "title": "Major Equipment Costs",
+        "variant": "secondary",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "source_index": 111,
+            "text": "To estimate equipment requirements for the first-generation NEST product, we calculate annual output from the target patient population. Approximately 2.183 million sports-medicine arthroscopic procedures are projected in China for 2026 [9], of which around 60% involve the knee [6]. Approximately 19% of knee arthroscopy patients have focal cartilage or osteochondral defects [5], yielding an initial target population of approximately 248,900 patients per year. The mean defect area is about 2.1 cm² [5], and human knee cartilage thickness is around 2.2–2.5 mm [8]. At 2.5 mm, each patient would require approximately 0.525 mL of hydrogel. At 10% (w/v) SELP, this corresponds to 52.5 mg SELP per treatment or approximately 13,070 g annually. Allowing a further 20% for process losses and safety margin gives an annual production target of approximately 15,680 g. Based on our experimental yield of approximately 0.5 g SELP per liter of culture, annual culture volume would be approximately 31,360 L. At 100 batches per year, each batch would require about 314 L. We therefore envisage a 500 L-scale bioreactor supported by a media preparation tank, centrifuge, high-pressure homogenizer, temperature-controlled purification tank, filtration and endotoxin-removal systems, lyophilizer, aseptic filling equipment, and quality-control instruments."
+          },
+          {
+            "type": "paragraph",
+            "source_index": 112,
+            "text": "With input from Beijing Weixinkang Medical Co., Ltd., we estimate major equipment costs for first-generation NEST at CNY 7.45 million (approximately USD 1.115 million or EUR 991,600)."
+          }
+        ]
       }
     ]
   },
@@ -2010,12 +2012,19 @@ function renderBlock(block: ContentBlock, key: string): ReactNode {
       );
     case "card": {
       const card = (
-        <ExtendCard title={block.title} key={key}>
+        <ExtendCard title={block.title} variant={block.variant} key={key}>
           {block.blocks.map((child, index) =>
             renderBlock(child, `${key}-${index}`),
           )}
         </ExtendCard>
       );
+      if (block.variant === "secondary") {
+        return (
+          <div className="entre-card-nested-group" key={`${key}-nested`}>
+            {card}
+          </div>
+        );
+      }
       if (block.title !== "Total Addressable Market (TAM)") {
         return card;
       }
