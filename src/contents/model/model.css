@@ -469,9 +469,14 @@
    the inherited 48px would offset every anchor and make the highlight lag the
    figure switching. */
 .page-article .protein-anchor {
+  scroll-margin-top: calc(20dvh - 2px);
   margin: 0 !important;
 }
 
 .protein-anchor {
-  top: calc(var(--protein-step) * var(--stepper-step-size));
+  top: calc(var(--protein-step) * var(--stepper-step-size) + 20dvh);
+}
+
+.protein-anchor:first-of-type {
+  top: calc(20dvh - var(--page-sticky-top, 82px));
 }

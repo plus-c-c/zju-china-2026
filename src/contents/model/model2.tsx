@@ -426,17 +426,14 @@ function ProteinStepper({ steps }: { steps: ProteinStep[] }) {
           </button>
         </div>
       </div>
-      {/* Hidden TOC anchors: every section heading, at its protein's scroll
-          position. The first anchor sits half a step in (0.2 viewport), so the
-          TOC highlights it exactly when the pin engages and the deck takes
-          over the screen; later anchors stay aligned with their figure
-          switches via the same 0.2-viewport threshold. */}
+      {/* Anchor thresholds and click landings match the shared step progress.
+          The first heading becomes active as the stage pins. */}
       {STEP_HEADINGS.map(({ step, title }) => (
         <h3
           key={title}
           className="visually-hidden protein-anchor"
           data-toc-track="true"
-          style={{ "--protein-step": step === 0 ? 0.5 : step } as CSSProperties}
+          style={{ "--protein-step": step } as CSSProperties}
         >
           {title}
         </h3>
