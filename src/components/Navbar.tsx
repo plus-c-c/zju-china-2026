@@ -518,17 +518,6 @@ export function Navbar({ introEntrance = false, opening = false }: { introEntran
                 }
                 return null;
               })}
-              <li
-                className="navigation-cart"
-                title="Shopping cart — not available yet"
-              >
-                <img
-                  src="https://static.igem.wiki/teams/6102/wiki/images/navigation/cart.svg"
-                  alt="Shopping cart (not available yet)"
-                  width="22"
-                  height="22"
-                />
-              </li>
             </ul>
           </div>
         </div>

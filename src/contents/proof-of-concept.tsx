@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import {
   PlatformFunctionSections,
   SharedProjectSections,
@@ -17,6 +18,101 @@ import {
   BiosafetyResultsText,
 } from "./results/biosafety-content";
 import "./proof-of-concept.css";
+
+function AnimatedWebPSprite({
+  sprite,
+  fallback,
+  frames,
+  columns,
+  rows,
+  width,
+  height,
+  alt,
+  className,
+  frameMs = 100,
+}: {
+  sprite: string;
+  fallback: string;
+  frames: number;
+  columns: number;
+  rows: number;
+  width: number;
+  height: number;
+  alt: string;
+  className?: string;
+  frameMs?: number;
+}) {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [failed, setFailed] = useState(false);
+
+  useEffect(() => {
+    if (failed) return;
+    const image = new Image();
+    let timer: number | undefined;
+    let frame = 0;
+
+    const draw = () => {
+      const context = canvasRef.current?.getContext("2d");
+      if (!context) return;
+      const column = frame % columns;
+      const row = Math.floor(frame / columns);
+      context.clearRect(0, 0, width, height);
+      context.drawImage(
+        image,
+        column * width,
+        row * height,
+        width,
+        height,
+        0,
+        0,
+        width,
+        height,
+      );
+      frame = (frame + 1) % frames;
+    };
+
+    image.onload = () => {
+      draw();
+      if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        timer = window.setInterval(draw, frameMs);
+      }
+    };
+    image.onerror = () => setFailed(true);
+    image.src = sprite;
+
+    return () => {
+      if (timer) window.clearInterval(timer);
+      image.onload = null;
+      image.onerror = null;
+    };
+  }, [sprite, frames, columns, rows, width, height, frameMs, failed]);
+
+  if (failed) {
+    return (
+      <img
+        src={fallback}
+        alt={alt}
+        className={className}
+        width={width}
+        height={height}
+        loading="lazy"
+        decoding="async"
+        style={{ width: "100%", maxWidth: 520 }}
+      />
+    );
+  }
+
+  return (
+    <canvas
+      ref={canvasRef}
+      width={width}
+      height={height}
+      role="img"
+      aria-label={alt}
+      className={className}
+    />
+  );
+}
 
 export function ProofOfConcept() {
   return (
@@ -45,7 +141,7 @@ export function ProofOfConcept() {
             needs and together demonstrate how NEST's programmable design
             performs in practice.
           </p>
-          <figure className="my-4 text-center">
+          <figure className="poc-half-width my-4 text-center">
             <TransparentImage
               src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/schematic-01.avif"
               width={3120}
@@ -110,7 +206,7 @@ export function ProofOfConcept() {
                   manufacturability of different scaffold configurations
                   (Figures 2 and 3).
                 </p>
-                <figure className="my-4 text-center">
+                <figure className="poc-half-width my-4 text-center">
                   <TransparentImage
                     src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-01.avif"
                     alt="Figure 2 | Production of scaffolds with different repeat numbers"
@@ -127,7 +223,7 @@ export function ProofOfConcept() {
                     the target bands.
                   </FigureCaption>
                 </figure>
-                <figure className="my-4 text-center">
+                <figure className="poc-half-width my-4 text-center">
                   <TransparentImage
                     src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-02.avif"
                     alt="Figure 3 | Expression and recovery of SnoopTag2-bearing scaffolds"
@@ -156,7 +252,7 @@ export function ProofOfConcept() {
                   direct demonstration of the transformation from a protein
                   precursor into a material (Figure 4).
                 </p>
-                <figure className="my-4 text-center">
+                <figure className="poc-half-width my-4 text-center">
                   <TransparentImage
                     src="https://static.igem.wiki/teams/6102/wiki/images/result/01/10.avif"
                     alt="Figure 4 | Rapid gelation of SELP"
@@ -198,7 +294,7 @@ export function ProofOfConcept() {
                   mechanical behavior, validating the tunability of the SELP
                   scaffold (Figure 5).
                 </p>
-                <figure className="my-4 text-center">
+                <figure className="poc-half-width my-4 text-center">
                   <TransparentImage
                     src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-04.avif"
                     alt="Figure 5 | Porous elastic network and sequence-tunable mechanical properties"
@@ -226,7 +322,7 @@ export function ProofOfConcept() {
                   were consistent with the scaffold's design for cartilage
                   applications (Figure 6).
                 </p>
-                <figure className="my-4 text-center">
+                <figure className="poc-half-width my-4 text-center">
                   <TransparentImage
                     src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-05-v2.avif"
                     alt="Figure 6 | Cartilage-related gene expression associated with the 2KY scaffold"
@@ -273,7 +369,7 @@ export function ProofOfConcept() {
                   tagged scaffolds separately demonstrated that the ligation tag
                   could be incorporated into scaffold constructs (Figure 7).
                 </p>
-                <figure className="my-4 text-center">
+                <figure className="poc-half-width my-4 text-center">
                   <TransparentImage
                     src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-06.avif"
                     alt="Figure 7 | SnoopLigase2-mediated formation of the expected ligation product"
@@ -328,7 +424,7 @@ export function ProofOfConcept() {
                   could be produced, whether the interface remained compatible,
                   and whether their intended functions could be achieved.
                 </p>
-                <figure className="my-4 text-center">
+                <figure className="poc-half-width my-4 text-center">
                   <TransparentImage
                     src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/schematic-02.avif"
                     alt="Figure 8 | OA needs mapped to functional modules"
@@ -366,7 +462,7 @@ export function ProofOfConcept() {
                   and delivery components available for experimental testing
                   (Figure 9).
                 </p>
-                <figure className="my-4 text-center">
+                <figure className="poc-half-width my-4 text-center">
                   <TransparentImage
                     src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-07.avif"
                     alt="Figure 9 | Key components for the functional modules"
@@ -403,7 +499,7 @@ export function ProofOfConcept() {
                   prevent the shared interface from working; each construct
                   could use the same ligation mechanism (Figure 10).
                 </p>
-                <figure className="my-4 text-center">
+                <figure className="poc-half-width my-4 text-center">
                   <TransparentImage
                     src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-08.avif"
                     alt="Figure 10 | Shared ligation activity across three functional modules"
@@ -449,7 +545,7 @@ export function ProofOfConcept() {
                   the control group and confirming TVN-mediated particle binding
                   (Figures 11 and 12).
                 </p>
-                <figure className="my-4 text-center">
+                <figure className="poc-half-width my-4 text-center">
                   <TransparentImage
                     src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-09.avif"
                     alt="Figure 11 | Control group for magnetic particle binding"
@@ -465,7 +561,7 @@ export function ProofOfConcept() {
                     labels in the original figure.
                   </FigureCaption>
                 </figure>
-                <figure className="my-4 text-center">
+                <figure className="poc-half-width my-4 text-center">
                   <TransparentImage
                     src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-10.avif"
                     alt="Figure 12 | TVN-particle fluorescence and magnetic alignment"
@@ -495,36 +591,52 @@ export function ProofOfConcept() {
                   translated into an observable response to an external field
                   (Figures 13 and 14).
                 </p>
-                <figure className="my-4 text-center">
-                  <TransparentImage
-                    src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-11.webp"
-                    alt="Figure 13 | Bright-field recording of magnetic particle aggregates reorienting"
-                    className="img-fluid rounded"
-                    style={{ width: "100%" }}
-                  />
-                  <FigureCaption className="figure-caption mt-2">
-                    <strong>
-                      Figure 13 | Bright-Field Dynamic Recording of Magnetic
-                      Particle Aggregates Reorienting in Response to an Applied
-                      Field.
-                    </strong>
-                  </FigureCaption>
-                </figure>
-                <figure className="my-4 text-center">
-                  <TransparentImage
-                    src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-12.webp"
-                    alt="Figure 14 | Fluorescence recording of protein-labeled complexes reorienting"
-                    className="img-fluid rounded"
-                    style={{ width: "100%" }}
-                  />
-                  <FigureCaption className="figure-caption mt-2">
-                    <strong>
-                      Figure 14 | Fluorescence Dynamic Recording of
-                      Protein-Labeled SELP-TVN-Magnetic Nanoparticle Complexes
-                      Reorienting.
-                    </strong>
-                  </FigureCaption>
-                </figure>
+                <div className="poc-animation-grid">
+                  <figure className="poc-animation-panel">
+                    <div className="poc-animation-frame">
+                      <AnimatedWebPSprite
+                        sprite="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-11-sprite.webp"
+                        fallback="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-11.webp"
+                        frames={56}
+                        columns={10}
+                        rows={6}
+                        width={360}
+                        height={240}
+                        alt="Figure 13 | Bright-field recording of magnetic particle aggregates reorienting"
+                        className="poc-sprite rounded"
+                      />
+                    </div>
+                    <FigureCaption className="figure-caption">
+                      <strong>
+                        Figure 13 | Bright-Field Dynamic Recording of Magnetic
+                        Particle Aggregates Reorienting in Response to an Applied
+                        Field.
+                      </strong>
+                    </FigureCaption>
+                  </figure>
+                  <figure className="poc-animation-panel">
+                    <div className="poc-animation-frame">
+                      <AnimatedWebPSprite
+                        sprite="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-12-sprite.webp"
+                        fallback="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-12.webp"
+                        frames={60}
+                        columns={10}
+                        rows={6}
+                        width={360}
+                        height={240}
+                        alt="Figure 14 | Fluorescence recording of protein-labeled complexes reorienting"
+                        className="poc-sprite rounded"
+                      />
+                    </div>
+                    <FigureCaption className="figure-caption">
+                      <strong>
+                        Figure 14 | Fluorescence Dynamic Recording of
+                        Protein-Labeled SELP-TVN-Magnetic Nanoparticle Complexes
+                        Reorienting.
+                      </strong>
+                    </FigureCaption>
+                  </figure>
+                </div>
                 <p>
                   TVN enabled the association of proteins with magnetic
                   particles and allowed the protein-particle complexes to be
@@ -547,39 +659,45 @@ export function ProofOfConcept() {
                   capture GAGs and retained this function after fusion with
                   Link-N (Figures 15 and 16).
                 </p>
-                <figure className="my-4 text-center">
-                  <TransparentImage
-                    src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-13.avif"
-                    alt="Figure 15 | Biotinylation and immobilization interface for GAG constructs"
-                    className="img-fluid rounded"
-                    style={{ width: "100%" }}
-                  />
-                  <FigureCaption className="figure-caption mt-2">
-                    <strong>
-                      Figure 15 | Validation of the Biotinylation and
-                      Immobilization Interface for GAG Constructs.
-                    </strong>{" "}
-                    SA denotes streptavidin; the red box marks the
-                    high-molecular-weight complex.
-                  </FigureCaption>
-                </figure>
-                <figure className="my-4 text-center">
-                  <TransparentImage
-                    src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-14.avif"
-                    alt="Figure 16 | Residual CS-A in the supernatant after CPC-mediated retention"
-                    className="img-fluid rounded"
-                    style={{ width: "100%" }}
-                  />
-                  <FigureCaption className="figure-caption mt-2">
-                    <strong>
-                      Figure 16 | Immobilized CPC and CPC-Link-N Reduce Residual
-                      CS-A in the Supernatant.
-                    </strong>{" "}
-                    R1-R3 represent the three corresponding measurements.
-                    Individual points show measured values, and bars indicate
-                    the mean.
-                  </FigureCaption>
-                </figure>
+                <div className="poc-animation-grid">
+                  <figure className="poc-animation-panel">
+                    <div className="poc-animation-frame">
+                      <TransparentImage
+                        src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-13.avif"
+                        alt="Figure 15 | Biotinylation and immobilization interface for GAG constructs"
+                        className="img-fluid rounded"
+                        style={{ width: "100%" }}
+                      />
+                    </div>
+                    <FigureCaption className="figure-caption">
+                      <strong>
+                        Figure 15 | Validation of the Biotinylation and
+                        Immobilization Interface for GAG Constructs.
+                      </strong>{" "}
+                      SA denotes streptavidin; the red box marks the
+                      high-molecular-weight complex.
+                    </FigureCaption>
+                  </figure>
+                  <figure className="poc-animation-panel">
+                    <div className="poc-animation-frame">
+                      <TransparentImage
+                        src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-14.avif"
+                        alt="Figure 16 | Residual CS-A in the supernatant after CPC-mediated retention"
+                        className="img-fluid rounded"
+                        style={{ width: "100%" }}
+                      />
+                    </div>
+                    <FigureCaption className="figure-caption">
+                      <strong>
+                        Figure 16 | Immobilized CPC and CPC-Link-N Reduce
+                        Residual CS-A in the Supernatant.
+                      </strong>{" "}
+                      R1-R3 represent the three corresponding measurements.
+                      Individual points show measured values, and bars indicate
+                      the mean.
+                    </FigureCaption>
+                  </figure>
+                </div>
                 <p>
                   The GAG-retention activity of CPC was demonstrated in
                   immobilized constructs and was preserved after fusion with
@@ -605,38 +723,40 @@ export function ProofOfConcept() {
                   complementary evidence for successful formation of the
                   liposome-mitochondria complex (Figures 17 and 18).
                 </p>
-                <figure className="my-4 text-center">
-                  <TransparentImage
-                    src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-15.avif"
-                    alt="Figure 17 | Fluorescence colocalization of liposomes and mitochondria"
-                    className="img-fluid rounded"
-                    style={{ width: "100%" }}
-                  />
-                  <FigureCaption className="figure-caption mt-2">
-                    <strong>
-                      Figure 17 | Fluorescence Colocalization of Liposomes and
-                      Mitochondria.
-                    </strong>{" "}
-                    Green: MitoTracker Green; red: DiD; overlapping signals
-                    appear yellow-orange.
-                  </FigureCaption>
-                </figure>
-                <figure className="my-4 text-center">
-                  <TransparentImage
-                    src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-16.avif"
-                    alt="Figure 18 | TEM visualization of encapsulation"
-                    className="img-fluid rounded"
-                    style={{ width: "100%" }}
-                  />
-                  <FigureCaption className="figure-caption mt-2">
-                    <strong>
-                      Figure 18 | TEM Reveals the Composite Encapsulation
-                      Structure.
-                    </strong>{" "}
-                    (A) Functionalized liposome; (B) free mitochondria; (C)
-                    liposome-mitochondria complex. All scale bars are 200 nm.
-                  </FigureCaption>
-                </figure>
+                <div className="poc-stack-halved">
+                  <figure className="poc-halved-figure text-center">
+                    <TransparentImage
+                      src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-15.avif"
+                      alt="Figure 17 | Fluorescence colocalization of liposomes and mitochondria"
+                      className="img-fluid rounded"
+                      style={{ width: "100%" }}
+                    />
+                    <FigureCaption className="figure-caption mt-2">
+                      <strong>
+                        Figure 17 | Fluorescence Colocalization of Liposomes and
+                        Mitochondria.
+                      </strong>{" "}
+                      Green: MitoTracker Green; red: DiD; overlapping signals
+                      appear yellow-orange.
+                    </FigureCaption>
+                  </figure>
+                  <figure className="poc-halved-figure text-center">
+                    <TransparentImage
+                      src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-16.avif"
+                      alt="Figure 18 | TEM visualization of encapsulation"
+                      className="img-fluid rounded"
+                      style={{ width: "100%" }}
+                    />
+                    <FigureCaption className="figure-caption mt-2">
+                      <strong>
+                        Figure 18 | TEM Reveals the Composite Encapsulation
+                        Structure.
+                      </strong>{" "}
+                      (A) Functionalized liposome; (B) free mitochondria; (C)
+                      liposome-mitochondria complex. All scale bars are 200 nm.
+                    </FigureCaption>
+                  </figure>
+                </div>
                 <p>
                   Next, we tested whether the responsive linker peptide could be
                   cleaved as designed. Following <strong>MMP-13</strong>{" "}
@@ -646,7 +766,7 @@ export function ProofOfConcept() {
                   consistent with the expected cleavage pattern and validated
                   the enzyme-responsive function of the sequence (Figure 19).
                 </p>
-                <figure className="my-4 text-center">
+                <figure className="poc-half-width my-4 text-center">
                   <TransparentImage
                     src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-17.avif"
                     alt="Figure 19 | MMP-13-responsive cleavage"
@@ -669,7 +789,7 @@ export function ProofOfConcept() {
                   providing imaging evidence consistent with cellular delivery
                   (Figure 20).
                 </p>
-                <figure className="my-4 text-center">
+                <figure className="poc-half-width my-4 text-center">
                   <TransparentImage
                     src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-18.avif"
                     alt="Figure 20 | Mitochondrial labeling in recipient-cell regions"
@@ -716,7 +836,7 @@ export function ProofOfConcept() {
             </h2>
             <BiosafetyIntroduction />
             <BiosafetyResultsText figureNumber="21" />
-            <figure className="my-4 text-center">
+            <figure className="poc-half-width my-4 text-center">
               <TransparentImage
                 src={BIOSAFETY_FIGURE_URL}
                 alt="Figure 21 | Preliminary cytocompatibility assessment of NEST components using the CCK-8 assay"

@@ -1,14 +1,13 @@
 import { TableCaption } from "../components/FigureCaption";
 import { Link } from "react-router-dom";
 import { FlappyInjection } from "../components/FlappyInjection";
-import { Inspirations, InspirationLink } from "../components/Inspirations";
 import "./education.css";
 
 /** Static host for the Education figures. The exported `edu-*.avif`
  *  files are served from this folder. */
 const EDUCATION_IMG =
   "https://static.igem.wiki/teams/6102/wiki/images/engagement/education/new";
-const REPORT_PDF = "https://static.igem.wiki/teams/6102/wiki/hp-file/res.pdf";
+const REPORT_PDF = "https://static.igem.wiki/teams/6102/wiki/hp-new/res.pdf";
 
 const eduImg = (number: number) =>
   `${EDUCATION_IMG}/edu-${String(number).padStart(2, "0")}.avif`;
@@ -57,15 +56,6 @@ function PhotoFigure({
 }
 
 export function Education() {
-  const links: InspirationLink[] = [
-    { year: 2024, teamName: "CityU-HongKong", pageName: "education" },
-    { year: 2024, teamName: "CJUH-JLU-China", pageName: "education" },
-    { year: 2024, teamName: "Keystone", pageName: "education" },
-    { year: 2024, teamName: "Stanford", pageName: "education" },
-    { year: 2024, teamName: "GEMS-Taiwan", pageName: "education" },
-    { year: 2024, teamName: "Heidelberg", pageName: "education" },
-  ];
-
   return (
     <div className="row mt-4 mb-5">
       <div className="col-lg-10 mx-auto">
@@ -507,8 +497,9 @@ export function Education() {
             The activity questionnaire explored changes in participants&rsquo;
             understanding and interest before and after the session. We also
             distributed a short cognitive measurement scale at the event;
-            responses indicated a clear increase in students&rsquo; awareness
-            after the lecture.
+            responses showed an increase in students&rsquo; awareness after the
+            lecture. This is a descriptive observation and does not establish
+            causality.
           </p>
           <p>
             Questions about learning pathways and whether the field suited them
@@ -1185,6 +1176,15 @@ export function Education() {
               activities for different ages, shared resources, and reflection
               within the team.
             </p>
+            <div className="education-video-frame">
+              <iframe
+                title="ZJU-China: Education summary (2026) [English]"
+                src="https://video.igem.org/videos/embed/rv8h4bZFFbLsKBnVbxyv5i"
+                allow="fullscreen"
+                sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
+                loading="lazy"
+              />
+            </div>
           </div>
           <p>
             We brought knowledge into the community and integrated the
@@ -1220,9 +1220,6 @@ export function Education() {
           </p>
           <FlappyInjection />
 
-          <div className="mt-5">
-            <Inspirations inspirationLinkList={links} />
-          </div>
         </article>
       </div>
     </div>

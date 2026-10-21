@@ -12,3 +12,13 @@
 .software-page pre code {
   color: #212529;
 }
+
+/* Inline addresses such as #/flow/<flow-id> read as UI routes, not prose. */
+.software-page :not(pre) > code {
+  color: #0b4f8a;
+  background: #eef4fb;
+  border: 1px solid #dbe7f4;
+  border-radius: 4px;
+  padding: 0.08em 0.35em;
+  font-size: 0.95em;
+}
