@@ -109,14 +109,14 @@ input[type="checkbox"] {
   gap: 8px;
   color: var(--ink);
   text-decoration: none;
-  font-size: 24px;
+  font-size: 28px;
   line-height: 1.2;
   font-weight: 600;
   letter-spacing: -0.8px;
 }
 .app-brand img {
-  width: 28px;
-  height: 28px;
+  width: 36px;
+  height: 36px;
 }
 .app-header nav {
   display: flex;
@@ -1531,7 +1531,7 @@ input[type="checkbox"] {
     padding: 8px 20px;
   }
   .app-brand {
-    font-size: 23px;
+    font-size: 26px;
   }
   .app-header nav {
     gap: 8px;
