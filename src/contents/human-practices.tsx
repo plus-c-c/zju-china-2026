@@ -582,6 +582,66 @@ const timelineItems: TimelineItem[] = [
     "At a lecture, we had the privilege of meeting Chen Xi. We explained our background to him and mentioned that we were inspired by his work *Larvae of Time*, and wanted to create a trajectory artwork based on cartilage rehabilitation movements. Chen Xi gave us specific advice on using sensors and guidance on artistic drawing, which helped us complete this visual art piece derived from cartilage rehabilitation movements. He also enthusiastically shared their experience of drawing with visual sensors, and allowed us to present our new work of visual tracking trajectory drawing of engineered bacteria, which enhanced the interactivity after the popular science lecture on synthetic biology and deepened people's understanding of engineered bacteria.",
     "Finally, referring to the suggestions from Chen Xi, we completed artworks on two themes. We plan to exhibit our paintings in the upcoming technology + art exhibitions to be held at the Future Learning Center, to promote the concept of cartilage health and knowledge of synthetic biology to more people. View Gallery.",
   ),
+  {
+    date: "",
+    stage: "Philosophical Reflection",
+    title: "Rethinking Synthetic Biology Through Philosophy — Prof. Chen Bohang",
+    summary: (
+      <p>
+        A philosophical discussion with Prof. Chen Bohang helped us reflect on
+        the principles and limitations of engineering living systems.
+      </p>
+    ),
+    image: "https://static.igem.wiki/teams/6102/wiki/images/hp/education/08.avif",
+    imageAlt: "Discussion with Prof. Chen Bohang",
+    details: [
+      {
+        heading: "Rationale",
+        content: (
+          <p>
+            As NEST relies on modular design and biological engineering, we
+            sought philosophical insights into the relationship between
+            engineering approaches and biological complexity.
+          </p>
+        ),
+      },
+      {
+        heading: "Interview Summary",
+        content: (
+          <>
+            <p>Prof. Chen discussed three key ideas:</p>
+            <ul>
+              <li>
+                <strong>Modularity:</strong> Standardization and modularization
+                simplify biological engineering but may overlook complex interactions.
+              </li>
+              <li>
+                <strong>Mechanistic Thinking:</strong> Viewing life as a machine
+                is a useful model, not a complete explanation.
+              </li>
+              <li>
+                <strong>Building as Knowing:</strong> Successfully constructing
+                a functional system does not necessarily mean fully understanding
+                its biological mechanisms.
+              </li>
+            </ul>
+          </>
+        ),
+      },
+      {
+        heading: "Integration",
+        content: (
+          <p>
+            This discussion encouraged us to recognize the limitations of modular
+            design in NEST. We emphasized interactions between material components
+            and biological environments, distinguished functional success from
+            mechanistic understanding, and reinforced the importance of
+            experimental validation.
+          </p>
+        ),
+      },
+    ],
+  },
 ];
 /* ------------------------------------------------------------------ */
 /* Blocks                                                             */
@@ -1490,6 +1550,7 @@ const TIMELINE_STAGES = [
   "Manufacturing",
   "Market Authorization & Access",
   "Rehabilitation",
+  "Philosophical Reflection",
 ];
 
 /* Deep links for the stage headings under "Stakeholder Interviews". */
@@ -1500,6 +1561,7 @@ const TIMELINE_STAGE_IDS: Record<string, string> = {
   Manufacturing: "ihp-engagement-manufacturing",
   "Market Authorization & Access": "ihp-engagement-market-access",
   Rehabilitation: "ihp-engagement-rehabilitation",
+  "Philosophical Reflection": "ihp-engagement-philosophical-reflection",
 };
 
 function EngagementBlock() {
