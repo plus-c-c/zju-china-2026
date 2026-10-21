@@ -590,7 +590,7 @@ export const m3Steps: M3Step[] = [
         parts: [
           {
             t: "text",
-            v: "The first term describes the thermal fluctuation entropy of fiber orientation, and the second term describes the coupling between the effective magnetic moment of fibers and the external magnetic field.The second term in the orientation free energy per unit volume is precisely the origin of the magnetic response observed in our wet-lab experiments.",
+            v: "The first term describes the thermal fluctuation entropy of fiber orientation, and the second term describes the coupling between the effective magnetic moment of fibers and the external magnetic field. The second term in the orientation free energy per unit volume is precisely the origin of the magnetic response observed in our wet-lab experiments.",
           },
         ],
       },
@@ -808,7 +808,7 @@ export const m3Steps: M3Step[] = [
           },
           {
             t: "math",
-            v: "C(\\mathbf{x}",
+            v: "C(\\mathbf{x})",
           },
           {
             t: "text",
@@ -893,7 +893,7 @@ export const m3Steps: M3Step[] = [
           },
           {
             t: "math",
-            v: "L(\\alpha_f",
+            v: "L(\\alpha_f)",
           },
           {
             t: "text",
@@ -2435,7 +2435,7 @@ export const m3Steps: M3Step[] = [
   {
     num: 10,
     title:
-      "Mechanical Equilibrium , Finite Element Governing Equations and Simulation",
+      "Mechanical Equilibrium, Finite Element Governing Equations and Simulation",
     goal: "Variational equilibrium, finite-element governing equations and simulation results.",
     term: null,
     key: 1,
