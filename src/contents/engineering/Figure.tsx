@@ -7,6 +7,11 @@ interface DbtlFigureProps {
   src: string | string[];
   caption?: ReactNode;
   alt?: string;
+  /** Preserve enough image height for labels, even with a long caption. */
+  readable?: boolean;
+  sharedFrame?: boolean;
+  /** Ignore empty trailing space in the source canvas without editing it. */
+  trimRight?: number;
 }
 
 /** Use the card's actual reading height, including the complete caption.
@@ -60,13 +65,20 @@ export function PanelFigure({
   );
 }
 
-export function DbtlFigure({ src, caption, alt }: DbtlFigureProps) {
+export function DbtlFigure({
+  src,
+  caption,
+  alt,
+  readable,
+  sharedFrame,
+  trimRight,
+}: DbtlFigureProps) {
   const sources = Array.isArray(src) ? src : [src];
   const label = alt ?? (typeof caption === "string" ? caption : "Figure");
   return (
-    <PanelFigure className="dbtl-figure">
+    <PanelFigure className={`dbtl-figure${readable ? " dbtl-figure--readable" : ""}`}>
       <div
-        className={`dbtl-figure-imgs${sources.length > 1 ? " dbtl-figure-imgs--row" : ""}`}
+        className={`dbtl-figure-imgs${sources.length > 1 ? " dbtl-figure-imgs--row" : ""}${sharedFrame ? " dbtl-figure-imgs--shared" : ""}${trimRight ? " dbtl-figure-imgs--trimmed" : ""}`}
       >
         {sources.map((source) => (
           <img
@@ -74,6 +86,7 @@ export function DbtlFigure({ src, caption, alt }: DbtlFigureProps) {
             loading="lazy"
             src={`${STATIC_BASE}/${source}`}
             alt={label}
+            style={trimRight ? { width: `${10000 / (100 - trimRight)}%` } : undefined}
           />
         ))}
       </div>

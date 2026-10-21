@@ -6,17 +6,17 @@ export const mitochondrialTherapyGroup: Group = {
   label: "Mitochondrial Therapeutic Module",
   parts: [
     {
-      label: "Construction of a mitochondrial delivery carrier",
+      label: "Construction",
       module: mitochondriaModule,
       cycleSlice: [0, 2],
     },
     {
-      label: "Validation of delivery-related functions",
+      label: "Validation",
       module: mitochondriaModule,
       cycleSlice: [2, 5],
     },
     {
-      label: "Evaluation of cellular delivery performance",
+      label: "Evaluation",
       module: mitochondriaModule,
       cycleSlice: [5, 7],
     },

@@ -153,6 +153,7 @@ export const anisotropyModule: DbtlModule = {
               fiber integration into the SELP scaffold.
             </p>
             <DbtlFigure
+              readable
               src="engineering/02/02.avif"
               caption="Figure 2 | The magnetically responsive composite-fiber approach. Fe₃O₄-loaded fibers were designed as directional carriers that also participate in network formation through Ru/SPS-mediated photocrosslinking."
             />
@@ -446,6 +447,7 @@ export const anisotropyModule: DbtlModule = {
               when required to prepare samples for ligation assays.
             </p>
             <DbtlFigure
+              sharedFrame
               src={["engineering/02/06.avif", "engineering/02/07.avif"]}
               caption="Figure 6 | Expression and purification of the TVN–DogTag module. SDS–PAGE analysis of the expression screen and of the purified protein."
             />
@@ -516,6 +518,7 @@ export const anisotropyModule: DbtlModule = {
               proposed ligation products.
             </p>
             <DbtlFigure
+              readable
               src="engineering/02/08.avif"
               caption="Figure 7 | Ligation testing with a GFP model substrate. Higher-molecular-weight products appear in the SnoopLigase-containing reactions, supporting DogTag-mediated ligation."
             />

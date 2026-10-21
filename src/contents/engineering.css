@@ -860,6 +860,19 @@
   font-size: 0.93rem;
 }
 
+.dbtl .dbtl-panel-inner .dbtl-table-compact .table-caption {
+  padding: 0.25rem 0;
+  margin: 0;
+}
+
+.dbtl .dbtl-panel-inner .dbtl-table-compact .table-responsive {
+  margin: 0.4rem 0 0.75rem;
+}
+
+.dbtl .dbtl-panel-inner .dbtl-table-compact .table {
+  margin-bottom: 0;
+}
+
 @keyframes dbtl-card-next {
   from {
     opacity: 0;
@@ -1024,6 +1037,10 @@
 }
 
 .dbtl .dbtl-panel-inner .dbtl-section-title:first-child {
+  margin-top: 0 !important;
+}
+
+.dbtl .dbtl-panel-inner:has(> .dbtl-section-title:first-child) {
   margin-top: 0;
 }
 
@@ -1064,6 +1081,41 @@
 
 .dbtl .dbtl-panel-inner .dbtl-figure img:last-of-type {
   margin-bottom: 0;
+}
+
+.dbtl .dbtl-panel-inner .dbtl-figure--readable img {
+  /* These detailed figures fill the reading width. Tall artwork and its
+     caption stay together in the current card's scrollable content. */
+  max-height: none;
+}
+
+.dbtl .dbtl-panel-inner .dbtl-figure-imgs--shared {
+  align-items: center;
+  border: 1px solid #e3e8f4;
+  border-radius: 12px;
+  background: #fbfcfe;
+  overflow: hidden;
+}
+
+.dbtl .dbtl-panel-inner .dbtl-figure-imgs--shared > img {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.dbtl .dbtl-panel-inner .dbtl-figure-imgs--trimmed {
+  display: block;
+  overflow: hidden;
+  border: 1px solid #e3e8f4;
+  border-radius: 12px;
+  background: #fbfcfe;
+}
+
+.dbtl .dbtl-panel-inner .dbtl-figure-imgs--trimmed > img {
+  max-width: none;
+  max-height: none;
+  border: 0;
+  border-radius: 0;
 }
 
 .dbtl .dbtl-panel-inner .dbtl-figure figcaption {
@@ -1186,7 +1238,7 @@
    The classes are only applied when the layout switch is set to "legacy".
    -------------------------------------------------------------------------- */
 .dbtl--legacy {
-  --dbtl-stack-h: clamp(340px, calc(90vh - 13rem), 660px);
+  --dbtl-stack-h: clamp(348px, calc(90vh - 12.5rem), 668px);
   grid-template-columns: auto minmax(0, 1fr);
   grid-template-rows: none;
   grid-template-areas: none;
@@ -1197,7 +1249,7 @@
 }
 
 .dbtl--legacy:not(.project-design-stepper) {
-  --dbtl-stack-h: clamp(332px, calc(90vh - 13.5rem), 652px);
+  --dbtl-stack-h: clamp(340px, calc(90vh - 13rem), 660px);
 }
 
 /* The level-3 row is a sibling of the DBTL grid so it spans the whole page
@@ -1338,15 +1390,15 @@
 
   .dbtl--legacy .dbtl-panel {
     flex: 0 0 auto;
-    height: clamp(220px, calc(54vh - 40px), 440px);
+    height: clamp(228px, calc(54vh - 32px), 448px);
   }
 
   .dbtl--legacy:not(.project-design-stepper) .dbtl-panel {
-    height: clamp(212px, calc(54vh - 48px), 432px);
+    height: clamp(220px, calc(54vh - 40px), 440px);
   }
 
   .project-design-stepper.dbtl--legacy .dbtl-panel {
-    height: clamp(170px, calc(34vh - 40px), 290px);
+    height: clamp(178px, calc(34vh - 32px), 298px);
   }
 
   .dbtl--legacy .dbtl-ring-wrap {
