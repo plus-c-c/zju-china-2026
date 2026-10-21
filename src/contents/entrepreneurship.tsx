@@ -55,40 +55,46 @@ export function ExtendCard({
   title,
   children,
   headingLevel,
+  headingId,
+  variant = "primary",
 }: {
   title: ReactNode;
   children: ReactNode;
-  headingLevel?: 3;
+  headingLevel?: 2 | 3;
+  headingId?: string;
+  variant?: "primary" | "secondary";
 }) {
   const [open, setOpen] = useState(false);
   const contentId = useId();
+  const cardButton = (
+    <button
+      type="button"
+      className="entre-card-header"
+      aria-expanded={open}
+      aria-controls={contentId}
+      onClick={() => setOpen((value) => !value)}
+    >
+      <span className="entre-card-title">{title}</span>
+      <span className="entre-card-chevron" aria-hidden="true" />
+    </button>
+  );
 
   return (
-    <div className={`entre-card${open ? " entre-card--open" : ""}`}>
-      {headingLevel === 3 ? (
-        <h3 className="entre-card-heading">
-          <button
-            type="button"
-            className="entre-card-header"
-            aria-expanded={open}
-            aria-controls={contentId}
-            onClick={() => setOpen((value) => !value)}
-          >
-            <span className="entre-card-title">{title}</span>
-            <span className="entre-card-chevron" aria-hidden="true" />
-          </button>
+    <div
+      className={`entre-card${
+        variant === "secondary" ? " entre-card--secondary" : ""
+      }${open ? " entre-card--open" : ""}`}
+    >
+      {headingLevel === 2 ? (
+        <h2 className="entre-card-heading" id={headingId}>
+          {cardButton}
+        </h2>
+      ) : headingLevel === 3 ? (
+        <h3 className="entre-card-heading" id={headingId}>
+          {cardButton}
         </h3>
       ) : (
-        <button
-          type="button"
-          className="entre-card-header"
-          aria-expanded={open}
-          aria-controls={contentId}
-          onClick={() => setOpen((value) => !value)}
-        >
-          <span className="entre-card-title">{title}</span>
-          <span className="entre-card-chevron" aria-hidden="true" />
-        </button>
+        cardButton
       )}
       <div className="entre-card-content" id={contentId}>
         <div className="entre-card-content-inner">
@@ -2052,22 +2058,33 @@ export function Entrepreneurship() {
               &mdash; Nicholas A. Peppas, Chief Scientist of Appian Labs
             </footer>
           </blockquote>
-          <h2 id="judging-criteria">Judging Criteria</h2>
-          <p>
-            For your convenience, we have summarised how we have addressed the
-            iGEM entrepreneurship criteria in the following section.
-          </p>
-          <p>
-            For your convenience, the following section summarizes how we have
-            addressed the iGEM entrepreneurship judging criteria.
-          </p>
-          {JUDGING_CRITERIA.map((criterion) => (
-            <ExtendCard title={criterion.title} key={criterion.title}>
-              {criterion.paragraphs.map((paragraph) => (
-                <p key={paragraph}>{paragraph}</p>
+          <ExtendCard
+            title="Judging Criteria"
+            headingLevel={2}
+            headingId="judging-criteria"
+          >
+            <p>
+              For your convenience, we have summarised how we have addressed the
+              iGEM entrepreneurship criteria in the following section.
+            </p>
+            <p>
+              For your convenience, the following section summarizes how we have
+              addressed the iGEM entrepreneurship judging criteria.
+            </p>
+            <div className="entre-card-nested-group">
+              {JUDGING_CRITERIA.map((criterion) => (
+                <ExtendCard
+                  title={criterion.title}
+                  key={criterion.title}
+                  variant="secondary"
+                >
+                  {criterion.paragraphs.map((paragraph) => (
+                    <p key={paragraph}>{paragraph}</p>
+                  ))}
+                </ExtendCard>
               ))}
-            </ExtendCard>
-          ))}
+            </div>
+          </ExtendCard>
           {articleBlocks.map((block, index) =>
             renderBlock(block, `block-${index}`),
           )}
