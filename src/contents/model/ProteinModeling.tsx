@@ -4,7 +4,7 @@ export function ProteinModeling() {
   return (
     <>
       {/* Draft note "蛋白质建模wiki部分": internal note; the Model page title is supplied by the site header */}
-      <h2 className="mb-4">Modeling of 2KY10-SnoopyTag Hydrogels</h2>
+      <h2 className="mb-4">Modeling of 2KY-10-SnoopyTag Hydrogels</h2>
       <h3 className="mt-5 mb-3">
         Research Question and Modeling Starting Point
       </h3>
@@ -24,8 +24,8 @@ export function ProteinModeling() {
         jointly, and the mechanistic hypotheses worth testing.
       </p>
       <p>
-        We took <strong>2KY10</strong> as the modeling target, where SELP
-        denotes silk–elastin-like protein. The construct consists of 564 amino
+        We took <strong>2KY-10</strong> as the modeling target, where SELP
+        denotes silk-elastin-like protein. The construct consists of 564 amino
         acids, and each single chain contains 14 Tyr residues.
       </p>
       <p>
@@ -96,7 +96,7 @@ export function ProteinModeling() {
       </p>
       <p>
         In this model, the interactions of several atoms are merged into a
-        single coarse-grained bead, and one 564-residue 2KY10 chain corresponds
+        single coarse-grained bead, and one 564-residue 2KY-10 chain corresponds
         to <strong>964 beads</strong>. The model preserves the correspondence
         between the sequence and residue positions, so that Tyr can still serve
         as an identifiable linkage endpoint, while reducing the computational
@@ -168,7 +168,7 @@ export function ProteinModeling() {
         <MathFormula>{"p_{\\mathrm{Tyr}}"}</MathFormula> is "the fraction of all
         Tyr residues that participate in dityrosine linkages", and each Tyr acts
         as at most one linkage endpoint, then for a model containing{" "}
-        <MathFormula>{"n"}</MathFormula> 2KY10 chains:
+        <MathFormula>{"n"}</MathFormula> 2KY-10 chains:
       </p>
       <MathFormula display>
         {"N_{\\mathrm{xlink}}\\approx\\frac{14n\\,p_{\\mathrm{Tyr}}}{2}"}
@@ -188,7 +188,7 @@ export function ProteinModeling() {
         conformational changes.
       </p>
       <p>
-        Using a finite system containing 32 2KY10 protein chains and 6 Tyr–Tyr
+        Using a finite system containing 32 2KY-10 protein chains and 6 Tyr–Tyr
         linkages, we completed <strong>500 ns</strong> Martini production
         simulations at <strong>280, 300, 320, and 340 K</strong>. None of the
         four trajectories showed fatal dynamics errors or LINCS constraint

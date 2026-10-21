@@ -48,7 +48,7 @@ export const m3Question: M3Block[] = [
     parts: [
       {
         t: "text",
-        v: "In the preceding modeling of 2KY10-SELP single-chain conformations, Martini coarse-grained multichain systems, and tyrosine crosslink networks, the system was treated primarily as a protein network in water. When Fe₃O₄ nanoparticles are introduced and magnetic-field-driven orientation and dipolar interactions are considered, the system can no longer be described by a single protein network alone. It must instead be extended to a multiphase composite description.",
+        v: "In the preceding modeling of 2KY-10-SELP single-chain conformations, Martini coarse-grained multichain systems, and tyrosine crosslink networks, the system was treated primarily as a protein network in water. When Fe₃O₄ nanoparticles are introduced and magnetic-field-driven orientation and dipolar interactions are considered, the system can no longer be described by a single protein network alone. It must instead be extended to a multiphase composite description.",
       },
     ],
   },

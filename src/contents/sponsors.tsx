@@ -23,7 +23,7 @@ function SponsorEntry({
   return (
     <section
       className={`sponsors-entry${photograph ? " sponsors-entry--photograph" : ""}`}
-      aria-labelledby={id}
+      aria-labeledby={id}
     >
       <div className="sponsors-entry__media">
         <img
@@ -51,7 +51,7 @@ export function Sponsors() {
     <article className="sponsors-page">
       <section
         className="sponsors-introduction"
-        aria-labelledby="sponsors-introduction"
+        aria-labeledby="sponsors-introduction"
       >
         <h2 id="sponsors-introduction" data-toc="exclude">
           Every Contribution Matters.
@@ -66,7 +66,7 @@ export function Sponsors() {
       </section>
       <section
         className="sponsors-section"
-        aria-labelledby="sponsors-special-thanks"
+        aria-labeledby="sponsors-special-thanks"
       >
         <h2
           id="sponsors-special-thanks"
@@ -99,7 +99,7 @@ export function Sponsors() {
       </section>
       <section
         className="sponsors-section"
-        aria-labelledby="sponsors-long-term"
+        aria-labeledby="sponsors-long-term"
       >
         <h2 id="sponsors-long-term" data-toc="exclude">
           Gratitude for Long-Term Support
@@ -135,7 +135,7 @@ export function Sponsors() {
       </section>
       <section
         className="sponsors-section"
-        aria-labelledby="sponsors-corporate-partners"
+        aria-labeledby="sponsors-corporate-partners"
       >
         <h2 id="sponsors-corporate-partners" data-toc="exclude">
           Our Partners

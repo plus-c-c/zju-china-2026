@@ -73,7 +73,7 @@ const SHENZHEN_TEAM: CollabPhoto = {
 
 const SHENZHEN_PRESENTATION_1: CollabPhoto = {
   name: "fig-2-1-1-2-shenzhen-presentation-1.avif",
-  alt: "Team member presenting the SnoopLigase-ZJU project on stage at the Shenzhen Synthetic Biology Innovation Competition.",
+  alt: "Team member presenting the SnoopLigase2-ZJU project on stage at the Shenzhen Synthetic Biology Innovation Competition.",
   width: 1706,
   height: 1279,
 };
@@ -179,7 +179,7 @@ export function Collaboration() {
             1 Collaboration and Communication
           </h2>
 
-          <h3 id="iraq-team">1.1 Helping to build the first team in Iraq</h3>
+          <h3 id="iraq-team">1.1 Helping to Build the First Team in Iraq</h3>
           <p>
             Joining iGEM for the first time involves much more than choosing a
             research topic. Registration, team responsibilities, resource
@@ -318,20 +318,20 @@ export function Collaboration() {
           />
 
           <h2 id="activities">2 Participating in Various Activities</h2>
-          <h3 id="synthetic-biology">2.1 In the field of synthetic biology</h3>
+          <h3 id="synthetic-biology">2.1 In the Field of Synthetic Biology</h3>
           <h4 id="shenzhen-competition" data-toc="include" data-toc-depth="3">
             2.1.1 The Shenzhen Synthetic Biology Innovation Competition
           </h4>
           <p>
             We were invited to the Shenzhen Synthetic Biology Innovation
             Competition, where we presented our overall design and detailed
-            enzyme engineering work related to the SnoopLigase-ZJU system in the
+            enzyme engineering work related to the SnoopLigase2-ZJU system in the
             general track and the industry track of the competition.
           </p>
           <p>
             Our project received a gold medal in the general track and was
             awarded the best project in the industry track. Our rational design
-            of the SnoopLigase-ZJU system received positive feedback from
+            of the SnoopLigase2-ZJU system received positive feedback from
             industry judges.
           </p>
           <p>
@@ -345,7 +345,7 @@ export function Collaboration() {
           />
           <CollabFigure
             photos={[SHENZHEN_PRESENTATION_1, SHENZHEN_PRESENTATION_2]}
-            caption="Figure 2.1.1.2, 2.1.1.3 | Project presentations in the Moutai corporate track (industry track) and the general track."
+            caption="Figures 2.1.1.2 and 2.1.1.3 | Project presentations in the Moutai corporate track (industry track) and the general track."
           />
 
           <h4 id="east-china-meetup" data-toc="include" data-toc-depth="3">
@@ -371,7 +371,7 @@ export function Collaboration() {
           </p>
           <CollabFigure
             photos={[EAST_CHINA_MEETUP_1, EAST_CHINA_MEETUP_2]}
-            caption="Figure 2.1.2.1, 2.1.2.2 | Participating teams at the East China iGEM Meetup."
+            caption="Figures 2.1.2.1 and 2.1.2.2 | Participating teams at the East China iGEM Meetup."
           />
 
           <h3 id="context-of-use">2.2 Entrepreneurial Activities</h3>

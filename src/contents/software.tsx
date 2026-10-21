@@ -6,7 +6,7 @@ import { References } from "../components/References";
  * Software page — usage documentation for both software tools, converted from
  * `Software-new-en.md` (2026-10-16):
  *
- *   Introduction            Background and the division of labour within NEST
+ *   Introduction            Background and the division of labor within NEST
  *   1 Research Side         SELP molecular dynamics simulation platform
  *   2 User Side             NEST Software (ordering + operating instructions)
  *   3 Engineering Practices Safety, performance, resource and accessibility
@@ -93,13 +93,13 @@ export function Software() {
             details):
           </p>
           <TableCaption>
-            <strong>Table 1</strong>: Task types, purpose, and interface of the
+            <strong>Table 1 |</strong> Task types, purpose, and interface of the
             three computational steps.
           </TableCaption>
           <div className="table-responsive mb-4">
             <table
               className="table table-bordered align-middle"
-              aria-label="Table 1: task types and interfaces of the three computational steps"
+              aria-label="Table 1 | task types and interfaces of the three computational steps"
             >
               <thead>
                 <tr>
@@ -155,7 +155,7 @@ export function Software() {
             </FigureCaption>
           </figure>
 
-          <h4 className="mt-5 mb-3">Connection to the Model page</h4>
+          <h4 className="mt-5 mb-3">Connection to the Model Page</h4>
           <p>
             The software does not replace the Model page; it executes the same
             staged calculation and exposes each model input, intermediate
@@ -169,7 +169,7 @@ export function Software() {
               aria-label="Software and Model data contract"
             >
               <TableCaption as="caption">
-                Software–Model data contract.
+                <strong>Table 2 | Software–Model data contract.</strong>
               </TableCaption>
               <thead className="table-primary">
                 <tr>
@@ -239,13 +239,13 @@ export function Software() {
           </ul>
           <p>The technology choices for these components are as follows:</p>
           <TableCaption>
-            <strong>Table 2</strong>: Technology stack of the SELP molecular
+            <strong>Table 3 |</strong> Technology stack of the SELP molecular
             dynamics simulation platform.
           </TableCaption>
           <div className="table-responsive mb-4">
             <table
               className="table table-bordered align-middle"
-              aria-label="Table 2: technology stack of the simulation platform"
+              aria-label="Table 3 | technology stack of the simulation platform"
             >
               <thead>
                 <tr>
@@ -329,13 +329,13 @@ export function Software() {
             semantics (Figure 2):
           </p>
           <TableCaption>
-            <strong>Table 3</strong>: Semantics of the Save and Save &amp;
+            <strong>Table 4 |</strong> Semantics of the Save and Save &amp;
             restart buttons in a parameter panel.
           </TableCaption>
           <div className="table-responsive mb-4">
             <table
               className="table table-bordered align-middle"
-              aria-label="Table 3: semantics of the Save and Save & restart buttons"
+              aria-label="Table 4 | semantics of the Save and Save & restart buttons"
             >
               <thead>
                 <tr>
@@ -387,7 +387,7 @@ export function Software() {
           <p>
             The panel is titled <strong>Sequence &amp; annotation input</strong>{" "}
             and contains the following fields: <strong>Protein</strong> (an
-            identifier only, e.g. 2KY10), <strong>Amino-acid sequence</strong>{" "}
+            identifier only, e.g. 2KY-10), <strong>Amino-acid sequence</strong>{" "}
             (multi-line text box, showing the residue count live),{" "}
             <strong>PSF topology</strong> (e.g. protein.psf, generated on the
             remote host and required before NAMD can start). Illegal amino-acid
@@ -397,9 +397,9 @@ export function Software() {
           <p>
             <strong>Motif annotations</strong> highlight every occurrence of
             each motif in the trajectory viewer, with four columns: Label,
-            Motif, Matches and Color (hex colour; when left empty a colour is
+            Motif, Matches and Color (hex color; when left empty a color is
             assigned automatically). If a motif does not occur in the sequence,
-            or a colour is not a valid hex value, the save is rejected
+            or a color is not a valid hex value, the save is rejected
             immediately — there is no need to wait until the simulation ends.
           </p>
           <p>
@@ -422,13 +422,13 @@ export function Software() {
             following main fields:
           </p>
           <TableCaption>
-            <strong>Table 4</strong>: Main parameter fields and units of Step 2
+            <strong>Table 5 |</strong> Main parameter fields and units of Step 2
             (CG network and deformation).
           </TableCaption>
           <div className="table-responsive mb-4">
             <table
               className="table table-bordered align-middle"
-              aria-label="Table 4: main parameter fields of step 2"
+              aria-label="Table 5 | main parameter fields of step 2"
             >
               <thead>
                 <tr>
@@ -576,12 +576,12 @@ export function Software() {
             Control block, which provides run and view buttons for each step:
           </p>
           <TableCaption>
-            <strong>Table 5</strong>: Run and view buttons for each step.
+            <strong>Table 6 |</strong> Run and view buttons for each step.
           </TableCaption>
           <div className="table-responsive mb-4">
             <table
               className="table table-bordered align-middle"
-              aria-label="Table 5: run and view buttons for each step"
+              aria-label="Table 6 | run and view buttons for each step"
             >
               <thead>
                 <tr>
@@ -631,7 +631,7 @@ export function Software() {
             returns a result figure. After clicking, the button briefly shows a
             running state and then reports success or failure. The bottom of the
             panel shows the step&rsquo;s working directory, with locally run
-            steps labelled &ldquo;runs locally on the backend host&rdquo;; the{" "}
+            steps labeled &ldquo;runs locally on the backend host&rdquo;; the{" "}
             <strong>Execution</strong> section below shows the execution
             location (local / ssh), input and output directories, and the
             resolution of external programs such as gmx and matlab, so
@@ -659,13 +659,13 @@ export function Software() {
             . The result types presented by different steps are as follows:
           </p>
           <TableCaption>
-            <strong>Table 6</strong>: Result categories in Results and the steps
+            <strong>Table 7 |</strong> Result categories in Results and the steps
             they apply to.
           </TableCaption>
           <div className="table-responsive mb-4">
             <table
               className="table table-bordered align-middle"
-              aria-label="Table 6: result categories and applicable steps"
+              aria-label="Table 7 | result categories and applicable steps"
             >
               <thead>
                 <tr>
@@ -723,7 +723,7 @@ export function Software() {
             Model page.
           </p>
 
-          <h3 className="mt-5 mb-3">1.4 Validation and limitations</h3>
+          <h3 className="mt-5 mb-3">1.4 Validation and Limitations</h3>
           <p>
             The platform validates parameter types, units, required files and
             successful execution, and it exposes convergence and structural
@@ -813,7 +813,7 @@ export function Software() {
           </figure>
 
           <h3 className="mt-5 mb-3">
-            2.2 Operating Instructions: the Four-Step Clinical Wizard (Injection
+            2.2 Operating Instructions: The Four-Step Clinical Wizard (Injection
             Module)
           </h3>
           <p>
@@ -823,13 +823,13 @@ export function Software() {
             (Figure 5):
           </p>
           <TableCaption>
-            <strong>Table 7</strong>: Steps and contents of the four-step
+            <strong>Table 8 |</strong> Steps and contents of the four-step
             clinical wizard.
           </TableCaption>
           <div className="table-responsive mb-4">
             <table
               className="table table-bordered align-middle"
-              aria-label="Table 7: steps and contents of the four-step clinical wizard"
+              aria-label="Table 8 | steps and contents of the four-step clinical wizard"
             >
               <thead>
                 <tr>
@@ -879,7 +879,7 @@ export function Software() {
             <strong>Scan QR Code.</strong> Every vial carries a printed QR code;
             scanning it loads the instructions for that specific formulation,
             including component composition, operating conditions, safety notes
-            and storage/quality-control data. If the code is not recognised, the
+            and storage/quality-control data. If the code is not recognized, the
             page shows &ldquo;Unrecognized&rdquo;, and the code content can also
             be entered by hand in the &ldquo;QR code content&rdquo; field. The
             app never presents generic content as formulation-specific content.
@@ -925,12 +925,12 @@ export function Software() {
             and a clear preparation workflow:
           </p>
           <TableCaption>
-            <strong>Table 8</strong>: Tech stack of the NEST Software app.
+            <strong>Table 9 |</strong> Tech stack of the NEST Software app.
           </TableCaption>
           <div className="table-responsive mb-4">
             <table
               className="table table-bordered align-middle"
-              aria-label="Table 8: tech stack of the NEST Software app"
+              aria-label="Table 9 | tech stack of the NEST Software app"
             >
               <thead>
                 <tr>
@@ -1000,7 +1000,7 @@ export function Software() {
           <p>
             Safety information reaches the bedside together with the material:
             after a successful scan, the instructions shown belong to that
-            specific formulation; when the QR code is not recognised, the page
+            specific formulation; when the QR code is not recognized, the page
             clearly displays &ldquo;Unrecognized&rdquo;. The interface copy is
             bilingual (English / Chinese) and can be switched inside the
             application with EN / CH.
@@ -1029,7 +1029,7 @@ export function Software() {
             </li>
             <li>
               <strong>Software II · on-device scanning</strong>: QR codes are
-              recognised directly on the device, so scanning itself works
+              recognized directly on the device, so scanning itself works
               without a network; formulation-specific instruction lookup still
               requires the material server. Manual code entry is available when
               no camera is present.

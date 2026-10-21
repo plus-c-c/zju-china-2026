@@ -636,7 +636,7 @@ export function Engineering() {
         <article className="engineering-article">
           <section
             className="eng-overview"
-            aria-labelledby="engineering-overview-title"
+            aria-labeledby="engineering-overview-title"
           >
             <h2 id="engineering-overview-title">
               From Real-World Needs to Engineering Solutions

@@ -149,8 +149,8 @@ const selpCycle = module(
       Our background research led us to pursue a material for a broad range of
       hyaline cartilage defects. We first sought a filler that could address
       complex repair needs by filling defects and promptly reducing pain. We
-      presented our initial SELP designs, limited to fixed 2KY5, 2KY10, and
-      2KY16 proteins, to researchers and clinicians. They explained that
+      presented our initial SELP designs, limited to fixed 2KY-5, 2KY-10, and
+      2KY-16 proteins, to researchers and clinicians. They explained that
       cartilage in the elbow, knee, and other locations experiences different
       loads and requires different strengths; a single-strength material would
       not support broad application.
@@ -196,7 +196,7 @@ const linkerCycle = module(
     <p>
       We used modeling to engineer the enzyme and improve ligation efficiency.
       Iteration of the SnoopLigase system produced{" "}
-      <strong>SnoopLigase-ZJU</strong>, improving workflow efficiency and
+      <strong>SnoopLigase2-ZJU</strong>, improving workflow efficiency and
       supporting effective linker operation.
     </p>,
     <p>Clinicians and researchers reviewed and supported our design.</p>,

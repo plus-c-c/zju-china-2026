@@ -272,3 +272,17 @@
     transition: none;
   }
 }
+
+.entre-card-heading {
+  margin: 0;
+  font: inherit;
+}
+
+.entre-card--open > .entre-card-heading > .entre-card-header {
+  background: var(--entre-header-open);
+}
+
+.entre-card--open > .entre-card-heading > .entre-card-header .entre-card-chevron {
+  margin-top: 0.35rem;
+  transform: rotate(225deg);
+}

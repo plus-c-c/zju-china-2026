@@ -74,7 +74,7 @@ export function GetYourNest() {
             here.
           </aside>
 
-          <section className="gyn-section" aria-labelledby="gyn-offer">
+          <section className="gyn-section" aria-labeledby="gyn-offer">
             <div className="gyn-section-heading">
               <h2 id="gyn-offer">One scaffold. Configurable repair.</h2>
             </div>
@@ -107,7 +107,7 @@ export function GetYourNest() {
             </p>
           </section>
 
-          <section className="gyn-section gyn-inquiry" id="inquiry" aria-labelledby="gyn-inquiry-title">
+          <section className="gyn-section gyn-inquiry" id="inquiry" aria-labeledby="gyn-inquiry-title">
             <div className="gyn-section-heading">
               <h2 id="gyn-inquiry-title">Inquiry form</h2>
             </div>

@@ -11,7 +11,7 @@ export function ProjectExperimentNotes() {
         Prof. Hongwei Ouyang and Prof. Wenwen Huang. Drawing on their established
         chondrocyte culture system and strong SELP characterization expertise,
         our collaborators performed all cell culture and related experimental
-        procedures and provided the 2Y-5 and 2KY-16 materials. Our team did not
+        procedures and provided the 2Y-5 (a lysine-free control scaffold) and 2KY-16 materials. Our team did not
         participate in any cell-related experimental procedures.
       </p>
     </details>

@@ -36,7 +36,7 @@ export const m1Overview: M1Block[] = [
     parts: [
       {
         t: "text",
-        v: "Our wet-lab work has completed the production and mechanical characterization of the 2KY5 protein. However, limitations in production conditions, experimental timelines, and cost make it difficult to produce and mechanically characterize proteins with different numbers of repeat units within the project timeframe. We therefore introduced computational modeling, using existing experimental data as a reference and combining molecular dynamics simulations with network analysis to predict the crosslinked networks and mechanical responses of different constructs. This approach provides a basis for subsequent protein design, candidate screening, and experimental validation.",
+        v: "Our wet-lab work has completed the production and mechanical characterization of the 2KY-5 protein. However, limitations in production conditions, experimental timelines, and cost make it difficult to produce and mechanically characterize proteins with different numbers of repeat units within the project timeframe. We therefore introduced computational modeling, using existing experimental data as a reference and combining molecular dynamics simulations with network analysis to predict the crosslinked networks and mechanical responses of different constructs. This approach provides a basis for subsequent protein design, candidate screening, and experimental validation.",
       },
     ],
   },
@@ -94,7 +94,7 @@ export const m1Steps: M1Step[] = [
         parts: [
           {
             t: "em",
-            v: "Video: | 2KY5 100 ns FAMD",
+            v: "Video: | 2KY-5 100 ns FAMD",
           },
         ],
       },
@@ -103,7 +103,7 @@ export const m1Steps: M1Step[] = [
         parts: [
           {
             t: "text",
-            v: "Taking 2KY5 as an example, we extracted 100 frames from the final portion of the 280 K trajectory and clustered them according to the root-mean-square deviation (RMSD) of their Cα atoms. A cutoff of 6 Å was used to select representative conformations.",
+            v: "Taking 2KY-5 as an example, we extracted 100 frames from the final portion of the 280 K trajectory and clustered them according to the root-mean-square deviation (RMSD) of their Cα atoms. A cutoff of 6 Å was used to select representative conformations.",
           },
         ],
       },
@@ -116,7 +116,7 @@ export const m1Steps: M1Step[] = [
           },
           {
             t: "text",
-            v: "[3] Each 2KY5 and 2KY10 chain comprised 579 and 964 coarse-grained beads, respectively. By adjusting the simulation-box volume and performing subsequent relaxation, we brought the mass concentrations of both systems close to 100 mg/mL.",
+            v: "[3] Each 2KY-5 and 2KY-10 chain comprised 579 and 964 coarse-grained beads, respectively. By adjusting the simulation-box volume and performing subsequent relaxation, we brought the mass concentrations of both systems close to 100 mg/mL.",
           },
         ],
       },
@@ -537,7 +537,7 @@ export const m1Steps: M1Step[] = [
         parts: [
           {
             t: "text",
-            v: "Ultimately, through simulation, we developed a computational modeling method that agreed with the wet-lab results. We also used 2KY16 to validate the computational modeling, ",
+            v: "Ultimately, through simulation, we developed a computational modeling method that agreed with the wet-lab results. We also used 2KY-16 to validate the computational modeling, ",
           },
           {
             t: "strong",
@@ -548,7 +548,7 @@ export const m1Steps: M1Step[] = [
       {
         t: "figure",
         src: "https://static.igem.wiki/teams/6102/wiki/images/model/selp/2ky16-validation-20261019.avif",
-        alt: "2KY16 modeled compressive moduli for replicates A, B, and C compared with the wet-lab measurement",
+        alt: "2KY-16 modeled compressive moduli for replicates A, B, and C compared with the wet-lab measurement",
         width: 680,
       },
       {
@@ -556,7 +556,7 @@ export const m1Steps: M1Step[] = [
         parts: [
           {
             t: "em",
-            v: "Figure 6 | Independent validation of the 2KY16 model. Bars show the predicted compressive moduli for replicates A, B, and C (52.41, 51.03, and 55.71 kPa); the dashed line marks the wet-lab measurement (53.32 kPa).",
+            v: "Figure 6 | Independent validation of the 2KY-16 model. Bars show the predicted compressive moduli for replicates A, B, and C (52.41, 51.03, and 55.71 kPa); the dashed line marks the wet-lab measurement (53.32 kPa).",
           },
         ],
       },
@@ -571,7 +571,7 @@ export const m1Steps: M1Step[] = [
         parts: [
           {
             t: "text",
-            v: "During model development, the wet-lab experiments provided measured mechanical modulus data for the calibration of 2KY5 and 2KY10. By fitting these data, we adjusted the parameters used in the calculations and successfully implemented the simulations.",
+            v: "During model development, the wet-lab experiments provided measured mechanical modulus data for the calibration of 2KY-5 and 2KY-10. By fitting these data, we adjusted the parameters used in the calculations and successfully implemented the simulations.",
           },
         ],
       },
@@ -580,7 +580,7 @@ export const m1Steps: M1Step[] = [
         parts: [
           {
             t: "text",
-            v: "We applied the modeling method to 2KY16 to predict the mechanical properties of its hydrogel. Wet-lab experiments were conducted in parallel to validate the predictions. The three modeled replicates yielded compressive moduli of 52.41, 51.03, and 55.71 kPa, giving a mean of 53.05 kPa. Compared with the wet-lab measurement of 53.32 kPa, the relative error of the modeled mean was approximately 0.51%, supporting the model’s predictive agreement for this construct.",
+            v: "We applied the modeling method to 2KY-16 to predict the mechanical properties of its hydrogel. Wet-lab experiments were conducted in parallel to validate the predictions. The three modeled replicates yielded compressive moduli of 52.41, 51.03, and 55.71 kPa, giving a mean of 53.05 kPa. Compared with the wet-lab measurement of 53.32 kPa, the relative error of the modeled mean was approximately 0.51%, supporting the model’s predictive agreement for this construct.",
           },
         ],
       },

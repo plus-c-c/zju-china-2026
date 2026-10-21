@@ -51,7 +51,7 @@ export function Protocol() {
             </details>
           ))}
         </nav>
-        <section className="protocol-document" aria-labelledby="protocol-title">
+        <section className="protocol-document" aria-labeledby="protocol-title">
           <div
             id="protocol-title"
             role="heading"

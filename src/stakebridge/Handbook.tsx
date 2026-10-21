@@ -305,7 +305,7 @@ const chapters: Chapter[] = [
             <h3>Check the contact</h3>
             <p>
               Public contact channels link to official sources. A general
-              institutional address is labelled separately from an individual’s
+              institutional address is labeled separately from an individual’s
               direct contact. An “open to interviews” status needs its own
               permission evidence.
             </p>

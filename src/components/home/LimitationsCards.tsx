@@ -161,7 +161,7 @@ const blueCards: CardCopy[] = [
     title: (
       <span className="limitations-selp-title">
         <strong>SELP</strong>
-        <small>(Silk-elastin-like protein)</small>
+        <small>(silk-elastin-like protein)</small>
       </span>
     ),
     body: (

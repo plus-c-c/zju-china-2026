@@ -33,7 +33,7 @@ export function Design() {
             with tunable properties and functions combined on demand. We
             designed <strong>the NEST platform</strong>, built on a{" "}
             <strong>
-              programmable silk–elastin-like polypeptide (SELP) scaffold
+              programmable silk-elastin-like protein (SELP) scaffold
             </strong>{" "}
             and <strong>standardized peptide interfaces</strong> that assemble{" "}
             <strong>functional modules</strong>. Unlike conventional designs
@@ -84,7 +84,7 @@ export function Design() {
                   </strong>{" "}
                   comprises two core elements: a{" "}
                   <strong>
-                    programmable silk–elastin-like polypeptide (SELP) scaffold
+                    programmable silk-elastin-like protein (SELP) scaffold
                   </strong>{" "}
                   and <strong>standardized peptide ligation interfaces</strong>{" "}
                   for assembling functional units.
@@ -325,7 +325,7 @@ export function Design() {
                     SELPs. Schematic of the elastin-like, adhesion, and
                     silk-like domains; the insertion positions of functional
                     residues and of the SnoopTag2 peptide tag; and the naming of
-                    representative constructs (2Y-5, 2KY-5, 2KY-20). The inset
+                    representative constructs (2Y-5, a lysine-free control scaffold; 2KY-5; 2KY-20). The inset
                     table lists the ζ potential, elastic modulus (E), and
                     gelation time (GEL) of each construct. K and Y denote lysine
                     and tyrosine; RGD is the cell-adhesion motif; m is the
@@ -657,9 +657,10 @@ export function Design() {
                 <p>
                   Building on the first-generation system, we performed directed
                   evolution and rational design to obtain the{" "}
-                  <strong>SnoopLigase-ZJU system</strong>, whose ligation rate
-                  is more than three orders of magnitude higher than that of the
-                  first generation; coupling is completed within minutes at room
+                  <strong>SnoopLigase2-ZJU system</strong>, an engineered variant of
+                  SnoopLigase2 with improved stability and turnover, whose
+                  ligation rate is more than three orders of magnitude higher
+                  than that of the first generation; coupling is completed within minutes at room
                   temperature in standard PBS (pH 7.4), and activity is retained
                   at 4–45 °C, pH 4–10, and up to 1 M NaCl. This allows interface
                   assembly to be embedded directly in the main process flow of
@@ -734,7 +735,7 @@ export function Design() {
                       </a>
                       ]
                     </sup>
-                    , is introduced in addition to the SnoopLigase-ZJU system,
+                    , is introduced in addition to the SnoopLigase2-ZJU system,
                     upgrading the interface layer from a single interface to an
                     extensible interface standard. Because the two systems are
                     mutually orthogonal, replacing some scaffold interfaces with
@@ -979,7 +980,7 @@ export function Design() {
                   <strong>the TVNFKLY end binds Fe₃O₄ particles</strong>, and
                   the{" "}
                   <strong>
-                    dogtag end forms a covalent isopeptide bond with SnoopTag2
+                    DogTag end forms a covalent isopeptide bond with SnoopTag2
                     on SELP{" "}
                   </strong>
                   via the SnoopLigase system of this project. A flexible linker
@@ -1282,8 +1283,8 @@ export function Design() {
                   <FigureCaption className="figure-caption">
                     Figure 3.3.3 | Design of the GAG Retention Module (CPC/Link-N)
                     attached to the SELP scaffold. Assembly of a
-                    dogtag–CPC–linker–Link-N fusion protein onto SELP through
-                    the standardized SnoopTag2/dogtag interface. CPC focuses on
+                    DogTag–CPC–linker–Link-N fusion protein onto SELP through
+                    the standardized SnoopTag2/DogTag interface. CPC focuses on
                     interaction with sulfated GAG; Link-N supports HA-related
                     matrix retention and matrix synthesis.
                   </FigureCaption>
@@ -1391,16 +1392,16 @@ export function Design() {
                   must balance local retention with subsequent release. We
                   therefore designed an engineered short peptide that contains a
                   cysteine (Cys) coupling site, an MMP-responsive sequence, and
-                  a dogtag, integrating liposome attachment, enzyme-sensitive
+                  a DogTag, integrating liposome attachment, enzyme-sensitive
                   cleavage, and scaffold anchoring in one molecule. From the N
                   to the C terminus it reads Cys–GGGGS–responsive
-                  segment–GGGGS–dogtag, with the two GGGGS segments serving as
+                  segment–GGGGS–DogTag, with the two GGGGS segments serving as
                   flexible spacers (Figure 3.4.2).
                 </p>
                 <p>
                   On the scaffold side, we use the SnoopLigase-mediated ligation
                   system. The enzyme catalyzes covalent isopeptide bond
-                  formation between dogtag and SnoopTag2, providing a molecular
+                  formation between DogTag and SnoopTag2, providing a molecular
                   tool for modular assembly of protein components
                   <sup>
                     [
@@ -1421,7 +1422,7 @@ export function Design() {
                     </a>
                     ]
                   </sup>
-                  . In this design, dogtag on the linker peptide pairs with
+                  . In this design, DogTag on the linker peptide pairs with
                   SnoopTag2 on SELP, so that the carrier can be attached to the
                   hydrogel network through a preset interface.
                 </p>
@@ -1501,7 +1502,7 @@ export function Design() {
                     cleavage at ENLYFQ↓C, the target peptide is expected to
                     retain the N-terminal Cys. (B) The experimental peptide and
                     the scrambled control both retain Cys, the GGGGS spacers,
-                    and dogtag; the variable regions are RRGPLGLSLGKR and
+                    and DogTag; the variable regions are RRGPLGLSLGKR and
                     RKGLSLGLPGRR, which have identical length and amino acid
                     composition and differ only in residue order.
                   </FigureCaption>
@@ -1562,7 +1563,7 @@ export function Design() {
                   mitochondria to form a composite for mitochondrial protection
                   and cellular delivery. After attachment of the responsive
                   peptide, the carrier is anchored to the SELP network through
-                  the dogtag–SnoopTag2 interface, so that the hydrogel provides
+                  the DogTag–SnoopTag2 interface, so that the hydrogel provides
                   structural support and also serves as a local loading platform
                   for the mitochondrial carrier (Figure 3.4.3A). After MMP-13
                   cleaves the responsive region, the liposome-side and
@@ -1583,7 +1584,7 @@ export function Design() {
                     DSPE-PEG-Mal are coupled through the maleimide group to the
                     N-terminal Cys of the responsive peptide (thiol–maleimide
                     coupling) and then linked to the SELP network through the
-                    dogtag/SnoopTag2 interface. (B) After MMP-13 cleaves the
+                    DogTag/SnoopTag2 interface. (B) After MMP-13 cleaves the
                     responsive region, the liposome-side and scaffold-side
                     linker fragments separate, and the carrier is expected to be
                     uncoupled from the hydrogel network.

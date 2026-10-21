@@ -165,7 +165,7 @@ function DesktopHome() {
     },
     { name: "Return to NEST", content: <BirdReturnsToNest direction={direction} /> },
     {
-      name: "SELP and SnoopLigase-ZJU",
+      name: "SELP and SnoopLigase2-ZJU",
       content: <SelpAndSnoopLigaseScene />,
     },
     {

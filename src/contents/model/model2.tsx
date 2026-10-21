@@ -805,7 +805,7 @@ const SNOOP_STEPS: ProteinStep[] = [
     ),
     caption: (
       <p>
-        <em>{"Figure 8 | The overview of SnoopLigase2-ZJU."}</em>
+        <em>{"Figure 8 | Overview of SnoopLigase2-ZJU, the engineered variant of SnoopLigase2."}</em>
       </p>
     ),
     body: (

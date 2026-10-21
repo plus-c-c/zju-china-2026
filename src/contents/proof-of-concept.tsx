@@ -165,7 +165,7 @@ export function ProofOfConcept() {
           <p>
             Faced with different types of cartilage damage, we hope to avoid
             designing a new hydrogel from scratch for every case. NEST retains a
-            common silk–elastin-like polypeptide (SELP) scaffold, tunes material
+            common silk-elastin-like protein (SELP) scaffold, tunes material
             properties through sequence design, and uses a standardized ligation
             interface to configure different functions, so that the material can
             be tailored to specific repair needs.
@@ -387,7 +387,7 @@ export function ProofOfConcept() {
                       Gene Expression.
                     </strong>{" "}
                     (A-E) ACAN, COL1, COL2, COLX, and SOX9; expression was
-                    normalized to 2Y-5 = 1. Measurements were conducted by our
+                    normalized to 2Y-5 (a lysine-free control scaffold) = 1. Measurements were conducted by our
                     collaborators. ns, not significant; <code>*</code>, p &lt;
                     0.05; <code>**</code>, p &lt; 0.01; <code>***</code>, p &lt;
                     0.001.
@@ -930,7 +930,7 @@ export function ProofOfConcept() {
             </p>
             <p>
               The functional-peptide assays characterized concentration- and
-              time-dependent cellular responses. The Mito groups showed higher
+              time-dependent cellular responses. The Mito groups (the responsive peptide from the Mitochondrial Therapeutic Module) showed higher
               relative cell viability at 48 and 72 h than at 24 h. Together,
               these measurements establish an experimental basis for selecting
               component concentrations and treatment durations when configuring

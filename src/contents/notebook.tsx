@@ -65,7 +65,7 @@ export function Notebook() {
         {notebooks.map((notebook) => (
           <section
             key={notebook.id}
-            aria-labelledby={notebook.id}
+            aria-labeledby={notebook.id}
             className="mt-5"
           >
             <h2 id={notebook.id} className="mb-4">

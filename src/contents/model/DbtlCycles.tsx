@@ -7,8 +7,8 @@ export function DbtlCycles() {
       <p>
         Our goal is to develop a model that links protein structure,
         crosslinking networks, and gel mechanical properties. We will first
-        calibrate the model against experimental data for 2KY5, then apply the
-        fixed methodology to 2KY10.
+        calibrate the model against experimental data for 2KY-5, then apply the
+        fixed methodology to 2KY-10.
       </p>
       <h3 className="mt-5 mb-3">
         Cycle 1: Establishing a Reliable Protein Model
@@ -19,7 +19,7 @@ export function DbtlCycles() {
       </p>
       <p>
         <strong>Build:</strong> Audit the FAMD trajectories and exchange
-        records, select representative 2KY5 structures from the later stages of
+        records, select representative 2KY-5 structures from the later stages of
         sampling, and use Martini 3 to construct a coarse-grained system
         containing 32 protein chains.
       </p>
@@ -96,23 +96,23 @@ export function DbtlCycles() {
       <p>
         <strong>Design:</strong> Assess the stability of the effective stiffness
         before calibration against experimental values, and evaluate whether the
-        same methodology can be applied to 2KY10.
+        same methodology can be applied to 2KY-10.
       </p>
       <p>
         <strong>Build:</strong> Develop an effective network model that allows
         protein-chain translation and rotation, as well as transverse
-        relaxation. Relax the fully connected 2KY5 system without guiding
-        forces, and analyze the available 2KY10 structures using the same
+        relaxation. Relax the fully connected 2KY-5 system without guiding
+        forces, and analyze the available 2KY-10 structures using the same
         methodology.
       </p>
       <p>
-        <strong>Test:</strong> In the initial 400 ps assessment of 2KY5, the
+        <strong>Test:</strong> In the initial 400 ps assessment of 2KY-5, the
         mean stiffness changes between the earlier and later time windows are
         approximately −2.9% and −21.9% at contact cutoffs of 0.6 nm and 0.7 nm,
         respectively, failing the stability criterion that must be satisfied at
         both cutoffs. Interfacial analysis reveals that connections can persist
         while individual contact points within the interfaces continually
-        change. Current comparisons with 2KY10 are further limited by
+        change. Current comparisons with 2KY-10 are further limited by
         differences in concentration, crosslink count, and sampling procedures.
       </p>
       <p>
@@ -121,7 +121,7 @@ export function DbtlCycles() {
         interfacial changes without removing sensitive interfaces or tuning
         parameters to force agreement with experiments. Once the stability
         criteria are met, we will calibrate a single global stiffness scale and
-        then apply the fixed methodology to 2KY10 under matched conditions.
+        then apply the fixed methodology to 2KY-10 under matched conditions.
       </p>
     </>
   );

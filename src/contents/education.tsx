@@ -166,7 +166,7 @@ export function Education() {
             </div>
           </div>
 
-          <h2>Education covering all age groups</h2>
+          <h2>Education Covering All Age Groups</h2>
           <p>
             Our public science popularization activities follow{" "}
             <strong>
@@ -190,7 +190,7 @@ export function Education() {
           </p>
 
           <h3>
-            1 For children aged 3&ndash;6: Biological Game Interaction in
+            1 For Children Aged 3&ndash;6: Biological Game Interaction in
             Qigudeng Community
           </h3>
           <p>
@@ -254,7 +254,7 @@ export function Education() {
           </p>
 
           <h3>
-            2 For children aged 6&ndash;12: Public Welfare Science
+            2 For Children Aged 6&ndash;12: Public Welfare Science
             Popularization of Wenlan Academy
           </h3>
           <p>
@@ -299,8 +299,8 @@ export function Education() {
           </p>
 
           <h3>
-            3 For high school students: Synthetic biology promotion and subject
-            selection sharing
+            3 For High School Students: Synthetic Biology Promotion and Subject
+            Selection Sharing
           </h3>
           <p>
             We provided 140 high school students with systematic presentations on
@@ -405,7 +405,7 @@ export function Education() {
 
           <h3>5 For the Public</h3>
           <p>
-            The ZJU-CHINA team has successfully settled in the Future Learning
+            The ZJU-China team has successfully settled in the Future Learning
             Center of Zhejiang University, and participated in the reception of
             over 300 person-times of domestic and foreign experts from all walks
             of life, including the World Digital Education Conference, the
@@ -631,7 +631,7 @@ export function Education() {
             system performs that function?
           </p>
 
-          <h2>Summary and Reflection:</h2>
+          <h2>Summary and Reflection</h2>
           <h3>Summary</h3>
           <div className="education-video-frame">
             <iframe

@@ -24,7 +24,7 @@ export function SafetyAndSecurity() {
           </h3>
           <p>
             All recombinant protein components of NEST—including the
-            silk–elastin-like protein (SELP) scaffold, the SnoopLigase ligation
+            silk-elastin-like protein (SELP) scaffold, the SnoopLigase ligation
             system, and the functional peptides used in each module—are produced
             using <em>Escherichia coli</em> DH5α for cloning and BL21(DE3) for
             protein expression. These laboratory strains are generally
@@ -37,7 +37,7 @@ export function SafetyAndSecurity() {
             SELP Scaffold
           </h3>
           <p>
-            The NEST scaffold is a silk–elastin-like protein (SELP) composed of
+            The NEST scaffold is a silk-elastin-like protein (SELP) composed of
             natural amino acids. Its sequence can be engineered to incorporate
             structural and functional features while allowing its material
             properties to be adjusted through the number and arrangement of
@@ -357,13 +357,13 @@ export function SafetyAndSecurity() {
             components under the tested conditions.
           </p>
           <p>
-            <strong>TVN, CPC, and LinkN peptides.</strong> The functional
+            <strong>TVN, CPC, and Link-N peptides.</strong> The functional
             peptides exhibited different viability profiles across
             concentrations and exposure durations. TVN and CPC generally
             maintained relative cell viability within approximately 75%–105% at
-            concentrations of 2.5–10 μM (Figure 1C,D). LinkN yielded values of
+            concentrations of 2.5–10 μM (Figure 1C,D). Link-N yielded values of
             approximately 70%–100%, with lower readings observed at 5 μM after
-            24 h and at 10 μM after 72 h (Figure 1E). Combined CPC and LinkN
+            24 h and at 10 μM after 72 h (Figure 1E). Combined CPC and Link-N
             treatment produced values of approximately 70%–80% at 24 h, 85%–95%
             at 48 h, and around 80% at 72 h (Figure 1F). These observations
             highlight the importance of considering both concentration and
@@ -412,8 +412,8 @@ export function SafetyAndSecurity() {
             <FigureCaption className="figure-caption mt-2">
               <strong>Figure 1 | CCK-8 cytocompatibility assessment.</strong>{" "}
               (A) Hydrogel-related preparations; (B) magnetic nanoparticles
-              (MNP) at 0.0864&ndash;0.648 mM; (C) TVN; (D) CPC; (E) LinkN; (F)
-              combined CPC and LinkN; (G) Mito peptide at 5 and 10 &mu;M; (H)
+              (MNP) at 0.0864&ndash;0.648 mM; (C) TVN; (D) CPC; (E) Link-N; (F)
+              combined CPC and Link-N; (G) Mito peptide at 5 and 10 &mu;M; (H)
               the assay plate, with control, blank, and peptide-treated wells
               outlined in yellow, blue, and red, respectively. Relative cell
               viability was measured at 24, 48, and 72 h.
@@ -463,7 +463,7 @@ export function SafetyAndSecurity() {
               />
             </div>
             <div className="col-md-6">
-              <h4 id="privacy-questionnaires">Questionnaires:</h4>
+              <h4 id="privacy-questionnaires">Questionnaires</h4>
               <p className="mb-0">
                 At the beginning of all online and offline questionnaires, we
                 clearly informed participants that they had the option to respond
@@ -484,7 +484,7 @@ export function SafetyAndSecurity() {
               />
             </div>
             <div className="col-md-6">
-              <h4 id="privacy-interviews">Interviews:</h4>
+              <h4 id="privacy-interviews">Interviews</h4>
               <p className="mb-0">
                 Before commencing any individual or group interviews, we first
                 explained in detail the purpose of the interview, how the

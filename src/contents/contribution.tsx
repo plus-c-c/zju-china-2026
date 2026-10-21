@@ -38,8 +38,6 @@ export function Contribution() {
   return (
     <div className="row mt-4">
       <div className="col">
-        <h2 data-toc="exclude">Contribution</h2>
-        <hr />
         <p>
           NEST provides biological parts and methods for building protein
           hydrogels with different scaffold lengths and interchangeable
@@ -170,9 +168,9 @@ export function Contribution() {
             </tbody>
           </table>
         </div>
-        <h3 id="contribution-parts" className="mt-5 mb-3" data-toc-depth="1">
+        <h2 id="contribution-parts" className="mt-5 mb-3" data-toc-depth="1">
           1 Parts for Modular Protein Hydrogel Design
-        </h3>
+        </h2>
         <p>
           We contribute{" "}
           <strong>
@@ -190,8 +188,8 @@ export function Contribution() {
           determines the ligation sites. The SnoopLigase2 interface lets teams
           attach new DogTag-bearing sequences to compatible scaffold constructs.
           In our reporter assay, a ligation-product band was visible at{" "}
-          <strong>10 minutes</strong>, and the SUMO-DogTag substrate band had
-          disappeared by <strong>60 minutes</strong>. Teams can reproduce this
+          <strong>10 min</strong>, and the SUMO-DogTag substrate band had
+          disappeared by <strong>60 min</strong>. Teams can reproduce this
           reaction as a reference when testing new modules.
         </p>
         <figure className="figure d-block my-4 text-center">
@@ -318,13 +316,13 @@ export function Contribution() {
             </table>
           </div>
         </details>
-        <h3
+        <h2
           id="contribution-protocols"
           className="mt-5 mb-3"
           data-toc-depth="1"
         >
           2 Protocols for Protein Hydrogel Preparation
-        </h3>
+        </h2>
         <p>
           We share protocols for protein recovery, buffer exchange,
           lyophilization, and blue-light photocrosslinking. We adapted inverse
@@ -378,7 +376,7 @@ export function Contribution() {
             buffer exchange
           </a>
           ,{" "}
-          <a href={PROTOCOL + "protein-lyophilisation-freeze-drying.pdf"}>
+          <a href={PROTOCOL + "protein-lyophilization-freeze-drying.pdf"}>
             lyophilization
           </a>
           ,{" "}
@@ -401,9 +399,9 @@ export function Contribution() {
           protocols alongside the corresponding{" "}
           <Link to="/results#wetlab-scaffold-04">preparation results</Link>.
         </p>
-        <h3 id="contribution-modeling" className="mt-5 mb-3" data-toc-depth="1">
+        <h2 id="contribution-modeling" className="mt-5 mb-3" data-toc-depth="1">
           3 Modeling for Protein Hydrogel Design
-        </h3>
+        </h2>
         <p>
           Our computational workflow takes protein sequences through
           conformational sampling, network construction, and mechanical
@@ -436,13 +434,13 @@ export function Contribution() {
           own measurements, and plan experiments around the resulting design
           comparisons.
         </p>
-        <h3
+        <h2
           id="contribution-software-hardware"
           className="mt-5 mb-3"
           data-toc-depth="1"
         >
           4 Software and Hardware for Material Preparation
-        </h3>
+        </h2>
         <p>
           We share <a href={APP_SOURCE}>Android application source code</a> and{" "}
           <a href={HARDWARE_SOURCE}>
@@ -479,13 +477,13 @@ export function Contribution() {
           <Link to="/hardware">Hardware guide</Link> provide the operating
           workflows, device descriptions, and bills of materials.
         </p>
-        <h3
+        <h2
           id="contribution-human-practices"
           className="mt-5 mb-3"
           data-toc-depth="1"
         >
           5 Human Practices: NEST and SEED
-        </h3>
+        </h2>
         <p>
           We contribute an{" "}
           <Link to="/human-practices#ihp-toolbox-nest">

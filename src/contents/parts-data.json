@@ -492,15 +492,15 @@
       "kind": "composite",
       "order": 1,
       "id": "BBa_26ZPD683",
-      "title": "DogTag-CPC-Link-N GAG retention module",
-      "description": "A recombinant GAG retention module that combines the 20-residue cationic peptide carrier CPC (RRRRAARRRAARRRAARRRR) with the 16-residue Link-N peptide (DHLSDNYTLDHDRAIH) through a GGSG linker. CPC supplies the positively charged GAG-capture domain; Link-N supplies the complementary matrix-associated domain. Together, these motifs are designed to enrich and retain extracellular-matrix components within a modular cartilage-repair scaffold. DogTag supplies the ligation handle for integration with a compatible SnoopTag-bearing scaffold. The complete expression CDS includes a His-tagged leader, a SUMO region, AviTag, a TEV recognition site and a glycine-rich spacer, supporting recombinant production, processing and biochemical evaluation.",
+      "title": "DogTag-CPC-Link-N GAG Retention Module",
+      "description": "A recombinant GAG Retention Module that combines the 20-residue cationic peptide carrier CPC (RRRRAARRRAARRRAARRRR) with the 16-residue Link-N peptide (DHLSDNYTLDHDRAIH) through a GGSG linker. CPC supplies the positively charged GAG-capture domain; Link-N supplies the complementary matrix-associated domain. Together, these motifs are designed to enrich and retain extracellular-matrix components within a modular cartilage-repair scaffold. DogTag supplies the ligation handle for integration with a compatible SnoopTag-bearing scaffold. The complete expression CDS includes a His-tagged leader, a SUMO region, AviTag, a TEV recognition site and a glycine-rich spacer, supporting recombinant production, processing and biochemical evaluation.",
       "components": [
         "BBa_K3716003",
         "BBa_263RONL8",
         "BBa_26N2VUO2",
         "BBa_2622N6K0"
       ],
-      "shortName": "DogTag–CPC–Link-N",
+      "shortName": "DogTag-CPC-Link-N",
       "category": "Matrix retention",
       "color": "matrix",
       "sequence": "ATGGGCAGCAGCCATCATCATCATCATCACAGCAGCGGCCTGGTGCCGCGCGGCAGCCATATGGCTAGCATGACTGGTGGACAGCAAATGGGTCGCGGATCCGAATTCGAGGGAAGTGATTCAGAAGTAAATCAAGAGGCTAAGCCGGAGGTGAAGCCGGAGGTTAAACCAGAGACGCACATCAACCTGAAAGTCTCTGACGGCTCGAGCGAAATCTTCTTCAAGATCAAAAAGACGACCCCGCTCCGTCGCCTGATGGAAGCCTTTGCGAAGCGCCAAGGTAAAGAAATGGATAGCCTGCGTTTTCTTTACGATGGTATTCGTATTCAGGCTGATCAAACTCCGGAGGACCTGGACATGGAAGATAACGACATCATCGAGGCACATCGTGAACAAATTGGTGGTGGCGGCTTGAATGACATCTTCGAGGCGCAGAAAATCGAGTGGCATGAAGAGAACTTGTACTTTCAGGGTGGCGGTGGCGGTAGCGACATCCCGGCTACCTATGAATTCACCGATGGCAAGCACTATATTACCAATGAACCGATTCCGCCTAAACGTCGCAGACGTGCGGCTCGTCGCCGTGCGGCGCGTCGCCGCGCGGCCCGTCGCCGTCGTGGTGGCTCCGGTGACCACCTGAGCGACAACTACACCCTGGATCACGATCGTGCAATTCATTAA",
@@ -548,7 +548,7 @@
           "lane": 0
         }
       ],
-      "summary": "A recombinant GAG retention module that combines the 20-residue cationic peptide carrier CPC (RRRRAARRRAARRRAARRRR) with the 16-residue Link-N peptide (DHLSDNYTLDHDRAIH) through a GGSG linker."
+      "summary": "A recombinant GAG Retention Module that combines the 20-residue cationic peptide carrier CPC (RRRRAARRRAARRRAARRRR) with the 16-residue Link-N peptide (DHLSDNYTLDHDRAIH) through a GGSG linker."
     },
     {
       "kind": "composite",
@@ -629,7 +629,7 @@
       "order": 4,
       "id": "BBa_266WDNPZ",
       "title": "DogTag-Link-N matrix retention module",
-      "description": "A recombinant matrix-retention module containing Link-N (DHLSDNYTLDHDRAIH), the 16-residue N-terminal peptide of cartilage link protein. The module is designed to support extracellular-matrix retention and matrix development in a cartilage-repair scaffold. DogTag supplies a ligation handle for integration with a compatible SnoopTag-bearing scaffold. The complete expression CDS includes a His-tagged leader, a SUMO region, AviTag, a TEV recognition site and a glycine-rich spacer. This construct delivers the Link-N component and the Link-N-only comparator for the combined CPC-Link-N GAG retention module.",
+      "description": "A recombinant matrix-retention module containing Link-N (DHLSDNYTLDHDRAIH), the 16-residue N-terminal peptide of cartilage link protein. The module is designed to support extracellular-matrix retention and matrix development in a cartilage-repair scaffold. DogTag supplies a ligation handle for integration with a compatible SnoopTag-bearing scaffold. The complete expression CDS includes a His-tagged leader, a SUMO region, AviTag, a TEV recognition site and a glycine-rich spacer. This construct delivers the Link-N component and the Link-N-only comparator for the combined CPC-Link-N GAG Retention Module.",
       "components": ["BBa_267Q6XR6", "BBa_261WIYFW"],
       "shortName": "DogTag–Link-N",
       "category": "Matrix retention",

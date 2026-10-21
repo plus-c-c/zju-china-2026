@@ -270,7 +270,7 @@ const references = [
   <>
     Peters AE, Akhtar R, Comerford EJ, Bates KT.{" "}
     <strong>
-      The effect of ageing and osteoarthritis on the mechanical properties of
+      The effect of aging and osteoarthritis on the mechanical properties of
       cartilage and bone in the human knee joint.
     </strong>{" "}
     <em>Scientific Reports.</em> 2018;8:5931.{" "}
@@ -760,7 +760,7 @@ export function Description() {
           </p>
           <div className="description-card-grid description-card-grid--platform">
             <ExpandableCard number="01" title="Tunable Scaffold">
-              We selected <strong>silk–elastin-like polypeptide (SELP)</strong>{" "}
+              We selected <strong>silk-elastin-like protein (SELP)</strong>{" "}
               as the scaffold. Its genetically designable sequence and
               crosslinked network provide a tunable foundation for different
               mechanical requirements, while tissue-interface design supports

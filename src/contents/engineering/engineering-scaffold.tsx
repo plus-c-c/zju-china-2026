@@ -93,7 +93,7 @@ export const scaffoldModule: DbtlModule = {
                   </tr>
                   <tr>
                     <td>
-                      <strong>SELP (silk&ndash;elastin-like protein)</strong>
+                      <strong>SELP (silk-elastin-like protein)</strong>
                     </td>
                     <td>
                       Encoded by a single gene; the silk domain provides

@@ -76,7 +76,7 @@ export function SoftwareIUsage() {
       <p>
         The panel is titled <strong>Sequence &amp; annotation input</strong> and
         contains the following fields: <strong>Protein</strong> (an identifier
-        only, e.g. 2KY10 SELP (339 aa)), <strong>Amino-acid sequence</strong> (a
+        only, e.g. 2KY-10 SELP (339 aa)), <strong>Amino-acid sequence</strong> (a
         multi-line text box showing the residue count in real time), and{" "}
         <strong>PSF topology</strong> (e.g. protein.psf, generated on the remote
         host and required before NAMD starts). Illegal amino-acid codes are

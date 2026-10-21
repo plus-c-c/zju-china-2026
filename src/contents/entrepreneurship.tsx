@@ -52,25 +52,42 @@ type ContentBlock =
 export function ExtendCard({
   title,
   children,
+  headingLevel,
 }: {
   title: ReactNode;
   children: ReactNode;
+  headingLevel?: 3;
 }) {
   const [open, setOpen] = useState(false);
   const contentId = useId();
 
   return (
     <div className={`entre-card${open ? " entre-card--open" : ""}`}>
-      <button
-        type="button"
-        className="entre-card-header"
-        aria-expanded={open}
-        aria-controls={contentId}
-        onClick={() => setOpen((value) => !value)}
-      >
-        <span className="entre-card-title">{title}</span>
-        <span className="entre-card-chevron" aria-hidden="true" />
-      </button>
+      {headingLevel === 3 ? (
+        <h3 className="entre-card-heading">
+          <button
+            type="button"
+            className="entre-card-header"
+            aria-expanded={open}
+            aria-controls={contentId}
+            onClick={() => setOpen((value) => !value)}
+          >
+            <span className="entre-card-title">{title}</span>
+            <span className="entre-card-chevron" aria-hidden="true" />
+          </button>
+        </h3>
+      ) : (
+        <button
+          type="button"
+          className="entre-card-header"
+          aria-expanded={open}
+          aria-controls={contentId}
+          onClick={() => setOpen((value) => !value)}
+        >
+          <span className="entre-card-title">{title}</span>
+          <span className="entre-card-chevron" aria-hidden="true" />
+        </button>
+      )}
       <div className="entre-card-content" id={contentId}>
         <div className="entre-card-content-inner">
           <div className="entre-card-pad">{children}</div>
@@ -118,7 +135,7 @@ const CONTENT: ContentBlock[] = [
   {
     "type": "paragraph",
     "source_index": 32,
-    "text": "At the heart of NEST is a modular hydrogel platform based on silk–elastin-like polypeptides (SELPs). By designing the gene sequence, we can tune mechanical properties, elasticity, tissue interactions, and degradation characteristics. After injection into the defect, visible-light-induced in situ crosslinking allows the material to conform to cartilage defects of different shapes, potentially supporting repair before gradually degrading. Standardized protein-conjugation interfaces allow functional modules to be assembled on demand, enabling one scaffold to address different needs."
+    "text": "At the heart of NEST is a modular hydrogel platform based on silk-elastin-like proteins (SELPs). By designing the gene sequence, we can tune mechanical properties, elasticity, tissue interactions, and degradation characteristics. After injection into the defect, visible-light-induced in situ crosslinking allows the material to conform to cartilage defects of different shapes, potentially supporting repair before gradually degrading. Standardized protein-conjugation interfaces allow functional modules to be assembled on demand, enabling one scaffold to address different needs."
   },
   {
     "type": "paragraph",
@@ -183,7 +200,7 @@ const CONTENT: ContentBlock[] = [
       {
         "type": "table",
         "source_index": 49,
-        "caption": "Table 1. Weighted comparison of cartilage-repair market size, potential, and accessibility across East Asia, Europe, high-income Asia-Pacific, and other regions.",
+        "caption": "Table 1 | Weighted comparison of cartilage-repair market size, potential, and accessibility across East Asia, Europe, high-income Asia-Pacific, and other regions.",
         "rows": [
           [
             "Market region",
@@ -327,7 +344,7 @@ const CONTENT: ContentBlock[] = [
         "files": [
           "001.avif"
         ],
-        "caption": "Figure 1. Projected sizes of NEST's serviceable available market (SAM) and serviceable obtainable market (SOM).",
+        "caption": "Figure 1 | Projected sizes of NEST's serviceable available market (SAM) and serviceable obtainable market (SOM).",
         "special": true
       }
     ]
@@ -352,7 +369,7 @@ const CONTENT: ContentBlock[] = [
       {
         "type": "table",
         "source_index": 70,
-        "caption": "Table 2. Chinese cartilage-repair companies, technology platforms, publicly reported progress, and implications for NEST.",
+        "caption": "Table 2 | Chinese cartilage-repair companies, technology platforms, publicly reported progress, and implications for NEST.",
         "rows": [
           [
             "Organization and product",
@@ -391,7 +408,7 @@ const CONTENT: ContentBlock[] = [
       {
         "type": "table",
         "source_index": 73,
-        "caption": "Table 3. Representative international cartilage-repair products, technological approaches, market status, and competitive positioning.",
+        "caption": "Table 3 | Representative international cartilage-repair products, technological approaches, market status, and competitive positioning.",
         "rows": [
           [
             "Organization and product",
@@ -460,7 +477,7 @@ const CONTENT: ContentBlock[] = [
       "002-2.avif",
       "002-3.avif"
     ],
-    "caption": "Figure 2. Classification, estimation basis, and budget summary for NEST's initial capital investment, annual operating expenses, and annual capital expenditure.",
+    "caption": "Figure 2 | Classification, estimation basis, and budget summary for NEST's initial capital investment, annual operating expenses, and annual capital expenditure.",
     "special": true
   },
   {
@@ -662,7 +679,7 @@ const CONTENT: ContentBlock[] = [
       {
         "type": "paragraph",
         "source_index": 135,
-        "text": "NEST produces SELP using E. coli BL21(DE3) carrying an SELP expression plasmid, with standard LB broth used at laboratory scale. Because the resulting SELP will be formulated into a hydrogel for implantation in humans, we currently favor consistent, traceable culture-media ingredients rather than waste-stream feedstocks. This also aligns with medical-device requirements for supplier qualification and raw-material traceability [10]."
+        "text": "NEST produces SELP using <em>E. coli</em> BL21(DE3) carrying an SELP expression plasmid, with standard LB broth used at laboratory scale. Because the resulting SELP will be formulated into a hydrogel for implantation in humans, we currently favor consistent, traceable culture-media ingredients rather than waste-stream feedstocks. This also aligns with medical-device requirements for supplier qualification and raw-material traceability [10]."
       },
       {
         "type": "paragraph",
@@ -672,7 +689,7 @@ const CONTENT: ContentBlock[] = [
       {
         "type": "paragraph",
         "source_index": 137,
-        "text": "Based on publicly available catalogue prices from suppliers in China, the annual purchasing cost of these three main LB components is approximately CNY 290,700 [12,13]."
+        "text": "Based on publicly available catalogue prices from suppliers in China, the annual purchasing cost of these three main LB components is approximately CNY 290,700 [12, 13]."
       },
       {
         "type": "paragraph",
@@ -683,18 +700,18 @@ const CONTENT: ContentBlock[] = [
         "type": "heading",
         "source_index": 142,
         "level": 4,
-        "id": "direct-labour-cost",
-        "text": "Direct Labour Cost"
+        "id": "direct-labor-cost",
+        "text": "Direct Labor Cost"
       },
       {
         "type": "paragraph",
         "source_index": 143,
-        "text": "The annual direct labour cost of company operations can be expressed as:"
+        "text": "The annual direct labor cost of company operations can be expressed as:"
       },
       {
         "type": "formula",
         "source_index": 144,
-        "text": "Clabour=k​Flabour,k×clabour,k×hoperation,k"
+        "text": "Clabor=k​Flabor,k×clabor,k×hoperation,k"
       },
       {
         "type": "paragraph",
@@ -706,25 +723,25 @@ const CONTENT: ContentBlock[] = [
         "source_index": 146,
         "items": [
           "k: a specific manufacturing operation;",
-          "F_labour,k: labour-hours required per hour of operation k;",
-          "c_labour,k: the fully loaded hourly labour cost for operation k;",
+          "F_labor,k: labor-hours required per hour of operation k;",
+          "c_labor,k: the fully loaded hourly labor cost for operation k;",
           "h_operation,k: annual operating hours for operation k;",
-          "C_labour: annual direct labour cost."
+          "C_labor: annual direct labor cost."
         ]
       },
       {
         "type": "paragraph",
         "source_index": 152,
-        "text": "The following table lists the operations required in our production process and the corresponding labour input per operating hour:"
+        "text": "The following table lists the operations required in our production process and the corresponding labor input per operating hour:"
       },
       {
         "type": "table",
         "source_index": 153,
-        "caption": "Table 4. Estimated labour input coefficients and ranges for each operation in the NEST manufacturing process.",
+        "caption": "Table 4 | Estimated labor input coefficients and ranges for each operation in the NEST manufacturing process.",
         "rows": [
           [
             "Operation / process",
-            "F_labour"
+            "F_labor"
           ],
           [
             "Batch fermentation",
@@ -770,32 +787,32 @@ const CONTENT: ContentBlock[] = [
       {
         "type": "paragraph",
         "source_index": 158,
-        "text": "Recruitment advertisements for biomanufacturing operators in Zhejiang indicate monthly salaries of approximately CNY 6,000–8,000. We conservatively use the upper bound of CNY 8,000 per month. To account for employer contributions to pension, healthcare, maternity, unemployment, work injury insurance, and the housing provident fund, we provisionally add 35% to base wages. Assuming 174 standard working hours per month, the hourly labour cost is:"
+        "text": "Recruitment advertisements for biomanufacturing operators in Zhejiang indicate monthly salaries of approximately CNY 6,000–8,000. We conservatively use the upper bound of CNY 8,000 per month. To account for employer contributions to pension, healthcare, maternity, unemployment, work injury insurance, and the housing provident fund, we provisionally add 35% to base wages. Assuming 174 standard working hours per month, the hourly labor cost is:"
       },
       {
         "type": "formula",
         "source_index": 159,
-        "text": "clabour=8,000×1.35174=62.07 元/小时"
+        "text": "clabor=8,000×1.35174=62.07 元/小时"
       },
       {
         "type": "paragraph",
         "source_index": 160,
-        "text": "For the preliminary calculation, we use the upper bound of labour intensity for each manufacturing operation, giving:"
+        "text": "For the preliminary calculation, we use the upper bound of labor intensity for each manufacturing operation, giving:"
       },
       {
         "type": "formula",
         "source_index": 161,
-        "text": "k​Flabour,k=2.0+0.2+0.1+0.2+1.0=3.5"
+        "text": "k​Flabor,k=2.0+0.2+0.1+0.2+1.0=3.5"
       },
       {
         "type": "paragraph",
         "source_index": 162,
-        "text": "Thus, each hour of plant operation requires an average of 3.5 labour-hours. To establish a conservative preliminary budget, we assume the manufacturing system operates continuously year-round, with 4,380 daytime hours and 4,380 nighttime hours. China has no uniform nationwide night-shift premium, so we assume a 20% premium in this model."
+        "text": "Thus, each hour of plant operation requires an average of 3.5 labor-hours. To establish a conservative preliminary budget, we assume the manufacturing system operates continuously year-round, with 4,380 daytime hours and 4,380 nighttime hours. China has no uniform nationwide night-shift premium, so we assume a 20% premium in this model."
       },
       {
         "type": "paragraph",
         "source_index": 163,
-        "text": "Day-shift labour cost:"
+        "text": "Day-shift labor cost:"
       },
       {
         "type": "formula",
@@ -805,7 +822,7 @@ const CONTENT: ContentBlock[] = [
       {
         "type": "paragraph",
         "source_index": 165,
-        "text": "Night-shift labour cost:"
+        "text": "Night-shift labor cost:"
       },
       {
         "type": "formula",
@@ -815,7 +832,7 @@ const CONTENT: ContentBlock[] = [
       {
         "type": "paragraph",
         "source_index": 167,
-        "text": "Accordingly, the estimated annual production labour cost is:"
+        "text": "Accordingly, the estimated annual production labor cost is:"
       },
       {
         "type": "formula",
@@ -845,7 +862,7 @@ const CONTENT: ContentBlock[] = [
       {
         "type": "paragraph",
         "source_index": 173,
-        "text": "Total annual labour cost for the company is:"
+        "text": "Total annual labor cost for the company is:"
       },
       {
         "type": "formula",
@@ -855,7 +872,7 @@ const CONTENT: ContentBlock[] = [
       {
         "type": "paragraph",
         "source_index": 175,
-        "text": "NEST's current estimate of total annual labour costs is therefore approximately CNY 2.6603 million."
+        "text": "NEST's current estimate of total annual labor costs is therefore approximately CNY 2.6603 million."
       },
       {
         "type": "heading",
@@ -872,7 +889,7 @@ const CONTENT: ContentBlock[] = [
       {
         "type": "paragraph",
         "source_index": 178,
-        "text": "Alternatively, process development and pilot production of functional peptides could be outsourced to a CDMO. Chinese CDMOs offer microbial fermentation services up to around 2,000 L, protein purification, and quality testing, but pricing depends on the strain, yield, and purity requirements [15,16]. In-house development requires existing equipment, specialist personnel, and a quality system. Outsourcing may entail higher service fees but reduce early equipment investment and scale-up risk. Given our current uncertainty over product demand, we favor CDMO collaboration initially. Once manufacturing is stable and demand increases, internal production may become more economical."
+        "text": "Alternatively, process development and pilot production of functional peptides could be outsourced to a CDMO. Chinese CDMOs offer microbial fermentation services up to around 2,000 L, protein purification, and quality testing, but pricing depends on the strain, yield, and purity requirements [15, 16]. In-house development requires existing equipment, specialist personnel, and a quality system. Outsourcing may entail higher service fees but reduce early equipment investment and scale-up risk. Given our current uncertainty over product demand, we favor CDMO collaboration initially. Once manufacturing is stable and demand increases, internal production may become more economical."
       },
       {
         "type": "heading",
@@ -884,7 +901,7 @@ const CONTENT: ContentBlock[] = [
       {
         "type": "paragraph",
         "source_index": 180,
-        "text": "Waste from NEST production mainly comprises approximately 31,360 L of spent culture medium annually, along with cleaning liquids, used filters, disposable tubing, gloves, and other consumables. To accommodate this aqueous waste and production variability, we provisionally estimate 50,000 kg of waste per year. Because engineered E. coli is used, spent medium and contaminated consumables must be deactivated before sorting and disposal by qualified contractors. China's General Requirements for Biosafety in Laboratories also requires reliable disinfection, segregation, and safe disposal [18]. Using an initial treatment price of CNY 7.3 per kg [17], annual waste-disposal costs are estimated at 50,000 kg × CNY 7.3/kg = CNY 365,000."
+        "text": "Waste from NEST production mainly comprises approximately 31,360 L of spent culture medium annually, along with cleaning liquids, used filters, disposable tubing, gloves, and other consumables. To accommodate this aqueous waste and production variability, we provisionally estimate 50,000 kg of waste per year. Because engineered <em>E. coli</em> is used, spent medium and contaminated consumables must be deactivated before sorting and disposal by qualified contractors. China's General Requirements for Biosafety in Laboratories also requires reliable disinfection, segregation, and safe disposal [18]. Using an initial treatment price of CNY 7.3 per kg [17], annual waste-disposal costs are estimated at 50,000 kg × CNY 7.3/kg = CNY 365,000."
       },
       {
         "type": "heading",
@@ -935,7 +952,7 @@ const CONTENT: ContentBlock[] = [
     "files": [
       "003.avif"
     ],
-    "caption": "Figure 3. NEST development roadmap and milestones for R&D, manufacturing, regulatory affairs, fundraising, and commercialization, 2026–2042.",
+    "caption": "Figure 3 | NEST development roadmap and milestones for R&D, manufacturing, regulatory affairs, fundraising, and commercialization, 2026–2042.",
     "special": false
   },
   {
@@ -1138,7 +1155,7 @@ const CONTENT: ContentBlock[] = [
     "files": [
       "004.avif"
     ],
-    "caption": "Figure 4: Ten-year cash flow analysis for NEST. Cash inflows are shown in green, cash outflows in red, net cash flows in light green, and discounted cash flows in black. All monetary values are expressed in USD thousands and converted using a fixed exchange rate of USD 1 = CNY 6.72. The model assumes that NEST gradually expands from 10% to 100% of its SOM during the first five years and maintains 100% SOM from Year 6 to Year 10.",
+    "caption": "Figure 4 | Ten-year cash flow analysis for NEST. Cash inflows are shown in green, cash outflows in red, net cash flows in light green, and discounted cash flows in black. All monetary values are expressed in USD thousands and converted using a fixed exchange rate of USD 1 = CNY 6.72. The model assumes that NEST gradually expands from 10% to 100% of its SOM during the first five years and maintains 100% SOM from Year 6 to Year 10.",
     "special": true
   },
   {
@@ -1161,7 +1178,7 @@ const CONTENT: ContentBlock[] = [
   {
     "type": "table",
     "source_index": 238,
-    "caption": "Table 5. Principal NEST project risks, priorities, mitigation strategies, and contingency plans.",
+    "caption": "Table 5 | Principal NEST project risks, priorities, mitigation strategies, and contingency plans.",
     "rows": [
       [
         "Risk area and priority",
@@ -1201,7 +1218,7 @@ const CONTENT: ContentBlock[] = [
       [
         "R7 Regulatory pathwayCritical",
         "Combining a scaffold, bioactive modules, mitochondria, and delivery devices may create different product classifications and evidence requirements. Regulatory uncertainty could change study scope, timelines, and funding needs.",
-        "Define intended use, composition, and principal mode of action; engage NMPA early on classification and filing. Map evidence requirements by product configuration and revise scope, budget, and timelines before major R&D and capacity investments [12,13]."
+        "Define intended use, composition, and principal mode of action; engage NMPA early on classification and filing. Map evidence requirements by product configuration and revise scope, budget, and timelines before major R&D and capacity investments [12, 13]."
       ],
       [
         "R8 Hardware integration and clinical usabilityHigh",
@@ -1247,7 +1264,7 @@ const CONTENT: ContentBlock[] = [
   {
     "type": "paragraph",
     "source_index": 242,
-    "text": "After extensive investigation, we concluded that raising all the initial capital for a complete manufacturing line at once is unrealistic [20,21]. Innovative companies often raise funding in stages—angel, Pre-A, Series A, and Series B—and we plan to follow this approach:"
+    "text": "After extensive investigation, we concluded that raising all the initial capital for a complete manufacturing line at once is unrealistic [20, 21]. Innovative companies often raise funding in stages—angel, Pre-A, Series A, and Series B—and we plan to follow this approach:"
   },
   {
     "type": "paragraph",
@@ -1314,7 +1331,7 @@ const CONTENT: ContentBlock[] = [
   {
     "type": "paragraph",
     "source_index": 257,
-    "text": "As NEST accumulates experimental and clinical evidence, we plan to approach WuXi AppTec's medical-device testing center for registration-related testing, including biocompatibility, chemical characterization, toxicology, and animal studies [25]. Internationally, we may seek contact with Evonik, which offers bioresorbable medical-device development and manufacturing services, and with Arthrex and Smith+Nephew, which have cartilage-repair portfolios and clinical distribution channels [24,23]."
+    "text": "As NEST accumulates experimental and clinical evidence, we plan to approach WuXi AppTec's medical-device testing center for registration-related testing, including biocompatibility, chemical characterization, toxicology, and animal studies [25]. Internationally, we may seek contact with Evonik, which offers bioresorbable medical-device development and manufacturing services, and with Arthrex and Smith+Nephew, which have cartilage-repair portfolios and clinical distribution channels [23, 24]."
   },
   {
     "type": "paragraph",
@@ -1335,7 +1352,7 @@ const CONTENT: ContentBlock[] = [
     "files": [
       "005.avif"
     ],
-    "caption": "Figure 5. NEST sustainable business model canvas.",
+    "caption": "Figure 5 | NEST sustainable business model canvas.",
     "special": false
   },
   {
@@ -1358,13 +1375,6 @@ const CONTENT: ContentBlock[] = [
     "text": "Minimum Viable Product (MVP)"
   },
   {
-    "type": "heading",
-    "source_index": 266,
-    "level": 3,
-    "id": "minimum-viable-product",
-    "text": "Minimum Viable Product"
-  },
-  {
     "type": "paragraph",
     "source_index": 267,
     "text": "A minimum viable product (MVP) includes only the core functions necessary to satisfy early users and obtain validation feedback. NEST's MVP is the SELP–SnoopTag2 hydrogel: SELP forms the hydrogel, while SnoopTag2 serves as an interface for attaching different functional peptides. At this stage, we first need to demonstrate reliable production, lyophilized storage, hydrogel re-formation, and suitable degradation and biocompatibility."
@@ -1372,7 +1382,7 @@ const CONTENT: ContentBlock[] = [
   {
     "type": "paragraph",
     "source_index": 268,
-    "text": "We have already demonstrated production and storage stability in the laboratory. The product must also undergo classification confirmation, product testing, animal studies, clinical trials, and NMPA registration, while the manufacturer must obtain a medical-device manufacturing license [26,27,28]. We expect to complete these processes within ten years and therefore designate SELP–SnoopTag2 hydrogel as our MVP."
+    "text": "We have already demonstrated production and storage stability in the laboratory. The product must also undergo classification confirmation, product testing, animal studies, clinical trials, and NMPA registration, while the manufacturer must obtain a medical-device manufacturing license [26, 27, 28]. We expect to complete these processes within ten years and therefore designate SELP–SnoopTag2 hydrogel as our MVP."
   },
   {
     "type": "heading",
@@ -1418,7 +1428,7 @@ const CONTENT: ContentBlock[] = [
   {
     "type": "paragraph",
     "source_index": 276,
-    "text": "We intend to introduce additional functional peptides so that NEST can select different repair modules for different cartilage injuries. Some peptides may be produced internally on new production lines; others may be manufactured by CDMOs to reduce initial equipment investment and enable cost comparisons. Since new functional peptides can change the product's mode of action, every new combination will require a separate safety and regulatory assessment. Our engineered SnoopLigase-ZJU enzyme system is also expected to enter the product portfolio and broaden the market."
+    "text": "We intend to introduce additional functional peptides so that NEST can select different repair modules for different cartilage injuries. Some peptides may be produced internally on new production lines; others may be manufactured by CDMOs to reduce initial equipment investment and enable cost comparisons. Since new functional peptides can change the product's mode of action, every new combination will require a separate safety and regulatory assessment. Our engineered SnoopLigase2-ZJU enzyme system is also expected to enter the product portfolio and broaden the market."
   },
   {
     "type": "paragraph",
@@ -1454,7 +1464,7 @@ const CONTENT: ContentBlock[] = [
     "files": [
       "006.svg"
     ],
-    "caption": "Figure 6. Analysis of the NEST team's skills and capability structure.",
+    "caption": "Figure 6 | Analysis of the NEST team's skills and capability structure.",
     "special": false
   },
   {
@@ -1563,7 +1573,7 @@ const CONTENT: ContentBlock[] = [
   {
     "type": "paragraph",
     "source_index": 304,
-    "text": "NEST plans a traceable waste-management process covering segregation, deactivation, documentation, and compliant disposal of engineered microorganisms, fermentation effluents, high-salt purification liquids, and disposable consumables. SELP hydrogels are designed as temporary scaffolds that degrade progressively. Previous research has demonstrated in vivo biodegradability of engineered SELP hydrogels [32,33]. We will use Day 28 as a key assessment point to examine whether NEST degradation rates can be coordinated with cartilage regeneration."
+    "text": "NEST plans a traceable waste-management process covering segregation, deactivation, documentation, and compliant disposal of engineered microorganisms, fermentation effluents, high-salt purification liquids, and disposable consumables. SELP hydrogels are designed as temporary scaffolds that degrade progressively. Previous research has demonstrated in vivo biodegradability of engineered SELP hydrogels [32, 33]. We will use Day 28 as a key assessment point to examine whether NEST degradation rates can be coordinated with cartilage regeneration."
   },
   {
     "type": "heading",
@@ -1610,7 +1620,7 @@ const CONTENT: ContentBlock[] = [
     "files": [
       "007.avif"
     ],
-    "caption": "Figure 7. NEST team participation and Gold Award at Zhejiang University's Dandelion Student Innovation Competition.",
+    "caption": "Figure 7 | NEST team participation and Gold Award at Zhejiang University's Dandelion Student Innovation Competition.",
     "special": false
   },
   {
@@ -1632,7 +1642,7 @@ const CONTENT: ContentBlock[] = [
     "files": [
       "008.avif"
     ],
-    "caption": "Figure 8. NEST team participation and Gold Award in the main track of SynBio Challenges 2026.",
+    "caption": "Figure 8 | NEST team participation and Gold Award in the main track of SynBio Challenges 2026.",
     "special": false
   },
   {
@@ -1647,13 +1657,13 @@ const CONTENT: ContentBlock[] = [
     "files": [
       "009.avif"
     ],
-    "caption": "Figure 9. Gold Award for the NEST team's SnoopLigase-ZJU project in the industry track of SynBio Challenges 2026.",
+    "caption": "Figure 9 | Gold Award for the NEST team's SnoopLigase2-ZJU project in the industry track of SynBio Challenges 2026.",
     "special": false
   },
   {
     "type": "paragraph",
     "source_index": 322,
-    "text": "Our work developing the SnoopLigase-ZJU enzyme system was recognized by the judges and received a Gold Award in the industry track."
+    "text": "Our work developing the SnoopLigase2-ZJU enzyme system was recognized by the judges and received a Gold Award in the industry track."
   },
   {
     "type": "heading",
@@ -1665,167 +1675,167 @@ const CONTENT: ContentBlock[] = [
   {
     "type": "paragraph",
     "source_index": 327,
-    "text": "【1】Suwelack, T.; Stegemann, M.; Ang, F. X. Starting a Start-up. In Creating a customer experience-centric startup; Business guides on the go; Springer, Cham, 2022; pp 33–51. https://doi.org/10.1007/978-3-030-92458-4\\_3."
+    "text": "[1] Suwelack T, Stegemann M, Ang FX. Starting a Start-up. In: Creating a Customer Experience-Centric Startup. Business Guides on the Go. Springer, Cham; 2022. p. 33–51. https://doi.org/10.1007/978-3-030-92458-4\\_3.",
   },
   {
     "type": "paragraph",
     "source_index": 328,
-    "text": "【2】moneychimp. CAGR (Compound Annual Growth Rate) Explained, 2025. http://www.moneychimp.com/features/market_cagr.htm."
+    "text": "[2] moneychimp. CAGR (Compound Annual Growth Rate) Explained, 2025. http://www.moneychimp.com/features/market_cagr.htm."
   },
   {
     "type": "paragraph",
     "source_index": 329,
-    "text": "【3】Maia Research. Global Cartilage Repair/Cartilage Regeneration Industry Trends Analysis Report 2025, Forecast to 2033. MarketResearch.com, 2026. Available from: https://www.marketresearch.com/Maia-Research-v4212/Global-Cartilage-Repair-Regeneration-Trends-44046528/ (Accessed: 19 October 2026)."
+    "text": "[3] Maia Research. Global Cartilage Repair/Cartilage Regeneration Industry Trends Analysis Report 2025, Forecast to 2033. MarketResearch.com, 2026. Available from: https://www.marketresearch.com/Maia-Research-v4212/Global-Cartilage-Repair-Regeneration-Trends-44046528/ (Accessed: 19 October 2026)."
   },
   {
     "type": "paragraph",
     "source_index": 330,
-    "text": "【4】Chang AH, Sharma L, Roemer FW, et al. Magnetic resonance imaging-defined knee osteoarthritis rarely occurs without cartilage damage. Osteoarthritis and Cartilage Open. 2026;8(1):100733. doi:[10.1016/j.ocarto.2025.100733](https://doi.org/10.1016/j.ocarto.2025.100733)."
+    "text": "[4] Chang AH, Sharma L, Roemer FW, et al. Magnetic resonance imaging-defined knee osteoarthritis rarely occurs without cartilage damage. Osteoarthritis and Cartilage Open. 2026;8(1):100733. https://doi.org/10.1016/j.ocarto.2025.100733."
   },
   {
     "type": "paragraph",
     "source_index": 331,
-    "text": "【5】Hjelle K, Solheim E, Strand T, Muri R, Brittberg M. Articular cartilage defects in 1,000 knee arthroscopies. Arthroscopy. 2002;18(7):730–734. doi:[10.1053/jars.2002.32839](https://doi.org/10.1053/jars.2002.32839)."
+    "text": "[5] Hjelle K, Solheim E, Strand T, Muri R, Brittberg M. Articular cartilage defects in 1,000 knee arthroscopies. Arthroscopy. 2002;18(7):730–734. https://doi.org/10.1053/jars.2002.32839."
   },
   {
     "type": "paragraph",
     "source_index": 332,
-    "text": "【6】Li K, Liu J, Wang D, et al. Towards global integration: China’s evolving role in joint replacement and sports medicine. Knee Surgery, Sports Traumatology, Arthroscopy. 2026;34(5):1567–1571. doi:[10.1002/ksa.70217](https://doi.org/10.1002/ksa.70217)."
+    "text": "[6] Li K, Liu J, Wang D, et al. Towards global integration: China’s evolving role in joint replacement and sports medicine. Knee Surgery, Sports Traumatology, Arthroscopy. 2026;34(5):1567–1571. https://doi.org/10.1002/ksa.70217."
   },
   {
     "type": "paragraph",
     "source_index": 333,
-    "text": "【7】Klein, B., McNamara, I., Davis, R., Mittal, A., and Johnson, D. (2021). Techno-Economic Assessment for the Production of Hydrocarbon Fuels via Catalytic Upgrading of Furans. NREL/TP-5100-80652. National Renewable Energy Laboratory. https://doi.org/10.2172/1819430"
+    "text": "[7] Klein B, McNamara I, Davis R, Mittal A, Johnson D. Techno-Economic Assessment for the Production of Hydrocarbon Fuels via Catalytic Upgrading of Furans. NREL/TP-5100-80652. National Renewable Energy Laboratory; 2021. https://doi.org/10.2172/1819430."
   },
   {
     "type": "paragraph",
     "source_index": 334,
-    "text": "【8】Frisbie DD, Cross MW, McIlwraith CW. A comparative study of articular cartilage thickness in the stifle of animal species used in human pre-clinical studies compared to articular cartilage thickness in the human knee. Veterinary and Comparative Orthopaedics and Traumatology. 2006;19(3):142–146. doi:10.1055/s-0038-1632990."
+    "text": "[8] Frisbie DD, Cross MW, McIlwraith CW. A comparative study of articular cartilage thickness in the stifle of animal species used in human pre-clinical studies compared to articular cartilage thickness in the human knee. Veterinary and Comparative Orthopaedics and Traumatology. 2006;19(3):142–146. doi:10.1055/s-0038-1632990."
   },
   {
     "type": "paragraph",
     "source_index": 335,
-    "text": "【9】Beijing Tianxing Medical Co., Ltd. Prospectus (Application Draft) for the Initial Public Offering and Listing on the STAR Market. Shanghai Stock Exchange, 2024, p. 1-1-155. PDF."
+    "text": "[9] Beijing Tianxing Medical Co., Ltd. Prospectus (Application Draft) for the Initial Public Offering and Listing on the STAR Market. Shanghai Stock Exchange, 2024, p. 1-1-155. PDF."
   },
   {
     "type": "paragraph",
     "source_index": 336,
-    "text": "【10】China Food and Drug Administration (CFDA). Guidelines for the Audit of Suppliers by Medical Device Manufacturers. Announcement No. 1 of 2015. Official document."
+    "text": "[10] China Food and Drug Administration (CFDA). Guidelines for the Audit of Suppliers by Medical Device Manufacturers. Announcement No. 1 of 2015. Official document."
   },
   {
     "type": "paragraph",
     "source_index": 337,
-    "text": "【11】Thermo Fisher Scientific. LB Broth and LB Agar: Miller’s Formulation. Product and formulation information."
+    "text": "[11] Thermo Fisher Scientific. LB Broth and LB Agar: Miller’s Formulation. Product and formulation information."
   },
   {
     "type": "paragraph",
     "source_index": 338,
-    "text": "【12】Beyotime Biotechnology. Tryptone and Yeast Extract Product Catalogue. Products ST800-25kg and ST968-25kg. Accessed October 20, 2026. Official catalogue."
+    "text": "[12] Beyotime Biotechnology. Tryptone and Yeast Extract Product Catalogue. Products ST800-25kg and ST968-25kg. Accessed October 20, 2026. Official catalogue."
   },
   {
     "type": "paragraph",
     "source_index": 339,
-    "text": "【13】Aladdin Scientific Corporation. Sodium Chloride, ACS, ≥99%. Product No. S433736, including the 10 kg package. Accessed October 20, 2026. Official product page."
+    "text": "[13] Aladdin Scientific Corporation. Sodium Chloride, ACS, ≥99%. Product No. S433736, including the 10 kg package. Accessed October 20, 2026. Official product page."
   },
   {
     "type": "paragraph",
     "source_index": 340,
-    "text": "【14】Tsinghua University. Microbial Fermentation Platform Procurement Project: Bid Award Announcement. China Government Procurement Network, 2026."
+    "text": "[14] Tsinghua University. Microbial Fermentation Platform Procurement Project: Bid Award Announcement. China Government Procurement Network, 2026."
   },
   {
     "type": "paragraph",
     "source_index": 341,
-    "text": "【15】GenScript Biotech Corporation. Bacterial Fermentation Services: Process Development, Scale-up and Recombinant Protein Production. GenScript, 2026."
+    "text": "[15] GenScript Biotech Corporation. Bacterial Fermentation Services: Process Development, Scale-up and Recombinant Protein Production. GenScript, 2026."
   },
   {
     "type": "paragraph",
     "source_index": 342,
-    "text": "【16】Bovax Biotechnology Co., Ltd. Biologics CDMO Platform for Recombinant Proteins and Vaccines. 2026."
+    "text": "[16] Bovax Biotechnology Co., Ltd. Biologics CDMO Platform for Recombinant Proteins and Vaccines. 2026."
   },
   {
     "type": "paragraph",
     "source_index": 343,
-    "text": "【17】Hangzhou Yuhang Laboratory Hazardous Waste Recycling and Disposal Service Procurement Notice. Laboratory Hazardous Waste Recycling and Disposal Service Project, 2026."
+    "text": "[17] Hangzhou Yuhang Laboratory Hazardous Waste Recycling and Disposal Service Procurement Notice. Laboratory Hazardous Waste Recycling and Disposal Service Project, 2026."
   },
   {
     "type": "paragraph",
     "source_index": 344,
-    "text": "【18】Standardization Administration of China. GB 19489-2008: Laboratories—General Requirements for Biosafety. 2008. Official standard"
+    "text": "[18] Standardization Administration of China. GB 19489-2008: Laboratories—General Requirements for Biosafety. 2008. Official standard"
   },
   {
     "type": "paragraph",
     "source_index": 345,
-    "text": "【19】Harrington, S. E. “Cost of Capital for Pharmaceutical, Biotechnology, and Medical Device Firms.” The Oxford Handbook of the Economics of the Biopharmaceutical Industry. Oxford University Press, 2012, pp. 75–99. https://doi.org/10.1093/oxfordhb/9780199742998.013.0004"
+    "text": "[19] Harrington SE. Cost of Capital for Pharmaceutical, Biotechnology, and Medical Device Firms. In: The Oxford Handbook of the Economics of the Biopharmaceutical Industry. Oxford University Press; 2012. p. 75–99. https://doi.org/10.1093/oxfordhb/9780199742998.013.0004."
   },
   {
     "type": "paragraph",
     "source_index": 346,
-    "text": "【20】Sahlman, W. A. “The Structure and Governance of Venture-Capital Organizations.” Journal of Financial Economics, vol. 27, no. 2, 1990, pp. 473–521. https://doi.org/10.1016/0304-405X(90)90065-8"
+    "text": "[20] Sahlman WA. The Structure and Governance of Venture-Capital Organizations. Journal of Financial Economics. 1990;27(2):473–521. https://doi.org/10.1016/0304-405X(90)90065-8."
   },
   {
     "type": "paragraph",
     "source_index": 347,
-    "text": "【21】Gompers, P. A. “Optimal Investment, Monitoring, and the Staging of Venture Capital.” The Journal of Finance, vol. 50, no. 5, 1995, pp. 1461–1489. https://doi.org/10.1111/j.1540-6261.1995.tb05185.x"
+    "text": "[21] Gompers PA. Optimal Investment, Monitoring, and the Staging of Venture Capital. The Journal of Finance. 1995;50(5):1461–1489. https://doi.org/10.1111/j.1540-6261.1995.tb05185.x."
   },
   {
     "type": "paragraph",
     "source_index": 348,
-    "text": "【22】Lingel Medical Technology. Commissioned R&D and Manufacturing Services. Official website."
+    "text": "[22] Lingel Medical Technology. Commissioned R&D and Manufacturing Services. Official website."
   },
   {
     "type": "paragraph",
     "source_index": 349,
-    "text": "【23】Arthrex. Cartilage Repair Portfolio. Official website; Smith+Nephew. Sports Medicine Products. Official website."
+    "text": "[23] Arthrex. Cartilage Repair Portfolio. Official website; Smith+Nephew. Sports Medicine Products. Official website."
   },
   {
     "type": "paragraph",
     "source_index": 350,
-    "text": "【24】Evonik. CMO Services for Bioresorbable Medical Devices. Official website."
+    "text": "[24] Evonik. CMO Services for Bioresorbable Medical Devices. Official website."
   },
   {
     "type": "paragraph",
     "source_index": 351,
-    "text": "【25】WuXi AppTec. Medical Device Testing Center. Official website."
+    "text": "[25] WuXi AppTec. Medical Device Testing Center. Official website."
   },
   {
     "type": "paragraph",
     "source_index": 352,
-    "text": "【26】State Administration for Market Regulation. Provisions for Medical Device Registration and Filing (Order No. 47). 2021."
+    "text": "[26] State Administration for Market Regulation. Provisions for Medical Device Registration and Filing (Order No. 47). 2021."
   },
   {
     "type": "paragraph",
     "source_index": 353,
-    "text": "【27】National Medical Products Administration and National Health Commission. Good Clinical Practice for Medical Device Trials. 2022."
+    "text": "[27] National Medical Products Administration and National Health Commission. Good Clinical Practice for Medical Device Trials. 2022."
   },
   {
     "type": "paragraph",
     "source_index": 354,
-    "text": "【28】State Administration for Market Regulation. Provisions for Medical Device Manufacturing (Order No. 53). 2022."
+    "text": "[28] State Administration for Market Regulation. Provisions for Medical Device Manufacturing (Order No. 53). 2022."
   },
   {
     "type": "paragraph",
     "source_index": 355,
-    "text": "【29】China National Intellectual Property Administration. Patent Law of the People’s Republic of China. 2020."
+    "text": "[29] China National Intellectual Property Administration. Patent Law of the People’s Republic of China. 2020."
   },
   {
     "type": "paragraph",
     "source_index": 356,
-    "text": "【30】World Health Organization. Osteoarthritis. 2023. WHO"
+    "text": "[30] World Health Organization. Osteoarthritis. 2023. WHO"
   },
   {
     "type": "paragraph",
     "source_index": 357,
-    "text": "【31】Spiller, K. L., Maher, S. A., and Lowman, A. M. “Hydrogels for the Repair of Articular Cartilage Defects.” Tissue Engineering Part B: Reviews, vol. 17, no. 4, 2011, pp. 281–299. https://doi.org/10.1089/ten.teb.2011.0077"
+    "text": "[31] Spiller KL, Maher SA, Lowman AM. Hydrogels for the Repair of Articular Cartilage Defects. Tissue Engineering Part B: Reviews. 2011;17(4):281–299. https://doi.org/10.1089/ten.teb.2011.0077."
   },
   {
     "type": "paragraph",
     "source_index": 358,
-    "text": "【32】Liang, R., Li, R., Mo, W., Zhang, X., Ye, J., Xie, C., Li, W., Peng, Z., Gu, Y., Huang, Y., Zhang, S., Wang, X., & Ouyang, H. (2024). Engineering biomimetic silk fibroin hydrogel scaffolds with “organic-inorganic assembly” strategy for rapid bone regeneration. Bioactive Materials, 40, 541–556. https://doi.org/10.1016/j.bioactmat.2024.06.024"
+    "text": "[32] Liang R, Li R, Mo W, Zhang X, Ye J, Xie C, Li W, Peng Z, Gu Y, Huang Y, Zhang S, Wang X, Ouyang H. Engineering biomimetic silk fibroin hydrogel scaffolds with “organic-inorganic assembly” strategy for rapid bone regeneration. Bioactive Materials. 2024;40:541–556. https://doi.org/10.1016/j.bioactmat.2024.06.024."
   },
   {
     "type": "paragraph",
     "source_index": 359,
-    "text": "【33】Nie, K., Fan, Z., Sun, W., Wu, B., Zhou, S., Zhao, H., Ou, J., Ji, T., Tian, J., Wei, W., Ouyang, H., Hay, D. C., & Huang, W. (2026). Ultrafast crosslinking, strongly adhesive de novo protein hydrogels promote cartilage regeneration. Bioactive Materials, 56, 368–385. https://doi.org/10.1016/j.bioactmat.2025.10.009"
+    "text": "[33] Nie K, Fan Z, Sun W, Wu B, Zhou S, Zhao H, Ou J, Ji T, Tian J, Wei W, Ouyang H, Hay DC, Huang W. Ultrafast crosslinking, strongly adhesive de novo protein hydrogels promote cartilage regeneration. Bioactive Materials. 2026;56:368–385. https://doi.org/10.1016/j.bioactmat.2025.10.009."
   }
 ];
 
@@ -1920,7 +1930,11 @@ function renderBlock(block: ContentBlock, key: string): ReactNode {
       );
     case "card":
       return (
-        <ExtendCard title={block.title} key={key}>
+        <ExtendCard
+          title={block.title}
+          key={key}
+          headingLevel={/^[123] (Initial|Annual)/.test(block.title) ? 3 : undefined}
+        >
           {block.blocks.map((child, index) =>
             renderBlock(child, `${key}-${index}`),
           )}

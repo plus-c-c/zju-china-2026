@@ -98,10 +98,10 @@ function ValidationHighlight() {
   return (
     <section
       className="m1-validation"
-      aria-label="Independent validation with 2KY16"
+      aria-label="Independent validation with 2KY-16"
     >
       <h4 className="m1-validation__heading">
-        2KY16: independent dry-lab prediction validated by wet-lab data
+        2KY-16: Independent Dry-Lab Prediction Validated by Wet-Lab Data
       </h4>
       <dl className="m1-validation__metrics">
         <div>
@@ -124,7 +124,7 @@ function ValidationHighlight() {
       </dl>
       <p className="m1-validation__note">
         <strong>
-          Independent dry-lab modeling of 2KY16 matched the wet-lab result
+          Independent dry-lab modeling of 2KY-16 matched the wet-lab result
         </strong>
         , with the predicted mean differing by only{" "}
         <strong>0.51% (within 1%).</strong>
@@ -198,7 +198,7 @@ function Blocks({
               <div className="ratio ratio-16x9">
                 <iframe
                   src={block.src}
-                  title={block.alt ?? "2KY5 100 ns FAMD"}
+                  title={block.alt ?? "2KY-5 100 ns FAMD"}
                   allow="fullscreen"
                   allowFullScreen
                   sandbox="allow-same-origin allow-scripts allow-popups allow-forms"

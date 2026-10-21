@@ -253,7 +253,7 @@ export const ligationModule: DbtlModule = {
         Build: (
           <>
             <p>
-              The triple-mutant variant (SnoopLigase-ZJU) carrying A771P / E785P
+              The triple-mutant variant (SnoopLigase2-ZJU) carrying A771P / E785P
               / E827Q was constructed on the SnoopLigase2 expression framework,
               expressed and purified under the optimized conditions described in
               Section 2.2, and compared in terms of ligation kinetics using
@@ -264,7 +264,7 @@ export const ligationModule: DbtlModule = {
         Test: (
           <>
             <p>
-              The engineered SnoopLigase-ZJU showed a more than
+              The engineered SnoopLigase2-ZJU showed a more than
               three-order-of-magnitude increase in ligation rate over the
               original version, was able to complete conjugation in conventional
               PBS (pH 7.4) at room temperature within minutes, and retained
