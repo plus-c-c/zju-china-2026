@@ -34,9 +34,9 @@ export const members: Member[] = [
   {
     id: "rongqing-zhang",
     name: "Rongqing Zhang",
-    role: "Wet Lab · Mitochondrial Response & Delivery",
+    role: "Wet Lab · Mitochondrial Therapeutic Module",
     group: "students",
-    bio: "I’m Rongqing Zhang, currently a sophomore majoring in Basic Medicine (Strong Foundation Plan). I’m a member of the wet lab team, mainly working on the mitochondrial response and delivery section of the project. The road wasn’t always easy, but every step taught me something new about biology. Being part of the iGEM project has been an unforgettable and inspiring experience for me.",
+    bio: "I’m Rongqing Zhang, currently a sophomore majoring in Basic Medicine (Strong Foundation Plan). I’m a member of the wet lab team, mainly working on the Mitochondrial Therapeutic Module. The road wasn’t always easy, but every step taught me something new about biology. Being part of the iGEM project has been an unforgettable and inspiring experience for me.",
     imageUrl:
       "https://static.igem.wiki/teams/6102/wiki/images/member/zhangrongqing.avif",
     imagePosition: "98% 50%",
@@ -94,9 +94,9 @@ export const members: Member[] = [
   {
     id: "yishuo-zhu",
     name: "Yishuo Zhu",
-    role: "Wet Lab · Mitochondrial Delivery",
+    role: "Wet Lab · Mitochondrial Therapeutic Module",
     group: "students",
-    bio: "Hi, I’m Yishuo Zhu, a Pharmacy student at Zhejiang University! As a member of NEST’s wet lab team, I work on the mitochondrial delivery part. I’m passionate about biomaterials and drug delivery, and I love seeing ideas take shape through experiments. For me, iGEM is also about sharing questions, working through setbacks, and celebrating small discoveries with my teammates. I’m grateful to be part of such a supportive team and excited to explore how synthetic biology can contribute to better healthcare!",
+    bio: "Hi, I’m Yishuo Zhu, a Pharmacy student at Zhejiang University! As a member of NEST’s wet lab team, I work on the Mitochondrial Therapeutic Module. I’m passionate about biomaterials and drug delivery, and I love seeing ideas take shape through experiments. For me, iGEM is also about sharing questions, working through setbacks, and celebrating small discoveries with my teammates. I’m grateful to be part of such a supportive team and excited to explore how synthetic biology can contribute to better healthcare!",
     imageUrl:
       "https://static.igem.wiki/teams/6102/wiki/images/member/zhuyishuo.avif",
     imagePosition: "95% 50%",
@@ -104,7 +104,7 @@ export const members: Member[] = [
   {
     id: "wenxin-zhang",
     name: "Wenxin Zhang",
-    role: "Wet Lab · GAG Retention",
+    role: "Wet Lab · GAG Retention Module",
     group: "students",
     bio: "Hi! I'm Wenxin Zhang, a student majoring in Biological Sciences at Zhejiang University. I'm a member of the wet lab team, mainly working on the GAG Retention Module. We encountered many difficulties during the project, but it was also a valuable and unforgettable experience. Through iGEM, I've gained a deeper understanding of synthetic biology and teamwork, and I'm really glad to be part of this journey.",
     imageUrl:
