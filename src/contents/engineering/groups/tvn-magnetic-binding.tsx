@@ -6,7 +6,7 @@ export const tvnMagneticBindingGroup: Group = {
   label: "TVN Magnetic Binding Module",
   parts: [
     {
-      label: "Selection of an alignment strategy",
+      label: "Alignment strategy selection",
       module: anisotropyModule,
       cycleSlice: [0, 3],
       lead: infoContent(
@@ -15,7 +15,7 @@ export const tvnMagneticBindingGroup: Group = {
       ),
     },
     {
-      label: "Coupling magnetic nanoparticles to SELP",
+      label: "Nanoparticle–SELP coupling",
       module: anisotropyModule,
       cycleSlice: [3, 5],
       lead: infoContent(
@@ -24,7 +24,7 @@ export const tvnMagneticBindingGroup: Group = {
       ),
     },
     {
-      label: "Protein expression and functional testing",
+      label: "Protein expression & testing",
       module: anisotropyModule,
       cycleSlice: [5, 9],
       lead: infoContent(

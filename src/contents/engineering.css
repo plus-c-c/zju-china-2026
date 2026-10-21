@@ -1266,7 +1266,7 @@
 }
 
 .dbtl--legacy:not(.project-design-stepper) {
-  --dbtl-stack-h: clamp(340px, calc(90vh - 13rem), 660px);
+  --dbtl-stack-h: clamp(340px, calc(90vh - 12.25rem), 672px);
 }
 
 /* The level-3 row is a sibling of the DBTL grid so it spans the whole page
@@ -1411,7 +1411,7 @@
   }
 
   .dbtl--legacy:not(.project-design-stepper) .dbtl-panel {
-    height: clamp(220px, calc(54vh - 40px), 440px);
+    height: clamp(220px, calc(54vh - 28px), 452px);
   }
 
   .project-design-stepper.dbtl--legacy .dbtl-panel {
