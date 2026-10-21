@@ -203,6 +203,15 @@
   border-radius: 18px;
 }
 
+.entre-figure--half-size .entre-figure__media {
+  width: 50%;
+  margin-inline: auto;
+}
+
+.entre-figure--half-size .entre-figure__media--blue {
+  padding: clamp(0.275rem, 0.9vw, 0.625rem);
+}
+
 .entre-figure__media--blue {
   padding: clamp(0.55rem, 1.8vw, 1.25rem);
   background: #dce9ff;
