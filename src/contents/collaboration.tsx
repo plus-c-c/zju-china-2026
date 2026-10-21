@@ -223,7 +223,7 @@ export function Collaboration() {
             caption="Figure 1.1.2 | A letter of thanks from the Al-Nahrain University team for the support along the way."
           />
 
-          <h3 id="westlake">1.2 Exchange with Westlake University</h3>
+          <h3 id="westlake">1.2 Communication with Westlake University</h3>
           <p>
             We had a gathering with the Westlake University iGEM team to
             introduce our project to faculty and students and answer questions
