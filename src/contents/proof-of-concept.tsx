@@ -19,6 +19,51 @@ import {
 } from "./results/biosafety-content";
 import "./proof-of-concept.css";
 
+/** Lay out panels from the original figure without changing any gel data. */
+function ProofFigurePanel({
+  src,
+  sourceSize: [sourceWidth, sourceHeight],
+  crop: [x, y, width, height],
+  label,
+  alt,
+}: {
+  src: string;
+  sourceSize: readonly [number, number];
+  crop: readonly [number, number, number, number];
+  label: string;
+  alt: string;
+}) {
+  return (
+    <div className="poc-source-panel">
+      <span className="poc-source-panel__label" aria-hidden="true">
+        {label}
+      </span>
+      <div
+        className="poc-source-panel__viewport"
+        style={{ aspectRatio: `${width} / ${height}` }}
+      >
+        <div
+          className="poc-source-panel__source"
+          style={{
+            width: `${(sourceWidth / width) * 100}%`,
+            left: `${(-x / width) * 100}%`,
+            top: `${(-y / height) * 100}%`,
+          }}
+        >
+          <TransparentImage
+            src={src}
+            alt={alt}
+            width={sourceWidth}
+            height={sourceHeight}
+            trim={false}
+            style={{ display: "block", width: "100%", height: "auto" }}
+          />
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function AnimatedWebPSprite({
   sprite,
   fallback,
@@ -206,20 +251,34 @@ export function ProofOfConcept() {
                   (Figures 2 and 3).
                 </p>
                 <figure className="my-4 text-center">
-                  <TransparentImage
-                    src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-01.avif"
-                    alt="Figure 2 | Production of scaffolds with different repeat numbers"
-                    className="img-fluid rounded"
-                    style={{ width: "100%" }}
-                  />
+                  <div className="poc-preparation-panels">
+                    <ProofFigurePanel
+                      src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-01.avif"
+                      sourceSize={[2400, 1650]}
+                      crop={[250, 215, 1900, 440]}
+                      label="A"
+                      alt="Figure 2A | SDS-PAGE of 2KY-5: marker, lysate supernatant, lysate pellet, induced culture and uninduced culture"
+                    />
+                    <ProofFigurePanel
+                      src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-01.avif"
+                      sourceSize={[2400, 1650]}
+                      crop={[250, 1025, 1900, 480]}
+                      label="B"
+                      alt="Figure 2B | SDS-PAGE of 2KY-10 expression and recovery, with the target band in the rightmost resuspended-pellet lane and the lyophilized product shown alongside"
+                    />
+                  </div>
                   <FigureCaption className="figure-caption mt-2">
                     <strong>
-                      Figure 2 | Successful Production of Scaffolds with
-                      Different Repeat Numbers.
+                      Figure 2 | Expression and Recovery of 2KY-5 and 2KY-10
+                      Scaffold Proteins.
                     </strong>{" "}
-                    (A) 2KY-5; (B) 2KY-10. We also produced 2KY-16. Sup/Pel
-                    denotes supernatant/pellet. Arrows and red boxes indicate
-                    the target bands.
+                    (A) SDS-PAGE of 2KY-5 shows the target band after IPTG
+                    induction, predominantly in the lysate supernatant
+                    (Sup) rather than the pellet (Pel). (B) SDS-PAGE of
+                    2KY-10 shows the target band in the rightmost protein
+                    sample lane (resuspended pellet), supporting recovery of
+                    the scaffold protein; the lyophilized product is shown
+                    alongside. Arrows and red boxes mark the target bands.
                   </FigureCaption>
                 </figure>
                 <figure className="my-4 text-center">
@@ -499,12 +558,31 @@ export function ProofOfConcept() {
                   could use the same ligation mechanism (Figure 10).
                 </p>
                 <figure className="my-4 text-center">
-                  <TransparentImage
-                    src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-08.avif"
-                    alt="Figure 10 | Shared ligation activity across three functional modules"
-                    className="img-fluid rounded"
-                    style={{ width: "100%" }}
-                  />
+                  <div className="poc-ligation-strip">
+                    <div className="poc-ligation-panels">
+                      <ProofFigurePanel
+                        src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-08.avif"
+                        sourceSize={[2300, 1400]}
+                        crop={[8, 300, 1177, 875]}
+                        label="A"
+                        alt="Figure 10A | TVN ligation assay, including the gel, band annotations and reaction-component table"
+                      />
+                      <ProofFigurePanel
+                        src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-08.avif"
+                        sourceSize={[2300, 1400]}
+                        crop={[1230, 60, 1055, 615]}
+                        label="B"
+                        alt="Figure 10B | GAG-retention construct ligation assay, including the gel and reaction-component table"
+                      />
+                      <ProofFigurePanel
+                        src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-08.avif"
+                        sourceSize={[2300, 1400]}
+                        crop={[1400, 780, 695, 605]}
+                        label="C"
+                        alt="Figure 10C | Responsive delivery construct and scrambled-sequence control ligation assay, including the gel and lane labels"
+                      />
+                    </div>
+                  </div>
                   <FigureCaption className="figure-caption mt-2">
                     <strong>
                       Figure 10 | All Three Functional Modules Retain Ligation
