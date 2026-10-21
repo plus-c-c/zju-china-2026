@@ -10,7 +10,9 @@ import {
   type CSSProperties,
 } from "react";
 import { useLocation } from "react-router-dom";
-import { HomeResumeContext, saveHomeProgress } from "../utils/homeProgress";
+import {
+  HomeResumeContext, saveHomeProgress, finishHomeReturn, restoreHomeProgress,
+} from "../utils/homeProgress";
 import { PipelineBird } from "../components/home/PipelineBird";
 import { StoryBird } from "../components/home/StoryBird";
 import { HomeIntro } from "../components/home/HomeIntro";
@@ -125,12 +127,13 @@ function DesktopHome() {
     nestTitle,
   } = useStoryNavigation();
   const viewport = useRef<HTMLDivElement>(null);
-  const [size, setSize] = useState({ width: 1280, height: 720 });
-  useEffect(() => {
+  const [size, setSize] = useState(() => ({ width: window.innerWidth, height: window.innerHeight }));
+  useLayoutEffect(() => {
     document.body.classList.add("home-story-open");
     document.documentElement.classList.add("home-story-open");
     if (!resume) window.scrollTo(0, 0);
     const element = viewport.current;
+    if (element) setSize({ width: element.clientWidth, height: element.clientHeight });
     const observer = new ResizeObserver(([entry]) =>
       setSize({
         width: entry.contentRect.width,
@@ -322,7 +325,9 @@ export function Home() {
   const resume = useContext(HomeResumeContext);
   const [mobile, setMobile] = useState(() => window.matchMedia("(max-width: 991.98px)").matches);
   useLayoutEffect(() => {
+    let restoring = !!resume;
     const remember = () => {
+      if (restoring) return;
       const viewport = document.querySelector<HTMLElement>(".story-viewport");
       const root = document.querySelector(".home-scroll-space");
       const top = root ? root.getBoundingClientRect().top + window.scrollY : 0;
@@ -334,19 +339,32 @@ export function Home() {
           : 0,
       });
     };
-    const restore = () => {
-      if (resume) window.scrollTo({ top: resume.scrollY, behavior: "instant" });
+    const complete = () => {
+      restoring = false;
+      finishHomeReturn(key);
       remember();
     };
-    restore();
-    // Reapply after the desktop canvas measures its viewport on mount.
-    const frame = requestAnimationFrame(restore);
+    const cancelRestore = resume ? restoreHomeProgress(resume, complete) : () => {};
+    if (!resume) complete();
+    const userInput = () => {
+      if (!restoring) return;
+      cancelRestore();
+      complete();
+    };
     window.addEventListener("scroll", remember, { passive: true });
+    window.addEventListener("wheel", userInput, { passive: true });
+    window.addEventListener("touchstart", userInput, { passive: true });
+    window.addEventListener("pointerdown", userInput);
+    window.addEventListener("keydown", userInput);
     // Capture the final position before a Link changes the active route.
     document.addEventListener("click", remember, true);
     return () => {
-      cancelAnimationFrame(frame);
+      cancelRestore();
       window.removeEventListener("scroll", remember);
+      window.removeEventListener("wheel", userInput);
+      window.removeEventListener("touchstart", userInput);
+      window.removeEventListener("pointerdown", userInput);
+      window.removeEventListener("keydown", userInput);
       document.removeEventListener("click", remember, true);
     };
   }, [key, resume]);
