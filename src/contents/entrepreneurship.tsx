@@ -2010,11 +2010,7 @@ function renderBlock(block: ContentBlock, key: string): ReactNode {
       );
     case "card": {
       const card = (
-        <ExtendCard
-          title={block.title}
-          key={key}
-          headingLevel={/^[123] (Initial|Annual)/.test(block.title) ? 3 : undefined}
-        >
+        <ExtendCard title={block.title} key={key}>
           {block.blocks.map((child, index) =>
             renderBlock(child, `${key}-${index}`),
           )}
@@ -2060,8 +2056,6 @@ export function Entrepreneurship() {
           </blockquote>
           <ExtendCard
             title="Judging Criteria"
-            headingLevel={2}
-            headingId="judging-criteria"
           >
             <p>
               For your convenience, we have summarised how we have addressed the
