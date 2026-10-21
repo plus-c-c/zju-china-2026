@@ -1769,15 +1769,17 @@ function StakeBridgeBlock() {
       </p>
       <p>
         The source code for StakeBridge is available in the team&rsquo;s iGEM
-        Software repository:{" "}
+        Software repository.
+      </p>
+      <p>
         <a
           href="https://gitlab.igem.org/2026/software/zju-china/nest/-/tree/main/stakebridge"
+          className="btn btn-outline-primary"
           target="_blank"
-          rel="noreferrer"
+          rel="noopener noreferrer"
         >
-          https://gitlab.igem.org/2026/software/zju-china/nest/-/tree/main/stakebridge
+          View StakeBridge Code ↗
         </a>
-        .
       </p>
       <StakeBridgeEmbed />
     </>

@@ -1082,15 +1082,20 @@ cd ../../NEST-Software
             docs/task-creation.md, docs/environment-setup.md and others;
             Software II is a standard Gradle project that builds without extra
             environment configuration. The source code for both tools is
-            available in the team&rsquo;s iGEM Software repository:{" "}
+            available in the team&rsquo;s iGEM Software repository.
+          </p>
+          <p>
             <a
               href="https://gitlab.igem.org/2026/software/zju-china/nest"
+              className="btn btn-outline-primary"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
             >
-              https://gitlab.igem.org/2026/software/zju-china/nest
+              View Software Repository ↗
             </a>
-            . The repository is released under the Apache License 2.0, and the
+          </p>
+          <p>
+            The repository is released under the Apache License 2.0, and the
             root README plus each tool&rsquo;s README provide the current build,
             run and test instructions.
           </p>
