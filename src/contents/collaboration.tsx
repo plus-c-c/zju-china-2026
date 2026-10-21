@@ -223,7 +223,7 @@ export function Collaboration() {
             caption="Figure 1.1.2 | A letter of thanks from the Al-Nahrain University team for the support along the way."
           />
 
-          <h3 id="westlake">1.2 Communication with Westlake University</h3>
+          <h3 id="westlake">1.2 Communicate with Westlake University</h3>
           <p>
             We had a gathering with the Westlake University iGEM team to
             introduce our project to faculty and students and answer questions
@@ -245,7 +245,7 @@ export function Collaboration() {
             caption="Figure 1.2.1 | Our in-person exchange with Westlake University faculty and students."
           />
 
-          <h3 id="hku">1.3 Exchange with the University of Hong Kong</h3>
+          <h3 id="hku">1.3 Communicate with the University of Hong Kong</h3>
           <p>
             We introduced our projects to one another and discussed details of
             plasmid construction with the University of Hong Kong team.
@@ -267,7 +267,7 @@ export function Collaboration() {
           />
 
           <h3 id="ustc">
-            1.4 Exchange with the University of Science and Technology of China
+            1.4 Communicate with the University of Science and Technology of China
           </h3>
           <p>
             We discussed our project&rsquo;s hardware design with the University
@@ -280,7 +280,7 @@ export function Collaboration() {
             caption="Figure 1.4.1 | Discussion of hardware approaches with the University of Science and Technology of China team."
           />
 
-          <h3 id="jilin">1.5 Exchange with Jilin University</h3>
+          <h3 id="jilin">1.5 Communicate with Jilin University</h3>
           <p>
             We exchanged ideas with the Jilin University team. Both teams
             introduced their projects and shared experience concerning
