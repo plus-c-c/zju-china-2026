@@ -73,7 +73,7 @@ const SHENZHEN_TEAM: CollabPhoto = {
 
 const SHENZHEN_PRESENTATION_1: CollabPhoto = {
   name: "fig-2-1-1-2-shenzhen-presentation-1.avif",
-  alt: "Team member presenting the SnoopLigase-ZJU project on stage at the Shenzhen Synthetic Biology Innovation Competition.",
+  alt: "Team member presenting the SnoopLigase2-ZJU project on stage at the Shenzhen Synthetic Biology Innovation Competition.",
   width: 1706,
   height: 1279,
 };
@@ -179,30 +179,35 @@ export function Collaboration() {
             1 Collaboration and Communication
           </h2>
 
-          <h3 id="iraq-team">1.1 Helping to build the first team in Iraq</h3>
+          <h3 id="iraq-team">1.1 keep on support and help the team in Iraq</h3>
           <p>
             Joining iGEM for the first time involves much more than choosing a
-            research topic. Registration, responsibilities, resources, and
-            presenting results all require attention. For teams still building
-            experience, each can become a difficult threshold to cross alone.
+            research topic. Registration, team responsibilities, resource
+            coordination, and presenting results all require careful attention.
+            For teams with limited experience, each of these steps can become a
+            difficult threshold to cross alone.
           </p>
           <p>
-            For two years, we have stayed in contact with the Al-Nahrain
-            University team in Iraq, sharing our experience of participating in
-            iGEM. We hope to support our partners as they develop the ability to
-            advance their project independently, while keeping knowledge in
-            circulation within the community.
+            For two years, we have maintained close contact with the Al-Nahrain
+            University team in Iraq, sharing our experience and insights from
+            participating in iGEM. With our guidance and continued support,
+            Al-Nahrain University became the first team from Iraq to participate
+            in iGEM. Through ongoing knowledge exchange and collaboration, we
+            hope to help our partners develop the skills and confidence to
+            advance their projects independently, while keeping knowledge and
+            experience circulating throughout the iGEM community.
           </p>
           <p>
-            Our exchanges covered iGEM projects and judging requirements, team
-            roles and preparation, Wiki writing and presentations, and the
-            balance of needs, resources, and feasibility when selecting a topic.
+            Our exchanges covered a wide range of topics, including iGEM project
+            design and judging requirements, team roles and preparation, Wiki
+            writing and presentations, and how to balance practical needs,
+            available resources, and project feasibility when selecting a topic.
           </p>
           <p>
             This year, we held five online meetings to discuss and advance topic
             selection. We also discussed participation procedures and possible
-            arrangements in response to the team&rsquo;s inability to travel to
-            Paris.
+            alternative arrangements in response to the team&rsquo;s inability to
+            travel to Paris.
           </p>
           <CollabFigure
             photos={[IRAQ_MEETING]}
@@ -223,7 +228,7 @@ export function Collaboration() {
             caption="Figure 1.1.2 | A letter of thanks from the Al-Nahrain University team for the support along the way."
           />
 
-          <h3 id="westlake">1.2 Exchange with Westlake University</h3>
+          <h3 id="westlake">1.2 Communicate with Westlake University</h3>
           <p>
             We had a gathering with the Westlake University iGEM team to
             introduce our project to faculty and students and answer questions
@@ -245,7 +250,7 @@ export function Collaboration() {
             caption="Figure 1.2.1 | Our in-person exchange with Westlake University faculty and students."
           />
 
-          <h3 id="hku">1.3 Exchange with the University of Hong Kong</h3>
+          <h3 id="hku">1.3 Communicate with the University of Hong Kong</h3>
           <p>
             We introduced our projects to one another and discussed details of
             plasmid construction with the University of Hong Kong team.
@@ -267,7 +272,7 @@ export function Collaboration() {
           />
 
           <h3 id="ustc">
-            1.4 Exchange with the University of Science and Technology of China
+            1.4 Communicate with the University of Science and Technology of China
           </h3>
           <p>
             We discussed our project&rsquo;s hardware design with the University
@@ -280,7 +285,7 @@ export function Collaboration() {
             caption="Figure 1.4.1 | Discussion of hardware approaches with the University of Science and Technology of China team."
           />
 
-          <h3 id="jilin">1.5 Exchange with Jilin University</h3>
+          <h3 id="jilin">1.5 Communicate with Jilin University</h3>
           <p>
             We exchanged ideas with the Jilin University team. Both teams
             introduced their projects and shared experience concerning
@@ -313,20 +318,20 @@ export function Collaboration() {
           />
 
           <h2 id="activities">2 Participating in Various Activities</h2>
-          <h3 id="synthetic-biology">2.1 In the field of synthetic biology</h3>
+          <h3 id="synthetic-biology">2.1 In the Field of Synthetic Biology</h3>
           <h4 id="shenzhen-competition" data-toc="include" data-toc-depth="3">
             2.1.1 The Shenzhen Synthetic Biology Innovation Competition
           </h4>
           <p>
             We were invited to the Shenzhen Synthetic Biology Innovation
             Competition, where we presented our overall design and detailed
-            enzyme engineering work related to the SnoopLigase-ZJU system in the
+            enzyme engineering work related to the SnoopLigase2-ZJU system in the
             general track and the industry track of the competition.
           </p>
           <p>
             Our project received a gold medal in the general track and was
             awarded the best project in the industry track. Our rational design
-            of the SnoopLigase-ZJU system received positive feedback from
+            of the SnoopLigase2-ZJU system received positive feedback from
             industry judges.
           </p>
           <p>
@@ -340,7 +345,7 @@ export function Collaboration() {
           />
           <CollabFigure
             photos={[SHENZHEN_PRESENTATION_1, SHENZHEN_PRESENTATION_2]}
-            caption="Figure 2.1.1.2, 2.1.1.3 | Project presentations in the Moutai corporate track (industry track) and the general track."
+            caption="Figures 2.1.1.2 and 2.1.1.3 | Project presentations in the Moutai corporate track (industry track) and the general track."
           />
 
           <h4 id="east-china-meetup" data-toc="include" data-toc-depth="3">
@@ -366,7 +371,7 @@ export function Collaboration() {
           </p>
           <CollabFigure
             photos={[EAST_CHINA_MEETUP_1, EAST_CHINA_MEETUP_2]}
-            caption="Figure 2.1.2.1, 2.1.2.2 | Participating teams at the East China iGEM Meetup."
+            caption="Figures 2.1.2.1 and 2.1.2.2 | Participating teams at the East China iGEM Meetup."
           />
 
           <h3 id="context-of-use">2.2 Entrepreneurial Activities</h3>

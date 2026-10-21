@@ -27,6 +27,7 @@ import {
   Plant,
   Software,
   Sustainability,
+  GetYourNest,
 } from "./contents";
 
 interface Base {
@@ -190,12 +191,6 @@ const Pages: (Page | Folder)[] = [
         path: "/collaboration",
         component: Collaboration,
       },
-      {
-        name: "Game",
-        title: "Game",
-        path: "/game",
-        component: Game,
-      },
     ],
   },
   {
@@ -217,7 +212,7 @@ const Pages: (Page | Folder)[] = [
   },
 ];
 
-// Keep existing pages accessible without listing them in the navigation.
+// Routes outside the main page-menu hierarchy (some have dedicated shortcuts).
 export const unlistedPages: Page[] = [
   {
     name: "Measurement",
@@ -242,6 +237,18 @@ export const unlistedPages: Page[] = [
     title: "Sustainability",
     path: "/sustainability",
     component: Sustainability,
+  },
+  {
+    name: "Get Your NEST",
+    title: "Get Your NEST",
+    path: "/get-your-nest",
+    component: GetYourNest,
+  },
+  {
+    name: "Game",
+    title: "Game",
+    path: "/game",
+    component: Game,
   },
 ];
 

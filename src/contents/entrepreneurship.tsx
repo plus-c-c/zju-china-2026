@@ -1,42 +1,93 @@
-import { TableCaption } from "../components/FigureCaption";
 import { useId, useState, type ReactNode } from "react";
-import { MathFormula } from "../components/MathFormula";
+import { TableCaption } from "../components/FigureCaption";
 import { References } from "../components/References";
 import "./entrepreneurship.css";
 
-/** Uploaded Entrepreneurship figures. */
 const ENTRE_FIG =
-  "https://static.igem.wiki/teams/6102/wiki/images/new-upload";
+  "https://static.igem.wiki/teams/6102/wiki/images/hp/entrepreneurship";
 
-type CardLevel = "primary" | "secondary";
+type ParagraphBlock = { type: "paragraph"; source_index: number; text: string };
+type HeadingBlock = {
+  type: "heading";
+  source_index: number;
+  level: 2 | 3 | 4;
+  id: string;
+  text: string;
+};
+type ListBlock = {
+  type: "list";
+  source_index: number;
+  items: string[];
+};
+type FormulaBlock = { type: "formula"; source_index: number; text: string };
+type FigureBlock = {
+  type: "figure";
+  source_index: number;
+  number: number;
+  files: string[];
+  caption: string;
+  special: boolean;
+};
+type TableBlock = {
+  type: "table";
+  source_index: number;
+  caption: string;
+  rows: string[][];
+};
+type CardBlock = {
+  type: "card";
+  source_index: number;
+  title: string;
+  blocks: ContentBlock[];
+};
+type ContentBlock =
+  | ParagraphBlock
+  | HeadingBlock
+  | ListBlock
+  | FormulaBlock
+  | FigureBlock
+  | TableBlock
+  | CardBlock;
 
-/** Expandable card; secondary cards can be nested inside a primary card. */
 export function ExtendCard({
   title,
   children,
-  level = "primary",
+  headingLevel,
 }: {
   title: ReactNode;
   children: ReactNode;
-  level?: CardLevel;
+  headingLevel?: 3;
 }) {
   const [open, setOpen] = useState(false);
   const contentId = useId();
 
   return (
-    <div
-      className={`entre-card entre-card--${level}${open ? " entre-card--open" : ""}`}
-    >
-      <button
-        type="button"
-        className="entre-card-header"
-        aria-expanded={open}
-        aria-controls={contentId}
-        onClick={() => setOpen((value) => !value)}
-      >
-        <span className="entre-card-title">{title}</span>
-        <span className="entre-card-chevron" aria-hidden="true" />
-      </button>
+    <div className={`entre-card${open ? " entre-card--open" : ""}`}>
+      {headingLevel === 3 ? (
+        <h3 className="entre-card-heading">
+          <button
+            type="button"
+            className="entre-card-header"
+            aria-expanded={open}
+            aria-controls={contentId}
+            onClick={() => setOpen((value) => !value)}
+          >
+            <span className="entre-card-title">{title}</span>
+            <span className="entre-card-chevron" aria-hidden="true" />
+          </button>
+        </h3>
+      ) : (
+        <button
+          type="button"
+          className="entre-card-header"
+          aria-expanded={open}
+          aria-controls={contentId}
+          onClick={() => setOpen((value) => !value)}
+        >
+          <span className="entre-card-title">{title}</span>
+          <span className="entre-card-chevron" aria-hidden="true" />
+        </button>
+      )}
       <div className="entre-card-content" id={contentId}>
         <div className="entre-card-content-inner">
           <div className="entre-card-pad">{children}</div>
@@ -46,419 +97,1861 @@ export function ExtendCard({
   );
 }
 
-/* Market screening: size × 2, potential × 1, accessibility × 4. */
-const SPA_ROWS = [
+const CONTENT: ContentBlock[] = [
   {
-    region: "East Asia",
-    size: "167.31",
-    sizeScore: 10,
-    potential: "581.68",
-    potentialScore: 10,
-    access: 7,
-    weighted: "8.29",
+    "type": "heading",
+    "source_index": 25,
+    "level": 2,
+    "id": "background",
+    "text": "Background"
   },
   {
-    region: "Europe",
-    size: "103.83",
-    sizeScore: 6,
-    potential: "360.96",
-    potentialScore: 6,
-    access: 3,
-    weighted: "4.29",
+    "type": "paragraph",
+    "source_index": 26,
+    "text": "Articular cartilage supports everyday activities such as walking, running, and climbing stairs, yet it is almost avascular and has very limited self-repair capacity. Sports injuries, persistent abnormal loading, and age-related degeneration may damage cartilage and eventually cause pain, stiffness, and restricted mobility. Approximately 635.4 million people worldwide had osteoarthritis in 2023. For many patients, cartilage damage means not only physical pain but also a gradual loss of the ability to exercise, work, and live independently."
   },
   {
-    region: "High-income Asia Pacific",
-    size: "35.08",
-    sizeScore: 2,
-    potential: "121.97",
-    potentialScore: 2,
-    access: 5,
-    weighted: "3.71",
+    "type": "paragraph",
+    "source_index": 27,
+    "text": "Conventional treatments can relieve symptoms, repair some defects, or restore joint function, but they still struggle to regenerate durable native hyaline cartilage. Hydrogels offer promise because of their high water content, injectability, and ability to conform to irregular defects. However, once inside the joint, they must withstand repeated loading, adhere to wet tissue, counter ongoing matrix degradation, and address cellular dysfunction. Increasing functional complexity also raises challenges in manufacturing consistency, quality control, and clinical translation. Cartilage repair therefore needs more than another hydrogel with a fixed formulation: it needs a material platform capable of tuning properties, combining functions, and being manufactured reproducibly for different injuries."
   },
   {
-    region: "High-income North America",
-    size: "51.63",
-    sizeScore: 3,
-    potential: "179.50",
-    potentialScore: 3,
-    access: 2,
-    weighted: "2.43",
+    "type": "paragraph",
+    "source_index": 28,
+    "text": "NEST, developed by our proposed company NexCode Biotechnologies, is a programmable, modular protein-hydrogel platform intended to provide customizable, scalable, and readily standardized repair solutions for different cartilage injuries."
   },
   {
-    region: "Latin America and the Caribbean",
-    size: "56.57",
-    sizeScore: 3,
-    potential: "196.66",
-    potentialScore: 3,
-    access: 1,
-    weighted: "1.86",
+    "type": "heading",
+    "source_index": 29,
+    "level": 2,
+    "id": "about-nexcode-and-nest",
+    "text": "About NexCode & NEST"
   },
   {
-    region: "Middle East and North Africa",
-    size: "66.85",
-    sizeScore: 4,
-    potential: "232.40",
-    potentialScore: 4,
-    access: 2,
-    weighted: "2.86",
+    "type": "paragraph",
+    "source_index": 31,
+    "text": "We envision NexCode Biotechnologies as a biotechnology company specializing in programmable hydrogel platforms. Our flagship project is NEST. Just as a bird's nest provides support and protection adapted to its environment, NEST aims to create a supportive niche for damaged cartilage to regenerate using programmable protein materials."
   },
   {
-    region: "South Asia",
-    size: "100.92",
-    sizeScore: 6,
-    potential: "350.87",
-    potentialScore: 6,
-    access: 4,
-    weighted: "4.86",
+    "type": "paragraph",
+    "source_index": 32,
+    "text": "At the heart of NEST is a modular hydrogel platform based on silk-elastin-like proteins (SELPs). By designing the gene sequence, we can tune mechanical properties, elasticity, tissue interactions, and degradation characteristics. After injection into the defect, visible-light-induced in situ crosslinking allows the material to conform to cartilage defects of different shapes, potentially supporting repair before gradually degrading. Standardized protein-conjugation interfaces allow functional modules to be assembled on demand, enabling one scaffold to address different needs."
   },
   {
-    region: "Southeast Asia",
-    size: "42.02",
-    sizeScore: 3,
-    potential: "146.08",
-    potentialScore: 3,
-    access: 6,
-    weighted: "4.71",
+    "type": "paragraph",
+    "source_index": 33,
+    "text": "For commercialization, NexCode Bio plans a B2B partnership model targeting medical-device companies, research hospitals, and regenerative medicine translational institutions, providing customizable protein-hydrogel formulations, functional modules, and associated preparation and delivery solutions. We will initially focus on osteoarthritis-associated cartilage damage, gradually advancing material validation, standardized production, and preclinical development before expanding to other joints, disease stages, and repair objectives. Compared with developing a new material for each indication, NEST's platform approach may shorten development cycles, improve manufacturing consistency, and support an expanding product pipeline."
   },
+  {
+    "type": "heading",
+    "source_index": 34,
+    "level": 2,
+    "id": "market-size-analysis",
+    "text": "Market Size Analysis"
+  },
+  {
+    "type": "paragraph",
+    "source_index": 35,
+    "text": "The purpose of this market analysis is to demonstrate that NEST addresses a substantial, growing, and underserved medical market. We apply the total addressable market (TAM), serviceable available market (SAM), and serviceable obtainable market (SOM) framework to narrow our focus from the global cartilage-repair industry to the Chinese knee-cartilage-repair market targeted for NEST's initial entry."
+  },
+  {
+    "type": "card",
+    "source_index": 36,
+    "title": "Total Addressable Market (TAM)",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "source_index": 37,
+        "text": "The total addressable market (TAM) is the total market size for a particular product or service [1]."
+      },
+      {
+        "type": "paragraph",
+        "source_index": 38,
+        "text": "For NEST, TAM is not limited to the knee or sports injuries. It encompasses the global repair market for cartilage defects of different causes and in different joints, including:"
+      },
+      {
+        "type": "list",
+        "source_index": 39,
+        "items": [
+          "Cartilage defects in the knee, ankle, hip, shoulder, elbow, and other joints;",
+          "Focal cartilage defects caused by sports injuries and trauma;",
+          "Degenerative cartilage damage associated with osteoarthritis;",
+          "Osteochondral injuries and other conditions requiring cartilage regeneration;",
+          "Different treatment technologies, including cell transplantation, tissue scaffolds, growth factors, and cell-free repair materials."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "source_index": 44,
+        "text": "A commercial market report estimated the global cartilage repair and regeneration market at approximately USD 1.18907 billion in 2025, rising to USD 3.22206 billion by 2033, with a compound annual growth rate (CAGR) of approximately 13.27% for 2025–2033 [3]. CAGR measures market performance over a specified period and provides an indication of future prospects. This CAGR exceeds the approximately 10% long-run average annual return of the S&P 500, suggesting strong market growth potential [2]. Increasing osteoarthritis burden, wider use of arthroscopic techniques, and advances in regenerative medicine are major growth drivers."
+      }
+    ]
+  },
+  {
+    "type": "card",
+    "source_index": 47,
+    "title": "Serviceable Available Market (SAM)",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "source_index": 48,
+        "text": "The serviceable available market (SAM) is the share of a market that a company can address through its business model [1]. The target market is a key factor in defining SAM. We use an SPA canvas below to identify which market the company should initially prioritize. We assess segments by their current size, future potential, and accessibility, and weight these factors by relative importance. Accessibility receives the highest weighting because our business must be able to enter the market. Market size ranks second because it indicates the number of potential customers, while market potential receives the lowest weighting."
+      },
+      {
+        "type": "table",
+        "source_index": 49,
+        "caption": "Table 1 | Weighted comparison of cartilage-repair market size, potential, and accessibility across East Asia, Europe, high-income Asia-Pacific, and other regions.",
+        "rows": [
+          [
+            "Market region",
+            "2023 market size (iii)",
+            "Market size score (×2)",
+            "2033 market potential (iv)",
+            "Market potential score (×1)",
+            "Accessibility score (×4) (v)",
+            "Weighted score"
+          ],
+          [
+            "East Asia",
+            "167.31αP",
+            "10",
+            "581.68αP",
+            "10",
+            "7",
+            "8.29"
+          ],
+          [
+            "Europe",
+            "103.83αP",
+            "6",
+            "360.96αP",
+            "6",
+            "3",
+            "4.29"
+          ],
+          [
+            "High-income Asia-Pacific (ii)",
+            "35.08αP",
+            "2",
+            "121.97αP",
+            "2",
+            "5",
+            "3.71"
+          ],
+          [
+            "High-income North America (i)",
+            "51.63αP",
+            "3",
+            "179.50αP",
+            "3",
+            "2",
+            "2.43"
+          ],
+          [
+            "Latin America and Caribbean",
+            "56.57αP",
+            "3",
+            "196.66αP",
+            "3",
+            "1",
+            "1.86"
+          ],
+          [
+            "Middle East and Africa",
+            "66.85αP",
+            "4",
+            "232.40αP",
+            "4",
+            "2",
+            "2.86"
+          ],
+          [
+            "South Asia",
+            "100.92αP",
+            "6",
+            "350.87αP",
+            "6",
+            "4",
+            "4.86"
+          ],
+          [
+            "Southeast Asia",
+            "42.02αP",
+            "3",
+            "146.08αP",
+            "3",
+            "6",
+            "4.71"
+          ]
+        ]
+      },
+      {
+        "type": "paragraph",
+        "source_index": 52,
+        "text": "i. United States, Canada, and Greenland (GBD high-income North America region)."
+      },
+      {
+        "type": "paragraph",
+        "source_index": 53,
+        "text": "ii. Japan, South Korea, Singapore, and Brunei (GBD high-income Asia-Pacific region)."
+      },
+      {
+        "type": "paragraph",
+        "source_index": 54,
+        "text": "iii. Estimated from GBD 2023 regional osteoarthritis prevalence; α denotes the conversion coefficient from osteoarthritis patient counts to the cartilage-repair market, and P denotes average treatment price. Patient counts are expressed in millions."
+      },
+      {
+        "type": "paragraph",
+        "source_index": 55,
+        "text": "iv. Market potential in 2033 assuming a CAGR of 13.27%."
+      },
+      {
+        "type": "paragraph",
+        "source_index": 56,
+        "text": "v. Preliminary assessment based on team location, existing clinical and research networks, geographic distance, familiarity with regulation, and difficulty establishing business partnerships."
+      },
+      {
+        "type": "paragraph",
+        "source_index": 58,
+        "text": "The SPA results place East Asia first in current patient population, future market potential, and accessibility, making it NEST's initial serviceable market. South Asia appears suitable as a secondary target, although we will remain focused on East Asia for the foreseeable future."
+      },
+      {
+        "type": "paragraph",
+        "source_index": 59,
+        "text": "According to GBD 2023, approximately 635.4 million people worldwide had osteoarthritis in 2023. East Asia had the largest regional patient population, approximately 167 million, representing 26.33% of the global total. MRI studies indicate that approximately 98.5%–99.6% of MRI-defined knee osteoarthritis cases involve partial- or full-thickness cartilage damage. The cartilage-repair field is therefore far from a niche market. We project capturing 15% of this market by 2033, producing a SAM of USD 483.31 million (approximately EUR 430 million) [4]."
+      }
+    ]
+  },
+  {
+    "type": "card",
+    "source_index": 62,
+    "title": "Serviceable Obtainable Market (SOM)",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "source_index": 63,
+        "text": "The serviceable obtainable market (SOM) is the portion of the SAM that a company can realistically capture [1]. Our location in China is advantageous because its large population represents a substantial share of East Asia. As knee procedures account for more than 60% of arthroscopic surgery, NEST's first-generation product will initially target focal knee-cartilage defects [6]. Studies indicate that approximately 19% of knee arthroscopy patients have focal cartilage or osteochondral defects [5]. Therefore, our projected 2033 SOM is USD 483.31 million × 60% × 19% = USD 55.10 million (approximately EUR 48.96 million)."
+      },
+      {
+        "type": "paragraph",
+        "source_index": 64,
+        "text": "This initial revenue could support extending the hydrogel to additional cartilage-defect sites and causes. We also intend to expand programmable hydrogels across other East Asian markets, supporting our annual objectives."
+      },
+      {
+        "type": "figure",
+        "source_index": 65,
+        "number": 1,
+        "files": [
+          "001.avif"
+        ],
+        "caption": "Figure 1 | Projected sizes of NEST's serviceable available market (SAM) and serviceable obtainable market (SOM).",
+        "special": true
+      }
+    ]
+  },
+  {
+    "type": "heading",
+    "source_index": 67,
+    "level": 2,
+    "id": "competitor-analysis",
+    "text": "Competitor Analysis"
+  },
+  {
+    "type": "paragraph",
+    "source_index": 68,
+    "text": "NEST faces three categories of competitors in cartilage repair: direct competitors using alternative materials or technologies to meet similar clinical needs; substitute treatments competing for patients, clinical resources, and healthcare budgets within the same care pathway; and platform companies with relevant capabilities that could enter the cartilage-repair market. The representative organizations below are compared by product positioning, technical approach, and commercialization progress. Regulatory clearance and commercial availability are assessed separately by target region; overseas approval does not imply market authorization in China."
+  },
+  {
+    "type": "card",
+    "source_index": 69,
+    "title": "Domestic Organizations",
+    "blocks": [
+      {
+        "type": "table",
+        "source_index": 70,
+        "caption": "Table 2 | Chinese cartilage-repair companies, technology platforms, publicly reported progress, and implications for NEST.",
+        "rows": [
+          [
+            "Organization and product",
+            "Technology and publicly reported progress",
+            "Implications for NEST"
+          ],
+          [
+            "Sichuan Baiamon Bioactive Materials Co., Ltd.ChinaCartilage-inductive collagen hydrogel/collagen-based cartilage repair matrixDirect product under development",
+            "Develops tissue-inductive biomaterials, including collagen hydrogels for cartilage repair.Its website described progress relating to the special review procedure for innovative medical devices in 2021; the product has not yet received marketing approval.",
+            "A closely relevant domestic biomaterials comparator. NEST must demonstrate the value of programmable scaffolds and controllable interfaces."
+          ],
+          [
+            "Shanghai Ruanxin Biotechnology Co., Ltd.ChinaTissue-engineered living cartilageAlternative regenerative treatment",
+            "Develops living cartilage and bone tissue through an autologous tissue-engineering platform associated with the National Engineering Research Center for Tissue Engineering. Public information describes the platform and cartilage projects but does not indicate marketing approval.",
+            "Competes through biological tissue reconstruction. NEST proposes a standardized materials approach for its first candidate; its clinical value remains to be established."
+          ],
+          [
+            "Haohai Biological TechnologyChinaIntra-articular sodium hyaluronate and medical chitosan productsIndirect treatment competitor",
+            "Has an established orthopedic business offering intra-articular viscosupplementation, a familiar injectable option for osteoarthritis symptom management. Company reports list marketed orthopedic products.",
+            "Competes for treatment budgets and clinical attention. Symptom management and focal-defect repair have different treatment objectives and patient populations."
+          ],
+          [
+            "Shanghai Funing Technology Co., Ltd.ChinaThermogel injectable hydrogel platformPotential platform entrant",
+            "Founded through Fudan University technology transfer; develops thermoresponsive PLGA–PEG materials for delivery and tissue-related applications. Fudan information describes its injectable platform but does not establish an approved cartilage-repair product.",
+            "Formulation expertise in an adjacent field could support future market entry or collaboration. Specific indications should be monitored without treating the company as an existing direct competitor."
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "type": "card",
+    "source_index": 72,
+    "title": "International Organizations",
+    "blocks": [
+      {
+        "type": "table",
+        "source_index": 73,
+        "caption": "Table 3 | Representative international cartilage-repair products, technological approaches, market status, and competitive positioning.",
+        "rows": [
+          [
+            "Organization and product",
+            "Technology and publicly reported progress",
+            "Implications for NEST"
+          ],
+          [
+            "Regentis BiomaterialsIsraelGelrinCDirect hydrogel competitor",
+            "A cell-free PEG-DA/denatured fibrinogen implant delivered as a liquid and crosslinked in situ under UVA for focal cartilage defects. The company reports a European CE mark and commercialization preparations; US information indicates investigational use.",
+            "The most closely comparable in situ photocuring approach. NEST must demonstrate whether sequence programming and modular assembly yield clinically meaningful performance improvements."
+          ],
+          [
+            "meidrix biomedicalsGermanyChondroFiller liquidDirect hydrogel competitor",
+            "A cell-free type I collagen matrix supplied in a dual-chamber syringe and designed to gel inside cartilage defects. The manufacturer reports CE certification and commercialization since 2013.",
+            "Provides a practical benchmark for convenience, defect conformity, and ready-to-use delivery. NEST must justify any additional hardware within the clinical workflow."
+          ],
+          [
+            "Smith+Nephew / CartiHealUnited Kingdom / technology originating in IsraelCARTIHEAL AGILI-CDirect repair implant competitor",
+            "A porous, resorbable aragonite-based scaffold for knee cartilage and osteochondral defects, implanted in one surgical procedure. FDA-approved and commercially supplied in the United States for the indicated population, including patients without severe osteoarthritis.",
+            "An established implant benchmark. Beyond material innovation, NEST must demonstrate tissue integration, durability, and patient benefit."
+          ],
+          [
+            "VericelUnited StatesMACIAlternative regenerative treatment",
+            "Autologous expanded chondrocytes are seeded onto a porcine collagen membrane to repair symptomatic full-thickness knee cartilage defects in adults. FDA-approved for its indicated knee applications; severe knee osteoarthritis is a contraindication.",
+            "An established cellular therapy comparator with different production and clinical procedures. Without comparative evidence, NEST cannot claim equivalent regeneration."
+          ],
+          [
+            "Geistlich PharmaSwitzerlandChondro-Gide / AMICDirect scaffold competitor",
+            "A bilayer collagen membrane for cartilage repair that can be used with matrix-assisted bone-marrow stimulation. Manufacturer product and intended-use information describe this commercialized membrane.",
+            "A scaffold-based comparator. NEST must demonstrate added clinical benefit and acceptable surgical costs for its injectable format and functional modules."
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "type": "card",
+    "source_index": 75,
+    "title": "Competitive Positioning",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "source_index": 76,
+        "text": "Our intended differentiation lies in the sequence-defined SELP scaffold and standardized functional interfaces that can be validated independently. Existing products already share some features, so injectability, biodegradability, or a single-procedure workflow alone are insufficient to establish an advantage. More meaningful metrics include scaffold retention and tissue integration, batch reproducibility, repair durability, surgical burden, and total treatment cost. NEST has identified promising directions, but any competitive advantage still requires further technical evidence."
+      }
+    ]
+  },
+  {
+    "type": "heading",
+    "source_index": 77,
+    "level": 2,
+    "id": "cost-analysis",
+    "text": "Cost Analysis"
+  },
+  {
+    "type": "paragraph",
+    "source_index": 79,
+    "text": "We have outlined how our innovative solution addresses unmet needs and a potential market despite direct and indirect competitors. We now turn to the financial aspects of the business. We divide costs into initial capital investment, annual operating expenses, and annual capital expenditure. Capital costs are classified and estimated using the NREL techno-economic assessment framework for biorefinery processes [7]. We also reviewed relevant literature and drew on Professor Erik Forsberg's technology entrepreneurship course to refine our estimates. Consistent with common financial-analysis practice, many costs are estimated as percentages of other costs."
+  },
+  {
+    "type": "figure",
+    "source_index": 80,
+    "number": 2,
+    "files": [
+      "002-01.avif",
+      "002-2.avif",
+      "002-3.avif"
+    ],
+    "caption": "Figure 2 | Classification, estimation basis, and budget summary for NEST's initial capital investment, annual operating expenses, and annual capital expenditure.",
+    "special": true
+  },
+  {
+    "type": "card",
+    "source_index": 84,
+    "title": "1 Initial Capital Investment",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "source_index": 85,
+        "text": "Investment costs comprise all spending needed to obtain an operational manufacturing facility, including R&D expenditure. They therefore represent the amount of funding to be raised. Investment costs are divided into purchase costs (PC), direct costs (DC), indirect costs (IC), and other costs (OC), along with start-up and validation costs and working capital for the first months of operation. PC, DC, IC, and OC together constitute fixed capital costs (FC)."
+      },
+      {
+        "type": "paragraph",
+        "source_index": 86,
+        "text": "Because investment costs are calculated as percentages of major equipment costs, we must first determine how much SELP must be produced to serve the initial target market and reach our SOM revenue target."
+      },
+      {
+        "type": "heading",
+        "source_index": 87,
+        "level": 4,
+        "id": "1-1-fixed-capital-investment",
+        "text": "1.1 Fixed Capital Investment"
+      },
+      {
+        "type": "heading",
+        "source_index": 88,
+        "level": 4,
+        "id": "purchase-costs",
+        "text": "Purchase Costs"
+      },
+      {
+        "type": "list",
+        "source_index": 89,
+        "items": [
+          "Major Equipment Cost (MEC): Cost of purchasing primary equipment, such as bioreactors, mixing systems, and lyophilizers.",
+          "Unlisted Equipment Cost: Cost of necessary equipment not individually listed in the main equipment inventory."
+        ]
+      },
+      {
+        "type": "heading",
+        "source_index": 91,
+        "level": 4,
+        "id": "direct-costs",
+        "text": "Direct Costs"
+      },
+      {
+        "type": "list",
+        "source_index": 92,
+        "items": [
+          "Installation Cost: Cost of positioning, installing, securing, and commissioning equipment.",
+          "Piping and Insulation Costs: Cost of pipes connecting equipment into a complete production system and insulation required to maintain appropriate process conditions.",
+          "Electrical Cost: Cost of power distribution networks for manufacturing facilities.",
+          "Control System Cost: Cost of automated process control, monitoring, and instrumentation systems.",
+          "Building Cost: Cost of factory buildings and their foundations.",
+          "Land Improvement Cost: Cost of grading, preparing, and improving the site for construction.",
+          "Auxiliary Facilities Cost: Cost of supporting facilities such as warehouses and cooling towers."
+        ]
+      },
+      {
+        "type": "heading",
+        "source_index": 99,
+        "level": 4,
+        "id": "indirect-costs",
+        "text": "Indirect Costs"
+      },
+      {
+        "type": "list",
+        "source_index": 100,
+        "items": [
+          "Engineering Cost: Cost of design, planning, and technical preparation for manufacturing facilities.",
+          "Construction Management Cost: Cost of coordinating and managing facility construction.",
+          "Contingency Cost: Funds reserved for unexpected and unforeseen construction expenses.",
+          "Contractor's Fee: Payment for construction services supplied by external contractors."
+        ]
+      },
+      {
+        "type": "heading",
+        "source_index": 104,
+        "level": 4,
+        "id": "other-costs",
+        "text": "Other Costs"
+      },
+      {
+        "type": "list",
+        "source_index": 105,
+        "items": [
+          "Start-up and Validation: Costs of facility start-up, process commissioning, product development, validation, and initial promotion."
+        ]
+      },
+      {
+        "type": "heading",
+        "source_index": 106,
+        "level": 4,
+        "id": "1-2-land-acquisition-cost",
+        "text": "1.2 Land Acquisition Cost"
+      },
+      {
+        "type": "paragraph",
+        "source_index": 107,
+        "text": "Land cost is a one-time capital expense incurred to secure the site for manufacturing facilities, including land purchase, leasehold acquisition, and related transaction costs. Under the NREL classification, land cost is accounted for separately from fixed capital investment (FCI) and included in total capital investment (TCI) together with fixed capital and working capital. Land itself is generally not depreciated; grading, roads, and drainage are direct construction costs rather than land acquisition costs."
+      },
+      {
+        "type": "heading",
+        "source_index": 108,
+        "level": 4,
+        "id": "1-3-working-capital",
+        "text": "1.3 Working Capital"
+      },
+      {
+        "type": "paragraph",
+        "source_index": 109,
+        "text": "Working capital (WC) is the amount of circulating funding continuously required for routine operations after a facility begins production. It differs from annual operating expenses (OPEX), which represent costs actually incurred during a year, such as raw materials, labor, utilities, and transport. WC primarily supports inventories, operating cash, and outstanding receivables."
+      },
+      {
+        "type": "heading",
+        "source_index": 110,
+        "level": 4,
+        "id": "major-equipment-costs",
+        "text": "Major Equipment Costs"
+      },
+      {
+        "type": "paragraph",
+        "source_index": 111,
+        "text": "To estimate equipment requirements for the first-generation NEST product, we calculate annual output from the target patient population. Approximately 2.183 million sports-medicine arthroscopic procedures are projected in China for 2026 [9], of which around 60% involve the knee [6]. Approximately 19% of knee arthroscopy patients have focal cartilage or osteochondral defects [5], yielding an initial target population of approximately 248,900 patients per year. The mean defect area is about 2.1 cm² [5], and human knee cartilage thickness is around 2.2–2.5 mm [8]. At 2.5 mm, each patient would require approximately 0.525 mL of hydrogel. At 10% (w/v) SELP, this corresponds to 52.5 mg SELP per treatment or approximately 13,070 g annually. Allowing a further 20% for process losses and safety margin gives an annual production target of approximately 15,680 g. Based on our experimental yield of approximately 0.5 g SELP per liter of culture, annual culture volume would be approximately 31,360 L. At 100 batches per year, each batch would require about 314 L. We therefore envisage a 500 L-scale bioreactor supported by a media preparation tank, centrifuge, high-pressure homogenizer, temperature-controlled purification tank, filtration and endotoxin-removal systems, lyophilizer, aseptic filling equipment, and quality-control instruments."
+      },
+      {
+        "type": "paragraph",
+        "source_index": 112,
+        "text": "With input from Beijing Weixinkang Medical Co., Ltd., we estimate major equipment costs for first-generation NEST at CNY 7.45 million (approximately USD 1.115 million or EUR 991,600)."
+      }
+    ]
+  },
+  {
+    "type": "card",
+    "source_index": 115,
+    "title": "2 Annual Operating Expenses (OPEX)",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "source_index": 116,
+        "text": "These are costs incurred to sustain manufacturing after the facility begins operation. On an annual basis, OPEX normally includes raw materials, media and reagents, utilities, labor, equipment maintenance, quality testing, and waste treatment."
+      },
+      {
+        "type": "paragraph",
+        "source_index": 117,
+        "text": "Production costs are divided into variable and fixed costs. Variable costs increase with output, whereas fixed costs do not directly depend on production volume."
+      },
+      {
+        "type": "paragraph",
+        "source_index": 118,
+        "text": "The following section briefly introduces all production cost categories before discussing selected expenses in greater detail."
+      },
+      {
+        "type": "heading",
+        "source_index": 119,
+        "level": 4,
+        "id": "2-1-variable-operating-costs-voc",
+        "text": "2.1 Variable Operating Costs (VOC)"
+      },
+      {
+        "type": "list",
+        "source_index": 120,
+        "items": [
+          "Raw Material Cost: Cost of raw materials, culture media, reagents, and other consumable inputs.",
+          "Utilities Cost: Cost of water, electricity, steam, compressed air, cooling, and other utilities needed for production.",
+          "Direct Labor Cost: Wages and associated employment costs of staff directly involved in manufacturing, monitoring, and on-site operations.",
+          "Consumables Cost: Cost of disposable or regularly replaced filters, single-use tubing, gloves, and laboratory supplies.",
+          "Waste Treatment and Disposal Cost: Cost of collecting, deactivating, transporting, and compliantly disposing of production wastewater, waste materials, and other waste.",
+          "Transportation and Logistics Cost: Cost of inbound materials transport, product storage and distribution, packaging, and logistics management.",
+          "Quality Control Cost: Cost of testing raw materials, intermediates, and finished products against quality specifications.",
+          "Royalties: Payments for the licensed use of third-party patents, technologies, or other intellectual property."
+        ]
+      },
+      {
+        "type": "heading",
+        "source_index": 129,
+        "level": 4,
+        "id": "2-2-fixed-operating-costs-foc",
+        "text": "2.2 Fixed Operating Costs (FOC)"
+      },
+      {
+        "type": "list",
+        "source_index": 130,
+        "items": [
+          "Research and Development Cost (R&D): Cost of improving products, formulations, and manufacturing processes, as well as conducting associated research.",
+          "Marketing Cost: Cost of product promotion, customer relationship management, and sales activities.",
+          "Maintenance Cost: Cost of regular inspection, servicing, repair, and replacement of equipment and facility components.",
+          "Insurance Cost: Cost of insurance, including product liability policies covering risks after market launch."
+        ]
+      },
+      {
+        "type": "heading",
+        "source_index": 134,
+        "level": 4,
+        "id": "material-costs",
+        "text": "Material Costs"
+      },
+      {
+        "type": "paragraph",
+        "source_index": 135,
+        "text": "NEST produces SELP using <em>E. coli</em> BL21(DE3) carrying an SELP expression plasmid, with standard LB broth used at laboratory scale. Because the resulting SELP will be formulated into a hydrogel for implantation in humans, we currently favor consistent, traceable culture-media ingredients rather than waste-stream feedstocks. This also aligns with medical-device requirements for supplier qualification and raw-material traceability [10]."
+      },
+      {
+        "type": "paragraph",
+        "source_index": 136,
+        "text": "LB Miller medium contains 10 g tryptone, 5 g yeast extract, and 10 g sodium chloride per liter [11]. At an annual culture volume of 31,360 L, NEST would require approximately 313.6 kg tryptone, 156.8 kg yeast extract, and 313.6 kg sodium chloride each year."
+      },
+      {
+        "type": "paragraph",
+        "source_index": 137,
+        "text": "Based on publicly available catalogue prices from suppliers in China, the annual purchasing cost of these three main LB components is approximately CNY 290,700 [12, 13]."
+      },
+      {
+        "type": "paragraph",
+        "source_index": 138,
+        "text": "In addition to the base medium, approximately 7.47 kg IPTG and 1.57 kg kanamycin are required annually. SELP purification also requires PBS and sodium chloride for inverse transition cycling (ITC); final hydrogel formulation requires Ru/SPS crosslinking components. Including CNY 291,500 per year for syringe hardware consumables (500 units), estimated annual raw material costs are CNY 810,500 (approximately USD 130,100 or EUR 115,900)."
+      },
+      {
+        "type": "heading",
+        "source_index": 142,
+        "level": 4,
+        "id": "direct-labor-cost",
+        "text": "Direct Labor Cost"
+      },
+      {
+        "type": "paragraph",
+        "source_index": 143,
+        "text": "The annual direct labor cost of company operations can be expressed as:"
+      },
+      {
+        "type": "formula",
+        "source_index": 144,
+        "text": "Clabor=k​Flabor,k×clabor,k×hoperation,k"
+      },
+      {
+        "type": "paragraph",
+        "source_index": 145,
+        "text": "where:"
+      },
+      {
+        "type": "list",
+        "source_index": 146,
+        "items": [
+          "k: a specific manufacturing operation;",
+          "F_labor,k: labor-hours required per hour of operation k;",
+          "c_labor,k: the fully loaded hourly labor cost for operation k;",
+          "h_operation,k: annual operating hours for operation k;",
+          "C_labor: annual direct labor cost."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "source_index": 152,
+        "text": "The following table lists the operations required in our production process and the corresponding labor input per operating hour:"
+      },
+      {
+        "type": "table",
+        "source_index": 153,
+        "caption": "Table 4 | Estimated labor input coefficients and ranges for each operation in the NEST manufacturing process.",
+        "rows": [
+          [
+            "Operation / process",
+            "F_labor"
+          ],
+          [
+            "Batch fermentation",
+            "0.3–2.0"
+          ],
+          [
+            "Cell harvesting and clarification",
+            "0.1–0.2"
+          ],
+          [
+            "ITC purification and TFF concentration",
+            "0.2–0.5"
+          ],
+          [
+            "SELP formulation, aseptic filling, and lyophilization",
+            "0.3–0.6"
+          ],
+          [
+            "Cleaning and decontamination",
+            "0.1–0.2"
+          ],
+          [
+            "Total",
+            "1.0–3.5"
+          ]
+        ]
+      },
+      {
+        "type": "paragraph",
+        "source_index": 155,
+        "text": "Accounting for night-shift wages, the equation becomes:"
+      },
+      {
+        "type": "formula",
+        "source_index": 156,
+        "text": "Cproduction=k​Fkckhk,d+k​Fkck1+rnhk,n"
+      },
+      {
+        "type": "paragraph",
+        "source_index": 157,
+        "text": "where h_k,d and h_k,n denote daytime and nighttime operating hours, respectively, and r_n denotes the night-shift wage premium."
+      },
+      {
+        "type": "paragraph",
+        "source_index": 158,
+        "text": "Recruitment advertisements for biomanufacturing operators in Zhejiang indicate monthly salaries of approximately CNY 6,000–8,000. We conservatively use the upper bound of CNY 8,000 per month. To account for employer contributions to pension, healthcare, maternity, unemployment, work injury insurance, and the housing provident fund, we provisionally add 35% to base wages. Assuming 174 standard working hours per month, the hourly labor cost is:"
+      },
+      {
+        "type": "formula",
+        "source_index": 159,
+        "text": "clabor=8,000×1.35174=62.07 元/小时"
+      },
+      {
+        "type": "paragraph",
+        "source_index": 160,
+        "text": "For the preliminary calculation, we use the upper bound of labor intensity for each manufacturing operation, giving:"
+      },
+      {
+        "type": "formula",
+        "source_index": 161,
+        "text": "k​Flabor,k=2.0+0.2+0.1+0.2+1.0=3.5"
+      },
+      {
+        "type": "paragraph",
+        "source_index": 162,
+        "text": "Thus, each hour of plant operation requires an average of 3.5 labor-hours. To establish a conservative preliminary budget, we assume the manufacturing system operates continuously year-round, with 4,380 daytime hours and 4,380 nighttime hours. China has no uniform nationwide night-shift premium, so we assume a 20% premium in this model."
+      },
+      {
+        "type": "paragraph",
+        "source_index": 163,
+        "text": "Day-shift labor cost:"
+      },
+      {
+        "type": "formula",
+        "source_index": 164,
+        "text": "3.5×62.07×4,380=951,517 元/年"
+      },
+      {
+        "type": "paragraph",
+        "source_index": 165,
+        "text": "Night-shift labor cost:"
+      },
+      {
+        "type": "formula",
+        "source_index": 166,
+        "text": "3.5×62.07×1.2×4,380=1,141,821 元/年"
+      },
+      {
+        "type": "paragraph",
+        "source_index": 167,
+        "text": "Accordingly, the estimated annual production labor cost is:"
+      },
+      {
+        "type": "formula",
+        "source_index": 168,
+        "text": "Cproduction=951,517+1,141,821=2,093,338 元/年"
+      },
+      {
+        "type": "paragraph",
+        "source_index": 169,
+        "text": "approximately CNY 2.0933 million per year."
+      },
+      {
+        "type": "paragraph",
+        "source_index": 170,
+        "text": "In addition to production staff, the company requires cleaning and sales personnel. Cleaner salaries in Hangzhou are approximately CNY 4,000–5,000 per month, while medical-device sales positions pay around CNY 8,000–12,000 per month. Assuming three cleaners, two sales employees, and a 35% employer on-cost:"
+      },
+      {
+        "type": "formula",
+        "source_index": 171,
+        "text": "Ccleaning=5,000×1.35×3×12=243,000 元/年"
+      },
+      {
+        "type": "formula",
+        "source_index": 172,
+        "text": "Csales=10,000×1.35×2×12=324,000 元/年"
+      },
+      {
+        "type": "paragraph",
+        "source_index": 173,
+        "text": "Total annual labor cost for the company is:"
+      },
+      {
+        "type": "formula",
+        "source_index": 174,
+        "text": "Ctotal=2,093,338+243,000+324,000=2,660,338 元/年"
+      },
+      {
+        "type": "paragraph",
+        "source_index": 175,
+        "text": "NEST's current estimate of total annual labor costs is therefore approximately CNY 2.6603 million."
+      },
+      {
+        "type": "heading",
+        "source_index": 176,
+        "level": 4,
+        "id": "r-and-d",
+        "text": "R&D"
+      },
+      {
+        "type": "paragraph",
+        "source_index": 177,
+        "text": "NEST's current cost calculations cover only the first-generation SELP hydrogel. In the future, we plan to express functional peptides with repair-related activity and incorporate them into the product. Reusing the existing fermentation platform would add His-tag affinity chromatography, protease cleavage, and secondary purification to an otherwise similar SELP manufacturing process. We provisionally estimate incremental R&D operating costs of CNY 1.84 million per year, primarily for process optimization, excluding capital investment in new buildings or a complete GMP production line. If a separate line must be replicated, its equipment must be budgeted as additional capital expenditure [14]."
+      },
+      {
+        "type": "paragraph",
+        "source_index": 178,
+        "text": "Alternatively, process development and pilot production of functional peptides could be outsourced to a CDMO. Chinese CDMOs offer microbial fermentation services up to around 2,000 L, protein purification, and quality testing, but pricing depends on the strain, yield, and purity requirements [15, 16]. In-house development requires existing equipment, specialist personnel, and a quality system. Outsourcing may entail higher service fees but reduce early equipment investment and scale-up risk. Given our current uncertainty over product demand, we favor CDMO collaboration initially. Once manufacturing is stable and demand increases, internal production may become more economical."
+      },
+      {
+        "type": "heading",
+        "source_index": 179,
+        "level": 4,
+        "id": "waste-management-costs",
+        "text": "Waste Management Costs"
+      },
+      {
+        "type": "paragraph",
+        "source_index": 180,
+        "text": "Waste from NEST production mainly comprises approximately 31,360 L of spent culture medium annually, along with cleaning liquids, used filters, disposable tubing, gloves, and other consumables. To accommodate this aqueous waste and production variability, we provisionally estimate 50,000 kg of waste per year. Because engineered <em>E. coli</em> is used, spent medium and contaminated consumables must be deactivated before sorting and disposal by qualified contractors. China's General Requirements for Biosafety in Laboratories also requires reliable disinfection, segregation, and safe disposal [18]. Using an initial treatment price of CNY 7.3 per kg [17], annual waste-disposal costs are estimated at 50,000 kg × CNY 7.3/kg = CNY 365,000."
+      },
+      {
+        "type": "heading",
+        "source_index": 181,
+        "level": 4,
+        "id": "royalties",
+        "text": "Royalties"
+      },
+      {
+        "type": "paragraph",
+        "source_index": 182,
+        "text": "A company licensing its patents to third parties receives royalty payments, typically a small percentage, often around 5%. In our case, this could allow other medical-device companies to manufacture SELP using our strains. However, we do not plan to license our patents to other manufacturers. Instead, we prefer to produce and sell SELP ourselves. We therefore do not anticipate royalty income."
+      }
+    ]
+  },
+  {
+    "type": "card",
+    "source_index": 184,
+    "title": "3 Annual Capital Expenditure (CAPEX)",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "source_index": 185,
+        "text": "Annual capital expenditure refers to yearly spending to improve the factory, such as facility expansion, equipment replacement, or staff training. In our business plan, we define capital costs as a percentage of revenue."
+      },
+      {
+        "type": "list",
+        "source_index": 186,
+        "items": [
+          "Maintenance Capital Expenditure: Capital spending required to preserve existing production capacity and keep facilities operational.",
+          "Replacement Capital Expenditure: Capital spending to replace equipment, components, or facilities at the end of their useful lives.",
+          "Expansion Capital Expenditure: Investment to expand capacity or increase production throughput."
+        ]
+      }
+    ]
+  },
+  {
+    "type": "heading",
+    "source_index": 191,
+    "level": 2,
+    "id": "timeline",
+    "text": "Timeline"
+  },
+  {
+    "type": "figure",
+    "source_index": 192,
+    "number": 3,
+    "files": [
+      "003.avif"
+    ],
+    "caption": "Figure 3 | NEST development roadmap and milestones for R&D, manufacturing, regulatory affairs, fundraising, and commercialization, 2026–2042.",
+    "special": false
+  },
+  {
+    "type": "heading",
+    "source_index": 194,
+    "level": 3,
+    "id": "development-milestones-2026-2031",
+    "text": "Development Milestones, 2026–2031"
+  },
+  {
+    "type": "paragraph",
+    "source_index": 195,
+    "text": "Our roadmap follows a progression from proof of concept and technical validation to market entry and business expansion, while acknowledging the lengthy development cycles and evidence requirements of implantable cartilage-repair products. It covers 2026–2042 and illustrates parallel technical, regulatory, and commercial activities. This is a proposed baseline scenario; product classification, study results, and funding may alter the sequence or extend the schedule."
+  },
+  {
+    "type": "heading",
+    "source_index": 196,
+    "level": 4,
+    "id": "2026-2027-select-the-first-product",
+    "text": "2026–2027: Select the First Product"
+  },
+  {
+    "type": "paragraph",
+    "source_index": 197,
+    "text": "Integrate evidence from the iGEM stage, clearly distinguishing demonstrated outcomes from design objectives. Work with prospective users to define the focal-defect indication, candidate formulation, and delivery process. Review intellectual-property ownership and prior disclosures, and initiate regulatory discussions."
+  },
+  {
+    "type": "paragraph",
+    "source_index": 198,
+    "text": "Stage-gate criterion: A written target product profile, reproducible proof-of-concept results, and an evidence-based decision on the lead candidate."
+  },
+  {
+    "type": "paragraph",
+    "source_index": 199,
+    "text": "Required resources: Core technical team, clinical advisors, technology-transfer support, and early development funding."
+  },
+  {
+    "type": "heading",
+    "source_index": 200,
+    "level": 4,
+    "id": "2027-2029-optimize-the-product-and-reduce-risk",
+    "text": "2027–2029: Optimize the Product and Reduce Risk"
+  },
+  {
+    "type": "paragraph",
+    "source_index": 201,
+    "text": "Compare the base scaffold with selected modules, optimize manufacturing, and establish analytical specifications. Assess relevant biological and mechanical properties, user workflows, and preliminary unit economics."
+  },
+  {
+    "type": "paragraph",
+    "source_index": 202,
+    "text": "Stage-gate criterion: A fixed candidate product meeting predefined performance targets, with a credible safety evaluation plan and feasible manufacturing route."
+  },
+  {
+    "type": "paragraph",
+    "source_index": 203,
+    "text": "Required resources: Materials and analytical expertise, development and manufacturing partners, testing partners, and seed financing."
+  },
+  {
+    "type": "heading",
+    "source_index": 204,
+    "level": 4,
+    "id": "2029-2031-prepare-for-clinical-studies",
+    "text": "2029–2031: Prepare for Clinical Studies"
+  },
+  {
+    "type": "paragraph",
+    "source_index": 205,
+    "text": "Complete the required nonclinical studies, stability testing, aseptic manufacturing evidence, and related device evidence according to the chosen regulatory path. Establish a quality management system and prepare clinical-study documentation with suitable centers."
+  },
+  {
+    "type": "paragraph",
+    "source_index": 206,
+    "text": "Stage-gate criterion: Sufficient quality and safety evidence, funding, and all required approvals before human studies begin."
+  },
+  {
+    "type": "paragraph",
+    "source_index": 207,
+    "text": "Required resources: Quality and regulatory leads, qualified manufacturers, nonclinical research organizations, and clinical partners."
+  },
+  {
+    "type": "heading",
+    "source_index": 208,
+    "level": 3,
+    "id": "development-milestones-2031-2042",
+    "text": "Development Milestones, 2031–2042"
+  },
+  {
+    "type": "heading",
+    "source_index": 209,
+    "level": 4,
+    "id": "2031-2035-evaluate-clinical-value",
+    "text": "2031–2035: Evaluate Clinical Value"
+  },
+  {
+    "type": "paragraph",
+    "source_index": 210,
+    "text": "Pursue feasibility studies and appropriately designed confirmatory studies as required. Evaluate function, pain, structural repair, safety, and durability alongside usability and health economics."
+  },
+  {
+    "type": "paragraph",
+    "source_index": 211,
+    "text": "Stage-gate criterion: Clinical evidence meets predefined objectives, and the manufacturing process satisfies registration and supply requirements."
+  },
+  {
+    "type": "paragraph",
+    "source_index": 212,
+    "text": "Required resources: Study sponsors, investigators, monitoring and data teams, manufacturing capacity, and clinical-stage funding."
+  },
+  {
+    "type": "heading",
+    "source_index": 213,
+    "level": 4,
+    "id": "2035-2037-regulatory-review-and-launch-preparation",
+    "text": "2035–2037: Regulatory Review and Launch Preparation"
+  },
+  {
+    "type": "paragraph",
+    "source_index": 214,
+    "text": "Submit the applicable registration dossier, respond to regulatory questions, and prepare controlled supply, training, procurement, and post-market follow-up. Begin commercial use in patients only after securing the relevant authorizations."
+  },
+  {
+    "type": "paragraph",
+    "source_index": 215,
+    "text": "Stage-gate criterion: Required approvals obtained, supported by reliable release testing, supply capacity, trained users, and a feasible procurement pathway."
+  },
+  {
+    "type": "paragraph",
+    "source_index": 216,
+    "text": "Required resources: Regulatory and quality teams, commercial partners, initial specialist centers, and launch financing."
+  },
+  {
+    "type": "heading",
+    "source_index": 217,
+    "level": 4,
+    "id": "2037-2042-expand-based-on-evidence",
+    "text": "2037–2042: Expand Based on Evidence"
+  },
+  {
+    "type": "paragraph",
+    "source_index": 218,
+    "text": "If authorized, expand capacity and the network of partner centers while monitoring long-term outcomes. Evaluate new indications, regions, and advanced formulations as separate development decisions."
+  },
+  {
+    "type": "paragraph",
+    "source_index": 219,
+    "text": "Stage-gate criterion: Continued safety, clinical performance, reliable supply, and unit economics sufficient to support expansion."
+  },
+  {
+    "type": "paragraph",
+    "source_index": 220,
+    "text": "Required resources: Operations and clinical follow-up teams, qualified supply partners, and reinvestment or growth capital."
+  },
+  {
+    "type": "paragraph",
+    "source_index": 221,
+    "text": "Intellectual-property review, fundraising, and partnership development will continue throughout the project. Mitochondrial delivery and other advanced modules will proceed as parallel research directions and cannot automatically rely on evidence or approvals for the initial formulation. Facility investment should reflect validated demand and process maturity. We will not assign a break-even year or market-share forecast without a defensible financial model."
+  },
+  {
+    "type": "heading",
+    "source_index": 222,
+    "level": 2,
+    "id": "financial-analysis",
+    "text": "Financial Analysis"
+  },
+  {
+    "type": "paragraph",
+    "source_index": 223,
+    "text": "Drawing on our cost analysis and timeline, and under Professor Erik Forsberg's guidance, we conducted cash-flow and net-present-value (NPV) analyses for NEST. Cash flow tracks annual inflows and outflows, while NPV discounts future cash flows to present value to assess whether project benefits cover the initial investment. This preliminary model evaluates the business model's financial feasibility under favorable assumptions."
+  },
+  {
+    "type": "paragraph",
+    "source_index": 224,
+    "text": "We use a ten-year horizon. NEST's market capture is modeled at 10%, 25%, 50%, 75%, and 100% of SOM during the first five years, remaining at 100% from Year 6 through Year 10. Revenue increases at the projected cartilage repair and regeneration CAGR of 13.27% [3], while operating expenses are assumed to rise by 2% annually for inflation. Cash outflows are expressed as negative values. Annual cash flow is calculated as follows:"
+  },
+  {
+    "type": "paragraph",
+    "source_index": 225,
+    "text": "Cash flowₜ = Cash inflowₜ + Cash outflowₜ"
+  },
+  {
+    "type": "paragraph",
+    "source_index": 226,
+    "text": "To reflect the time value of money, we use a real cost of capital (RCC) of 10% as the discount rate, within the commonly estimated range for biotechnology and medical-device companies [19]:"
+  },
+  {
+    "type": "paragraph",
+    "source_index": 227,
+    "text": "DCFₜ = Cash flowₜ ÷ (1 + RCC%)ᵗ"
+  },
+  {
+    "type": "paragraph",
+    "source_index": 228,
+    "text": "NPV = −Initial investment Cost+ DCF₁ + … + DCF₁₀"
+  },
+  {
+    "type": "figure",
+    "source_index": 229,
+    "number": 4,
+    "files": [
+      "004.avif"
+    ],
+    "caption": "Figure 4 | Ten-year cash flow analysis for NEST. Cash inflows are shown in green, cash outflows in red, net cash flows in light green, and discounted cash flows in black. All monetary values are expressed in USD thousands and converted using a fixed exchange rate of USD 1 = CNY 6.72. The model assumes that NEST gradually expands from 10% to 100% of its SOM during the first five years and maintains 100% SOM from Year 6 to Year 10.",
+    "special": true
+  },
+  {
+    "type": "paragraph",
+    "source_index": 231,
+    "text": "As shown in Figure 4, under the present assumptions the ten-year present value of NEST cash flows is approximately USD 436 million. Subtracting the initial investment of approximately USD 8.69 million produces a ten-year NPV of approximately USD 427 million. A positive NPV indicates that, given these assumptions for market size, sales growth, and costs, discounted returns exceed initial investment, warranting further development and financing consideration."
+  },
+  {
+    "type": "heading",
+    "source_index": 236,
+    "level": 2,
+    "id": "risk-analysis",
+    "text": "Risk Analysis"
+  },
+  {
+    "type": "paragraph",
+    "source_index": 237,
+    "text": "NEST has established a tiered risk-management framework with mitigation strategies and contingency plans. Risk assessment is incorporated into staged development decisions. “Critical” risks could affect overall feasibility or prevent progress, while “High” risks could delay development, increase costs, or obstruct commercialization. Ratings are qualitative assessments of potential impact, not measured probabilities. Before each stage, measurable acceptance criteria will guide decisions to proceed, revise, or pause development."
+  },
+  {
+    "type": "table",
+    "source_index": 238,
+    "caption": "Table 5 | Principal NEST project risks, priorities, mitigation strategies, and contingency plans.",
+    "rows": [
+      [
+        "Risk area and priority",
+        "Main risks and potential impacts",
+        "Mitigation strategies and contingency plans"
+      ],
+      [
+        "R1 Repair performance validationCritical",
+        "Gelation properties alone do not establish long-term repair value. Structural failure under repeated loading, inadequate integration with host cartilage, or mismatch between degradation and tissue regeneration may compromise repair and clinical translation.",
+        "Use appropriate controlled models to evaluate material retention, wet-interface integration, fatigue resistance, degradation, and repair quality. Set predefined performance and safety criteria for each stage. If unmet, optimize the scaffold or adjust the target indication."
+      ],
+      [
+        "R2 Functional module integrationHigh",
+        "Magnetic components and modules such as CPC/Link-N may affect crosslinking, cellular responses, and matrix interactions. Combining modules without demonstrable incremental benefits increases complexity, manufacturing costs, and validation burden.",
+        "Compare the base scaffold, individual modules, and selected combinations, measuring incremental benefit alongside safety, process, and operating costs. Prioritize the simplest formulation that meets performance targets."
+      ],
+      [
+        "R3 Material safetyCritical",
+        "Endotoxin, host-cell impurities, residual ligase and Ru/SPS reagents, magnetic nanoparticles, and lipid components may create local safety risks. Recombinant proteins and peptide-conjugation interfaces may also provoke immune responses.",
+        "Implement product-specific biological evaluation and impurity controls covering local tissue reactions, immune risks, and degradation products. Reformulate, substitute, or remove components that fail justified safety specifications; pause development where necessary."
+      ],
+      [
+        "R4 Mitochondrial deliveryCritical",
+        "Mitochondrial provenance, functional potency, storage stability, and reproducibility of enzyme-responsive delivery remain uncertain. The module may substantially increase quality-control, manufacturing, and regulatory complexity and requires independent validation.",
+        "Establish separate provenance, quality-control, and potency criteria for mitochondria and independently verify delivery. Consider inclusion in the candidate product only after incremental benefits and manufacturing and regulatory evidence are demonstrated; otherwise maintain it as an independent research direction."
+      ],
+      [
+        "R5 Scale-up manufacturing and costsHigh",
+        "Variability in repetitive SELP constructs, purification recovery, and module occupancy may affect batch consistency, compliant output, and unit costs. Laboratory yields do not necessarily reflect commercial costs.",
+        "Verify identity, purity, assembly consistency, recovery, and costs across independent batches. Build a full cost model including failures, testing, packaging, and shipping. Initially favor qualified CDMOs; reassess dedicated capacity after process maturity and demand are demonstrated."
+      ],
+      [
+        "R6 Sterility assurance and shelf lifeCritical",
+        "Sterilization, storage, and transport could affect the protein network, active modules, and gelation, reducing shelf life, distribution range, or clinical convenience. Stability of the base scaffold does not establish stability of the final combination.",
+        "Validate compatible aseptic manufacturing, packaging, storage, and shipping conditions. Evaluate each final formulation and its delivery interface separately. Adjust composition or supply format if requirements are not met, and set shelf life from evidence."
+      ],
+      [
+        "R7 Regulatory pathwayCritical",
+        "Combining a scaffold, bioactive modules, mitochondria, and delivery devices may create different product classifications and evidence requirements. Regulatory uncertainty could change study scope, timelines, and funding needs.",
+        "Define intended use, composition, and principal mode of action; engage NMPA early on classification and filing. Map evidence requirements by product configuration and revise scope, budget, and timelines before major R&D and capacity investments [12, 13]."
+      ],
+      [
+        "R8 Hardware integration and clinical usabilityHigh",
+        "Poor coordination of mixing, temperature control, delivery, magnetic alignment, and illumination—or inconsistent operating settings—could compromise implant performance, increase surgical burden, and discourage adoption.",
+        "Validate the end-to-end workflow with intended users, focusing on delivery accuracy, curing consistency, software control, and reproducibility. Use only validated formulations and parameters clinically; simplify or remove features lacking demonstrable benefit."
+      ],
+      [
+        "R9 Intellectual property and licensingHigh",
+        "Third-party IP may cover conjugation systems, biomaterials, modules, and delivery devices. Prior disclosures, university ownership agreements, and material-use terms may constrain protection and commercial implementation.",
+        "Review disclosures, inventorship, ownership, and material transfer terms systematically; perform freedom-to-operate analyses in priority markets. Obtain licenses or redesign as needed, clearly separating research and commercial-use permissions."
+      ],
+      [
+        "R10 Clinical adoption and reimbursementHigh",
+        "Established procedures, added equipment investment, and treatment costs may deter clinicians and hospitals. The indicated population for focal cartilage defects is relatively specific and should not be equated with all osteoarthritis patients.",
+        "Define the first indication with clinicians; validate procurement, reimbursement, and willingness to pay; compare total treatment costs, outcomes, and rehabilitation burden. If uptake is limited, adapt the population, configuration, or market approach, potentially relying on an industry partner for commercialization."
+      ],
+      [
+        "R11 Funding and organizational executionHigh",
+        "Long development cycles, clinical uncertainty, and turnover within a university team could create funding gaps, loss of critical capabilities, or interruptions.",
+        "Stage fundraising around key evidence milestones, establish stable operations and documentation and handover systems, and regularly assess funding through the next decision gate. Prioritize the lead candidate if funding is limited, postponing expansion and advanced modules."
+      ],
+      [
+        "R12 Partner dependence and social/environmental impactsHigh",
+        "Reliance on a single manufacturer or commercial partner may reduce supply stability, bargaining power, and data autonomy. Unverified affordability or environmental benefits may undermine market expansion and credibility.",
+        "Set clear contractual responsibilities for data, IP, quality, supply, and exit; develop qualified alternative partners where feasible. Assess waste, energy, cold-chain requirements, and affordability; use exclusivity cautiously and substantiate environmental and social claims with evidence."
+      ]
+    ]
+  },
+  {
+    "type": "heading",
+    "source_index": 240,
+    "level": 2,
+    "id": "obtaining-capital",
+    "text": "Obtaining Capital"
+  },
+  {
+    "type": "heading",
+    "source_index": 241,
+    "level": 3,
+    "id": "entrepreneurial-grants",
+    "text": "Entrepreneurial Grants"
+  },
+  {
+    "type": "paragraph",
+    "source_index": 242,
+    "text": "After extensive investigation, we concluded that raising all the initial capital for a complete manufacturing line at once is unrealistic [20, 21]. Innovative companies often raise funding in stages—angel, Pre-A, Series A, and Series B—and we plan to follow this approach:"
+  },
+  {
+    "type": "paragraph",
+    "source_index": 243,
+    "text": "Angel round: Develop initial samples, build the minimum viable product, and validate the central concept."
+  },
+  {
+    "type": "paragraph",
+    "source_index": 244,
+    "text": "Pre-A round: Obtain preliminary customer or market data."
+  },
+  {
+    "type": "paragraph",
+    "source_index": 245,
+    "text": "Series A: Validate a repeatable business model."
+  },
+  {
+    "type": "paragraph",
+    "source_index": 246,
+    "text": "Series B and beyond: Expand capacity, market the product, develop next-generation products, and ultimately pursue a public listing."
+  },
+  {
+    "type": "paragraph",
+    "source_index": 248,
+    "text": "Our seed-financing strategy includes applying for funding programs offered in China, such as:"
+  },
+  {
+    "type": "paragraph",
+    "source_index": 249,
+    "text": "If Hangzhou Medical Port becomes our future industrial base, eligible innovative medical devices receiving their first Class III registration certificate and manufactured in Hangzhou may qualify for support of up to CNY 6 million."
+  },
+  {
+    "type": "paragraph",
+    "source_index": 250,
+    "text": "The GenScript Life Science Research Fund offers up to USD 500,000 in support that may offset R&D expenditure."
+  },
+  {
+    "type": "paragraph",
+    "source_index": 251,
+    "text": "Hangzhou's 5050 Plan offers CNY 1 million in start-up funding, with eligible companies that operate in compliance and pass subsequent assessments able to apply for up to CNY 10 million in R&D grants."
+  },
+  {
+    "type": "paragraph",
+    "source_index": 252,
+    "text": "In addition, according to a stakeholder interview, Ms. Zhang Jie of Huadan Angel expressed willingness to discuss an early investment of approximately CNY 1.5 million after first-round samples meet expectations."
+  },
+  {
+    "type": "paragraph",
+    "source_index": 253,
+    "text": "We also intend to contact venture capital firms such as 5Y Capital, whose portfolios include life-sciences businesses and which could potentially support future institutional financing."
+  },
+  {
+    "type": "heading",
+    "source_index": 255,
+    "level": 3,
+    "id": "long-term-financial-security",
+    "text": "Long-Term Financial Security"
+  },
+  {
+    "type": "paragraph",
+    "source_index": 256,
+    "text": "In the long term, we will reduce R&D and market-entry risks through industrial partnerships. Several companies have shown interest and offered assistance. Weixinkang and Lanyiwei advised us on Class III medical-device manufacturing, sales qualifications, and market access. Yuanyi Bio provided guidance on synthetic-biology production, fermentation, and purification. Partners at Yiru Bio shared entrepreneurship and scale-up experience. Shanghai Lingjiu Medical has capabilities in biomedical materials, contract development, and manufacturing, making it a possible future partner for product translation and production [22]."
+  },
+  {
+    "type": "paragraph",
+    "source_index": 257,
+    "text": "As NEST accumulates experimental and clinical evidence, we plan to approach WuXi AppTec's medical-device testing center for registration-related testing, including biocompatibility, chemical characterization, toxicology, and animal studies [25]. Internationally, we may seek contact with Evonik, which offers bioresorbable medical-device development and manufacturing services, and with Arthrex and Smith+Nephew, which have cartilage-repair portfolios and clinical distribution channels [23, 24]."
+  },
+  {
+    "type": "paragraph",
+    "source_index": 258,
+    "text": "These partnerships could help NEST build industry recognition, connect with additional hospitals and clinicians, and expand its prospective customer base. Joint development and contract manufacturing could distribute R&D investment and commercialization risks among partners, easing funding pressure before sales become stable."
+  },
+  {
+    "type": "heading",
+    "source_index": 259,
+    "level": 2,
+    "id": "the-sustainable-business-model-canvas",
+    "text": "The Sustainable Business Model Canvas"
+  },
+  {
+    "type": "figure",
+    "source_index": 260,
+    "number": 5,
+    "files": [
+      "005.avif"
+    ],
+    "caption": "Figure 5 | NEST sustainable business model canvas.",
+    "special": false
+  },
+  {
+    "type": "paragraph",
+    "source_index": 262,
+    "text": "NEST plans a phased B2B model. Early market entry will focus on research partnerships and technology-development licensing to build industry relationships and validate commercial demand. After necessary testing and approvals, we plan to supply clinical institutions with cartilage-repair implant materials and associated delivery solutions. Target customers primarily include orthopedic companies and hospitals, corresponding to co-development, technology licensing, and clinical procurement. Patients are the ultimate users and beneficiaries and may bear part of treatment costs, but they are not the initial direct sales targets. Research grants and equity financing will support R&D and commercialization and will be accounted for separately from operating income generated by research services, technology licenses, and product sales."
+  },
+  {
+    "type": "heading",
+    "source_index": 264,
+    "level": 2,
+    "id": "market-entry",
+    "text": "Market Entry"
+  },
+  {
+    "type": "heading",
+    "source_index": 265,
+    "level": 3,
+    "id": "minimum-viable-product-mvp",
+    "text": "Minimum Viable Product (MVP)"
+  },
+  {
+    "type": "paragraph",
+    "source_index": 267,
+    "text": "A minimum viable product (MVP) includes only the core functions necessary to satisfy early users and obtain validation feedback. NEST's MVP is the SELP–SnoopTag2 hydrogel: SELP forms the hydrogel, while SnoopTag2 serves as an interface for attaching different functional peptides. At this stage, we first need to demonstrate reliable production, lyophilized storage, hydrogel re-formation, and suitable degradation and biocompatibility."
+  },
+  {
+    "type": "paragraph",
+    "source_index": 268,
+    "text": "We have already demonstrated production and storage stability in the laboratory. The product must also undergo classification confirmation, product testing, animal studies, clinical trials, and NMPA registration, while the manufacturer must obtain a medical-device manufacturing license [26, 27, 28]. We expect to complete these processes within ten years and therefore designate SELP–SnoopTag2 hydrogel as our MVP."
+  },
+  {
+    "type": "heading",
+    "source_index": 269,
+    "level": 3,
+    "id": "first-potential-users",
+    "text": "First Potential Users"
+  },
+  {
+    "type": "paragraph",
+    "source_index": 270,
+    "text": "NEST's first-generation product will initially serve patients with focal knee-cartilage defects in China. The knee is our starting point because of its relatively large surgical volume and clinical evidence base, which makes it easier to define patient populations, surgical techniques, and outcomes."
+  },
+  {
+    "type": "paragraph",
+    "source_index": 271,
+    "text": "Patients are end users, but hospitals typically procure the product and physicians apply it during arthroscopic surgery. NEST will therefore adopt a B2B model, selling directly to companies rather than individual patients. Interviews revealed that several stakeholders expressed interest in investing in our solution, including Huadan Angel, Weixinkang, Yuanyi Bio, Lanyiwei, Yiru Bio, and Shanghai Lingjiu Medical Technology, as discussed in our fundraising section."
+  },
+  {
+    "type": "heading",
+    "source_index": 272,
+    "level": 3,
+    "id": "patenting",
+    "text": "Patenting"
+  },
+  {
+    "type": "paragraph",
+    "source_index": 273,
+    "text": "We plan to file a Chinese invention patent for NEST in November 2026, focusing on the engineered SELP–SnoopTag2 structure, manufacturing and purification methods, hydrogel formulation, crosslinking system, and attachment of functional peptides. Before publicly releasing core experimental data, we also need to conduct patent searches to determine whether SnoopTag2, SELP, and Ru/SPS crosslinking technologies are subject to third-party patent restrictions."
+  },
+  {
+    "type": "paragraph",
+    "source_index": 274,
+    "text": "Under China's Patent Law, invention patents must meet novelty, inventiveness, and practical applicability requirements and generally last 20 years from the filing date. Methods for treating diseases are not directly patentable in China, but therapeutic materials, products, medical devices, and their manufacturing methods can be protected. NEST will therefore prioritize product and manufacturing technology claims [29]."
+  },
+  {
+    "type": "heading",
+    "source_index": 275,
+    "level": 3,
+    "id": "market-expansion",
+    "text": "Market Expansion"
+  },
+  {
+    "type": "paragraph",
+    "source_index": 276,
+    "text": "We intend to introduce additional functional peptides so that NEST can select different repair modules for different cartilage injuries. Some peptides may be produced internally on new production lines; others may be manufactured by CDMOs to reduce initial equipment investment and enable cost comparisons. Since new functional peptides can change the product's mode of action, every new combination will require a separate safety and regulatory assessment. Our engineered SnoopLigase2-ZJU enzyme system is also expected to enter the product portfolio and broaden the market."
+  },
+  {
+    "type": "paragraph",
+    "source_index": 277,
+    "text": "In clinical applications, NEST will expand gradually from the knee to the ankle, hip, shoulder, and other joints, with different repair approaches for osteoarthritis, localized trauma, and postoperative injuries. Our long-term aim is to evolve from a single knee product into a cartilage-repair platform configurable by defect location and cause."
+  },
+  {
+    "type": "paragraph",
+    "source_index": 278,
+    "text": "Hydrogels may also have cross-tissue potential in ocular surface repair, breast reconstruction, and neural repair. By matching tissue-specific requirements and combining delivery, adhesion, and regenerative functions, the platform could eventually address a broad range of clinical needs."
+  },
+  {
+    "type": "heading",
+    "source_index": 279,
+    "level": 2,
+    "id": "skill-gap-analysis",
+    "text": "Skill Gap Analysis"
+  },
+  {
+    "type": "paragraph",
+    "source_index": 280,
+    "text": "ZJU-China is an interdisciplinary team of 16 members with backgrounds in medicine, life sciences, agriculture, philosophy, physics, and computer science. We have developed a relatively comprehensive set of early-stage R&D capabilities around NEST. These complementary skills enable us to consider challenges from a broader range of perspectives."
+  },
+  {
+    "type": "paragraph",
+    "source_index": 281,
+    "text": "We recognize the importance of a well-rounded, highly skilled team and have grouped our capabilities into eight key areas."
+  },
+  {
+    "type": "figure",
+    "source_index": 283,
+    "number": 6,
+    "files": [
+      "006.svg"
+    ],
+    "caption": "Figure 6 | Analysis of the NEST team's skills and capability structure.",
+    "special": false
+  },
+  {
+    "type": "paragraph",
+    "source_index": 285,
+    "text": "We still have gaps in intellectual property, patent filing, financing, and marketing. These weaknesses could lead to inadequate protection of core technologies, limited access to capital, and slow commercialization, weakening competitiveness and long-term growth. We intend to close them gradually through training and collaboration with patent agents, investment advisors, and industry partners."
+  },
+  {
+    "type": "paragraph",
+    "source_index": 286,
+    "text": "Our team is based in Hangzhou, China, providing direct access to the clinical needs of the large population affected by osteoarthritis in China and East Asia. Hangzhou's active entrepreneurial environment and innovation programs offer opportunities for incubation, funding, and industrial cooperation. Zhejiang University's research strengths and reputation also help us connect with hospitals, experts, and investors, strengthening credibility and translation potential."
+  },
+  {
+    "type": "heading",
+    "source_index": 288,
+    "level": 2,
+    "id": "long-term-benefits-and-disadvantages",
+    "text": "Long-Term Benefits and Disadvantages"
+  },
+  {
+    "type": "paragraph",
+    "source_index": 289,
+    "text": "Making a positive impact on the world is an essential aspect of business success."
+  },
+  {
+    "type": "heading",
+    "source_index": 290,
+    "level": 3,
+    "id": "positive-impacts",
+    "text": "Positive Impacts"
+  },
+  {
+    "type": "heading",
+    "source_index": 291,
+    "level": 4,
+    "id": "improving-human-health",
+    "text": "Improving Human Health"
+  },
+  {
+    "type": "paragraph",
+    "source_index": 292,
+    "text": "Articular cartilage has limited self-repair capacity, and injuries may cause pain, restricted mobility, and long-term impairment of daily life and work [30]. NEST aims to use biodegradable SELP hydrogel to fill cartilage defects and provide a supportive environment for tissue repair, potentially relieving suffering and restoring function. If safety and efficacy are validated, the product may also reduce medical, economic, and social burdens associated with repeated treatment and contribute to long-term human health."
+  },
+  {
+    "type": "heading",
+    "source_index": 293,
+    "level": 4,
+    "id": "advancing-medical-innovation",
+    "text": "Advancing Medical Innovation"
+  },
+  {
+    "type": "paragraph",
+    "source_index": 294,
+    "text": "NEST's modular SELP–SnoopTag system can attach functional peptides with different activities. Future researchers may explore new therapeutic mechanisms and indications by replacing modules rather than redesigning the entire material. Data on manufacturing, crosslinking, degradation, and safety could also underpin further studies and translation, with possible future use in other joints and tissues."
+  },
+  {
+    "type": "heading",
+    "source_index": 295,
+    "level": 3,
+    "id": "negative-impacts",
+    "text": "Negative Impacts"
+  },
+  {
+    "type": "heading",
+    "source_index": 296,
+    "level": 4,
+    "id": "animal-studies-not-yet-completed",
+    "text": "Animal Studies Not Yet Completed"
+  },
+  {
+    "type": "paragraph",
+    "source_index": 297,
+    "text": "NEST remains at the laboratory research stage and has not yet completed animal studies. Current results therefore cannot establish its safety or repair efficacy in humans. Potential risks include inflammation or immune responses, mismatch between degradation and tissue repair rates, and insufficient mechanical strength [31]. We believe these issues can be investigated and addressed through animal studies, parameter optimization, and long-term safety monitoring."
+  },
+  {
+    "type": "heading",
+    "source_index": 298,
+    "level": 4,
+    "id": "limited-public-understanding",
+    "text": "Limited Public Understanding"
+  },
+  {
+    "type": "paragraph",
+    "source_index": 299,
+    "text": "Synthetic biology and hydrogel therapies involve complex principles. The public may struggle to understand engineered microorganisms, protein materials, and degradation within the body. This knowledge gap may reduce patient confidence, acceptance, and practical access. We intend to address it through accessible science communication, transparent publication of experimental results, and stronger physician–patient dialogue."
+  },
+  {
+    "type": "heading",
+    "source_index": 301,
+    "level": 2,
+    "id": "esg-of-nest-environmental-social-and-governance",
+    "text": "ESG of NEST (Environmental, Social, and Governance)"
+  },
+  {
+    "type": "paragraph",
+    "source_index": 302,
+    "text": "NEST considers environmental, social, and governance factors throughout product design and business decisions rather than treating them as promotional metrics added after development. Our assessment covers raw-material procurement, recombinant expression, purification, storage, transport, clinical use, and waste disposal, considering both the project's impact on society and the environment and how these issues affect safety, compliance, costs, and long-term development. The framework draws on the four elements of governance, strategy, risk and opportunity management, and metrics and targets in China's Corporate Sustainability Disclosure Standards—Basic Standard (Trial), with specific requirements reflecting NEST's medical and synthetic-biology characteristics."
+  },
+  {
+    "type": "heading",
+    "source_index": 303,
+    "level": 3,
+    "id": "environment",
+    "text": "Environment"
+  },
+  {
+    "type": "paragraph",
+    "source_index": 304,
+    "text": "NEST plans a traceable waste-management process covering segregation, deactivation, documentation, and compliant disposal of engineered microorganisms, fermentation effluents, high-salt purification liquids, and disposable consumables. SELP hydrogels are designed as temporary scaffolds that degrade progressively. Previous research has demonstrated in vivo biodegradability of engineered SELP hydrogels [32, 33]. We will use Day 28 as a key assessment point to examine whether NEST degradation rates can be coordinated with cartilage regeneration."
+  },
+  {
+    "type": "heading",
+    "source_index": 305,
+    "level": 3,
+    "id": "society",
+    "text": "Society"
+  },
+  {
+    "type": "paragraph",
+    "source_index": 306,
+    "text": "NexCode Biotechnologies recognizes that a large gap between product technology and public understanding is neither socially responsible nor conducive to long-term growth. During R&D, we plan to invest at least CNY 50,000 annually in patient education, public lectures, and open science materials. We intend to support SynEduGlobal to advance synthetic-biology education; establish a charitable fund for rural medical outreach and cartilage-health awareness; and continue working with Non-place Studio to use art to foster understanding of synthetic biology and empathy for people with cartilage injuries. We also commit to social safety."
+  },
+  {
+    "type": "heading",
+    "source_index": 307,
+    "level": 3,
+    "id": "governance",
+    "text": "Governance"
+  },
+  {
+    "type": "paragraph",
+    "source_index": 308,
+    "text": "We seek sound internal corporate governance. NEST will implement mechanisms covering research, production, and clinical translation, including quality management, batch traceability, biosafety, supplier audits, intellectual-property protection, and declarations of conflicts of interest. Patient and clinical-research data will follow informed consent, data minimization, and secure storage principles. The team will appoint an ESG lead, review environmental and social objectives annually, and promptly disclose major safety incidents, data discrepancies, and product risks to ensure that scientific results and business communications remain accurate, truthful, and verifiable."
+  },
+  {
+    "type": "heading",
+    "source_index": 311,
+    "level": 2,
+    "id": "entrepreneurship-activities",
+    "text": "Entrepreneurship Activities"
+  },
+  {
+    "type": "heading",
+    "source_index": 312,
+    "level": 3,
+    "id": "1-dandelion-innovation-competition",
+    "text": "1 Dandelion Innovation Competition"
+  },
+  {
+    "type": "figure",
+    "source_index": 313,
+    "number": 7,
+    "files": [
+      "007.avif"
+    ],
+    "caption": "Figure 7 | NEST team participation and Gold Award at Zhejiang University's Dandelion Student Innovation Competition.",
+    "special": false
+  },
+  {
+    "type": "paragraph",
+    "source_index": 315,
+    "text": "We received a Gold Award and prize money at the Dandelion Student Innovation Competition organized by Zhejiang University's School of Innovation and Entrepreneurship. We gained insights into industry experience, equity structures, company registration, and public listings, and improved how we present our project compellingly."
+  },
+  {
+    "type": "heading",
+    "source_index": 316,
+    "level": 3,
+    "id": "2-synbio-challenges-2026",
+    "text": "2 SynBio Challenges 2026"
+  },
+  {
+    "type": "figure",
+    "source_index": 317,
+    "number": 8,
+    "files": [
+      "008.avif"
+    ],
+    "caption": "Figure 8 | NEST team participation and Gold Award in the main track of SynBio Challenges 2026.",
+    "special": false
+  },
+  {
+    "type": "paragraph",
+    "source_index": 319,
+    "text": "Our presentation of the NEST project won a Gold Award in the main track and strengthened the team's pitching skills."
+  },
+  {
+    "type": "figure",
+    "source_index": 320,
+    "number": 9,
+    "files": [
+      "009.avif"
+    ],
+    "caption": "Figure 9 | Gold Award for the NEST team's SnoopLigase2-ZJU project in the industry track of SynBio Challenges 2026.",
+    "special": false
+  },
+  {
+    "type": "paragraph",
+    "source_index": 322,
+    "text": "Our work developing the SnoopLigase2-ZJU enzyme system was recognized by the judges and received a Gold Award in the industry track."
+  },
+  {
+    "type": "heading",
+    "source_index": 326,
+    "level": 2,
+    "id": "references",
+    "text": "References"
+  },
+  {
+    "type": "paragraph",
+    "source_index": 327,
+    "text": "[1] Suwelack T, Stegemann M, Ang FX. Starting a Start-up. In: Creating a Customer Experience-Centric Startup. Business Guides on the Go. Springer, Cham; 2022. p. 33–51. https://doi.org/10.1007/978-3-030-92458-4\\_3.",
+  },
+  {
+    "type": "paragraph",
+    "source_index": 328,
+    "text": "[2] moneychimp. CAGR (Compound Annual Growth Rate) Explained, 2025. http://www.moneychimp.com/features/market_cagr.htm."
+  },
+  {
+    "type": "paragraph",
+    "source_index": 329,
+    "text": "[3] Maia Research. Global Cartilage Repair/Cartilage Regeneration Industry Trends Analysis Report 2025, Forecast to 2033. MarketResearch.com, 2026. Available from: https://www.marketresearch.com/Maia-Research-v4212/Global-Cartilage-Repair-Regeneration-Trends-44046528/ (Accessed: 19 October 2026)."
+  },
+  {
+    "type": "paragraph",
+    "source_index": 330,
+    "text": "[4] Chang AH, Sharma L, Roemer FW, et al. Magnetic resonance imaging-defined knee osteoarthritis rarely occurs without cartilage damage. Osteoarthritis and Cartilage Open. 2026;8(1):100733. https://doi.org/10.1016/j.ocarto.2025.100733."
+  },
+  {
+    "type": "paragraph",
+    "source_index": 331,
+    "text": "[5] Hjelle K, Solheim E, Strand T, Muri R, Brittberg M. Articular cartilage defects in 1,000 knee arthroscopies. Arthroscopy. 2002;18(7):730–734. https://doi.org/10.1053/jars.2002.32839."
+  },
+  {
+    "type": "paragraph",
+    "source_index": 332,
+    "text": "[6] Li K, Liu J, Wang D, et al. Towards global integration: China’s evolving role in joint replacement and sports medicine. Knee Surgery, Sports Traumatology, Arthroscopy. 2026;34(5):1567–1571. https://doi.org/10.1002/ksa.70217."
+  },
+  {
+    "type": "paragraph",
+    "source_index": 333,
+    "text": "[7] Klein B, McNamara I, Davis R, Mittal A, Johnson D. Techno-Economic Assessment for the Production of Hydrocarbon Fuels via Catalytic Upgrading of Furans. NREL/TP-5100-80652. National Renewable Energy Laboratory; 2021. https://doi.org/10.2172/1819430."
+  },
+  {
+    "type": "paragraph",
+    "source_index": 334,
+    "text": "[8] Frisbie DD, Cross MW, McIlwraith CW. A comparative study of articular cartilage thickness in the stifle of animal species used in human pre-clinical studies compared to articular cartilage thickness in the human knee. Veterinary and Comparative Orthopaedics and Traumatology. 2006;19(3):142–146. doi:10.1055/s-0038-1632990."
+  },
+  {
+    "type": "paragraph",
+    "source_index": 335,
+    "text": "[9] Beijing Tianxing Medical Co., Ltd. Prospectus (Application Draft) for the Initial Public Offering and Listing on the STAR Market. Shanghai Stock Exchange, 2024, p. 1-1-155. PDF."
+  },
+  {
+    "type": "paragraph",
+    "source_index": 336,
+    "text": "[10] China Food and Drug Administration (CFDA). Guidelines for the Audit of Suppliers by Medical Device Manufacturers. Announcement No. 1 of 2015. Official document."
+  },
+  {
+    "type": "paragraph",
+    "source_index": 337,
+    "text": "[11] Thermo Fisher Scientific. LB Broth and LB Agar: Miller’s Formulation. Product and formulation information."
+  },
+  {
+    "type": "paragraph",
+    "source_index": 338,
+    "text": "[12] Beyotime Biotechnology. Tryptone and Yeast Extract Product Catalogue. Products ST800-25kg and ST968-25kg. Accessed October 20, 2026. Official catalogue."
+  },
+  {
+    "type": "paragraph",
+    "source_index": 339,
+    "text": "[13] Aladdin Scientific Corporation. Sodium Chloride, ACS, ≥99%. Product No. S433736, including the 10 kg package. Accessed October 20, 2026. Official product page."
+  },
+  {
+    "type": "paragraph",
+    "source_index": 340,
+    "text": "[14] Tsinghua University. Microbial Fermentation Platform Procurement Project: Bid Award Announcement. China Government Procurement Network, 2026."
+  },
+  {
+    "type": "paragraph",
+    "source_index": 341,
+    "text": "[15] GenScript Biotech Corporation. Bacterial Fermentation Services: Process Development, Scale-up and Recombinant Protein Production. GenScript, 2026."
+  },
+  {
+    "type": "paragraph",
+    "source_index": 342,
+    "text": "[16] Bovax Biotechnology Co., Ltd. Biologics CDMO Platform for Recombinant Proteins and Vaccines. 2026."
+  },
+  {
+    "type": "paragraph",
+    "source_index": 343,
+    "text": "[17] Hangzhou Yuhang Laboratory Hazardous Waste Recycling and Disposal Service Procurement Notice. Laboratory Hazardous Waste Recycling and Disposal Service Project, 2026."
+  },
+  {
+    "type": "paragraph",
+    "source_index": 344,
+    "text": "[18] Standardization Administration of China. GB 19489-2008: Laboratories—General Requirements for Biosafety. 2008. Official standard"
+  },
+  {
+    "type": "paragraph",
+    "source_index": 345,
+    "text": "[19] Harrington SE. Cost of Capital for Pharmaceutical, Biotechnology, and Medical Device Firms. In: The Oxford Handbook of the Economics of the Biopharmaceutical Industry. Oxford University Press; 2012. p. 75–99. https://doi.org/10.1093/oxfordhb/9780199742998.013.0004."
+  },
+  {
+    "type": "paragraph",
+    "source_index": 346,
+    "text": "[20] Sahlman WA. The Structure and Governance of Venture-Capital Organizations. Journal of Financial Economics. 1990;27(2):473–521. https://doi.org/10.1016/0304-405X(90)90065-8."
+  },
+  {
+    "type": "paragraph",
+    "source_index": 347,
+    "text": "[21] Gompers PA. Optimal Investment, Monitoring, and the Staging of Venture Capital. The Journal of Finance. 1995;50(5):1461–1489. https://doi.org/10.1111/j.1540-6261.1995.tb05185.x."
+  },
+  {
+    "type": "paragraph",
+    "source_index": 348,
+    "text": "[22] Lingel Medical Technology. Commissioned R&D and Manufacturing Services. Official website."
+  },
+  {
+    "type": "paragraph",
+    "source_index": 349,
+    "text": "[23] Arthrex. Cartilage Repair Portfolio. Official website; Smith+Nephew. Sports Medicine Products. Official website."
+  },
+  {
+    "type": "paragraph",
+    "source_index": 350,
+    "text": "[24] Evonik. CMO Services for Bioresorbable Medical Devices. Official website."
+  },
+  {
+    "type": "paragraph",
+    "source_index": 351,
+    "text": "[25] WuXi AppTec. Medical Device Testing Center. Official website."
+  },
+  {
+    "type": "paragraph",
+    "source_index": 352,
+    "text": "[26] State Administration for Market Regulation. Provisions for Medical Device Registration and Filing (Order No. 47). 2021."
+  },
+  {
+    "type": "paragraph",
+    "source_index": 353,
+    "text": "[27] National Medical Products Administration and National Health Commission. Good Clinical Practice for Medical Device Trials. 2022."
+  },
+  {
+    "type": "paragraph",
+    "source_index": 354,
+    "text": "[28] State Administration for Market Regulation. Provisions for Medical Device Manufacturing (Order No. 53). 2022."
+  },
+  {
+    "type": "paragraph",
+    "source_index": 355,
+    "text": "[29] China National Intellectual Property Administration. Patent Law of the People’s Republic of China. 2020."
+  },
+  {
+    "type": "paragraph",
+    "source_index": 356,
+    "text": "[30] World Health Organization. Osteoarthritis. 2023. WHO"
+  },
+  {
+    "type": "paragraph",
+    "source_index": 357,
+    "text": "[31] Spiller KL, Maher SA, Lowman AM. Hydrogels for the Repair of Articular Cartilage Defects. Tissue Engineering Part B: Reviews. 2011;17(4):281–299. https://doi.org/10.1089/ten.teb.2011.0077."
+  },
+  {
+    "type": "paragraph",
+    "source_index": 358,
+    "text": "[32] Liang R, Li R, Mo W, Zhang X, Ye J, Xie C, Li W, Peng Z, Gu Y, Huang Y, Zhang S, Wang X, Ouyang H. Engineering biomimetic silk fibroin hydrogel scaffolds with “organic-inorganic assembly” strategy for rapid bone regeneration. Bioactive Materials. 2024;40:541–556. https://doi.org/10.1016/j.bioactmat.2024.06.024."
+  },
+  {
+    "type": "paragraph",
+    "source_index": 359,
+    "text": "[33] Nie K, Fan Z, Sun W, Wu B, Zhou S, Zhao H, Ou J, Ji T, Tian J, Wei W, Ouyang H, Hay DC, Huang W. Ultrafast crosslinking, strongly adhesive de novo protein hydrogels promote cartilage regeneration. Bioactive Materials. 2026;56:368–385. https://doi.org/10.1016/j.bioactmat.2025.10.009."
+  }
 ];
 
-const INVESTMENT_ROWS: {
-  item: string;
-  basis: string;
-  cny: string;
-  usd: string;
-  eur: string;
-  total?: boolean;
-}[] = [
-  { item: "Major equipment (MEC)", basis: "Purchased equipment", cny: "7,450.00", usd: "1,114.94", eur: "991.60" },
-  { item: "Unlisted equipment", basis: "10% of MEC", cny: "745.00", usd: "111.49", eur: "99.16" },
-  { item: "Purchase costs (PC) total", basis: "", cny: "8,195.00", usd: "1,226.43", eur: "1,090.76", total: true },
-  { item: "Installation", basis: "39% of PC", cny: "3,196.05", usd: "478.31", eur: "425.40" },
-  { item: "Piping and insulation", basis: "31% of PC", cny: "2,540.45", usd: "380.19", eur: "338.14" },
-  { item: "Electrical", basis: "10% of PC", cny: "819.50", usd: "122.64", eur: "109.08" },
-  { item: "Control system", basis: "26% of PC", cny: "2,130.70", usd: "318.87", eur: "283.60" },
-  { item: "Building", basis: "29% of PC", cny: "2,376.55", usd: "355.66", eur: "316.32" },
-  { item: "Land improvement", basis: "12% of PC", cny: "983.40", usd: "147.17", eur: "130.89" },
-  { item: "Auxiliary facilities", basis: "10% of PC", cny: "819.50", usd: "122.64", eur: "109.08" },
-  { item: "Direct costs (DC) total", basis: "", cny: "12,866.15", usd: "1,925.49", eur: "1,712.49", total: true },
-  { item: "Subtotal (PC + DC)", basis: "", cny: "21,061.15", usd: "3,151.92", eur: "2,803.26", total: true },
-  { item: "Engineering", basis: "13% of PC + DC", cny: "2,737.95", usd: "409.75", eur: "364.42" },
-  { item: "Construction management", basis: "10% of PC + DC", cny: "2,106.12", usd: "315.19", eur: "280.33" },
-  { item: "Contingency", basis: "40% of PC + DC", cny: "8,424.46", usd: "1,260.77", eur: "1,121.30" },
-  { item: "Contractor's fee", basis: "70% of PC + DC", cny: "14,742.81", usd: "2,206.35", eur: "1,962.28" },
-  { item: "Indirect costs (IC) total", basis: "", cny: "28,011.33", usd: "4,192.06", eur: "3,728.33", total: true },
-  { item: "Start-up and validation", basis: "10% of DC", cny: "1,286.62", usd: "192.55", eur: "171.25" },
-  { item: "Other costs (OC) total", basis: "", cny: "1,286.62", usd: "192.55", eur: "171.25", total: true },
-  { item: "Fixed capital investment (FCI)", basis: "PC + DC + IC + OC", cny: "50,359.09", usd: "7,536.53", eur: "6,702.84", total: true },
-  { item: "Land", basis: "6% of PC", cny: "491.70", usd: "73.59", eur: "65.45" },
-  { item: "Working capital", basis: "1.5 × VOC", cny: "7,197.74", usd: "1,071.09", eur: "959.70" },
-  { item: "Total capital investment (TCI)", basis: "FCI + land + working capital", cny: "58,048.53", usd: "8,681.21", eur: "7,727.98", total: true },
-];
 
-const OPEX_ROWS: {
-  item: string;
-  basis: string;
-  cny: string;
-  usd: string;
-  eur: string;
-  total?: boolean;
-}[] = [
-  { item: "Raw materials", basis: "Media, reagents, syringe hardware", cny: "869.20", usd: "129.35", eur: "115.89" },
-  { item: "Electricity", basis: "500,000 kWh × ¥0.8", cny: "400.00", usd: "59.52", eur: "53.33" },
-  { item: "Water", basis: "1,500 m³ × ¥4.7", cny: "7.05", usd: "1.05", eur: "0.94" },
-  { item: "Compressed air", basis: "60,000 m³ × ¥0.2", cny: "12.00", usd: "1.79", eur: "1.60" },
-  { item: "Steam", basis: "32 t × ¥366", cny: "11.71", usd: "1.74", eur: "1.56" },
-  { item: "Direct labour", basis: "Production, cleaning and sales staff", cny: "2,660.30", usd: "395.88", eur: "354.71" },
-  { item: "Consumables", basis: "Filters, single-use lines, gloves", cny: "339.20", usd: "50.48", eur: "45.23" },
-  { item: "Waste treatment and disposal", basis: "50,000 kg × ¥2.4", cny: "120.00", usd: "17.86", eur: "16.00" },
-  { item: "Transportation and logistics", basis: "2,489,000 carton·km × ¥0.088", cny: "219.03", usd: "32.59", eur: "29.20" },
-  { item: "Quality control", basis: "32 batches × ¥5,000", cny: "160.00", usd: "23.81", eur: "21.33" },
-  { item: "Royalties", basis: "No out-licensing planned", cny: "0.00", usd: "0.00", eur: "0.00" },
-  { item: "Variable operating costs (VOC) total", basis: "", cny: "4,798.49", usd: "714.06", eur: "639.80", total: true },
-  { item: "Research and development", basis: "0.5% of SOM", cny: "1,840.00", usd: "273.81", eur: "245.33" },
-  { item: "Marketing", basis: "0.5% of SOM", cny: "1,840.00", usd: "273.81", eur: "245.33" },
-  { item: "Maintenance", basis: "5% of VOC", cny: "224.71", usd: "33.44", eur: "29.96" },
-  { item: "Insurance", basis: "0.5% of SOM", cny: "1,840.00", usd: "273.81", eur: "245.33" },
-  { item: "Fixed operating costs (FOC) total", basis: "", cny: "5,744.71", usd: "854.87", eur: "765.96", total: true },
-  { item: "Annual OPEX total", basis: "VOC + FOC", cny: "10,543.20", usd: "1,568.93", eur: "1,405.76", total: true },
-];
 
-const CAPEX_ROWS = [
-  { item: "Maintenance capital expenditure", basis: "0.2% of SOM", cny: "736.00", usd: "109.52", eur: "98.13" },
-  { item: "Replacement capital expenditure", basis: "0.2% of SOM", cny: "736.00", usd: "109.52", eur: "98.13" },
-  { item: "Expansion capital expenditure", basis: "0.2% of SOM", cny: "736.00", usd: "109.52", eur: "98.13" },
-];
-
-const PROFIT_ROWS = [
-  { item: "Gross profit", basis: "SOM − VOC − FOC", cny: "357,456.80", usd: "53,531.07", eur: "47,554.24" },
-  { item: "Interest", basis: "Assumed zero", cny: "—", usd: "—", eur: "—" },
-  { item: "Depreciation", basis: "FCI and CAPEX over 10 years", cny: "5,256.71", usd: "786.51", eur: "699.72" },
-  { item: "Taxes", basis: "15% × (gross profit − depreciation)", cny: "52,830.01", usd: "7,911.68", eur: "7,028.18" },
-  { item: "Net profit", basis: "Gross profit − interest − depreciation − taxes", cny: "299,370.08", usd: "44,832.88", eur: "39,826.34" },
-];
-
-const COMPETITORS_DOMESTIC = [
-  {
-    company: "Sichuan Baiameng Bioactive Materials Co., Ltd. (China)",
-    product: "Cartilage-inducing collagen hydrogel / collagen-based cartilage repair matrix",
-    route: "Direct biomaterial competitor",
-    progress:
-      "Develops tissue-inducing biomaterials, including collagen hydrogels for cartilage repair. Public information reports progress under the 2021 special review pathway for innovative medical devices, but the product is not yet approved and remains in the special approval process.",
-    meaning:
-      "The closest domestic biomaterial comparator. NEST must demonstrate the value of a programmable scaffold and a controllable interface.",
-  },
-  {
-    company: "Shanghai Ruanxin Biotechnology Co., Ltd. (China)",
-    product: "Tissue-engineered living cartilage",
-    route: "Alternative regenerative route",
-    progress:
-      "Through an autologous tissue-engineering platform linked to the National Engineering Research Center for Tissue Engineering, develops living cartilage and bone tissue. Public materials describe the platform and cartilage projects, but no marketing approval has been granted.",
-    meaning:
-      "Competes through biological tissue reconstruction. NEST's first candidate follows a standardized material route, and its clinical value still has to be established.",
-  },
-  {
-    company: "Haohai Biotechnology (China)",
-    product: "Intra-articular sodium hyaluronate and medical chitosan products",
-    route: "Indirect therapeutic competitor",
-    progress:
-      "Has an established orthopaedic business and provides intra-articular viscosupplementation products familiar in osteoarthritis care. The company reports a marketed orthopaedic portfolio.",
-    meaning:
-      "Competes for the treatment budget and clinical attention. Symptom management and focal defect repair serve different goals and patient populations.",
-  },
-  {
-    company: "Shanghai Funing Technology Co., Ltd. (China)",
-    product: "Thermogel injectable hydrogel platform",
-    route: "Potential platform entrant",
-    progress:
-      "Spun out of Fudan University and develops thermosensitive PLGA-PEG materials for delivery and tissue applications. Fudan materials describe the injectable platform, but no approved cartilage repair product has been demonstrated.",
-    meaning:
-      "Adjacent formulation capability could support a future market entry or a partnership. Track indication-specific progress rather than treating it as a current direct competitor.",
-  },
-];
-
-const COMPETITORS_INTERNATIONAL = [
-  {
-    company: "Regentis Biomaterials (Israel)",
-    product: "GelrinC",
-    route: "Direct hydrogel competitor",
-    progress:
-      "An acellular PEG-DA / denatured fibrinogen implant delivered as a liquid and crosslinked in situ with UVA light for focal cartilage defects. The company reports a European CE mark and preparations for commercialization; materials indicate it remains investigational in the United States.",
-    meaning:
-      "The closest in-situ photocuring comparator. NEST must show whether sequence programming and modular assembly improve clinically meaningful performance.",
-  },
-  {
-    company: "meidrix biomedicals (Germany)",
-    product: "ChondroFiller liquid",
-    route: "Direct hydrogel competitor",
-    progress:
-      "An acellular type I collagen matrix supplied in a dual-chamber syringe and designed to gel inside the cartilage defect. The manufacturer reports CE certification and marketing since 2013.",
-    meaning:
-      "A practical benchmark for handling, defect conformity and ready-to-use supply. NEST's additional hardware must prove its necessity in the clinical workflow.",
-  },
-  {
-    company: "Smith+Nephew / CartiHeal (United Kingdom; technology from Israel)",
-    product: "AGILI-C",
-    route: "Direct repair implant competitor",
-    progress:
-      "A porous, resorbable aragonite-based scaffold for knee chondral and osteochondral defects, implanted in a single surgery. It is FDA-approved and commercially available in the United States; the indicated population excludes patients with severe osteoarthritis.",
-    meaning:
-      "An established repair implant benchmark. Beyond material novelty, NEST must provide evidence of tissue integration, durability and patient benefit.",
-  },
-  {
-    company: "Vericel (United States)",
-    product: "MACI",
-    route: "Alternative regenerative route",
-    progress:
-      "Autologous expanded chondrocytes seeded on a porcine collagen membrane for symptomatic full-thickness knee cartilage defects in adults. It is FDA-approved for its indication, and severe knee osteoarthritis is a contraindication.",
-    meaning:
-      "A mature cell-therapy comparator with a different manufacturing and clinical workflow. Without comparative evidence, NEST cannot claim equivalent regeneration.",
-  },
-  {
-    company: "Geistlich Pharma (Switzerland)",
-    product: "Chondro-Gide / AMIC",
-    route: "Direct scaffold competitor",
-    progress:
-      "A bilayer collagen membrane for cartilage repair that can be combined with marrow-stimulation techniques. Manufacturer and intended-use materials describe this marketed membrane.",
-    meaning:
-      "Competes as a scaffold repair option. NEST's injectable form and functional modules must demonstrate additional clinical benefit and acceptable surgical cost.",
-  },
-];
-
-const TIMELINE_ROWS = [
-  {
-    phase: "Define (2026–2027)",
-    work: "Consolidate the evidence gathered during iGEM and separate validated results from design goals. Define the focal-defect application, candidate formulation and delivery workflow together with potential users. Check IP ownership and prior disclosures, and start regulatory communication.",
-    gate: "A written target product profile, reproducible proof-of-concept results and a justified lead-candidate decision.",
-    resources: "Core technical team, clinical advisors, technology-transfer support and early development funding.",
-  },
-  {
-    phase: "De-risk (2027–2029)",
-    work: "Compare the base scaffold with selected modules; optimize the manufacturing process and establish analytical specifications. Evaluate biological and mechanical performance, the user workflow and preliminary unit economics.",
-    gate: "A fixed candidate with predefined performance targets, a credible safety-evaluation plan and a feasible manufacturing route.",
-    resources: "Materials and assay expertise, a development manufacturing partner, testing partners and seed funding.",
-  },
-  {
-    phase: "Prepare (2029–2031)",
-    work: "Complete the required non-clinical studies, stability work, sterile production and device evidence for the chosen pathway. Establish the quality system and prepare clinical study documents with the appropriate clinical centres.",
-    gate: "Sufficient quality and safety evidence, funding and all necessary approvals before human studies begin.",
-    resources: "Quality and regulatory lead, qualified manufacturer, non-clinical study organisation and clinical partners.",
-  },
-  {
-    phase: "Evaluate (2031–2035)",
-    work: "Run feasibility and, where appropriate, confirmatory studies along the defined pathway. Assess function, pain, structural repair, safety and durability together with usability and health economics.",
-    gate: "Clinical evidence meets the predefined targets and manufacturing meets registration and supply requirements.",
-    resources: "Study sponsor, investigators, monitoring and data teams, manufacturing capacity and clinical-stage funding.",
-  },
-  {
-    phase: "Review (2035–2037)",
-    work: "Submit the relevant registration dossier, respond to review questions and prepare controlled supply, training, procurement and post-market follow-up. Patient-facing commercial use begins only after the applicable approval.",
-    gate: "The necessary approvals, together with reliable release testing, supply capacity, trained users and a viable procurement path.",
-    resources: "Regulatory and quality team, commercial partners, first specialty centres and launch funding.",
-  },
-  {
-    phase: "Expand (2037–2042)",
-    work: "If approved, expand capacity and the network of partner centres while tracking long-term outcomes. Evaluate new indications, regions and advanced formulations as separate development decisions.",
-    gate: "Sustained safety, clinical performance, supply reliability and unit economics sufficient to support expansion.",
-    resources: "Operations and clinical follow-up teams, qualified supply partners and reinvestment or growth capital.",
-  },
-];
-
-const RISK_ROWS = [
-  {
-    id: "R1",
-    stage: "Experimental validation",
-    level: "Critical",
-    risk: "Even if the hydrogel gels successfully, it may not withstand repeated loading, may detach from the cartilage surface, or may degrade before functional tissue forms. Short-term material performance cannot prove durable cartilage regeneration.",
-    action: "In relevant models, compare material retention, wet-interface integration, fatigue performance, degradation and repair quality against explicit controls. Proceed only after predefined performance and safety criteria are met; otherwise adjust the scaffold or the intended indication.",
-  },
-  {
-    id: "R2",
-    stage: "Module integration",
-    level: "High",
-    risk: "Magnetic components and CPC/Link-N may interfere with crosslinking, cell responses or matrix interactions. Adding modules may increase complexity without a meaningful gain.",
-    action: "Compare the base scaffold, individual modules and selected combinations. Retain a module only when its incremental benefit justifies the added safety, process and handling burden, and define the minimal first formulation that meets the target.",
-  },
-  {
-    id: "R3",
-    stage: "Material safety",
-    level: "Critical",
-    risk: "Residual endotoxin, host-cell impurities, ligase, Ru/SPS reagents, magnetic particles or lipid components may affect local safety. Recombinant proteins and peptide interfaces may also trigger immune responses.",
-    action: "Build a product-specific biological evaluation and impurity-control strategy covering local tissue reactions and degradation products. If a component cannot meet a justified safety specification, pause development, change the formulation or remove the component.",
-  },
-  {
-    id: "R4",
-    stage: "Mitochondrial Therapeutic Module",
-    level: "Critical",
-    risk: "Source traceability, functional potency, storage stability and the reproducibility of enzyme-responsive delivery remain highly uncertain. A validated scaffold does not validate a complete mitochondrial product.",
-    action: "Define source, quality and potency requirements, and evaluate delivery separately from the scaffold. Do not include the module in the first candidate unless its benefit is demonstrated and complete manufacturing and regulatory documentation exists.",
-  },
-  {
-    id: "R5",
-    stage: "Scale-up and cost",
-    level: "High",
-    risk: "Repetitive SELP constructs, purification yield and module occupancy may cause batch inconsistency. Laboratory yield does not prove that every released clinical unit is cost-competitive.",
-    action: "Track identity, purity, assembly consistency, yield and cost across independent batches. Include failed batches, testing, packaging and distribution in the cost model, and prefer qualified development manufacturing partners before investing in a dedicated plant.",
-  },
-  {
-    id: "R6",
-    stage: "Sterility and shelf life",
-    level: "Critical",
-    risk: "Sterilization, transport or storage may damage the protein network, active modules or gelation performance. A stable base scaffold does not mean the final combination is equally stable.",
-    action: "Validate a product-compatible sterile process, packaging and storage conditions. Evaluate each final formulation and its device interface separately; if stability is insufficient, shorten the intended shelf life or simplify the supply format.",
-  },
-  {
-    id: "R7",
-    stage: "Regulatory pathway",
-    level: "Critical",
-    risk: "The scaffold, bioactive modules, mitochondria and delivery device may fall under different regulatory requirements. Calling the product a hydrogel, or removing cells, does not by itself determine its classification.",
-    action: "Clarify the intended use, composition and primary mode of action, and communicate early with NMPA on classification and the submission pathway. Map the evidence required for each configuration and revise scope and timelines before major investment.",
-  },
-  {
-    id: "R8",
-    stage: "Hardware and usability",
-    level: "High",
-    risk: "Mixing, temperature control, delivery, magnetic orientation and illumination must work together. Workflow errors or inconsistent parameters may change the implanted material and increase the surgical burden.",
-    action: "Validate the complete workflow with intended users, including delivery accuracy, curing consistency and software control. Limit the clinical version to validated formulations and parameters; simplify the device if complexity outweighs the benefit.",
-  },
-  {
-    id: "R9",
-    stage: "Intellectual property and licensing",
-    level: "High",
-    risk: "Third-party rights may cover the ligation system, biomaterials, modules or delivery device. Public disclosures and university ownership arrangements affect what NEST can protect or license.",
-    action: "Review prior disclosures, inventorship, ownership and material-transfer terms, and commission freedom-to-operate analyses in target jurisdictions. Obtain necessary licences or design around the claims; research-use permission is not commercial rights.",
-  },
-  {
-    id: "R10",
-    stage: "Clinical adoption and payment",
-    level: "High",
-    risk: "Surgeons may prefer established procedures, and hospitals may not accept additional equipment or costs. A product for focal defects does not apply to every patient with osteoarthritis.",
-    action: "Define the first indication with clinicians and test procurement and willingness-to-pay assumptions. Compare total surgical cost, outcomes and rehabilitation burden. If adoption is insufficient, narrow the indication or let a partner lead commercialization.",
-  },
-  {
-    id: "R11",
-    stage: "Financing and execution",
-    level: "High",
-    risk: "Long development timelines, clinical setbacks and turnover in a university team may exhaust funding or interrupt continuity before sales begin.",
-    action: "Raise against consecutive evidence milestones, keep complete handover records and build a sustainable operating team. Track cash runway to the next decision point; if funding is short, protect the first product and defer facility expansion or advanced modules.",
-  },
-  {
-    id: "R12",
-    stage: "Partnerships and impact",
-    level: "High",
-    risk: "Dependence on a single manufacturer or commercial partner may limit access, data use or supply. Biodegradability alone does not prove a lower environmental footprint.",
-    action: "Define data, IP, quality, supply and exit responsibilities in agreements, and qualify alternative partners where feasible. Assess waste, energy and cold-chain needs, and evaluate affordability with potential clinical centres; avoid unsupported exclusivity or sustainability claims.",
-  },
-];
-
-const CANVAS_ROWS = [
-  {
-    module: "Key partners",
-    model:
-      "Orthopaedic clinical centres and patient advisors; CDMO manufacturers and testing laboratories; university technology-transfer and IP teams; device and distribution partners; commercial insurers and government partners.",
-  },
-  {
-    module: "Key activities",
-    model:
-      "Freeze the lead formulation; scale production and quality control; generate clinical evidence.",
-  },
-  {
-    module: "Key resources",
-    model:
-      "SELP and ligation know-how; assays, data and quality systems; clinical and manufacturing expertise.",
-  },
-  {
-    module: "Value propositions",
-    model:
-      "A sequence-defined material foundation; controlled assembly of selected functions; conformal filling and on-demand gelation; a coordinated material-delivery workflow. Target benefits still require validation.",
-  },
-  {
-    module: "Customer relationships",
-    model:
-      "Joint development milestones; surgeon training and support; quality and safety follow-up.",
-  },
-  {
-    module: "Channels",
-    model:
-      "Development partnerships; specialist centres and procurement channels; orthopaedic distributors.",
-  },
-  {
-    module: "Customer segments",
-    model:
-      "Near term: biomaterial and orthopaedic R&D partners. After approval: hospitals and surgical centres. Beneficiaries: selected patients with focal cartilage defects. Initial geographic focus: China.",
-  },
-  {
-    module: "Cost structure",
-    model:
-      "R&D, preclinical and clinical studies and regulatory work; manufacturing, batch release, sterile packaging and distribution; IP, quality systems, device support and team operations.",
-  },
-  {
-    module: "Revenue streams",
-    model:
-      "Early: research services and negotiated development licences. After approval: formulation kits and disposable delivery sets. Potential: equipment or service contracts and licensing royalties.",
-  },
-];
+function renderBlock(block: ContentBlock, key: string): ReactNode {
+  switch (block.type) {
+    case "paragraph":
+      return <p key={key}>{block.text}</p>;
+    case "heading": {
+      if (block.level === 2) {
+        return (
+          <h2 id={block.id} key={key}>
+            {block.text}
+          </h2>
+        );
+      }
+      if (block.level === 3) {
+        return (
+          <h3 id={block.id} key={key}>
+            {block.text}
+          </h3>
+        );
+      }
+      return (
+        <h4 id={block.id} data-toc="exclude" key={key}>
+          {block.text}
+        </h4>
+      );
+    }
+    case "list":
+      return (
+        <ul key={key}>
+          {block.items.map((item, index) => (
+            <li key={`${key}-${index}`}>{item}</li>
+          ))}
+        </ul>
+      );
+    case "formula":
+      return (
+        <div className="entre-formula" key={key}>
+          {block.text}
+        </div>
+      );
+    case "figure":
+      return (
+        <figure className="entre-figure" key={key}>
+          <div
+            className={`entre-figure__media${
+              block.special ? " entre-figure__media--blue" : ""
+            }${block.files.length > 1 ? " entre-figure__media--stack" : ""}`}
+          >
+            {block.files.map((file, index) => (
+              <img
+                src={`${ENTRE_FIG}/${file}`}
+                alt={index === 0 ? block.caption : ""}
+                className="entre-figure__image"
+                loading="lazy"
+                decoding="async"
+                key={file}
+              />
+            ))}
+          </div>
+          <figcaption className="figure-caption">{block.caption}</figcaption>
+        </figure>
+      );
+    case "table":
+      return (
+        <div className="table-responsive mb-4" key={key}>
+          <table className="table table-bordered align-middle">
+            <TableCaption as="caption">{block.caption}</TableCaption>
+            <thead className="table-primary">
+              <tr>
+                {block.rows[0].map((cell, index) => (
+                  <th scope="col" key={`${key}-head-${index}`}>
+                    {cell}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {block.rows.slice(1).map((row, rowIndex) => (
+                <tr key={`${key}-row-${rowIndex}`}>
+                  {row.map((cell, cellIndex) => (
+                    <td key={`${key}-cell-${rowIndex}-${cellIndex}`}>{cell}</td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      );
+    case "card":
+      return (
+        <ExtendCard
+          title={block.title}
+          key={key}
+          headingLevel={/^[123] (Initial|Annual)/.test(block.title) ? 3 : undefined}
+        >
+          {block.blocks.map((child, index) =>
+            renderBlock(child, `${key}-${index}`),
+          )}
+        </ExtendCard>
+      );
+  }
+}
 
 export function Entrepreneurship() {
+  const referencesIndex = CONTENT.findIndex(
+    (block) => block.type === "heading" && block.id === "references",
+  );
+  const articleBlocks =
+    referencesIndex === -1 ? CONTENT : CONTENT.slice(0, referencesIndex);
+  const referenceBlocks =
+    referencesIndex === -1 ? [] : CONTENT.slice(referencesIndex + 1);
+
   return (
     <div className="row mt-4 mb-5">
       <div className="col-lg-10 mx-auto">
@@ -473,1596 +1966,18 @@ export function Entrepreneurship() {
               &mdash; Nicholas A. Peppas, Chief Scientist of Appian Labs
             </footer>
           </blockquote>
-          <h2 id="background">Background</h2>
-          <p>
-            Articular cartilage supports everyday activities such as walking,
-            running and climbing stairs, yet it has almost no blood supply and a
-            very limited capacity for self-repair. Sports trauma, prolonged
-            abnormal loading and age-related degeneration can all damage
-            cartilage, making pain, stiffness and restricted movement more
-            likely in later years. In 2023, about 635.4 million people worldwide
-            were living with osteoarthritis. For many patients, cartilage damage
-            means not only physical pain but also a gradual loss of mobility,
-            work capacity and independence.
-          </p>
-          <p>
-            Conventional treatments can relieve symptoms, repair part of a defect
-            or rebuild joint function, but they still struggle to restore native
-            hyaline cartilage durably. Hydrogels are attractive because they are
-            water-rich, injectable and able to conform to irregular defects.
-            Once inside the joint, however, the material must simultaneously
-            withstand repeated loading, attach to wet tissue, degrade in a
-            controlled way and support cells whose function is already impaired.
-            As more functions are added, complex material assembly also creates
-            challenges for manufacturing consistency, quality control and
-            clinical translation.
-          </p>
-          <p>
-            Cartilage repair therefore needs more than another fixed-formula
-            hydrogel. It needs a material platform that can adjust performance to
-            different defects, combine functions on demand and be manufactured
-            reproducibly. NEST, developed by NexCode Biotechnologies, is our
-            answer: a programmable, modular protein hydrogel platform that aims
-            to make cartilage repair customizable, scalable and
-            standardization-ready.
-          </p>
-
-          <h2 id="about-bcoated">About NexCode</h2>
-          <p>
-            NexCode Biotechnologies is a biotechnology company focused on
-            advancing hyaline cartilage repair. Its core project, NEST, takes its
-            name from the way a bird&rsquo;s nest supports and protects life
-            according to its environment: NEST aims to build a fitting
-            &ldquo;nest&rdquo; for regrowing tissue through programmable protein
-            materials.
-          </p>
-          <p>
-            At the core of NEST is a modular hydrogel platform based on SELP, a
-            silk–elastin-like protein. Genetic sequence design allows us to tune
-            mechanical properties, elasticity, tissue interactions and
-            degradation behaviour. After injection into a defect, the material
-            can be crosslinked in situ with visible light, conforming to
-            different cartilage defect shapes, supporting repair and eventually
-            degrading. Standardized protein ligation interfaces allow functional
-            modules to be assembled as needed, so one material backbone can serve
-            different requirements.
-          </p>
-          <p>
-            For commercial translation, NexCode plans a B2B model serving medical
-            device companies, research hospitals and regenerative-medicine
-            translation organizations with customizable protein hydrogel
-            formulations, functional modules and accompanying preparation and
-            delivery solutions. We will start with osteoarthritis-related
-            cartilage defects as the representative application, complete
-            material validation, manufacturing standardization and preclinical
-            development, and then extend to other joints, disease stages and
-            repair goals. Compared with developing a new material for every
-            need, the platform model is expected to shorten development cycles,
-            improve manufacturing consistency and support a growing product
-            pipeline.
-          </p>
-
-          <h2 id="market-size-analysis">Market size analysis</h2>
-          <p>
-            The market analysis shows that NEST addresses a large, growing and
-            insufficiently served medical market. We use the total addressable
-            market (TAM), serviceable available market (SAM) and serviceable
-            obtainable market (SOM) framework to move from the global cartilage
-            repair industry to the Chinese knee cartilage repair market that
-            NEST initially plans to enter.
-          </p>
-
-          <ExtendCard title="Total addressable market">
-            <p>
-              TAM is the total market size of a product or service. For NEST it
-              is not limited to the knee or sports injuries; it includes
-              cartilage defect repair across joints and causes:
-            </p>
-            <ul>
-              <li>
-                cartilage defects of the knee, ankle, hip, shoulder and elbow;
-              </li>
-              <li>
-                focal cartilage defects caused by sports injuries and trauma;
-              </li>
-              <li>
-                degenerative cartilage damage associated with osteoarthritis;
-              </li>
-              <li>
-                osteochondral injuries and other conditions requiring cartilage
-                regeneration;
-              </li>
-              <li>
-                cell transplantation, tissue scaffolds, growth factors and
-                acellular repair materials.
-              </li>
-            </ul>
-            <p>
-              A commercial market study estimates the global cartilage repair
-              and regeneration market at about US$1.18907 billion in 2025,
-              growing to about US$3.22206 billion by 2033 — a compound annual
-              growth rate (CAGR) of about 13.27% over 2025–2033 [2]. CAGR
-              reflects market prospects; a rate above the S&amp;P 500&rsquo;s
-              long-term average annual return of about 10% indicates strong
-              growth potential [3]. The growing osteoarthritis burden, wider
-              adoption of arthroscopy and advances in regenerative medicine are
-              the main drivers.
-            </p>
-          </ExtendCard>
-
-          <ExtendCard title="Serviceable available market">
-            <p>
-              SAM is the share of the market a company can reach with its
-              business model [1]. The target market is a key determinant, so we
-              use a segment prioritization approach (SPA) to decide where to
-              focus first. Each region is scored on current size, future
-              potential and accessibility, weighted by importance.
-              Accessibility receives the highest weight because the business must
-              be able to enter the market; market size is second because it
-              indicates the number of potential customers; market potential is
-              weighted least.
-            </p>
-            <p>
-              Weighted score = (2 × size score + 1 × potential score + 4 ×
-              accessibility score) / 7.
-            </p>
-            <div className="table-responsive mb-4">
-              <table
-                className="table table-bordered align-middle"
-                aria-label="Regional market screening for NEST"
-              >
-<TableCaption as="caption">Table 1 | Regional market screening for NEST.</TableCaption>
-                <thead className="table-primary">
-                  <tr>
-                    <th scope="col">Region</th>
-                    <th scope="col">2023 market size (αP)</th>
-                    <th scope="col">Size score (×2)</th>
-                    <th scope="col">2033 potential (αP)</th>
-                    <th scope="col">Potential score (×1)</th>
-                    <th scope="col">Accessibility (×4)</th>
-                    <th scope="col">Weighted score</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {SPA_ROWS.map((row) => (
-                    <tr key={row.region}>
-                      <td>{row.region}</td>
-                      <td>{row.size}</td>
-                      <td>{row.sizeScore}</td>
-                      <td>{row.potential}</td>
-                      <td>{row.potentialScore}</td>
-                      <td>{row.access}</td>
-                      <td>
-                        <strong>{row.weighted}</strong>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-            <p>
-              <small>
-                αP is a market-size index: α converts osteoarthritis patient
-                numbers into the cartilage repair market and P is the average
-                treatment price; patient bases are in millions. The 2033 values
-                assume a 13.27% CAGR. Accessibility reflects the team&rsquo;s
-                location, existing clinical and research network, geographic
-                distance, regulatory familiarity and the difficulty of
-                establishing commercial partnerships.
-              </small>
-            </p>
-            <p>
-              East Asia scores highest on current patient size, future potential
-              and accessibility, so it is NEST&rsquo;s first serviceable market.
-              South Asia appears to be a suitable second market, but we will
-              focus on East Asia for the foreseeable future.
-            </p>
-            <p>
-              GBD 2023 data report about 635.4 million people with osteoarthritis
-              worldwide, with East Asia carrying the largest regional burden:
-              about 167 million patients, or 26.33% of the global total. MRI
-              studies show that about 98.5–99.6% of MRI-defined knee
-              osteoarthritis involves partial- or full-thickness cartilage
-              damage [4]. Assuming a 15% share of this market by 2033, our SAM
-              reaches about US$483.31 million (about €430 million) [2].
-            </p>
-          </ExtendCard>
-
-          <ExtendCard title="Serviceable obtainable market">
-            <p>
-              SOM is the part of the SAM a company can realistically capture
-              [1]. NexCode is located in China, an ideal base because of its
-              very large population and its central position in East Asia. As
-              the knee accounts for more than 60% of arthroscopic procedures,
-              NEST&rsquo;s first generation will target focal knee cartilage
-              defects [5]. Studies report focal chondral or osteochondral defects
-              in about 19% of knee arthroscopy patients [6]. The 2033 SOM for
-              the first product is therefore:
-            </p>
-            <p>
-              <MathFormula display>
-                {String.raw`\mathrm{SOM}_{2033} = 483.31 \times 60\% \times 19\% \approx \mathrm{US\$55.1\ million} \approx €48.96\ \mathrm{million}`}
-              </MathFormula>
-            </p>
-            <p>
-              This initial revenue would support applying the hydrogel to more
-              cartilage sites and more causes of damage. We will also promote
-              the programmable hydrogel in other parts of East Asia. Together
-              these steps support our annual targets.
-            </p>
-          </ExtendCard>
-
-          <h2 id="competitor-analysis">Competitor analysis</h2>
-          <p>
-            Around the clinical need for cartilage repair, NEST faces three
-            groups of competitors: direct competitors that use a different
-            material or technology route to meet the same clinical need;
-            alternative treatments that compete for patients, medical resources
-            and payment within the same care pathway; and platform companies
-            with adjacent capabilities that could enter cartilage repair. The
-            tables below select representative domestic and international
-            organizations and compare their positioning, technology and
-            commercial progress. Market access and commercial supply are
-            assessed by target region: an overseas approval does not confer
-            access to the Chinese market.
-          </p>
-
-          <ExtendCard title="Domestic companies">
-            <div className="table-responsive mb-0">
-              <table
-                className="table table-bordered align-middle"
-                aria-label="Domestic competitors in cartilage repair"
-              >
-<TableCaption as="caption">Table 2 | Domestic competitors in cartilage repair.</TableCaption>
-                <colgroup>
-                  <col style={{ width: "27%" }} />
-                  <col style={{ width: "41%" }} />
-                  <col style={{ width: "32%" }} />
-                </colgroup>
-                <thead className="table-primary">
-                  <tr>
-                    <th scope="col">Company and product</th>
-                    <th scope="col">Technology and public progress</th>
-                    <th scope="col">Implication for NEST</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {COMPETITORS_DOMESTIC.map((row) => (
-                    <tr key={row.company}>
-                      <td>
-                        <strong>{row.company}</strong>
-                        <br />
-                        {row.product}
-                        <br />
-                        <em>{row.route}</em>
-                      </td>
-                      <td>{row.progress}</td>
-                      <td>{row.meaning}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </ExtendCard>
-
-          <ExtendCard title="International companies">
-            <div className="table-responsive mb-0">
-              <table
-                className="table table-bordered align-middle"
-                aria-label="International competitors in cartilage repair"
-              >
-<TableCaption as="caption">Table 3 | International competitors in cartilage repair.</TableCaption>
-                <colgroup>
-                  <col style={{ width: "27%" }} />
-                  <col style={{ width: "41%" }} />
-                  <col style={{ width: "32%" }} />
-                </colgroup>
-                <thead className="table-primary">
-                  <tr>
-                    <th scope="col">Company and product</th>
-                    <th scope="col">Technology and public progress</th>
-                    <th scope="col">Implication for NEST</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {COMPETITORS_INTERNATIONAL.map((row) => (
-                    <tr key={row.company}>
-                      <td>
-                        <strong>{row.company}</strong>
-                        <br />
-                        {row.product}
-                        <br />
-                        <em>{row.route}</em>
-                      </td>
-                      <td>{row.progress}</td>
-                      <td>{row.meaning}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </ExtendCard>
-
-          <ExtendCard title="Competitive positioning">
-            <p>
-              Our intended differentiation is a sequence-defined SELP backbone
-              together with standardized, independently verifiable functional
-              interfaces. Because existing products already share some of these
-              features, injectability, biodegradability or a single-surgery
-              workflow alone are not sufficient differentiation. More meaningful
-              comparison points are scaffold retention and tissue integration,
-              batch reproducibility, repair durability, surgical burden and
-              total treatment cost.
-            </p>
-            <p>
-              NEST has proposed development directions that merit validation,
-              but a competitive advantage still requires further technical
-              support. We therefore present the platform as a hypothesis to be
-              tested against these benchmarks rather than as an established
-              clinical advantage.
-            </p>
-          </ExtendCard>
-
-          <h2 id="cost-analysis">Cost analysis</h2>
-          <p>
-            The sections above show that our solution is inventive, addresses an
-            unmet need and has a potential market despite direct and indirect
-            competitors. We now focus on the financial side of the business,
-            dividing financial costs into initial capital investment, annual
-            operating costs and annual capital expenditure. Capital cost
-            classification and estimation follow the techno-economic assessment
-            framework for biorefineries proposed by NREL [7]. We also conducted
-            an extensive literature search and drew on Professor Erik
-            Forsberg&rsquo;s technology-entrepreneurship course to obtain
-            accurate cost estimates. As is conventional in financial analysis,
-            most costs are estimated as proportions of other costs.
-          </p>
-
-          <ExtendCard title="Investment costs">
-            <p>
-              Investment costs include everything needed to obtain an operable
-              production facility, including R&amp;D. They therefore represent
-              the funding that must be raised. Investment costs are divided into
-              purchase costs (PC), direct costs (DC), indirect costs (IC) and
-              other costs (OC), and also include start-up and validation costs
-              plus working capital for the first months of operation. PC, DC, IC
-              and OC together form the fixed capital investment (FCI).
-            </p>
-            <p>
-              All investment costs are calculated as proportions of the major
-              equipment cost. To estimate that cost, we first determined how much
-              SELP must be produced to meet initial market demand and reach our
-              target sales (SOM).
-            </p>
-            <p>
-              About 2.183 million sports-medicine arthroscopic procedures are
-              expected in China in 2026 [8]. About 60% involve the knee [5], and
-              about 19% of knee arthroscopy patients have focal chondral or
-              osteochondral defects [6], giving an initial target of about
-              248,900 patients per year. Reported defects average about 2.1 cm²
-              [6], and human knee cartilage is about 2.2–2.5 mm thick [16];
-              assuming 2.5 mm, each patient needs about 0.525 mL of hydrogel. At a SELP
-              concentration of 10% w/v, this is about 52.5 mg of SELP per
-              treatment, or about 13,070 g per year. With a 20% allowance for
-              production losses and safety margin, the annual production target
-              is about 15,680 g. Our experiments yield about 0.5 g of SELP per
-              litre of medium, so about 31,360 L of medium must be processed per
-              year. At 100 batches per year, each batch requires about 314 L of
-              medium, so the line is planned around one 500 L bioreactor with
-              medium preparation tanks, a centrifuge, a high-pressure
-              homogenizer, temperature-controlled purification tanks, filtration
-              and endotoxin-removal equipment, a freeze dryer, aseptic filling
-              equipment and quality-control instruments.
-            </p>
-            <p>
-              With support from Beijing Weixinkang Medical Co., Ltd., the major
-              equipment cost of the first-generation NEST line is estimated at
-              ¥7.45 million, about US$1.115 million or €0.9916 million.
-            </p>
-
-            <h3 id="purchase-costs" data-toc="exclude">
-              Purchase costs
-            </h3>
-            <p>
-              Major equipment cost (MEC) covers bioreactors, stirring equipment
-              and freeze dryers needed for production. Unlisted equipment cost
-              covers other required equipment that is not separately itemized
-              in the quotation.
-            </p>
-
-            <h3 id="direct-costs" data-toc="exclude">
-              Direct costs
-            </h3>
-            <p>
-              Installation puts the equipment in place and connects it;
-              piping and insulation connect the equipment into a working system
-              and maintain process temperatures; electrical work establishes the
-              power network; the control system provides automation, monitoring
-              and instrumentation; the building provides the facility shell and
-              foundations; land improvement prepares the site for construction;
-              and auxiliary facilities include warehouses and cooling towers.
-            </p>
-
-            <h3 id="indirect-costs" data-toc="exclude">
-              Indirect costs
-            </h3>
-            <p>
-              Engineering covers design, planning and technical preparation;
-              construction management coordinates and supervises construction;
-              contingency reserves funds for unexpected costs during the
-              project; and the contractor&rsquo;s fee pays external construction
-              services.
-            </p>
-
-            <h3 id="other-costs" data-toc="exclude">
-              Other costs
-            </h3>
-            <p>
-              Start-up and validation cover commissioning, process tuning,
-              product development, validation and early promotion before
-              commercial operation.
-            </p>
-
-            <p>
-              Land is a one-off capital cost for acquiring the production site,
-              including purchase, lease rights and transaction costs. Following
-              the NREL classification, land sits outside FCI and, together with
-              working capital, is included in total capital investment (TCI).
-              Land itself is normally not depreciated; site levelling, roads and
-              drainage are land-improvement costs within direct construction
-              costs.
-            </p>
-            <p>
-              Working capital is the revolving capital needed to keep daily
-              operations running, supporting raw-material inventory, operating
-              cash and receivables. It is distinct from annual OPEX, which
-              records costs actually consumed during a year of production.
-            </p>
-
-            <div className="entre-card-nested-group">
-              <ExtendCard title="Equipment costs" level="secondary">
-                <p>
-                  The first-generation line is sized for 31,360 L of medium per
-                  year in 100 batches of about 314 L. Planned major equipment
-                  includes a 500 L bioreactor, medium preparation tanks, a
-                  centrifuge, a high-pressure homogenizer, temperature-controlled
-                  purification tanks, filtration and endotoxin-removal units, a
-                  freeze dryer, aseptic filling equipment and quality-control
-                  instruments.
-                </p>
-                <p>
-                  The estimated major equipment cost is ¥7.45 million (about
-                  US$1.115 million or €0.9916 million), excluding unlisted
-                  equipment, installation and utilities.
-                </p>
-              </ExtendCard>
-            </div>
-
-            <div className="table-responsive mb-0">
-              <table
-                className="table table-bordered align-middle"
-                aria-label="Initial capital investment for the first-generation NEST line"
-              >
-<TableCaption as="caption">Table 4 | Initial capital investment for the first-generation NEST line.</TableCaption>
-                <thead className="table-primary">
-                  <tr>
-                    <th scope="col">Cost item</th>
-                    <th scope="col">Basis</th>
-                    <th scope="col">CNY thousand</th>
-                    <th scope="col">USD thousand</th>
-                    <th scope="col">EUR thousand</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {INVESTMENT_ROWS.map((row) => (
-                    <tr key={row.item}>
-                      <td>{row.total ? <strong>{row.item}</strong> : row.item}</td>
-                      <td>{row.basis}</td>
-                      <td>{row.total ? <strong>{row.cny}</strong> : row.cny}</td>
-                      <td>{row.total ? <strong>{row.usd}</strong> : row.usd}</td>
-                      <td>{row.total ? <strong>{row.eur}</strong> : row.eur}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </ExtendCard>
-
-          <ExtendCard title="Production costs">
-            <p>
-              Operating expenditure (OPEX) is incurred to keep producing after
-              the plant starts running. For a one-year period it typically
-              includes raw materials, media and reagents, utilities, labour,
-              maintenance, quality testing and waste treatment. Production costs
-              are divided into variable costs, which rise with output, and fixed
-              costs, which do not.
-            </p>
-
-            <h3 id="variable-costs" data-toc="exclude">
-              Variable costs
-            </h3>
-            <p>
-              Variable operating costs (VOC) include raw materials, utilities,
-              direct labour, consumables, waste treatment and disposal,
-              transportation and logistics, quality control and royalties.
-            </p>
-
-            <h3 id="fixed-costs" data-toc="exclude">
-              Fixed costs
-            </h3>
-            <p>
-              Fixed operating costs (FOC) include research and development,
-              marketing, maintenance and insurance.
-            </p>
-
-            <div className="entre-card-nested-group">
-              <ExtendCard title="Material costs" level="secondary">
-                <p>
-                  NEST is produced in <em>E. coli</em> BL21(DE3) carrying the
-                  SELP expression plasmid. In the laboratory we use standard LB
-                  broth; because the SELP becomes a hydrogel that enters the
-                  human body, we do not use waste-derived media and instead
-                  select raw materials with stable quality, which also matches
-                  supplier-audit and traceability requirements for medical-device
-                  manufacturing.
-                </p>
-                <p>
-                  LB Miller medium contains 10 g tryptone, 5 g yeast extract and
-                  10 g sodium chloride per litre. For 31,360 L per year,
-                  NEST needs about 313.6 kg tryptone, 156.8 kg yeast extract and
-                  313.6 kg sodium chloride. At publicly listed prices available
-                  through Chinese channels, the annual purchase cost of these
-                  three main LB ingredients is about ¥290.7 thousand per year.
-                </p>
-                <p>
-                  In addition, about 7.47 kg of IPTG and about 1.57 kg of
-                  kanamycin are needed each year, together with PBS and sodium
-                  chloride for ITC phase separation and the Ru/SPS crosslinking
-                  components for the final hydrogel. Including the syringe
-                  hardware consumables of about ¥291.5 thousand per year
-                  (500 units), the raw-material line in the model totals ¥869.2
-                  thousand per year, about US$129,300 or €115,900.
-                </p>
-              </ExtendCard>
-
-              <ExtendCard title="Labour costs" level="secondary">
-                <p>
-                  Annual labour cost for company operations is modelled as:
-                </p>
-                <MathFormula display>
-                  {String.raw`C_{\mathrm{labour}} = \sum_k F_{\mathrm{labour},k} \times c_{\mathrm{labour},k} \times h_{\mathrm{operation},k}`}
-                </MathFormula>
-                <p>
-                  where <em>k</em> is a specific production operation,{" "}
-                  <em>F</em> is the labour hours required per operating hour,{" "}
-                  <em>c</em> is the fully loaded hourly labour cost, and{" "}
-                  <em>h</em> is the annual operating time of that operation.
-                </p>
-                <div className="table-responsive mb-3">
-                  <table
-                    className="table table-bordered align-middle"
-                    aria-label="Labour intensity of NEST production operations"
-                  >
-<TableCaption as="caption">Table 5 | Labour intensity of NEST production operations.</TableCaption>
-                    <thead className="table-primary">
-                      <tr>
-                        <th scope="col">Operation</th>
-                        <th scope="col">Labour hours per operating hour</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>Batch fermentation</td>
-                        <td>0.3–2.0</td>
-                      </tr>
-                      <tr>
-                        <td>Cell harvesting and clarification</td>
-                        <td>0.1–0.2</td>
-                      </tr>
-                      <tr>
-                        <td>ITC purification and TFF concentration</td>
-                        <td>0.2–0.5</td>
-                      </tr>
-                      <tr>
-                        <td>SELP formulation, aseptic filling and lyophilization</td>
-                        <td>0.3–0.6</td>
-                      </tr>
-                      <tr>
-                        <td>Cleaning and decontamination</td>
-                        <td>0.1–0.2</td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <strong>Total</strong>
-                        </td>
-                        <td>
-                          <strong>1.0–3.5</strong>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-                <p>
-                  With night-shift wages, the formula becomes:
-                </p>
-                <MathFormula display>
-                  {String.raw`C_{\mathrm{production}} = \sum_k F_k c_k h_{k,d} + \sum_k F_k c_k (1+r_n) h_{k,n}`}
-                </MathFormula>
-                <p>
-                  where <em>h</em><sub>d</sub> and <em>h</em><sub>n</sub> are
-                  day- and night-shift operating hours and <em>r</em>
-                  <sub>n</sub> is the night-shift wage premium.
-                </p>
-                <p>
-                  Recruitment salaries for bioproduction operators in Zhejiang
-                  are about ¥6,000–8,000 per month, so we use the upper bound of
-                  ¥8,000 for a conservative estimate [1]. Including employer
-                  contributions for pension, medical and maternity insurance,
-                  unemployment insurance, work-injury insurance and the housing
-                  fund, we add 35% to the base wage for the time being [2–4].
-                  With 174 standard working hours per month, the hourly
-                  production labour cost is:
-                </p>
-                <MathFormula display>
-                  {String.raw`c_{\mathrm{labour}} = \frac{8{,}000 \times 1.35}{174} = 62.07\ \mathrm{CNY/h}`}
-                </MathFormula>
-                <p>
-                  For the initial calculation we use the upper end of the labour
-                  intensity of each operation, giving a total of 3.5 labour
-                  hours per operating hour. To obtain a conservative initial
-                  budget, we assume the system runs continuously through the
-                  year, with 4,380 hours on the day shift and 4,380 hours on the
-                  night shift. China has no unified national night-shift premium,
-                  so the model uses 20%.
-                </p>
-                <p>
-                  Day-shift labour cost: 3.5 × 62.07 × 4,380 = ¥951,517 per year.
-                  Night-shift labour cost: 3.5 × 62.07 × 1.2 × 4,380 =
-                  ¥1,141,821 per year. Annual production labour cost is therefore
-                  about ¥2,093,338, or ¥2.09 million per year.
-                </p>
-                <p>
-                  The company also needs cleaning and sales staff. Cleaning
-                  positions in Hangzhou pay about ¥4,000–5,000 per month and
-                  medical-device sales positions about ¥8,000–12,000 per month
-                  [5–6]. With three cleaners, two sales staff and the same 35%
-                  employer contribution:
-                </p>
-                <p>
-                  Cleaning: 5,000 × 1.35 × 3 × 12 = ¥243,000 per year. Sales:
-                  10,000 × 1.35 × 2 × 12 = ¥324,000 per year.
-                </p>
-                <p>
-                  Total annual labour cost is therefore 2,093,338 + 243,000 +
-                  324,000 = ¥2,660,338 per year, about ¥2.66 million.
-                </p>
-              </ExtendCard>
-
-              <ExtendCard title="Consumable costs" level="secondary">
-                <p>
-                  Consumables include filters, single-use tubing, gloves and
-                  other laboratory and production items that are replaced or
-                  discarded after use. The model estimates about ¥339.2 thousand
-                  per year (US$50.5 thousand; €45.2 thousand).
-                </p>
-              </ExtendCard>
-
-              <ExtendCard title="Waste costs" level="secondary">
-                <p>
-                  Waste from NEST production mainly consists of about 31,360 L
-                  of spent medium per year plus cleaning liquids, discarded
-                  filters, single-use tubing and gloves. To allow for water-rich
-                  waste and production variability, the model estimates 50,000 kg
-                  of waste per year. Because the culture uses engineered{" "}
-                  <em>E. coli</em>, spent medium and bacteria-contacted
-                  consumables must first be inactivated and then sorted and
-                  handed to licensed disposal companies; China&rsquo;s general
-                  biosafety requirements for laboratories also require reliable
-                  disinfection, classification and safe disposal [9]. For the
-                  initial cost model we use a low-end treatment price of ¥2.4 per
-                  kg [10], giving 50,000 kg × ¥2.4 = ¥120,000 per year.
-                </p>
-              </ExtendCard>
-
-              <ExtendCard title="Royalties" level="secondary">
-                <p>
-                  Licensing a patent to another company normally generates a
-                  royalty of about 5% [15]. For NEST this would mean other
-                  medical-device companies could license our strain to produce
-                  their own SELP. We do not intend to license the patent to other
-                  companies; we prefer to manufacture ourselves and sell the
-                  product, so the model assumes no royalty income.
-                </p>
-              </ExtendCard>
-            </div>
-
-            <p>
-              Research and development is budgeted at 0.5% of SOM, or ¥1.84
-              million per year. At present the cost calculation covers only the
-              first-generation SELP hydrogel. In future we plan to express
-              functional peptides with repair activity and add them to the
-              product. If the existing fermentation platform is reused and
-              His-tag affinity chromatography, protease cleavage and secondary
-              purification are added, the rest of the process remains broadly
-              similar to SELP production; we therefore provisionally set the
-              additional development operating cost at ¥1.84 million per year,
-              mainly for process optimization, excluding new buildings and a
-              complete GMP line. If the line has to be fully duplicated, the
-              equipment would be an additional capital cost [7].
-            </p>
-            <p>
-              An alternative is to contract process development and pilot
-              production of the functional peptides to a CDMO. Domestic CDMOs
-              can provide microbial fermentation up to about 2,000 L, protein
-              purification and quality testing, but usually quote separately
-              depending on strain, yield and purity requirements.
-              Building an in-house line requires existing equipment, technical
-              staff and a quality system; a CDMO may cost more but reduces early
-              equipment investment and scale-up risk. Because product demand is
-              still uncertain, we prefer CDMO collaboration first and expect to
-              move to in-house production once the process is stable and demand
-              grows.
-            </p>
-
-            <div className="table-responsive mb-0">
-              <table
-                className="table table-bordered align-middle"
-                aria-label="Annual operating expenditure for NEST"
-              >
-<TableCaption as="caption">Table 6 | Annual operating expenditure for NEST.</TableCaption>
-                <thead className="table-primary">
-                  <tr>
-                    <th scope="col">Cost item</th>
-                    <th scope="col">Basis</th>
-                    <th scope="col">CNY thousand</th>
-                    <th scope="col">USD thousand</th>
-                    <th scope="col">EUR thousand</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {OPEX_ROWS.map((row) => (
-                    <tr key={row.item}>
-                      <td>{row.total ? <strong>{row.item}</strong> : row.item}</td>
-                      <td>{row.basis}</td>
-                      <td>{row.total ? <strong>{row.cny}</strong> : row.cny}</td>
-                      <td>{row.total ? <strong>{row.usd}</strong> : row.usd}</td>
-                      <td>{row.total ? <strong>{row.eur}</strong> : row.eur}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </ExtendCard>
-
-          <ExtendCard title="Capital costs">
-            <p>
-              Annual capital expenditure (CAPEX) covers spending to improve the
-              plant further, such as expanding production facilities, replacing
-              equipment or training staff. In our business plan, capital costs
-              are defined as a proportion of revenue.
-            </p>
-            <p>
-              Maintenance capital expenditure keeps existing capacity and
-              facilities running; replacement capital expenditure replaces
-              equipment, components or facilities that reach the end of their
-              service life; expansion capital expenditure increases production
-              scale or capacity.
-            </p>
-            <div className="table-responsive mb-0">
-              <table
-                className="table table-bordered align-middle"
-                aria-label="Annual capital expenditure for NEST"
-              >
-<TableCaption as="caption">Table 7 | Annual capital expenditure for NEST.</TableCaption>
-                <thead className="table-primary">
-                  <tr>
-                    <th scope="col">Cost item</th>
-                    <th scope="col">Basis</th>
-                    <th scope="col">CNY thousand</th>
-                    <th scope="col">USD thousand</th>
-                    <th scope="col">EUR thousand</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {CAPEX_ROWS.map((row) => (
-                    <tr key={row.item}>
-                      <td>{row.item}</td>
-                      <td>{row.basis}</td>
-                      <td>{row.cny}</td>
-                      <td>{row.usd}</td>
-                      <td>{row.eur}</td>
-                    </tr>
-                  ))}
-                  <tr>
-                    <td>
-                      <strong>CAPEX total</strong>
-                    </td>
-                    <td>0.6% of SOM</td>
-                    <td>
-                      <strong>2,208.00</strong>
-                    </td>
-                    <td>
-                      <strong>328.57</strong>
-                    </td>
-                    <td>
-                      <strong>294.40</strong>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </ExtendCard>
-
-          <h2 id="timeline">Timeline</h2>
-          <p>
-            Our milestones move from proof of concept and technical validation
-            to market entry and business expansion, adjusted for the long cycle
-            of implantable cartilage repair products and their dependence on
-            accumulating evidence. The roadmap covers 2026–2042 and shows
-            technical, regulatory and commercial work running in parallel. It is
-            a proposed baseline scenario; product classification, study results
-            and financing may change the order or extend the timeline.
-          </p>
-          <figure className="figure d-block my-4 text-center">
-            <img
-              src={`${ENTRE_FIG}/roadmap-2026-2042.avif`}
-              alt="Proposed NEST development roadmap from 2026 to 2042, showing six phases and parallel technical, regulatory, IP, funding and commercial workstreams."
-              className="figure-img img-fluid rounded"
-              style={{ width: "100%" }}
-              width={3840}
-              height={2367}
-              loading="lazy"
-              decoding="async"
-            />
-            <figcaption className="figure-caption">
-              Figure 1 | Proposed development roadmap, 2026–2042. The six phases
-              define the lead product, de-risk formulation and manufacturing,
-              prepare quality and safety evidence, evaluate clinical value,
-              complete regulatory review and expand only after authorization.
-              Delays or failed gates shift downstream dates.
-            </figcaption>
-          </figure>
-          <div className="table-responsive mb-4">
-            <table
-              className="table table-bordered align-middle"
-              aria-label="NEST development phases, decision gates and resources"
-            >
-<TableCaption as="caption">Table 8 | NEST development phases, decision gates and resources.</TableCaption>
-              <thead className="table-primary">
-                <tr>
-                  <th scope="col">Phase and window</th>
-                  <th scope="col">Work</th>
-                  <th scope="col">Stage decision condition</th>
-                  <th scope="col">Required resources</th>
-                </tr>
-              </thead>
-              <tbody>
-                {TIMELINE_ROWS.map((row) => (
-                  <tr key={row.phase}>
-                    <td>
-                      <strong>{row.phase}</strong>
-                    </td>
-                    <td>{row.work}</td>
-                    <td>{row.gate}</td>
-                    <td>{row.resources}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-          <p>
-            IP review, financing and partner development continue throughout the
-            programme. Mitochondrial delivery and other advanced modules are
-            pursued as parallel research streams and cannot inherit the evidence
-            or approvals of the first formulation. Facility investment follows
-            validated demand and process maturity. Without a defensible financial
-            model, we do not assert a break-even year or a market-share forecast.
-          </p>
-
-          <h2 id="financial-analysis">Financial analysis</h2>
-          <p>
-            The financial model uses the 2033 SOM as its revenue scenario and the
-            cost structure above as its expenditure basis. It assumes zero
-            interest, a ten-year depreciation period for fixed capital and CAPEX,
-            and a 15% tax rate on gross profit after depreciation. Figures are in
-            CNY thousand with the USD and EUR conversions used in the working
-            sheet (about ¥6.68 per US$ and ¥7.51 per €).
-          </p>
-          <div className="table-responsive mb-4">
-            <table
-              className="table table-bordered align-middle"
-              aria-label="Profit scenario for NEST at the 2033 SOM"
-            >
-<TableCaption as="caption">Table 9 | Profit scenario for NEST at the 2033 SOM.</TableCaption>
-              <thead className="table-primary">
-                <tr>
-                  <th scope="col">Profit item</th>
-                  <th scope="col">Calculation</th>
-                  <th scope="col">CNY thousand</th>
-                  <th scope="col">USD thousand</th>
-                  <th scope="col">EUR thousand</th>
-                </tr>
-              </thead>
-              <tbody>
-                {PROFIT_ROWS.map((row) => (
-                  <tr key={row.item}>
-                    <td>
-                      <strong>{row.item}</strong>
-                    </td>
-                    <td>{row.basis}</td>
-                    <td>{row.cny}</td>
-                    <td>{row.usd}</td>
-                    <td>{row.eur}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-          <p>
-            At the 2033 SOM of ¥368.0 million, variable and fixed operating costs
-            of ¥4.80 million and ¥5.74 million give a gross profit of
-            ¥357.46 million. After depreciation of ¥5.26 million and taxes of
-            ¥52.83 million, net profit is ¥299.37 million. These figures
-            illustrate the economics of the target scenario rather than a
-            committed forecast: they depend on reaching the assumed price,
-            volume and market share, and on the product obtaining the necessary
-            approvals.
-          </p>
-
-          <h2 id="risk-analysis">Risk analysis</h2>
-          <p>
-            NEST uses a tiered risk-management approach: each risk has a
-            mitigation strategy and a fallback decision, and risk assessment is
-            built into stage decisions. A &ldquo;critical&rdquo; risk may affect
-            project feasibility or block progress; a &ldquo;high&rdquo; risk may
-            delay development, increase costs or obstruct commercialization.
-            Levels are qualitative assessments of potential impact, not measured
-            probabilities. Before each stage begins, quantified acceptance
-            criteria define whether to continue, adjust or pause development.
-          </p>
-          <div className="table-responsive mb-4">
-            <table
-              className="table table-bordered align-middle"
-              aria-label="NEST risk register"
-            >
-<TableCaption as="caption">Table 10 | NEST risk register.</TableCaption>
-              <thead className="table-primary">
-                <tr>
-                  <th scope="col">Stage and priority</th>
-                  <th scope="col">Risk</th>
-                  <th scope="col">Mitigation and fallback decision</th>
-                </tr>
-              </thead>
-              <tbody>
-                {RISK_ROWS.map((row) => (
-                  <tr key={row.id}>
-                    <td>
-                      <strong>
-                        {row.id} · {row.stage}
-                      </strong>
-                      <br />
-                      {row.level}
-                    </td>
-                    <td>{row.risk}</td>
-                    <td>{row.action}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-
-          <h2 id="obtaining-capital">Obtaining capital</h2>
-          <p>
-            Capital is raised against evidence milestones rather than in a
-            single financing event. The roadmap pairs each development phase
-            with the funding needed to reach its next decision gate: early
-            funding and development partners during definition and de-risking
-            (2026–2029), clinical capital and launch partners during
-            preparation, evaluation and review (2029–2037), and growth or
-            reinvestment capital only after approval (2037–2042).
-          </p>
-          <p>
-            This staged approach protects the first product when funding is
-            short: facility expansion and advanced modules are deferred before
-            the lead candidate is put at risk (R11). Grant applications, equity
-            rounds and partner agreements will be developed milestone by
-            milestone as the lead product matures; no specific grant or
-            investment is assumed in this plan.
-          </p>
-
-          <h2 id="the-sustainable-business-canvas">
-            The sustainable business canvas
-          </h2>
-          <p>
-            NEST plans a staged B2B business model. In the early stage it enters
-            through research collaboration and technology-development licences,
-            building industry resources and validating commercial demand. After
-            the necessary validation and approvals, it will supply cartilage
-            repair implant materials and accompanying delivery solutions to
-            clinical institutions. Target customers are mainly orthopaedic
-            companies and hospitals, corresponding to co-development, technology
-            licensing and clinical procurement. Patients, as end users and
-            beneficiaries, may bear part of the treatment cost but are not
-            direct sales targets initially. Research grants and equity financing
-            support R&amp;D and commercialization and are accounted for
-            separately from operating revenue from research services, licences
-            and product sales.
-          </p>
-          <figure className="figure d-block my-4 text-center">
-            <img
-              src={`${ENTRE_FIG}/sustainable-business-canvas.avif`}
-              alt="NEST sustainable business model canvas with key partners, activities, resources, value propositions, customer relationships, channels, segments, cost structure and revenue streams."
-              className="figure-img img-fluid rounded"
-              style={{ width: "100%" }}
-              width={3840}
-              height={2015}
-              loading="lazy"
-              decoding="async"
-            />
-            <figcaption className="figure-caption">
-              Figure 2 | Proposed sustainable business model canvas. The canvas
-              describes prospective roles and revenue streams; no agreements are
-              assumed, and the target benefits still require validation.
-            </figcaption>
-          </figure>
-          <div className="table-responsive mb-4">
-            <table
-              className="table table-bordered align-middle"
-              aria-label="Sustainable business model canvas for NEST"
-            >
-<TableCaption as="caption">Table 11 | Sustainable business model canvas for NEST.</TableCaption>
-              <thead className="table-primary">
-                <tr>
-                  <th scope="col">Canvas module</th>
-                  <th scope="col">Proposed business model</th>
-                </tr>
-              </thead>
-              <tbody>
-                {CANVAS_ROWS.map((row) => (
-                  <tr key={row.module}>
-                    <td>
-                      <strong>{row.module}</strong>
-                    </td>
-                    <td>{row.model}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-          <p>
-            Sustainability remains to be verified: we will assess production
-            waste, energy, packaging and cold-chain requirements and evaluate
-            affordability and accessibility with potential clinical centres.
-            Biodegradability alone does not prove a lower environmental
-            footprint.
-          </p>
-
-          <h2 id="market-entry">Market entry</h2>
-          <p>
-            NEST&rsquo;s market entry follows the sequence: validate the core
-            platform, confirm the regulatory pathway, validate clinical value,
-            enter lead centres, then expand indications and the product line. We
-            will not combine every functional module into a complex product at
-            the start. Instead, SELP-SnoopTag is the minimum viable product that
-            validates the most central and reusable value of the programmable
-            hydrogel platform. Early development will accumulate evidence on
-            material preparation, quality control, in vitro performance,
-            biocompatibility, animal studies and manufacturing scalability, and
-            will keep adjusting the product definition through feedback from
-            orthopaedic surgeons, hospitals and industry partners.
-          </p>
-          <p>
-            In China, NEST must first determine its regulatory attributes and
-            submission pathway before entering the clinical market. The base
-            SELP-SnoopTag hydrogel and later versions with bioactive peptides,
-            liposomes or mitochondrial delivery modules may differ in primary
-            mode of action and risk profile, so we cannot assume that all
-            versions follow the same registration route. We will first conduct a
-            product-attribute, classification and risk self-assessment under the
-            Medical Device Supervision and Administration Regulation and the
-            Measures for the Registration and Filing Administration of Medical
-            Devices [12, 13]. If the product category or the drug-device
-            combination status cannot be determined, we will apply to the
-            relevant NMPA body for a classification or combination-product
-            attribute definition before submission. Registration preparation will
-            cover product technical requirements, risk analysis, testing,
-            non-clinical studies, clinical evaluation and the quality management
-            system. Innovative products whose existing evidence is insufficient
-            to demonstrate safety and effectiveness must also conduct clinical
-            trials in accordance with the law.
-          </p>
-          <p>
-            After the technical and clinical validation required for
-            registration, we plan to work first with orthopaedic and
-            sports-medicine centres experienced in cartilage repair and with
-            compliant medical-product companies. A limited number of clinical
-            centres will establish standardized workflows and real-world
-            feedback before hospital coverage is expanded. Here we distinguish
-            users from customers: patients with focal knee cartilage defects in
-            China are the first target users and ultimate beneficiaries, while
-            hospitals, orthopaedic surgeons, medical-device companies and
-            compliant distribution channels are important participants in early
-            clinical introduction, procurement and delivery. Our initial
-            commercial path is therefore closer to B2B2C than direct-to-patient
-            sales.
-          </p>
-
-          <h3 id="minimum-viable-product">Minimum viable product</h3>
-          <p>
-            A minimum viable product is the version that validates key customer
-            needs and core technical assumptions with the lowest development
-            complexity. For NEST, the MVP is not the final therapy carrying all
-            osteoarthritis modules at once; it is the SELP-SnoopTag programmable
-            hydrogel base. It consists of a recombinantly produced SELP backbone
-            and predefined SnoopTag interfaces. While retaining injectability,
-            in-situ gelation and basic support, it provides a standardized entry
-            point for attaching different DogTag functional modules later.
-          </p>
-          <p>The MVP must answer five critical questions:</p>
-          <ol>
-            <li>
-              Can SELP-SnoopTag be expressed and purified with stable yield,
-              purity and batch-to-batch consistency?
-            </li>
-            <li>
-              Can the material remain injectable under the intended conditions
-              and form a structurally stable hydrogel through visible-light
-              crosslinking?
-            </li>
-            <li>
-              Can SnoopTag remain accessible after expression, purification and
-              crosslinking and couple reproducibly and quantitatively to a model
-              DogTag module?
-            </li>
-            <li>
-              Do the mechanical properties, degradation behaviour,
-              biocompatibility and storage stability meet the requirements for
-              the next animal and preclinical studies?
-            </li>
-            <li>
-              Can the production process be standardized and does it have the
-              potential for further scale-up and unit-cost reduction?
-            </li>
-          </ol>
-          <p>
-            The value of the SELP-SnoopTag MVP is therefore not to solve every
-            mechanism of cartilage degeneration at once, but to prove that the
-            NEST base can be manufactured reliably, gel reliably and load
-            functional modules on demand. Only after these core assumptions are
-            validated will we include functional peptides or delivery components
-            targeting specific pathological mechanisms in later candidates. Until
-            the relevant registration approval is obtained, the MVP is used only
-            for research, validation and collaborative development, not as a
-            marketed product for clinical treatment.
-          </p>
-
-          <h3 id="first-potential-customers">First potential customers</h3>
-          <p>
-            Our first potential users are patients in China with focal knee
-            cartilage defects. The location and extent of the lesion are
-            relatively well defined, and the clinical need centres on restoring
-            the structural integrity and load-bearing function of the defect.
-            This makes the group suitable for validating in-situ filling, rapid
-            gelation, wet-tissue conformity and programmable functional assembly.
-            The initial target is not all patients with knee osteoarthritis, but
-            the group with clear focal defects suitable for cartilage repair
-            intervention, as assessed by orthopaedic or sports-medicine
-            surgeons.
-          </p>
-          <p>
-            Whether patients accept a new implant material depends not only on
-            laboratory metrics but also on surgical safety, durability of
-            benefit, rehabilitation time, total treatment cost and clinicians&rsquo;
-            trust in handling the material. We therefore plan to continue
-            interviews with patients, orthopaedic surgeons and relevant hospital
-            departments during product development, incorporating clinical
-            endpoints, workflow and payment acceptability into the design. The
-            first market partners will be hospital departments with cartilage
-            repair, sports-injury care and clinical research capabilities, along
-            with medical-product companies able to support registration, quality
-            and channels. In this model, patients provide real needs and user
-            feedback, clinical experts help design indications and evaluation
-            systems, and industry partners support compliant manufacturing and
-            market access.
-          </p>
-
-          <h3 id="patenting">Patenting</h3>
-          <p>
-            We plan to file Chinese invention patents around the SELP-SnoopTag
-            platform with the China National Intellectual Property
-            Administration. Protection will focus first on technically
-            implementable products and methods, such as specific SELP-SnoopTag
-            molecular configurations and sequence arrangements, the loading
-            method of the standardized interface, hydrogel compositions and
-            preparation processes, module coupling methods and key
-            performance-related parameter combinations. As the product line
-            develops, we plan a layered patent portfolio around ligase
-            optimization, different functional peptide modules, composite
-            formulations and the accompanying operating system. Because China&rsquo;s
-            Patent Law does not grant patents for diagnostic and therapeutic
-            methods, claims will focus on materials, products, compositions,
-            preparation methods and ligation processes rather than clinical
-            treatment methods [14].
-          </p>
-          <p>
-            Under the Patent Law, an invention must be novel, inventive and
-            industrially applicable. After preliminary examination, an invention
-            application is usually published 18 months from the filing date; the
-            applicant must request substantive examination within three years of
-            filing; and, once granted, the patent right takes effect from the
-            grant announcement and lasts for 20 years from filing [14]. Before
-            filing, we will conduct prior-art searches, patentability and
-            freedom-to-operate analyses, confirm ownership, and design the claims
-            with a professional patent agency.
-          </p>
-          <p>
-            Disclosure timing will be built into the filing plan. China&rsquo;s
-            Patent Law provides a novelty grace period of six months only for
-            specific circumstances; there is no general grace period for all
-            disclosures. We therefore plan to complete Chinese patent filings
-            before publishing key sequences and technical details on the wiki,
-            in papers, at conferences or in commercial pitches, so that public
-            material does not become prior art. If we later expand overseas, we
-            will evaluate the PCT or other national routes according to target
-            markets and partnerships, but the first priority is to establish a
-            clear, enforceable core IP boundary in China [14].
-          </p>
-
-          <h3 id="market-expansion">Market expansion</h3>
-          <p>
-            NEST&rsquo;s market expansion will follow two paths: expanding the
-            functional product line and expanding indications.
-          </p>
-          <p>
-            The first path is to add synthesis and production lines for more
-            functional peptides as add-ons to the SELP-SnoopTag base. We will
-            develop DogTag modules with different mechanisms according to
-            clinical needs and establish modular quality standards, coupling
-            validation and combination rules. In addition to in-house R&amp;D and
-            small-scale production, we plan to work with qualified CDMOs on some
-            functional peptides. This helps us compare in-house and outsourced
-            cost structures, explore lower raw-material, purification and
-            quality-control costs, and bring CDMO process-development and
-            scale-up experience into the platform. For peptides intended for
-            registered products, quality agreements, supplier audits, raw-material
-            standards and traceability systems will ensure compliance with final
-            product requirements. Whether the final hydrogel can be outsourced
-            depends on its regulatory classification and China&rsquo;s
-            restrictions on contract manufacturing of high-risk implantable
-            devices; in all cases the registration holder remains legally
-            responsible for product quality [12].
-          </p>
-          <p>
-            The second path extends the hydrogel from focal knee defects to
-            broader cartilage defects, including other joints and defects with
-            different causes and mechanical environments. Cartilage thickness,
-            loading, range of motion and repair environment differ between
-            sites, so expansion is not a matter of copying the same formulation
-            everywhere. Instead, SELP sequence programmability, interface
-            loading density and module combination allow targeted adjustment of
-            strength, degradation rate, adhesion, matrix regulation and
-            delivery. In the long term, we hope to build stratified or
-            personalized repair options for trauma, degeneration, inflammation,
-            metabolic disorders or post-operative repair, rather than remaining
-            limited to the three modules designed for osteoarthritis.
-          </p>
-          <p>
-            Every new functional module, formulation change or expansion of
-            intended use may change the product&rsquo;s risk, primary mode of
-            action and registration requirements. Current Chinese regulations
-            require a change registration when design, raw materials, production
-            process, scope of application or method of use change in a way that
-            may affect safety or effectiveness. We will therefore manage the
-            platform technology and candidate products separately: share the
-            underlying manufacturing and interface standards, but define clear
-            product boundaries, evidence packages and registration strategies for
-            each indication and functional combination, so that
-            &ldquo;programmable modules&rdquo; are not mistaken for a way to
-            bypass product-change requirements and clinical validation [12, 13].
-          </p>
-
-          <h2 id="skill-gap-analysis">Skill gap analysis</h2>
-          <p>
-            ZJU-China is a 16-member interdisciplinary team with backgrounds in
-            clinical medicine, basic medicine, life sciences, bio-breeding,
-            pharmacy, food science, ecology, biophysics, physics, computer
-            science and philosophy. Around NEST we have built a relatively
-            complete early-stage R&amp;D capability: wet-lab members cover the
-            SELP scaffold and ligation system, the GAG Retention Module,
-            mitochondrial delivery and functional peptides; dry-lab members
-            handle protein modelling, mathematical modelling, data analysis and
-            software development. The team also has hardware design, product
-            design, project management, human practices, financial procurement
-            and visual communication capabilities. This complementary structure
-            lets us move from molecular design, material construction and
-            functional validation to system integration questions such as
-            injection, magnetic orientation, light crosslinking and
-            software-assisted operation.
-          </p>
-          <p>
-            To judge whether the team can turn laboratory results into a
-            translatable product, we reviewed existing capabilities across eight
-            areas: synthetic biology and wet lab, biomaterials and delivery,
-            modelling and software, hardware and system integration, medicine
-            and clinical understanding, project management and external
-            communication, business and financing, and intellectual property and
-            industrial translation. The analysis shows that our strengths are
-            concentrated in R&amp;D and prototyping, while the clearest gaps lie
-            in the transition from a working prototype to a manufacturable,
-            registrable and sellable product.
-          </p>
-          <p>
-            First, we still lack systematic IP and patent-layout experience. NEST
-            spans SELP sequence design, ligase optimization, modular coupling,
-            magnetic nanoparticles, light crosslinking, liposomes and
-            mitochondrial delivery. We need to identify original results capable
-            of forming patent barriers, and to conduct prior-art searches,
-            freedom-to-operate analyses, ownership confirmation and licensing
-            strategy design. Second, the team needs stronger bioprocess scale-up
-            and quality-management capability. <em>E. coli</em> expression, ITC
-            purification, multi-module coupling, aseptic preparation and
-            composite assembly all raise questions of batch consistency,
-            endotoxin control, stability, storage, sterilization and release
-            standards at larger scale. Third, because NEST combines a biomaterial,
-            a delivery system and accompanying hardware, its product
-            classification, preclinical evaluation path, long-term biosafety and
-            registration requirements still need input from professionals
-            experienced in medical-product translation. Finally, although the
-            team has a foundation in financial procurement and project
-            management, it still lacks practical experience in market
-            segmentation, competitive analysis, pricing and payment, financing
-            planning, business negotiation and supply-chain management.
-          </p>
-          <p>
-            To close these gaps, we plan to combine internal development with
-            external collaboration. For IP, we will seek support from the
-            university technology-transfer office and patent attorneys, build a
-            patent map and conduct freedom-to-operate analysis early. For
-            industrialization, we will invite mentors with experience in
-            recombinant protein production, sterile formulation, medical-device
-            quality systems and CMC to contribute to process and quality
-            standards. For clinical and regulatory work, we will build on our
-            existing medical background and clinical exchanges and bring in
-            orthopaedic surgeons, toxicology and regulatory experts to assess
-            indication selection, animal-study endpoints, risk control and the
-            regulatory pathway. For commercial work, entrepreneurship mentors,
-            incubation platforms and potential industry partners will help us
-            add customer discovery, market access, financing and business-model
-            capabilities. Internally, targeted training, cross-group rotations
-            and milestone reviews will turn external knowledge into sustainable
-            organizational capability.
-          </p>
-          <p>
-            Overall, our interdisciplinary structure is sufficient to support
-            NEST&rsquo;s technical validation and prototype development, but
-            productization still depends on further building IP,
-            scale-manufacturing, quality-compliance, clinical-registration and
-            commercial-operation capabilities. Clarifying these gaps helps us
-            plan the next stage realistically: complete key technical and safety
-            validation first, then gradually build a reproducible production and
-            quality system, and finally form a clinically and commercially
-            viable cartilage repair platform.
-          </p>
-
-          <h2 id="long-term-benefits-disadvantages">
-            Long-term benefits &amp; disadvantages
-          </h2>
-          <h3 id="positive-impacts">Positive impacts</h3>
-          <ul>
-            <li>
-              A durable, off-the-shelf repair option for focal cartilage defects
-              could delay or reduce the need for more invasive surgery and help
-              patients retain mobility and independence.
-            </li>
-            <li>
-              One sequence-defined SELP backbone with standardized interfaces
-              can carry different functions, reducing the need to develop a new
-              material for every indication and supporting more consistent
-              manufacturing.
-            </li>
-            <li>
-              China-first development addresses a large East Asian patient
-              population, and modular manufacturing can localize supply and
-              support regional access.
-            </li>
-            <li>
-              Evidence-gated development, with explicit safety and performance
-              criteria at each stage, reduces the risk of premature clinical
-              adoption and of claims outrunning the data.
-            </li>
-          </ul>
-          <h3 id="negative-impacts">Negative impacts</h3>
-          <ul>
-            <li>
-              Additional hardware and workflow steps increase surgical burden
-              and training needs; adoption may be limited if the incremental
-              benefit is not demonstrated.
-            </li>
-            <li>
-              Payment and access are uncertain: hospitals may not accept extra
-              equipment or costs, and patients may bear part of the treatment
-              cost, creating a risk of inequitable access.
-            </li>
-            <li>
-              The regulatory path is long and capital-intensive. Delays or
-              clinical setbacks could exhaust funding or interrupt team
-              continuity.
-            </li>
-            <li>
-              The environmental footprint of recombinant protein production,
-              cold chain, packaging and waste has not been established.
-              Biodegradability does not by itself prove a lower impact.
-            </li>
-            <li>
-              Communication risk: terms such as &ldquo;regeneration&rdquo; must
-              not be used beyond what comparative evidence supports.
-            </li>
-          </ul>
-          <h3 id="esg">ESG of NEST</h3>
-          <p>
-            We treat environmental, social and governance questions as part of
-            development rather than as marketing claims. Planned work includes
-            quantifying production waste, energy use, packaging and cold-chain
-            requirements; designing for reliable supply and affordability with
-            clinical partners; and maintaining quality and safety follow-up after
-            approval. Where data are not yet available, we state the open
-            question instead of asserting a benefit.
-          </p>
-
-          <h2 id="entrepreneurial-activities">Entrepreneurial activities</h2>
-          <p>
-            Beyond the business plan, the team has tested its ideas in
-            entrepreneurship settings:
-          </p>
-          <ul>
-            <li>
-              A hackathon pitch and roundtable discussion, where the NEST concept
-              was presented and discussed with mentors and other participants.
-            </li>
-            <li>
-              The &ldquo;Dandelion&rdquo; Undergraduate Innovation Competition
-              at Zhejiang University.
-            </li>
-            <li>
-              The industry track of the China Synthetic Biology Innovation
-              Competition.
-            </li>
-          </ul>
-          <figure className="figure d-block my-4 text-center">
-            <img
-              src={`${ENTRE_FIG}/dandelion-competition-2026.avif`}
-              alt="Three team members holding a certificate at the Zhejiang University Dandelion Undergraduate Innovation Competition."
-              className="figure-img img-fluid rounded"
-              style={{ width: "100%" }}
-              width={1706}
-              height={1279}
-              loading="lazy"
-              decoding="async"
-            />
-            <figcaption className="figure-caption">
-              Figure 3 | Team members at the 18th Zhejiang University
-              &ldquo;Dandelion&rdquo; Undergraduate Innovation Competition.
-            </figcaption>
-          </figure>
-
-          <References level={2}>
-            <div className="references-list references-list--paragraphs">
-              <p>
-                [1] Suwelack T, Stegemann M, Ang FX. Starting a start-up. In:{" "}
-                <em>Creating a Customer Experience-Centric Startup</em>. Springer;
-                2022:33–51.{" "}
-                <a href="https://doi.org/10.1007/978-3-030-92458-4_3">
-                  doi:10.1007/978-3-030-92458-4_3
-                </a>
-              </p>
-              <p>
-                [2] Maia Research.{" "}
-                <em>
-                  Global Cartilage Repair/Cartilage Regeneration Industry Trends
-                  Analysis Report 2025, Forecast to 2033
-                </em>
-                . MarketResearch.com; 2026.{" "}
-                <a href="https://www.marketresearch.com/Maia-Research-v4212/Global-Cartilage-Repair-Regeneration-Trends-44046528/">
-                  Report
-                </a>
-              </p>
-              <p>
-                [3] moneychimp. <em>CAGR (Compound Annual Growth Rate) Explained</em>;
-                2025.{" "}
-                <a href="http://www.moneychimp.com/features/market_cagr.htm">
-                  Article
-                </a>
-              </p>
-              <p>
-                [4] Chang AH, Sharma L, Roemer FW, et al. Magnetic resonance
-                imaging-defined knee osteoarthritis rarely occurs without
-                cartilage damage. <em>Osteoarthritis and Cartilage Open</em>.
-                2026;8(1):100733.{" "}
-                <a href="https://doi.org/10.1016/j.ocarto.2025.100733">
-                  doi:10.1016/j.ocarto.2025.100733
-                </a>
-              </p>
-              <p>
-                [5] Li K, Liu J, Wang D, et al. Towards global integration:
-                China&rsquo;s evolving role in joint replacement and sports
-                medicine.{" "}
-                <em>Knee Surgery, Sports Traumatology, Arthroscopy</em>.
-                2026;34(5):1567–1571.{" "}
-                <a href="https://doi.org/10.1002/ksa.70217">doi:10.1002/ksa.70217</a>
-              </p>
-              <p>
-                [6] Hjelle K, Solheim E, Strand T, Muri R, Brittberg M.
-                Articular cartilage defects in 1,000 knee arthroscopies.{" "}
-                <em>Arthroscopy</em>. 2002;18(7):730–734.{" "}
-                <a href="https://doi.org/10.1053/jars.2002.32839">
-                  doi:10.1053/jars.2002.32839
-                </a>
-              </p>
-              <p>
-                [7] Klein B, McNamara I, Davis R, Mittal A, Johnson D.{" "}
-                <em>
-                  Techno-Economic Assessment for the Production of Hydrocarbon
-                  Fuels via Catalytic Upgrading of Furans
-                </em>
-                . NREL/TP-5100-80652. National Renewable Energy Laboratory;
-                2021.{" "}
-                <a href="https://doi.org/10.2172/1819430">doi:10.2172/1819430</a>
-              </p>
-              <p>
-                [8] Beijing Tianxing Medical Co., Ltd. Prospectus (application
-                draft) for the initial public offering and listing on the STAR
-                Market. Shanghai Stock Exchange; 2024.
-              </p>
-              <p>
-                [9] Standardization Administration of China. GB 19489-2008:
-                Laboratories — General requirements for biosafety. 2008.
-              </p>
-              <p>
-                [10] Youxi County People&rsquo;s Government. Government-priced
-                service fee schedule. 2022. Direct landfill disposal fee: CNY
-                2.4/kg.
-              </p>
-              <p>
-                [11] Linyi Municipal Development and Reform Commission. Catalog
-                of government-priced business service charges. 2026. Medical
-                waste disposal fee: CNY 3.8/kg.
-              </p>
-              <p>
-                [12] State Council of the People&rsquo;s Republic of China.
-                Regulation on the Supervision and Administration of Medical
-                Devices.
-              </p>
-              <p>
-                [13] National Medical Products Administration. Measures for the
-                Registration and Filing Administration of Medical Devices.
-              </p>
-              <p>
-                [14] Standing Committee of the National People&rsquo;s Congress.
-                Patent Law of the People&rsquo;s Republic of China.
-              </p>
-              <p>
-                [15] UpCounsel Technologies. Average royalty rates by industry:
-                patent licensing and key factors; 2025.
-              </p>
-              <p>
-                [16] Frisbie DD, Cross MW, McIlwraith CW. A comparative study of
-                articular cartilage thickness in the stifle of animal species
-                used in human pre-clinical studies compared to articular
-                cartilage thickness in the human knee.{" "}
-                <em>Veterinary and Comparative Orthopaedics and Traumatology</em>.
-                2006;19(3):142–146.{" "}
-                <a href="https://doi.org/10.1055/s-0038-1632990">
-                  doi:10.1055/s-0038-1632990
-                </a>
-              </p>
-              <p>
-                <strong>Figure sources.</strong> Figures 1 and 2 were prepared
-                by the team for this business plan. Figure 3 is a team photograph
-                taken at the Zhejiang University &ldquo;Dandelion&rdquo;
-                Undergraduate Innovation Competition.
-              </p>
-            </div>
-          </References>
+          {articleBlocks.map((block, index) =>
+            renderBlock(block, `block-${index}`),
+          )}
+          {referenceBlocks.length > 0 && (
+            <References>
+              <div className="references-list references-list--paragraphs">
+                {referenceBlocks.map((block, index) =>
+                  renderBlock(block, `reference-${index}`),
+                )}
+              </div>
+            </References>
+          )}
         </article>
       </div>
     </div>

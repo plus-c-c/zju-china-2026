@@ -158,7 +158,7 @@ export function ResultsPrimitive() {
         </nav>
         <section
           className="wetlab-results__module"
-          aria-labelledby="wetlab-platform"
+          aria-labeledby="wetlab-platform"
         >
           <h2
             id="wetlab-platform"
@@ -177,7 +177,7 @@ export function ResultsPrimitive() {
         </section>
         <section
           className="wetlab-results__module"
-          aria-labelledby="wetlab-function"
+          aria-labeledby="wetlab-function"
         >
           <h2
             id="wetlab-function"
@@ -216,7 +216,7 @@ export function ResultsPrimitive() {
               <section
                 className="wetlab-results__function-module"
                 id={`wetlab-${module.id}-content`}
-                aria-labelledby={`wetlab-${module.id}-button`}
+                aria-labeledby={`wetlab-${module.id}-button`}
                 key={module.id}
                 hidden={activeFunction !== module.id}
               >

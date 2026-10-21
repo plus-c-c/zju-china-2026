@@ -2,6 +2,45 @@
   scroll-margin-top: 112px;
 }
 
+.poc-source-panel {
+  min-width: 0;
+  text-align: left;
+}
+
+.poc-source-panel__label {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.poc-source-panel__viewport {
+  position: relative;
+  overflow: hidden;
+}
+
+.poc-source-panel__source {
+  position: absolute;
+}
+
+.poc-preparation-panels {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.poc-ligation-strip {
+  overflow-x: auto;
+}
+
+.poc-ligation-panels {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: start;
+  gap: 1rem;
+  min-width: 720px;
+}
+
 .poc-sprite {
   display: block;
   width: 100%;

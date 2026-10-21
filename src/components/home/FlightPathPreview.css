@@ -1,0 +1,34 @@
+.flight-preview-lines { position: fixed; inset: 0; z-index: 1010; pointer-events: none; overflow: hidden; }
+.flight-preview-lines text { font: 600 12px/1.2 system-ui, sans-serif; fill: #713019; paint-order: stroke; stroke: #fff; stroke-width: 4px; stroke-linejoin: round; }
+.flight-preview-original { fill: none; stroke: #5d6d80; stroke-width: 3px; stroke-dasharray: 7 7; opacity: .75; }
+.flight-preview-edited { fill: none; stroke: #e65d31; stroke-width: 2.5px; }
+.flight-preview-stop { fill: #fff; stroke: #e65d31; stroke-width: 3px; }
+.flight-preview-handle-line { stroke: #9754a9; stroke-width: 1.5px; stroke-dasharray: 4 5; fill: none; }
+.flight-preview-handle { fill: #fff; stroke: #9754a9; stroke-width: 3px; pointer-events: auto; cursor: grab; touch-action: none; }
+.flight-preview-handle:active { cursor: grabbing; }
+.flight-preview-handle:focus { outline: none; stroke-width: 6px; }
+.flight-preview-active .story-bird-canvas { opacity: 0 !important; }
+.flight-preview-active .story-guide-bird { pointer-events: none; }
+.flight-preview-bird { position: fixed; width: 160px; height: 150px; z-index: 1009; pointer-events: none; transform: translate(-50%, -100%) scale(var(--preview-size)); transform-origin: center bottom; }
+.flight-preview-bird > div { position: absolute; inset: 0; }
+.flight-preview-bird__turn { transform: rotate(calc(var(--preview-angle) * 1deg)); }
+.flight-preview-bird img { position: absolute; width: 420px; height: auto; max-width: none; left: -43px; top: -63px; clip-path: inset(8% 38% 17% 4%); }
+.flight-preview-panel { position: fixed; right: 18px; top: 86px; width: 330px; max-width: calc(100vw - 32px); max-height: calc(100dvh - 110px); overflow-y: auto; z-index: 1020; padding: 14px; border: 1px solid #bfd0de; border-radius: 14px; box-shadow: 0 8px 30px #173b6426; background: rgb(255 255 255 / 96%); color: #24394d; font: 13px/1.45 system-ui, sans-serif; text-align: left; }
+.flight-preview-panel * { box-sizing: border-box; }
+.flight-preview-panel header { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 12px; }
+.flight-preview-panel strong { font-size: 13px; }
+.flight-preview-panel label { display: block; margin: 10px 0; font-weight: 600; }
+.flight-preview-panel select { display: block; width: 100%; margin-top: 5px; color: #24394d; background: #f6f9fc; padding: 7px 4px; border: 1px solid #b9c9d7; border-radius: 5px; font: inherit; }
+.flight-preview-panel input[type=range] { display: block; width: 100%; margin: 8px 0 14px; accent-color: #d5522b; }
+.flight-preview-panel output { float: right; }
+.flight-preview-panel button { padding: 5px 8px; border: 1px solid #b9c9d7; border-radius: 5px; font: inherit; color: #24394d; background: #fff; cursor: pointer; white-space: nowrap; }
+.flight-preview-panel button:hover { background: #edf4fa; }
+.flight-preview-panel button[aria-pressed=true] { background: #e4effa; border-color: #487caa; }
+.flight-preview-panel button:disabled { opacity: .45; cursor: default; }
+.flight-preview-actions { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; }
+.flight-preview-panel p { margin: 8px 0; font: inherit; }
+.flight-preview-panel small { color: #566b80; font-size: 11px; }
+.flight-preview-legend { display: flex; gap: 12px; font-size: 11px !important; }
+.flight-preview-legend span:first-child { color: #5d6d80; }
+.flight-preview-legend span:last-child { color: #bc461f; }
+@media (max-height: 680px) { .flight-preview-panel { top: 16px; max-height: calc(100dvh - 32px); } }

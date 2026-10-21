@@ -12,8 +12,8 @@ export function FigureSourceCitation({
     <sup className="figure-source-citation">
       <a
         href={href}
-        aria-label={`Image source S${source}`}
-        title="Image source and license"
+        aria-label={`Figure source S${source}`}
+        title="Figure source"
       >
         [S{source}]
       </a>

@@ -129,11 +129,11 @@ export const stakeholderMedia: Record<
         },
       ],
     },
-  "Expression Amplification and Batch Consistency: Genekor Biotech": {
+  "Expression Amplification and Batch Consistency: Yuanyi Bio": {
     photos: [
       {
         src: "https://static.igem.wiki/teams/6102/wiki/images/engagement/ihp/ihp-31.avif",
-        alt: "Expression Amplification and Batch Consistency: Genekor Biotech — supporting photograph 1",
+        alt: "Expression Amplification and Batch Consistency: Yuanyi Bio — supporting photograph 1",
         width: 400,
         height: 170,
       },

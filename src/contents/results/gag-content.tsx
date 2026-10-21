@@ -135,12 +135,12 @@ export function GagContent() {
                 operator, and kanamycin (Kan) resistance gene. From the N-terminus to the
                 C-terminus, each target fusion protein contained a 6×His tag, SUMO fusion tag, TEV
                 cleavage site, linker, CPC and/or Link-N sequence, AviTag, and DogTag. In the
-                CPC+LinkN construct, CPC and Link-N were connected by a linker.
+                CPC + Link-N construct, CPC and Link-N were connected by a linker.
               </p>
               <p>
                 The three constructs differed only in their inserted sequences (Table 5.1.1): the
                 CPC construct contained the CPC sequence; the Link-N construct contained Link-N and
-                served as a CPC-free control; and the CPC+LinkN construct contained both CPC and
+                served as a CPC-free control; and the CPC + Link-N construct contained both CPC and
                 Link-N, allowing us to assess whether Link-N fusion affected CPC-mediated GAG
                 interactions.
               </p>
@@ -243,7 +243,7 @@ export function GagContent() {
                 <strong>Figure 5.1.2 |</strong> Colonies after transformation of <em>E. coli</em> BL21(DE3) with
                 pET-28a(+)-CPC, pET-28a(+)-LinkN, and pET-28a(+)-CPC+LinkN. All plates contained
                 Kan. Upper left: negative control without plasmid transformation (CK); upper right:
-                CPC; lower left: LinkN; lower right: CPC+LinkN.
+                CPC; lower left: Link-N; lower right: CPC + Link-N.
               </FigureCaption>
             </figure>
             <div className="source-block">
@@ -271,7 +271,7 @@ export function GagContent() {
                 identifiable target bands (Figure 5.1.3A), although some basal expression remained.
                 The final induction condition was 30 °C with 0.5 mM IPTG for 16 h. SDS-PAGE after
                 affinity purification showed enrichment of the target protein in the eluate (Figure
-                5.1.3B). Western blotting detected Link-N, CPC, and CPC–Link-N at the expected
+                5.1.3B). Western blotting detected Link-N, CPC, and CPC-Link-N at the expected
                 molecular-weight positions (Figure 5.1.3C), confirming successful expression of the
                 target proteins. A weaker band was also visible in the uninduced control, indicating
                 a degree of leaky expression.
@@ -283,7 +283,7 @@ export function GagContent() {
               </a>
               <FigureCaption className="figure-caption">
                 <strong>Figure 5.1.3 |</strong> Establishment and optimization of the CPC recombinant-protein expression
-                system. (A) SDS-PAGE analysis of small-scale screening of CPC, LinkN, and CPC+LinkN
+                system. (A) SDS-PAGE analysis of small-scale screening of CPC, Link-N, and CPC + Link-N
                 recombinant-protein expression in <em>E. coli</em> BL21(DE3) under different induction
                 conditions. Temperatures were 16 °C and 30 °C, and IPTG concentrations were 0.25 mM
                 and 0.5 mM. Red arrows indicate the expected target bands after codon optimization
@@ -300,7 +300,7 @@ export function GagContent() {
             <div className="source-block">
               <p>
                 We compared the lysate, flow-through, wash, and elution fractions of CPC, Link-N,
-                and CPC–Link-N by SDS-PAGE (Figure 5.1.4). The target band was strongest in the
+                and CPC-Link-N by SDS-PAGE (Figure 5.1.4). The target band was strongest in the
                 Link-N eluate and weaker in the CPC-containing constructs, indicating substantial
                 differences in the final recovery among constructs.
               </p>
@@ -311,10 +311,10 @@ export function GagContent() {
               </a>
               <FigureCaption className="figure-caption">
                 <strong>Figure 5.1.4 |</strong> SDS-PAGE analysis of His-tag affinity purification and target-protein
-                recovery from different constructs. Large-scale CPC, LinkN, and CPC+LinkN
+                recovery from different constructs. Large-scale CPC, Link-N, and CPC + Link-N
                 recombinant proteins were purified by His-tag affinity chromatography. Fractions are
                 shown in the following order for each construct: lysate, flow-through, wash, and
-                eluates (Eluates 1, 3, and 5; the LinkN group includes Eluates 1 and 3). Uninduced:
+                eluates (Eluates 1, 3, and 5; the Link-N group includes Eluates 1 and 3). Uninduced:
                 uninduced control. Molecular-weight markers on both sides are labeled at 25 and 35
                 kDa.
               </FigureCaption>
@@ -325,7 +325,7 @@ export function GagContent() {
                 using 0.5-mL centrifugal ultrafiltration units with a 5-kDa molecular-weight cutoff.
                 Protein concentrations were then measured by the BCA assay (standard curve R² =
                 0.9977; Figure 5.1.5a). The concentration of SUMO–Link-N was 17.51 mg/mL, whereas
-                those of SUMO–CPC and SUMO–CPC–Link-N were only 0.43 mg/mL and 0.26 mg/mL,
+                those of SUMO–CPC and SUMO–CPC-Link-N were only 0.43 mg/mL and 0.26 mg/mL,
                 respectively (Figures 1.3.2b and 1.3.2c). The concentrations of the CPC-containing
                 constructs were more than tenfold lower than that of the Link-N construct,
                 suggesting that introduction of the CPC sequence substantially reduced
@@ -342,7 +342,7 @@ export function GagContent() {
                 ultrafiltration units with a 5-kDa cutoff, followed by BCA protein quantification.
                 (a) BCA standard curve based on raw absorbance: y = 0.833238x + 0.145746, R² =
                 0.997705. (b) Concentrations of the SUMO fusion proteins: SUMO–Link-N, 17.51 mg/mL;
-                SUMO–CPC, 0.43 mg/mL; and SUMO–CPC–Link-N, 0.26 mg/mL. Dots indicate replicate
+                SUMO–CPC, 0.43 mg/mL; and SUMO–CPC-Link-N, 0.26 mg/mL. Dots indicate replicate
                 measurements, and error bars show the range of variation. (c) Color development in
                 the 96-well plate for the BCA assay and corresponding absorbance readings. The first
                 six columns contain BSA standards (0–0.5 mg/mL), and the next three columns contain
@@ -395,7 +395,7 @@ export function GagContent() {
                 Cleavage products were clearly visible by SDS-PAGE (Figure 5.1.6a), indicating that
                 SUMO removal occurred; however, cleavage was incomplete, and some uncleaved protein
                 remained. BCA quantification yielded concentrations of 0.30 mg/mL for Link-N, 0.21
-                mg/mL for CPC, and 0.19 mg/mL for CPC–Link-N (Figures 1.4.1b–d).
+                mg/mL for CPC, and 0.19 mg/mL for CPC-Link-N (Figures 1.4.1b–d).
               </p>
             </div>
             <figure className="figure-block">
@@ -407,11 +407,11 @@ export function GagContent() {
                 recovery. The SUMO tags were cleaved from purified fusion proteins using ULP1
                 protease. Reverse His-tag purification was then used to remove ULP1 and other
                 His-tagged components, followed by ultrafiltration, concentration, and buffer
-                exchange. (a) SDS-PAGE comparison of each construct (LinkN, CPC, and CPC+LinkN)
+                exchange. (a) SDS-PAGE comparison of each construct (Link-N, CPC, and CPC + Link-N)
                 before cleavage and after ULP1 cleavage. Molecular-weight markers are labeled at 15,
                 25, and 35 kDa. (b) BCA standard curve after blank correction with the intercept
                 constrained to zero: y = 1.429212x, R² = 0.966585. (c) Concentrations of the final
-                recovered proteins: LinkN, 0.30 mg/mL; CPC, 0.21 mg/mL; and CPC–LinkN, 0.19 mg/mL.
+                recovered proteins: Link-N, 0.30 mg/mL; CPC, 0.21 mg/mL; and CPC-Link-N, 0.19 mg/mL.
                 Dots indicate replicate measurements, and error bars show the range of variation.
                 (d) Color development in the 96-well plate for the BCA assay and corresponding
                 absorbance readings. The first six columns contain BSA standards, and the remaining
@@ -422,7 +422,7 @@ export function GagContent() {
               <p>
                 In a separate BCA measurement, protein concentrations after reverse affinity
                 purification, ultrafiltration, concentration, and buffer exchange were 1.42 mg/mL
-                for Link-N, 0.14 mg/mL for CPC, and 0.69 mg/mL for CPC–Link-N (Figure 5.1.7). This
+                for Link-N, 0.14 mg/mL for CPC, and 0.69 mg/mL for CPC-Link-N (Figure 5.1.7). This
                 workflow yielded further-processed proteins but introduced additional handling steps
                 and was accompanied by some protein loss.
               </p>
@@ -437,7 +437,7 @@ export function GagContent() {
                 purification was performed to remove ULP1 and other His-tagged components, followed
                 by ultrafiltration, concentration, and buffer exchange. (a) BCA standard curve based
                 on raw absorbance: y = 1.008667x + 0.159000, R² = 0.995301. (b) Concentrations of
-                the final recovered proteins: Link-N, 1.42 mg/mL; CPC, 0.14 mg/mL; and CPC–Link-N,
+                the final recovered proteins: Link-N, 1.42 mg/mL; CPC, 0.14 mg/mL; and CPC-Link-N,
                 0.69 mg/mL. Dots indicate replicate measurements, and error bars show the range of
                 variation. (c) Color development in the 96-well plate for the BCA assay and
                 corresponding raw absorbance readings. The first six columns contain BSA standards,
@@ -574,7 +574,7 @@ export function GagContent() {
                 To directly assess interactions between CPC-containing recombinant proteins and
                 sulfated GAGs, we first established a CS-A agarose electrophoretic mobility shift
                 assay (EMSA). CS-A alone and CS-A mixed with 0.5, 1, 2.5, 5, or 10 µM SUMO–CPC,
-                SUMO–CPC–Link-N, or SUMO–Link-N were analyzed by agarose gel electrophoresis (16
+                SUMO–CPC-Link-N, or SUMO–Link-N were analyzed by agarose gel electrophoresis (16
                 lanes in total), followed by toluidine blue staining. The initial electrophoresis
                 duration was approximately 50 min, with bromophenol blue as the tracking dye. CS-A
                 migrated substantially faster than bromophenol blue and had migrated too far by the
@@ -676,7 +676,7 @@ export function GagContent() {
                 Biotinylation was assessed by SDS-PAGE, using non-biotinylated protein as the
                 control (Figure 5.2.3). After incubation of non-biotinylated Link-N with SA, a free
                 Link-N band was visible at approximately 15 kDa (red arrow). In contrast, this band
-                disappeared or was markedly weaker when biotinylated Link-N, CPC, or CPC–Link-N was
+                disappeared or was markedly weaker when biotinylated Link-N, CPC, or CPC-Link-N was
                 incubated with SA, while higher-molecular-weight bands associated with SA-containing
                 complexes appeared near 70 kDa (red box). These observations suggest successful
                 biotinylation and indicate that the resulting proteins could bind to streptavidin
@@ -690,13 +690,13 @@ export function GagContent() {
               </a>
               <FigureCaption className="figure-caption">
                 <strong>Figure 5.2.3 |</strong> Validation of AviTag-mediated site-specific biotinylation by SDS-PAGE.
-                LinkN, CPC, and CPC–LinkN recombinant proteins containing AviTag were
+                Link-N, CPC, and CPC-Link-N recombinant proteins containing AviTag were
                 site-specifically biotinylated using BirA ligase. The biotinylated proteins and a
                 non-biotinylated control were then incubated with free streptavidin (SA) for 30 min.
                 Molecular-weight markers on the left are labeled from 15 to 70 kDa. From left to
-                right, the lanes contain: non-biotinylated LinkN + SA (control), biotinylated LinkN
-                + SA, biotinylated CPC + SA, and biotinylated CPC–LinkN + SA. The red arrow
-                indicates the free LinkN band, and the red box indicates the higher-molecular-weight
+                right, the lanes contain: non-biotinylated Link-N + SA (control), biotinylated Link-N
+                + SA, biotinylated CPC + SA, and biotinylated CPC-Link-N + SA. The red arrow
+                indicates the free Link-N band, and the red box indicates the higher-molecular-weight
                 bands associated with SA-containing complexes.
               </FigureCaption>
             </figure>
@@ -706,7 +706,7 @@ export function GagContent() {
             <div className="source-block">
               <p>
                 The experimental groups included bare beads (CK), the CPC-free Link-N protein
-                control (L), CPC-containing protein (C), and CPC–Link-N (L+C). An Input CS-A sample
+                control (L), CPC-containing protein (C), and CPC-Link-N (L+C). An Input CS-A sample
                 without beads was also included to assess the initial substrate amount. These
                 conditions were intended to examine background adsorption, the contribution of the
                 protein components, and the starting substrate level, respectively. The assay
@@ -733,8 +733,8 @@ export function GagContent() {
                 <strong>Figure 5.2.4 |</strong> CS-A capture assay using the AviTag-based immobilization system,
                 measured by the DMMB assay. Site-specifically biotinylated proteins were immobilized
                 on streptavidin magnetic beads and incubated with CS-A. After magnetic separation,
-                the supernatant was collected for DMMB detection. CK: bare beads; L: CPC-free LinkN
-                protein control; C: CPC; L+C: CPC–LinkN. Data were calculated as OD525−OD600,
+                the supernatant was collected for DMMB detection. CK: bare beads; L: CPC-free Link-N
+                protein control; C: CPC; L+C: CPC-Link-N. Data were calculated as OD525−OD600,
                 converted to concentrations using a common CS-A standard curve, and adjusted for the
                 fourfold dilution. (a) Raw CS-A concentration measurements in the supernatants of
                 each group (R1–R3; three replicates; µg/mL). (b) Color development in the 96-well
@@ -747,7 +747,7 @@ export function GagContent() {
             </figure>
             <h6 id="wetlab-gag-2-3-3" data-toc="include" data-toc-depth="5">
               5.2.3.3 Statistical Analysis of the Reduction in Supernatant CS-A Associated with CPC
-              and CPC–Link-N
+              and CPC-Link-N
             </h6>
             <div className="source-block">
               <p>
@@ -757,7 +757,7 @@ export function GagContent() {
                 statistical evidence and defined the scope of the conclusions that could be drawn.
               </p>
               <p>
-                CPC was compared with CK, and CPC–Link-N was compared with CK. Because each of the
+                CPC was compared with CK, and CPC-Link-N was compared with CK. Because each of the
                 three treatment measurements corresponded one-to-one with a CK measurement, paired
                 t-tests were used. For CPC versus CK, the difference for the <ContentMath formulas={gagMath} index={0} />th pair was
                 defined as:
@@ -767,7 +767,7 @@ export function GagContent() {
                 treatment should decrease; that is, we expect <ContentMath formulas={gagMath} index={1} />. Accordingly, the hypotheses
                 for the prespecified one-sided test were: <ContentMath formulas={gagMath} index={2} />. Here, <ContentMath formulas={gagMath} index={3} /> denotes the
                 population mean difference between the treatment group and the CK control. The same
-                hypotheses were used to compare CPC–Link-N with CK.
+                hypotheses were used to compare CPC-Link-N with CK.
               </p>
               <p>
                 The paired t-statistic is defined as: <ContentMath formulas={gagMath} index={4} /> where <ContentMath formulas={gagMath} index={5} /> and <ContentMath formulas={gagMath} index={6} /> denote
@@ -776,7 +776,7 @@ export function GagContent() {
                 <ContentMath formulas={gagMath} index={9} />.
               </p>
               <p>
-                The mean paired differences for CPC versus CK and CPC–Link-N versus CK were −39.73
+                The mean paired differences for CPC versus CK and CPC-Link-N versus CK were −39.73
                 µg/mL and −26.49 µg/mL, respectively. The raw p-values from the one-sided paired
                 t-tests were 0.0314 and 0.0053, respectively (Figure 5.2.5). When the two
                 prespecified comparisons were tested together, the Holm method was used to correct
@@ -785,15 +785,15 @@ export function GagContent() {
                 calculated as: <ContentMath formulas={gagMath} index={11} /> and <ContentMath formulas={gagMath} index={12} />
               </p>
               <p>
-                After adjustment, the p-value for CPC–Link-N versus CK was 0.0106, and that for CPC
+                After adjustment, the p-value for CPC-Link-N versus CK was 0.0106, and that for CPC
                 versus CK was 0.0314. At a significance level of α = 0.05, both adjusted p-values
                 were below 0.05; therefore, the null hypotheses that the mean differences between
                 each treatment and CK were zero could be rejected.
               </p>
               <p>
                 In summary, the amount of residual CS-A in the supernatant was lower after treatment
-                with both CPC and CPC–Link-N than in CK. Under the current dataset and analysis
-                method, the results support an association between immobilized CPC or CPC–Link-N and
+                with both CPC and CPC-Link-N than in CK. Under the current dataset and analysis
+                method, the results support an association between immobilized CPC or CPC-Link-N and
                 reduced supernatant CS-A, in a direction consistent with the expected CPC-mediated
                 GAG capture. However, because all measurements came from a single experiment (n =
                 3), this analysis should be considered exploratory.
@@ -805,9 +805,9 @@ export function GagContent() {
               </a>
               <FigureCaption className="figure-caption">
                 <strong>Figure 5.2.5 |</strong> Statistical analysis of the reduction in residual supernatant CS-A
-                associated with CPC and CPC–Link-N (paired t-test). One-sided paired t-tests were
+                associated with CPC and CPC-Link-N (paired t-test). One-sided paired t-tests were
                 performed on residual supernatant CS-A concentrations measured by DMMB (n = 3) to
-                compare CPC and CPC–Link-N treatment groups with CK. The p-values for the two
+                compare CPC and CPC-Link-N treatment groups with CK. The p-values for the two
                 prespecified comparisons were adjusted using the Holm method (α = 0.05). Mean paired
                 difference = treatment group − corresponding CK; a negative value indicates lower
                 residual GAG than in CK.

@@ -1,9 +1,5 @@
 import { TableCaption } from "../components/FigureCaption";
 import { FigureCaption } from "../components/FigureCaption";
-import {
-  FigureSourceCitation,
-  FigureSourceEntry,
-} from "../components/FigureSourceCitation";
 import { References } from "../components/References";
 const CIF = "https://static.igem.wiki/teams/6102/wiki/images/cif/";
 const BASE = import.meta.env.BASE_URL;
@@ -12,8 +8,6 @@ export function Implementation() {
   return (
     <div className="row mt-4">
       <div className="col">
-        <h2>Implementation</h2>
-        <hr />
         <p>
           Building on the Design and proof-of-concept results, NEST aims to
           provide material formulations tailored to the repair requirements of
@@ -27,13 +21,13 @@ export function Implementation() {
           professional use.
         </p>
 
-        <h3 className="mt-5 mb-3">
+        <h2 className="mt-5 mb-3">
           1 Developing Material Formulations for Three Cartilage-Injury Settings
-        </h3>
-        <h4 className="mt-4 mb-2">
+        </h2>
+        <h3 className="mt-4 mb-2">
           1.1 Focal Cartilage Defects Following Sports-Related or Traumatic
           Injury
-        </h4>
+        </h3>
         <p>
           This application will be the primary focus for the first product. For
           well-demarcated defects, we propose an acellular SELP material that
@@ -46,9 +40,9 @@ export function Implementation() {
           professionals will contribute to defining the intended use and
           handling requirements.
         </p>
-        <h4 className="mt-4 mb-2">
+        <h3 className="mt-4 mb-2">
           1.2 Local Degenerative Lesions Associated with Osteoarthritis (OA)
-        </h4>
+        </h3>
         <p>
           Lesions characterized by matrix loss and altered cellular states may
           require the material to further modulate the local microenvironment.
@@ -60,9 +54,9 @@ export function Implementation() {
           regulation, and MMP-13-responsive delivery will be integrated with
           local cellular support.
         </p>
-        <h4 className="mt-4 mb-2">
+        <h3 className="mt-4 mb-2">
           1.3 Osteochondral Injuries Involving the Subchondral Bone
-        </h4>
+        </h3>
         <p>
           For defects involving both cartilage and subchondral bone, we propose
           developing NEST as the cartilage layer of a stratified repair material
@@ -100,9 +94,9 @@ export function Implementation() {
           </FigureCaption>
         </figure>
 
-        <h3 className="mt-5 mb-3">
+        <h2 className="mt-5 mb-3">
           2 Ensuring a Stable Material Supply through Biomanufacturing
-        </h3>
+        </h2>
         <p>
           NEST has employed <em>Escherichia coli</em> expression and inverse
           transition cycling (ITC) purification to produce SELP. ITC exploits
@@ -127,9 +121,9 @@ export function Implementation() {
           component-specific stability studies.
         </p>
 
-        <h3 className="mt-5 mb-3">
+        <h2 className="mt-5 mb-3">
           3 Connecting the Material to Clinician Workflows
-        </h3>
+        </h2>
         <p>
           We have developed an Android application for clinicians that organizes
           formulation selection and preparation guidance in an actionable
@@ -155,10 +149,6 @@ export function Implementation() {
             interface. Formulation information is loaded after QR-code scanning,
             and users proceed to premixing instructions after verifying each
             reagent.
-            <FigureSourceCitation
-              source={1}
-              href="#implementation-figure-sources"
-            />
           </FigureCaption>
         </figure>
         <p>
@@ -176,10 +166,10 @@ export function Implementation() {
           .
         </p>
 
-        <h3 className="mt-5 mb-3">
+        <h2 className="mt-5 mb-3">
           4 Translating Formulation Requirements into a Monitored Preparation
           Device
-        </h3>
+        </h2>
         <p>
           We have built a modular, tiered material-preparation unit that
           integrates metering, mixing, storage, and delivery. Three independent
@@ -214,10 +204,6 @@ export function Implementation() {
             the lower image shows the microfluidic mixing-chip structure. The
             three component streams converge in the microchannels before
             proceeding to storage and delivery.
-            <FigureSourceCitation
-              source={2}
-              href="#implementation-hardware-sources"
-            />
           </FigureCaption>
         </figure>
         <p>
@@ -250,9 +236,9 @@ export function Implementation() {
           operational integration of the optical and external-field components.
         </p>
 
-        <h3 className="mt-5 mb-3">
+        <h2 className="mt-5 mb-3">
           5 Defining Product Requirements under Intended Use Conditions
-        </h3>
+        </h2>
         <p>
           In the proposed localized application workflow, after assessing and
           preparing the defect, the clinician delivers the precursor to the
@@ -352,10 +338,10 @@ export function Implementation() {
           <sup className="article-citation">[6]</sup>.
         </p>
 
-        <h3 className="mt-5 mb-3">
+        <h2 className="mt-5 mb-3">
           6 Sharing a Common Manufacturing and Delivery Foundation across
           Applications
-        </h3>
+        </h2>
         <p>
           The focal-defect product will establish the first set of material
           specifications and use procedures; OA-oriented functional formulations
@@ -419,23 +405,6 @@ export function Implementation() {
               <a href="https://english.nmpa.gov.cn/">Source</a>
             </p>
           </div>
-        </References>
-        <References
-          level={2}
-          title="Figure Sources and Credits"
-          id="figure-sources-and-credits"
-        >
-          <ul className="references-list figure-sources-list">
-            <FigureSourceEntry source={1} id="implementation-figure-sources">
-              <p>
-                Image source: the team&rsquo;s publicly accessible{" "}
-                <a href={`${BASE}software`}>Wiki software page</a>.
-              </p>
-            </FigureSourceEntry>
-            <FigureSourceEntry source={2} id="implementation-hardware-sources">
-              <p>Images adapted from the team&rsquo;s Hardware report.</p>
-            </FigureSourceEntry>
-          </ul>
         </References>
       </div>
     </div>

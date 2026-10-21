@@ -14,10 +14,53 @@ import { TransparentImage } from "../components/TransparentImage";
 import {
   BIOSAFETY_FIGURE_URL,
   BiosafetyFigureCaption,
-  BiosafetyIntroduction,
-  BiosafetyResultsText,
 } from "./results/biosafety-content";
 import "./proof-of-concept.css";
+
+/** Lay out panels from the original figure without changing any gel data. */
+function ProofFigurePanel({
+  src,
+  sourceSize: [sourceWidth, sourceHeight],
+  crop: [x, y, width, height],
+  label,
+  alt,
+}: {
+  src: string;
+  sourceSize: readonly [number, number];
+  crop: readonly [number, number, number, number];
+  label: string;
+  alt: string;
+}) {
+  return (
+    <div className="poc-source-panel">
+      <span className="poc-source-panel__label" aria-hidden="true">
+        {label}
+      </span>
+      <div
+        className="poc-source-panel__viewport"
+        style={{ aspectRatio: `${width} / ${height}` }}
+      >
+        <div
+          className="poc-source-panel__source"
+          style={{
+            width: `${(sourceWidth / width) * 100}%`,
+            left: `${(-x / width) * 100}%`,
+            top: `${(-y / height) * 100}%`,
+          }}
+        >
+          <TransparentImage
+            src={src}
+            alt={alt}
+            width={sourceWidth}
+            height={sourceHeight}
+            trim={false}
+            style={{ display: "block", width: "100%", height: "auto" }}
+          />
+        </div>
+      </div>
+    </div>
+  );
+}
 
 function AnimatedWebPSprite({
   sprite,
@@ -122,7 +165,7 @@ export function ProofOfConcept() {
           <p>
             Faced with different types of cartilage damage, we hope to avoid
             designing a new hydrogel from scratch for every case. NEST retains a
-            common silk–elastin-like polypeptide (SELP) scaffold, tunes material
+            common silk-elastin-like protein (SELP) scaffold, tunes material
             properties through sequence design, and uses a standardized ligation
             interface to configure different functions, so that the material can
             be tailored to specific repair needs.
@@ -136,16 +179,15 @@ export function ProofOfConcept() {
             verified module-specific functions, and included the{" "}
             <em>in vitro</em> cytocompatibility of the major components in our
             evaluation. Using osteoarthritis (OA) as a representative
-            application, magnetically responsive components, glycosaminoglycan
-            (GAG) retention, and mitochondrial delivery address distinct repair
+            application, the Magnetically Responsive Anisotropy Module, GAG Retention Module, and Mitochondrial Therapeutic Module address distinct repair
             needs and together demonstrate how NEST's programmable design
             performs in practice.
           </p>
           <figure className="my-4 text-center">
             <TransparentImage
-              src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/schematic-01.avif"
-              width={3120}
-              height={1370}
+              src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/update-1.avif"
+              width={2113}
+              height={744}
               alt="Figure 1 | Overview of proof-of-concept validation"
               className="img-fluid rounded"
               style={{ width: "100%" }}
@@ -207,20 +249,30 @@ export function ProofOfConcept() {
                   (Figures 2 and 3).
                 </p>
                 <figure className="my-4 text-center">
-                  <TransparentImage
-                    src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-01.avif"
-                    alt="Figure 2 | Production of scaffolds with different repeat numbers"
-                    className="img-fluid rounded"
-                    style={{ width: "100%" }}
-                  />
+                  <div className="poc-preparation-panels">
+                    <ProofFigurePanel
+                      src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-01.avif"
+                      sourceSize={[2400, 1650]}
+                      crop={[250, 215, 1900, 440]}
+                      label="A"
+                      alt="Figure 2A | SDS-PAGE of 2KY-5: marker, lysate supernatant, lysate pellet, induced culture and uninduced culture"
+                    />
+                    <ProofFigurePanel
+                      src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-01.avif"
+                      sourceSize={[2400, 1650]}
+                      crop={[250, 1025, 1900, 480]}
+                      label="B"
+                      alt="Figure 2B | SDS-PAGE of 2KY-10 expression and recovery, with reconstituted purified protein powder in the rightmost sample lane and the lyophilized product shown alongside"
+                    />
+                  </div>
                   <FigureCaption className="figure-caption mt-2">
                     <strong>
-                      Figure 2 | Successful Production of Scaffolds with
-                      Different Repeat Numbers.
+                      Figure 2 | Expression and fractionation analysis of the SELP scaffold protein.
                     </strong>{" "}
-                    (A) 2KY-5; (B) 2KY-10. We also produced 2KY-16. Sup/Pel
-                    denotes supernatant/pellet. Arrows and red boxes indicate
-                    the target bands.
+                    SDS–PAGE analysis of samples before and after IPTG induction,
+                    lysate supernatant, clarified supernatant, resuspended pellet,
+                    and reconstituted purified protein powder. Red dashed boxes
+                    indicate the expected position of the target protein (~55 kDa).
                   </FigureCaption>
                 </figure>
                 <figure className="my-4 text-center">
@@ -335,7 +387,7 @@ export function ProofOfConcept() {
                       Gene Expression.
                     </strong>{" "}
                     (A-E) ACAN, COL1, COL2, COLX, and SOX9; expression was
-                    normalized to 2Y-5 = 1. Measurements were conducted by our
+                    normalized to 2Y-5 (a lysine-free control scaffold) = 1. Measurements were conducted by our
                     collaborators. ns, not significant; <code>*</code>, p &lt;
                     0.05; <code>**</code>, p &lt; 0.01; <code>***</code>, p &lt;
                     0.001.
@@ -416,9 +468,9 @@ export function ProofOfConcept() {
                   selected OA as a representative application and matched its
                   mechanical and structural needs, matrix GAG retention needs,
                   and cell-function-related needs to three components:{" "}
-                  <strong>TVN-mediated magnetic response</strong>,{" "}
-                  <strong>GAG retention</strong>, and{" "}
-                  <strong>responsive mitochondrial delivery</strong>. Each
+                  <strong>Magnetically Responsive Anisotropy Module</strong>,{" "}
+                  <strong>GAG Retention Module</strong>, and{" "}
+                  <strong>Mitochondrial Therapeutic Module</strong>. Each
                   function plays a different role, but all use a shared ligation
                   mechanism. We therefore examined whether their components
                   could be produced, whether the interface remained compatible,
@@ -500,12 +552,31 @@ export function ProofOfConcept() {
                   could use the same ligation mechanism (Figure 10).
                 </p>
                 <figure className="my-4 text-center">
-                  <TransparentImage
-                    src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-08.avif"
-                    alt="Figure 10 | Shared ligation activity across three functional modules"
-                    className="img-fluid rounded"
-                    style={{ width: "100%" }}
-                  />
+                  <div className="poc-ligation-strip">
+                    <div className="poc-ligation-panels">
+                      <ProofFigurePanel
+                        src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-08.avif"
+                        sourceSize={[2300, 1400]}
+                        crop={[8, 300, 1177, 875]}
+                        label="A"
+                        alt="Figure 10A | TVN ligation assay, including the gel, band annotations and reaction-component table"
+                      />
+                      <ProofFigurePanel
+                        src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-08.avif"
+                        sourceSize={[2300, 1400]}
+                        crop={[1230, 60, 1055, 615]}
+                        label="B"
+                        alt="Figure 10B | GAG-retention construct ligation assay, including the gel and reaction-component table"
+                      />
+                      <ProofFigurePanel
+                        src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-08.avif"
+                        sourceSize={[2300, 1400]}
+                        crop={[1400, 780, 695, 605]}
+                        label="C"
+                        alt="Figure 10C | Responsive delivery construct and scrambled-sequence control ligation assay, including the gel and lane labels"
+                      />
+                    </div>
+                  </div>
                   <FigureCaption className="figure-caption mt-2">
                     <strong>
                       Figure 10 | All Three Functional Modules Retain Ligation
@@ -839,19 +910,46 @@ export function ProofOfConcept() {
             <h2 className="mt-5 mb-3">
               Biocompatibility
             </h2>
-            <BiosafetyIntroduction />
-            <BiosafetyResultsText figureNumber="21" />
+            <p>
+              Alongside material properties and module-specific functions, we
+              validated NEST's interaction with cells. Using the{" "}
+              <strong>CCK-8 assay</strong>, we measured relative cell viability
+              after exposure to hydrogel-related preparations, magnetic
+              nanoparticles (MNP), and functional peptides for 24, 48, and 72 h.
+            </p>
+            <p>
+              Hydrogel-related preparations and MNP generally maintained
+              relative cell viability near or above the control level across
+              the tested time points (Figure 21). These results support the{" "}
+              <strong>
+                <em>in vitro</em> cytocompatibility of the scaffold
+                preparations and magnetic component
+              </strong>
+              , providing a cellular foundation for NEST's modular hydrogel
+              design.
+            </p>
+            <p>
+              The functional-peptide assays characterized concentration- and
+              time-dependent cellular responses. The Mito groups (the responsive peptide from the Mitochondrial Therapeutic Module) showed higher
+              relative cell viability at 48 and 72 h than at 24 h. Together,
+              these measurements establish an experimental basis for selecting
+              component concentrations and treatment durations when configuring
+              NEST's functional modules.
+            </p>
             <figure className="my-4 text-center">
               <TransparentImage
                 src={BIOSAFETY_FIGURE_URL}
-                alt="Figure 21 | Preliminary cytocompatibility assessment of NEST components using the CCK-8 assay"
+                alt="Figure 21 | Cytocompatibility of NEST components assessed by CCK-8"
                 width={3080}
                 height={2434}
                 trim={false}
                 className="img-fluid rounded"
                 style={{ width: "100%" }}
               />
-              <BiosafetyFigureCaption figureNumber="21" />
+              <BiosafetyFigureCaption
+                figureNumber="21"
+                title="Cytocompatibility of NEST components assessed by CCK-8."
+              />
             </figure>
             <h2 className="mt-5 mb-3">Conclusion</h2>
             <p>
@@ -859,10 +957,11 @@ export function ProofOfConcept() {
               hydrogels and demonstrated that material properties can be altered
               through sequence configuration. The shared ligation interface was
               compatible with different functional constructs, while the
-              magnetic-response, GAG-retention, and mitochondrial-delivery
-              modules each exhibited their key intended functions. The scaffold
-              and major functional components were also evaluated in preliminary{" "}
-              <em>in vitro</em> cytocompatibility assays.
+              Magnetically Responsive Anisotropy Module, GAG Retention Module, and Mitochondrial Therapeutic Module each exhibited their key intended functions. The scaffold
+              preparations and MNP generally maintained cell viability near or
+              above control levels in CCK-8 assays,
+              while the functional-peptide assays established a basis for
+              selecting module-specific treatment conditions.
             </p>
             <p>
               We have therefore established two experimental aspects of NEST's
@@ -884,18 +983,23 @@ export function ProofOfConcept() {
           </SharedProjectSections>
           <References
             level={2}
-            title="Figure Sources and Credits"
+            title="Figure Sources"
             id="figure-sources-and-credits"
           >
             <ul className="references-list figure-sources-list">
               <FigureSourceEntry source={1} id="poc-reference-1">
                 <p>
-                  Icons used in Figure 1 and Figure 8. Protein chain: DBCLS (CC
-                  BY 4.0); hydrogel: Marcel Tisch (CC0); proteoglycan:
-                  Daniel-Marcos (CC0); mitochondrion: Servier (CC BY 3.0). Link,
-                  puzzle, magnet, and adjustment icons: Google Noto Emoji
-                  (Google, Apache 2.0). Icons were resized and recolored in
-                  shades of blue.
+                  Figures 1 and 8: icons adapted from{" "}
+                  <a href="https://bioicons.com/">Bioicons</a>.
+                  Protein chain: DBCLS (<a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>);
+                  hydrogel: Marcel Tisch and proteoglycan: Daniel-Marcos
+                  (<a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>);
+                  mitochondrion: Servier (<a href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>).
+                </p>
+                <p>
+                  Link, puzzle, magnet, and adjustment icons: adapted from Google,{" "}
+                  <a href="https://github.com/googlefonts/noto-emoji">Noto Emoji</a>.{" "}
+                  <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache 2.0</a>.
                 </p>
               </FigureSourceEntry>
             </ul>

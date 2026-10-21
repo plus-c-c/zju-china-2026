@@ -33,7 +33,7 @@ export function Design() {
             with tunable properties and functions combined on demand. We
             designed <strong>the NEST platform</strong>, built on a{" "}
             <strong>
-              programmable silk–elastin-like polypeptide (SELP) scaffold
+              programmable silk-elastin-like protein (SELP) scaffold
             </strong>{" "}
             and <strong>standardized peptide interfaces</strong> that assemble{" "}
             <strong>functional modules</strong>. Unlike conventional designs
@@ -54,10 +54,17 @@ export function Design() {
               style={{ width: "100%" }}
             />
             <FigureCaption className="figure-caption">
-              Figure 0.1 | Overview of the NEST platform. SELP and functional
-              modules are expressed in <em>E. coli</em>, assembled through
-              SnoopTag/DogTag ligation, and combined into a hydrogel precursor
-              that is crosslinked in situ by Ru/SPS under 450 nm blue light.
+              Figure 0.1 | Overview of the NEST platform. The upper panel shows
+              SELP scaffolds and functional modules expressed in <em>E. coli</em>,
+              assembled through SnoopTag/DogTag ligation, and combined into a
+              hydrogel precursor that is crosslinked in situ using Ru/SPS under
+              450 nm blue light. The lower panel illustrates the proposed
+              treatment workflow: injection into the cartilage defect, magnetic
+              alignment using a knee brace, and blue-light crosslinking to fix
+              the aligned network. The enlarged interface depicts electrostatic
+              interactions with cartilage glycosaminoglycans (GAGs) and covalent
+              bonds intended to support hydrogel–cartilage integration and
+              cartilage repair.
             </FigureCaption>
           </figure>
           <PlatformFunctionSections
@@ -77,7 +84,7 @@ export function Design() {
                   </strong>{" "}
                   comprises two core elements: a{" "}
                   <strong>
-                    programmable silk–elastin-like polypeptide (SELP) scaffold
+                    programmable silk-elastin-like protein (SELP) scaffold
                   </strong>{" "}
                   and <strong>standardized peptide ligation interfaces</strong>{" "}
                   for assembling functional units.
@@ -318,7 +325,7 @@ export function Design() {
                     SELPs. Schematic of the elastin-like, adhesion, and
                     silk-like domains; the insertion positions of functional
                     residues and of the SnoopTag2 peptide tag; and the naming of
-                    representative constructs (2Y-5, 2KY-5, 2KY-20). The inset
+                    representative constructs (2Y-5, a lysine-free control scaffold; 2KY-5; 2KY-20). The inset
                     table lists the ζ potential, elastic modulus (E), and
                     gelation time (GEL) of each construct. K and Y denote lysine
                     and tyrosine; RGD is the cell-adhesion motif; m is the
@@ -650,9 +657,10 @@ export function Design() {
                 <p>
                   Building on the first-generation system, we performed directed
                   evolution and rational design to obtain the{" "}
-                  <strong>SnoopLigase-ZJU system</strong>, whose ligation rate
-                  is more than three orders of magnitude higher than that of the
-                  first generation; coupling is completed within minutes at room
+                  <strong>SnoopLigase2-ZJU system</strong>, an engineered variant of
+                  SnoopLigase2 with improved stability and turnover, whose
+                  ligation rate is more than three orders of magnitude higher
+                  than that of the first generation; coupling is completed within minutes at room
                   temperature in standard PBS (pH 7.4), and activity is retained
                   at 4–45 °C, pH 4–10, and up to 1 M NaCl. This allows interface
                   assembly to be embedded directly in the main process flow of
@@ -676,8 +684,8 @@ export function Design() {
                     </a>
                     ]
                   </sup>
-                  . Notably, we have overcome this inherent limitation and
-                  achieved multiple turnovers of SnoopLigase,{" "}
+                  . Notably, through modeling, we have overcome this inherent
+                  limitation and achieved multiple turnovers of SnoopLigase,{" "}
                   <strong>
                     converting it from a stoichiometric reagent into a true
                     multi-turnover catalyst
@@ -727,7 +735,7 @@ export function Design() {
                       </a>
                       ]
                     </sup>
-                    , is introduced in addition to the SnoopLigase-ZJU system,
+                    , is introduced in addition to the SnoopLigase2-ZJU system,
                     upgrading the interface layer from a single interface to an
                     extensible interface standard. Because the two systems are
                     mutually orthogonal, replacing some scaffold interfaces with
@@ -972,7 +980,7 @@ export function Design() {
                   <strong>the TVNFKLY end binds Fe₃O₄ particles</strong>, and
                   the{" "}
                   <strong>
-                    dogtag end forms a covalent isopeptide bond with SnoopTag2
+                    DogTag end forms a covalent isopeptide bond with SnoopTag2
                     on SELP{" "}
                   </strong>
                   via the SnoopLigase system of this project. A flexible linker
@@ -1028,7 +1036,7 @@ export function Design() {
                   id="3-3-module-2-cpc-link-n-maintaining-matrix-retention-and-renewal"
                   className="mt-5 mb-3"
                 >
-                  3.3 Module 2 | GAG Retention Module (CPC/Link-N): Maintaining Matrix Retention and
+                  3.3 Module 2 | GAG Retention Module: Maintaining Matrix Retention and
                   Renewal
                 </h3>
                 <h4 className="mt-4 mb-3">
@@ -1273,10 +1281,10 @@ export function Design() {
                     style={{ width: "88%" }}
                   />
                   <FigureCaption className="figure-caption">
-                    Figure 3.3.3 | Design of the CPC/Link-N dual-function module
+                    Figure 3.3.3 | Design of the GAG Retention Module (CPC/Link-N)
                     attached to the SELP scaffold. Assembly of a
-                    dogtag–CPC–linker–Link-N fusion protein onto SELP through
-                    the standardized SnoopTag2/dogtag interface. CPC focuses on
+                    DogTag–CPC–linker–Link-N fusion protein onto SELP through
+                    the standardized SnoopTag2/DogTag interface. CPC focuses on
                     interaction with sulfated GAG; Link-N supports HA-related
                     matrix retention and matrix synthesis.
                   </FigureCaption>
@@ -1285,7 +1293,7 @@ export function Design() {
                   id="3-4-module-3-mmp-13-responsive-mitochondrial-delivery-linking-local-response-to-cellular-support"
                   className="mt-5 mb-3"
                 >
-                  3.4 Module 3 | Mitochondrial Therapeutic Module (MMP-13-Responsive Delivery):
+                  3.4 Module 3 | Mitochondrial Therapeutic Module:
                   Linking Local Response to Cellular Support
                 </h3>
                 <h4 className="mt-4 mb-3">3.4.1 Design Rationale and Goals</h4>
@@ -1384,16 +1392,16 @@ export function Design() {
                   must balance local retention with subsequent release. We
                   therefore designed an engineered short peptide that contains a
                   cysteine (Cys) coupling site, an MMP-responsive sequence, and
-                  a dogtag, integrating liposome attachment, enzyme-sensitive
+                  a DogTag, integrating liposome attachment, enzyme-sensitive
                   cleavage, and scaffold anchoring in one molecule. From the N
                   to the C terminus it reads Cys–GGGGS–responsive
-                  segment–GGGGS–dogtag, with the two GGGGS segments serving as
+                  segment–GGGGS–DogTag, with the two GGGGS segments serving as
                   flexible spacers (Figure 3.4.2).
                 </p>
                 <p>
                   On the scaffold side, we use the SnoopLigase-mediated ligation
                   system. The enzyme catalyzes covalent isopeptide bond
-                  formation between dogtag and SnoopTag2, providing a molecular
+                  formation between DogTag and SnoopTag2, providing a molecular
                   tool for modular assembly of protein components
                   <sup>
                     [
@@ -1414,7 +1422,7 @@ export function Design() {
                     </a>
                     ]
                   </sup>
-                  . In this design, dogtag on the linker peptide pairs with
+                  . In this design, DogTag on the linker peptide pairs with
                   SnoopTag2 on SELP, so that the carrier can be attached to the
                   hydrogel network through a preset interface.
                 </p>
@@ -1494,7 +1502,7 @@ export function Design() {
                     cleavage at ENLYFQ↓C, the target peptide is expected to
                     retain the N-terminal Cys. (B) The experimental peptide and
                     the scrambled control both retain Cys, the GGGGS spacers,
-                    and dogtag; the variable regions are RRGPLGLSLGKR and
+                    and DogTag; the variable regions are RRGPLGLSLGKR and
                     RKGLSLGLPGRR, which have identical length and amino acid
                     composition and differ only in residue order.
                   </FigureCaption>
@@ -1555,7 +1563,7 @@ export function Design() {
                   mitochondria to form a composite for mitochondrial protection
                   and cellular delivery. After attachment of the responsive
                   peptide, the carrier is anchored to the SELP network through
-                  the dogtag–SnoopTag2 interface, so that the hydrogel provides
+                  the DogTag–SnoopTag2 interface, so that the hydrogel provides
                   structural support and also serves as a local loading platform
                   for the mitochondrial carrier (Figure 3.4.3A). After MMP-13
                   cleaves the responsive region, the liposome-side and
@@ -1576,7 +1584,7 @@ export function Design() {
                     DSPE-PEG-Mal are coupled through the maleimide group to the
                     N-terminal Cys of the responsive peptide (thiol–maleimide
                     coupling) and then linked to the SELP network through the
-                    dogtag/SnoopTag2 interface. (B) After MMP-13 cleaves the
+                    DogTag/SnoopTag2 interface. (B) After MMP-13 cleaves the
                     responsive region, the liposome-side and scaffold-side
                     linker fragments separate, and the carrier is expected to be
                     uncoupled from the hydrogel network.
@@ -1677,8 +1685,7 @@ export function Design() {
                   efficiency of the connector system, we engineered the key
                   ligase, SnoopLigase. Mutations at three sites conferred
                   greater stability and higher catalytic turnover. We also
-                  conducted modeling simulations of magnetically responsive
-                  anisotropy, in which the mechanical properties of hydrogels
+                  conducted modeling simulations of the Magnetically Responsive Anisotropy Module, in which the mechanical properties of hydrogels
                   containing magnetic nanoparticles were predicted. These
                   results help us better understand and apply magnetic fields to
                   engineer the anisotropy of hydrogels.
@@ -1728,7 +1735,14 @@ export function Design() {
                 doi:10.1146/annurev.cellbio.12.1.697.
               </p>
               <p id="design-reference-4" style={{ scrollMarginTop: "112px" }}>
-                [4] Nie et al., 2026.
+                [4] Nie K, Fan Z, Sun W, et al. Ultrafast crosslinking, strongly
+                adhesive de novo protein hydrogels promote cartilage
+                regeneration. <em>Bioact Mater</em>. 2026;56:368–385. Published
+                online 27 October 2025. doi:
+                <a href="https://doi.org/10.1016/j.bioactmat.2025.10.009">
+                  10.1016/j.bioactmat.2025.10.009
+                </a>
+                .
               </p>
               <p id="design-reference-5" style={{ scrollMarginTop: "112px" }}>
                 [5] Fancy DA, Kodadek T. Chemistry for the analysis of

@@ -571,7 +571,7 @@
   border-radius: 999px;
   background: rgb(255 255 255 / 32%);
   color: #173b64;
-  font-size: clamp(14px, 1.4cqw, 19px);
+  font-size: clamp(16px, 1.65cqw, 22px);
   font-weight: 600;
   line-height: 1.05;
   text-align: center;
@@ -897,7 +897,7 @@
     min-height: 54px;
     gap: 8px;
     padding: 6px 10px;
-    font-size: 12px;
+    font-size: 14px;
   }
 
   .selp-promotion {

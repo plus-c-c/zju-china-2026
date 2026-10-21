@@ -10,12 +10,15 @@
 
 /* 目录锚点：每步滚动进度位置处的隐藏标题 */
 .m1-anchor {
-  top: calc(var(--m1-seg) * var(--stepper-step-size));
+  /* Compensate for the TOC's 20dvh reading line so the highlight
+     changes at the same runway position as useStepperProgress. */
+  top: calc(var(--m1-seg) * var(--stepper-step-size) + 20dvh);
 }
 
 /* 抵消 .page-article h3 的 !important 标题间距（48px），否则锚点整体下移、
    TOC 高亮滞后于卡组切换。 */
 .page-article .m1-anchor {
+  scroll-margin-top: calc(20dvh - 2px);
   margin: 0 !important;
 }
 

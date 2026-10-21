@@ -16,6 +16,11 @@ body:has(.nest-navbar-hidden) .page-article {
   --nest-nav-height: 82px;
   /* Single size parameter for every navbar icon (see NavIcon). */
   --nest-icon-size: 60px;
+  --nest-shortcut-height: 44px;
+  --nest-cart-width: 44px;
+  --nest-shortcut-gap: 24px;
+  --nest-shortcut-radius: 12px;
+  --nest-shortcut-accent: #ffe39a;
   position: fixed;
   inset: 0 0 auto;
   z-index: 1100;
@@ -280,17 +285,60 @@ body:has(.nest-navbar-hidden) .page-article {
 
 .navigation-cart {
   display: flex;
-  flex: 0 0 22px;
+  flex: 0 0 var(--nest-cart-width);
   align-items: center;
   justify-content: center;
-  width: 22px;
-  height: 22px;
-  margin-left: 12px;
+  width: var(--nest-cart-width);
+  height: var(--nest-shortcut-height);
+  margin-left: 14px;
+}
+
+.navigation-cart a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  border: 1px solid #ffffff99;
+  border-radius: var(--nest-shortcut-radius);
+  background: #ffffff14;
+  color: #fff;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease;
+}
+
+.navigation-cart a:hover {
+  border-color: #fff;
+  background: #ffffff2e;
+}
+
+.navigation-cart a[aria-current="page"] {
+  border-color: var(--nest-shortcut-accent);
+  background: #ffffff2e;
+  box-shadow: 0 0 0 1px var(--nest-shortcut-accent);
 }
 
 .navigation-cart img {
   display: block;
+  transition: transform 160ms ease;
 }
+
+.navigation-cart a:hover img,
+.navigation-cart a:focus-visible img {
+  transform: translateY(-1px) scale(1.08);
+}
+
+.navigation-game {
+  /* The flex list already supplies 2px of the shortcut-to-shortcut gap. */
+  margin-left: calc(var(--nest-shortcut-gap) - 2px);
+}
+
+.nest-navbar .navigation-cart a:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+
 .nest-navigation-toggle {
   display: none;
 }
@@ -314,6 +362,11 @@ body:has(.nest-navbar-hidden) .page-article {
 }
 
 @media (min-width: 992px) and (max-width: 1199.98px) {
+  .nest-navbar {
+    --nest-shortcut-height: 40px;
+    --nest-cart-width: 36px;
+    --nest-shortcut-gap: 16px;
+  }
   .nest-navbar-bar {
     gap: 12px;
     padding-inline: 24px;
@@ -442,7 +495,14 @@ body:has(.nest-navbar-hidden) .page-article {
     gap: 2px;
   }
   .navigation-cart {
-    margin: 16px 12px 0;
+    display: inline-flex;
+    margin: 16px 0 0 10px;
+    vertical-align: middle;
+  }
+  .navigation-game {
+    display: inline-flex;
+    margin: 16px 0 0 var(--nest-shortcut-gap);
+    vertical-align: middle;
   }
 }
 

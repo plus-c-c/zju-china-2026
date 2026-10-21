@@ -16,7 +16,7 @@ export const protocolGroups = [
       },
       {
         title:
-          "Ligation Reaction - SnoopLigase2-Mediated Peptide-Peptide Ligation",
+          "Ligation Reaction: SnoopLigase2-Mediated Peptide–Peptide Ligation",
         url: "https://static.igem.wiki/teams/6102/wiki/protocol/ligation-reaction-snoopligase2-mediated-peptide-peptide-ligation.pdf",
       },
       {
@@ -33,23 +33,23 @@ export const protocolGroups = [
         url: "https://static.igem.wiki/teams/6102/wiki/protocol/plasmid-construction-by-gibson-assembly.pdf",
       },
       {
-        title: "Plasmid Transformation - Heat-Shock Method",
+        title: "Plasmid Transformation: Heat-Shock Method",
         url: "https://static.igem.wiki/teams/6102/wiki/protocol/plasmid-transformation-heat-shock-method.pdf",
       },
       {
-        title: "Protein Dialysis - Buffer Exchange and Desalting",
+        title: "Protein Dialysis: Buffer Exchange and Desalting",
         url: "https://static.igem.wiki/teams/6102/wiki/protocol/protein-dialysis-buffer-exchange-and-desalting.pdf",
       },
       {
-        title: "Protein Lyophilisation - Freeze-Drying",
+        title: "Protein Lyophilization: Freeze-Drying",
         url: "https://static.igem.wiki/teams/6102/wiki/protocol/protein-lyophilisation-freeze-drying.pdf",
       },
       {
-        title: "Protein Ultrafiltration - Concentration and Buffer Exchange",
+        title: "Protein Ultrafiltration: Concentration and Buffer Exchange",
         url: "https://static.igem.wiki/teams/6102/wiki/protocol/protein-ultrafiltration-concentration-and-buffer-exchange.pdf",
       },
       {
-        title: "Purification by Inverse Transition Cycling - ITC",
+        title: "Purification by Inverse Transition Cycling (ITC)",
         url: "https://static.igem.wiki/teams/6102/wiki/protocol/purification-by-inverse-transition-cycling-itc.pdf",
       },
       {
@@ -66,11 +66,11 @@ export const protocolGroups = [
     title: "Magnetically Responsive Anisotropy Module",
     protocols: [
       {
-        title: "Site Directed Mutagenesis",
+        title: "Site-Directed Mutagenesis",
         url: "https://static.igem.wiki/teams/6102/wiki/protocol/site-directed-mutagenesis.pdf",
       },
       {
-        title: "FITC Peptide Fe₃O₄ Generalized Table Updated",
+        title: "FITC Peptide Fe₃O₄ Binding Assay",
         url: "https://static.igem.wiki/teams/6102/wiki/protocol/fitc-peptide-fe3o4-generalized-table-updated.pdf",
       },
     ],
@@ -92,27 +92,27 @@ export const protocolGroups = [
     title: "Mitochondrial Therapeutic Module",
     protocols: [
       {
-        title: "thawing and recovery of cryopreserved mscs",
+        title: "Thawing and Recovery of Cryopreserved MSCs",
         url: "https://static.igem.wiki/teams/6102/wiki/protocol/thawing-and-recovery-of-cryopreserved-mscs.pdf",
       },
       {
-        title: "passaging of mscs",
+        title: "Passaging of MSCs",
         url: "https://static.igem.wiki/teams/6102/wiki/protocol/passaging-of-mscs.pdf",
       },
       {
-        title: "mito-tracker green staining of isolated mitochondria",
+        title: "MitoTracker Green Staining of Isolated Mitochondria",
         url: "https://static.igem.wiki/teams/6102/wiki/protocol/mito-tracker-green-staining-of-isolated-mitochondria.pdf",
       },
       {
-        title: "liposome synthesis by thin-film hydration and serial extrusion",
+        title: "Liposome Synthesis by Thin-Film Hydration and Serial Extrusion",
         url: "https://static.igem.wiki/teams/6102/wiki/protocol/liposome-synthesis-by-thin-film-hydration-and-serial-extrusion.pdf",
       },
       {
-        title: "isolation of mitochondria from cultured mscs",
+        title: "Isolation of Mitochondria from Cultured MSCs",
         url: "https://static.igem.wiki/teams/6102/wiki/protocol/isolation-of-mitochondria-from-cultured-mscs.pdf",
       },
       {
-        title: "cck-8 assay for sample cytotoxicity in mscs",
+        title: "CCK-8 Assay for Sample Cytotoxicity in MSCs",
         url: "https://static.igem.wiki/teams/6102/wiki/protocol/cck-8-assay-for-sample-cytotoxicity-in-mscs.pdf",
       },
     ],

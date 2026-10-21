@@ -7,13 +7,12 @@ export function ProjectExperimentNotes() {
         <span>Special Notes on Project Experiments</span>
       </summary>
       <p>
-        Since our team lacks the environment and system to support long-term
-        cell culture, the collaborating team led by Prof. Hongwei Ouyang and
-        Wenwen Huang—who have an established cartilage cell culture system and
-        strong SELP characterization expertise—performed all experiments
-        concerning cell culture and provided the 2Y-5 and 2KY-16 materials. Our
-        team did not directly perform any biosafety-relevant experimental
-        procedures in this part of the project.
+        Our team works in close collaboration with the research teams led by
+        Prof. Hongwei Ouyang and Prof. Wenwen Huang. Drawing on their established
+        chondrocyte culture system and strong SELP characterization expertise,
+        our collaborators performed all cell culture and related experimental
+        procedures and provided the 2Y-5 (a lysine-free control scaffold) and 2KY-16 materials. Our team did not
+        participate in any cell-related experimental procedures.
       </p>
     </details>
   );

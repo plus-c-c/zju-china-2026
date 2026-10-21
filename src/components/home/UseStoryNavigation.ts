@@ -8,6 +8,9 @@ export const STORY_STOPS = [
 export const STORY_SCROLL_RATIO = 0.6;
 export const STORY_PIPELINE_BEAT = 21;
 
+// Include the map reveal and card draw before moving to the next scene.
+const STORY_PAGE_STOPS = [0, 2, 4, 4.8, 6, 8, 10, 12.8, 14, 19, 21];
+
 /** Both scroll controllers and the bird transfer at the settled OA scene. */
 export function getStoryHandoffTop() {
   const root = document.querySelector<HTMLElement>(".home-scroll-space");
@@ -136,7 +139,7 @@ export function useStoryNavigation() {
     let touchX = 0;
     let touchConsumed = false;
     // The map reveal and card draw each need their own deliberate gesture.
-    const targets = [0, 2, 4, 4.8, 6, 8, 10, 12.8, 14, 19, 21];
+    const targets = STORY_PAGE_STOPS;
     const readPosition = () => {
       const root = document.querySelector<HTMLElement>(".home-scroll-space");
       const viewport = document.querySelector<HTMLElement>(".story-viewport");
@@ -436,6 +439,23 @@ export function useStoryNavigation() {
     nextScene: () => {
       const target = nextSceneStop >= 0 ? nextSceneStop : position + 1;
       seek(target, 1500, Math.max(position, target - 1));
+    },
+    advance: () => {
+      const target = STORY_PAGE_STOPS.find((beat) => beat > position + 0.08);
+      if (target === undefined) {
+        cancelAnimationFrame(scrollAnimation.current);
+        animationActive.current = false;
+        chaining.current = false;
+        window.dispatchEvent(new Event("home-story-seek"));
+        window.scrollBy({
+          top: Math.round(window.innerHeight * 0.35),
+          behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth",
+        });
+        return;
+      }
+      const changesScene = STORY_STOPS[Math.floor(target)] !== STORY_STOPS[Math.floor(position)];
+      seek(target, target === 12.8 ? 2000 : 1500,
+        changesScene ? Math.max(position, STORY_STOPS.indexOf(STORY_STOPS[Math.floor(target)]) - 1) : undefined);
     },
     next: () => seek(Math.floor(position + 0.001) + 1),
     previous: () => seek(Math.ceil(position - 0.001) - 1),

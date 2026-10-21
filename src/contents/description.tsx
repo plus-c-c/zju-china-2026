@@ -49,6 +49,7 @@ function DescriptionFigure({
   alt,
   src,
   empty = false,
+  showSourceCitation = true,
 }: {
   number: number | string;
   title: string;
@@ -57,6 +58,7 @@ function DescriptionFigure({
   /** Optional override of the default description<N>.avif asset. */
   src?: string;
   empty?: boolean;
+  showSourceCitation?: boolean;
 }) {
   return (
     <figure className="figure d-block my-4 text-center article-figure">
@@ -78,7 +80,7 @@ function DescriptionFigure({
           Figure {number} | {title}.
         </strong>{" "}
         {children}
-        {!empty && (
+        {!empty && showSourceCitation && (
           <FigureSourceCitation
             source={number}
             href={`#description-figure-${String(number).replace(/\./g, "-")}-sources`}
@@ -147,7 +149,7 @@ const treatmentCards = [
       <>
         Can relieve pain, improve mobility, and help manage joint loading, but
         cannot directly replace cartilage tissue that has already been lost.
-        <Citation refs={[1, 12]} />
+        <Citation refs={[1, 11]} />
       </>
     ),
   },
@@ -158,7 +160,7 @@ const treatmentCards = [
         Transfers healthy osteochondral tissue into a defect, but is constrained
         by donor-site morbidity, graft availability, and the need to match graft
         dimensions and geometry.
-        <Citation refs={[2, 11]} />
+        <Citation refs={[2, 10]} />
       </>
     ),
   },
@@ -170,7 +172,7 @@ const treatmentCards = [
         into the repair process. The resulting repair tissue is often
         predominantly fibrocartilage, whose long-term load-bearing performance
         differs from native hyaline cartilage.
-        <Citation refs={[2, 11]} />
+        <Citation refs={[2, 10]} />
       </>
     ),
   },
@@ -181,7 +183,7 @@ const treatmentCards = [
         Supplies chondrocytes for tissue repair, but generally requires cell
         harvesting, ex vivo expansion, and implantation, with a demanding
         treatment and postoperative rehabilitation process.
-        <Citation refs={[2, 11]} />
+        <Citation refs={[2, 10]} />
       </>
     ),
   },
@@ -192,7 +194,12 @@ const treatmentCards = [
         Provides an important option for some patients with end-stage joint
         destruction, but replaces native articular surfaces with artificial
         components rather than regenerating natural cartilage.
-        <Citation refs={[12]} />
+        <Citation refs={[11]} />{" "}
+        It involves major surgery, substantial treatment costs, and demanding
+        rehabilitation, and is generally considered when symptoms severely
+        limit daily life and non-surgical treatments are ineffective or
+        unsuitable.
+        <Citation refs={[20, 21, 22]} />
       </>
     ),
   },
@@ -261,21 +268,9 @@ const references = [
     <a href="https://doi.org/10.1371/journal.pone.0349128">DOI</a>
   </>,
   <>
-    Fortune Business Insights.{" "}
-    <strong>
-      Knee Cartilage Repair Market Size, Share and Analysis; Regional Forecast,
-      2026–2034.
-    </strong>{" "}
-    Industry report, updated 28 September 2026.{" "}
-    <a href="https://www.fortunebusinessinsights.com/industry-reports/knee-cartilage-repair-market-100260">
-      Report
-    </a>{" "}
-    (Industry estimate; not a peer-reviewed study of healthcare expenditure.)
-  </>,
-  <>
     Peters AE, Akhtar R, Comerford EJ, Bates KT.{" "}
     <strong>
-      The effect of ageing and osteoarthritis on the mechanical properties of
+      The effect of aging and osteoarthritis on the mechanical properties of
       cartilage and bone in the human knee joint.
     </strong>{" "}
     <em>Scientific Reports.</em> 2018;8:5931.{" "}
@@ -374,6 +369,31 @@ const references = [
     <em>Immune Network.</em> 2022;22(2):e14.{" "}
     <a href="https://doi.org/10.4110/in.2022.22.e14">DOI</a>
   </>,
+  <>
+    National Institute for Health and Care Excellence (NICE).{" "}
+    <strong>Osteoarthritis in over 16s: diagnosis and management.</strong>{" "}
+    NICE guideline NG226, 2022. Section 1.6: Referral for joint replacement.{" "}
+    <a href="https://www.nice.org.uk/guidance/ng226/chapter/recommendations#referral-for-joint-replacement">
+      NICE recommendations
+    </a>
+  </>,
+  <>
+    American Academy of Orthopaedic Surgeons (AAOS), OrthoInfo.{" "}
+    <strong>Total Knee Replacement.</strong>{" "}
+    <a href="https://www.orthoinfo.org/treatment/total-knee-replacement/">
+      OrthoInfo
+    </a>
+  </>,
+  <>
+    Li A, Li G, Han D, Fu M, Chang J.{" "}
+    <strong>
+      A comparative study of hospitalization costs of TKA inpatients before
+      and after National Volume-based Procurement in Guangdong, China: an
+      interrupted time-series analysis.
+    </strong>{" "}
+    <em>Frontiers in Public Health.</em> 2025;12:1468606.{" "}
+    <a href="https://doi.org/10.3389/fpubh.2024.1468606">DOI</a>
+  </>,
 ];
 
 export function Description() {
@@ -381,24 +401,21 @@ export function Description() {
     <div className="row mt-4 mb-5">
       <div className="col-lg-10 mx-auto">
         <article className="description-article">
-          <h2>The Cost of Cartilage Damage</h2>
+          <h2>When Moving Starts to Hurt</h2>
           <p>
-            Getting out of bed in the morning, walking downstairs, catching the
-            bus, or enjoying a leisurely stroll with family after dinner—we
-            rarely stop to think about how many ordinary yet precious moments in
-            life depend on the freedom to move our joints. Once pain sets in,
-            however, these familiar activities can become unexpectedly
-            difficult. Standing up may require bracing against the edge of a
-            table; going downstairs may mean slowing down at every step; and a
-            long-awaited short trip may be abandoned out of concern about the
-            journey. Little by little, the boundaries of everyday life begin to
-            close in.
+            Most days, we barely notice how freely we move. We get out of bed,
+            hurry downstairs to catch a bus, or head out for a walk with family
+            after dinner. When moving hurts, those small freedoms become harder
+            to hold on to. We reach for the edge of a table before standing up.
+            We take the stairs one careful step at a time. A trip we have been
+            looking forward to suddenly feels too difficult. Little by little,
+            life begins to shrink around the movements we can still manage.
           </p>
 
           <DescriptionFigure
             number={1}
             src={`${IMAGE_ROOT}/description-figure-01-v3.avif`}
-            title="When Pain Shrinks the Radius of Everyday Life"
+            title="When Pain Changes Everyday Life"
             alt="Three-panel illustrative collage showing knee taping for a young adult, an adult holding a knee, and an older adult resting a hand on a knee"
           >
             An illustrative collage of knee support and discomfort across life
@@ -409,26 +426,37 @@ export function Description() {
           </DescriptionFigure>
 
           <p>
-            Such changes may begin with an accidental injury on the sports field
-            or develop gradually through years of joint degeneration. Young
-            people may have to put aside the sports they love, while older
-            adults may begin to wonder whether they can still go out on their
-            own. Recurring joint pain does more than restrict movement: it can
-            disrupt sleep, interfere with daily work, and cast a lingering
-            shadow over time spent with family and friends.
+            The change may come suddenly, after an injury on the sports field,
+            or gradually, as a joint wears down over the years. For a young
+            person, it may mean watching from the sidelines instead of playing
+            the sport they love. For an older adult, it may mean wondering
+            whether they can still go shopping on their own. Recurring pain can
+            disturb sleep, make work harder, and leave people weighing every
+            invitation against how they might feel afterward.
             <Citation refs={[1]} />
           </p>
           <p>
-            The joint surfaces that make these movements possible are covered by
-            a smooth, water-rich layer of <strong>hyaline cartilage</strong>{" "}
-            with specialized mechanical properties. Day after day, this tissue
-            distributes loads and reduces friction as the joint undergoes
-            compression and sliding, protecting the articulating surfaces. Yet
-            its intrinsic capacity for self-repair is extremely limited. Sports
-            injuries, prolonged abnormal loading, and age-related degeneration
-            can compromise its integrity, sometimes leading to pain, stiffness,
-            and restricted mobility.
+            Much of our freedom to move depends on a thin layer of{" "}
+            <strong>hyaline cartilage</strong> covering the joint surfaces. This
+            smooth, water-rich tissue helps them glide over one another and
+            spreads the load each time we take a step. When injury or
+            degeneration damages that layer, pain and stiffness can turn
+            movements we once took for granted into daily obstacles.
             <Citation refs={[2]} />
+          </p>
+          <p>
+            A localized defect can carry a heavy personal cost. In one study,
+            patients awaiting surgery for focal knee cartilage defects had a{" "}
+            <strong>
+              <abbr title="Knee injury and Osteoarthritis Outcome Score">
+                KOOS
+              </abbr>{" "}
+              quality-of-life score of just 27.5 out of 100
+            </strong>
+            —almost the same as the 27.2 reported by patients awaiting knee
+            replacement.
+            <Citation refs={[5]} />
+            {" "}Being able to join in again is what makes repair matter.
           </p>
 
           <h2>Cartilage Damage Is Far from Rare</h2>
@@ -451,63 +479,29 @@ export function Description() {
             >
               Stacked bars show the proportions of knees with no cartilage
               injury or Outerbridge Grades I–IV across six anatomical sites in
-              25,293 primary knee arthroscopies. These hospital-cohort data do
-              not estimate prevalence in the general population.
+              25,293 primary knee arthroscopies.
             </DescriptionFigure>
           </div>
 
           <p>
-            Cartilage damage is by no means a problem affecting only a small
-            group of people. A study published in 2026 examined 25,293 knee
-            arthroscopy procedures and found that{" "}
-            <strong>
-              66.2% involved articular cartilage damage, with severe lesions
-              identified in 26.6%
-            </strong>
-            . In another study, patients awaiting surgery for focal knee
-            cartilage defects had a preoperative{" "}
-            <strong>
-              Knee injury and Osteoarthritis Outcome Score quality-of-life score
-              of just 27.5/100
-            </strong>
-            , comparable to 27.2/100 among patients awaiting knee replacement.
-            Even when a lesion is confined to one area, its impact on daily life
-            can be profound.
-            <Citation refs={[4, 5]} />
+            For millions of people, these struggles are part of everyday life.
+            In 2021, approximately{" "}
+            <strong>607 million people worldwide</strong> were living with{" "}
+            <strong>osteoarthritis (OA)</strong>, a disease involving
+            degeneration of articular cartilage. In 2023, OA accounted for
+            approximately{" "}
+            <strong>22.36 million disability-adjusted life years</strong>—a
+            measure of healthy life lost.
+            <Citation refs={[6, 7]} />
           </p>
           <p>
-            At the global level,{" "}
-            <strong>
-              osteoarthritis (OA)—a cartilage damage-related disease
-              characterized in part by degeneration of articular cartilage—
-            </strong>
-            affects an enormous population. Approximately{" "}
-            <strong>607 million people</strong> worldwide were living with OA in
-            2021, and OA accounted for approximately{" "}
-            <strong>22.36 million disability-adjusted life years</strong> in
-            2023.
-            <Citation refs={[6, 7]} /> The global knee cartilage repair market
-            was estimated at approximately{" "}
-            <strong>US$2.06 billion in 2025</strong>.<Citation refs={[8]} />
-          </p>
-          <p>
-            The causes, anatomical sites, and courses of cartilage damage vary
-            widely. A single sports injury may leave a focal defect, whereas
-            prolonged abnormal loading or age-related degeneration may cause
-            more extensive tissue damage. The knee, hip, and ankle differ in
-            their patterns of movement and loading; even within the same joint,
-            a lesion&apos;s location, depth, and extent can change the
-            requirements for repair.
-            <Citation refs={[4, 9]} /> Meanwhile, changes in inflammation,
-            cellular function, and the extracellular matrix make the local
-            repair microenvironment increasingly complex.{" "}
-            <strong>
-              Some defects require greater mechanical support; others depend
-              more heavily on stable fixation and integration; still others
-              require strategies that address ongoing matrix degradation and
-              inflammation.
-            </strong>
-            <Citation refs={[2, 9]} />
+            The need for repair is clear in the clinic, too. A 2026 study of
+            25,293 knee arthroscopy procedures found articular cartilage damage
+            in <strong>66.2% of cases</strong>, with severe lesions in{" "}
+            <strong>26.6%</strong>.
+            <Citation refs={[4]} />
+            {" "}That need reaches well beyond the clinic, into the ordinary
+            activities people hope to get back to.
           </p>
 
           <h2>Why Is Cartilage So Difficult to Repair?</h2>
@@ -521,34 +515,47 @@ export function Description() {
             zones, chondrocytes, and subchondral bone.
           </DescriptionFigure>
           <p>
-            Healthy articular cartilage has a highly organized zonal
-            architecture. From the superficial zone, which primarily resists
-            friction and shear, to deeper zones that transmit compressive loads,
-            the arrangement of cells and extracellular matrix enables this thin
-            tissue to withstand years of movement.
-            <Citation refs={[10]} /> Yet{" "}
+            The tissue that helps us move smoothly has very little ability to
+            heal itself. Articular cartilage has no blood vessels and contains
+            relatively few chondrocytes—the cells that maintain
+            it—held within a dense extracellular matrix.
+            <Citation refs={[9, 10]} /> Replacing it also means restoring a
+            carefully organized structure: the surface resists friction and
+            shear, while deeper layers carry compressive loads.
+            <Citation refs={[9]} />{" "}
             <strong>
-              the very tissue that maintains this intricate architecture has
-              little ability to rebuild itself after injury.
-            </strong>{" "}
-            Articular cartilage is avascular, contains relatively few
-            chondrocytes, and embeds those cells within a dense matrix.
-            <Citation refs={[10, 11]} />
+              A lasting repair needs to restore tissue with the structure and
+              function of native cartilage, able to withstand years of repeated
+              loading and movement.
+            </strong>
           </p>
           <p>
-            The challenge is compounded because an injured joint must continue
-            bearing the repeated loads of everyday activities.{" "}
+            Healing also has to happen while life goes on. An injured joint
+            still bears weight when someone gets out of bed, crosses a room, or
+            goes downstairs.{" "}
             <strong>
               The tissue must keep working before it has had a chance to
               recover.
             </strong>{" "}
-            Continued mechanical stress and an unfavorable local environment
-            make the formation, integration, and long-term stability of new
-            tissue even more difficult.
-            <Citation refs={[9, 10]} /> Cartilage regeneration therefore
-            requires more than filling a defect: it must help new tissue
-            establish a structure and function approaching those of native
-            cartilage under real loading conditions.
+            Meanwhile, inflammation and changes in cells and the surrounding
+            matrix can make it harder for new tissue to form, join with the
+            existing cartilage, and stay stable over time.
+            <Citation refs={[8, 9]} />
+          </p>
+          <p>
+            The same wish to move freely can arise from very different
+            injuries. A sports injury may leave one localized defect, while
+            years of abnormal loading or degeneration may affect a much wider
+            area. The joint involved, the site of injury, and the depth and
+            extent of the defect all change what a repair needs to do.
+            <Citation refs={[4, 8]} />{" "}
+            <strong>
+              An effective repair must combine mechanical support, secure
+              fixation, and integration with the surrounding cartilage. It also
+              needs to address inflammation and ongoing matrix degradation where
+              necessary, with the balance tailored to each injury.
+            </strong>
+            <Citation refs={[2, 9, 10]} />
           </p>
 
           <h2>Current Treatments: Benefits and Limitations</h2>
@@ -574,7 +581,7 @@ export function Description() {
               Durably restoring the structure and long-term function of native
               hyaline cartilage remains challenging.
             </strong>
-            <Citation refs={[2, 11, 12]} />
+            <Citation refs={[2, 10, 11]} />
           </p>
           <div className="description-card-grid description-card-grid--treatments">
             {treatmentCards.map((card, index) => (
@@ -596,7 +603,7 @@ export function Description() {
             </strong>{" "}
             An ideal repair approach must also adapt to anatomical location,
             injury severity, and disease progression.
-            <Citation refs={[2, 10, 11]} />
+            <Citation refs={[2, 9, 10]} />
           </p>
           <p className="description-question">
             <strong>
@@ -618,7 +625,7 @@ export function Description() {
             to defect geometry. Some hydrogel-assisted approaches have entered
             clinical studies and yielded outcomes from several years of
             follow-up.
-            <Citation refs={[13, 14]} />
+            <Citation refs={[12, 13]} />
           </p>
           <p>
             <strong>
@@ -628,7 +635,7 @@ export function Description() {
             It must remain stable under repeated movement, support regeneration
             in a damaged microenvironment, and be manufactured with clinical
             reliability and consistency.
-            <Citation refs={[14]} />
+            <Citation refs={[13]} />
           </p>
           <DescriptionFigure
             number={6}
@@ -653,7 +660,7 @@ export function Description() {
                 fixation
               </strong>{" "}
               in one material is a critical challenge.
-              <Citation refs={[9, 14, 15, 16, 17]} />
+              <Citation refs={[8, 13, 14, 15, 16]} />
             </ExpandableCard>
             <ExpandableCard
               number="02"
@@ -664,7 +671,7 @@ export function Description() {
               retain bioactive molecules, enable localized delivery, respond to
               environmental change, and degrade in step with new tissue
               formation.
-              <Citation refs={[14, 18, 19, 20]} />
+              <Citation refs={[13, 17, 18, 19]} />
             </ExpandableCard>
             <ExpandableCard
               number="03"
@@ -678,7 +685,7 @@ export function Description() {
                 A material that performs in the laboratory must also withstand
                 reproducible manufacturing and clinical use.
               </strong>
-              <Citation refs={[14, 16, 17]} />
+              <Citation refs={[13, 15, 16]} />
             </ExpandableCard>
           </div>
           <p>
@@ -690,7 +697,7 @@ export function Description() {
             call for strategies addressing inflammation, matrix degradation, and
             cellular dysfunction. Osteoarthritis is a clear example of this
             complexity.
-            <Citation refs={[18, 19, 20]} />
+            <Citation refs={[17, 18, 19]} />
           </p>
           <DescriptionFigure
             number={7}
@@ -755,7 +762,7 @@ export function Description() {
           </p>
           <div className="description-card-grid description-card-grid--platform">
             <ExpandableCard number="01" title="Tunable Scaffold">
-              We selected <strong>silk–elastin-like polypeptide (SELP)</strong>{" "}
+              We selected <strong>silk-elastin-like protein (SELP)</strong>{" "}
               as the scaffold. Its genetically designable sequence and
               crosslinked network provide a tunable foundation for different
               mechanical requirements, while tissue-interface design supports
@@ -779,6 +786,7 @@ export function Description() {
           </div>
           <DescriptionFigure
             number={8}
+            showSourceCitation={false}
             title="Comparison between traditional blending design and sequence-programmed design"
             src="https://static.igem.wiki/teams/6102/wiki/images/design/01/01-01.avif"
             alt="Comparison of conventional polymer blending and grafting with DNA-encoded protein production and photocrosslinking"
@@ -833,169 +841,124 @@ export function Description() {
           </References>
 
           <References
-            title="Figure Sources and Credits"
+            title="Figure Sources"
             id="figure-sources-and-credits"
             showBird={false}
           >
             <ul className="references-list figure-sources-list">
               <FigureSourceEntry source={1} id="description-figure-1-sources">
                 <p>
-                  Source photographs: young adult, cottonbro studio / Pexels,
-                  photo 7339492; adult, Towfiqu barbhuiya / Pexels, photo
-                  11349880; older adult, Αλεξανδρος Μαμουνης / Pexels, photo
-                  18851495. The collage was adapted from these photographs using
-                  AI-assisted compositing (OpenAI imagegen). It is illustrative
-                  and should not be presented as clinical evidence or
-                  confirmation of a diagnosis.
-                </p>
-                <p className="figure-source-links">
+                  Adapted from photographs by{" "}
                   <a href="https://www.pexels.com/photo/7339492/">
-                    Young adult
+                    cottonbro studio
                   </a>
-                  {"; "}
-                  <a href="https://www.pexels.com/photo/11349880/">Adult</a>
-                  {"; "}
+                  ,{" "}
+                  <a href="https://www.pexels.com/photo/11349880/">
+                    Towfiqu barbhuiya
+                  </a>
+                  , and{" "}
                   <a href="https://www.pexels.com/photo/18851495/">
-                    Older adult
+                    Αλεξανδρος Μαμουνης
                   </a>
-                  {"; "}
-                  <a href="https://www.pexels.com/license/">Pexels License</a>
+                  , Pexels. <a href="https://www.pexels.com/license/">Pexels License</a>.
                 </p>
               </FigureSourceEntry>
               <FigureSourceEntry source={2} id="description-figure-2-sources">
                 <p>
-                  Chen et al. (2026), Figure 1, licensed CC BY-NC-ND 4.0. Retain
-                  the original figure and complete attribution, and observe the
-                  restrictions on commercial use and derivative works.
-                </p>
-                <p className="figure-source-links">
+                  Reproduced from Chen et al. (2026), Fig. 1,{" "}
                   <a href="https://doi.org/10.1016/j.jot.2025.11.005">
-                    Figure 2 source
+                    <em>Journal of Orthopaedic Translation</em>
                   </a>
-                  {"; "}
+                  .{" "}
                   <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">
                     CC BY-NC-ND 4.0
                   </a>
+                  .
                 </p>
               </FigureSourceEntry>
               <FigureSourceEntry source={3} id="description-figure-3-sources">
                 <p>
-                  Jiang et al. (2026), Figure 3, licensed CC BY-NC-ND 4.0. The
-                  original figure shows the distribution and severity grades of
-                  cartilage lesions at different sites within the knee in an
-                  arthroscopy cohort; these data are not a population-based
-                  prevalence estimate. Observe the restrictions on commercial
-                  use and modification.
-                </p>
-                <p className="figure-source-links">
-                  <a href="https://doi.org/10.1111/os.70272">Figure 3 source</a>
-                  {"; "}
-                  <a href="https://onlinelibrary.wiley.com/doi/epdf/10.1111/os.70272">
-                    Original figure in the article PDF (p. 676)
+                  Reproduced from Jiang et al. (2026), Fig. 3,{" "}
+                  <a href="https://doi.org/10.1111/os.70272">
+                    <em>Orthopaedic Surgery</em>
                   </a>
-                  {"; "}
+                  .{" "}
                   <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">
                     CC BY-NC-ND 4.0
                   </a>
+                  .
                 </p>
               </FigureSourceEntry>
               <FigureSourceEntry source={4} id="description-figure-4-sources">
                 <p>
-                  Morouço, Fernandes &amp; Lattanzi (2021), Figure 1, licensed
-                  CC BY 4.0. Consult the original legend for third-party artwork
-                  attribution.
-                </p>
-                <p className="figure-source-links">
+                  Reproduced from Morouço et al. (2021), Fig. 1,{" "}
                   <a href="https://doi.org/10.3390/jfb12010017">
-                    Original article
+                    <em>Journal of Functional Biomaterials</em>
                   </a>
-                  {"; "}
+                  .{" "}
                   <a href="https://creativecommons.org/licenses/by/4.0/">
                     CC BY 4.0
                   </a>
+                  .
                 </p>
               </FigureSourceEntry>
               <FigureSourceEntry source={5} id="description-figure-5-sources">
                 <p>
-                  Left: Medvedeva et al. (2018), Figure 3, CC BY 4.0. Upper
-                  right: Funkcinės Terapijos Centras / Pexels, photo 20860595,
-                  under the Pexels License. Lower right: “Osteoarthritis” and
-                  “Knee Replacement” by BruceBlaus (2015), via Wikimedia
-                  Commons, CC BY-SA 4.0. ZJU-China cropped the illustrations,
-                  resized them without changing their aspect ratios, and added
-                  labels. The adapted lower-right panel is licensed under CC
-                  BY-SA 4.0; the other panels retain their respective licenses.
-                  The composite layout was arranged by ZJU-China.
-                </p>
-                <p className="figure-source-links">
+                  Left: reproduced from Medvedeva et al. (2018), Fig. 3,{" "}
                   <a href="https://doi.org/10.3390/ijms19082366">
-                    Medvedeva article
+                    <em>International Journal of Molecular Sciences</em>
                   </a>
-                  {"; "}
-                  <a href="https://www.pexels.com/photo/20860595/">
-                    Rehabilitation photo
-                  </a>
-                  {"; "}
-                  <a href="https://commons.wikimedia.org/wiki/File:Osteoarthritis.png">
-                    BruceBlaus: Osteoarthritis
-                  </a>
-                  {"; "}
-                  <a href="https://commons.wikimedia.org/wiki/File:Knee_Replacement.png">
-                    BruceBlaus: Knee Replacement
-                  </a>
-                  {"; "}
-                  <a href="https://creativecommons.org/licenses/by-sa/4.0/">
-                    CC BY-SA 4.0 (lower-right panel)
-                  </a>
-                  {"; "}
+                  .{" "}
                   <a href="https://creativecommons.org/licenses/by/4.0/">
                     CC BY 4.0
                   </a>
-                  {"; "}
-                  <a href="https://www.pexels.com/license/">Pexels License</a>
+                  .
+                </p>
+                <p>
+                  Upper right: photograph by{" "}
+                  <a href="https://www.pexels.com/photo/20860595/">
+                    Funkcinės Terapijos Centras
+                  </a>
+                  , Pexels. <a href="https://www.pexels.com/license/">Pexels License</a>.
+                </p>
+                <p>
+                  Lower right: adapted from BruceBlaus (2015),{" "}
+                  <a href="https://commons.wikimedia.org/wiki/File:Osteoarthritis.png">
+                    <em>Osteoarthritis</em>
+                  </a>
+                  {" and "}
+                  <a href="https://commons.wikimedia.org/wiki/File:Knee_Replacement.png">
+                    <em>Knee Replacement</em>
+                  </a>
+                  , Wikimedia Commons.{" "}
+                  <a href="https://creativecommons.org/licenses/by-sa/4.0/">
+                    CC BY-SA 4.0
+                  </a>
+                  .
                 </p>
               </FigureSourceEntry>
               <FigureSourceEntry source={6} id="description-figure-6-sources">
                 <p>
-                  Cavallo et al. (2026), Figure 1, CC BY 4.0. Credit the authors
-                  and source and indicate modifications. Included third-party
-                  graphics may require separate permission.
-                </p>
-                <p className="figure-source-links">
+                  Reproduced from Cavallo et al. (2026), Fig. 1,{" "}
                   <a href="https://doi.org/10.3390/gels12050350">
-                    Figure 6 source
+                    <em>Gels</em>
                   </a>
-                  {"; "}
+                  .{" "}
                   <a href="https://creativecommons.org/licenses/by/4.0/">
                     CC BY 4.0
                   </a>
+                  .
                 </p>
               </FigureSourceEntry>
               <FigureSourceEntry source={7} id="description-figure-7-sources">
                 <p>
-                  Gan et al. (2024), Figure 1, licensed CC BY 4.0. If the figure
-                  includes third-party graphics, such as BioRender elements,
-                  their reuse permissions must be checked separately; an
-                  open-access license for the article does not necessarily
-                  authorise unrestricted reuse of every component.
-                </p>
-                <p className="figure-source-links">
+                  Reproduced from Gan et al. (2024), Fig. 1,{" "}
                   <a href="https://doi.org/10.3390/biomedicines12040923">
-                    Figure 7 source
+                    <em>Biomedicines</em>
                   </a>
-                  {"; "}
+                  .{" "}
                   <a href="https://creativecommons.org/licenses/by/4.0/">
                     CC BY 4.0
-                  </a>
-                </p>
-              </FigureSourceEntry>
-              <FigureSourceEntry source={8} id="description-figure-8-sources">
-                <p>
-                  Comparison between traditional blending design and
-                  sequence-programmed design. Image supplied by ZJU-China and
-                  hosted on the team&rsquo;s iGEM static repository.{" "}
-                  <a href="https://static.igem.wiki/teams/6102/wiki/images/design/01/01-01.avif">
-                    Original image
                   </a>
                   .
                 </p>

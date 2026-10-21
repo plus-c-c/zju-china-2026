@@ -23,6 +23,7 @@ const headerImages: Record<string, string> = {
   "/model": "15-drylab-model.avif",
   "/human-practices": "16-engagement-ihp.avif",
   "/entrepreneurship": "17-engagement-entrepreneurship.avif",
+  "/get-your-nest": "17-engagement-entrepreneurship.avif",
   "/education": "18-engagement-education.avif",
   "/game": "https://static.igem.wiki/teams/6102/wiki/header/title/game.avif",
   "/collaboration": "19-engagement-collaboration.avif",

@@ -157,14 +157,14 @@ const chainStages: ChainStage[] = [
     label: "Manufacturing",
     people: [
       { name: "Beijing Weixinkang" },
-      { name: "Lanyiwei", image: photo("ihp-38") },
-      { name: "Genekor Biotech", image: photo("ihp-30") },
+      { name: "Shaanxi Lanyiwei Biotechnology Co., Ltd.", image: photo("ihp-38") },
+      { name: "Yuanyi Bio", image: photo("ihp-30") },
       { name: "Shanghai Lingjiu", image: photo("ihp-28") },
     ],
   },
   {
     id: "market",
-    label: "Market access",
+    label: "Market Authorization & Access",
     people: [
       { name: "Li Zhuoya", image: photo("ihp-27") },
       { name: "ZJU Innovation & Entrepreneurship College", image: photo("zju-entrepreneurship-institute") },
@@ -232,7 +232,7 @@ const timelineItems: TimelineItem[] = [
     "Adjustable SELP adapts to defects in different sites: Qiu Xiaoming",
     "Dr. Qiu Xiaoming pointed out that the differences in stress on different joints require materials to have adjustable strength. The interview prompted us to modify the properties of SELP by adjusting the repeat number of 2KY protein, and combine modeling to match cartilage defects in different regions.",
     "We aim to develop a material capable of treating a wide range of hyaline cartilage defects. The first step is to select a filling material that can meet the complex requirements of cartilage repair, which can directly fill the defect, immediately alleviate the patient's pain, and fill the gap in early-stage treatment. Dr. Qiu Xiaoming, an orthopedic surgeon at Hangzhou Sir Run Run Shaw Hospital, boasts extensive clinical experience and outstanding academic achievements. We paid a visit to him.",
-    "We presented the first version of the SELP design draft, which only covers a single fixed protein design of 2ky5,2ky10 and 2ky16, to Qiu Xiaoming. The doctor pointed out that cartilage in different parts such as elbows and knees bears different stresses and thus requires different strengths, and that a material with only one strength level would fail to achieve our goal of widespread application to fill all hyaline cartilage defects. We proposed that the strength and toughness of our material could be adjusted by designing sequences with different insertion sites to regulate the repeat number of the 2KY series proteins. Qiu Xiaoming approved our viewpoint.",
+    "We presented the first version of the SELP design draft, which only covers a single fixed protein design of 2KY-5, 2KY-10, and 2KY-16, to Qiu Xiaoming. The doctor pointed out that cartilage in different parts such as elbows and knees bears different stresses and thus requires different strengths, and that a material with only one strength level would fail to achieve our goal of widespread application to fill all hyaline cartilage defects. We proposed that the strength and toughness of our material could be adjusted by designing sequences with different insertion sites to regulate the repeat number of the 2KY series proteins. Qiu Xiaoming approved our viewpoint.",
     "In subsequent literature research, we also found that for the 2KY series proteins, as the numerical value increases, the pore diameter decreases, and the cell adhesion subsequently increases, which is more conducive to GAG production, autologous cartilage growth, and upregulation of anti-inflammatory factor levels, and can also adapt to patients with different immune capabilities and defect degrees. We decided to find a method for programmatically regulating the series of proteins, and use modeling work to simulate real cartilage to help us determine the final properties of the hydrogel, ultimately achieving the therapeutic versatility of SELP as a basic platform.",
     "ihp-08",
   ),
@@ -252,7 +252,7 @@ const timelineItems: TimelineItem[] = [
     "Age Differences and Personalized Immune Repair: Ren Bo",
     "Dr. Ren Bo reminds that the complexity of materials and age-related immune differences can affect the repair outcome. The interview prompted us to focus on hyaline cartilage defects, design an immune module with adjustable dosage, and strengthen cartilage health education targeted at young people.",
     "Ren Bo is a chief physician at the Sports Medicine Center of Xi'an Honghui Hospital, a member of the International Cartilage Repair Society (ICRS) and a member of the Asia-Pacific Knee, Arthroscopy and Sports Medicine Society (APKASS). He is highly specialized in immunological research on bionic cartilage and regenerative cartilage. We hope to seek his help and support at the level of joint connection and Modularization design.",
-    "After learning about our project, he raised concerns regarding the complexity of the materials, noting that many filling materials for treating early-stage cartilage defects already face challenges during the production and mammalian experimental phases. He specifically pointed out that differences in immune function between the elderly and the young also affect rehabilitation outcomes: cartilage wear in the elderly often stems from long-term improper exercise habits formed in youth, leaving the cartilage in a state of constant wear. However, since younger individuals have higher hormone levels and stronger immune function, they can continuously repair the wear without experiencing obvious discomfort, and the condition only progresses to moderate to severe osteoarthritis as they age. Immune recovery in the treatment of elderly patients has long been a difficult challenge.He also suggested that our product should be more specifically oriented towards the healing of hyaline cartilage defects, rather than cartilage in a broad sense, as cartilage also includes other immunologically active components such as osteochondral tissue. He also acknowledged the ambiguity surrounding cartilage treatment and the existing gaps in early-stage care. He emphasized that it is also crucial to raise awareness about cartilage health, and that people should start paying attention to their exercise habits, sitting posture, standing posture and other such aspects from a young age.",
+    "After learning about our project, he raised concerns regarding the complexity of the materials, noting that many filling materials for treating early-stage cartilage defects already face challenges during the production and mammalian experimental phases. He specifically pointed out that differences in immune function between the elderly and the young also affect rehabilitation outcomes: cartilage wear in the elderly often stems from long-term improper exercise habits formed in youth, leaving the cartilage in a state of constant wear. However, since younger individuals have higher hormone levels and stronger immune function, they can continuously repair the wear without experiencing obvious discomfort, and the condition only progresses to moderate to severe osteoarthritis as they age. Immune recovery in the treatment of elderly patients has long been a difficult challenge.He also suggested that our product should be more specifically oriented toward the healing of hyaline cartilage defects, rather than cartilage in a broad sense, as cartilage also includes other immunologically active components such as osteochondral tissue. He also acknowledged the ambiguity surrounding cartilage treatment and the existing gaps in early-stage care. He emphasized that it is also crucial to raise awareness about cartilage health, and that people should start paying attention to their exercise habits, sitting posture, standing posture and other such aspects from a young age.",
     "We subsequently contacted Dr. Huang Wenwen to hold a discussion on animal experiments related to material complexity. We began to consider the construction of the immune module, and finally determined a personalized treatment regimen of liposome-encapsulated mitochondria or immune factors. Meanwhile, our adapter system enables us to control the dosage of the immune module, so that different therapeutic doses can be administered to elderly and young patients respectively. In terms of production, these adjustments do not require additional production lines, and only need to adjust the blending ratio of the protein powder.Inspired by Dr. Ren Bo, we went to the community on multiple occasions to promote knowledge about cartilage health, and eventually compiled these experiences into a research report that can exert an influence on the government.",
     "ihp-09",
   ),
@@ -323,8 +323,8 @@ const timelineItems: TimelineItem[] = [
     "R&D",
     "4. Purification, Desalination and Rapid Gel Formation: Huang Wenwen",
     "Ms. Huang Wenwen pointed out that the residual high salt from ITC purification would interfere with photo-crosslinking. Based on this, the team added a dialysis desalting step, solved the problem that the protein was difficult to form gel, realized visible light crosslinking in about 2 seconds, and clarified that purification and gel formation must be optimized continuously.",
-    "Associate Professor with tenure at Zhejiang University-University of Edinburgh Institute (ZJE), and a leading researcher in fields related to SELP. NEST takes the chain length, domain ratio, functional residues and peptide interfaces of SELP as designable parameters, and aims to achieve functional integration through recombinant expression and Modularization assembly. We consulted with Ms. Huang Wenwen, focusing on seeking her evaluation of the platform's scalability as well as her suggestions on the process connection between SELP protein purification and subsequent rapid photo-crosslinking.We would like to confirm how to prevent the purification conditions from interfering with subsequent gel formation while improving the protein purification efficiency. At one point towards the later stage of our experiments, we encountered the issue that the protein failed to crosslink, so we were also eager to communicate and consult with you, to make our entire process more suitable for stable and reproducible production.",
-    "Professor Huang spoke highly of the overall design of NEST. She pointed out that the platform's scalability enables teams to combine or adjust functions on a shared material backbone as needed, offering a highly feasible approach to addressing the differentiated needs of diverse clinical patients. During the discussion, Professor Huang further focused on the correlation between the crosslinking efficiency of SELP and the previous protein purification conditions. The team increased the salt concentration in the ITC purification workflow to enhance purification performance, yet the residual high salt content may interfere with the subsequent Ru/SPS photo-crosslinking;Professor Huang also inquired about the team's protein purification efficiency and compared this process with the protocols in her own laboratory. She acknowledged that the stepwise increase in salt concentration during the ITC process helps improve the purification effect of SELP, and affirmed the team's process innovation in the SELP production workflow, stating that this route holds the potential for further exploration towards industrialized production.",
+    "Associate Professor with tenure at Zhejiang University-University of Edinburgh Institute (ZJE), and a leading researcher in fields related to SELP. NEST takes the chain length, domain ratio, functional residues and peptide interfaces of SELP as designable parameters, and aims to achieve functional integration through recombinant expression and Modularization assembly. We consulted with Ms. Huang Wenwen, focusing on seeking her evaluation of the platform's scalability as well as her suggestions on the process connection between SELP protein purification and subsequent rapid photo-crosslinking.We would like to confirm how to prevent the purification conditions from interfering with subsequent gel formation while improving the protein purification efficiency. At one point toward the later stage of our experiments, we encountered the issue that the protein failed to crosslink, so we were also eager to communicate and consult with you, to make our entire process more suitable for stable and reproducible production.",
+    "Professor Huang spoke highly of the overall design of NEST. She pointed out that the platform's scalability enables teams to combine or adjust functions on a shared material backbone as needed, offering a highly feasible approach to addressing the differentiated needs of diverse clinical patients. During the discussion, Professor Huang further focused on the correlation between the crosslinking efficiency of SELP and the previous protein purification conditions. The team increased the salt concentration in the ITC purification workflow to enhance purification performance, yet the residual high salt content may interfere with the subsequent Ru/SPS photo-crosslinking;Professor Huang also inquired about the team's protein purification efficiency and compared this process with the protocols in her own laboratory. She acknowledged that the stepwise increase in salt concentration during the ITC process helps improve the purification effect of SELP, and affirmed the team's process innovation in the SELP production workflow, stating that this route holds the potential for further exploration toward industrialized production.",
     "This exchange links the scalability advantages of NEST to specific process issues in the production workflow. On one hand, Professor Huang's feedback supports us in continuing to adopt the framework of \"common backbone + standardized interfaces + replaceable functional modules\" as the platform architecture, which enables materials to adjust their functional combinations according to different application requirements, without the need to rebuild a completely independent material system for every single demand.On the other hand, her desalination proposal helped us bridge the process connection between ITC purification and the subsequent photo-crosslinking: we increased the salt concentration during the ITC process to enhance protein purification efficiency, and added a dialysis step after purification to remove residual salts that might interfere with crosslinking. According to the team's practice records, after this process adjustment, SELP achieved visible light crosslinking gelation in approximately 2 seconds. This result translates the exchanged suggestions into verifiable process improvements, and also demonstrates that purification and gelation conditions need to be optimized jointly as a continuous workflow, rather than pursuing the performance of a single step in isolation.Teacher Huang's affirmation of the purification process also made us recognize the potential of this route in further scale-up and industrialization exploration. She specifically emphasized and reminded us that while our high-salt condition does improve purification efficiency, crosslinking will become extremely difficult if the salt is not removed. She suggested that we remove residual salt via dialysis after protein purification before proceeding with photo-crosslinking. The day after our discussion, we redid the dialysis and then performed photo-crosslinking, and sure enough, gel formation was achieved in 2 seconds. With that, the entire specific design of our protein characterization process was a complete success!",
     "ihp-17",
   ),
@@ -430,9 +430,9 @@ const timelineItems: TimelineItem[] = [
   stakeholder(
     "Late August 2026",
     "Manufacturing",
-    "Expression Amplification and Batch Consistency: Genekor Biotech",
-    "From the perspective of raw material production, GenOne Biologics has raised inquiries regarding the consistency of expression yield, purification recovery rate, and assembly formulation. Based on these findings, the team plans to supplement cross-batch records and sample traceability, and incorporate purification loss, testing and storage into the scale-up cost assessment.",
-    "Founder Zhang Li held an online meeting with us. The SELP scaffold of NEST and its various functional components rely on recombinant expression and subsequent assembly. As sample demand grows, we need to understand the potential challenges that the laboratory expression and purification workflow may face during scale-up. Metabio is an established synthetic biology raw material production company, and is therefore able to assist us in evaluating the feasibility of raw material supply and process scaling.",
+    "Expression Amplification and Batch Consistency: Yuanyi Bio",
+    "From the perspective of raw material production, Yuanyi Bio has raised inquiries regarding the consistency of expression yield, purification recovery rate, and assembly formulation. Based on these findings, the team plans to supplement cross-batch records and sample traceability, and incorporate purification loss, testing and storage into the scale-up cost assessment.",
+    "Founder Zhang Li held an online meeting with us. The SELP scaffold of NEST and its various functional components rely on recombinant expression and subsequent assembly. As sample demand grows, we need to understand the potential challenges that the laboratory expression and purification workflow may face during scale-up. Ueny (Yuanyi Bio) is an established synthetic biology raw material production company, and is therefore able to assist us in evaluating the feasibility of raw material supply and process scaling.",
     "The discussion centered on expression, purification, and batch-to-batch consistency. Regarding NEST, outstanding questions that require further clarification include: whether the yield and recovery rate of different SELP constructs remain stable; whether the existing ITC purification can maintain its performance as the processing volume increases; and how to ensure the consistency of assembly ratio and final formulation after multiple functional components are produced separately. The exchanges also prompted us to view costs from the perspective of the complete production process: beyond the yield per expression run, inputs arising from purification losses, assembly efficiency, testing, and storage also need to be factored in.",
     "We will retain the existing recombinant expression and ITC purification workflow, and plan to add cross-batch records for yield, recovery rate and performance. For different constructs and functional components, we will establish traceable sample numbers and assembly records. Subsequently, based on the results of small-scale scale-up, we will jointly determine the priority optimization processes with the production party, and then update the cost estimation.",
     "ihp-30",
@@ -449,7 +449,7 @@ const timelineItems: TimelineItem[] = [
   ),
   stakeholder(
     "Early September 2026",
-    "Market access",
+    "Market Authorization & Access",
     "Team Handovers and Continuous Entrepreneurship: Li Zhuoya",
     "Starting from the continuous entrepreneurship of the student team, Li Zhuoya delves into technical division of labor, experiment reproducibility and result presentation. The interviews have facilitated the team to plan unified handover and version management, and clarify the person in charge, phased objectives and investment priority of each R&D route.",
     "Zhuoya Li, Partner of Yiwu Bio, is also a former iGEMer and has extensive experience in the entrepreneurial translation of iGEM teams. We would like to understand how student teams can continuously accumulate technologies, organize teams and promote external cooperation after completing scientific research design and competition presentations, so as to prevent projects from being interrupted due to members' graduation or personnel changes.",
@@ -459,7 +459,7 @@ const timelineItems: TimelineItem[] = [
   ),
   stakeholder(
     "Mid-September 2026",
-    "Market access",
+    "Market Authorization & Access",
     "Integration of Campus Resources and Long-Term R&D: Zhejiang University Innovation and Entrepreneurship Institute",
     "Facilitated by Teacher Wang Feifan, the team participated in research training, field investigations and entrepreneurial projects. Through exchanges, the team advanced the alignment of on-campus resources with specific deliverables, and plans to share laboratories, budgets and achievement records to support continuous R&D and member handover.",
     "NEST spans materials R&D, equipment development and entrepreneurship preparation, requiring continuous teamwork and resource support. We hope to learn about on-campus projects, competitions and entrepreneurship guidance resources through the Innovation and Entrepreneurship Institute of Zhejiang University, so that support at different stages can correspond to actual R&D needs.",
@@ -468,7 +468,7 @@ const timelineItems: TimelineItem[] = [
   ),
   stakeholder(
     "Mid-September 2026",
-    "Market access",
+    "Market Authorization & Access",
     "Key Focuses of Phase 1 Products and Financing: Zhang Jie, Huadan Angel Investment",
     "From an investment perspective, Ms. Zhang Jie probed into the product value in the first phase, the differences with competing products and the total cost of ownership, pushed the team to narrow down the verification scope, distinguish between the near-term product and subsequent module expansion, and reached a preliminary cooperation intent on the production of the first batch of samples.",
     "At the Hackathon entrepreneurship pitch event held at Zhejiang University, Ms. Zhang Jie listened to our project presentation and further discussed market, competing product and cost issues with the team. NEST features platform-based characteristics, yet the development progress, verification cost and application value of different functional modules vary. Therefore, we hope to clarify from an investment perspective what should be prioritized for validation in the early stage of the project, and which key milestones the limited funds should support.",
@@ -478,7 +478,7 @@ const timelineItems: TimelineItem[] = [
   ),
   stakeholder(
     "Late September 2026",
-    "Market access",
+    "Market Authorization & Access",
     "Cost Structure and Target Market Measurement: Erik Forsberg",
     "Professor Erik Forsberg provided the data and analytical framework required for cost modelling, guided the team in measuring market size, assessing commercial viability, and incorporating Hong Kong into the comparison and planning of potential pilot markets.",
     "When it comes to cost estimation, we have relatively limited data. We reached out to Erik Forsberg, a teacher in Zhejiang University's technology entrepreneurship program who is an experienced professor with a hardware background, to ask him to guide our project's monetization process and serve as our business consultant.",
@@ -488,7 +488,7 @@ const timelineItems: TimelineItem[] = [
   ),
   stakeholder(
     "Late September 2026",
-    "Market access",
+    "Market Authorization & Access",
     "Monetization Roadmap and Team Equity Stake Arrangements: Li Jianqin",
     "Professor Li Jianqin helped the team sort out pre-IPO preparations and equity stake arrangements, emphasizing the need to first clarify members' contributions, intellectual property rights and cooperative relationships. Based on this, the team planned phased deliverables, funds and responsible persons, so as to maintain continuity for members' exit and subsequent financing.",
     "As NEST moves from a research project to startup preparation, the team needs to simultaneously consider the sequence of technology development, fund utilization, intellectual property rights and organizational arrangements. We therefore consulted Li Jianqin, a professor of economics at Zhejiang University, hoping to organize the scattered monetization tasks into a promotion path with clear stages and well-defined responsibilities.",
@@ -498,7 +498,7 @@ const timelineItems: TimelineItem[] = [
   ),
   stakeholder(
     "Early October 2026",
-    "Market access",
+    "Market Authorization & Access",
     "Translating Health Research into Policy Recommendations: Zhang Binghong",
     "Under the guidance of Teacher Zhang Binghong, the team organized research centering on government demands and put forward a replicable action plan. Based on this, the team completed the cartilage health research report and received a reply from Hangzhou Municipal Health Commission, which provides a basis for subsequent community health promotion.",
     "Ms. Zhang Binghong is the secretary of RTC Talent Development Business School and an international senior entrepreneurship coach. She has extensive experience in government relations and assistance for vulnerable groups. The research report she authored once secured tens of millions of yuan in municipal government funding support for the disabled community. She served as a judge for us at the Zhejiang University Dandelion Entrepreneurship Competition. After the competition, we held in-depth discussions on a wide range of topics including government relations, research report writing, and support for vulnerable groups.",
@@ -508,7 +508,7 @@ const timelineItems: TimelineItem[] = [
   ),
   stakeholder(
     "Early October 2026",
-    "Market access",
+    "Market Authorization & Access",
     "Commercial Insurance Payment and Documentation Preparation: Mavis Wu",
     "Mavis Wu explained the correlation between the hospital's adoption of solutions and insurance reimbursement arrangements, and suggested preparing product materials for payers. Based on this advice, the team incorporated the full costs of materials, consumables and procedures, and organized the information required for communicating patient benefits and reimbursement matters.",
     "The accessibility of our products is also affected by affordability. We have observed that medical insurance largely determines the price that patients who are the most considerate of the materials have to pay. The access and approval mechanisms for resident medical insurance in Chinese Mainland require mature therapies, and the approval process takes a long time. Although it has broad coverage, it is not suitable for innovative therapies like ours. Therefore, we have turned to commercial medical insurance. We consulted Mavis Wu on issues related to commercial insurance. Mavis Wu is the Director of the Sales Department at Prudential Insurance and a recipient of the 2026 Quality Advisor Award (QAA).We hope to understand, from the perspective of insurance practitioners, the payment arrangements that may be involved in future applications, as well as what information the team should accumulate regarding treatment costs and application value.",
@@ -518,7 +518,7 @@ const timelineItems: TimelineItem[] = [
   ),
   stakeholder(
     "Mid-October 2026",
-    "Market access",
+    "Market Authorization & Access",
     "Hospital Admission and Clinical Procurement Preparation: Chen Yihua, Li Yongshi",
     "Through exchanges with Tung Wah Group of Hospitals, the hospital cooperation has been refined into the confirmation of target departments, initial formulas and product categories, as well as the preparation of safety and efficacy evidence; meanwhile, the requirements for procurement, training and batch traceability have been sorted out, establishing a task list for subsequent clinical cooperation.",
     "After talking with Mavis, we decided that we needed to further clarify the hospital admission criteria, so we contacted Chan Yik-wa, the Medical Services Supervisor of Tung Wah Group of Hospitals in Hong Kong, and Lai Wing-sze, the Center Director, to discuss the possibility of NEST being admitted to the hospital.",
@@ -528,7 +528,7 @@ const timelineItems: TimelineItem[] = [
   ),
   stakeholder(
     "Mid-October 2026",
-    "Market access",
+    "Market Authorization & Access",
     "Hong Kong Access Pathways and Phased Products: Lam Chit-huen",
     "The exchanges with Hon. Lam Chit-huen focused on the access of medical devices in Hong Kong and the classification of composite materials, prompting the team to re-examine its first-phase products, consider prioritizing the advancement of the simpler SELP material, and undertake the translation costs and access tasks in a phased manner.",
     "We have noted that even for hospital use, recognition under the MDACS listing administered by the Hong Kong Department of Health is still required, and there have been continuous changes to medical device access standards in Hong Kong in recent years. To gain a further understanding of the overall situation, we consulted Dr. David Lam Chit-huen, a Legislative Council member representing the medical and health services constituency in Hong Kong.",
@@ -562,7 +562,7 @@ const timelineItems: TimelineItem[] = [
 function SeedMethodBlock() {
   return (
     <>
-      <h3 className="mt-4 mb-3">SEED — the analysis method</h3>
+      <h3 className="mt-4 mb-3">Analytical Methods of SEED</h3>
       <TransparentImage
         src={SEED_RING}
         alt="The SEED cycle — Spark a Question, Explore & Analyze, Engineering & Implementation, Dialogue & Feedback — as the outer ring, with the Design–Build–Test–Learn cycle nested inside it"
@@ -572,17 +572,20 @@ function SeedMethodBlock() {
         loading="eager"
       />
       <p>
-        iHP is the bridge between the laboratory and the real world. Because our
-        material is a medical material, its design has to stay cautious. We want
-        our human-practices work not only to make this project fit the real
-        world, but also to give later teams a way of thinking and a reference
-        they can reuse. The iHP toolbox below collects the methods we used.
+        iHP connects laboratory research with the real world. Because our
+        material is intended for medical applications, we must approach its
+        design with care. To ensure that each design decision addresses a
+        real-world problem, we developed a new iterative cycle:{" "}
+        <strong>SEED</strong>. In engineering stages such as Evidence-based
+        Co-design and Situated Implementation, we embedded the conventional
+        Design–Build–Test–Learn (DBTL) cycle within SEED, making laboratory
+        iteration part of the project&rsquo;s broader development process.
       </p>
       <p>
-        To make sure every design step answers a real problem, we built a new
-        cycle — <strong>SEED</strong> — and wrapped the traditional engineering
-        cycle (Design–Build–Test–Learn) inside it, so that the laboratory loop
-        becomes one part of the project&rsquo;s overall iteration:
+        SEED is the seed of our product design. It enabled NEST to take the
+        first step in alleviating cartilage-related ailments, and we hope it
+        will also serve as a seed within the iGEM community, inspiring more
+        teams to identify real-world suffering and work to address it.
       </p>
       <ul>
         <li>
@@ -630,7 +633,7 @@ function SeedMethodBlock() {
 function CoDesignBlock() {
   return (
     <>
-      <h3 className="mt-4 mb-3">E — Evidence-based Co-design</h3>
+      <h3 className="mt-4 mb-3">E — Evidence-Based Co-Design</h3>
       <p>
         The first three cycles turn the needs we discovered into a material:
         SELP as a programmable filler, a linker system that lets us attach
@@ -646,8 +649,8 @@ function CoDesignBlock() {
         cartilage repair, which can directly fill the defect, immediately
         alleviate patients' pain, and fill the gap in early-stage treatment. We
         presented the first version of the SELP design draft — a protein design
-        only covering fixed variants 2ky5,2ky10 and 2ky16 — to Dr. Qiu Xiaoming
-        and the research team of Ouyang Hongwei.Doctors believe that cartilage
+        only covering fixed variants 2KY-5, 2KY-10, and 2KY-16 — to Dr. Qiu Xiaoming
+        and the research team of Ouyang Hongwei. Doctors believe that cartilage
         in different parts of the body such as elbows and knees is subjected to
         varying levels of force and thus requires different levels of strength.
         If we only develop a material with a single strength, we will be unable
@@ -659,7 +662,7 @@ function CoDesignBlock() {
         proteins, we can alter the strength and toughness of our material. As
         the value increases, the pore size decreases, and cell adhesion
         increases accordingly, which is more conducive to GAG production, native
-        cartilage growth, and upregulation of anti- inflammatory factor levels,
+        cartilage growth, and upregulation of anti-inflammatory factor levels,
         and can also adapt to patients with different immune capacities and
         defect severities. We decided to find a method for programmatically
         regulating the series of proteins, and use modeling work to help us
@@ -670,7 +673,7 @@ function CoDesignBlock() {
         functions required for SELP as a versatile defect-filling material, we
         raised a number of issues at the experimental level and actively held
         discussions with multiple stakeholders. See{" "}
-        <a href="#ihp-engagement-timeline">Engagement Timeline</a>.
+        <a href="#ihp-engagement-timeline">Engagement Interview</a>.
       </p>
       <p data-seed-phase="dialogue">
         D: We showed our latest design to Dr. Qiu Xiaoming and the team led by
@@ -703,8 +706,10 @@ function CoDesignBlock() {
         E: Through our modeling work, we engineered enzymes to improve
         efficiency and iterated on the SnoopLigase system. We innovatively
         developed the
-        <strong>SnoopligaseZJU</strong> system, which significantly boosts work
-        efficiency and ensures the efficient operation of our linker system.
+        <strong>SnoopLigase2-ZJU system</strong>, an engineered variant of
+        SnoopLigase2 with improved stability and turnover, which significantly
+        boosts work efficiency and ensures the efficient operation of our linker
+        system.
       </p>
       <p data-seed-phase="dialogue">
         D: We showed our design to Dr. Yi Junzhi and Dr. Ren Bo, and they
@@ -794,7 +799,7 @@ function SituatedBlock() {
       </p>
 
       <h4 id="ihp-syringe-questionnaire" className="mt-5 mb-3">
-        Syringe operation questionnaire
+        Syringe Operation Questionnaire
       </h4>
       <p>
         The syringe is the part of the hardware the clinician actually holds, so
@@ -885,7 +890,7 @@ function SituatedBlock() {
         and drug transportation methods of commercially available hydrogels, and
         finally decided to make it into protein powder, package it into a
         pharmaceutical preparation and supply it to hospitals. We visited a
-        mature synthetic biology raw material production company, YuanYi Bio, to
+        mature synthetic biology raw material production company, Yuanyi Bio, to
         learn more knowledge applicable in practical scenarios.
       </p>
       <p data-seed-phase="engineering">
@@ -931,7 +936,7 @@ function SituatedBlock() {
         E: In response to these issues, we have extensively reached out to
         stakeholders across multiple links including production, sales,
         government regulation, finance, and entrepreneurship guidance. We have
-        also received guidance from Shaanxi Lanyiwei Biotechnology Co. , Ltd. ,
+        also received guidance from Shaanxi Lanyiwei Biotechnology Co., Ltd.
         which boasts rich experience in the commercialization of medical
         research achievements.
       </p>
@@ -957,7 +962,7 @@ function SituatedBlock() {
 function DiscoveryBlock() {
   return (
     <>
-      <h3 className="mt-4 mb-3">N — Need-led Discovery</h3>
+      <h3 className="mt-4 mb-3">N — Need-Led Discovery</h3>
       <p>
         After a member of our team suffered an acute cartilage injury, we
         developed an interest in hyaline cartilage injuries. We found that
@@ -965,6 +970,7 @@ function DiscoveryBlock() {
         including osteoarthritis, focal traumatic defects, and post-surgical
         adaptive defects.
       </p>
+      <h4 className="mt-4 mb-2">1.1 Field Research</h4>
       <p>
         We conducted questionnaire surveys in the following areas and platforms:
         a university community (around 150 respondents), Qigudeng Subdistrict,
@@ -1124,13 +1130,15 @@ function DiscoveryBlock() {
           development target of NEST.
         </p>
       </ExtendCard>
+      <h4 className="mt-4 mb-2">1.2 Literature Review</h4>
       <p>
         In the existing literature, there are no authoritative sources
         specifying what degree of cartilage defect qualifies as a pathological
         condition. Even for osteoarthritis (OA), which has the most
-        well-established standards and comprehensive data, no unified diagnostic
-        criteria are defined in the authoritative treatment guidelines of either
-        the US or China. Chinese guidelines adopt both the Kellgren- Lawrence
+        well-established diagnostic standards and comprehensive data, no unified
+        diagnostic criteria have been adopted across the authoritative clinical
+        guidelines of the United States and China. Chinese guidelines adopt both
+        the Kellgren- Lawrence
         (K–L) and Outerbridge grading systems [4], while the American Academy of
         Orthopaedic Surgeons (AAOS) guidelines primarily target patients with
         already diagnosed symptomatic OA [5]. Neither set of guidelines
@@ -1273,7 +1281,7 @@ function ImpactBlock() {
         patient-centered approach to orthopedic care—one that values patients’
         lived experiences of health rather than focusing solely on the
         restoration of physical function. In collaboration with medical
-        anthropologists, we wrote two papers examining the structural factors
+        anthropologists, we wrote one paper examining the structural factors
         within healthcare systems that cause the hidden suffering associated
         with seemingly minor conditions to be overlooked. We shared our findings
         with the Institute of Social Medicine and Health Management at Zhejiang
@@ -1334,36 +1342,36 @@ function ImpactBlock() {
         We later recognized that the biotechnology industry also has a strong
         interest in synthetic biology and that many industry professionals
         require further education in the field. We therefore partnered with
-        Jiangnan University to develop an industry- focused module. Our four
+        Jiangnan University to develop an industry-focused module. Our four
         universities signed a five-year cooperation agreement to ensure the
         platform’s sustainable, long-term operation.
-        <Link to="/education">Education</Link>
       </p>
       <p>
         Our educational program extended beyond lectures, hands-on activities,
         and fitness exercises. We also collaborated with artist Chen Xi to
-        create visual artwork. View Gallery. Beyond
+        create visual artwork. <Link to="/education#gallery">View Gallery</Link>. Beyond
         promoting synthetic biology and reducing public misconceptions, we
         critically reflected on the development of both the healthcare system
         and synthetic biology itself. To deepen this reflexive inquiry, we held
-        extensive discussions with Dr. Yang Shen and Dr. Chen Bohang.
-        <Link to="/education">Education</Link>
+        extensive discussions with Dr. Yang Shen and Dr. Chen Bohang.{" "}
+        <Link to="/education">Learn more</Link>.
       </p>
 
-      <h4 className="mt-5 mb-3">Summary and reflection</h4>
+      <h2 className="mt-5 mb-3">Summary and Reflection</h2>
       <p>
-        We have tried to make our iHP work as comprehensive and effective as we
-        could, attending to the many patient-centred dimensions of the project:
-        we cared not only about a biotechnology therapy but also about
-        patients&rsquo; place in society, and we contributed to the iGEM
-        community through platform building. We thank every member of our team —
-        this body of work exists because of you.
+        Our iHP work has been as comprehensive and effective as possible,
+        addressing all patient-centered aspects. We not only focus on
+        biotherapeutic approaches, but also care deeply about the social
+        circumstances of patients. We have also contributed to the iGEM
+        community through numerous platform-based initiatives. Thank you to all
+        members of our team; it is your dedication that has made this
+        comprehensive iHP work possible.
       </p>
       <p>
-        Our main limitations are two. We have not helped establish
-        synthetic-biology safety standards for biomimetic cartilage medical
-        materials, and our anthropological research has not yet found a form
-        that other teams can easily replicate.
+        Two limitations remain: we have not developed synthetic biology safety
+        standards for biomimetic cartilage biomaterials, and we have not yet
+        established a sufficiently transferable format for other teams to
+        reproduce our anthropological research approach.
       </p>
     </>
   );
@@ -1372,7 +1380,7 @@ function ImpactBlock() {
 function MixedMethodsBlock() {
   return (
     <>
-      <h3 className="mt-4 mb-3">Mixed methods research</h3>
+      <h3 className="mt-4 mb-3">Mixed Methods Research</h3>
       <p>
         Our work follows <strong>mixed-methods research</strong> (Creswell &amp;
         Plano Clark, 2018,{" "}
@@ -1408,7 +1416,7 @@ function MixedMethodsBlock() {
 function AnthroBlock() {
   return (
     <>
-      <h3 className="mt-4 mb-3">Anthropology &amp; philosophy</h3>
+      <h3 className="mt-4 mb-3">Anthropology &amp; Philosophy</h3>
       <p>
         We also fold humanities discussion and reflection into the project — not
         only about how cartilage health is diagnosed and healed, but also about
@@ -1438,7 +1446,7 @@ const TIMELINE_STAGES = [
   "R&D",
   "Treatment",
   "Manufacturing",
-  "Market access",
+  "Market Authorization & Access",
   "Rehabilitation",
 ];
 
@@ -1448,7 +1456,7 @@ const TIMELINE_STAGE_IDS: Record<string, string> = {
   "R&D": "ihp-engagement-rd",
   Treatment: "ihp-engagement-treatment",
   Manufacturing: "ihp-engagement-manufacturing",
-  "Market access": "ihp-engagement-market-access",
+  "Market Authorization & Access": "ihp-engagement-market-access",
   Rehabilitation: "ihp-engagement-rehabilitation",
 };
 
@@ -1520,7 +1528,7 @@ function EngagementBlock() {
       })}
 
       <h4 className="mt-5 mb-3" data-toc="include">
-        Further reading
+        Further Reading
       </h4>
       <ul>
         <li>
@@ -1545,7 +1553,7 @@ function EngagementBlock() {
 /* ------------------------------------------------------------------ */
 
 const HP_PAGES = [
-  { key: "toolbox", label: "Toolbox" },
+  { key: "toolbox", label: "iHP Toolkit" },
   { key: "nest", label: "NEST" },
   { key: "engagement", label: "Stakeholder Engagement" },
 ];
@@ -1653,7 +1661,7 @@ function NestFrameworkBlock() {
   ];
   return (
     <>
-      <h3 className="mt-4 mb-3">NEST — the iHP framework</h3>
+      <h3 className="mt-4 mb-3">NEST — The iHP Framework</h3>
       <p>
         The four NEST modules organise the human-practices narrative: each one
         asks a different question about the product, from the first real need to
@@ -1744,6 +1752,14 @@ function ToolboxPage() {
   ];
   return (
     <>
+      <p>
+        We wanted our Human Practices work to make NEST more responsive to
+        real-world needs and to provide useful approaches for future teams. We
+        therefore compiled the tools used throughout our Human Practices
+        activities, including analytical and iterative frameworks, software for
+        organizing stakeholder interviews, and a stakeholder network that other
+        teams can build upon.
+      </p>
       <SectionSubnav
         className="eng-subnav ihp-toolbox-tabs"
         items={sections.map(({ id, label }) => ({ id, label }))}
@@ -2294,40 +2310,35 @@ export function HumanPractices() {
           </blockquote>
           <h2>Overview</h2>
           <p>
-            Integrated Human Practices is how our project meets the world
-            outside the laboratory. Cartilage defects are a complex problem —
-            widespread, diffuse and easily overlooked, yet directly relevant to
-            our health — and NEST, as a material intended to enter the human
-            body, faces tests in patient experience, research, production,
-            market access, clinician use and public opinion. We therefore kept
-            the design deliberately cautious: every step should answer a real
-            problem. <strong>56 stakeholders</strong> took part in our
-            interviews and technical tests, our questionnaire reached more than{" "}
-            <strong>1,700 people</strong>, and our
-            online and offline activities and lectures reached more than{" "}
-            <strong>450 people</strong>. We hoped to treat patients through
-            technology, fill a gap through design, innovate in the industry,
-            raise awareness of cartilage health in society, deepen understanding
-            of the patient community and, finally, contribute to the
-            synthetic-biology community.
+            Cartilage defects are a complex health concern: they are widespread,
+            difficult to define, and often overlooked, yet they have a direct
+            impact on people&rsquo;s health. As a medical biomaterial, NEST must
+            address patient experience, research, manufacturing, market access,
+            clinical use, and societal perspectives. Balancing these factors to
+            bring NEST into real-world practice is a considerable challenge.
           </p>
           <p>
-            Below this overview the page is split into three pages: the{" "}
-            <a href="#toolbox">
-              <strong>Toolbox</strong>
-            </a>{" "}
-            explains the methods we used,{" "}
-            <a href="#nest">
-              <strong>NEST</strong>
-            </a>{" "}
-            tells the story of its four narrative modules — Need-led Discovery,
-            Evidence-based Co-design, Situated Implementation and Trust and
-            Lasting Impact — and{" "}
-            <a href="#stakeholder-engagement">
-              <strong>Stakeholder Engagement</strong>
-            </a>{" "}
-            collects the stakeholder map and the interviews behind every step.
-            Use the three buttons to open a page.
+            To this end, we engaged <strong>56 stakeholders</strong> in our
+            interviews and technical tests, covering patients, doctors,
+            researchers, government officials, administrative agencies,
+            manufacturers, business consultants, humanities scholars and
+            artists. Our questionnaires reached over{" "}
+            <strong>1,700 people</strong>, and our online and offline events and
+            lectures cumulatively covered more than{" "}
+            <strong>450 people</strong>.
+          </p>
+          <p>
+            We aim to develop a therapeutic approach for patients, address
+            unmet needs through design, support innovation in the field, raise
+            public awareness of cartilage health, deepen understanding of
+            patients&rsquo; experiences, and contribute to the synthetic biology
+            community.
+          </p>
+          <p>
+            The following sections describe our Integrated Human Practices (iHP)
+            work and how we pursued these goals. Use the three buttons below to
+            open the iHP Toolkit, Stakeholder Engagement, or NEST-based
+            Integrated Human Practices.
           </p>
           {page !== null && (
             <button

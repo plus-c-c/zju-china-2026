@@ -22,7 +22,7 @@ export const anisotropyModule: DbtlModule = {
         distribution. Abnormal stresses can further damage the matrix, while the
         ability of chondrocytes to maintain tissue homeostasis declines.
         Mechanical imbalance, matrix loss, and cellular degeneration can
-        therefore reinforce one another. The mechanical module of NEST addresses
+        therefore reinforce one another. The Magnetically Responsive Anisotropy Module of NEST addresses
         this challenge by seeking to restore load distribution within the repair
         region and provide a more favorable mechanical environment for tissue
         regeneration.
@@ -155,7 +155,7 @@ export const anisotropyModule: DbtlModule = {
             <DbtlFigure
               readable="portrait"
               src="engineering/02/02.avif"
-              caption="Figure 2 | The magnetically responsive composite-fiber approach. Fe₃O₄-loaded fibers were designed as directional carriers that also participate in network formation through Ru/SPS-mediated photocrosslinking."
+              caption="Figure 2 | The magnetically responsive composite-fiber approach. (A) Automated electrospinning apparatus for fiber formation, deposition, and cutting."
             />
           </>
         ),
@@ -233,7 +233,7 @@ export const anisotropyModule: DbtlModule = {
               modular assembly. We compared the required pretreatment of
               particles and proteins, genetic encodability of the coupling
               interface, operating conditions, and compatibility with SELP
-              assembly. Our goal was a magnetic coupling module that could be
+              assembly. Our goal was a Magnetically Responsive Anisotropy Module that could be
               produced, characterized, and reused independently within NEST.
             </p>
           </>
@@ -296,7 +296,7 @@ export const anisotropyModule: DbtlModule = {
             <p>
               This decision made magnetic nanoparticle recognition part of the
               protein sequence, enabling separate expression and testing of the
-              magnetic module while leaving the other end available for SELP
+              Magnetically Responsive Anisotropy Module while leaving the other end available for SELP
               coupling. Consequently, subsequent iterations focused on
               binding-peptide selection, expression of the fusion construct, and
               experimental evaluation of its particle-binding and
@@ -324,7 +324,7 @@ export const anisotropyModule: DbtlModule = {
           <>
             <p>
               We combined the Fe₃O₄-binding heptapeptide TVNFKLY (TVN) with
-              DogTag to create an independently expressed magnetic module. SELP
+              DogTag to create an independently expressed Magnetically Responsive Anisotropy Module. SELP
               carries SnoopTag2, and SnoopLigase2 catalyzes covalent ligation
               between the two peptide tags. We assessed TVN-dependent particle
               binding using peptide-based experiments and initially evaluated
@@ -586,7 +586,7 @@ export const anisotropyModule: DbtlModule = {
         Learn: (
           <>
             <p>
-              Next, we plan to assemble the magnetic module onto SELP, compare
+              Next, we plan to assemble the Magnetically Responsive Anisotropy Module onto SELP, compare
               structural alignment with and without an applied magnetic field,
               and characterize the direction-dependent mechanical response after
               photocrosslinking. These studies will test whether alignment can
@@ -646,7 +646,7 @@ export const anisotropyModule: DbtlModule = {
       <p>
         TVN comprises only seven amino acids but offers a compact recognition
         element for connecting a protein module with magnetic nanoparticles. By
-        combining TVN with DogTag, we designed a magnetic module that can be
+        combining TVN with DogTag, we designed a Magnetically Responsive Anisotropy Module that can be
         manufactured independently and subsequently coupled to SELP through the
         Snoop ligation system. Particle recognition and scaffold ligation are
         mediated by distinct interfaces, allowing their respective conditions

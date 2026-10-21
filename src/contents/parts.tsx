@@ -305,8 +305,8 @@ export function Parts() {
   });
   return (
     <div className="parts-page">
-      <section className="parts-catalogue" aria-labelledby="parts-browse">
-        <h2 id="parts-browse">Browse the collection</h2>
+      <section className="parts-catalogue" aria-labeledby="parts-browse">
+        <h2 id="parts-browse">Browse the Collection</h2>
         <div className="parts-toolbar">
           <label>
             <input
@@ -364,7 +364,7 @@ export function Parts() {
           <section
             className="parts-group"
             key={kind}
-            aria-labelledby={`${kind}-parts`}
+            aria-labeledby={`${kind}-parts`}
           >
             <div className="parts-group-heading">
               <h2 id={`${kind}-parts`}>

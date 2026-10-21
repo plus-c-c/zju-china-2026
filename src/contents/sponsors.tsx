@@ -23,7 +23,7 @@ function SponsorEntry({
   return (
     <section
       className={`sponsors-entry${photograph ? " sponsors-entry--photograph" : ""}`}
-      aria-labelledby={id}
+      aria-labeledby={id}
     >
       <div className="sponsors-entry__media">
         <img
@@ -51,7 +51,7 @@ export function Sponsors() {
     <article className="sponsors-page">
       <section
         className="sponsors-introduction"
-        aria-labelledby="sponsors-introduction"
+        aria-labeledby="sponsors-introduction"
       >
         <h2 id="sponsors-introduction" data-toc="exclude">
           Every Contribution Matters.
@@ -66,7 +66,7 @@ export function Sponsors() {
       </section>
       <section
         className="sponsors-section"
-        aria-labelledby="sponsors-special-thanks"
+        aria-labeledby="sponsors-special-thanks"
       >
         <h2
           id="sponsors-special-thanks"
@@ -79,7 +79,7 @@ export function Sponsors() {
         <div className="sponsors-entry sponsors-entry--special">
           <div className="sponsors-entry__media">
             <img
-              src="https://static.igem.wiki/teams/6102/wiki/images/footer/001.avif"
+              src="https://static.igem.wiki/teams/6102/wiki/images/sponsor/01.avif"
               alt="College of Life Sciences, Zhejiang University logo"
               width={1206}
               height={330}
@@ -99,7 +99,7 @@ export function Sponsors() {
       </section>
       <section
         className="sponsors-section"
-        aria-labelledby="sponsors-long-term"
+        aria-labeledby="sponsors-long-term"
       >
         <h2 id="sponsors-long-term" data-toc="exclude">
           Gratitude for Long-Term Support
@@ -107,7 +107,7 @@ export function Sponsors() {
         <SponsorEntry
           id="sponsors-education-foundation"
           name="Zhejiang University Education Foundation"
-          image="https://static.igem.wiki/teams/6102/wiki/images/footer/zhejiang-university-education-foundation.avif"
+          image="https://static.igem.wiki/teams/6102/wiki/images/sponsor/02.avif"
           width={1520}
           height={990}
           photograph
@@ -121,7 +121,7 @@ export function Sponsors() {
         <SponsorEntry
           id="sponsors-biology-education-center"
           name="National Demonstration Center for Experimental Biology Education, Zhejiang University"
-          image="https://static.igem.wiki/teams/6102/wiki/images/footer/national-demonstration-center-for-experimental-biology-education-zhejiang-university.avif"
+          image="https://static.igem.wiki/teams/6102/wiki/images/sponsor/03.avif"
           width={1512}
           height={988}
           photograph
@@ -135,7 +135,7 @@ export function Sponsors() {
       </section>
       <section
         className="sponsors-section"
-        aria-labelledby="sponsors-corporate-partners"
+        aria-labeledby="sponsors-corporate-partners"
       >
         <h2 id="sponsors-corporate-partners" data-toc="exclude">
           Our Partners

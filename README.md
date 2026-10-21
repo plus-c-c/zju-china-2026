@@ -1,93 +1,28 @@
 # Team ZJU-China 2026 Wiki
 
-This repository uses `TypeScript` and `React` to manage the wikis.
+iGEM 2026 ZJU-China 队的 wiki 源码（React + TypeScript + Vite）。本仓库除网站页面外，也用于介绍团队的两个软件项目；两个项目的完整源码托管在 iGEM Software 仓库：<https://gitlab.igem.org/2026/software/zju-china/nest>。
 
-**Deployed wiki (GitHub Pages): https://plus-c-c.github.io/igem-zju-china-2026/**
+## 项目一：SELP Molecular Dynamics Simulation Platform
 
-This repository **MUST** contain all coding assets to generate your team's wiki
-(HTML, CSS, JavaScript, TypeScript, Python, etc).
+面向研究者与材料开发者的分子模拟平台，把 SELP 水凝胶从序列到力学性质的模拟组织成一条可查看、可修改的流水线。
 
-Images, photos, icons and fonts **MUST** be stored on `static.igem.wiki` using
-[the uploads tool](https://teams.igem.org/go/deliverables/wiki/uploads), and Videos **must** be embedded
-from [iGEM Video Universe](https://video.igem.org); see [the Video & Audio page](https://teams.igem.org/go/deliverables/wiki/videos-and-audios) for guidance on adding video and audio.
+- **三步流水线**：TIGER2 全原子模拟（NAMD，含 DCD → CG 起点结构转换）→ GROMACS 粗粒化交联网络与杨氏模量（Martini 3）→ 磁力学复合模量（本地计算）
+- **交互方式**：参数面板、运行控制与结果图表集中在同一页面；模板一键建链，产物自动传递，无需手工拷贝文件
+- **技术栈**：React 19 · TypeScript · Vite；Node.js · Express；NAMD · GROMACS · MATLAB
+- **代码**：[SELP-Molecular-Dynamics-Simulation-Platform](https://gitlab.igem.org/2026/software/zju-china/nest/-/tree/main/SELP-Molecular-Dynamics-Simulation-Platform)（GitHub 镜像：<https://github.com/plus-c-c/igem-2026-software>）
 
-**Everything your wiki loads (CSS, JavaScript, fonts, images) must be served from
-iGEM infrastructure.** Do not link to external or third-party CDNs (for example
-Google Fonts, jsDelivr, cdnjs) — upload the files you need via
-[the uploads tool](https://teams.igem.org/go/deliverables/wiki/uploads) and reference them from `static.igem.wiki`
-instead.
+## 项目二：NEST Software
 
-For up-to-date requirements, resources, help and guidance, visit
-[teams.igem.org/go/deliverables/wiki](https://teams.igem.org/go/deliverables/wiki).
+面向医生、护士与临床操作人员的 Android 应用，把材料选型与床旁配制转化为可逐步确认的流程。
 
-> **Using an AI assistant (e.g. Claude Code)?** Please read
-> [.claude/RESPONSIBLE_AI_USE.md](.claude/RESPONSIBLE_AI_USE.md) first. You remain
-> fully responsible for everything you publish: never fabricate scientific
-> results, data, or citations.
+- **预订下单**：选择预制 SELP 支架（2KY-5-Tag / 2KY-10-Tag，SnoopTag2 停靠位点）与功能模块（线粒体治疗、磁响应各向异性、GAG 保留）
+- **操作说明**：四步向导——扫描二维码 → 总体说明书 → 放入试剂（PBS → SELP → Ru/SPS → 功能模块）→ 预混指引
+- **技术栈**：Kotlin · Jetpack Compose（Material 3）；CameraX · ZXing；英文界面
+- **代码**：[NEST-Software](https://gitlab.igem.org/2026/software/zju-china/nest/-/tree/main/NEST-Software)（GitHub 镜像：<https://github.com/plus-c-c/igem-2026-app>）
 
-## Getting Started
+## 本仓库
 
-Before refactoring the code of this template to suit your wiki needs, please make sure you have the ability to use React
-for web development.
-
-1. Clone the repository:
-   ```bash
-   git clone https://gitlab.igem.org/2026/zju-china
-   cd zju-china
-   ```
-2. Install the dependencies:
-
-   ```bash
-   yarn install
-   ```
-
-   ### Important:
-
-   Ensure you are using Node.js version `>=20.19.0` (Node 22 LTS recommended) to avoid compatibility issues.
-   You can check your Node version by running `node -v` in your terminal.
-
-3. Start the development server:
-   ```bash
-   yarn run dev
-   ```
-4. Navigate to the files you wish to edit:
-   - The main App component can be found under `src/containers/App`
-   - Pre-built components are located under `src/components`
-   - Individual pages can be modified in the `src/pages.ts`
-   - Content pages can be updated in the `src/contents`
-5. Once you are done, save the changes by **committing** them to the _main branch_ of the repository
-6. An automated script will build, test and deploy your wiki to the iGEM server
-
-## About This Template
-
-### Files
-
-Below is the structure of important files and directories in this project:
-
-    ├── README.md            -> The file you are currently reading
-    ├── index.html           -> Single HTML file for the wiki
-    ├── package.json         -> Manages project metadata and dependencies
-    ├── src/
-    │   ├── components/      -> Pre-built components(like Navbar, Footer, etc.)
-    │   ├── containers/
-    │   │   └── App/         -> Main React application container
-    │   ├── contents/
-    │   │   └── *.tsx        -> Page components for the wiki
-    │   ├── main.tsx         -> Entry point of the wiki application
-    │   ├── pages.ts         -> Page definition and path mapping
-    │   ├── utils/           -> Utility functions
-    │   └── vite-env.d.ts    -> TypeScript definitions for Vite
-    ├── tsconfig.json        -> Configures TypeScript options
-    ├── tsconfig.node.json   -> TypeScript settings for Node.js
-    ├── vite.config.ts       -> Configuration for the Vite tool
-    └── yarn.lock            -> Yarn lock file for dependency management
-
-### Technologies
-
-- [React](https://reactjs.org): A JavaScript library for building user interfaces
-- [TypeScript](https://www.typescriptlang.org): Extends JavaScript by adding types
-- [Vite](https://vitejs.dev): Frontend tooling that provides faster and leaner development builds
-- [Bootstrap](https://getbootstrap.com): Framework for building responsive, mobile-first sites
-- [React Bootstrap](https://react-bootstrap.github.io): Bootstrap components built with React
-- [React Router](https://reactrouter.com): Declarative routing for React applications
-- (Optional) [Prettier](https://prettier.io): Code formatter
+- 页面内容位于 `src/contents/`，页面路由在 `src/pages.ts`
+- 本地开发：Node.js ≥ 20.19（推荐 22 LTS）→ `yarn install` → `yarn run dev`
+- 提交到 `main` 后由 CI 自动构建并部署；图片、字体等静态资源按 iGEM 要求存放于 `static.igem.wiki`
+- 预览：<https://plus-c-c.github.io/igem-zju-china-2026/>

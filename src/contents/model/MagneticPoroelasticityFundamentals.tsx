@@ -8,7 +8,7 @@ export function MagneticPoroelasticityFundamentals() {
       </h2>
       <h3 className="mt-5 mb-3">Research Question and Modeling Framework</h3>
       <p>
-        In the preceding modeling of 2KY10-SELP single-chain conformations,
+        In the preceding modeling of 2KY-10-SELP single-chain conformations,
         Martini coarse-grained multichain systems, and tyrosine crosslink
         networks, the system was treated primarily as a protein network in
         water. When Fe₃O₄ nanoparticles are introduced and magnetic-field-driven

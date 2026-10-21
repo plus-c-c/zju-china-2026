@@ -14,7 +14,7 @@ function MemberCard({ member, index }: { member: Member; index: number }) {
   return (
     <article
       className={`members-card${index % 2 ? " members-card--reversed" : ""}`}
-      aria-labelledby={member.id}
+      aria-labeledby={member.id}
       aria-describedby={`${member.id}-bio`}
       tabIndex={0}
     >
@@ -72,7 +72,7 @@ export function Members() {
         <section
           className="members-section"
           key={group.id}
-          aria-labelledby={`members-${group.id}`}
+          aria-labeledby={`members-${group.id}`}
         >
           <h2 id={`members-${group.id}`}>{group.title}</h2>
           <div className="members-list">

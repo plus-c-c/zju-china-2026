@@ -72,7 +72,7 @@
       "summary": "The three post-operative patients described persistent pain, limited function and the extra burden of having their invisible pain dismissed. The interviews moved us to address the psychological and social side of treatment through science videos, public lectures and rehabilitation discussions with medical students.",
       "rationale": "We met one participant at the iGEM East China meet-up and found one participant and another participant through a Xiaohongshu discussion thread; all three had direct experience of post-operative cartilage injury.",
       "interview": "one participant had ACL reconstruction; her doctors said the artificial ligament recovers faster but is harder and keeps wearing the cartilage, with no good answer for the resulting damage. one participant developed osteoarthritis after patellar surgery; follow-up visits concluded that her discomfort was normal, and her rehabilitation doctor said the persistent friction caused by the protruding bone position is mechanical and irreversible, and that further surgery could cause other problems. another participant's wrist surgery affected her function even more. They described anxiety, irritability and self-blame because the joint is internal and leaves no visible scar for others to see.",
-      "integration": "We recognised that doctors' neglect and patients' psychological burden deserve attention, and that the environment around patients has to change. We ran public lectures on cartilage health, reflected on the structural causes of neglect from an anthropological perspective, wrote two survey reports and held a roundtable with medical students on rehabilitation.",
+      "integration": "We recognized that doctors' neglect and patients' psychological burden deserve attention, and that the environment around patients has to change. We ran public lectures on cartilage health, reflected on the structural causes of neglect from an anthropological perspective, wrote two survey reports and held a roundtable with medical students on rehabilitation.",
       "interviewDate": "Mid-April 2026",
       "questions": [],
       "limitations": "This is ZJU-China’s account of its own engagement. Dates and outcomes are retained as recorded in the IHP source.",
@@ -97,7 +97,7 @@
         {
           "team": "ZJU-China",
           "year": 2026,
-          "summary": "We recognised that doctors' neglect and patients' psychological burden deserve attention, and that the environment around patients has to change. We ran public lectures on cartilage health, reflected on the structural causes of neglect from an anthropological perspective, wrote two survey reports and held a roundtable with medical students on rehabilitation.",
+          "summary": "We recognized that doctors' neglect and patients' psychological burden deserve attention, and that the environment around patients has to change. We ran public lectures on cartilage health, reflected on the structural causes of neglect from an anthropological perspective, wrote two survey reports and held a roundtable with medical students on rehabilitation.",
           "source": "https://gitlab.igem.org/2026/zju-china/-/blob/707a093/src/contents/human-practices.tsx#L181"
         }
       ]
@@ -120,7 +120,7 @@
         "Patient perspective"
       ],
       "summary": "The Yantan village visit revealed long travel distances to care, chronic joint problems managed with painkillers and low awareness of cartilage health. We wrote these observations on rural access into our survey report and pushed for community cartilage screening and education.",
-      "rationale": "To understand regional differences in care, we visited Yantan village — a small, seasonal-tourism village with many left-behind elderly people and limited transport. We spent most time with an elderly man who lives by manual labour.",
+      "rationale": "To understand regional differences in care, we visited Yantan village — a small, seasonal-tourism village with many left-behind elderly people and limited transport. We spent most time with an elderly man who lives by manual labor.",
       "interview": "He has had arthritis for more than five years and still suffers from it; he manages it with local herbal medicine and painkillers. He described repeated trips to hospitals and said the nearest one is an hour's drive; township hospitals can handle acute problems but have little for chronic disease — “let alone a small illness like mine.”",
       "integration": "We wrote these observations into our survey report and turned it into a professional report for the Hangzhou Municipal Health Commission, which will guide grassroots organisations in screening for and publicising cartilage health in the region.",
       "interviewDate": "Late April 2026",
@@ -225,9 +225,9 @@
         "tunable SELP for different joints",
         "Clinical practice"
       ],
-      "summary": "Dr. Qiu Xiaoming pointed out that different joints bear different loads and need tunable strength. The interview led us to tune SELP through the 2KY repeat number and to match different defects with modelling.",
+      "summary": "Dr. Qiu Xiaoming pointed out that different joints bear different loads and need tunable strength. The interview led us to tune SELP through the 2KY repeat number and to match different defects with modeling.",
       "rationale": "The first step of NEST was to choose a filler that meets the complex requirements of cartilage repair — filling the defect directly and relieving pain immediately. Dr. Qiu Xiaoming is an orthopaedic doctor at Sir Run Run Shaw Hospital in Hangzhou with extensive clinical experience and academic work, so we visited him.",
-      "interview": "We presented the first SELP design — a single fixed set of 2KY5, 2KY10 and 2KY16 proteins. He said that the elbow, knee and other joints bear different loads and need different strengths, and that a single-strength material could not achieve our goal of treating all hyaline cartilage defects. We proposed tuning the 2KY repeat number through sequence design to change the material's strength and toughness; he agreed.",
+      "interview": "We presented the first SELP design — a single fixed set of 2KY-5, 2KY-10 and 2KY-16 proteins. He said that the elbow, knee and other joints bear different loads and need different strengths, and that a single-strength material could not achieve our goal of treating all hyaline cartilage defects. We proposed tuning the 2KY repeat number through sequence design to change the material's strength and toughness; he agreed.",
       "integration": "Our literature work showed that higher repeat numbers reduce pore size and raise cell adhesion, favouring GAG production, native cartilage growth and anti-inflammatory signalling, and fitting patients with different immune capacities and defect sizes. We decided to build a programmable repeat-number method and to model real cartilage to fix the hydrogel's final properties, achieving SELP as a broad treatment platform.",
       "interviewDate": "Mid-May 2026",
       "questions": [],
@@ -898,7 +898,7 @@
         "Research"
       ],
       "summary": "The discussion with Prof. Li Xiaoming connected the magnetic field, structural orientation and local mechanical response, leading to a four-phase model that includes the crosslinking sequence. The model guides sampling; YAP/TAZ cell responses still require separate validation.",
-      "rationale": "We wanted to connect external-field control, structural change and the local mechanical environment that cells sense, so that modelling could guide experiments. Prof. Li Xiaoming is a professor at Beihang University's School of Biological Science and Medical Engineering and vice-chair of the Intelligent Biomimetic Materials branch of the Chinese Society for Biomaterials. His team's Advanced Science paper, “Biomimetic Gradient Hydrogels Regulate Osteochondral Regeneration Microenvironment Remodeling via Spatiotemporal Programming Engineering”, drew our attention, and we contacted him online.",
+      "rationale": "We wanted to connect external-field control, structural change and the local mechanical environment that cells sense, so that modeling could guide experiments. Prof. Li Xiaoming is a professor at Beihang University's School of Biological Science and Medical Engineering and vice-chair of the Intelligent Biomimetic Materials branch of the Chinese Society for Biomaterials. His team's Advanced Science paper, “Biomimetic Gradient Hydrogels Regulate Osteochondral Regeneration Microenvironment Remodeling via Spatiotemporal Programming Engineering”, drew our attention, and we contacted him online.",
       "interview": "Because his work uses electric fields while our system responds to magnetic fields through Fe₃O₄ and SELP, the model had to be rebuilt around our mechanism. The discussion divided “the field changes hydrogel properties” into steps that can be analysed: how the field affects orientation, how crosslinking preserves it, and how the fixed structure changes local mechanical response.",
       "integration": "Our Model reflects this: alongside molecular dynamics and network analysis, we built a four-phase continuum model describing SELP–Fe₃O₄ fibres, non-fibrous matrix, free particles and water, and included the preparation sequence. The model now predicts local material environments that can guide sampling and later cell-response comparisons, including YAP/TAZ readouts.",
       "interviewDate": "Late July 2026",
@@ -1147,8 +1147,8 @@
       "stages": ["Research & development"],
       "sourceStage": "R&D",
       "tags": ["Biomedical materials", "making models verifiable", "Research"],
-      "summary": "Across four meetings, Prof. Chen Ming required clear variables, model assumptions and experimental evidence. The team split five design variables, assigned each modelling scale its question, and calibrated predictions with rheology, gelation and directional mechanics.",
-      "rationale": "We expected modelling to tell us directly which sequence was best and saw the software mainly as a display. We asked Prof. Chen Ming at Zhejiang University whether that view holds up from a systems-modelling and data-analysis perspective.",
+      "summary": "Across four meetings, Prof. Chen Ming required clear variables, model assumptions and experimental evidence. The team split five design variables, assigned each modeling scale its question, and calibrated predictions with rheology, gelation and directional mechanics.",
+      "rationale": "We expected modeling to tell us directly which sequence was best and saw the software mainly as a display. We asked Prof. Chen Ming at Zhejiang University whether that view holds up from a systems-modeling and data-analysis perspective.",
       "interview": "He focused on whether variables are clearly defined, whether model inputs and outputs are interpretable, and whether results are supported by independent experiments. A prediction without stated assumptions, parameter ranges and error sources is hard to trust, and building a software interface is not model validation: software should help record parameters, compare options, show the basis of a model and feed results into the next design round.",
       "integration": "We separated the simulations so that each of the five variables has a single dependent variable that can be tested on its own, assigned each scale a question (all-atom MD and enhanced sampling for conformations and functional-site states; coarse-grained Martini 3.0 networks for crosslinked mechanics; magnetic–mechanical coupling for field and particle effects), and paired every model with calibration or validation experiments — gelation time, rheology, compression, structural imaging and directional mechanical tests. The four rounds of discussion also led us to choose the Model track as one of our Best Award applications this year.",
       "interviewDate": "Mid-August 2026",
@@ -1330,10 +1330,10 @@
       "id": "SB_000023",
       "revision": 3,
       "kind": "stakeholder",
-      "title": "Shaanxi Lanyanwei",
+      "title": "Shaanxi Lanyiwei",
       "topic": "what a product must define before translation",
       "role": "Research translation company",
-      "organisation": "Shaanxi Lanyanwei",
+      "organisation": "Shaanxi Lanyiwei",
       "domain": "Health & wellbeing",
       "roleTags": ["Producers & providers"],
       "stages": ["Production & delivery"],
@@ -1343,8 +1343,8 @@
         "what a product must define before translation",
         "Manufacturing"
       ],
-      "summary": "Lanyanwei's chief scientist helped clarify whether the first delivery is the material, the functional components or the complete system. The discussion led to separate use, assembly, storage, operating requirements and open questions, with clear responsibilities for the team and partners.",
-      "rationale": "NEST already linked material, functional modules and a companion device, but how a research plan becomes a product with clear boundaries, production requirements and sales conditions still needed work. We drew on Lanyanwei's experience in translating research and clinical results.",
+      "summary": "Lanyiwei's chief scientist helped clarify whether the first delivery is the material, the functional components or the complete system. The discussion led to separate use, assembly, storage, operating requirements and open questions, with clear responsibilities for the team and partners.",
+      "rationale": "NEST already linked material, functional modules and a companion device, but how a research plan becomes a product with clear boundaries, production requirements and sales conditions still needed work. We drew on Lanyiwei's experience in translating research and clinical results.",
       "interview": "The discussion covered whether the first stage delivers the hydrogel, the functional components or the complete system with light and magnetic operation; who produces, assembles and delivers each part; and which laboratory steps still depend on individual researchers. Modularity has to become a product description: what each component does, how it is combined and stored, and the order in which the user operates it.",
       "integration": "We split translation preparation into material, functional components and companion device, each with its use, composition, operating requirements and open questions, and clarified the links in the chain assembly—precursor preparation—injection—magnetic orientation—blue-light crosslinking.",
       "interviewDate": "Late August 2026",
@@ -1386,7 +1386,7 @@
       "id": "SB_000024",
       "revision": 4,
       "kind": "stakeholder",
-      "title": "Yuanyi Biology",
+      "title": "Yuanyi Bio",
       "topic": "scale-up and batch consistency",
       "role": "Biomanufacturing company",
       "organisation": "Yuanyi (Tianjin) Biotechnology Co., Ltd.",
@@ -1399,8 +1399,8 @@
         "scale-up and batch consistency",
         "Manufacturing"
       ],
-      "summary": "Yuanyi Biology asked about expression yield, purification recovery and formulation consistency. The team now plans cross-batch records and sample traceability and includes purification losses, testing and storage in the scale-up cost estimate.",
-      "rationale": "NEST's SELP scaffold and functional components depend on recombinant expression and assembly. As sample demand grows, we needed to understand what happens when laboratory expression and purification are scaled, so we met founder Zhang Li online at Yuanyi Biology.",
+      "summary": "Yuanyi Bio asked about expression yield, purification recovery and formulation consistency. The team now plans cross-batch records and sample traceability and includes purification losses, testing and storage in the scale-up cost estimate.",
+      "rationale": "NEST's SELP scaffold and functional components depend on recombinant expression and assembly. As sample demand grows, we needed to understand what happens when laboratory expression and purification are scaled, so we met founder Zhang Li online at Yuanyi Bio.",
       "interview": "The discussion covered expression, purification and batch-to-batch consistency: whether different SELP constructs give stable yields and recovery, whether ITC purification holds up at larger volumes, and how to keep assembly ratios and final formulation consistent when components are produced separately. Cost has to be seen across the whole process, including purification losses, assembly efficiency, testing and storage.",
       "integration": "We kept the recombinant expression and ITC purification route and planned cross-batch records of yield, recovery and performance, traceable sample numbering and assembly records, and joint process optimisation with the producer based on small-scale scale-up results.",
       "interviewDate": "Late August 2026",
@@ -1690,7 +1690,7 @@
         "cost structure and pilot markets",
         "Translation & access"
       ],
-      "summary": "Prof. Erik Forsberg supplied data and an analytical framework for cost modelling, guiding market sizing and commercial feasibility and bringing Hong Kong into the comparison of potential pilot markets.",
+      "summary": "Prof. Erik Forsberg supplied data and an analytical framework for cost modeling, guiding market sizing and commercial feasibility and bringing Hong Kong into the comparison of potential pilot markets.",
       "rationale": "Our cost estimates were limited by a lack of practical knowledge, so we asked Erik Forsberg, an experienced hardware professor who teaches entrepreneurship at Zhejiang University, to act as our business adviser.",
       "interview": "He provided many non-public data sources for our business model, guided the cost analysis and built the cost-structure framework and economic model, and suggested piloting in regions with relatively lighter regulatory requirements.",
       "integration": "With his help we estimated market size and target markets and assessed commercial feasibility, and are considering a pilot in Hong Kong, where commercial medical insurance is more developed and regulation is lighter.",
@@ -2073,7 +2073,7 @@
       "summary": "Dr. Yang Shen helped us turn the interviews into a systematic anthropological study of why early joint symptoms remain medically invisible. The work became a paper discussed at an ethnographic workshop and fed back to Zhejiang University's health-services institute, and it shaped our medical-humanities lectures for future doctors.",
       "rationale": "Our surveys and interviews showed how cartilage damage is overlooked in the medical system. We wanted to examine the structural reasons behind this invisibility and how it might be addressed at the system level, so we approached Dr. Yang Shen — a researcher in Zhejiang University's Department of Sociology and a Boston University PhD in anthropology — at the university's Third Annual Social Research Conference.",
       "interview": "She advised us to study the topic systematically and produce a paper, and after a semester of coursework we wrote “Pain beyond the diagnostic threshold: the medical invisibility of early joint symptoms”. Starting from the inversion between many reported symptoms and few formal records, and drawing on Kleinman's distinction between disease and illness and on Carel and Kidd's framework of epistemic injustice, the paper examines how patients' accounts of pain, activity limitation and disruption to daily life are translated into clinically recognisable information, and which experiences are lost in that translation. It argues that care needs can still be identified and answered while a diagnosis remains uncertain, and that understanding this problem requires attention to diagnostic uncertainty, the patient's situation and the organisation of care. Its contribution is to move attention from the number of diagnoses to the burden of symptoms that are not yet fully recorded, and to propose including patient-reported pain, life impact and follow-up needs in assessment. It also considers structural violence and the power imbalance inherent in doctor–patient relationships.",
-      "integration": "We took the paper to the ethnographic workshop in Chiang Mai and fed the results back to Zhejiang University's Institute of Social Medicine and Health Services Management. We also ran medical-anthropology lectures and seminars that raised future doctors' patient awareness — that illness is not only a physiological injury but is accompanied by social context and structural violence — and called for patients' care needs to be recognised even within ambiguous diagnostic standards.",
+      "integration": "We took the paper to the ethnographic workshop in Chiang Mai and fed the results back to Zhejiang University's Institute of Social Medicine and Health Services Management. We also ran medical-anthropology lectures and seminars that raised future doctors' patient awareness — that illness is not only a physiological injury but is accompanied by social context and structural violence — and called for patients' care needs to be recognized even within ambiguous diagnostic standards.",
       "interviewDate": "Late October 2026",
       "questions": [],
       "limitations": "This is ZJU-China’s account of its own engagement. Dates and outcomes are retained as recorded in the IHP source.",
@@ -2098,7 +2098,7 @@
         {
           "team": "ZJU-China",
           "year": 2026,
-          "summary": "We took the paper to the ethnographic workshop in Chiang Mai and fed the results back to Zhejiang University's Institute of Social Medicine and Health Services Management. We also ran medical-anthropology lectures and seminars that raised future doctors' patient awareness — that illness is not only a physiological injury but is accompanied by social context and structural violence — and called for patients' care needs to be recognised even within ambiguous diagnostic standards.",
+          "summary": "We took the paper to the ethnographic workshop in Chiang Mai and fed the results back to Zhejiang University's Institute of Social Medicine and Health Services Management. We also ran medical-anthropology lectures and seminars that raised future doctors' patient awareness — that illness is not only a physiological injury but is accompanied by social context and structural violence — and called for patients' care needs to be recognized even within ambiguous diagnostic standards.",
           "source": "https://gitlab.igem.org/2026/zju-china/-/blob/707a093/src/contents/human-practices.tsx#L527"
         }
       ]

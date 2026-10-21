@@ -166,7 +166,7 @@ export function Education() {
             </div>
           </div>
 
-          <h2>Education covering all age groups</h2>
+          <h2>Education Covering All Age Groups</h2>
           <p>
             Our public science popularization activities follow{" "}
             <strong>
@@ -190,7 +190,7 @@ export function Education() {
           </p>
 
           <h3>
-            1. For children aged 3&ndash;6: Biological Game Interaction in
+            1 For Children Aged 3&ndash;6: Biological Game Interaction in
             Qigudeng Community
           </h3>
           <p>
@@ -254,7 +254,7 @@ export function Education() {
           </p>
 
           <h3>
-            2. For children aged 6&ndash;12: Public Welfare Science
+            2 For Children Aged 6&ndash;12: Public Welfare Science
             Popularization of Wenlan Academy
           </h3>
           <p>
@@ -299,8 +299,8 @@ export function Education() {
           </p>
 
           <h3>
-            3. For high school students: Synthetic biology promotion and subject
-            selection sharing
+            3 For High School Students: Synthetic Biology Promotion and Subject
+            Selection Sharing
           </h3>
           <p>
             We provided 140 high school students with systematic presentations on
@@ -321,7 +321,7 @@ export function Education() {
               alt="Group photograph of high-school students and the team after the presentation."
             />
           </div>
-          <h3>4. Artistic Practice</h3>
+          <h3>4 Artistic Practice</h3>
           <p>
             Inspired by <em>The Larva of Time</em>, we collaborated with artist
             Chen Xi to present two interactive public art works. These movement
@@ -363,7 +363,7 @@ export function Education() {
             />
           </div>
 
-          <h4 className="edu-heading-small">Gallery</h4>
+          <h4 id="gallery" className="edu-heading-small">Gallery</h4>
           <div className="edu-image-grid edu-image-grid--2">
             <EduImage
               file="art-trajectory-02"
@@ -403,9 +403,9 @@ export function Education() {
             alt="A green and purple visual trajectory drawing produced through eye-tracking."
           />
 
-          <h3>5. For the Public</h3>
+          <h3>5 For the Public</h3>
           <p>
-            The ZJU-CHINA team has successfully settled in the Future Learning
+            The ZJU-China team has successfully settled in the Future Learning
             Center of Zhejiang University, and participated in the reception of
             over 300 person-times of domestic and foreign experts from all walks
             of life, including the World Digital Education Conference, the
@@ -437,7 +437,7 @@ export function Education() {
               alt="A visiting delegation touring the Future Learning Center."
             />
           </div>
-          <h3>6. Cartilage Health Promotion for the Elderly</h3>
+          <h3>6 Cartilage Health Promotion for the Elderly</h3>
           <p>
             We conducted an investigation and field research in Yantan Village,
             and carried out publicity on basic rehabilitation exercises as well as
@@ -448,7 +448,7 @@ export function Education() {
             caption="13"
             alt="An older adult walking on a stone path in Yantan Village during field research."
           />
-          <h3>7. Proposal to the Health Commission</h3>
+          <h3>7 Proposal to the Health Commission</h3>
           <p>
             We have conducted a research report on the current status of hyaline
             cartilage injuries, compiled our extensive educational practices into
@@ -631,7 +631,7 @@ export function Education() {
             system performs that function?
           </p>
 
-          <h2>Summary and Reflection:</h2>
+          <h2>Summary and Reflection</h2>
           <h3>Summary</h3>
           <div className="education-video-frame">
             <iframe

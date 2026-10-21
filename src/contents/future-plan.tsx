@@ -11,8 +11,6 @@ export function FuturePlan() {
   return (
     <div className="row mt-4">
       <div className="col">
-        <h2>Future Plan</h2>
-        <hr />
         <p>
           NEST has completed proof-of-concept validation of scaffold
           fabrication, material properties, standardized interfaces, and
@@ -24,9 +22,9 @@ export function FuturePlan() {
           of the first product.
         </p>
 
-        <h3 className="mt-5 mb-3">
+        <h2 className="mt-5 mb-3">
           1 Integration of the Complete Material and Formulation Screening
-        </h3>
+        </h2>
         <p>
           The initial phase will focus on the focal cartilage-defect application
           described in the Implementation section. We will compare the baseline
@@ -65,7 +63,7 @@ export function FuturePlan() {
         </p>
         <TableCaption>
           <strong>
-            Table 1. Tests for selecting the first NEST formulation.
+            Table 1 | Tests for selecting the first NEST formulation.
           </strong>{" "}
           Compare the assembled material with the scaffold alone and with each
           module tested separately. Repeat the tests with independently prepared
@@ -74,7 +72,7 @@ export function FuturePlan() {
         <div className="table-responsive mb-4">
           <table
             className="table table-bordered align-middle"
-            aria-label="Table 1: Tests for selecting the first NEST formulation"
+            aria-label="Table 1 | Tests for selecting the first NEST formulation"
           >
             <thead className="table-primary">
               <tr>
@@ -163,12 +161,12 @@ export function FuturePlan() {
           these combined outcomes.
         </p>
 
-        <h3 className="mt-5 mb-3">
+        <h2 className="mt-5 mb-3">
           2 Validation at Tissue Interfaces alongside Fermentation Development
-        </h3>
-        <h4 className="mt-4 mb-2" data-toc="include" data-toc-depth="3">
+        </h2>
+        <h3 className="mt-4 mb-2" data-toc="include" data-toc-depth="2">
           2.1 Evaluating Candidate Materials in Models of Actual Defects
-        </h4>
+        </h3>
         <p>
           We will use ex vivo cartilage-defect models to determine whether the
           precursor can be delivered into irregular spaces, form a continuous
@@ -192,10 +190,10 @@ export function FuturePlan() {
           guide iterative development of the app, device web interface, and
           hardware.
         </p>
-        <h4 className="mt-4 mb-2" data-toc="include" data-toc-depth="3">
+        <h3 className="mt-4 mb-2" data-toc="include" data-toc-depth="2">
           2.2 From Shake-Flask Culture to Controlled Fermentation and
           Reproducible Recovery
-        </h4>
+        </h3>
         <p>
           In parallel with material integration, we will produce SELP in a
           laboratory-scale stirred-tank bioreactor. Aeration, pH, feeding, and
@@ -248,9 +246,9 @@ export function FuturePlan() {
           selected candidate.
         </p>
 
-        <h3 className="mt-5 mb-3">
+        <h2 className="mt-5 mb-3">
           3 Assessing Repair Quality through In Vivo Studies
-        </h3>
+        </h2>
         <p>
           Animal studies will be designed around the selected defect indication,
           including the baseline scaffold, functional formulations, and
@@ -270,10 +268,10 @@ export function FuturePlan() {
           that do not provide the expected benefit.
         </p>
 
-        <h3 className="mt-5 mb-3">
+        <h2 className="mt-5 mb-3">
           4 Establishing Product Specifications and a Supply Framework for
           Deployment
-        </h3>
+        </h2>
         <p>
           Once a candidate formulation has been validated in tissue models, we
           will define its critical components, assembly conditions, and
@@ -336,10 +334,10 @@ export function FuturePlan() {
           inform formulation selection.
         </p>
 
-        <h3 className="mt-5 mb-3">
+        <h2 className="mt-5 mb-3">
           5 Expanding the Platform into a Material Family for Different Injury
           Types
-        </h3>
+        </h2>
         <p>
           The first product will establish a reproducible basis for
           manufacturing, assembly, and use within NEST. Building on this
@@ -367,9 +365,9 @@ export function FuturePlan() {
             />
           </FigureCaption>
         </figure>
-        <h4 className="mt-4 mb-2" data-toc="include" data-toc-depth="3">
+        <h3 className="mt-4 mb-2" data-toc="include" data-toc-depth="2">
           5.1 Establishing the First Product for Focal Cartilage Defects
-        </h4>
+        </h3>
         <p>
           We will prioritize the baseline scaffold and GAG-retention
           formulation, comparing their performance in defect filling, fixation
@@ -379,10 +377,10 @@ export function FuturePlan() {
           operating instructions established for this application will provide a
           common starting point for subsequent product development.
         </p>
-        <h4 className="mt-4 mb-2" data-toc="include" data-toc-depth="3">
+        <h3 className="mt-4 mb-2" data-toc="include" data-toc-depth="2">
           5.2 Advancing OA Functional Modules into Fully Integrated Material
           Formulations
-        </h4>
+        </h3>
         <p>
           The GAG-retention formulation will be evaluated for matrix
           preservation under continuous fluid exchange; the magnetically
@@ -393,9 +391,9 @@ export function FuturePlan() {
           identify OA-oriented formulations that retain their functions in the
           complete material.
         </p>
-        <h4 className="mt-4 mb-2" data-toc="include" data-toc-depth="3">
+        <h3 className="mt-4 mb-2" data-toc="include" data-toc-depth="2">
           5.3 Co-developing Layered Products with Bone-Repair Materials
-        </h4>
+        </h3>
         <p>
           We will collaborate with developers of bone-repair materials to
           combine the NEST cartilage layer with a separate bone-support layer in
@@ -448,20 +446,21 @@ export function FuturePlan() {
         </References>
         <References
           level={2}
-          title="Figure Sources and Credits"
+          title="Figure Sources"
           id="figure-sources-and-credits"
         >
           <ul className="references-list figure-sources-list">
             <FigureSourceEntry source={1} id="future-plan-figure-sources">
               <p>
-                Figure assets from Bioicons: Marcel Tisch, Simon D&uuml;rr,
-                jaiganesh, and Daniel-Marcos (CC0); DBCLS (CC BY 4.0); and
-                Servier (CC BY 3.0). <a href="https://bioicons.com/">Source</a>
+                Icons from <a href="https://bioicons.com/">Bioicons</a>:
+                Marcel Tisch, Simon D&uuml;rr, jaiganesh, and Daniel-Marcos
+                (<a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>);
+                DBCLS (<a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>);
+                Servier (<a href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>).
               </p>
               <p>
-                Figure assets from Google Noto Emoji (Apache 2.0). Photographs
-                and application interfaces are from project materials.{" "}
-                <a href="https://github.com/googlefonts/noto-emoji">Source</a>
+                Google. <a href="https://github.com/googlefonts/noto-emoji">Noto Emoji</a>.{" "}
+                <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache 2.0</a>.
               </p>
             </FigureSourceEntry>
           </ul>

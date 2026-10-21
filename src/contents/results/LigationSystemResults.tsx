@@ -55,7 +55,7 @@ export function LigationSystemResults() {
         temperature (about 24 &deg;C). Samples were taken at 10 min / 30 min /
         60 min after assembling the system and boiled to stop the reaction; the
         individual components and the samples from different reaction times were
-        analyzed by SDS-PAGE. The ligation reaction succeeded within 10 minutes
+        analyzed by SDS-PAGE. The ligation reaction succeeded within 10 min
         (an obvious ligation-product band appeared), and the reaction went to
         completion within 1 hour (the band of the less abundant SUMO-DogTag
         disappeared). This shows that the ligation reaction is very fast and

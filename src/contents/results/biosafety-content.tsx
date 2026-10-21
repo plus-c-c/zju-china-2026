@@ -24,8 +24,8 @@ export function BiosafetyMethods() {
         G-S low, and G-S high) and MNP at 0.0864, 0.216, 0.432, and 0.648 mM.
       </p>
       <p>
-        TVN, CPC, and LinkN peptides were each assessed at 2.5, 5, and 10 μM.
-        Combined CPC and LinkN treatment (CPC+LinkN) was assessed at the indicated
+        TVN, CPC, and Link-N peptides were each assessed at 2.5, 5, and 10 μM.
+        Combined CPC and Link-N treatment (CPC + Link-N) was assessed at the indicated
         concentrations of 2.5 and 5 μM, and the functional peptide from the
         Mitochondrial Therapeutic Module (Mito) was assessed at 5 and 10 μM.
       </p>
@@ -53,9 +53,9 @@ export function BiosafetyResultsText({
         across concentrations and exposure periods.
       </p>
       <p>
-        The Mito groups showed lower relative cell viability at 24 h and higher
+        The Mito groups (the responsive peptide from the Mitochondrial Therapeutic Module) showed lower relative cell viability at 24 h and higher
         values at 48 and 72 h. Lower viability was also observed for 2.5 μM TVN
-        at 72 h, 10 μM LinkN at 72 h, and the CPC+LinkN groups at 24 and 72 h.
+        at 72 h, 10 μM Link-N at 72 h, and the CPC + Link-N groups at 24 and 72 h.
         These observations identify treatment conditions that require further
         evaluation and optimization.
       </p>
@@ -72,20 +72,21 @@ export function BiosafetyResultsText({
 
 export function BiosafetyFigureCaption({
   figureNumber = "7.1",
+  title = "Preliminary cytocompatibility assessment of NEST components using the CCK-8 assay.",
 }: {
   figureNumber?: string;
+  title?: string;
 }) {
   return (
     <FigureCaption className="figure-caption mt-2">
       <strong>
-        Figure {figureNumber} | Preliminary cytocompatibility assessment of NEST
-        components using the CCK-8 assay.
+        Figure {figureNumber} | {title}
       </strong>{" "}
       Relative cell viability was measured after 24, 48, and 72 h of treatment.
       (A) Hydrogel-related preparations, including Dressing-solution, G-S low,
       and G-S high. (B) Magnetic nanoparticles (MNP) at 0.0864, 0.216, 0.432, and
-      0.648 mM. (C–E) TVN, CPC, and LinkN peptides, respectively, at 2.5, 5, and
-      10 μM. (F) Combined CPC and LinkN treatment (CPC+LinkN) at the indicated
+      0.648 mM. (C–E) TVN, CPC, and Link-N peptides, respectively, at 2.5, 5, and
+      10 μM. (F) Combined CPC and Link-N treatment (CPC + Link-N) at the indicated
       concentrations of 2.5 and 5 μM. (G) Functional peptide from the
       Mitochondrial Therapeutic Module (Mito) at 5 and 10 μM. Overlaid dots represent
       individual measurements. (H) Photograph of the assay plate. Yellow, blue,
@@ -107,9 +108,9 @@ export function BiosafetyContent() {
         </div>
       </div>
       <section className="pair">
-        <h4 className="pair-label" id="wetlab-biosafety-assay">
-          CCK-8 cytocompatibility assessment
-        </h4>
+        <h5 className="pair-label" id="wetlab-biosafety-assay">
+          CCK-8 Cytocompatibility Assessment
+        </h5>
         <div className="columns">
           <div className="column experiment">
             <div className="column-label">Experiment</div>

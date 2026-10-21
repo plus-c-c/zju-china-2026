@@ -40,7 +40,7 @@ export function SelpAndSnoopLigaseScene() {
     <div
       className="nest-solution-scene nest-solution-scene--selp"
       data-node-id="909:5"
-      data-name="Page 01 · SELP / SnoopLigase-ZJU"
+      data-name="Page 01 · SELP / SnoopLigase2-ZJU"
     >
       <div className="nest-solution-design">
         <div className="nest-solution-background" aria-hidden="true" />
@@ -48,7 +48,7 @@ export function SelpAndSnoopLigaseScene() {
         <article className="nest-solution-card nest-solution-card--selp">
           <h2 className="nest-solution-selp-title">S E L P</h2>
           <p className="nest-solution-selp-subtitle">
-            (Silk-elastin-like protein)
+            (silk-elastin-like protein)
           </p>
           <p className="nest-solution-selp-copy">
             Programmable sequences enable model-guided control of strength and
@@ -578,8 +578,9 @@ export function SelpPipeline({ readingWidth }: { readingWidth?: number } = {}) {
           <article className="selp-pipeline__card">
             <h2>Magnetically Responsive Anisotropy Module</h2>
             <p>
-              Under an external magnetic field, these peptides guide SELP to
-              form anisotropic structures, helping restore mechanical balance.
+              Under an external magnetic field, these peptides, bound to magnetic
+              nanoparticles, guide SELP to form anisotropic structures, helping
+              restore mechanical balance.
             </p>
           </article>
           <PipelineAnimation

@@ -9,7 +9,7 @@ export function ScaffoldIntro() {
       characterization, cellular evaluation, and the ligation system. Within
       each experiment, the corresponding results and supporting figures are
       presented alongside the experimental description. Function is organized
-      into magnetically responsive anisotropy, GAG retention and delivery.
+      into Magnetically Responsive Anisotropy Module, GAG Retention Module, and Mitochondrial Therapeutic Module.
     </>
   );
 }
@@ -69,7 +69,7 @@ export function ScaffoldContent() {
             <div className="source-block" data-block="4">
               <p>
                 This study used the{" "}
-                <strong>silk–elastin-like protein (SELP)</strong> sequence{" "}
+                <strong>silk-elastin-like protein (SELP)</strong> sequence{" "}
                 <strong>2KY</strong> as the base scaffold. The basic repeat unit
                 of 2KY is 171 bp in length, encodes 57 amino acids, and has the
                 following sequence composition:
@@ -278,9 +278,9 @@ export function ScaffoldContent() {
         </h5>
       </div>
       <section className="pair">
-        <h6 className="pair-label" id="wetlab-scaffold-05">
-          Transformation and sequence verification
-        </h6>
+        <h5 className="pair-label" id="wetlab-scaffold-05">
+          Transformation and Sequence Verification
+        </h5>
         <div className="columns">
           <div className="column experiment">
             <p className="column-label">Experiment</p>
@@ -426,9 +426,9 @@ export function ScaffoldContent() {
         </h5>
       </div>
       <section className="pair">
-        <h6 className="pair-label" id="wetlab-scaffold-07">
-          Optimization of inverse transition cycling
-        </h6>
+        <h5 className="pair-label" id="wetlab-scaffold-07">
+          Optimization of Inverse Transition Cycling
+        </h5>
         <div className="columns">
           <div className="column experiment">
             <p className="column-label">Experiment</p>
@@ -654,7 +654,7 @@ export function ScaffoldContent() {
             <div className="source-block" data-block="40">
               <p>
                 In our project, 2KY-5 and 2KY-10 proteins were independently
-                produced and purified in our laboratory, while samples of 2Y-5
+                produced and purified in our laboratory, while samples of 2Y-5 (a lysine-free control scaffold)
                 and 2KY-16 were provided by Professor Hongwei Ouyang and
                 Professor Wenwen Huang at our collaborating laboratory. We
                 subsequently performed standardized characterization of all four
@@ -676,9 +676,9 @@ export function ScaffoldContent() {
         </h5>
       </div>
       <section className="pair">
-        <h6 className="pair-label" id="wetlab-scaffold-11">
-          Blue-light photocrosslinking
-        </h6>
+        <h5 className="pair-label" id="wetlab-scaffold-11">
+          Blue-Light Photocrosslinking
+        </h5>
         <div className="columns">
           <div className="column experiment">
             <p className="column-label">Experiment</p>
@@ -814,9 +814,9 @@ export function ScaffoldContent() {
         </h5>
       </div>
       <section className="pair">
-        <h6 className="pair-label" id="wetlab-scaffold-12">
-          Structure and mechanical properties of the hydrogel
-        </h6>
+        <h5 className="pair-label" id="wetlab-scaffold-12">
+          Structure and Mechanical Properties of the Hydrogel
+        </h5>
         <div className="columns">
           <div className="column experiment">
             <p className="column-label">Experiment</p>
@@ -824,7 +824,7 @@ export function ScaffoldContent() {
               <p>
                 We characterized the structure and mechanical properties of the
                 hydrogels constructed from SELP proteins with different repeat
-                numbers. Scanning electron microscopy (SEM) was first used to
+                numbers. Scanning Electron Microscopy (SEM) was first used to
                 observe the hydrogel structure and pore size. Samples taken
                 before and after gelation were then examined by
                 three-dimensional excitation–emission matrix (EEM) fluorescence
@@ -842,7 +842,7 @@ export function ScaffoldContent() {
                 from sequence information.
               </p>
             </div>
-            <h6>Scanning electron microscopy (SEM)</h6>
+            <h5>Scanning Electron Microscopy (SEM)</h5>
             <div className="source-block" data-block="52">
               <p>
                 Hydrogel microstructures were characterized by scanning electron
@@ -851,7 +851,7 @@ export function ScaffoldContent() {
                 to assess pore morphology and network structure.
               </p>
             </div>
-            <h6>Excitation–emission matrix (EEM) fluorescence spectroscopy</h6>
+            <h5>Excitation–Emission Matrix (EEM) Fluorescence Spectroscopy</h5>
             <div className="source-block" data-block="53">
               <p>
                 EEM fluorescence spectra of precursor solutions and hydrogels
@@ -861,7 +861,7 @@ export function ScaffoldContent() {
                 with dityrosine crosslink formation.
               </p>
             </div>
-            <h6>Rheological measurements</h6>
+            <h5>Rheological Measurements</h5>
             <div className="source-block" data-block="54">
               <p>
                 Rheological properties were measured using a TA Instruments HR20
@@ -872,7 +872,7 @@ export function ScaffoldContent() {
                 viscoelasticity.
               </p>
             </div>
-            <h6>Compressive mechanical testing</h6>
+            <h5>Compressive Mechanical Testing</h5>
             <div className="source-block" data-block="55">
               <p>
                 Hydrogel mechanical properties were evaluated using an Instron
@@ -882,7 +882,7 @@ export function ScaffoldContent() {
                 Young’s modulus was calculated from the linear elastic region.
               </p>
             </div>
-            <h6>Lap-shear adhesion testing</h6>
+            <h5>Lap-Shear Adhesion Testing</h5>
             <div className="source-block" data-block="56">
               <p>
                 Adhesive properties were evaluated using a modified ASTM F2255
@@ -892,7 +892,7 @@ export function ScaffoldContent() {
                 maximum load by the adhesive area.
               </p>
             </div>
-            <h6>Statistical analysis</h6>
+            <h5>Statistical Analysis</h5>
             <div className="source-block" data-block="57">
               <p>
                 All experiments were performed with at least three replicates.
@@ -904,7 +904,7 @@ export function ScaffoldContent() {
             <p className="column-label">Results</p>
             <div className="source-block" data-block="58">
               <p>
-                Scanning electron microscopy (SEM) showed that the hydrogel has
+                Scanning Electron Microscopy (SEM) showed that the hydrogel has
                 an{" "}
                 <strong>
                   interconnected, three-dimensional porous network with pores of
@@ -1248,9 +1248,9 @@ export function ScaffoldContent() {
         </h5>
       </div>
       <section className="pair">
-        <h6 className="pair-label" id="wetlab-scaffold-18">
-          Recursive doubling and production of 2KY-10
-        </h6>
+        <h5 className="pair-label" id="wetlab-scaffold-18">
+          Recursive Doubling and Production of 2KY-10
+        </h5>
         <div className="columns">
           <div className="column experiment">
             <p className="column-label">Experiment</p>
@@ -1425,9 +1425,9 @@ export function ScaffoldContent() {
         </h5>
       </div>
       <section className="pair">
-        <h6 className="pair-label" id="wetlab-scaffold-20">
+        <h5 className="pair-label" id="wetlab-scaffold-20">
           Insertion of SnoopTag2
-        </h6>
+        </h5>
         <div className="columns">
           <div className="column experiment">
             <p className="column-label">Experiment</p>
@@ -1631,9 +1631,9 @@ export function ScaffoldContent() {
         </h4>
       </div>
       <section className="pair">
-        <h6 className="pair-label" id="wetlab-scaffold-28">
-          Chondrocyte gene-expression analysis
-        </h6>
+        <h5 className="pair-label" id="wetlab-scaffold-28">
+          Chondrocyte Gene-Expression Analysis
+        </h5>
         <div className="columns">
           <div className="column experiment">
             <p className="column-label">Experiment</p>
@@ -1771,9 +1771,9 @@ export function ScaffoldContent() {
         </h4>
       </div>
       <section className="pair">
-        <h6 className="pair-label" id="wetlab-scaffold-32">
-          Expression of the ligation-system components
-        </h6>
+        <h5 className="pair-label" id="wetlab-scaffold-32">
+          Expression of the Ligation-System Components
+        </h5>
         <div className="columns">
           <div className="column experiment">
             <p className="column-label">Experiment</p>
@@ -1880,9 +1880,9 @@ export function ScaffoldContent() {
         </h4>
       </div>
       <section className="pair">
-        <h6 className="pair-label" id="wetlab-scaffold-34">
-          Purification and protein concentrations
-        </h6>
+        <h5 className="pair-label" id="wetlab-scaffold-34">
+          Purification and Protein Concentrations
+        </h5>
         <div className="columns">
           <div className="column experiment">
             <p className="column-label">Experiment</p>
@@ -1954,9 +1954,9 @@ export function ScaffoldContent() {
         </h4>
       </div>
       <section className="pair">
-        <h6 className="pair-label" id="wetlab-scaffold-36">
-          Time-course analysis of ligation
-        </h6>
+        <h5 className="pair-label" id="wetlab-scaffold-36">
+          Time-Course Analysis of Ligation
+        </h5>
         <div className="columns">
           <div className="column experiment">
             <p className="column-label">Experiment</p>
@@ -2053,267 +2053,58 @@ export function ScaffoldContent() {
   );
 }
 
+const SCAFFOLD_REFERENCES = [
+  { block: "117", text: "[1] Huang W, Tarakanova A, Dinjaski N, Wang Q, Xia X, Chen Y, Wong JY, Buehler MJ, Kaplan DL. Design of multistimuli responsive hydrogels using integrated modeling and genetically engineered silk–elastin-like proteins. Adv. Funct. Mater. 2016;26(23):4113–4123", doi: "https://doi.org/10.1002/adfm.201600236" },
+  { block: "118", text: "[2] Nie K, et al. Ultrafast crosslinking, strongly adhesive de novo protein hydrogels promote cartilage regeneration. Bioact. Mater. 2026;56:368–385", doi: "https://doi.org/10.1016/j.bioactmat.2025.10.009" },
+  { block: "119", text: "[3] McDaniel JR, MacKay JA, Quiroz FG, Chilkoti A. Recursive directional ligation by plasmid reconstruction allows rapid and seamless cloning of oligomeric genes. Biomacromolecules 2010;11(4):944–952", doi: "https://doi.org/10.1021/bm901387t" },
+  { block: "120", text: "[4] Meyer DE, Chilkoti A. Purification of recombinant proteins by fusion with thermally-responsive polypeptides. Nat. Biotechnol. 1999;17(11):1112–1115", doi: "https://doi.org/10.1038/15100" },
+  { block: "121", text: "[5] Cho Y, Zhang Y, Christensen T, Sagle LB, Chilkoti A, Cremer PS. Effects of Hofmeister anions on the phase transition temperature of elastin-like polypeptides. J. Phys. Chem. B 2008;112(44):13765–13771", doi: "https://doi.org/10.1021/jp8062977" },
+  { block: "122", text: "[6] Smith PK, Krohn RI, Hermanson GT, Mallia AK, Gartner FH, Provenzano MD, Fujimoto EK, Goeke NM, Olson BJ, Klenk DC. Measurement of protein using bicinchoninic acid. Anal. Biochem. 1985;150(1):76–85", doi: "https://doi.org/10.1016/0003-2697(85)90442-7" },
+  { block: "123", text: "[7] Fancy DA, Kodadek T. Chemistry for the analysis of protein–protein interactions: rapid and efficient cross-linking triggered by long wavelength light. Proc. Natl. Acad. Sci. U.S.A. 1999;96(11):6020–6024", doi: "https://doi.org/10.1073/pnas.96.11.6020" },
+  { block: "124", text: "[8] Elvin CM, Carr AG, Huson MG, Maxwell JM, Pearson RD, Vuocolo T, Liyou NE, Wong DCC, Merritt DJ, Dixon NE. Synthesis and properties of crosslinked recombinant pro-resilin. Nature 2005;437(7061):999–1002", doi: "https://doi.org/10.1038/nature04085" },
+  { block: "125", text: "[9] Malencik DA, Anderson SR. Dityrosine as a product of oxidative stress and fluorescent probe. Amino Acids 2003;25(3-4):233–247", doi: "https://doi.org/10.1007/s00726-003-0014-z" },
+  { block: "127", text: "[10] von der Mark K, Gauss V, von der Mark H, Müller P. Relationship between cell shape and type of collagen synthesised as chondrocytes lose their cartilage phenotype in culture. Nature 1977;267(5611):531–532", doi: "https://doi.org/10.1038/267531a0" },
+  { block: "128", text: "[11] Lefebvre V, Huang W, Harley VR, Goodfellow PN, de Crombrugghe B. SOX9 is a potent activator of the chondrocyte-specific enhancer of the proα1(II) collagen gene. Mol. Cell. Biol. 1997;17(4):2336–2346", doi: "https://doi.org/10.1128/MCB.17.4.2336" },
+  { block: "129", text: "[12] Veggiani G, Nakamura T, Brenner MD, Gayet RV, Yan J, Robinson CV, Howarth M. Programmable polyproteams built using twin peptide superglues. Proc. Natl. Acad. Sci. U.S.A. 2016;113(5):1202–1207", doi: "https://doi.org/10.1073/pnas.1519214113" },
+  { block: "130", text: "[13] Buldun CM, Jean JX, Bedford MR, Howarth M. SnoopLigase catalyzes peptide–peptide locking and enables solid-phase conjugate isolation. J. Am. Chem. Soc. 2018;140(8):3008–3018", doi: "https://doi.org/10.1021/jacs.7b13237" },
+  { block: "131", text: "[14] Keeble AH, Wood DP, Howarth M. Design and evolution of enhanced peptide–peptide ligation for modular transglutaminase assembly. Bioconjugate Chem. 2023;34(6):1019–1036", doi: null },
+  { block: "132", text: "[15] Buldun CM, Jean JX, Bedford MR, Howarth M. SnoopLigase Catalyzes Peptide–Peptide Locking and Enables Solid-Phase Conjugate Isolation. Journal of the American Chemical Society. 2018;140(8):3008–3018", doi: null },
+  { block: "133", text: "[16] Abe Y, Shodai T, Muto T, Mihara K, Torii H, Nishikawa S, Endo T, Kohda D. Structural Basis of Presequence Recognition by the Mitochondrial Protein Import Receptor Tom20. Cell. 2000;100(5):551–560", doi: null },
+  { block: "134", text: "[17] Okutani A, Naima J, Ogihara A, Motoichi T, Ohsawa I, Ohta Y. A method for isolating and cryopreserving intact mitochondria with improved integrity and functionality. Biophysics and Physicobiology. 2025;22(2):e220012", doi: null },
+  { block: "135", text: "[18] Nakano T, et al. Mitochondrial surface coating with artificial lipid membrane improves the transfer efficacy. Communications Biology. 2022;5:745", doi: null },
+  { block: "136", text: "[19] Miyasaki K, Han S, Carton O, Kandell RM, Gunn J, Kwon EJ. Formulation methods for peptide-modified lipid nanoparticles. Journal of Controlled Release. 2025;385:114030", doi: null },
+  { block: "137", text: "[20] Little CB, Barai A, Burkhardt D, Smith SM, Fosang AJ, Werb Z, Shah M, Thompson EW. Matrix metalloproteinase 13–deficient mice are resistant to osteoarthritic cartilage erosion but not chondrocyte hypertrophy or osteophyte development. Arthritis & Rheumatism. 2009;60(12):3723–3733", doi: null },
+];
+
 export function ScaffoldReferences() {
   return (
     <>
-      <div className="source-block" data-block="117">
-        <p>
-          [1] Huang, W.; Tarakanova, A.; Dinjaski, N.; Wang, Q.; Xia, X.; Chen,
-          Y.; Wong, J. Y.; Buehler, M. J.; Kaplan, D. L. Design of multistimuli
-          responsive hydrogels using integrated modeling and genetically
-          engineered silk–elastin-like proteins. Adv. Funct. Mater. 2016, 26
-          (23), 4113–4123.{" "}
-          <a
-            href="https://doi.org/10.1002/adfm.201600236"
-            target="_blank"
-            rel="noreferrer"
-          >
-            https://doi.org/10.1002/adfm.201600236
-          </a>
-          .
-        </p>
-      </div>
-      <div className="source-block" data-block="118">
-        <p>
-          [2] Nie, K.; et al. Ultrafast crosslinking, strongly adhesive de novo
-          protein hydrogels promote cartilage regeneration. Bioact. Mater. 2026,
-          56, 368–385.{" "}
-          <a
-            href="https://doi.org/10.1016/j.bioactmat.2025.10.009"
-            target="_blank"
-            rel="noreferrer"
-          >
-            https://doi.org/10.1016/j.bioactmat.2025.10.009
-          </a>
-          .
-        </p>
-      </div>
-      <div className="source-block" data-block="119">
-        <p>
-          [3] McDaniel, J. R.; MacKay, J. A.; Quiroz, F. G.; Chilkoti, A.
-          Recursive directional ligation by plasmid reconstruction allows rapid
-          and seamless cloning of oligomeric genes. Biomacromolecules 2010, 11
-          (4), 944–952.{" "}
-          <a
-            href="https://doi.org/10.1021/bm901387t"
-            target="_blank"
-            rel="noreferrer"
-          >
-            https://doi.org/10.1021/bm901387t
-          </a>
-          .
-        </p>
-      </div>
-      <div className="source-block" data-block="120">
-        <p>
-          [4] Meyer, D. E.; Chilkoti, A. Purification of recombinant proteins by
-          fusion with thermally-responsive polypeptides. Nat. Biotechnol. 1999,
-          17 (11), 1112–1115.{" "}
-          <a
-            href="https://doi.org/10.1038/15100"
-            target="_blank"
-            rel="noreferrer"
-          >
-            https://doi.org/10.1038/15100
-          </a>
-          .
-        </p>
-      </div>
-      <div className="source-block" data-block="121">
-        <p>
-          [5] Cho, Y.; Zhang, Y.; Christensen, T.; Sagle, L. B.; Chilkoti, A.;
-          Cremer, P. S. Effects of Hofmeister anions on the phase transition
-          temperature of elastin-like polypeptides. J. Phys. Chem. B 2008, 112
-          (44), 13765–13771.{" "}
-          <a
-            href="https://doi.org/10.1021/jp8062977"
-            target="_blank"
-            rel="noreferrer"
-          >
-            https://doi.org/10.1021/jp8062977
-          </a>
-          .
-        </p>
-      </div>
-      <div className="source-block" data-block="122">
-        <p>
-          [6] Smith, P. K.; Krohn, R. I.; Hermanson, G. T.; Mallia, A. K.;
-          Gartner, F. H.; Provenzano, M. D.; Fujimoto, E. K.; Goeke, N. M.;
-          Olson, B. J.; Klenk, D. C. Measurement of protein using bicinchoninic
-          acid. Anal. Biochem. 1985, 150 (1), 76–85.{" "}
-          <a
-            href="https://doi.org/10.1016/0003-2697(85)90442-7"
-            target="_blank"
-            rel="noreferrer"
-          >
-            https://doi.org/10.1016/0003-2697(85)90442-7
-          </a>
-          .
-        </p>
-      </div>
-      <div className="source-block" data-block="123">
-        <p>
-          [7] Fancy, D. A.; Kodadek, T. Chemistry for the analysis of
-          protein–protein interactions: rapid and efficient cross-linking
-          triggered by long wavelength light. Proc. Natl. Acad. Sci. U.S.A.
-          1999, 96 (11), 6020–6024.{" "}
-          <a
-            href="https://doi.org/10.1073/pnas.96.11.6020"
-            target="_blank"
-            rel="noreferrer"
-          >
-            https://doi.org/10.1073/pnas.96.11.6020
-          </a>
-          .
-        </p>
-      </div>
-      <div className="source-block" data-block="124">
-        <p>
-          [8] Elvin, C. M.; Carr, A. G.; Huson, M. G.; Maxwell, J. M.; Pearson,
-          R. D.; Vuocolo, T.; Liyou, N. E.; Wong, D. C. C.; Merritt, D. J.;
-          Dixon, N. E. Synthesis and properties of crosslinked recombinant
-          pro-resilin. Nature 2005, 437 (7061), 999–1002.{" "}
-          <a
-            href="https://doi.org/10.1038/nature04085"
-            target="_blank"
-            rel="noreferrer"
-          >
-            https://doi.org/10.1038/nature04085
-          </a>
-          .
-        </p>
-      </div>
-      <div className="source-block" data-block="125">
-        <p>
-          [9] Malencik, D. A.; Anderson, S. R. Dityrosine as a product of
-          oxidative stress and fluorescent probe. Amino Acids 2003, 25 (3-4),
-          233–247.{" "}
-          <a
-            href="https://doi.org/10.1007/s00726-003-0014-z"
-            target="_blank"
-            rel="noreferrer"
-          >
-            https://doi.org/10.1007/s00726-003-0014-z
-          </a>
-          .
-        </p>
-      </div>
-      <div className="source-block" data-block="127">
-        <p>
-          [10] von der Mark, K.; Gauss, V.; von der Mark, H.; Müller, P.
-          Relationship between cell shape and type of collagen synthesised as
-          chondrocytes lose their cartilage phenotype in culture. Nature 1977,
-          267 (5611), 531–532.{" "}
-          <a
-            href="https://doi.org/10.1038/267531a0"
-            target="_blank"
-            rel="noreferrer"
-          >
-            https://doi.org/10.1038/267531a0
-          </a>
-          .
-        </p>
-      </div>
-      <div className="source-block" data-block="128">
-        <p>
-          [11] Lefebvre, V.; Huang, W.; Harley, V. R.; Goodfellow, P. N.; de
-          Crombrugghe, B. SOX9 is a potent activator of the chondrocyte-specific
-          enhancer of the proα1(II) collagen gene. Mol. Cell. Biol. 1997, 17
-          (4), 2336–2346.{" "}
-          <a
-            href="https://doi.org/10.1128/MCB.17.4.2336"
-            target="_blank"
-            rel="noreferrer"
-          >
-            https://doi.org/10.1128/MCB.17.4.2336
-          </a>
-          .
-        </p>
-      </div>
-      <div className="source-block" data-block="129">
-        <p>
-          [12] Veggiani, G.; Nakamura, T.; Brenner, M. D.; Gayet, R. V.; Yan,
-          J.; Robinson, C. V.; Howarth, M. Programmable polyproteams built using
-          twin peptide superglues. Proc. Natl. Acad. Sci. U.S.A. 2016, 113 (5),
-          1202–1207.{" "}
-          <a
-            href="https://doi.org/10.1073/pnas.1519214113"
-            target="_blank"
-            rel="noreferrer"
-          >
-            https://doi.org/10.1073/pnas.1519214113
-          </a>
-          .
-        </p>
-      </div>
-      <div className="source-block" data-block="130">
-        <p>
-          [13] Buldun, C. M.; Jean, J. X.; Bedford, M. R.; Howarth, M.
-          SnoopLigase catalyzes peptide–peptide locking and enables solid-phase
-          conjugate isolation. J. Am. Chem. Soc. 2018, 140 (8), 3008–3018.{" "}
-          <a
-            href="https://doi.org/10.1021/jacs.7b13237"
-            target="_blank"
-            rel="noreferrer"
-          >
-            https://doi.org/10.1021/jacs.7b13237
-          </a>
-          .
-        </p>
-      </div>
-      <div className="source-block" data-block="131">
-        <p>
-          [14] Keeble, A. H.; Wood, D. P.; Howarth, M. Design and evolution of
-          enhanced peptide–peptide ligation for modular transglutaminase
-          assembly. Bioconjugate Chem. 2023, 34 (6), 1019–1036.
-        </p>
-      </div>
-      <div className="source-block" data-block="132">
-        <p>
-          [15] Buldun CM, Jean JX, Bedford MR, Howarth M. SnoopLigase Catalyzes
-          Peptide–Peptide Locking and Enables Solid-Phase Conjugate Isolation.
-          Journal of the American Chemical Society. 2018;140(8):3008–3018.
-        </p>
-      </div>
-      <div className="source-block" data-block="133">
-        <p>
-          [16] Abe Y, Shodai T, Muto T, Mihara K, Torii H, Nishikawa S, Endo T,
-          Kohda D. Structural Basis of Presequence Recognition by the
-          Mitochondrial Protein Import Receptor Tom20. Cell.
-          2000;100(5):551–560.
-        </p>
-      </div>
-      <div className="source-block" data-block="134">
-        <p>
-          [17] Okutani A, Naima J, Ogihara A, Motoichi T, Ohsawa I, Ohta Y. A
-          method for isolating and cryopreserving intact mitochondria with
-          improved integrity and functionality. Biophysics and Physicobiology.
-          2025;22(2):e220012.
-        </p>
-      </div>
-      <div className="source-block" data-block="135">
-        <p>
-          [18] Nakano T, et al. Mitochondrial surface coating with artificial
-          lipid membrane improves the transfer efficacy. Communications Biology.
-          2022;5:745.
-        </p>
-      </div>
-      <div className="source-block" data-block="136">
-        <p>
-          [19] Miyasaki K, Han S, Carton O, Kandell RM, Gunn J, Kwon EJ.
-          Formulation methods for peptide-modified lipid nanoparticles. Journal
-          of Controlled Release. 2025;385:114030.
-        </p>
-      </div>
-      <div className="source-block" data-block="137">
-        <p>
-          [20] Little CB, Barai A, Burkhardt D, Smith SM, Fosang AJ, Werb Z,
-          Shah M, Thompson EW. Matrix metalloproteinase 13–deficient mice are
-          resistant to osteoarthritic cartilage erosion but not chondrocyte
-          hypertrophy or osteophyte development. Arthritis &amp; Rheumatism.
-          2009;60(12):3723–3733.
-        </p>
-      </div>
+      {SCAFFOLD_REFERENCES.map((reference) => (
+        <div
+          className="source-block"
+          data-block={reference.block}
+          key={reference.block}
+        >
+          <p>
+            {reference.text}
+            {reference.doi ? (
+              <>
+                {" "}
+                <a
+                  href={reference.doi}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {reference.doi}
+                </a>
+                .
+              </>
+            ) : (
+              "."
+            )}
+          </p>
+        </div>
+      ))}
     </>
   );
 }
