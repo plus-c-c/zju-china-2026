@@ -17,7 +17,7 @@ body:has(.nest-navbar-hidden) .page-article {
   /* Single size parameter for every navbar icon (see NavIcon). */
   --nest-icon-size: 60px;
   --nest-shortcut-height: 44px;
-  --nest-cart-width: 44px;
+  --nest-shortcut-width: 44px;
   --nest-shortcut-gap: 24px;
   --nest-shortcut-radius: 12px;
   --nest-shortcut-accent: #ffe39a;
@@ -283,17 +283,20 @@ body:has(.nest-navbar-hidden) .page-article {
   outline-offset: 2px;
 }
 
-.navigation-cart {
+.navigation-shortcut {
   display: flex;
-  flex: 0 0 var(--nest-cart-width);
+  flex: 0 0 var(--nest-shortcut-width);
   align-items: center;
   justify-content: center;
-  width: var(--nest-cart-width);
+  width: var(--nest-shortcut-width);
   height: var(--nest-shortcut-height);
+}
+
+.navigation-cart {
   margin-left: 14px;
 }
 
-.navigation-cart a {
+.navigation-shortcut a {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -308,24 +311,27 @@ body:has(.nest-navbar-hidden) .page-article {
     border-color 160ms ease;
 }
 
-.navigation-cart a:hover {
+.navigation-shortcut a:hover {
   border-color: #fff;
   background: #ffffff2e;
 }
 
-.navigation-cart a[aria-current="page"] {
+.navigation-shortcut a[aria-current="page"] {
   border-color: var(--nest-shortcut-accent);
   background: #ffffff2e;
   box-shadow: 0 0 0 1px var(--nest-shortcut-accent);
 }
 
-.navigation-cart img {
+.navigation-shortcut img,
+.navigation-shortcut svg {
   display: block;
   transition: transform 160ms ease;
 }
 
-.navigation-cart a:hover img,
-.navigation-cart a:focus-visible img {
+.navigation-shortcut a:hover img,
+.navigation-shortcut a:focus-visible img,
+.navigation-shortcut a:hover svg,
+.navigation-shortcut a:focus-visible svg {
   transform: translateY(-1px) scale(1.08);
 }
 
@@ -334,7 +340,7 @@ body:has(.nest-navbar-hidden) .page-article {
   margin-left: calc(var(--nest-shortcut-gap) - 2px);
 }
 
-.nest-navbar .navigation-cart a:focus-visible {
+.nest-navbar .navigation-shortcut a:focus-visible {
   outline: 2px solid #fff;
   outline-offset: 3px;
 }
@@ -364,7 +370,7 @@ body:has(.nest-navbar-hidden) .page-article {
 @media (min-width: 992px) and (max-width: 1199.98px) {
   .nest-navbar {
     --nest-shortcut-height: 40px;
-    --nest-cart-width: 36px;
+    --nest-shortcut-width: 36px;
     --nest-shortcut-gap: 16px;
   }
   .nest-navbar-bar {
