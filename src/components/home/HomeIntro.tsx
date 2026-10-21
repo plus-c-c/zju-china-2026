@@ -1,4 +1,5 @@
-import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useCallback, useContext, useEffect, useLayoutEffect, useRef, useState } from "react";
+import { HomeResumeContext } from "../../utils/homeProgress";
 import "./HomeIntro.css";
 const openingAnimationUrl = `${import.meta.env.BASE_URL}home-opening/index.html`;
 
@@ -10,8 +11,9 @@ type HomeIntroProps = {
 };
 
 export function HomeIntro({ onEnter }: HomeIntroProps) {
-  const [skipAnimation] = useState(() => openingVisited);
-  const [finished, setFinished] = useState(false);
+  const resume = useContext(HomeResumeContext);
+  const [skipAnimation] = useState(() => openingVisited || !!resume);
+  const [finished, setFinished] = useState(() => !!resume);
   const openingFrame = useRef<HTMLIFrameElement>(null);
 
   const finishIntro = useCallback(() => {
@@ -25,7 +27,7 @@ export function HomeIntro({ onEnter }: HomeIntroProps) {
 
   useLayoutEffect(() => {
     openingVisited = true;
-    window.scrollTo({ top: 0, behavior: "instant" });
+    if (!resume) window.scrollTo({ top: 0, behavior: "instant" });
     const start = () => openingFrame.current?.contentWindow?.postMessage(
       { source: "nest-home", type: skipAnimation ? "finish" : "start" }, location.origin,
     );
@@ -44,7 +46,7 @@ export function HomeIntro({ onEnter }: HomeIntroProps) {
       window.removeEventListener("message", receive);
       window.removeEventListener("page-loading-complete", start);
     };
-  }, [finishIntro, skipAnimation]);
+  }, [finishIntro, skipAnimation, resume]);
 
   useEffect(() => {
     if (finished) return;

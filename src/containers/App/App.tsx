@@ -4,9 +4,10 @@ import "./App.css";
 import "../../components/table.css";
 import "../../components/figureCaption.css";
 import "../../components/references.css";
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes, useLocation, useNavigationType } from "react-router-dom";
 import { getPathMapping, stringToSlug } from "../../utils";
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { HomeResumeContext, readHomeProgress } from "../../utils/homeProgress";
 import { Navbar } from "../../components/Navbar";
 import { NotFound } from "../../components/NotFound";
 import { Footer } from "../../components/Footer";
@@ -24,6 +25,7 @@ const SHARED_WETLAB_PAGES = ["/experiments", "/results"];
 
 const App = () => {
   const location = useLocation();
+  const navigationType = useNavigationType();
   const previousScrollPath = useRef<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [loadingFailed, setLoadingFailed] = useState(false);
@@ -37,14 +39,20 @@ const App = () => {
     location.pathname
       .split(`${stringToSlug(import.meta.env.VITE_TEAM_NAME)}`)
       .pop() || "/";
+  const homeResume = useMemo(
+    () => currentPath === "/" && navigationType === "POP"
+      ? readHomeProgress(location.key)
+      : null,
+    [currentPath, location.key, navigationType],
+  );
 
   useLayoutEffect(() => {
     if (previousScrollPath.current === location.pathname) return;
     previousScrollPath.current = location.pathname;
-    if (!location.hash) {
+    if (!location.hash && !homeResume) {
       window.scrollTo({ top: 0, left: 0, behavior: "instant" });
     }
-  }, [location.pathname, location.hash]);
+  }, [location.pathname, location.hash, homeResume]);
 
   // Set Page Title
   const currentPage =
@@ -93,6 +101,13 @@ const App = () => {
     let cancelled = false;
     const startedAt = performance.now();
     const isSharedWetlabPage = SHARED_WETLAB_PAGES.includes(currentPath);
+
+    if (homeResume) {
+      setHomeIntroReady(true);
+      setLoadingFailed(false);
+      setIsLoading(false);
+      return;
+    }
 
     // Experiments and Results stay loaded together: entering either page keeps
     // both available, so switching between them skips the loading screen.
@@ -166,7 +181,7 @@ const App = () => {
       cancelled = true;
       if (onOpeningReady) window.removeEventListener("home-opening-assets-ready", onOpeningReady);
     };
-  }, [currentPath, location.key]);
+  }, [currentPath, location.key, homeResume]);
 
   useEffect(() => {
     if (!isLoading) window.dispatchEvent(new Event("page-loading-complete"));
@@ -202,7 +217,9 @@ const App = () => {
                   element={
                     path === "/" ? (
                       <div className="home-container" key={location.key}>
-                        <Component />
+                        <HomeResumeContext.Provider value={homeResume}>
+                          <Component />
+                        </HomeResumeContext.Provider>
                       </div>
                     ) : (
                       <Toc

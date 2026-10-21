@@ -1,4 +1,5 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useContext, useEffect, useRef, useState } from "react";
+import { HomeResumeContext } from "../../utils/homeProgress";
 
 export const STORY_STOPS = [
   0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 5, 5, 6, 6, 6, 6, 6, 7, 7, 8, 8,
@@ -22,7 +23,8 @@ export function getStoryHandoffTop() {
 
 /** Scroll position drives the timeline; one wheel/touch gesture advances a scene. */
 export function useStoryNavigation() {
-  const [position, setPosition] = useState(0);
+  const resume = useContext(HomeResumeContext);
+  const [position, setPosition] = useState(() => resume?.storyPosition ?? 0);
   const [direction, setDirection] = useState(1);
   const [continuousMotion, setContinuousMotion] = useState(false);
   const scrollAnimation = useRef(0);
@@ -324,7 +326,7 @@ export function useStoryNavigation() {
     ? smoothstep(clamp((fraction - 0.4) / 0.56))
     : 1;
   const solutionCrossfade = solutionCut
-    ? smoothstep(clamp((fraction - 0.08) / 0.72))
+    ? smoothstep(fraction)
     : 1;
   const openingContent: Record<number, number> = { 1: 0, 2: 0, 3: 0, 4: 0 };
   const openingDecor: Record<number, number> = { 1: 1, 2: 0, 3: 0, 4: 0 };

@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState, type CSSProperties } from "react";
+import { useContext, useEffect, useLayoutEffect, useRef, useState, type CSSProperties } from "react";
+import { HomeResumeContext } from "../../utils/homeProgress";
 
 import { createPortal } from "react-dom";
 import { perch, stops } from "./storyBirdGeometry";
@@ -7,13 +8,22 @@ const restBird = "https://static.igem.wiki/teams/6102/wiki/home-opening/guide-bi
 const flightOne = "https://static.igem.wiki/teams/6102/wiki/home-opening/guide-bird-flight-01.avif";
 const flightTwo = "https://static.igem.wiki/teams/6102/wiki/home-opening/guide-bird-flight-02.avif";
 export function StoryBird({ position, direction, scale }: { position: number; direction: number; scale: number }) {
+  const resume = useContext(HomeResumeContext);
   const index = Math.max(0, stops.findIndex((stop) => stop.beat > position) - 1);
   const from = position >= 22 ? stops[stops.length - 1] : stops[index];
   const to = position >= 22 ? from : stops[index + 1];
   const raw = Math.max(0, Math.min(1, (position - from.beat) / Math.max(0.01, to.beat - from.beat)));
   const destination = direction < 0 ? (raw < 0.985 ? from : to) : (raw > 0.015 ? to : from);
-  const [pose, setPose] = useState({ ...stops[0], moving: false, angle: 0, facing: 1 });
+  const [pose, setPose] = useState(() => ({ ...(resume ? perch(destination) : stops[0]), moving: false, angle: 0, facing: 1 }));
   const poseRef = useRef(pose);
+  const needsRestore = useRef(!!resume);
+  useLayoutEffect(() => {
+    if (!needsRestore.current) return;
+    needsRestore.current = false;
+    const restored = { ...perch(destination), moving: false, angle: 0, facing: 1 };
+    poseRef.current = restored;
+    setPose(restored);
+  }, [destination]);
   const flightRate = useRef(1);
   useEffect(() => {
     const updateRate = (event: Event) => {
