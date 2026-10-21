@@ -16,6 +16,7 @@ import {
 } from "../../components/stepperWheel";
 import { MathFormula } from "../../components/MathFormula";
 import { TransparentImage } from "../../components/TransparentImage";
+import { AnimatedWebPSprite } from "../../components/AnimatedWebPSprite";
 import {
   m3Overview,
   m3Question,
@@ -81,11 +82,26 @@ function Parts({ parts }: { parts: M3Part[] }) {
 function FigureBlock({ block }: { block: M3Block }) {
   return (
     <figure className="m3-figure">
-      <TransparentImage
-        src={block.src ?? ""}
-        alt={block.alt ?? ""}
-        style={block.width ? { maxWidth: block.width } : undefined}
-      />
+      {block.animation ? (
+        <div className="m3-animation-frame">
+          <AnimatedWebPSprite
+            sprite={block.animation.sprite}
+            fallback={block.src ?? ""}
+            frames={block.animation.frames}
+            columns={block.animation.columns}
+            rows={block.animation.rows}
+            width={block.width ?? 360}
+            height={block.animation.height}
+            alt={block.alt ?? ""}
+          />
+        </div>
+      ) : (
+        <TransparentImage
+          src={block.src ?? ""}
+          alt={block.alt ?? ""}
+          style={block.width ? { maxWidth: block.width } : undefined}
+        />
+      )}
       {block.caption ? (
         <FigureCaption className="figure-caption">
           {block.caption}
@@ -108,7 +124,10 @@ function Blocks({ blocks }: { blocks: M3Block[] }) {
       const run = blocks.slice(index, end);
       if (run.length >= 2) {
         nodes.push(
-          <div className="m3-figure-row" key={`figrow-${index}`}>
+          <div
+            className={`m3-figure-row${run.every((figure) => figure.animation) ? " m3-animation-row" : ""}`}
+            key={`figrow-${index}`}
+          >
             {run.map((figure, offset) => (
               <FigureBlock key={`${index}-${offset}`} block={figure} />
             ))}

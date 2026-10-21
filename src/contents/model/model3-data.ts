@@ -13,6 +13,13 @@ export interface M3Block {
   src?: string;
   alt?: string;
   width?: number;
+  animation?: {
+    sprite: string;
+    frames: number;
+    columns: number;
+    rows: number;
+    height: number;
+  };
   /** Visible caption shown under the figure. */
   caption?: string;
   milestone?: "neglect-dipolar";
@@ -588,24 +595,32 @@ export const m3Steps: M3Step[] = [
         ],
       },
       {
-        t: "p",
-        parts: [
-          {
-            t: "link",
-            href: "https://video.igem.org/w/aKNRpgAnSstH3okfNiHitR",
-            v: "**ZJU-China: MNPs in magnetic field (2026)**",
-          },
-        ],
+        t: "figure",
+        src: "https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-11.webp",
+        alt: "ZJU-China: MNPs in magnetic field (2026)",
+        caption: "ZJU-China: MNPs in magnetic field (2026)",
+        width: 360,
+        animation: {
+          sprite: "https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-11-sprite.webp",
+          frames: 56,
+          columns: 10,
+          rows: 6,
+          height: 240,
+        },
       },
       {
-        t: "p",
-        parts: [
-          {
-            t: "link",
-            href: "https://video.igem.org/w/jTZZfgsycPBGhN78bz2S9g",
-            v: "**ZJU-China: TVNFKLY-MNPs in magnetic field (2026)**",
-          },
-        ],
+        t: "figure",
+        src: "https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-12.webp",
+        alt: "ZJU-China: TVNFKLY-MNPs in magnetic field (2026)",
+        caption: "ZJU-China: TVNFKLY-MNPs in magnetic field (2026)",
+        width: 360,
+        animation: {
+          sprite: "https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-12-sprite.webp",
+          frames: 60,
+          columns: 10,
+          rows: 6,
+          height: 240,
+        },
       },
       {
         t: "h4",
