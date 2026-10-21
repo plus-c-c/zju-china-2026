@@ -1734,7 +1734,14 @@ export function Design() {
                 doi:10.1146/annurev.cellbio.12.1.697.
               </p>
               <p id="design-reference-4" style={{ scrollMarginTop: "112px" }}>
-                [4] Nie et al., 2026.
+                [4] Nie K, Fan Z, Sun W, et al. Ultrafast crosslinking, strongly
+                adhesive de novo protein hydrogels promote cartilage
+                regeneration. <em>Bioact Mater</em>. 2026;56:368–385. Published
+                online 27 October 2025. doi:
+                <a href="https://doi.org/10.1016/j.bioactmat.2025.10.009">
+                  10.1016/j.bioactmat.2025.10.009
+                </a>
+                .
               </p>
               <p id="design-reference-5" style={{ scrollMarginTop: "112px" }}>
                 [5] Fancy DA, Kodadek T. Chemistry for the analysis of
