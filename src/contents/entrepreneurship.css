@@ -9,8 +9,9 @@
 }
 
 .entrepreneurship-quote {
-  max-width: 920px;
-  margin: 1.5rem auto 2rem;
+  width: 100%;
+  max-width: none;
+  margin: 1.5rem 0 2rem;
   padding: 1.15rem 1.5rem;
   border-left: 4px solid #63a0ff;
   border-radius: 0 12px 12px 0;

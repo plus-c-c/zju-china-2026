@@ -727,44 +727,44 @@ const CONTENT: ContentBlock[] = [
         ]
       },
       {
-        "type": "heading",
+        "type": "card",
         "source_index": 134,
-        "level": 4,
-        "id": "material-costs",
-        "text": "Material Costs"
+        "title": "Material Costs",
+        "variant": "secondary",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "source_index": 135,
+            "text": "NEST produces SELP using <em>E. coli</em> BL21(DE3) carrying an SELP expression plasmid, with standard LB broth used at laboratory scale. Because the resulting SELP will be formulated into a hydrogel for implantation in humans, we currently favor consistent, traceable culture-media ingredients rather than waste-stream feedstocks. This also aligns with medical-device requirements for supplier qualification and raw-material traceability [10]."
+          },
+          {
+            "type": "paragraph",
+            "source_index": 136,
+            "text": "LB Miller medium contains 10 g tryptone, 5 g yeast extract, and 10 g sodium chloride per liter [11]. At an annual culture volume of 31,360 L, NEST would require approximately 313.6 kg tryptone, 156.8 kg yeast extract, and 313.6 kg sodium chloride each year."
+          },
+          {
+            "type": "paragraph",
+            "source_index": 137,
+            "text": "Based on publicly available catalogue prices from suppliers in China, the annual purchasing cost of these three main LB components is approximately CNY 290,700 [12, 13]."
+          },
+          {
+            "type": "paragraph",
+            "source_index": 138,
+            "text": "In addition to the base medium, approximately 7.47 kg IPTG and 1.57 kg kanamycin are required annually. SELP purification also requires PBS and sodium chloride for inverse transition cycling (ITC); final hydrogel formulation requires Ru/SPS crosslinking components. Including CNY 291,500 per year for syringe hardware consumables (500 units), estimated annual raw material costs are CNY 810,500 (approximately USD 130,100 or EUR 115,900)."
+          }
+        ]
       },
       {
-        "type": "paragraph",
-        "source_index": 135,
-        "text": "NEST produces SELP using <em>E. coli</em> BL21(DE3) carrying an SELP expression plasmid, with standard LB broth used at laboratory scale. Because the resulting SELP will be formulated into a hydrogel for implantation in humans, we currently favor consistent, traceable culture-media ingredients rather than waste-stream feedstocks. This also aligns with medical-device requirements for supplier qualification and raw-material traceability [10]."
-      },
-      {
-        "type": "paragraph",
-        "source_index": 136,
-        "text": "LB Miller medium contains 10 g tryptone, 5 g yeast extract, and 10 g sodium chloride per liter [11]. At an annual culture volume of 31,360 L, NEST would require approximately 313.6 kg tryptone, 156.8 kg yeast extract, and 313.6 kg sodium chloride each year."
-      },
-      {
-        "type": "paragraph",
-        "source_index": 137,
-        "text": "Based on publicly available catalogue prices from suppliers in China, the annual purchasing cost of these three main LB components is approximately CNY 290,700 [12, 13]."
-      },
-      {
-        "type": "paragraph",
-        "source_index": 138,
-        "text": "In addition to the base medium, approximately 7.47 kg IPTG and 1.57 kg kanamycin are required annually. SELP purification also requires PBS and sodium chloride for inverse transition cycling (ITC); final hydrogel formulation requires Ru/SPS crosslinking components. Including CNY 291,500 per year for syringe hardware consumables (500 units), estimated annual raw material costs are CNY 810,500 (approximately USD 130,100 or EUR 115,900)."
-      },
-      {
-        "type": "heading",
+        "type": "card",
         "source_index": 142,
-        "level": 4,
-        "id": "direct-labor-cost",
-        "text": "Direct Labor Cost"
-      },
-      {
-        "type": "paragraph",
-        "source_index": 143,
-        "text": "The annual direct labor cost of company operations can be expressed as:"
-      },
+        "title": "Direct Labor Cost",
+        "variant": "secondary",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "source_index": 143,
+            "text": "The annual direct labor cost of company operations can be expressed as:"
+          },
       {
         "type": "formula",
         "source_index": 144,
@@ -945,47 +945,52 @@ const CONTENT: ContentBlock[] = [
         "type": "paragraph",
         "source_index": 175,
         "text": "NEST's current estimate of total annual labor costs is therefore approximately CNY 2.6603 million."
+      }
+        ]
       },
       {
-        "type": "heading",
+        "type": "card",
         "source_index": 176,
-        "level": 4,
-        "id": "r-and-d",
-        "text": "R&D"
+        "title": "R&D",
+        "variant": "secondary",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "source_index": 177,
+            "text": "NEST's current cost calculations cover only the first-generation SELP hydrogel. In the future, we plan to express functional peptides with repair-related activity and incorporate them into the product. Reusing the existing fermentation platform would add His-tag affinity chromatography, protease cleavage, and secondary purification to an otherwise similar SELP manufacturing process. We provisionally estimate incremental R&D operating costs of CNY 1.84 million per year, primarily for process optimization, excluding capital investment in new buildings or a complete GMP production line. If a separate line must be replicated, its equipment must be budgeted as additional capital expenditure [14]."
+          },
+          {
+            "type": "paragraph",
+            "source_index": 178,
+            "text": "Alternatively, process development and pilot production of functional peptides could be outsourced to a CDMO. Chinese CDMOs offer microbial fermentation services up to around 2,000 L, protein purification, and quality testing, but pricing depends on the strain, yield, and purity requirements [15, 16]. In-house development requires existing equipment, specialist personnel, and a quality system. Outsourcing may entail higher service fees but reduce early equipment investment and scale-up risk. Given our current uncertainty over product demand, we favor CDMO collaboration initially. Once manufacturing is stable and demand increases, internal production may become more economical."
+          }
+        ]
       },
       {
-        "type": "paragraph",
-        "source_index": 177,
-        "text": "NEST's current cost calculations cover only the first-generation SELP hydrogel. In the future, we plan to express functional peptides with repair-related activity and incorporate them into the product. Reusing the existing fermentation platform would add His-tag affinity chromatography, protease cleavage, and secondary purification to an otherwise similar SELP manufacturing process. We provisionally estimate incremental R&D operating costs of CNY 1.84 million per year, primarily for process optimization, excluding capital investment in new buildings or a complete GMP production line. If a separate line must be replicated, its equipment must be budgeted as additional capital expenditure [14]."
-      },
-      {
-        "type": "paragraph",
-        "source_index": 178,
-        "text": "Alternatively, process development and pilot production of functional peptides could be outsourced to a CDMO. Chinese CDMOs offer microbial fermentation services up to around 2,000 L, protein purification, and quality testing, but pricing depends on the strain, yield, and purity requirements [15, 16]. In-house development requires existing equipment, specialist personnel, and a quality system. Outsourcing may entail higher service fees but reduce early equipment investment and scale-up risk. Given our current uncertainty over product demand, we favor CDMO collaboration initially. Once manufacturing is stable and demand increases, internal production may become more economical."
-      },
-      {
-        "type": "heading",
+        "type": "card",
         "source_index": 179,
-        "level": 4,
-        "id": "waste-management-costs",
-        "text": "Waste Management Costs"
+        "title": "Waste Management Costs",
+        "variant": "secondary",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "source_index": 180,
+            "text": "Waste from NEST production mainly comprises approximately 31,360 L of spent culture medium annually, along with cleaning liquids, used filters, disposable tubing, gloves, and other consumables. To accommodate this aqueous waste and production variability, we provisionally estimate 50,000 kg of waste per year. Because engineered <em>E. coli</em> is used, spent medium and contaminated consumables must be deactivated before sorting and disposal by qualified contractors. China's General Requirements for Biosafety in Laboratories also requires reliable disinfection, segregation, and safe disposal [18]. Using an initial treatment price of CNY 7.3 per kg [17], annual waste-disposal costs are estimated at 50,000 kg × CNY 7.3/kg = CNY 365,000."
+          }
+        ]
       },
       {
-        "type": "paragraph",
-        "source_index": 180,
-        "text": "Waste from NEST production mainly comprises approximately 31,360 L of spent culture medium annually, along with cleaning liquids, used filters, disposable tubing, gloves, and other consumables. To accommodate this aqueous waste and production variability, we provisionally estimate 50,000 kg of waste per year. Because engineered <em>E. coli</em> is used, spent medium and contaminated consumables must be deactivated before sorting and disposal by qualified contractors. China's General Requirements for Biosafety in Laboratories also requires reliable disinfection, segregation, and safe disposal [18]. Using an initial treatment price of CNY 7.3 per kg [17], annual waste-disposal costs are estimated at 50,000 kg × CNY 7.3/kg = CNY 365,000."
-      },
-      {
-        "type": "heading",
+        "type": "card",
         "source_index": 181,
-        "level": 4,
-        "id": "royalties",
-        "text": "Royalties"
-      },
-      {
-        "type": "paragraph",
-        "source_index": 182,
-        "text": "A company licensing its patents to third parties receives royalty payments, typically a small percentage, often around 5%. In our case, this could allow other medical-device companies to manufacture SELP using our strains. However, we do not plan to license our patents to other manufacturers. Instead, we prefer to produce and sell SELP ourselves. We therefore do not anticipate royalty income."
+        "title": "Royalties",
+        "variant": "secondary",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "source_index": 182,
+            "text": "A company licensing its patents to third parties receives royalty payments, typically a small percentage, often around 5%. In our case, this could allow other medical-device companies to manufacture SELP using our strains. However, we do not plan to license our patents to other manufacturers. Instead, we prefer to produce and sell SELP ourselves. We therefore do not anticipate royalty income."
+          }
+        ]
       }
     ]
   },
