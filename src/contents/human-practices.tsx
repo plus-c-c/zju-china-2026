@@ -1721,6 +1721,18 @@ function StakeBridgeBlock() {
         relevant field who are willing to communicate with teams, helping other
         iGEMers take the first step in stakeholder outreach.
       </p>
+      <p>
+        The source code for StakeBridge is available in the team&rsquo;s iGEM
+        Software repository:{" "}
+        <a
+          href="https://gitlab.igem.org/2026/software/zju-china/nest/-/tree/main/stakebridge"
+          target="_blank"
+          rel="noreferrer"
+        >
+          https://gitlab.igem.org/2026/software/zju-china/nest/-/tree/main/stakebridge
+        </a>
+        .
+      </p>
       <StakeBridgeEmbed />
     </>
   );
