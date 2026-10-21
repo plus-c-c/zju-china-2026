@@ -141,7 +141,7 @@ export function ProofOfConcept() {
             needs and together demonstrate how NEST's programmable design
             performs in practice.
           </p>
-          <figure className="poc-half-width my-4 text-center">
+          <figure className="my-4 text-center">
             <TransparentImage
               src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/schematic-01.avif"
               width={3120}
@@ -206,7 +206,7 @@ export function ProofOfConcept() {
                   manufacturability of different scaffold configurations
                   (Figures 2 and 3).
                 </p>
-                <figure className="poc-half-width my-4 text-center">
+                <figure className="my-4 text-center">
                   <TransparentImage
                     src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-01.avif"
                     alt="Figure 2 | Production of scaffolds with different repeat numbers"
@@ -223,7 +223,7 @@ export function ProofOfConcept() {
                     the target bands.
                   </FigureCaption>
                 </figure>
-                <figure className="poc-half-width my-4 text-center">
+                <figure className="my-4 text-center">
                   <TransparentImage
                     src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-02.avif"
                     alt="Figure 3 | Expression and recovery of SnoopTag2-bearing scaffolds"
@@ -252,7 +252,7 @@ export function ProofOfConcept() {
                   direct demonstration of the transformation from a protein
                   precursor into a material (Figure 4).
                 </p>
-                <figure className="poc-half-width my-4 text-center">
+                <figure className="my-4 text-center">
                   <TransparentImage
                     src="https://static.igem.wiki/teams/6102/wiki/images/result/01/10.avif"
                     alt="Figure 4 | Rapid gelation of SELP"
@@ -294,7 +294,7 @@ export function ProofOfConcept() {
                   mechanical behavior, validating the tunability of the SELP
                   scaffold (Figure 5).
                 </p>
-                <figure className="poc-half-width my-4 text-center">
+                <figure className="my-4 text-center">
                   <TransparentImage
                     src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-04.avif"
                     alt="Figure 5 | Porous elastic network and sequence-tunable mechanical properties"
@@ -369,7 +369,7 @@ export function ProofOfConcept() {
                   tagged scaffolds separately demonstrated that the ligation tag
                   could be incorporated into scaffold constructs (Figure 7).
                 </p>
-                <figure className="poc-half-width my-4 text-center">
+                <figure className="my-4 text-center">
                   <TransparentImage
                     src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-06.avif"
                     alt="Figure 7 | SnoopLigase2-mediated formation of the expected ligation product"
@@ -424,7 +424,7 @@ export function ProofOfConcept() {
                   could be produced, whether the interface remained compatible,
                   and whether their intended functions could be achieved.
                 </p>
-                <figure className="poc-half-width my-4 text-center">
+                <figure className="my-4 text-center">
                   <TransparentImage
                     src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/schematic-02.avif"
                     alt="Figure 8 | OA needs mapped to functional modules"
@@ -462,7 +462,7 @@ export function ProofOfConcept() {
                   and delivery components available for experimental testing
                   (Figure 9).
                 </p>
-                <figure className="poc-half-width my-4 text-center">
+                <figure className="my-4 text-center">
                   <TransparentImage
                     src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-07.avif"
                     alt="Figure 9 | Key components for the functional modules"
@@ -499,7 +499,7 @@ export function ProofOfConcept() {
                   prevent the shared interface from working; each construct
                   could use the same ligation mechanism (Figure 10).
                 </p>
-                <figure className="poc-half-width my-4 text-center">
+                <figure className="my-4 text-center">
                   <TransparentImage
                     src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-08.avif"
                     alt="Figure 10 | Shared ligation activity across three functional modules"
@@ -545,7 +545,7 @@ export function ProofOfConcept() {
                   the control group and confirming TVN-mediated particle binding
                   (Figures 11 and 12).
                 </p>
-                <figure className="poc-half-width my-4 text-center">
+                <figure className="my-4 text-center">
                   <TransparentImage
                     src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-09.avif"
                     alt="Figure 11 | Control group for magnetic particle binding"
@@ -561,7 +561,7 @@ export function ProofOfConcept() {
                     labels in the original figure.
                   </FigureCaption>
                 </figure>
-                <figure className="poc-half-width my-4 text-center">
+                <figure className="my-4 text-center">
                   <TransparentImage
                     src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-10.avif"
                     alt="Figure 12 | TVN-particle fluorescence and magnetic alignment"
@@ -789,7 +789,7 @@ export function ProofOfConcept() {
                   providing imaging evidence consistent with cellular delivery
                   (Figure 20).
                 </p>
-                <figure className="poc-half-width my-4 text-center">
+                <figure className="my-4 text-center">
                   <TransparentImage
                     src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-18.avif"
                     alt="Figure 20 | Mitochondrial labeling in recipient-cell regions"
@@ -836,7 +836,7 @@ export function ProofOfConcept() {
             </h2>
             <BiosafetyIntroduction />
             <BiosafetyResultsText figureNumber="21" />
-            <figure className="poc-half-width my-4 text-center">
+            <figure className="my-4 text-center">
               <TransparentImage
                 src={BIOSAFETY_FIGURE_URL}
                 alt="Figure 21 | Preliminary cytocompatibility assessment of NEST components using the CCK-8 assay"
