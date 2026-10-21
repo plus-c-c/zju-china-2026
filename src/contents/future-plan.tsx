@@ -6,34 +6,59 @@ import {
 } from "../components/FigureSourceCitation";
 import { References } from "../components/References";
 const CIF = "https://static.igem.wiki/teams/6102/wiki/images/cif/";
+const BASE = import.meta.env.BASE_URL;
 
 export function FuturePlan() {
   return (
     <div className="row mt-4">
       <div className="col">
         <p>
-          NEST has completed proof-of-concept validation of scaffold
+          We see an opportunity to build a cartilage-repair business around a
+          programmable protein platform. Through our proposed company, NexCode
+          Biotechnologies, we want to grow NEST into a family of materials for
+          different injuries, with production methods and preparation tools
+          that make those materials practical to supply and use. We plan to
+          start with research partnerships and product co-development with
+          orthopedic companies and research hospitals.
+        </p>
+        <p>
+          We already have laboratory proof-of-concept results for scaffold
           fabrication, material properties, standardized interfaces, and
-          functional modules. The next step is to integrate these validated
-          components into a unified material system and assess its performance
-          at tissue interfaces under repeated loading. In parallel, we will
-          optimize fermentation and downstream processing so that functional
-          validation and reproducible manufacturing jointly inform the selection
-          of the first product.
+          individual functional modules. The next phase will test the complete
+          materials at tissue interfaces under repeated loading, while
+          fermentation and downstream development address production
+          consistency.
+        </p>
+        <p>
+          The{" "}
+          <a href={`${BASE}entrepreneurship#timeline`}>
+            Entrepreneurship roadmap
+          </a>{" "}
+          places lead-candidate selection in 2026&ndash;2027 and product and
+          process optimization in 2027&ndash;2029. These are planning windows;
+          study results, product classification, and funding will determine the
+          pace of development.
         </p>
 
         <h2 className="mt-5 mb-3">
           1 Integration of the Complete Material and Formulation Screening
         </h2>
         <p>
-          The initial phase will focus on the focal cartilage-defect application
-          described in the Implementation section. We will compare the baseline
-          SELP formulation with the prioritized GAG-retention formulation, while
-          retaining magnetically responsive and delivery-enabled formulations as
-          subsequent platform candidates. In consultation with clinical
+          The initial phase will focus on the focal knee-cartilage-defect
+          application described in the{" "}
+          <a href={`${BASE}implementation`}>Implementation section</a>. We will
+          start with the SELP&ndash;SnoopTag2 MVP and compare it with a
+          GAG-retention formulation. Magnetic and delivery-enabled formulations
+          will remain later candidates. In consultation with clinical
           collaborators, we will first define target mechanical ranges, gelation
           criteria, and handling requirements, and then screen formulations
           based on their performance as complete materials.
+        </p>
+        <p>
+          At this stage, we will write a target product profile with prospective
+          users and review intellectual-property ownership, prior disclosures,
+          and third-party rights before patent filing and development
+          agreements. We will also seek early advice on product classification.
         </p>
         <figure className="figure d-block my-4 text-center">
           <img
@@ -56,10 +81,11 @@ export function FuturePlan() {
           </FigureCaption>
         </figure>
         <p>
-          Formulation screening will link material architecture and assembly
-          efficiency to functional performance. All readouts will be measured in
-          the fully assembled material to determine whether the intended design
-          objectives are achieved after assembly and crosslinking.
+          The base MVP will be assessed for gelation, mechanics, degradation,
+          biocompatibility, and reproducibility. Module-containing candidates
+          will also be tested after assembly and crosslinking. The magnetic
+          alignment and triggered-delivery tests below apply to those later
+          formulations.
         </p>
         <TableCaption>
           <strong>
@@ -237,6 +263,13 @@ export function FuturePlan() {
           pilot-scale production.
         </p>
         <p>
+          Early pilot batches could be produced with a qualified development and
+          manufacturing partner. We will use recovery, batch consistency, and
+          cost data from these runs to revisit the 500 L production scenario in
+          Entrepreneurship. Dedicated capacity would be considered after the
+          process is mature and demand has been demonstrated.
+        </p>
+        <p>
           This stage will be considered complete when candidate materials meet
           predefined requirements for wet-state adhesion and cyclic loading in
           tissue models, while multiple production batches remain consistent in
@@ -260,12 +293,12 @@ export function FuturePlan() {
           according to material degradation and tissue-repair kinetics.
         </p>
         <p>
-          This stage will be considered complete when predefined repair and
-          safety endpoints are met and the added benefit of a functional
-          formulation over the baseline scaffold can be clearly determined.
-          These data will guide selection of the formulation for product
-          development and inform adjustments to components or use conditions
-          that do not provide the expected benefit.
+          This stage will be considered complete when the lead formulation meets
+          predefined repair and safety endpoints. For a functional candidate, we
+          will also need evidence of benefit over the baseline scaffold that
+          justifies its added complexity. These data will guide selection of the
+          formulation for product development and inform adjustments to
+          components or use conditions that do not provide the expected benefit.
         </p>
 
         <h2 className="mt-5 mb-3">
@@ -282,6 +315,14 @@ export function FuturePlan() {
           batch-release criteria. For functional formulations, specifications
           will also include assembly yield, activity, and relevant payload
           attributes.
+        </p>
+        <p>
+          The business roadmap places preparation for clinical studies in
+          2029&ndash;2031, clinical evaluation in 2031&ndash;2035, and
+          regulatory review and launch preparation in 2035&ndash;2037. Human
+          studies would begin after the required quality and safety evidence and
+          approvals are in place. These dates will be revised as evidence and
+          funding become available.
         </p>
         <figure className="figure d-block my-4 text-center">
           <img
@@ -326,12 +367,13 @@ export function FuturePlan() {
           <sup className="article-citation">[3]</sup>.
         </p>
         <p>
-          This stage will be complete when a candidate product has well-defined
-          specifications, batch traceability, and clear storage and use
-          conditions, supported by reproducible manufacturing procedures, a
-          complete evaluation dossier, and a defined translational pathway.
-          Manufacturing cost and workflow burden in clinical settings will also
-          inform formulation selection.
+          Preparation for clinical studies will require fixed product
+          specifications, batch traceability, storage and use conditions,
+          reproducible manufacturing procedures, and the required evaluation
+          dossier. Routine hospital supply will additionally depend on clinical
+          evidence and the relevant authorizations. Manufacturing cost and the
+          time and equipment needed in hospitals will also inform formulation
+          selection.
         </p>
 
         <h2 className="mt-5 mb-3">
@@ -339,13 +381,14 @@ export function FuturePlan() {
           Types
         </h2>
         <p>
-          The first product will establish a reproducible basis for
-          manufacturing, assembly, and use within NEST. Building on this
-          foundation, we will extend the platform to three repair settings:
-          filling and supporting focal defects, retaining matrix and supporting
-          cells in OA lesions, and enabling stratified repair of osteochondral
-          injuries. For each direction, material configuration and subsequent
-          validation will be determined by the specific clinical need.
+          The first product will focus on focal knee-cartilage defects in China.
+          Its manufacturing and preparation procedures will be the starting
+          point for later formulations: matrix retention and cellular support in
+          OA lesions, and layered materials for osteochondral injuries.
+          Expansion to other joints and regions will require intended-use
+          definitions and testing for each new application. The
+          2037&ndash;2042 expansion phase in the business roadmap would build
+          on clinical and supply data from the first product.
         </p>
         <figure className="figure d-block my-4 text-center">
           <img
@@ -369,13 +412,13 @@ export function FuturePlan() {
           5.1 Establishing the First Product for Focal Cartilage Defects
         </h3>
         <p>
-          We will prioritize the baseline scaffold and GAG-retention
-          formulation, comparing their performance in defect filling, fixation
-          under wet conditions, and cyclic loading. Formulation selection will
-          also take handling time and batch-to-batch reproducibility into
-          account. The specifications, manufacturing documentation, and
-          operating instructions established for this application will provide a
-          common starting point for subsequent product development.
+          We will start with the SELP&ndash;SnoopTag2 MVP and compare it with
+          the GAG-retention formulation in defect filling, fixation under wet
+          conditions, and cyclic loading. The lead candidate will be the
+          simplest formulation that meets the performance targets. Handling time
+          and batch-to-batch reproducibility will also influence the choice. Its
+          specifications, manufacturing documentation, and operating
+          instructions can then be adapted for later products.
         </p>
         <h3 className="mt-4 mb-2" data-toc="include" data-toc-depth="2">
           5.2 Advancing OA Functional Modules into Fully Integrated Material
@@ -389,7 +432,10 @@ export function FuturePlan() {
           evaluated from trigger-induced release through payload activity.
           Comparisons of individual modules and their combinations will help
           identify OA-oriented formulations that retain their functions in the
-          complete material.
+          complete material. Mitochondrial delivery will remain a parallel
+          research direction until its provenance, potency, storage stability,
+          and delivery performance are established. Each new combination will
+          need its own safety and regulatory assessment.
         </p>
         <h3 className="mt-4 mb-2" data-toc="include" data-toc-depth="2">
           5.3 Co-developing Layered Products with Bone-Repair Materials
@@ -415,12 +461,21 @@ export function FuturePlan() {
           scale-up.
         </p>
         <p>
-          NEST ultimately aims to provide purpose-specific material options for
-          different cartilage injuries. Tissue data, manufacturing
-          specifications, and use-related experience from each application will
-          inform the next design cycle, enabling the platform&rsquo;s
-          established programmability to be translated into products that can be
-          supplied reproducibly.
+          Early B2B work will focus on research partnerships, co-development,
+          and technology-development licensing with orthopedic companies and
+          research hospitals. After the required testing and authorizations,
+          clinical institutions would procure implant materials and associated
+          delivery solutions. We also plan to explore SnoopLigase2-ZJU as a
+          separate product candidate, with its own specifications and validation
+          work.
+        </p>
+        <p>
+          Growing NexCode will mean making clear choices about products,
+          partners, and investment. We will base those choices on repair
+          performance, production cost, and feedback from clinicians. Our
+          ambition is to become a company that hospitals and orthopedic
+          partners can turn to when a new cartilage-repair need arises, and to
+          use each product we develop to make the next one possible.
         </p>
 
         <References level={2}>

@@ -9,16 +9,16 @@ export function Implementation() {
     <div className="row mt-4">
       <div className="col">
         <p>
-          Building on the Design and proof-of-concept results, NEST aims to
-          provide material formulations tailored to the repair requirements of
-          different cartilage injuries. We have defined three application
-          directions: focal defects following sports-related or traumatic
-          injury, local lesions associated with osteoarthritis (OA), and
-          osteochondral injuries. Programmable SELP and shared functional
-          interfaces will support the different formulations, while
-          biomanufacturing, a clinician-facing application, and a
-          material-preparation device will connect material supply with
-          professional use.
+          We want NEST to take shape at a cartilage defect, filling the damaged
+          area and forming a scaffold that stays in place as the joint moves.
+          The practical work starts before delivery, with consistent protein
+          production, controlled mixing, and clear instructions for clinicians.
+          We are developing formulations for focal cartilage defects, local
+          lesions associated with osteoarthritis (OA), and osteochondral
+          injuries. These applications can use the same SELP scaffold and
+          assembly method, while each needs its own formulation and tests.
+          Alongside the material work, we have built an app for clinicians and a
+          device for preparing the material.
         </p>
 
         <h2 className="mt-5 mb-3">
@@ -29,71 +29,65 @@ export function Implementation() {
           Injury
         </h3>
         <p>
-          This application will be the primary focus for the first product. For
-          well-demarcated defects, we propose an acellular SELP material that
-          can be delivered as a precursor, conform to the defect, and gel in
-          situ to provide defect filling and local structural support. Scaffold
-          specifications and crosslinking conditions will be selected according
-          to load-bearing requirements. A CPC-containing GAG-retention
-          formulation will be prioritized as a functional upgrade and evaluated
-          alongside the baseline formulation. Orthopedic and sports-medicine
-          professionals will contribute to defining the intended use and
-          handling requirements.
+          We plan to begin with well-demarcated knee-cartilage defects following
+          sports injuries or trauma. Our proposed minimum viable product (MVP)
+          is the acellular SELP&ndash;SnoopTag2 hydrogel. SELP forms the
+          scaffold, while SnoopTag2 provides an interface for attaching
+          functional peptides. The precursor is designed to fill the defect, gel
+          in place, and provide local structural support. We will select
+          scaffold specifications and crosslinking conditions for the expected
+          loads, and compare this baseline with a CPC-containing formulation for
+          GAG retention. A functional module would enter the lead formulation
+          only if its benefit justifies the added manufacturing and testing
+          work. Orthopedic and sports-medicine professionals will help define
+          which defects the product is intended for and how it should be
+          handled.
         </p>
         <h3 className="mt-4 mb-2">
           1.2 Local Degenerative Lesions Associated with Osteoarthritis (OA)
         </h3>
         <p>
-          While the first application focuses on well-demarcated defects,
-          lesions characterized by matrix loss and altered cellular states may
-          require the material to further modulate the local microenvironment.
-          Our OA proof-of-concept work provides an experimental starting point
-          for magnetic responsiveness, GAG retention, and stimuli-responsive
-          delivery. Proposed products will combine functions according to the
-          needs of the lesion: a CPC-containing formulation will address GAG
-          retention, magnetic actuation will be developed for structural
-          regulation, and MMP-13-responsive delivery will be integrated with
-          local cellular support.
+          Local OA lesions may also require us to address matrix loss and
+          altered cellular states. For this application, we plan to develop the
+          modules explored in our OA proof of concept: CPC for GAG retention,
+          magnetic actuation to regulate material structure, and
+          MMP-13-responsive delivery of therapeutic cargo. We will choose and
+          test combinations according to the needs of the lesion.
         </p>
         <h3 className="mt-4 mb-2">
           1.3 Osteochondral Injuries Involving the Subchondral Bone
         </h3>
         <p>
-          For defects extending from cartilage into subchondral bone, we propose
-          developing NEST as the cartilage layer of a stratified repair material
-          in collaboration with a bone-repair materials team. SELP
-          specifications and functional modules will address mechanical and
-          matrix-related requirements on the cartilage side, while a separate
-          bone-support layer will provide deeper structural support. Interlayer
-          bonding and load transfer will jointly determine the performance of
-          the composite. Existing approaches to osteochondral repair will inform
-          the definition and evaluation of this application{" "}
-          <sup className="article-citation">[1]</sup>.
+          Injuries that extend into subchondral bone require attention to both
+          the cartilage and bone portions of the defect{" "}
+          <sup className="article-citation">[1]</sup>. We propose working with a
+          bone-repair materials team to use NEST as the cartilage layer of a
+          layered repair material. We would adjust the SELP scaffold and
+          functional modules for the cartilage side and pair them with a
+          separate bone-support layer. Testing would need to establish how the
+          two layers bond and transfer load.
         </p>
         <p>
-          All three application directions share a common foundation for
-          scaffold manufacturing and assembly, while each will have a
-          standardized formulation with clearly defined composition, preparation
-          procedures, intended use, and evaluation criteria. The development
-          team will generate and evaluate material variants against these
-          criteria, while professional users will select products for intended
-          uses supported by completed validation. The resulting specifications
-          will provide a shared reference for production, preparation, and use.
+          All three applications will use the same scaffold production and
+          assembly methods. For each formulation, we will specify the
+          composition, preparation steps, intended use, and validation
+          requirements. Following validation and the necessary authorizations,
+          clinicians would select a product based on its intended use and test
+          results.
         </p>
         <figure className="figure d-block my-4 text-center">
           <img
             src={`${CIF}5.avif`}
-            alt="Proposed NEST implementation workflow."
+            alt="Planned NEST production and preparation workflow."
             className="figure-img img-fluid rounded"
             style={{ width: "100%" }}
             loading="lazy"
             decoding="async"
           />
           <FigureCaption className="figure-caption">
-            Figure 1 | Proposed NEST implementation workflow. Different
-            application-specific formulations share manufacturing and
-            use-support systems and will each undergo validation for their
-            intended applications.
+            Figure 1 | Planned NEST production and preparation workflow. The
+            three applications share scaffold production and preparation
+            systems. Each formulation will be tested for its intended use.
           </FigureCaption>
         </figure>
 
@@ -101,75 +95,67 @@ export function Implementation() {
           2 Ensuring a Stable Material Supply through Biomanufacturing
         </h2>
         <p>
-          Delivering these standardized formulations requires a stable supply of
-          the shared SELP scaffold. NEST has employed <em>Escherichia coli</em>{" "}
-          expression and inverse transition cycling (ITC) purification to
-          produce SELP. ITC exploits the temperature- and salt-responsive
-          behavior of the protein, enabling scaffold recovery through reversible
-          aggregation, separation, and resolubilization. This
-          non-chromatographic route reduces reliance on affinity resins for bulk
-          scaffold recovery and provides a foundation for scale-up focused on
-          heat transfer, mixing, and solid&ndash;liquid separation, making it an
-          important component of the project&rsquo;s strategy for scalable
-          biomanufacturing <sup className="article-citation">[2, 3]</sup>.
+          We have produced SELP in <em>Escherichia coli</em> and purified it by
+          inverse transition cycling (ITC). Changes in temperature and salt
+          conditions cause the protein to aggregate reversibly, allowing us to
+          separate it and dissolve it again. For bulk scaffold recovery, this
+          reduces our reliance on affinity resins{" "}
+          <sup className="article-citation">[2, 3]</sup>. For larger batches, we
+          will need to establish suitable heat transfer, mixing, and
+          solid&ndash;liquid separation conditions.
         </p>
         <p>
-          The proposed supply system centers on centralized scaffold production,
-          followed by concentration, desalting, lyophilization, and quantitative
-          aliquoting. Ligases, functional proteins, and active payloads will be
-          produced and quality-controlled separately according to their specific
-          requirements. Materials delivered to hospitals will be accompanied by
-          a defined formulation, batch information, and operating instructions.
-          Reconstitution and storage conditions for the lyophilized scaffold, as
-          well as the use period for each module, will be established through
-          component-specific stability studies.
+          We plan to produce the scaffold centrally, then concentrate, desalt,
+          freeze-dry, and dispense it in measured amounts. Ligases, functional
+          proteins, and active payloads will be produced and checked separately.
+          Early pilot batches could be made with a qualified development and
+          manufacturing partner. Investment in dedicated production capacity
+          would follow process validation and evidence of demand. Materials
+          supplied to hospitals will include formulation details, batch
+          information, and preparation instructions. Stability testing will
+          determine storage and reconstitution conditions for the freeze-dried
+          scaffold and how long each module can be used.
         </p>
 
         <h2 className="mt-5 mb-3">
           3 Connecting the Material to Clinician Workflows
         </h2>
         <p>
-          With material supply defined, the next step is to translate
-          formulation requirements into a preparation workflow that clinicians
-          can follow. We have developed a clinician-facing application that
-          organizes formulation selection and preparation guidance in an
-          actionable interface. The app provides selection screens for the
-          scaffold and functional modules and loads the corresponding
-          instructions via QR code. It guides the user through scanning,
-          reviewing instructions, verifying components, and premixing. On the
-          dispensing interface, PBS, SELP, Ru/SPS, and functional components are
-          confirmed step by step; the next step is enabled only after all
-          components have been verified, helping operators confirm the current
-          formulation.
+          The supplied components still need to be checked and combined before
+          use. We built an app for clinicians to select the scaffold and
+          functional modules and follow the preparation instructions. Its
+          four-step guide covers scanning a QR code, reading the
+          formulation-specific instructions, adding the reagents, and premixing.
+          Users confirm PBS, SELP, Ru/SPS, and the functional components in
+          sequence. The app only allows them to continue once every component
+          has been checked.
         </p>
         <figure className="figure d-block my-4 text-center">
           <img
             src="https://static.igem.wiki/teams/6102/wiki/images/software/005.avif"
-            alt="Four-step workflow in the publicly available app interface."
+            alt="The four-step preparation guide in the app."
             className="figure-img img-fluid rounded"
             style={{ width: "100%" }}
             loading="lazy"
             decoding="async"
           />
           <FigureCaption className="figure-caption">
-            Figure 2 | Four-step workflow in the publicly available app
-            interface. Formulation information is loaded after QR-code scanning,
-            and users proceed to premixing instructions after verifying each
-            reagent.
+            Figure 2 | The app&rsquo;s preparation guide: scan the QR code, read
+            the instructions, add and confirm each reagent, and proceed to the
+            premixing instructions.
           </FigureCaption>
         </figure>
         <p>
-          The app provides a standardized verification workflow for different
-          material formulations, the accompanying device handles material
-          processing, and the device web interface displays operating status.
-          Together, these three elements support clinician-led preparation by
-          translating formulation information into component loading and
-          practical operating steps.
+          At the last step, the app tells the operator to wait for the
+          premixer&rsquo;s green light. The app does not read device status;
+          monitoring and control are handled through the separate device web
+          interface.
         </p>
         <p>
-          The application source code and engineering documentation are
-          available in the{" "}
-          <a href="https://gitlab.igem.org/2026/zju-china">GitLab repository</a>
+          The application source code and documentation are available in the{" "}
+          <a href="https://gitlab.igem.org/2026/software/zju-china/nest/-/tree/main/NEST-Software">
+            NEST Software repository
+          </a>
           .
         </p>
 
@@ -178,17 +164,15 @@ export function Implementation() {
           Device
         </h2>
         <p>
-          To carry the preparation workflow from component verification into
-          material processing, we have built a modular, tiered unit that
-          integrates metering, mixing, storage, and delivery. Three independent
-          motors in the lower module drive PBS solutions containing Ru/SPS,
-          SELP, and functional components through separate channels before they
-          converge in a serpentine microfluidic channel. The upper reservoir
-          module integrates heating and cooling, liquid-level sensing, status
-          indicators, and a delivery pump. Independent channels allow component
-          ratios to be adjusted, while replaceable tubing and a transparent
-          enclosure facilitate loading, monitoring, and maintenance{" "}
-          <sup className="article-citation">[4]</sup>.
+          We built the accompanying preparation unit to meter, mix, store, and
+          deliver the material. In its lower module, three motors drive separate
+          PBS-based solutions containing Ru/SPS, SELP, and functional
+          components. The three streams meet in a serpentine microfluidic
+          channel. The upper module stores the mixture and includes heating and
+          cooling, liquid-level sensing, status indicators, and a delivery pump.
+          Separate channels let us adjust the component ratios. Replaceable
+          tubing and a transparent enclosure make the unit easier to load,
+          inspect, and maintain <sup className="article-citation">[4]</sup>.
         </p>
         <figure className="figure d-block my-4 text-center">
           <div className="row g-3 align-items-center">
@@ -214,144 +198,130 @@ export function Implementation() {
             </div>
           </div>
           <FigureCaption className="figure-caption">
-            Figure 3 | The left image shows the material-preparation unit, and
-            the right image shows the microfluidic mixing-chip structure. The
-            three component streams converge in the microchannels before
-            proceeding to storage and delivery.
+            Figure 3 | Material-preparation unit (left) and microfluidic mixing
+            chip (right). The three component streams meet in the microchannels,
+            and the mixture then enters the reservoir for storage and delivery.
           </FigureCaption>
         </figure>
         <p>
-          The device is also connected to a web interface. The STM32 controls
-          the pumps, temperature regulation, liquid-level sensing, and panel
-          interactions, and communicates with the ESP32 via UART. The ESP32
-          transmits device status to the web interface and relays user commands.
-          Users can monitor temperature, liquid level, and pump status,
-          configure relevant parameters, and issue delivery commands. The web
-          interface consolidates these readouts into a shared reservoir view,
-          enabling the material-handling process to be monitored and controlled{" "}
-          <sup className="article-citation">[4]</sup>.
+          An STM32 controls the pumps, temperature regulation, liquid-level
+          sensing, and panel controls. It communicates with an ESP32 over UART.
+          The ESP32 sends device readings to the web interface and passes
+          commands back to the STM32. On the web interface, operators can check
+          temperature, liquid level, and pump status, adjust parameters, and
+          issue delivery commands <sup className="article-citation">[4]</sup>.
         </p>
         <p>
-          The clinician-facing app and device web interface serve distinct
-          purposes: the app supports material selection, component verification,
-          and adherence to preparation steps, whereas the web interface supports
-          monitoring and operation of the device. On the administration side, a
-          three-way valve switches between replenishment and injection pathways
-          and interfaces with a separate injection assembly. From formulation
-          selection and loading through premixing, temporary storage, and
-          output, we have established an integrated operational prototype that
-          can be demonstrated and subjected to further testing.
+          A three-way valve switches between replenishing the reservoir and
+          delivering material through a separate injection assembly. The current
+          prototype brings together component loading, premixing, temporary
+          storage, and delivery. Further testing will cover line priming, air
+          removal, ease of loading, temperature feedback, and delivery
+          stability. We also plan to integrate the optical and external-field
+          components into the operating workflow.
         </p>
         <p>
-          Details of the device structure, electronics, and bill of materials
-          are available on the <a href={`${BASE}hardware`}>Hardware page</a>.
-          Further iterations will address line priming and air removal, ease of
-          loading, temperature feedback, and delivery stability, as well as
-          operational integration of the optical and external-field components.
+          The device structure, electronics, and bill of materials are described
+          on our <a href={`${BASE}hardware`}>Hardware page</a>.
         </p>
 
         <h2 className="mt-5 mb-3">
           5 Defining Product Requirements under Intended Use Conditions
         </h2>
         <p>
-          With a preparation pathway in place, the next step is to evaluate the
-          material and its supporting workflow under intended use conditions. In
-          the proposed localized application workflow, after assessing and
-          preparing the defect, the clinician delivers the precursor to the
-          target site, controls its distribution, and induces in situ gelation
-          under specified illumination conditions. The material will then be
-          evaluated for fixation at the hydrated interface, retention under
-          motion-related loading, and tissue responses in the repair region. The
-          material, device, and instructions will be validated together around
-          this workflow, with the requirements below guiding product
-          development.
+          In the proposed procedure, the clinician assesses and prepares the
+          defect, delivers the precursor, controls its distribution, and induces
+          gelation under defined illumination conditions. We need to test how
+          well the material adheres to a wet cartilage surface, whether it
+          remains in place under repeated loading, and how the surrounding
+          tissue responds. Testing will also need to cover the device and
+          instructions used in this procedure. Table 1 lists the main
+          requirements and planned checks.
         </p>
         <TableCaption>
-          <strong>
-            Table 1 | Product Requirements and Validation Criteria for NEST
-          </strong>
+          <strong>Table 1 | Product Requirements and Planned Tests</strong>
         </TableCaption>
         <div className="table-responsive mb-4">
           <table
             className="table table-bordered align-middle"
-            aria-label="Use requirements, product-development focus, and validation criteria"
+            aria-label="Use requirements, design considerations, and planned tests"
           >
             <thead className="table-primary">
               <tr>
                 <th scope="col">Use requirement</th>
-                <th scope="col">Product-development focus for NEST</th>
-                <th scope="col">Validation and delivery criteria</th>
+                <th scope="col">Design considerations</th>
+                <th scope="col">What we will test</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td>Fixation and loading under wet conditions</td>
                 <td>
-                  Conformity to the cartilage interface and resistance to
+                  Contact with the cartilage surface and retention during
                   repeated joint loading
                 </td>
                 <td>
-                  Interfacial bonding, retention after cyclic loading, and
-                  mechanical-property retention
+                  Interfacial bonding, material retention after cyclic loading,
+                  and retention of mechanical properties
                 </td>
               </tr>
               <tr>
                 <td>In situ photocrosslinking</td>
                 <td>
-                  Compatibility with the light source, irradiation conditions,
-                  and Ru/SPS formulation; suitability for professional use
+                  Light source, exposure conditions, Ru/SPS formulation, and
+                  suitability for use by clinical staff
                 </td>
                 <td>
-                  Gelation uniformity, accessibility of the target site to
-                  light, and local tissue response
+                  Gelation uniformity, whether light can reach the target site,
+                  and local tissue response
                 </td>
               </tr>
               <tr>
                 <td>Protein and formulation quality</td>
                 <td>
-                  Control of identity, purity, endotoxin, residual impurities,
-                  and microbial risk
+                  Protein identity and purity; endotoxin, residual impurities,
+                  and microbial contamination
                 </td>
                 <td>
-                  Batch-release criteria, stability, and consistency of gelation
-                  performance
+                  Batch-release checks, storage stability, and consistency of
+                  gelation across batches
                 </td>
               </tr>
               <tr>
                 <td>Module storage and assembly</td>
                 <td>
-                  Storage conditions appropriate to the activity of functional
-                  proteins and mitochondrial payloads
+                  Storage conditions that preserve functional proteins and
+                  mitochondrial payloads
                 </td>
                 <td>
-                  Storage and transport, reconstitution, post-assembly activity,
-                  and allowable use period
+                  Activity after storage, transport, reconstitution, and
+                  assembly; time available for use
                 </td>
               </tr>
               <tr>
-                <td>Practical use in hospitals</td>
+                <td>Use in hospitals</td>
                 <td>
-                  Clear requirements for equipment, consumables, operating time,
-                  and training
+                  Equipment, consumables, preparation time, and staff training
                 </td>
                 <td>
-                  Simulated use by professional users, step errors, and analysis
-                  of cost components
+                  Simulated use by professional users, errors at each step, and
+                  a breakdown of costs
                 </td>
               </tr>
             </tbody>
           </table>
         </div>
         <p>
-          Existing in vitro cell-viability results support further development
-          of the material. Subsequent biological evaluation will be designed
-          according to the final material composition, mode of tissue contact,
-          and contact duration, and will systematically investigate local
+          We have completed in vitro cell-viability tests. Further biological
+          evaluation will depend on the final formulation and the type and
+          duration of tissue contact. It will need to examine local tissue
           responses, degradation products, and relevant systemic effects{" "}
-          <sup className="article-citation">[5]</sup>. Product classification
-          and the regulatory pathway will likewise be determined based on the
-          final components, primary mode of action, and intended markets, with
-          regulatory consultation initiated early in development{" "}
+          <sup className="article-citation">[5]</sup>.
+        </p>
+        <p>
+          Product classification and the regulatory pathway will depend on the
+          final components, primary mode of action, and intended market. We plan
+          to seek regulatory advice early in development{" "}
           <sup className="article-citation">[6]</sup>.
         </p>
 
@@ -360,26 +330,32 @@ export function Implementation() {
           Applications
         </h2>
         <p>
-          These validation requirements will initially guide the material
-          specifications and use procedures for the focal-defect product.
-          Building on this starting point, OA-oriented functional formulations
-          will further develop matrix retention and local delivery, while
-          collaboration on osteochondral repair will advance stratified
-          materials. These product directions can build on established scaffold
-          production, interface testing, and material-preparation support, with
-          additional evaluations tailored to each tissue-repair task. This
-          allows each development cycle to generate reusable knowledge for the
-          next version.
+          We will use the same scaffold-production and assembly methods where
+          possible, and test tissue response and retention for each formulation.
+          OA formulations will require additional tests of their functional
+          modules. Osteochondral repair will also require a collaborator for the
+          bone-support layer and separate testing of the layered material.
         </p>
         <p>
-          This implementation roadmap provides an actionable starting point for
-          the envisioned applications of NEST. Scalable scaffold manufacturing
-          supports material supply, standardized formulations address clearly
-          defined repair needs, and the app and preparation device help
-          clinicians prepare the material. As tissue validation and
-          manufacturing procedures for the first formulation are established,
-          the platform&rsquo;s programmability can be translated into material
-          products that can be developed and delivered on a continuing basis.
+          The phased B2B model on our{" "}
+          <a
+            href={`${BASE}entrepreneurship#the-sustainable-business-model-canvas`}
+          >
+            Entrepreneurship page
+          </a>{" "}
+          starts with research partnerships, co-development, and
+          technology-development licensing. We would work with orthopedic
+          companies and research hospitals during development. Clinical supply
+          of the implant material and associated preparation and delivery
+          solutions would follow the required studies and authorizations,
+          through procurement by hospitals and industry partners.
+        </p>
+        <p>
+          For each application, we will test the material alongside the process
+          used to prepare and deliver it. The app and device will be refined
+          with clinicians, while production partners help us establish
+          consistent batches. These results will determine which formulations
+          move forward and which components or steps still need work.
         </p>
 
         <References level={2}>

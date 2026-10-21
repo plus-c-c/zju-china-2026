@@ -1,3 +1,4 @@
+import { useId } from "react";
 import { Link } from "react-router-dom";
 import { TableCaption, FigureCaption } from "../components/FigureCaption";
 import {
@@ -17,6 +18,56 @@ const basicCount = collection.parts.filter(
 const compositeCount = collection.parts.filter(
   (part) => part.kind === "composite",
 ).length;
+
+function ContributionOverview() {
+  const id = useId();
+  const source = `${CIF}01-nest-contributions-equal.avif`;
+
+  return (
+    <svg
+      className="figure-img img-fluid rounded"
+      style={{ width: "100%", height: "auto" }}
+      viewBox="0 0 4000 1778"
+      role="img"
+      aria-label="NEST contributions: reusable resources for the iGEM community."
+    >
+      <defs>
+        <clipPath id={`${id}-model`}>
+          <rect x="576" y="1218" width="304" height="349" />
+        </clipPath>
+        <filter
+          id={`${id}-white`}
+          filterUnits="userSpaceOnUse"
+          x="576"
+          y="1218"
+          width="304"
+          height="349"
+          colorInterpolationFilters="sRGB"
+        >
+          {/* Key the white sheet only within the modeling illustration. */}
+          <feColorMatrix
+            type="matrix"
+            values="1 0 0 0 0
+                    0 1 0 0 0
+                    0 0 1 0 0
+                    -16 -16 -16 0 47.8"
+          />
+        </filter>
+      </defs>
+      <image href={source} width="4000" height="1778" />
+      <g clipPath={`url(#${id}-model)`}>
+        {/* The cleared pixels reveal the existing blue modeling panel. */}
+        <rect x="576" y="1218" width="304" height="349" fill="#e8f0fb" />
+        <image
+          href={source}
+          width="4000"
+          height="1778"
+          filter={`url(#${id}-white)`}
+        />
+      </g>
+    </svg>
+  );
+}
 
 function RegistryParts({ ids }: { ids: string[] }) {
   return ids.map((id, index) => (
@@ -47,14 +98,7 @@ export function Contribution() {
           own projects.
         </p>
         <figure className="figure d-block my-4 text-center">
-          <img
-            src={`${CIF}01-nest-contributions-equal.avif`}
-            alt="NEST contributions: reusable resources for the iGEM community."
-            className="figure-img img-fluid rounded"
-            style={{ width: "100%" }}
-            loading="lazy"
-            decoding="async"
-          />
+          <ContributionOverview />
           <FigureCaption className="figure-caption">
             Figure 1 | Resources shared with the iGEM community. The diagram
             links our biological parts and protocols, modeling workflow, app and
