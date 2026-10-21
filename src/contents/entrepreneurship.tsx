@@ -1,5 +1,6 @@
 import { useId, useState, type ReactNode } from "react";
 import { TableCaption } from "../components/FigureCaption";
+import { MathFormula } from "../components/MathFormula";
 import { References } from "../components/References";
 import "./entrepreneurship.css";
 
@@ -767,7 +768,7 @@ const CONTENT: ContentBlock[] = [
       {
         "type": "formula",
         "source_index": 144,
-        "text": "Clabor=k​Flabor,k×clabor,k×hoperation,k"
+        "text": "C_{\\mathrm{labor}} = \\sum_k F_{\\mathrm{labor},k} \\, c_{\\mathrm{labor},k} \\, h_{\\mathrm{operation},k}"
       },
       {
         "type": "paragraph",
@@ -833,7 +834,7 @@ const CONTENT: ContentBlock[] = [
       {
         "type": "formula",
         "source_index": 156,
-        "text": "Cproduction=k​Fkckhk,d+k​Fkck1+rnhk,n"
+        "text": "C_{\\mathrm{production}} = \\sum_k F_k \\, c_k \\, h_{k,d} + \\sum_k F_k \\, c_k (1+r_n) h_{k,n}"
       },
       {
         "type": "paragraph",
@@ -848,7 +849,7 @@ const CONTENT: ContentBlock[] = [
       {
         "type": "formula",
         "source_index": 159,
-        "text": "clabor=8,000×1.35174=62.07 元/小时"
+        "text": "c_{\\mathrm{labor}} = \\frac{8{,}000 \\times 1.35}{174} = 62.07 \\; \\mathrm{CNY/hour}"
       },
       {
         "type": "paragraph",
@@ -858,7 +859,7 @@ const CONTENT: ContentBlock[] = [
       {
         "type": "formula",
         "source_index": 161,
-        "text": "k​Flabor,k=2.0+0.2+0.1+0.2+1.0=3.5"
+        "text": "\\sum_k F_{\\mathrm{labor},k} = 2.0 + 0.2 + 0.1 + 0.2 + 1.0 = 3.5"
       },
       {
         "type": "paragraph",
@@ -873,7 +874,7 @@ const CONTENT: ContentBlock[] = [
       {
         "type": "formula",
         "source_index": 164,
-        "text": "3.5×62.07×4,380=951,517 元/年"
+        "text": "3.5 \\times 62.07 \\times 4{,}380 = 951{,}517 \\; \\mathrm{CNY/year}"
       },
       {
         "type": "paragraph",
@@ -883,7 +884,7 @@ const CONTENT: ContentBlock[] = [
       {
         "type": "formula",
         "source_index": 166,
-        "text": "3.5×62.07×1.2×4,380=1,141,821 元/年"
+        "text": "3.5 \\times 62.07 \\times 1.2 \\times 4{,}380 = 1{,}141{,}821 \\; \\mathrm{CNY/year}"
       },
       {
         "type": "paragraph",
@@ -893,7 +894,7 @@ const CONTENT: ContentBlock[] = [
       {
         "type": "formula",
         "source_index": 168,
-        "text": "Cproduction=951,517+1,141,821=2,093,338 元/年"
+        "text": "C_{\\mathrm{production}} = 951{,}517 + 1{,}141{,}821 = 2{,}093{,}338 \\; \\mathrm{CNY/year}"
       },
       {
         "type": "paragraph",
@@ -908,12 +909,12 @@ const CONTENT: ContentBlock[] = [
       {
         "type": "formula",
         "source_index": 171,
-        "text": "Ccleaning=5,000×1.35×3×12=243,000 元/年"
+        "text": "C_{\\mathrm{cleaning}} = 5{,}000 \\times 1.35 \\times 3 \\times 12 = 243{,}000 \\; \\mathrm{CNY/year}"
       },
       {
         "type": "formula",
         "source_index": 172,
-        "text": "Csales=10,000×1.35×2×12=324,000 元/年"
+        "text": "C_{\\mathrm{sales}} = 10{,}000 \\times 1.35 \\times 2 \\times 12 = 324{,}000 \\; \\mathrm{CNY/year}"
       },
       {
         "type": "paragraph",
@@ -923,7 +924,7 @@ const CONTENT: ContentBlock[] = [
       {
         "type": "formula",
         "source_index": 174,
-        "text": "Ctotal=2,093,338+243,000+324,000=2,660,338 元/年"
+        "text": "C_{\\mathrm{total}} = 2{,}093{,}338 + 243{,}000 + 324{,}000 = 2{,}660{,}338 \\; \\mathrm{CNY/year}"
       },
       {
         "type": "paragraph",
@@ -1934,7 +1935,7 @@ function renderBlock(block: ContentBlock, key: string): ReactNode {
     case "formula":
       return (
         <div className="entre-formula" key={key}>
-          {block.text}
+          <MathFormula display>{block.text}</MathFormula>
         </div>
       );
     case "figure":
