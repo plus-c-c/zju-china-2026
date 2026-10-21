@@ -79,7 +79,7 @@ export function Sponsors() {
         <div className="sponsors-entry sponsors-entry--special">
           <div className="sponsors-entry__media">
             <img
-              src="https://static.igem.wiki/teams/6102/wiki/images/footer/001.avif"
+              src="https://static.igem.wiki/teams/6102/wiki/images/sponsor/01.avif"
               alt="College of Life Sciences, Zhejiang University logo"
               width={1206}
               height={330}
@@ -107,7 +107,7 @@ export function Sponsors() {
         <SponsorEntry
           id="sponsors-education-foundation"
           name="Zhejiang University Education Foundation"
-          image="https://static.igem.wiki/teams/6102/wiki/images/footer/zhejiang-university-education-foundation.avif"
+          image="https://static.igem.wiki/teams/6102/wiki/images/sponsor/02.avif"
           width={1520}
           height={990}
           photograph
@@ -121,7 +121,7 @@ export function Sponsors() {
         <SponsorEntry
           id="sponsors-biology-education-center"
           name="National Demonstration Center for Experimental Biology Education, Zhejiang University"
-          image="https://static.igem.wiki/teams/6102/wiki/images/footer/national-demonstration-center-for-experimental-biology-education-zhejiang-university.avif"
+          image="https://static.igem.wiki/teams/6102/wiki/images/sponsor/03.avif"
           width={1512}
           height={988}
           photograph

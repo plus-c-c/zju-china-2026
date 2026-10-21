@@ -142,9 +142,9 @@ export function ProofOfConcept() {
           </p>
           <figure className="my-4 text-center">
             <TransparentImage
-              src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/schematic-01.avif"
-              width={3120}
-              height={1370}
+              src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/update-1.avif"
+              width={2113}
+              height={744}
               alt="Figure 1 | Overview of proof-of-concept validation"
               className="img-fluid rounded"
               style={{ width: "100%" }}
