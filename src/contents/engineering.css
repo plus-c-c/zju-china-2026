@@ -1196,6 +1196,10 @@
   margin-top: 0;
 }
 
+.dbtl--legacy:not(.project-design-stepper) {
+  --dbtl-stack-h: clamp(324px, calc(90vh - 14rem), 644px);
+}
+
 /* The level-3 row is a sibling of the DBTL grid so it spans the whole page
    width, like the level-1 and level-2 rows, instead of centring over the
    text card. */
@@ -1277,28 +1281,30 @@
   padding-top: 0;
 }
 
-/* Project Design keeps its larger double ring and its narrower copy column. */
+/* Project Design keeps its larger double ring. */
 .project-design-stepper.dbtl--legacy {
   --dbtl-ring-size: clamp(340px, 36vw, 520px);
   --dbtl-gap: clamp(1rem, 1.5vw, 1.5rem);
-  /* Leave room for the larger double ring at narrower desktop widths. */
-  --project-copy-width: min(
-    850px,
-    calc(100% - var(--dbtl-ring-size) - var(--project-copy-gap))
-  );
-  --project-copy-gap: 8px;
+  /* The SEED SVG's painted outer edge is 66.5 units inside its 1040 viewBox. */
+  --project-artwork-inset: calc(var(--dbtl-ring-size) * 0.0639423077);
 }
 
 @media (min-width: 992px) {
   .project-design-stepper.dbtl--legacy {
     position: relative;
     grid-template-columns: minmax(0, 1fr);
+    --project-ring-left: calc(2rem - var(--dbtl-gap) - var(--project-artwork-inset));
+    /* Use the space beside the painted ring, keeping the right article edge. */
+    --project-copy-width: calc(
+      100% - var(--project-ring-left) - var(--dbtl-ring-size)
+      + var(--project-artwork-inset) - 2rem
+    );
   }
 
   .project-design-stepper.dbtl--legacy .dbtl-left--legacy {
     position: absolute;
     top: 50%;
-    right: calc(var(--project-copy-width) + var(--project-copy-gap));
+    left: var(--project-ring-left);
     z-index: 0;
     margin: 0;
     transform: translateY(-50%);
@@ -1333,6 +1339,10 @@
   .dbtl--legacy .dbtl-panel {
     flex: 0 0 auto;
     height: clamp(220px, calc(54vh - 40px), 440px);
+  }
+
+  .dbtl--legacy:not(.project-design-stepper) .dbtl-panel {
+    height: clamp(204px, calc(54vh - 56px), 424px);
   }
 
   .project-design-stepper.dbtl--legacy .dbtl-panel {
@@ -1440,6 +1450,16 @@ body:has(.nest-navbar-hidden) .engineering-article {
 @media (min-width: 1201px) {
   .engineering-article .dbtl--legacy:not(.project-design-stepper) {
     --dbtl-bleed: calc(var(--dbtl-ring-size) + var(--dbtl-gap));
+  }
+
+  /* Match the Wet/Dry artwork edge while keeping the double-ring size.
+     Recover the original bleed from the expanded grid and viewport widths. */
+  .project-design-stepper.dbtl--legacy {
+    --project-ring-left: calc(
+      100vw - 100% - 2 * var(--dbtl-gap)
+      - clamp(230px, 19vw, 310px) - 2rem
+      - var(--project-artwork-inset)
+    );
   }
 }
 
