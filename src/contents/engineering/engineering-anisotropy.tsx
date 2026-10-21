@@ -22,8 +22,8 @@ export const anisotropyModule: DbtlModule = {
         distribution. Abnormal stresses can further damage the matrix, while the
         ability of chondrocytes to maintain tissue homeostasis declines.
         Mechanical imbalance, matrix loss, and cellular degeneration can
-        therefore reinforce one another. The Magnetically Responsive Anisotropy
-        Module of NEST addresses this challenge by seeking to restore load distribution within the repair
+        therefore reinforce one another. The Magnetically Responsive Anisotropy Module of NEST addresses
+        this challenge by seeking to restore load distribution within the repair
         region and provide a more favorable mechanical environment for tissue
         regeneration.
       </p>
@@ -153,6 +153,7 @@ export const anisotropyModule: DbtlModule = {
               fiber integration into the SELP scaffold.
             </p>
             <DbtlFigure
+              readable="portrait"
               src="engineering/02/02.avif"
               caption="Figure 2 | The magnetically responsive composite-fiber approach. Fe₃O₄-loaded fibers were designed as directional carriers that also participate in network formation through Ru/SPS-mediated photocrosslinking."
             />
@@ -232,8 +233,8 @@ export const anisotropyModule: DbtlModule = {
               modular assembly. We compared the required pretreatment of
               particles and proteins, genetic encodability of the coupling
               interface, operating conditions, and compatibility with SELP
-              assembly. Our goal was a Magnetically Responsive Anisotropy Module
-              that could be produced, characterized, and reused independently within NEST.
+              assembly. Our goal was a Magnetically Responsive Anisotropy Module that could be
+              produced, characterized, and reused independently within NEST.
             </p>
           </>
         ),
@@ -446,6 +447,7 @@ export const anisotropyModule: DbtlModule = {
               when required to prepare samples for ligation assays.
             </p>
             <DbtlFigure
+              sharedFrame
               src={["engineering/02/06.avif", "engineering/02/07.avif"]}
               caption="Figure 6 | Expression and purification of the TVN–DogTag module. SDS–PAGE analysis of the expression screen and of the purified protein."
             />
@@ -516,6 +518,7 @@ export const anisotropyModule: DbtlModule = {
               proposed ligation products.
             </p>
             <DbtlFigure
+              readable="gel"
               src="engineering/02/08.avif"
               caption="Figure 7 | Ligation testing with a GFP model substrate. Higher-molecular-weight products appear in the SnoopLigase-containing reactions, supporting DogTag-mediated ligation."
             />

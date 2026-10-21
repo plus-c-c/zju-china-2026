@@ -5,34 +5,38 @@
   position: relative;
   margin-top: 22px;
   /* 跑道：首屏 + 每步一段滚动行程（与 engineering 的 runway 相同） */
-  height: calc(100dvh + var(--m1-count) * 200px);
+  height: calc(100dvh + var(--m1-count) * var(--stepper-step-size));
 }
 
 /* 目录锚点：每步滚动进度位置处的隐藏标题 */
 .m1-anchor {
-  top: calc(var(--m1-seg) * 200px);
+  /* Compensate for the TOC's 20dvh reading line so the highlight
+     changes at the same runway position as useStepperProgress. */
+  top: calc(var(--m1-seg) * var(--stepper-step-size) + 20dvh);
 }
 
 /* 抵消 .page-article h3 的 !important 标题间距（48px），否则锚点整体下移、
    TOC 高亮滞后于卡组切换。 */
 .page-article .m1-anchor {
+  scroll-margin-top: calc(20dvh - 2px);
   margin: 0 !important;
 }
 
 /* 第一步的锚点：TOC 恰好在该步粘滞钉住的那一刻高亮（stage 吸顶 84px，
    激活阈值为 0.2 视口高）。 */
 .m1-anchor:first-of-type {
-  top: calc(20dvh - 84px);
+  top: calc(20dvh - var(--page-sticky-top, 82px));
 }
 
 .m1-deck__stage {
   position: sticky;
-  top: 84px;
+  top: var(--page-sticky-top, 82px);
   z-index: 5;
   display: flex;
   flex-direction: column;
   /* 卡片底部与页面底部保持距离 */
-  max-height: calc(100vh - 84px - 48px);
+  max-height: calc(100dvh - var(--page-sticky-top, 82px) - 48px);
+  transition: top 300ms ease, max-height 300ms ease;
 }
 
 /* ===== 主方程 ===== */
@@ -176,11 +180,11 @@
 }
 
 .m1-slide__inner--in.m1-slide__inner--fwd {
-  animation: m1-in-fwd 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: m1-in-fwd 380ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .m1-slide__inner--in.m1-slide__inner--back {
-  animation: m1-in-back 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: m1-in-back 380ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .m1-slide__inner--out {
@@ -191,11 +195,11 @@
 }
 
 .m1-slide__inner--out.m1-slide__inner--fwd {
-  animation: m1-out-fwd 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: m1-out-fwd 380ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .m1-slide__inner--out.m1-slide__inner--back {
-  animation: m1-out-back 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: m1-out-back 380ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 @keyframes m1-in-fwd {
@@ -331,6 +335,43 @@
   border-radius: 10px;
 }
 
+/* Compare the experimental curves and moduli side by side, with captions below. */
+.m1-figure-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: auto auto;
+  grid-auto-flow: column;
+  gap: 0.75rem 1.5rem;
+  margin: 24px 0;
+  align-items: start;
+}
+
+.m1-figure-row .m1-figure {
+  margin: 0;
+  align-self: end;
+}
+
+.m1-figure-row .m1-figure img {
+  width: 100%;
+  max-height: none;
+}
+
+.m1-figure-row .m1-figure-caption {
+  margin: 0;
+}
+
+@media (max-width: 600px) {
+  .m1-figure-row {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: none;
+    grid-auto-flow: row;
+  }
+
+  .m1-figure-row .m1-figure-caption:not(:last-child) {
+    margin-bottom: 1rem;
+  }
+}
+
 /* Keep multi-panel network results readable within the scrolling content. */
 .m1-slide__content--readable-figures .m1-figure img {
   width: 100%;
@@ -435,21 +476,13 @@
 
 /* ===== 移动端 ===== */
 @media (max-width: 900px) {
-  .m1-deck {
-    height: calc(100dvh + var(--m1-count) * 52vh);
-  }
-
-  .m1-anchor {
-    top: calc(var(--m1-seg) * 52vh);
-  }
-
   .m1-anchor:first-of-type {
-    top: calc(20dvh - 8px);
+    top: calc(20dvh - var(--page-sticky-top, 82px));
   }
 
   .m1-deck__stage {
-    top: 8px;
-    max-height: calc(100vh - 8px - 32px);
+    top: var(--page-sticky-top, 82px);
+    max-height: calc(100dvh - var(--page-sticky-top, 82px) - 32px);
   }
 
   .m1-master {

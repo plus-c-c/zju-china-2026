@@ -13,9 +13,10 @@
      while the step content changes. */
   --protein-gap: clamp(1.5rem, 3vw, 3rem);
   position: sticky;
-  top: 0;
+  top: var(--page-sticky-top, 82px);
   z-index: 1;
-  height: 100dvh;
+  height: calc(100dvh - var(--page-sticky-top, 82px));
+  transition: top 300ms ease;
 }
 
 .protein-cluster {
@@ -86,8 +87,8 @@
   top: min(
     calc(40dvh - var(--protein-figure-h, 466px) / 2 - 60px + 2dvh),
     calc(
-      100dvh - 10dvh - var(--protein-card-h, 0px) - var(--protein-figure-h, 466px) -
-        24px
+      100dvh - var(--page-sticky-top, 82px) - 10dvh -
+        var(--protein-card-h, 0px) - var(--protein-figure-h, 466px) - 24px
     )
   );
 }
@@ -96,11 +97,12 @@
   /* Wide steps: the card keeps the same bottom coordinate and grows
      upwards to hold its text completely (same typography as every other
      card, no scrolling). Its height is set inline from the measured content
-     and animates like the regular steps. It sits above the structure so the
-     overlap over the image's lower corner stays a clean card edge. */
+     and animates like the regular steps. Keep it below the zoom inset. */
   z-index: 3;
-  max-height: none;
-  overflow-y: hidden;
+  top: auto;
+  bottom: 10dvh;
+  max-height: calc(100dvh - var(--page-sticky-top, 82px) - 48px);
+  overflow-y: auto;
 }
 
 /* Smooth swap: the incoming structure slides in from one side while the
@@ -256,17 +258,15 @@
 
 /* Right-hand text: fills the column, scrolls on its own wheel. */
 .protein-text {
-  /* Bottom edge flush with the Previous/Next row (both sit 10dvh above the
-     viewport bottom — raised together with the buttons). On regular steps
-     the card stretches until its top gap is 8dvh; wide steps fit their
-     content instead (height set inline). The height change animates with
-     the bottom fixed, so only the top edge moves. */
+  /* The reading card starts at the pinned stage's top. Preserve its regular
+     height; wide steps keep their measured height within the viewport. */
   position: absolute;
   right: 0;
-  top: auto;
-  bottom: 10dvh;
+  top: 0;
+  bottom: auto;
   width: calc((100% - var(--protein-gap)) * 0.55);
   height: calc(100dvh - 18dvh);
+  max-height: calc(100dvh - var(--page-sticky-top, 82px) - 48px);
   transition: height 0.4s cubic-bezier(0.22, 1, 0.36, 1);
   padding: 1.5rem 1.6rem;
   overflow-y: auto;
@@ -459,6 +459,7 @@
     top: auto;
     bottom: auto;
     height: auto;
+    max-height: none;
   }
 }
 
@@ -468,9 +469,14 @@
    the inherited 48px would offset every anchor and make the highlight lag the
    figure switching. */
 .page-article .protein-anchor {
+  scroll-margin-top: calc(20dvh - 2px);
   margin: 0 !important;
 }
 
 .protein-anchor {
-  top: calc(var(--protein-step) * 40dvh);
+  top: calc(var(--protein-step) * var(--stepper-step-size) + 20dvh);
+}
+
+.protein-anchor:first-of-type {
+  top: calc(20dvh - var(--page-sticky-top, 82px));
 }

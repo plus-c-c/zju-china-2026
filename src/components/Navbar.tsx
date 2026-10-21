@@ -101,31 +101,22 @@ export function Navbar({ introEntrance = false, opening = false }: { introEntran
       const target = pointer
         ? document.elementFromPoint(pointer.x, pointer.y)
         : null;
-      // The Engineering level-1 row pins to the very top of the viewport
-      // during the DBTL runway. Its rectangle must not wake the navbar, or
-      // the bar would cover the buttons. The tiny gap above it and the areas
-      // to its left/right remain normal wake zones.
-      const engineeringNav = document.querySelector<HTMLElement>(
-        ".eng-module-nav",
+      // Only the actual pinned controls are protected. The surrounding
+      // navigation background and gaps still reveal the main navigation.
+      const pinnedBar = target?.closest<HTMLElement>(
+        ".eng-module-nav, .m1-master, .m3-master, .ihp-nest-tabs, .ihp-section > .eng-subnav",
       );
-      const engineeringRect = engineeringNav?.getBoundingClientRect();
+      const pinnedRect = pinnedBar?.getBoundingClientRect();
       const navHeight = navRef.current?.offsetHeight ?? 88;
-      const engineeringAtTop =
-        !!engineeringRect &&
-        engineeringRect.top >= 0 &&
-        engineeringRect.top <= navHeight + 12;
-      const overEngineeringL1 =
-        !!pointer &&
-        engineeringAtTop &&
-        engineeringRect &&
-        pointer.x >= engineeringRect.left - 8 &&
-        pointer.x <= engineeringRect.right + 8 &&
-        pointer.y >= engineeringRect.top - 2 &&
-        pointer.y <= engineeringRect.bottom + 10;
+      const overPinnedControl =
+        !!pinnedRect &&
+        pinnedRect.top >= 0 &&
+        pinnedRect.top <= navHeight + 12 &&
+        !!target?.closest("a, button, [role='button']");
       const overNavigation =
         visible &&
         pointer &&
-        !overEngineeringL1 &&
+        !overPinnedControl &&
         (navRef.current?.contains(target) ||
           (pointer.y >= 0 &&
             pointer.y <= (navRef.current?.offsetHeight ?? 88)));
@@ -137,7 +128,7 @@ export function Navbar({ introEntrance = false, opening = false }: { introEntran
         !!pointer &&
         pointer.y >= 0 &&
         pointer.y <= (navRef.current?.offsetHeight ?? 88) &&
-        !overEngineeringL1;
+        !overPinnedControl;
       if (overRevealArea && pointer) {
         // No overlay intercepts clicks. Exclude the entire section sticky bar,
         // including its padding, and other interactive controls at the edge.
@@ -471,7 +462,7 @@ export function Navbar({ introEntrance = false, opening = false }: { introEntran
                             return (
                               <li key={page.path}>
                                 <Link
-                                  className={`nest-nav-tile${active ? " is-active" : ""}`}
+                                  className={`nest-nav-tile${!details?.description ? " nest-nav-tile--title-only" : ""}${active ? " is-active" : ""}`}
                                   to={page.path}
                                   aria-current={active ? "page" : undefined}
                                   onClick={closeMenus}
@@ -493,7 +484,7 @@ export function Navbar({ introEntrance = false, opening = false }: { introEntran
                                     <span className="nest-tile-title">
                                       {page.name}
                                     </span>
-                                    {details && (
+                                    {details?.description && (
                                       <span className="nest-tile-description">
                                         {details.description}
                                       </span>
@@ -527,17 +518,6 @@ export function Navbar({ introEntrance = false, opening = false }: { introEntran
                 }
                 return null;
               })}
-              <li
-                className="navigation-cart"
-                title="Shopping cart — not available yet"
-              >
-                <img
-                  src="https://static.igem.wiki/teams/6102/wiki/images/navigation/cart.svg"
-                  alt="Shopping cart (not available yet)"
-                  width="22"
-                  height="22"
-                />
-              </li>
             </ul>
           </div>
         </div>

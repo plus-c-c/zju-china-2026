@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import {
   PlatformFunctionSections,
   SharedProjectSections,
@@ -17,6 +18,101 @@ import {
   BiosafetyResultsText,
 } from "./results/biosafety-content";
 import "./proof-of-concept.css";
+
+function AnimatedWebPSprite({
+  sprite,
+  fallback,
+  frames,
+  columns,
+  rows,
+  width,
+  height,
+  alt,
+  className,
+  frameMs = 100,
+}: {
+  sprite: string;
+  fallback: string;
+  frames: number;
+  columns: number;
+  rows: number;
+  width: number;
+  height: number;
+  alt: string;
+  className?: string;
+  frameMs?: number;
+}) {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [failed, setFailed] = useState(false);
+
+  useEffect(() => {
+    if (failed) return;
+    const image = new Image();
+    let timer: number | undefined;
+    let frame = 0;
+
+    const draw = () => {
+      const context = canvasRef.current?.getContext("2d");
+      if (!context) return;
+      const column = frame % columns;
+      const row = Math.floor(frame / columns);
+      context.clearRect(0, 0, width, height);
+      context.drawImage(
+        image,
+        column * width,
+        row * height,
+        width,
+        height,
+        0,
+        0,
+        width,
+        height,
+      );
+      frame = (frame + 1) % frames;
+    };
+
+    image.onload = () => {
+      draw();
+      if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        timer = window.setInterval(draw, frameMs);
+      }
+    };
+    image.onerror = () => setFailed(true);
+    image.src = sprite;
+
+    return () => {
+      if (timer) window.clearInterval(timer);
+      image.onload = null;
+      image.onerror = null;
+    };
+  }, [sprite, frames, columns, rows, width, height, frameMs, failed]);
+
+  if (failed) {
+    return (
+      <img
+        src={fallback}
+        alt={alt}
+        className={className}
+        width={width}
+        height={height}
+        loading="lazy"
+        decoding="async"
+        style={{ width: "100%", maxWidth: 520 }}
+      />
+    );
+  }
+
+  return (
+    <canvas
+      ref={canvasRef}
+      width={width}
+      height={height}
+      role="img"
+      aria-label={alt}
+      className={className}
+    />
+  );
+}
 
 export function ProofOfConcept() {
   return (
@@ -225,7 +321,7 @@ export function ProofOfConcept() {
                   were consistent with the scaffold's design for cartilage
                   applications (Figure 6).
                 </p>
-                <figure className="my-4 text-center">
+                <figure className="poc-half-width my-4 text-center">
                   <TransparentImage
                     src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-05-v2.avif"
                     alt="Figure 6 | Cartilage-related gene expression associated with the 2KY scaffold"
@@ -448,42 +544,48 @@ export function ProofOfConcept() {
                   the control group and confirming TVN-mediated particle binding
                   (Figures 11 and 12).
                 </p>
-                <figure className="my-4 text-center">
-                  <TransparentImage
-                    src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-09.avif"
-                    alt="Figure 11 | Control group for magnetic particle binding"
-                    className="img-fluid rounded"
-                    style={{ width: "100%" }}
-                  />
-                  <FigureCaption className="figure-caption mt-2">
-                    <strong>
-                      Figure 11 | Control Group for Magnetic Particle Binding.
-                    </strong>{" "}
-                    The left column shows bright-field images and the right
-                    column shows fluorescence images; A/a and B/b are the panel
-                    labels in the original figure.
-                  </FigureCaption>
-                </figure>
-                <figure className="my-4 text-center">
-                  <TransparentImage
-                    src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-10.avif"
-                    alt="Figure 12 | TVN-particle fluorescence and magnetic alignment"
-                    className="img-fluid rounded"
-                    style={{ width: "100%" }}
-                  />
-                  <FigureCaption className="figure-caption mt-2">
-                    <strong>
-                      Figure 12 | TVN-Associated Protein Fluorescence Remains on
-                      Particles after Washing, and TVN-Magnetic Nanoparticle
-                      Complexes Align with the Magnetic Field.
-                    </strong>{" "}
-                    The TVN-magnetic nanoparticle complexes could adopt a
-                    uniform orientation along the applied magnetic field. The
-                    left column shows bright-field images and the right column
-                    shows fluorescence images; red arrows indicate the direction
-                    of the external magnetic field.
-                  </FigureCaption>
-                </figure>
+                <div className="poc-animation-grid">
+                  <figure className="poc-animation-panel">
+                    <div className="poc-animation-frame">
+                      <TransparentImage
+                        src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-09.avif"
+                        alt="Figure 11 | Control group for magnetic particle binding"
+                        className="img-fluid rounded"
+                        style={{ width: "100%" }}
+                      />
+                    </div>
+                    <FigureCaption className="figure-caption">
+                      <strong>
+                        Figure 11 | Control Group for Magnetic Particle Binding.
+                      </strong>{" "}
+                      The left column shows bright-field images and the right
+                      column shows fluorescence images; A/a and B/b are the panel
+                      labels in the original figure.
+                    </FigureCaption>
+                  </figure>
+                  <figure className="poc-animation-panel">
+                    <div className="poc-animation-frame">
+                      <TransparentImage
+                        src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-10.avif"
+                        alt="Figure 12 | TVN-particle fluorescence and magnetic alignment"
+                        className="img-fluid rounded"
+                        style={{ width: "100%" }}
+                      />
+                    </div>
+                    <FigureCaption className="figure-caption">
+                      <strong>
+                        Figure 12 | TVN-Associated Protein Fluorescence Remains on
+                        Particles after Washing, and TVN-Magnetic Nanoparticle
+                        Complexes Align with the Magnetic Field.
+                      </strong>{" "}
+                      The TVN-magnetic nanoparticle complexes could adopt a
+                      uniform orientation along the applied magnetic field. The
+                      left column shows bright-field images and the right column
+                      shows fluorescence images; red arrows indicate the direction
+                      of the external magnetic field.
+                    </FigureCaption>
+                  </figure>
+                </div>
                 <p>
                   After establishing this association, we investigated whether
                   the composite components could change orientation in response
@@ -494,36 +596,52 @@ export function ProofOfConcept() {
                   translated into an observable response to an external field
                   (Figures 13 and 14).
                 </p>
-                <figure className="my-4 text-center">
-                  <TransparentImage
-                    src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-11.webp"
-                    alt="Figure 13 | Bright-field recording of magnetic particle aggregates reorienting"
-                    className="img-fluid rounded"
-                    style={{ width: "100%" }}
-                  />
-                  <FigureCaption className="figure-caption mt-2">
-                    <strong>
-                      Figure 13 | Bright-Field Dynamic Recording of Magnetic
-                      Particle Aggregates Reorienting in Response to an Applied
-                      Field.
-                    </strong>
-                  </FigureCaption>
-                </figure>
-                <figure className="my-4 text-center">
-                  <TransparentImage
-                    src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-12.webp"
-                    alt="Figure 14 | Fluorescence recording of protein-labeled complexes reorienting"
-                    className="img-fluid rounded"
-                    style={{ width: "100%" }}
-                  />
-                  <FigureCaption className="figure-caption mt-2">
-                    <strong>
-                      Figure 14 | Fluorescence Dynamic Recording of
-                      Protein-Labeled SELP-TVN-Magnetic Nanoparticle Complexes
-                      Reorienting.
-                    </strong>
-                  </FigureCaption>
-                </figure>
+                <div className="poc-animation-grid">
+                  <figure className="poc-animation-panel">
+                    <div className="poc-animation-frame">
+                      <AnimatedWebPSprite
+                        sprite="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-11-sprite.webp"
+                        fallback="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-11.webp"
+                        frames={56}
+                        columns={10}
+                        rows={6}
+                        width={360}
+                        height={240}
+                        alt="Figure 13 | Bright-field recording of magnetic particle aggregates reorienting"
+                        className="poc-sprite rounded"
+                      />
+                    </div>
+                    <FigureCaption className="figure-caption">
+                      <strong>
+                        Figure 13 | Bright-Field Dynamic Recording of Magnetic
+                        Particle Aggregates Reorienting in Response to an Applied
+                        Field.
+                      </strong>
+                    </FigureCaption>
+                  </figure>
+                  <figure className="poc-animation-panel">
+                    <div className="poc-animation-frame">
+                      <AnimatedWebPSprite
+                        sprite="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-12-sprite.webp"
+                        fallback="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-12.webp"
+                        frames={60}
+                        columns={10}
+                        rows={6}
+                        width={360}
+                        height={240}
+                        alt="Figure 14 | Fluorescence recording of protein-labeled complexes reorienting"
+                        className="poc-sprite rounded"
+                      />
+                    </div>
+                    <FigureCaption className="figure-caption">
+                      <strong>
+                        Figure 14 | Fluorescence Dynamic Recording of
+                        Protein-Labeled SELP-TVN-Magnetic Nanoparticle Complexes
+                        Reorienting.
+                      </strong>
+                    </FigureCaption>
+                  </figure>
+                </div>
                 <p>
                   TVN enabled the association of proteins with magnetic
                   particles and allowed the protein-particle complexes to be
@@ -546,39 +664,45 @@ export function ProofOfConcept() {
                   capture GAGs and retained this function after fusion with
                   Link-N (Figures 15 and 16).
                 </p>
-                <figure className="my-4 text-center">
-                  <TransparentImage
-                    src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-13.avif"
-                    alt="Figure 15 | Biotinylation and immobilization interface for GAG constructs"
-                    className="img-fluid rounded"
-                    style={{ width: "100%" }}
-                  />
-                  <FigureCaption className="figure-caption mt-2">
-                    <strong>
-                      Figure 15 | Validation of the Biotinylation and
-                      Immobilization Interface for GAG Constructs.
-                    </strong>{" "}
-                    SA denotes streptavidin; the red box marks the
-                    high-molecular-weight complex.
-                  </FigureCaption>
-                </figure>
-                <figure className="my-4 text-center">
-                  <TransparentImage
-                    src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-14.avif"
-                    alt="Figure 16 | Residual CS-A in the supernatant after CPC-mediated retention"
-                    className="img-fluid rounded"
-                    style={{ width: "100%" }}
-                  />
-                  <FigureCaption className="figure-caption mt-2">
-                    <strong>
-                      Figure 16 | Immobilized CPC and CPC-Link-N Reduce Residual
-                      CS-A in the Supernatant.
-                    </strong>{" "}
-                    R1-R3 represent the three corresponding measurements.
-                    Individual points show measured values, and bars indicate
-                    the mean.
-                  </FigureCaption>
-                </figure>
+                <div className="poc-animation-grid">
+                  <figure className="poc-animation-panel">
+                    <div className="poc-animation-frame">
+                      <TransparentImage
+                        src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-13.avif"
+                        alt="Figure 15 | Biotinylation and immobilization interface for GAG constructs"
+                        className="img-fluid rounded"
+                        style={{ width: "100%" }}
+                      />
+                    </div>
+                    <FigureCaption className="figure-caption">
+                      <strong>
+                        Figure 15 | Validation of the Biotinylation and
+                        Immobilization Interface for GAG Constructs.
+                      </strong>{" "}
+                      SA denotes streptavidin; the red box marks the
+                      high-molecular-weight complex.
+                    </FigureCaption>
+                  </figure>
+                  <figure className="poc-animation-panel">
+                    <div className="poc-animation-frame">
+                      <TransparentImage
+                        src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-14.avif"
+                        alt="Figure 16 | Residual CS-A in the supernatant after CPC-mediated retention"
+                        className="img-fluid rounded"
+                        style={{ width: "100%" }}
+                      />
+                    </div>
+                    <FigureCaption className="figure-caption">
+                      <strong>
+                        Figure 16 | Immobilized CPC and CPC-Link-N Reduce
+                        Residual CS-A in the Supernatant.
+                      </strong>{" "}
+                      R1-R3 represent the three corresponding measurements.
+                      Individual points show measured values, and bars indicate
+                      the mean.
+                    </FigureCaption>
+                  </figure>
+                </div>
                 <p>
                   The GAG-retention activity of CPC was demonstrated in
                   immobilized constructs and was preserved after fusion with
@@ -604,38 +728,40 @@ export function ProofOfConcept() {
                   complementary evidence for successful formation of the
                   liposome-mitochondria complex (Figures 17 and 18).
                 </p>
-                <figure className="my-4 text-center">
-                  <TransparentImage
-                    src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-15.avif"
-                    alt="Figure 17 | Fluorescence colocalization of liposomes and mitochondria"
-                    className="img-fluid rounded"
-                    style={{ width: "100%" }}
-                  />
-                  <FigureCaption className="figure-caption mt-2">
-                    <strong>
-                      Figure 17 | Fluorescence Colocalization of Liposomes and
-                      Mitochondria.
-                    </strong>{" "}
-                    Green: MitoTracker Green; red: DiD; overlapping signals
-                    appear yellow-orange.
-                  </FigureCaption>
-                </figure>
-                <figure className="my-4 text-center">
-                  <TransparentImage
-                    src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-16.avif"
-                    alt="Figure 18 | TEM visualization of encapsulation"
-                    className="img-fluid rounded"
-                    style={{ width: "100%" }}
-                  />
-                  <FigureCaption className="figure-caption mt-2">
-                    <strong>
-                      Figure 18 | TEM Reveals the Composite Encapsulation
-                      Structure.
-                    </strong>{" "}
-                    (A) Functionalized liposome; (B) free mitochondria; (C)
-                    liposome-mitochondria complex. All scale bars are 200 nm.
-                  </FigureCaption>
-                </figure>
+                <div className="poc-stack-halved">
+                  <figure className="poc-halved-figure text-center">
+                    <TransparentImage
+                      src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-15.avif"
+                      alt="Figure 17 | Fluorescence colocalization of liposomes and mitochondria"
+                      className="img-fluid rounded"
+                      style={{ width: "100%" }}
+                    />
+                    <FigureCaption className="figure-caption mt-2">
+                      <strong>
+                        Figure 17 | Fluorescence Colocalization of Liposomes and
+                        Mitochondria.
+                      </strong>{" "}
+                      Green: MitoTracker Green; red: DiD; overlapping signals
+                      appear yellow-orange.
+                    </FigureCaption>
+                  </figure>
+                  <figure className="poc-halved-figure text-center">
+                    <TransparentImage
+                      src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-16.avif"
+                      alt="Figure 18 | TEM visualization of encapsulation"
+                      className="img-fluid rounded"
+                      style={{ width: "100%" }}
+                    />
+                    <FigureCaption className="figure-caption mt-2">
+                      <strong>
+                        Figure 18 | TEM Reveals the Composite Encapsulation
+                        Structure.
+                      </strong>{" "}
+                      (A) Functionalized liposome; (B) free mitochondria; (C)
+                      liposome-mitochondria complex. All scale bars are 200 nm.
+                    </FigureCaption>
+                  </figure>
+                </div>
                 <p>
                   Next, we tested whether the responsive linker peptide could be
                   cleaved as designed. Following <strong>MMP-13</strong>{" "}
@@ -645,7 +771,7 @@ export function ProofOfConcept() {
                   consistent with the expected cleavage pattern and validated
                   the enzyme-responsive function of the sequence (Figure 19).
                 </p>
-                <figure className="my-4 text-center">
+                <figure className="poc-half-width my-4 text-center">
                   <TransparentImage
                     src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-17.avif"
                     alt="Figure 19 | MMP-13-responsive cleavage"

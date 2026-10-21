@@ -156,38 +156,40 @@ export const ligationModule: DbtlModule = {
               intracellularly, and the optimal induction concentrations were
               determined from the band intensities:
             </p>
-            <TableCaption>
-              <strong>
-                Table 2.2.1. Optimal IPTG concentration for the induction of
-                each ligation-system protein.
-              </strong>
-            </TableCaption>
-            <div className="table-responsive mb-4">
-              <table
-                className="table table-bordered align-middle"
-                aria-label="Table 2.2.1: Optimal IPTG concentration for each ligation-system protein"
-              >
-                <thead>
-                  <tr>
-                    <th>Protein</th>
-                    <th>Optimal IPTG concentration</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>SnoopTag2-sfGFP</td>
-                    <td>0.1 mM</td>
-                  </tr>
-                  <tr>
-                    <td>SUMO-DogTag</td>
-                    <td>0.1 mM</td>
-                  </tr>
-                  <tr>
-                    <td>SnoopLigase2</td>
-                    <td>1.0 mM</td>
-                  </tr>
-                </tbody>
-              </table>
+            <div className="dbtl-table-compact">
+              <TableCaption>
+                <strong>
+                  Table 2.2.1. Optimal IPTG concentration for the induction of
+                  each ligation-system protein.
+                </strong>
+              </TableCaption>
+              <div className="table-responsive">
+                <table
+                  className="table table-bordered align-middle"
+                  aria-label="Table 2.2.1: Optimal IPTG concentration for each ligation-system protein"
+                >
+                  <thead>
+                    <tr>
+                      <th>Protein</th>
+                      <th>Optimal IPTG concentration</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>SnoopTag2-sfGFP</td>
+                      <td>0.1 mM</td>
+                    </tr>
+                    <tr>
+                      <td>SUMO-DogTag</td>
+                      <td>0.1 mM</td>
+                    </tr>
+                    <tr>
+                      <td>SnoopLigase2</td>
+                      <td>1.0 mM</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </>
         ),

@@ -19,7 +19,7 @@ const notebooks = [
   {
     id: "tvn-magnetic-binding",
     title: "Magnetically Responsive Anisotropy Module",
-    pdf: "https://static.igem.wiki/teams/6102/wiki/notebook/notebook-tvn-magnetic-binding-module-english.pdf",
+    pdf: "https://static.igem.wiki/teams/6102/wiki/final-notebook/04-notebook-tvn-adsorption.pdf",
   },
   {
     id: "mitochondrial-therapy",

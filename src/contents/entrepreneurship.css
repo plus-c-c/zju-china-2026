@@ -8,6 +8,30 @@
   --entre-body: #233d5c;
 }
 
+.entrepreneurship-quote {
+  max-width: 920px;
+  margin: 1.5rem auto 2rem;
+  padding: 1.15rem 1.5rem;
+  border-left: 4px solid #63a0ff;
+  border-radius: 0 12px 12px 0;
+  background: #f7faff;
+}
+
+.entrepreneurship-quote p {
+  margin: 0;
+  color: #223c81;
+  font-size: 1.25rem;
+  font-style: italic;
+  line-height: 1.6;
+}
+
+.entrepreneurship-quote footer {
+  margin-top: 0.75rem;
+  color: #5c6f96;
+  font-size: 0.95rem;
+  font-style: normal;
+}
+
 .entre-card {
   border: 0;
   border-radius: var(--article-card-radius, 22px);
@@ -159,6 +183,59 @@
   border-width: 2px;
 }
 
+.entre-figure {
+  display: block;
+  margin: 1.75rem 0;
+  text-align: center;
+}
+
+.entre-figure__media {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 18px;
+}
+
+.entre-figure__media--blue {
+  padding: clamp(0.55rem, 1.8vw, 1.25rem);
+  background: #dce9ff;
+}
+
+.entre-figure__media--stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.entre-figure__image {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+
+.entre-figure .figure-caption {
+  margin-top: 0.7rem;
+}
+
+.entre-formula {
+  max-width: 100%;
+  margin: 1rem 0;
+  padding: 0.8rem 1rem;
+  overflow-x: auto;
+  border-radius: 12px;
+  background: #f7faff;
+  color: var(--entre-body);
+  font-family: "Times New Roman", serif;
+  font-size: 1.05rem;
+  line-height: 1.55;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.entrepreneurship-article table :is(th, td) {
+  white-space: pre-line;
+}
+
 @media (max-width: 767.98px) {
   .entre-card-header {
     padding: 0.82rem 1rem;
@@ -177,6 +254,15 @@
 
   .entre-card--secondary > .entre-card-header {
     font-size: 1.02rem;
+  }
+
+  .entre-figure__media--blue {
+    border-radius: 14px;
+  }
+
+  .entre-formula {
+    font-size: 0.95rem;
+    text-align: left;
   }
 }
 

@@ -111,8 +111,8 @@ const ALL_SECTIONS: Section[] = [
     label: "Wet Lab",
     groups: [
       selpHydrogelsGroup,
-      gagRetentionGroup,
       tvnMagneticBindingGroup,
+      gagRetentionGroup,
       mitochondrialTherapyGroup,
     ],
   },
@@ -140,6 +140,59 @@ export function Engineering() {
   const [tabIndex, setTabIndex] = useState(0);
   const [activeCycle, setActiveCycle] = useState(0);
   const prevNavRef = useRef({ activeKey, groupIndex, tabIndex });
+  const groupNavRef = useRef<HTMLDivElement>(null);
+  const primaryNavRef = useRef<HTMLDivElement>(null);
+
+  useLayoutEffect(() => {
+    const navigation = primaryNavRef.current;
+    const article = navigation?.closest<HTMLElement>(".engineering-article");
+    if (!navigation || !article) return;
+    const measure = () => {
+      if (window.innerWidth >= 992) {
+        navigation.style.width = `${document.documentElement.clientWidth - 64}px`;
+        navigation.style.marginLeft = `${32 - article.getBoundingClientRect().left}px`;
+      } else {
+        navigation.style.width = "";
+        navigation.style.marginLeft = "";
+      }
+      article.style.setProperty(
+        "--eng-primary-nav-height", `${navigation.offsetHeight}px`,
+      );
+    };
+    const observer = new ResizeObserver(measure);
+    observer.observe(navigation);
+    measure();
+    window.addEventListener("resize", measure);
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", measure);
+    };
+  }, []);
+
+  // Give the secondary row the same viewport centre as the primary row.
+  // This measures navigation only; the reading column follows Experiments.
+  useLayoutEffect(() => {
+    const nav = groupNavRef.current;
+    const parent = nav?.parentElement;
+    if (!nav || !parent) return;
+    const update = () => {
+      if (window.innerWidth < 992) {
+        nav.style.width = "";
+        nav.style.marginLeft = "";
+        return;
+      }
+      nav.style.width = `${document.documentElement.clientWidth - 64}px`;
+      nav.style.marginLeft = `${32 - parent.getBoundingClientRect().left}px`;
+    };
+    update();
+    const observer = new ResizeObserver(update);
+    observer.observe(parent);
+    window.addEventListener("resize", update);
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", update);
+    };
+  }, [activeKey]);
 
   const activeSection =
     SECTIONS.find((section) => section.key === activeKey) ?? SECTIONS[0];
@@ -434,7 +487,10 @@ export function Engineering() {
   );
   const groupNav =
     activeSection.groups.length > 1 ? (
-      <div className="eng-subnav">
+      <div
+        className="eng-subnav"
+        ref={groupNavRef}
+      >
         {activeSection.groups.map((group, index) => (
           <button
             key={group.label}
@@ -521,7 +577,6 @@ export function Engineering() {
 
   const content = (
     <>
-      {!ringNav && moduleNav}
       {!ringNav && groupNav}
       {projectDesignActive ? (
         <ProjectDesignStepper layout={layout} />
@@ -578,7 +633,7 @@ export function Engineering() {
   return (
     <div className="row mt-4 mb-5">
       <div className="col-12">
-        <article>
+        <article className="engineering-article">
           <section
             className="eng-overview"
             aria-labelledby="engineering-overview-title"
@@ -621,6 +676,11 @@ export function Engineering() {
               unmet needs to developing a programmable biomaterial platform.
             </p>
           </section>
+          {!ringNav && (
+            <div className="eng-section-navigation" ref={primaryNavRef}>
+              {moduleNav}
+            </div>
+          )}
           {activeGroup || projectDesignActive ? (
             stepCount > 0 || projectDesignActive ? (
               <div className="eng-runway" style={{ height: runwayHeight }}>

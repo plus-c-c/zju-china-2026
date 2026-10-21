@@ -47,6 +47,37 @@
   line-height: 1.6;
   text-align: center;
 }
+
+/* Bill-of-materials tables: keep headers and cells centred and pairs of
+   images at a comparable size. */
+.hardware-article table th,
+.hardware-article table td {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.hardware-media-grid {
+  align-items: stretch;
+}
+
+.hardware-media-cell {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.hardware-media-cell .hardware-media-panel {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  height: 100%;
+}
+
+.hardware-media-cell .hardware-media-image {
+  flex: 1;
+  height: 100%;
+  object-fit: contain;
+}
 .hardware-media-grid--streams .figure-caption {
   font-size: 0.85rem;
 }

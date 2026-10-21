@@ -6,10 +6,7 @@ import {
   useState,
   type ReactNode,
 } from "react";
-import {
-  STEP_ADVANCE_ENABLED,
-  useBoundaryStepAdvance,
-} from "../../components/useBoundaryStepAdvance";
+import { useEngineeringScroll } from "./useEngineeringScroll";
 import type { EngineeringLayout } from "./layout";
 import type { SeedModule, SeedPhase, SeedStep } from "./seed";
 import { buildSeedSteps } from "./seed";
@@ -127,28 +124,28 @@ export function SeedStepper({
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [goToStep]);
 
-  /** Boundary stepping: the wheel / touch advances one step per gesture once
-   *  the text panel reaches its bottom (or its top, scrolling up). */
-  const suppressUntilRef = useBoundaryStepAdvance({
+  /** Inside the card, gestures only read current content. Outside it,
+   *  one gesture may change one step. */
+  useEngineeringScroll({
     stageRef: rootRef,
     panelRef,
     getIndex: () => indexRef.current,
     getCount: () => stepsRef.current.length,
     onAdvance: (target) => {
+      indexRef.current = target;
       setIndex(target);
-      scrollToStep(target, "smooth");
+      scrollToStep(target);
     },
   });
 
   // The text panel resets whenever a new step is shown: forward lands at the
-  // top, backward at the bottom (continuing an upward read).
+  // top, ready for the next reading gesture.
   const prevIndexRef = useRef(0);
   useEffect(() => {
     const panel = panelRef.current;
-    const backward = index < prevIndexRef.current;
     prevIndexRef.current = index;
     if (!panel) return;
-    panel.scrollTo({ top: STEP_ADVANCE_ENABLED && backward ? panel.scrollHeight : 0 });
+    panel.scrollTo({ top: 0 });
   }, [index]);
 
   // Map the scroll progress through the page-level runway to the step index.
@@ -160,7 +157,6 @@ export function SeedStepper({
     let frame = 0;
     const update = () => {
       frame = 0;
-      if (performance.now() < suppressUntilRef.current) return;
       const rect = runway.getBoundingClientRect();
       const total = runway.offsetHeight - window.innerHeight;
       if (total <= 0) return;
@@ -179,7 +175,7 @@ export function SeedStepper({
       window.removeEventListener("resize", schedule);
       window.cancelAnimationFrame(frame);
     };
-  }, [suppressUntilRef]);
+  }, []);
 
   const step = steps[index];
   /** Module owning the shown step (multi-part sequences switch parts). */
@@ -354,26 +350,6 @@ export function SeedStepper({
             tabIndex={0}
             role="region"
             aria-label={caption || stepModule?.title || "Lead or outlook"}
-            onKeyDown={(event) => {
-              if (!stepsRef.current.length) return;
-              if (
-                event.key === "ArrowDown" ||
-                event.key === "PageDown" ||
-                event.key === "ArrowRight"
-              ) {
-                event.preventDefault();
-                goToStep(
-                  Math.min(indexRef.current + 1, stepsRef.current.length - 1),
-                );
-              } else if (
-                event.key === "ArrowUp" ||
-                event.key === "PageUp" ||
-                event.key === "ArrowLeft"
-              ) {
-                event.preventDefault();
-                goToStep(Math.max(indexRef.current - 1, 0));
-              }
-            }}
           >
             <div className="dbtl-panel-inner" key={step?.key ?? "static"}>
               {step?.content ?? content}

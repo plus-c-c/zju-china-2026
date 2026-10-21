@@ -53,7 +53,7 @@ export function buildSteps(
 }
 
 /** Scroll distance per step in the legacy layout, as a fraction of the viewport height. */
-export const STEP_DVH = 30;
+export { STEPPER_STEP_DVH as STEP_DVH } from "../../components/stepperWheel";
 
 /**
  * Number of scroll intervals covered by a sequence. Every step — including

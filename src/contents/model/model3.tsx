@@ -9,11 +9,11 @@ import {
   type CSSProperties,
   type ReactNode,
 } from "react";
+import { useContainedStepperScroll } from "../../components/useContainedStepperScroll";
 import {
-  STEP_ADVANCE_ENABLED,
-  useBoundaryStepAdvance,
-} from "../../components/useBoundaryStepAdvance";
-import { useCardWheel, useStepperProgress } from "../../components/stepperWheel";
+  STEPPER_STEP_DVH,
+  useStepperProgress,
+} from "../../components/stepperWheel";
 import { MathFormula } from "../../components/MathFormula";
 import { TransparentImage } from "../../components/TransparentImage";
 import {
@@ -34,14 +34,13 @@ import "./model3.css";
  * · The total free energy accumulates its terms step by step.
  * · The step texts rotate inside one fixed card: only the text slides
  *   (clipped by the card frame), with a left/right slide-in / slide-out.
- * · Scrolling the text to its bottom advances to the next step (at the last
- *   step the page continues to the references); scrolling back at the top
- *   returns to the previous step. The text area shows no scrollbar.
+ * · Card gestures only scroll the current text. Gestures outside the card
+ *   advance one step at a time.
  * · The core equation is always fully visible: it scales down to fit.
  */
 
-/* 主方程项（与 m3Steps 的 term 对应，steps = 该项在推导中出现的步骤）。
-   ψ_dip 在最终模型中被近似忽略，没有对应的步骤，只作为末项展示。 */
+/* Terms light up when introduced. The dipolar term is removed only when
+   the reader reaches the explicit approximation in the final derivation. */
 const MASTER_TERMS: { id: string; latex: string; steps: number[] }[] = [
   { id: "fiber", latex: "\\psi_{\\mathrm{fiber}}", steps: [2] },
   { id: "orient", latex: "\\psi_{\\mathrm{orient}}", steps: [3, 4] },
@@ -50,7 +49,7 @@ const MASTER_TERMS: { id: string; latex: string; steps: number[] }[] = [
   { id: "fluid", latex: "\\psi_{\\mathrm{fluid}}", steps: [7] },
   { id: "coupling", latex: "\\psi_{\\mathrm{coupling}}", steps: [7] },
   { id: "crosslink", latex: "\\psi_{\\mathrm{crosslink}}", steps: [8] },
-  { id: "dip", latex: "\\psi_{\\mathrm{dip}}", steps: [] },
+  { id: "dip", latex: "\\psi_{\\mathrm{dip}}", steps: [3] },
 ];
 
 function Parts({ parts }: { parts: M3Part[] }) {
@@ -88,7 +87,9 @@ function FigureBlock({ block }: { block: M3Block }) {
         style={block.width ? { maxWidth: block.width } : undefined}
       />
       {block.caption ? (
-        <FigureCaption className="figure-caption">{block.caption}</FigureCaption>
+        <FigureCaption className="figure-caption">
+          {block.caption}
+        </FigureCaption>
       ) : null}
     </figure>
   );
@@ -133,7 +134,7 @@ function Blocks({ blocks }: { blocks: M3Block[] }) {
       nodes.push(<FigureBlock key={index} block={block} />);
     } else {
       nodes.push(
-        <p key={index}>
+        <p key={index} data-model-milestone={block.milestone}>
           <Parts parts={block.parts ?? []} />
         </p>,
       );
@@ -181,6 +182,9 @@ function SlideInner({
         className={`m3-slide__content${
           chain ? " m3-slide__content--chain" : ""
         }`}
+        tabIndex={variant === "in" ? 0 : -1}
+        role="region"
+        aria-label={step.title}
         ref={(el) => {
           if (el && initialScroll) el.scrollTop = initialScroll;
           contentRef?.(el);
@@ -194,13 +198,14 @@ function SlideInner({
 
 export function Model3() {
   const [activeStep, setActiveStep] = useState(1);
+  const [dipOmitted, setDipOmitted] = useState(false);
   /* 幻灯片视图：current = 当前步，prev = 正在滑出的上一步，dir = 切换方向 */
   const [view, setView] = useState<{
     current: number;
     prev: number | null;
     dir: 1 | -1;
   }>({ current: 1, prev: null, dir: 1 });
-  /* 切换后新内容的初始滚动位置（上滑返回时停在底部） */
+  /* 新步骤从顶部开始阅读。 */
   const [entry, setEntry] = useState<"top" | "bottom">("top");
   const deckRef = useRef<HTMLDivElement | null>(null);
   const stageRef = useRef<HTMLDivElement | null>(null);
@@ -222,7 +227,7 @@ export function Model3() {
     stepRef.current = activeStep;
   }, [activeStep]);
 
-  /* 步骤变化 → 触发滑出/滑入（560ms 后移除滑出层） */
+  /* Remove the outgoing layer just after the Engineering-length transition. */
   useEffect(() => {
     setView((v) =>
       v.current === activeStep
@@ -237,10 +242,7 @@ export function Model3() {
 
   useEffect(() => {
     if (view.prev === null) return;
-    const timer = setTimeout(
-      () => setView((v) => ({ ...v, prev: null })),
-      560,
-    );
+    const timer = setTimeout(() => setView((v) => ({ ...v, prev: null })), 420);
     return () => clearTimeout(timer);
   }, [view]);
 
@@ -252,6 +254,38 @@ export function Model3() {
     if (!el) return;
     el.scrollTop = entry === "bottom" ? el.scrollHeight : 0;
   }, [currentNum, entry]);
+
+  useLayoutEffect(() => {
+    const panel = contentRef.current;
+    if (!panel || currentNum !== 9) {
+      setDipOmitted(false);
+      return;
+    }
+    const marker = panel.querySelector<HTMLElement>(
+      '[data-model-milestone="neglect-dipolar"]',
+    );
+    if (!marker) return;
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      setDipOmitted(
+        marker.getBoundingClientRect().top <=
+          panel.getBoundingClientRect().top + panel.clientHeight * 0.7,
+      );
+    };
+    const schedule = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+    const observer = new ResizeObserver(schedule);
+    observer.observe(panel);
+    panel.addEventListener("scroll", schedule, { passive: true });
+    update();
+    return () => {
+      cancelAnimationFrame(frame);
+      observer.disconnect();
+      panel.removeEventListener("scroll", schedule);
+    };
+  }, [currentNum]);
 
   /* 跳转到某一步：把页面滚到跑道中对应的进度位置（同 engineering） */
   const scrollToStep = useCallback(
@@ -271,7 +305,12 @@ export function Model3() {
   /* 左右方向键与滚轮等效：切换上一步 / 下一步 */
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.defaultPrevented || event.metaKey || event.ctrlKey || event.altKey)
+      if (
+        event.defaultPrevented ||
+        event.metaKey ||
+        event.ctrlKey ||
+        event.altKey
+      )
         return;
       const forward = event.key === "ArrowRight" || event.key === "ArrowDown";
       const backward = event.key === "ArrowLeft" || event.key === "ArrowUp";
@@ -285,25 +324,23 @@ export function Model3() {
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [currentNum, total, scrollToStep]);
 
-  /* 内容滚到边界后的滚轮/触摸：一次手势步进一格（首/末步交给页面） */
-  const suppressUntilRef = useBoundaryStepAdvance({
+  useContainedStepperScroll({
     stageRef,
+    runwayRef: deckRef,
     panelRef: contentRef,
-    getIndex: () => stepRef.current,
+    cardRef,
+    getIndex: () => stepRef.current - 1,
     getCount: () => total,
-    onAdvance: (target) => {
+    onAdvance: (index) => {
+      const target = index + 1;
       outScrollRef.current = contentRef.current?.scrollTop ?? 0;
-      setEntry(target > stepRef.current ? "top" : "bottom");
+      setEntry("top");
+      stepRef.current = target;
       lastStepRef.current = target;
       setActiveStep(target);
-      scrollToStep(target - 1, "smooth");
+      scrollToStep(index);
     },
   });
-
-  /* Wheel: shared behaviour — the slide's text scrolls first (1.5x gain,
-     one indivisible notch); once it is at either end the notch drives the
-     page, which advances the hidden step progress below. */
-  useCardWheel(contentRef, cardRef);
 
   /* Hidden step progress shared with the other steppers: one interval per
      step; the slide switches when its interval completes. */
@@ -314,15 +351,10 @@ export function Model3() {
       const target = index + 1;
       if (target === lastStepRef.current) return;
       outScrollRef.current = contentRef.current?.scrollTop ?? 0;
-      setEntry(
-        target > lastStepRef.current || !STEP_ADVANCE_ENABLED
-          ? "top"
-          : "bottom",
-      );
+      setEntry("top");
       lastStepRef.current = target;
       setActiveStep(target);
     },
-    suppressUntilRef,
   });
 
   const step = deckSteps.find((s) => s.num === view.current) ?? deckSteps[0];
@@ -340,7 +372,12 @@ export function Model3() {
       <div
         className="m3-deck"
         ref={deckRef}
-        style={{ "--m3-count": total } as CSSProperties}
+        style={
+          {
+            "--m3-count": total,
+            "--stepper-step-size": `${STEPPER_STEP_DVH}dvh`,
+          } as CSSProperties
+        }
       >
         <div className="m3-deck__stage" ref={stageRef}>
           {/* 主方程：随步骤逐步积累各项 */}
@@ -354,14 +391,19 @@ export function Model3() {
               </span>
               {MASTER_TERMS.map((term, index) => {
                 const on =
-                  term.steps.length > 0 && activeStep >= Math.min(...term.steps);
+                  term.steps.length > 0 &&
+                  activeStep >= Math.min(...term.steps);
                 const fresh = term.steps.includes(activeStep);
+                const omitted =
+                  term.id === "dip" && activeStep === 9 && dipOmitted;
                 return (
                   <span
                     key={term.id}
+                    data-term={term.id}
+                    aria-hidden={omitted || undefined}
                     className={`m3-term${on ? " m3-term--on" : ""}${
                       fresh ? " m3-term--new" : ""
-                    }`}
+                    }${omitted ? " m3-term--omitted" : ""}`}
                   >
                     {index > 0 && <span className="m3-term__op">+</span>}
                     <MathFormula>{term.latex}</MathFormula>
@@ -405,11 +447,7 @@ export function Model3() {
                 variant="in"
                 dir={view.dir}
                 animate={view.prev !== null}
-                chain={
-                  !STEP_ADVANCE_ENABLED ||
-                  currentNum === 1 ||
-                  currentNum === total
-                }
+                chain={false}
                 contentRef={(el) => {
                   contentRef.current = el;
                 }}

@@ -107,6 +107,7 @@ export const gagRetentionModule: DbtlModule = {
               by His-tag affinity purification.
             </p>
             <DbtlFigure
+              readable="composite"
               src="result/03/03.avif"
               caption="Figure 1.1.1 | Establishment and optimization of CPC recombinant-protein expression. (A) SDS-PAGE screening across induction conditions; red arrows indicate the expected target bands after sequence redesign and codon optimization. (B) SDS-PAGE of affinity-purification fractions; red boxes indicate target-protein enrichment in the eluates. (C) Western blot detection of Link-N, CPC, and CPC–Link-N at the expected molecular weights. A band in an uninduced sample suggests basal expression."
             />
@@ -162,6 +163,7 @@ export const gagRetentionModule: DbtlModule = {
               and 0.2 mg/mL for both CPC and CPC&ndash;Link-N.
             </p>
             <DbtlFigure
+              readable="composite"
               src="result/03/06.avif"
               caption="Figure 1.2.1 | Validation of SUMO removal, reverse purification, and protein recovery. (A) SDS-PAGE of Link-N, CPC, and CPC–Link-N before and after ULP1 cleavage; residual uncleaved fusion protein remained. (B) Blank-corrected BCA standard curve (y = 1.429212x, R² = 0.966585). (C) Final concentrations after reverse purification and concentration: Link-N, 0.30 mg/mL; CPC, 0.21 mg/mL; CPC–Link-N, 0.19 mg/mL. (D) Representative colorimetric readout from the BCA assay."
             />
@@ -249,7 +251,6 @@ export const gagRetentionModule: DbtlModule = {
             </p>
             <DbtlFigure
               src="result/03/09.avif"
-              width="50%"
               caption="Figure 2.1.1 | Establishment and optimization of the CS-A agarose electrophoretic mobility assay. CS-A alone (1, 2, 5, and 10 µg) was separated by agarose-gel electrophoresis and stained with toluidine blue, confirming that the assay could detect CS-A bands."
             />
           </>
@@ -338,6 +339,7 @@ export const gagRetentionModule: DbtlModule = {
               solution.
             </p>
             <DbtlFigure
+              readable="gel"
               src="result/03/10.avif"
               caption="Figure 1.4.1 | Validation of AviTag-mediated site-specific biotinylation by SDS-PAGE. AviTag-tagged Link-N, CPC, and CPC–Link-N were biotinylated with BirA and incubated with streptavidin (SA). The unbiotinylated Link-N control retained a free band at approximately 15 kDa (red arrow), whereas biotinylated samples showed reduced free Link-N and higher-molecular-weight complexes near 70 kDa (red boxes)."
             />
@@ -351,6 +353,7 @@ export const gagRetentionModule: DbtlModule = {
               retention in the hydrogel material.
             </p>
             <DbtlFigure
+              readable="composite"
               src="result/03/11.avif"
               caption="Figure 2.2.2 | Statistical analysis of the reduction in residual supernatant CS-A associated with CPC and CPC–Link-N (paired t-test). One-sided paired t-tests were performed on residual supernatant CS-A concentrations measured by DMMB (n = 3) to compare CPC and CPC–Link-N treatment groups with CK. The p-values for the two prespecified comparisons were adjusted using the Holm method (α = 0.05). Mean paired difference = treatment group − corresponding CK; a negative value indicates lower residual GAG than in CK."
             />

@@ -294,6 +294,12 @@ img[data-whiten][data-whiten-state="pending"] {
   margin: 0;
 }
 
+.wetlab-split .wetlab-results__video--half {
+  width: 50%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
 .wetlab-split .wetlab-results__video-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -380,4 +386,25 @@ img[data-whiten][data-whiten-state="pending"] {
   .wetlab-split .summary {
     padding: 18px;
   }
+}
+
+/* Figure 3.1.2 carries white margins baked into the AVIF (content starts
+   ~30.5% down and occupies ~67.3% of the width). Crop them with a viewport so
+   the figure sits directly below Figure 3.1.1's caption. The link still opens
+   the complete hosted original. */
+.wetlab-split .figure-link.figure-312 {
+  width: min(100%, 560px);
+  aspect-ratio: 1278 / 1257;
+  margin: 0 auto;
+  padding: 0;
+  overflow: hidden;
+}
+
+.wetlab-split .figure-312 img {
+  display: block;
+  width: 148.51% !important;
+  max-width: none !important;
+  height: auto !important;
+  margin: 0;
+  transform: translateY(-30.5%);
 }

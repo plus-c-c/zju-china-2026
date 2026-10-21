@@ -79,19 +79,23 @@ export const pageDetails: Record<
   },
   "/human-practices": {
     icon: "20_integrated_human_practices.png",
-    description: "Stakeholder insights into NEST",
+    description: "Into Reality",
   },
   "/entrepreneurship": {
     icon: "21_entrepreneurship.png",
-    description: "A path to the healthcare market",
+    description: "NEST to Change the World",
   },
   "/education": {
     icon: "22_education.png",
-    description: "Making SynBio accessible",
+    description: "Public & Industry Outreach",
   },
   "/collaboration": {
     icon: "23_collaboration.png",
-    description: "Growing through shared experience",
+    description: "Communication & Activities",
+  },
+  "/game": {
+    icon: "29-game.avif",
+    description: "Fly, inject and repair cartilage",
   },
   "/members": {
     icon: "26_members.png",

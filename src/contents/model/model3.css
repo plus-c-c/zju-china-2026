@@ -5,34 +5,38 @@
   position: relative;
   margin-top: 22px;
   /* 跑道：首屏 + 每步一段滚动行程（与 engineering 的 runway 相同） */
-  height: calc(100dvh + var(--m3-count) * 200px);
+  height: calc(100dvh + var(--m3-count) * var(--stepper-step-size));
 }
 
 /* 目录锚点：每步滚动进度位置处的隐藏标题 */
 .m3-anchor {
-  top: calc(var(--m3-seg) * 200px);
+  /* Compensate for the TOC's 20dvh reading line so the highlight
+     changes at the same runway position as useStepperProgress. */
+  top: calc(var(--m3-seg) * var(--stepper-step-size) + 20dvh);
 }
 
 /* 抵消 .page-article h3 的 !important 标题间距（48px），否则锚点整体下移、
    TOC 高亮滞后于卡组切换。 */
 .page-article .m3-anchor {
+  scroll-margin-top: calc(20dvh - 2px);
   margin: 0 !important;
 }
 
 /* 第一步的锚点：TOC 恰好在该步粘滞钉住的那一刻高亮（stage 吸顶 84px，
    激活阈值为 0.2 视口高）。 */
 .m3-anchor:first-of-type {
-  top: calc(20dvh - 84px);
+  top: calc(20dvh - var(--page-sticky-top, 82px));
 }
 
 .m3-deck__stage {
   position: sticky;
-  top: 84px;
+  top: var(--page-sticky-top, 82px);
   z-index: 5;
   display: flex;
   flex-direction: column;
   /* 卡片底部与页面底部保持距离 */
-  max-height: calc(100vh - 84px - 48px);
+  max-height: calc(100dvh - var(--page-sticky-top, 82px) - 48px);
+  transition: top 300ms ease, max-height 300ms ease;
 }
 
 /* ===== 主方程 ===== */
@@ -75,12 +79,20 @@
   border-radius: 8px;
   opacity: 0.16;
   transition:
-    opacity 450ms ease,
-    background-color 450ms ease;
+    opacity 700ms ease,
+    background-color 450ms ease,
+    filter 700ms ease,
+    transform 700ms ease;
 }
 
 .m3-term--on {
   opacity: 1;
+}
+
+.m3-term--omitted {
+  opacity: 0;
+  filter: blur(2px);
+  transform: translateY(3px);
 }
 
 .m3-term--new {
@@ -176,11 +188,11 @@
 }
 
 .m3-slide__inner--in.m3-slide__inner--fwd {
-  animation: m3-in-fwd 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: m3-in-fwd 380ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .m3-slide__inner--in.m3-slide__inner--back {
-  animation: m3-in-back 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: m3-in-back 380ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .m3-slide__inner--out {
@@ -191,11 +203,11 @@
 }
 
 .m3-slide__inner--out.m3-slide__inner--fwd {
-  animation: m3-out-fwd 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: m3-out-fwd 380ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .m3-slide__inner--out.m3-slide__inner--back {
-  animation: m3-out-back 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: m3-out-back 380ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 @keyframes m3-in-fwd {
@@ -370,21 +382,13 @@
 
 /* ===== 移动端 ===== */
 @media (max-width: 900px) {
-  .m3-deck {
-    height: calc(100dvh + var(--m3-count) * 52vh);
-  }
-
-  .m3-anchor {
-    top: calc(var(--m3-seg) * 52vh);
-  }
-
   .m3-anchor:first-of-type {
-    top: calc(20dvh - 8px);
+    top: calc(20dvh - var(--page-sticky-top, 82px));
   }
 
   .m3-deck__stage {
-    top: 8px;
-    max-height: calc(100vh - 8px - 32px);
+    top: var(--page-sticky-top, 82px);
+    max-height: calc(100dvh - var(--page-sticky-top, 82px) - 32px);
   }
 
   .m3-master {
@@ -412,6 +416,11 @@
 
 /* ===== 动画降级 ===== */
 @media (prefers-reduced-motion: reduce) {
+  .m3-term {
+    transition: none;
+    animation: none;
+  }
+
   .m3-slide__inner--in,
   .m3-slide__inner--out {
     animation: none;
@@ -420,10 +429,6 @@
   /* 无动画时滑出层直接隐藏，避免旧文本在卡片上闪现 */
   .m3-slide__inner--out {
     display: none;
-  }
-
-  .m3-term {
-    transition: none;
   }
 
   .m3-term--new {

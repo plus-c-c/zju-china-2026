@@ -121,7 +121,7 @@
   border: 1px solid #d6e0f5;
   background-color: #f7faff;
   color: #223c81;
-  font-size: 1rem;
+  font-size: 1.125rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.25s ease;
@@ -679,9 +679,9 @@
 
 .dbtl .dbtl-panel-inner .project-design-figure img {
   display: block;
-  width: auto;
+  width: 100%;
   max-width: 100%;
-  max-height: clamp(220px, calc(var(--dbtl-stack-h) - 240px), 500px);
+  max-height: var(--figure-fit-height, 500px);
   object-fit: contain;
   margin: 0 auto;
   border: 1px solid #e3e8f4;
@@ -860,6 +860,19 @@
   font-size: 0.93rem;
 }
 
+.dbtl .dbtl-panel-inner .dbtl-table-compact .table-caption {
+  padding: 0.25rem 0;
+  margin: 0;
+}
+
+.dbtl .dbtl-panel-inner .dbtl-table-compact .table-responsive {
+  margin: 0.4rem 0 0.75rem;
+}
+
+.dbtl .dbtl-panel-inner .dbtl-table-compact .table {
+  margin-bottom: 0;
+}
+
 @keyframes dbtl-card-next {
   from {
     opacity: 0;
@@ -954,7 +967,7 @@
 .dbtl-subnav .dbtl-subnav-button {
   flex: 0 1 auto;
   padding: 0.38rem 0.05rem;
-  font-size: clamp(0.7rem, 0.78vw, 0.96rem);
+  font-size: 1.125rem;
   white-space: nowrap;
 }
 
@@ -1024,6 +1037,10 @@
 }
 
 .dbtl .dbtl-panel-inner .dbtl-section-title:first-child {
+  margin-top: 0 !important;
+}
+
+.dbtl .dbtl-panel-inner:has(> .dbtl-section-title:first-child) {
   margin-top: 0;
 }
 
@@ -1050,9 +1067,9 @@
   /* Tall figures (e.g. Figure 1.4.1) are capped so the complete image and
      its caption fit inside the card at the same time; the width follows the
      capped height and stays centred. */
-  width: auto;
+  width: 100%;
   max-width: 100%;
-  max-height: clamp(160px, calc(var(--dbtl-stack-h) - 330px), 380px);
+  max-height: var(--figure-fit-height, 500px);
   object-fit: contain;
   margin-right: auto;
   margin-bottom: 0.7rem;
@@ -1064,6 +1081,58 @@
 
 .dbtl .dbtl-panel-inner .dbtl-figure img:last-of-type {
   margin-bottom: 0;
+}
+
+.dbtl .dbtl-panel-inner .dbtl-figure--readable {
+  --figure-display-height: 400px;
+  margin-block: 0.75rem;
+}
+
+.dbtl .dbtl-panel-inner .dbtl-figure--diagram {
+  --figure-display-height: 380px;
+}
+
+.dbtl .dbtl-panel-inner :is(.dbtl-figure--gel, .dbtl-figure--microscopy) {
+  --figure-display-height: 360px;
+}
+
+.dbtl .dbtl-panel-inner .dbtl-figure--portrait {
+  --figure-display-height: 480px;
+}
+
+.dbtl .dbtl-panel-inner .dbtl-figure--readable img {
+  /* Keep the complete artwork centred at a considered viewing size.
+     Portrait diagrams get more height; gels and microscopy stay compact. */
+  max-height: min(var(--figure-display-height), 52dvh);
+}
+
+.dbtl .dbtl-panel-inner .dbtl-figure-imgs--shared {
+  align-items: center;
+  border: 1px solid #e3e8f4;
+  border-radius: 12px;
+  background: #fbfcfe;
+  overflow: hidden;
+}
+
+.dbtl .dbtl-panel-inner .dbtl-figure-imgs--shared > img {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.dbtl .dbtl-panel-inner .dbtl-figure-imgs--trimmed {
+  display: block;
+  overflow: hidden;
+  border: 1px solid #e3e8f4;
+  border-radius: 12px;
+  background: #fbfcfe;
+}
+
+.dbtl .dbtl-panel-inner .dbtl-figure-imgs--trimmed > img {
+  max-width: none;
+  max-height: none;
+  border: 0;
+  border-radius: 0;
 }
 
 .dbtl .dbtl-panel-inner .dbtl-figure figcaption {
@@ -1186,7 +1255,8 @@
    The classes are only applied when the layout switch is set to "legacy".
    -------------------------------------------------------------------------- */
 .dbtl--legacy {
-  --dbtl-stack-h: clamp(380px, calc(90vh - 10.5rem), 700px);
+  /* Use the Introduction card height for every Project/Wet/Dry view. */
+  --dbtl-stack-h: clamp(340px, calc(90vh - 12.25rem), 672px);
   grid-template-columns: auto minmax(0, 1fr);
   grid-template-rows: none;
   grid-template-areas: none;
@@ -1208,7 +1278,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.55rem;
+  gap: 1.75rem;
   width: var(--dbtl-ring-size);
   height: auto;
   min-height: 0;
@@ -1262,7 +1332,7 @@
 .dbtl--legacy .dbtl-left--legacy .dbtl-cycle-button {
   width: 100%;
   padding: 0.32rem 0.15rem;
-  font-size: 0.86rem;
+  font-size: 1.05rem;
   white-space: nowrap;
 }
 
@@ -1277,28 +1347,30 @@
   padding-top: 0;
 }
 
-/* Project Design keeps its larger double ring and its narrower copy column. */
+/* Project Design keeps its larger double ring. */
 .project-design-stepper.dbtl--legacy {
   --dbtl-ring-size: clamp(340px, 36vw, 520px);
   --dbtl-gap: clamp(1rem, 1.5vw, 1.5rem);
-  /* Leave room for the larger double ring at narrower desktop widths. */
-  --project-copy-width: min(
-    850px,
-    calc(100% - var(--dbtl-ring-size) - var(--project-copy-gap))
-  );
-  --project-copy-gap: 8px;
+  /* The SEED SVG's painted outer edge is 66.5 units inside its 1040 viewBox. */
+  --project-artwork-inset: calc(var(--dbtl-ring-size) * 0.0639423077);
 }
 
 @media (min-width: 992px) {
   .project-design-stepper.dbtl--legacy {
     position: relative;
     grid-template-columns: minmax(0, 1fr);
+    --project-ring-left: calc(2rem - var(--dbtl-gap) - var(--project-artwork-inset));
+    /* Use the space beside the painted ring, keeping the right article edge. */
+    --project-copy-width: calc(
+      100% - var(--project-ring-left) - var(--dbtl-ring-size)
+      + var(--project-artwork-inset) - 2rem
+    );
   }
 
   .project-design-stepper.dbtl--legacy .dbtl-left--legacy {
     position: absolute;
     top: 50%;
-    right: calc(var(--project-copy-width) + var(--project-copy-gap));
+    left: var(--project-ring-left);
     z-index: 0;
     margin: 0;
     transform: translateY(-50%);
@@ -1332,11 +1404,7 @@
 
   .dbtl--legacy .dbtl-panel {
     flex: 0 0 auto;
-    height: clamp(260px, 54vh, 480px);
-  }
-
-  .project-design-stepper.dbtl--legacy .dbtl-panel {
-    height: clamp(210px, 34vh, 330px);
+    height: clamp(220px, calc(54vh - 28px), 452px);
   }
 
   .dbtl--legacy .dbtl-ring-wrap {
@@ -1364,4 +1432,100 @@
     justify-content: flex-start;
     padding-top: 12px;
   }
+}
+
+.dbtl .dbtl-panel-inner .dbtl-figure-imgs > img {
+  margin-bottom: 0;
+}
+
+/* Both navigation rows can use the page width, while their buttons stay
+   grouped together at the centre with the primary row's original gap. */
+@media (min-width: 992px) {
+  .eng-aggregate .eng-subnav {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+  .eng-aggregate .eng-subnav-button {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .dbtl-subnav {
+    flex-wrap: wrap;
+  }
+}
+
+/* Match Design's sticky navigation offset without changing button styling. */
+.engineering-article {
+  --eng-site-nav-offset: 82px;
+  --eng-primary-nav-height: 72px;
+  --eng-nav-gap: 10px;
+}
+
+body:has(.nest-navbar-hidden) .engineering-article {
+  --eng-site-nav-offset: 0px;
+}
+
+.eng-section-navigation {
+  position: sticky;
+  top: var(--eng-site-nav-offset);
+  z-index: 20;
+  padding-block: 4px;
+  background: #f5faff;
+  transition: top 300ms ease;
+}
+
+.eng-section-navigation .eng-module-nav {
+  margin: 0 auto;
+}
+
+.engineering-article .eng-pin {
+  top: calc(var(--eng-site-nav-offset) + var(--eng-primary-nav-height) + var(--eng-nav-gap));
+  height: calc(100dvh - var(--eng-site-nav-offset) - var(--eng-primary-nav-height) - var(--eng-nav-gap));
+  justify-content: flex-start;
+  padding-top: 0;
+}
+
+.engineering-article .eng-aggregate .eng-subnav {
+  margin-top: 0;
+  margin-bottom: var(--eng-nav-gap);
+}
+
+/* Avoid counting the nested Project Design tab row's margins twice. */
+.engineering-article .dbtl-subnav--legacy {
+  margin-bottom: 0.25rem;
+}
+
+.engineering-article .dbtl-subnav--legacy > .dbtl-subnav {
+  margin: 0;
+  row-gap: 0.25rem;
+}
+
+/* The reading card uses the same article edges as Experiments. The ring
+   remains its original size in the space reserved for the left-hand TOC. */
+@media (min-width: 1201px) {
+  .engineering-article .dbtl--legacy:not(.project-design-stepper) {
+    --dbtl-bleed: calc(var(--dbtl-ring-size) + var(--dbtl-gap));
+  }
+
+  /* Match the Wet/Dry artwork edge while keeping the double-ring size.
+     Recover the original bleed from the expanded grid and viewport widths. */
+  .project-design-stepper.dbtl--legacy {
+    --project-ring-left: calc(
+      100vw - 100% - 2 * var(--dbtl-gap)
+      - clamp(230px, 19vw, 310px) - 2rem
+      - var(--project-artwork-inset)
+    );
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .eng-section-navigation { transition: none; }
+}
+
+/* A card never chains its reading scroll into the Engineering timeline. */
+.engineering-article .dbtl-panel-body {
+  overscroll-behavior: contain;
 }

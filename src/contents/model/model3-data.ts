@@ -15,6 +15,7 @@ export interface M3Block {
   width?: number;
   /** Visible caption shown under the figure. */
   caption?: string;
+  milestone?: "neglect-dipolar";
 }
 
 export interface M3Step {
@@ -2389,6 +2390,7 @@ export const m3Steps: M3Step[] = [
       },
       {
         t: "p",
+        milestone: "neglect-dipolar",
         parts: [
           {
             t: "text",

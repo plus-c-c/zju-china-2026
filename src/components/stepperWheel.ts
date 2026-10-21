@@ -6,11 +6,10 @@ import { useEffect, useRef, type RefObject } from "react";
  */
 export const STEPPER_WHEEL_GAIN = 2;
 
-/**
- * Scroll distance for one hidden-progress step, shared by Engineering DBTL and
- * the three Model decks. Two standard wheel notches (~100 px each) therefore
- * advance exactly one step / 90° of ring rotation.
- */
+/** Hidden scroll travel shared by the legacy Engineering and all Model decks. */
+export const STEPPER_STEP_DVH = 30;
+
+/** Fixed travel retained for the alternate Engineering layout. */
 export const STEPPER_STEP_PX = 200;
 
 /**
@@ -46,8 +45,7 @@ export function useCardWheel(
       const raw = event.deltaY;
       const max = Math.max(0, body.scrollHeight - body.clientHeight);
       const atStart = body.scrollTop <= 0;
-      const atEnd =
-        body.scrollTop + body.clientHeight >= body.scrollHeight - 1;
+      const atEnd = body.scrollTop + body.clientHeight >= body.scrollHeight - 1;
       if (raw > 0 ? atEnd : atStart) {
         window.scrollBy(0, raw);
         return;

@@ -12,6 +12,7 @@ import { NotFound } from "../../components/NotFound";
 import { Footer } from "../../components/Footer";
 import { Toc } from "../../components/toc";
 import { BackToTop } from "../../components/BackToTop";
+import { ScrollDeckHint } from "../../components/ScrollDeckHint";
 import { LoadingScreen } from "../../components/LoadingScreen";
 import { BirdCursorProvider } from "../../components/BirdCursor";
 import { waitForHomeAssets } from "../../utils/homeAssetReadiness";
@@ -222,6 +223,7 @@ const App = () => {
         </main>
 
         {!isNotFound && <BackToTop />}
+        <ScrollDeckHint enabled={!isLoading} />
 
         {/* Footer */}
         {/* MUST mention license AND have a link to team wiki's repository on gitlab.igem.org */}

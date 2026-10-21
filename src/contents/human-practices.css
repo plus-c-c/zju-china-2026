@@ -119,6 +119,16 @@ html[data-ihp-swipe="up"]::view-transition-new(root) {
   from { transform: translateX(-100%); }
 }
 
+/* Keep the five Toolbox links compact in the article column. */
+.ihp-toolbox-tabs {
+  gap: 6px;
+}
+
+.ihp-toolbox-tabs .eng-subnav-button {
+  padding: 6px 10px;
+  font-size: 15px;
+}
+
 /* NEST's four module buttons stay on one row; the labels are compacted just
    enough to fit the article column. */
 .ihp-subnav-row {
@@ -199,6 +209,26 @@ html[data-ihp-swipe="up"]::view-transition-new(root) {
    article column; the active one is still the widest of the three. */
 .ihp-page-nav--selected {
   align-items: center;
+}
+
+.ihp-page-nav {
+  position: sticky;
+  top: var(--page-sticky-top, 82px);
+  z-index: 30;
+  width: 100%;
+  padding-block: 4px;
+  background: #f5faff;
+  box-shadow: 0 8px 0 #f5faff;
+  transition: top 300ms ease;
+}
+
+.ihp-section > :is(.eng-subnav, .ihp-nest-tabs) {
+  position: sticky;
+  top: calc(var(--page-sticky-top, 82px) + var(--ihp-primary-nav-height, 72px) + 8px);
+  z-index: 29;
+  padding-block: 4px;
+  background: #f5faff;
+  transition: top 300ms ease;
 }
 
 .ihp-page-nav--selected .eng-module-button {
@@ -381,4 +411,28 @@ html[data-ihp-swipe="up"] .nest-navbar {
 
 .ihp-timeline-stage:first-of-type .ihp-timeline-stage__title {
   margin-top: 0.4rem;
+}
+
+.ihp-quote {
+  max-width: 920px;
+  margin: 1.5rem auto 2rem;
+  padding: 1.15rem 1.5rem;
+  border-left: 4px solid #63a0ff;
+  border-radius: 0 12px 12px 0;
+  background: #f7faff;
+}
+
+.page-article .ihp-quote p {
+  margin: 0;
+  color: #223c81;
+  font-size: 1.25rem;
+  font-style: italic;
+  line-height: 1.6;
+}
+
+.ihp-quote footer {
+  margin-top: 0.75rem;
+  color: #5c6f96;
+  font-size: 0.95rem;
+  font-style: normal;
 }
