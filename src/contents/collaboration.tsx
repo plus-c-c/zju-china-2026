@@ -302,9 +302,10 @@ export function Collaboration() {
             concern of our project. With this need in mind, we approached Prof.
             Zhou Hong and Lin Lei&rsquo;s team at the School of Biomedical
             Engineering to explore how movement monitoring could be combined
-            with exercise guidance. Our team contributed access to guidance from
-            rehabilitation physicians, seeking to connect rehabilitation needs
-            with engineering design.
+            with exercise guidance. Our team provided rehabilitation guidance
+            and research data to help train and refine the machine. While we
+            work toward making the material available to patients, we also hope
+            that they can reduce their pain through home-based rehabilitation.
           </p>
           <CollabFigure
             photos={[SMART_MIRROR]}
@@ -368,13 +369,13 @@ export function Collaboration() {
             caption="Figure 2.1.2.1, 2.1.2.2 | Participating teams at the East China iGEM Meetup."
           />
 
-          <h3 id="context-of-use">
-            2.2 Returning Technology to the Context of Use
-          </h3>
+          <h3 id="context-of-use">2.2 Entrepreneurial Activities</h3>
           <p>
-            The business plan for carrying NEST from the laboratory toward
-            clinical use is set out on our{" "}
-            <Link to="/entrepreneurship">Entrepreneurship page</Link>.
+            Through our{" "}
+            <Link to="/entrepreneurship">entrepreneurial activities</Link>, we
+            strengthened the team&rsquo;s communication and presentation skills,
+            connected with a broader range of business stakeholders, and secured
+            financial support.
           </p>
 
           <h2 id="reflection">Reflection</h2>
