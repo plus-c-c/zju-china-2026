@@ -304,8 +304,8 @@
   inset: 0;
   background: linear-gradient(100deg, #77bce5, #a8d9f4 55%, #79bce7);
   box-shadow: inset 0 0 0 1px #569dcc;
-  /* 在骨面上逐段铺开，而非只让损伤变透明。旋转后从针尖向右覆盖。 */
-  transform: scaleY(var(--inject-progress, 0));
-  transform-origin: top;
-  transition: transform 0.35s linear;
+  /* 骨头旋转 -90° 后，局部底部是凹槽最深处（屏幕右侧）。
+     从深处向针头侧的开口揭示凝胶，保留轮廓和渐变，不先堵住槽口。 */
+  clip-path: inset(calc((1 - var(--inject-progress, 0)) * 100%) 0 0 0);
+  transition: clip-path 0.35s linear;
 }
