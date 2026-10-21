@@ -3,7 +3,7 @@ import "./FlappyInjection.css";
 
 /**
  * Mini game: a Flappy-Bird-style run through healthy bones. Passing each bone
- * pair advances the injection progress shown in the bottom-right corner; when
+ * pair advances the injection progress shown in the bottom strip; when
  * the syringe is fully injected the player wins. All project artwork is served
  * from static.igem.wiki.
  */
@@ -11,7 +11,6 @@ const ASSETS = "https://static.igem.wiki/teams/6102/wiki/images/home";
 
 const W = 960;
 const H = 520;
-const GROUND = 64;
 const PIPE_W = 92;
 const PIPE_GAP = 176;
 const BONE_H = Math.round((PIPE_W * 1132) / 1390);
@@ -20,7 +19,12 @@ const BIRD_H = Math.round((BIRD_W * 1640) / 2360);
 const SPEED = 180;
 const GRAVITY = 1500;
 const FLAP_VY = -430;
-const TOTAL_BONES = 5;
+const TOTAL_BONES = 20;
+// Deliberately alternate the gap heights, with enough shaft at either edge.
+const GAP_HEIGHTS = [
+  0.5, 0.9, 0.15, 0.65, 0.3, 0.85, 0.1, 0.55, 0.95, 0.35, 0.75, 0.2, 0.6, 0.05,
+  0.8, 0.4, 1, 0.25, 0.7, 0.45,
+];
 
 type Phase = "ready" | "playing" | "over" | "won";
 
@@ -54,11 +58,8 @@ export function FlappyInjection() {
   const phaseRef = useRef<Phase>("ready");
   const flapRef = useRef<() => void>(() => {});
   const [phase, setPhase] = useState<Phase>("ready");
-  const [progress, setProgress] = useState(0);
-
-  useEffect(() => {
-    phaseRef.current = phase;
-  }, [phase]);
+  const [passedCount, setPassedCount] = useState(0);
+  const progress = passedCount / TOTAL_BONES;
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -74,6 +75,7 @@ export function FlappyInjection() {
     const bird = { x: 250, y: H / 2 - 40, vy: 0 };
     let pipes: Pipe[] = [];
     let passed = 0;
+    let spawned = 0;
     let spawnTimer = 0;
     let elapsed = 0;
     let raf = 0;
@@ -84,13 +86,19 @@ export function FlappyInjection() {
     const boneImg = new Image();
     boneImg.src = `${ASSETS}/bird-return-bone-2.avif`;
 
+    const changePhase = (next: Phase) => {
+      phaseRef.current = next;
+      setPhase(next);
+    };
+
     const reset = () => {
       bird.y = H / 2 - 40;
       bird.vy = 0;
       pipes = [];
       passed = 0;
+      spawned = 0;
       spawnTimer = 0;
-      setProgress(0);
+      setPassedCount(0);
     };
 
     const flap = () => {
@@ -99,19 +107,19 @@ export function FlappyInjection() {
       } else {
         reset();
         bird.vy = FLAP_VY;
-        setPhase("playing");
+        changePhase("playing");
       }
     };
     flapRef.current = flap;
 
     const spawn = () => {
-      /* margin 76 保证下管的骨端与骨柄始终在地面之上（避免骨柄高度为负） */
-      const margin = 76;
+      const margin = BONE_H + 8;
       const gapY =
         margin +
         PIPE_GAP / 2 +
-        Math.random() * (H - GROUND - margin * 2 - PIPE_GAP);
+        GAP_HEIGHTS[spawned] * (H - margin * 2 - PIPE_GAP);
       pipes.push({ x: W + 60, gapY, passed: false, seed: Math.random() * 100 });
+      spawned += 1;
     };
 
     const hitPipe = (pipe: Pipe) => {
@@ -136,32 +144,39 @@ export function FlappyInjection() {
         bird.vy += GRAVITY * dt;
         bird.y += bird.vy * dt;
         spawnTimer -= dt;
-        if (spawnTimer <= 0) {
+        if (spawnTimer <= 0 && spawned < TOTAL_BONES) {
           spawn();
-          spawnTimer = 1.55;
+          spawnTimer = 1.65;
         }
         for (const pipe of pipes) {
           pipe.x -= SPEED * dt;
-          if (!pipe.passed && pipe.x + PIPE_W < bird.x - BIRD_W / 2) {
-            pipe.passed = true;
-            passed += 1;
-            setProgress(Math.min(passed / TOTAL_BONES, 1));
-            if (passed >= TOTAL_BONES) setPhase("won");
-          }
         }
-        pipes = pipes.filter((pipe) => pipe.x > -PIPE_W - 60);
+        // A collision must not count as a pass or overwrite the final win.
         if (
-          bird.y + BIRD_H / 2 > H - GROUND ||
+          bird.y + BIRD_H / 2 > H ||
           bird.y - BIRD_H / 2 < 0 ||
           pipes.some(hitPipe)
         ) {
-          setPhase("over");
+          changePhase("over");
+          return;
         }
+        for (const pipe of pipes) {
+          if (!pipe.passed && pipe.x + PIPE_W < bird.x - BIRD_W / 2) {
+            pipe.passed = true;
+            passed += 1;
+            setPassedCount(passed);
+            if (passed === TOTAL_BONES) {
+              changePhase("won");
+              return;
+            }
+          }
+        }
+        pipes = pipes.filter((pipe) => pipe.x > -PIPE_W - 60);
         return;
       }
       if (current === "over") {
         bird.vy += GRAVITY * dt;
-        bird.y = Math.min(bird.y + bird.vy * dt, H - GROUND - BIRD_H / 2);
+        bird.y = Math.min(bird.y + bird.vy * dt, H - BIRD_H / 2);
       }
     };
 
@@ -186,14 +201,7 @@ export function FlappyInjection() {
       }
       // 下管：骨端正向
       const bottomTop = gapBottom + BONE_H;
-      roundRect(
-        ctx,
-        x,
-        bottomTop,
-        PIPE_W,
-        Math.max(H - GROUND - bottomTop + 8, 8),
-        10,
-      );
+      roundRect(ctx, x, bottomTop, PIPE_W, Math.max(H - bottomTop + 8, 8), 10);
       ctx.fill();
       ctx.stroke();
       if (boneImg.complete && boneImg.naturalWidth) {
@@ -211,8 +219,7 @@ export function FlappyInjection() {
         const pyBottom =
           bottomTop +
           14 +
-          ((pipe.seed * 67 + i * 41) %
-            Math.max(H - GROUND - bottomTop - 30, 1));
+          ((pipe.seed * 67 + i * 41) % Math.max(H - bottomTop - 30, 1));
         ctx.beginPath();
         ctx.ellipse(px, pyBottom, 4.5, 6.5, 0, 0, Math.PI * 2);
         ctx.fill();
@@ -242,10 +249,6 @@ export function FlappyInjection() {
         drawCloud(drift - 100, cy, r);
       }
       for (const pipe of pipes) drawBonePipe(pipe);
-      ctx.fillStyle = "#f0e2c4";
-      ctx.fillRect(0, H - GROUND, W, GROUND);
-      ctx.fillStyle = "#dcc097";
-      ctx.fillRect(0, H - GROUND, W, 4);
       if (birdImg.complete && birdImg.naturalWidth) {
         const rot = Math.max(-0.45, Math.min(1.1, bird.vy / 650));
         ctx.save();
@@ -300,8 +303,11 @@ export function FlappyInjection() {
   }, []);
 
   return (
-    <div className="flappy">
+    <div className="flappy" data-phase={phase}>
       <div className="flappy__arena">
+        <div className="flappy__score" role="status">
+          Bones passed: {passedCount} / {TOTAL_BONES}
+        </div>
         <canvas
           ref={canvasRef}
           onClick={() => flapRef.current()}
@@ -328,7 +334,8 @@ export function FlappyInjection() {
           <div className="flappy__overlay flappy__overlay--win">
             <p className="flappy__overlay-title">YOU WIN!</p>
             <p className="flappy__overlay-text">
-              Injection complete — the cartilage is repaired.
+              All {TOTAL_BONES} bones passed — the gel has covered the
+              cartilage.
             </p>
             <p className="flappy__overlay-text">
               Click / tap / press Space to play again.
@@ -336,43 +343,51 @@ export function FlappyInjection() {
           </div>
         )}
       </div>
-      <div className="inject" aria-hidden="true">
-        <div className="inject__syringe">
-          <div
-            className="inject__syringe-inner"
-            style={{ "--inject-progress": progress } as CSSProperties}
-          >
-            <img
-              className="inject__syringe-plunger"
-              src={`${ASSETS}/home-05-solution-syringe.avif`}
-              alt=""
-            />
-            <div className="inject__syringe-rod" aria-hidden="true" />
-            <img
-              className="inject__syringe-liquid"
-              src={`${ASSETS}/home-05-solution-syringe.avif`}
-              alt=""
-            />
-            <img
-              className="inject__syringe-base"
-              src={`${ASSETS}/home-05-solution-syringe.avif`}
-              alt=""
-            />
-            <img
-              className="inject__syringe-base-bottom"
-              src={`${ASSETS}/home-05-solution-syringe.avif`}
-              alt=""
-            />
-            <div className="inject__syringe-needle" aria-hidden="true" />
+      <div
+        className="inject"
+        role="progressbar"
+        aria-label="Gel injected and cartilage covered"
+        aria-valuemin={0}
+        aria-valuemax={TOTAL_BONES}
+        aria-valuenow={passedCount}
+        aria-valuetext={`${Math.round(progress * 100)}% injected`}
+        style={{ "--inject-progress": progress } as CSSProperties}
+      >
+        <div className="inject__art" aria-hidden="true">
+          <div className="inject__syringe">
+            <div className="inject__syringe-inner">
+              <img
+                className="inject__syringe-plunger"
+                src={`${ASSETS}/home-05-solution-syringe.avif`}
+                alt=""
+              />
+              <div className="inject__syringe-rod" aria-hidden="true" />
+              <img
+                className="inject__syringe-liquid"
+                src={`${ASSETS}/home-05-solution-syringe.avif`}
+                alt=""
+              />
+              <img
+                className="inject__syringe-base"
+                src={`${ASSETS}/home-05-solution-syringe.avif`}
+                alt=""
+              />
+              <img
+                className="inject__syringe-base-bottom"
+                src={`${ASSETS}/home-05-solution-syringe.avif`}
+                alt=""
+              />
+              <div className="inject__syringe-needle" aria-hidden="true" />
+            </div>
           </div>
-        </div>
-        <div className="inject__bone">
-          <div className="inject__bone-inner">
-            <img src={`${ASSETS}/home-05-solution-bone.avif`} alt="" />
-            <span
-              className="inject__damage"
-              style={{ opacity: 1 - progress }}
-            />
+          <div className="inject__bone">
+            <div className="inject__bone-inner">
+              <img src={`${ASSETS}/home-05-solution-bone.avif`} alt="" />
+              <span className="inject__damage" />
+              <span className="inject__gel">
+                <span className="inject__gel-fill" />
+              </span>
+            </div>
           </div>
         </div>
       </div>

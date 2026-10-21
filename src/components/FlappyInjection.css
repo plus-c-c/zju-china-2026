@@ -12,6 +12,21 @@
   position: relative;
 }
 
+.flappy__score {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 1;
+  padding: 5px 12px;
+  border: 1px solid #c5d5ed;
+  border-radius: 999px;
+  background: rgb(255 255 255 / 90%);
+  color: #365dc9;
+  font-size: clamp(11px, 2cqw, 15px);
+  font-weight: 700;
+  pointer-events: none;
+}
+
 .flappy canvas {
   display: block;
   width: 100%;
@@ -41,10 +56,10 @@
   background: rgb(70 107 207 / 84%);
 }
 
-.flappy__overlay-title {
+.flappy .flappy__overlay-title {
   margin: 0;
   color: #365dc9;
-  font-size: clamp(28px, 5vw, 44px);
+  font-size: clamp(20px, 4.6cqw, 44px);
   font-weight: 800;
   letter-spacing: -0.02em;
 }
@@ -53,11 +68,11 @@
   color: #fff;
 }
 
-.flappy__overlay-text {
+.flappy .flappy__overlay-text {
   max-width: 480px;
   margin: 0;
   color: #405b87;
-  font-size: 15px;
+  font-size: clamp(12px, 2.3cqw, 17px);
   font-weight: 500;
   line-height: 1.5;
 }
@@ -66,34 +81,44 @@
   color: #e8f0ff;
 }
 
-/* 卡片内侧·右下角：横置注射图示，底边紧贴地面下缘（卡片底边），无白色底框 */
+/* 示意图中的底部横带：与飞行区分开，针管和骨头在横带中上下居中。 */
 .inject {
-  position: absolute;
-  left: 2px;
-  right: 2px;
-  bottom: 2px;
+  position: relative;
+  height: clamp(78px, 13.5cqw, 124px);
+  overflow: hidden;
+  border-top: 3px solid #dcc097;
+  background: #f0e2c4;
   display: flex;
-  align-items: flex-start;
-  justify-content: flex-end;
+  align-items: center;
+  justify-content: center;
   pointer-events: none;
+}
+
+.inject__art {
+  --syringe-length: 72cqw;
+  --syringe-image-width: clamp(180px, 34cqw, 320px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 94%;
+  height: 100%;
 }
 
 .inject__syringe {
   position: relative;
-  /* 加长至卡片宽度的一半，与损伤软骨一起构成进度条 */
-  width: 50cqw;
-  height: 52px;
-  margin-top: 33px;
-  /* 针尖没入骨头墨迹（随长度加大重叠量） */
-  margin-right: -40px;
+  flex: 0 0 var(--syringe-length);
+  height: 70px;
+  /* 素材中心偏离 50% 约 0.15%，补偿后针头和筒身处于同一轴线。 */
+  transform: translateY(-0.15%);
 }
 
 .inject__syringe-inner {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 52px;
-  height: 50cqw;
+  /* 原图仅约 11% 的宽度是筒身，放大透明外框才能真正加粗筒身。 */
+  width: var(--syringe-image-width);
+  height: var(--syringe-length);
   transform: translate(-50%, -50%) rotate(-90deg);
 }
 
@@ -102,7 +127,7 @@
    液柱层（liquid）：仅保留筒内液柱，随进度从顶部裁切下降；
    底图上层（base）：上段底图，挖掉活塞缺口（外扩 4px 消除描边残影）；
    底图下层（base-bottom）：下段底图，避开液柱矩形。
-   行程 = 317 素材像素（≈18.34% 高度）≈ 14.3px，与液面下降完全同步。 */
+   活塞和液面使用相同的 18.35% 行程；20 次各推进行程的 5%。 */
 .inject__syringe-liquid,
 .inject__syringe-plunger,
 .inject__syringe-base,
@@ -147,8 +172,8 @@
     45.3% 12.33%,
     39.8% 12.33%
   );
-  transform: translateY(calc(var(--inject-progress, 0) * 18.33%));
-  transition: transform 0.45s ease;
+  transform: translateY(calc(var(--inject-progress, 0) * 18.35%));
+  transition: transform 0.35s linear;
 }
 
 /* 推入筒内的推杆段：素材中透过玻璃的深色调 (#5a6470)。
@@ -156,22 +181,22 @@
 .inject__syringe-rod {
   position: absolute;
   top: 30%;
-  bottom: calc(63.54% - var(--inject-progress, 0) * 18.34%);
+  bottom: calc(63.54% - var(--inject-progress, 0) * 18.35%);
   left: 45.3%;
   z-index: 1;
   width: 9.05%;
   background: #5a6470;
   border-top: 1px solid #39434d;
   pointer-events: none;
-  transition: bottom 0.45s ease;
+  transition: bottom 0.35s linear;
 }
 
 .inject__syringe-liquid {
   z-index: 2;
   clip-path: inset(
-    calc(37.96% + var(--inject-progress, 0) * 18.5%) 44.6% 43.69% 44.35%
+    calc(37.96% + var(--inject-progress, 0) * 18.35%) 44.6% 43.69% 44.35%
   );
-  transition: clip-path 0.45s ease;
+  transition: clip-path 0.35s linear;
 }
 
 .inject__syringe-base {
@@ -211,20 +236,20 @@
 }
 
 .inject__bone {
-  /* 底对齐并下调，使骨头图（含图内透明边距）的墨迹下缘正好贴住卡片底边 */
   position: relative;
-  align-self: flex-end;
-  width: 60px;
-  height: 80px;
-  margin-bottom: -14px;
+  flex: 0 0 20cqw;
+  height: 100%;
+  /* 扣除两张原图的透明边距，让针尖进入骨面而非停在骨头左侧。 */
+  margin-left: -10cqw;
 }
 
 .inject__bone-inner {
+  --bone-image-width: clamp(100px, 18cqw, 170px);
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 80px;
-  height: 60px;
+  width: var(--bone-image-width);
+  height: calc(var(--bone-image-width) * 0.75);
   overflow: hidden;
   transform: translate(-50%, -50%) rotate(-90deg);
 }
@@ -236,56 +261,51 @@
   width: 100%;
 }
 
-.inject__damage {
+.inject__damage,
+.inject__gel {
   position: absolute;
-  top: 38%;
-  left: 35%;
-  width: 32%;
-  height: 14%;
-  background: #c9705a;
-  clip-path: polygon(
-    0% 22%,
-    16% 0%,
-    38% 12%,
-    60% 2%,
-    84% 14%,
-    100% 34%,
-    88% 56%,
-    96% 80%,
-    72% 96%,
-    46% 86%,
-    24% 100%,
-    8% 74%,
-    12% 46%
+  /* 加宽开口并向骨内加深；凝胶沿同一缺损轮廓填充。 */
+  top: 35%;
+  left: 31.5%;
+  width: 37%;
+  height: 22%;
+  background: radial-gradient(
+    ellipse at 50% 70%,
+    #723b32 0%,
+    #9d5041 48%,
+    #c67d63 76%,
+    #edbd90 100%
   );
-  transition: opacity 260ms ease;
+  clip-path: polygon(
+    0% 20%,
+    4% 10%,
+    15% 4%,
+    35% 0%,
+    82% 0%,
+    94% 4%,
+    100% 13%,
+    99% 29%,
+    89% 60%,
+    72% 87%,
+    49% 100%,
+    28% 93%,
+    17% 77%,
+    10% 50%,
+    3% 34%
+  );
 }
 
-@media (max-width: 600px) {
-  .inject__syringe {
-    width: 50cqw;
-    height: 42px;
-    margin-top: 26px;
-    margin-right: -24px;
-  }
+.inject__gel {
+  background: none;
+}
 
-  .inject__syringe-inner {
-    width: 42px;
-    height: 50cqw;
-  }
-
-  .inject__bone {
-    width: 48px;
-    height: 64px;
-    margin-bottom: -10px;
-  }
-
-  .inject__bone-inner {
-    width: 64px;
-    height: 48px;
-  }
-
-  .inject__syringe-plunger {
-    transform: translateY(calc(var(--inject-progress, 0) * 18.33%));
-  }
+.inject__gel-fill {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg, #77bce5, #a8d9f4 55%, #79bce7);
+  box-shadow: inset 0 0 0 1px #569dcc;
+  /* 在骨面上逐段铺开，而非只让损伤变透明。旋转后从针尖向右覆盖。 */
+  transform: scaleY(var(--inject-progress, 0));
+  transform-origin: top;
+  transition: transform 0.35s linear;
 }

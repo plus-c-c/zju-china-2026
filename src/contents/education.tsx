@@ -1,4 +1,5 @@
 import "./education.css";
+import { FlappyInjection } from "../components/FlappyInjection";
 
 /** Static host for the Education figures. The exported `edu-*.avif`
  *  files are served from this folder. */
@@ -656,6 +657,15 @@ export function Education() {
             impact in the iGEM Community next year, and we are particularly
             interested in the Education 101 program.
           </p>
+
+          <h2>Mini game: inject the cartilage</h2>
+          <p>
+            Fly the NEST bird between healthy bones and complete the injection
+            &mdash; a playful take on our cartilage-repair idea. Pass all 20
+            bone pairs at different heights: each pair injects 5% of the gel
+            and covers a little more of the damaged cartilage.
+          </p>
+          <FlappyInjection />
         </article>
       </div>
     </div>
