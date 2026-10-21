@@ -72,14 +72,15 @@ export function BiosafetyResultsText({
 
 export function BiosafetyFigureCaption({
   figureNumber = "7.1",
+  title = "Preliminary cytocompatibility assessment of NEST components using the CCK-8 assay.",
 }: {
   figureNumber?: string;
+  title?: string;
 }) {
   return (
     <FigureCaption className="figure-caption mt-2">
       <strong>
-        Figure {figureNumber} | Preliminary cytocompatibility assessment of NEST
-        components using the CCK-8 assay.
+        Figure {figureNumber} | {title}
       </strong>{" "}
       Relative cell viability was measured after 24, 48, and 72 h of treatment.
       (A) Hydrogel-related preparations, including Dressing-solution, G-S low,

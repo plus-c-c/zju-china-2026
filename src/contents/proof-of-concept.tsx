@@ -14,8 +14,6 @@ import { TransparentImage } from "../components/TransparentImage";
 import {
   BIOSAFETY_FIGURE_URL,
   BiosafetyFigureCaption,
-  BiosafetyIntroduction,
-  BiosafetyResultsText,
 } from "./results/biosafety-content";
 import "./proof-of-concept.css";
 
@@ -916,19 +914,46 @@ export function ProofOfConcept() {
             <h2 className="mt-5 mb-3">
               Biocompatibility
             </h2>
-            <BiosafetyIntroduction />
-            <BiosafetyResultsText figureNumber="21" />
+            <p>
+              Alongside material properties and module-specific functions, we
+              validated NEST's interaction with cells. Using the{" "}
+              <strong>CCK-8 assay</strong>, we measured relative cell viability
+              after exposure to hydrogel-related preparations, magnetic
+              nanoparticles (MNP), and functional peptides for 24, 48, and 72 h.
+            </p>
+            <p>
+              Hydrogel-related preparations and MNP generally maintained
+              relative cell viability near or above the control level across
+              the tested time points (Figure 21). These results support the{" "}
+              <strong>
+                <em>in vitro</em> cytocompatibility of the scaffold
+                preparations and magnetic component
+              </strong>
+              , providing a cellular foundation for NEST's modular hydrogel
+              design.
+            </p>
+            <p>
+              The functional-peptide assays characterized concentration- and
+              time-dependent cellular responses. The Mito groups showed higher
+              relative cell viability at 48 and 72 h than at 24 h. Together,
+              these measurements establish an experimental basis for selecting
+              component concentrations and treatment durations when configuring
+              NEST's functional modules.
+            </p>
             <figure className="my-4 text-center">
               <TransparentImage
                 src={BIOSAFETY_FIGURE_URL}
-                alt="Figure 21 | Preliminary cytocompatibility assessment of NEST components using the CCK-8 assay"
+                alt="Figure 21 | Cytocompatibility of NEST components assessed by CCK-8"
                 width={3080}
                 height={2434}
                 trim={false}
                 className="img-fluid rounded"
                 style={{ width: "100%" }}
               />
-              <BiosafetyFigureCaption figureNumber="21" />
+              <BiosafetyFigureCaption
+                figureNumber="21"
+                title="Cytocompatibility of NEST components assessed by CCK-8."
+              />
             </figure>
             <h2 className="mt-5 mb-3">Conclusion</h2>
             <p>
@@ -937,8 +962,10 @@ export function ProofOfConcept() {
               through sequence configuration. The shared ligation interface was
               compatible with different functional constructs, while the
               Magnetically Responsive Anisotropy Module, GAG Retention Module, and Mitochondrial Therapeutic Module each exhibited their key intended functions. The scaffold
-              and major functional components were also evaluated in preliminary{" "}
-              <em>in vitro</em> cytocompatibility assays.
+              preparations and MNP generally maintained cell viability near or
+              above control levels in CCK-8 assays,
+              while the functional-peptide assays established a basis for
+              selecting module-specific treatment conditions.
             </p>
             <p>
               We have therefore established two experimental aspects of NEST's
