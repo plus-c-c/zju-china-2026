@@ -238,8 +238,8 @@ export function Collaboration() {
             The exchange prompted reflection on our project narrative.
             Suggestions from the two advisers during the early stage of our
             project development were especially useful. See our{" "}
-            <Link to="/human-practices#ihp-stakeholders-map">
-              stakeholder maps
+            <Link to="/human-practices#ihp-engagement-rd">
+              stakeholder interviews
             </Link>{" "}
             for details.
           </p>
