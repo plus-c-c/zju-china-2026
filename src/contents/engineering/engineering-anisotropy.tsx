@@ -155,7 +155,7 @@ export const anisotropyModule: DbtlModule = {
             <DbtlFigure
               readable="portrait"
               src="engineering/02/02.avif"
-              caption="Figure 2 | The magnetically responsive composite-fiber approach. Fe₃O₄-loaded fibers were designed as directional carriers that also participate in network formation through Ru/SPS-mediated photocrosslinking."
+              caption="Figure 2 | The magnetically responsive composite-fiber approach. (A) Automated electrospinning apparatus for fiber formation, deposition, and cutting."
             />
           </>
         ),
