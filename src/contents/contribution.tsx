@@ -41,12 +41,12 @@ export function Contribution() {
         <h2 data-toc="exclude">Contribution</h2>
         <hr />
         <p>
-          NEST contributes a reusable toolkit for engineering protein-based
-          hydrogels. We share modular biological parts, preparation protocols,
-          modeling methods, software and hardware resources, and an Integrated
-          Human Practices toolbox. Together, these resources help future iGEM
-          teams move from scaffold design to functional assembly, material
-          preparation, and application support.
+          NEST contributes a modular foundation for protein-based hydrogel
+          development: future teams can vary scaffold architecture and introduce
+          new functional modules through a shared ligation interface. We make
+          this approach reusable through biological parts, preparation
+          protocols, modeling methods, software and hardware resources, and an
+          Integrated Human Practices toolbox.
         </p>
         <figure className="figure d-block my-4 text-center">
           <img
@@ -186,7 +186,10 @@ export function Contribution() {
           covering SELP scaffolds, ligation interfaces, functional modules,
           reporters, and controls. The toolkit connects tunable scaffold length
           with interchangeable functions, giving future teams a foundation for
-          building materials around their own biological objectives.
+          building materials around their own biological objectives. TVN-based
+          particle-binding modules and CPC/Link-N matrix-retention modules
+          provide concrete examples of functions that teams can adapt or
+          replace.
         </p>
         <p>
           We demonstrated scaffold expansion from 2KY-5 to 2KY-10 and documented
@@ -336,7 +339,10 @@ export function Contribution() {
           on established inverse transition cycling (ITC) methods,
           <sup className="article-citation">[1, 2]</sup> we established a
           working preparation route for our SELP scaffolds and documented the
-          optimization decisions behind it.
+          optimization decisions behind it. Our temperature–salt screen
+          identified salt concentration as the more influential factor in
+          scaffold recovery, giving future teams a practical direction for
+          prioritizing optimization.
         </p>
         <figure className="figure d-block my-4 text-center">
           <img
@@ -349,9 +355,10 @@ export function Contribution() {
           />
           <FigureCaption className="figure-caption">
             Figure 3 | SELP recovery and preparation workflow. Target-protein
-            bands in the supernatants collected after heating (H-Sup) and
-            cooling (C-Sup) help identify protein loss during phase transition
-            and resolubilization, respectively.
+            bands in H-Sup (the supernatant after heating) track protein
+            remaining outside the precipitated phase; bands in C-Sup (the
+            supernatant after cooling) track soluble protein recovered after
+            resolubilization.
             <FigureSourceCitation
               source={1}
               href="#contribution-figure-sources"
@@ -436,7 +443,9 @@ export function Contribution() {
           configuration and output inspection. Together, they give future teams
           a documented starting point for investigating their own material
           designs and connecting computational comparisons with targeted
-          experiments.
+          experiments. The Model page also documents computational approaches to
+          SnoopLigase2 engineering and magnetic-field analysis, extending the
+          shared methods to ligation-tool design and magnetic-response studies.
         </p>
         <h3
           id="contribution-software-hardware"
