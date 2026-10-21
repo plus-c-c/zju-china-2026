@@ -147,9 +147,6 @@ export function Collaboration() {
     <div className="row mt-4 mb-5">
       <div className="col-lg-10 mx-auto">
         <article className="collaboration-article">
-          <p className="collaboration-subtitle">
-            Grow through Shared Experience
-          </p>
           <blockquote className="collaboration-quote">
             <p>
               &ldquo;Alone we can do so little; together we can do so
