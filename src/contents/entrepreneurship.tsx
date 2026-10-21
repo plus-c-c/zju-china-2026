@@ -27,6 +27,7 @@ type FigureBlock = {
   files: string[];
   caption: string;
   special: boolean;
+  cropTopLeft?: boolean;
 };
 type TableBlock = {
   type: "table";
@@ -345,7 +346,8 @@ const CONTENT: ContentBlock[] = [
           "001.avif"
         ],
         "caption": "Figure 1 | Projected sizes of NEST's serviceable available market (SAM) and serviceable obtainable market (SOM).",
-        "special": true
+        "special": true,
+        "cropTopLeft": true
       }
     ]
   },
@@ -478,7 +480,8 @@ const CONTENT: ContentBlock[] = [
       "002-3.avif"
     ],
     "caption": "Figure 2 | Classification, estimation basis, and budget summary for NEST's initial capital investment, annual operating expenses, and annual capital expenditure.",
-    "special": true
+    "special": true,
+    "cropTopLeft": true
   },
   {
     "type": "card",
@@ -1156,7 +1159,8 @@ const CONTENT: ContentBlock[] = [
       "004.avif"
     ],
     "caption": "Figure 4 | Ten-year cash flow analysis for NEST. Cash inflows are shown in green, cash outflows in red, net cash flows in light green, and discounted cash flows in black. All monetary values are expressed in USD thousands and converted using a fixed exchange rate of USD 1 = CNY 6.72. The model assumes that NEST gradually expands from 10% to 100% of its SOM during the first five years and maintains 100% SOM from Year 6 to Year 10.",
-    "special": true
+    "special": true,
+    "cropTopLeft": true
   },
   {
     "type": "paragraph",
@@ -1889,14 +1893,22 @@ function renderBlock(block: ContentBlock, key: string): ReactNode {
             }${block.files.length > 1 ? " entre-figure__media--stack" : ""}`}
           >
             {block.files.map((file, index) => (
-              <img
-                src={`${ENTRE_FIG}/${file}`}
-                alt={index === 0 ? block.caption : ""}
-                className="entre-figure__image"
-                loading="lazy"
-                decoding="async"
+              <span
+                className={`entre-figure__image-frame${
+                  block.cropTopLeft
+                    ? " entre-figure__image-frame--crop-top-left"
+                    : ""
+                }`}
                 key={file}
-              />
+              >
+                <img
+                  src={`${ENTRE_FIG}/${file}`}
+                  alt={index === 0 ? block.caption : ""}
+                  className="entre-figure__image"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </span>
             ))}
           </div>
           <figcaption className="figure-caption">{block.caption}</figcaption>

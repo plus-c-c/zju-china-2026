@@ -206,6 +206,23 @@
   gap: 16px;
 }
 
+.entre-figure__image-frame {
+  display: block;
+  width: 100%;
+}
+
+.entre-figure__image-frame--crop-top-left {
+  width: calc(100% - 4px);
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.entre-figure__image-frame--crop-top-left .entre-figure__image {
+  width: calc(100% + 4px);
+  max-width: none;
+  margin: -4px 0 0 -4px;
+}
+
 .entre-figure__image {
   display: block;
   width: 100%;
