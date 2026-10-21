@@ -381,3 +381,24 @@ img[data-whiten][data-whiten-state="pending"] {
     padding: 18px;
   }
 }
+
+/* Figure 3.1.2 carries white margins baked into the AVIF (content starts
+   ~30.5% down and occupies ~67.3% of the width). Crop them with a viewport so
+   the figure sits directly below Figure 3.1.1's caption. The link still opens
+   the complete hosted original. */
+.wetlab-split .figure-link.figure-312 {
+  width: min(100%, 560px);
+  aspect-ratio: 1278 / 1257;
+  margin: 0 auto;
+  padding: 0;
+  overflow: hidden;
+}
+
+.wetlab-split .figure-312 img {
+  display: block;
+  width: 148.51% !important;
+  max-width: none !important;
+  height: auto !important;
+  margin: 0;
+  transform: translateY(-30.5%);
+}

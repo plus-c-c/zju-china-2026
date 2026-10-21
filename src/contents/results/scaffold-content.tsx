@@ -1845,7 +1845,7 @@ export function ScaffoldContent() {
             <div className="source-block figure-block" data-block="96">
               <p>
                 <a
-                  className="figure-link"
+                  className="figure-link figure-312"
                   href="https://static.igem.wiki/teams/6102/wiki/images/result/01-skeleton/28.avif"
                   target="_blank"
                   rel="noopener"

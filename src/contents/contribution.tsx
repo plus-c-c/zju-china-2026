@@ -41,12 +41,12 @@ export function Contribution() {
         <h2 data-toc="exclude">Contribution</h2>
         <hr />
         <p>
-          NEST contributes a reusable toolkit for engineering protein-based
-          hydrogels. We share modular biological parts, preparation protocols,
-          modeling methods, software and hardware resources, and an Integrated
-          Human Practices toolbox. Together, these resources help future iGEM
-          teams move from scaffold design to functional assembly, material
-          preparation, and application support.
+          NEST provides biological parts and methods for building protein
+          hydrogels with different scaffold lengths and interchangeable
+          functional modules. Future iGEM teams can reuse the constructs and
+          ligation interface, follow our preparation protocols, and adapt the
+          modeling, software, hardware, and Human Practices resources to their
+          own projects.
         </p>
         <figure className="figure d-block my-4 text-center">
           <img
@@ -58,12 +58,9 @@ export function Contribution() {
             decoding="async"
           />
           <FigureCaption className="figure-caption">
-            Figure 1 | NEST contributions — reusable resources for the iGEM
-            community. The iHP toolkit (NEST + SEED, methods and documented
-            cases), the experimental platform (parts, interfaces and protocols),
-            the modelling workflow, and the app and hardware are interconnected,
-            so future teams can progress from material construction to
-            preparation and application support.
+            Figure 1 | Resources shared with the iGEM community. The diagram
+            links our biological parts and protocols, modeling workflow, app and
+            hardware, and NEST/SEED Human Practices toolbox.
             <FigureSourceCitation
               source={1}
               href="#contribution-figure-sources"
@@ -71,9 +68,7 @@ export function Contribution() {
           </FigureCaption>
         </figure>
         <TableCaption>
-          Table 1 | Reusable contributions for future iGEM teams. Resources are
-          grouped by what they provide, how they can be used, and where they can
-          be accessed.
+          Table 1 | Shared resources, suggested uses, and access links.
         </TableCaption>
         <div className="table-responsive mb-4">
           <table
@@ -84,7 +79,7 @@ export function Contribution() {
               <tr>
                 <th scope="col">Contribution</th>
                 <th scope="col">Resources We Share</th>
-                <th scope="col">How Future Teams Can Build On Them</th>
+                <th scope="col">How to Use Them</th>
                 <th scope="col">Access</th>
               </tr>
             </thead>
@@ -111,8 +106,8 @@ export function Contribution() {
                   and photocrosslinking procedures
                 </td>
                 <td>
-                  Plan a preparation workflow and use the optimization records
-                  to identify where adjustments are needed
+                  Prepare proteins and hydrogels using the protocols and
+                  optimization records
                 </td>
                 <td>
                   <Link to="/protocol">Protocol Library</Link> ·{" "}
@@ -143,8 +138,8 @@ export function Contribution() {
                   and bills of materials
                 </td>
                 <td>
-                  Adapt formulation guidance, dispensing channels, and device
-                  components to a new material workflow
+                  Adapt formulation guidance and dispensing hardware to new
+                  material combinations
                 </td>
                 <td>
                   <a href={APP_SOURCE}>App Code</a> ·{" "}
@@ -156,11 +151,11 @@ export function Contribution() {
                 <th scope="row">Human Practices</th>
                 <td>
                   NEST framework, SEED cycle, mixed-methods guidance, and
-                  stakeholder-integration cases
+                  examples of stakeholder feedback applied to project design
                 </td>
                 <td>
-                  Turn stakeholder needs into design requirements and carry
-                  feedback through project iterations
+                  Set design requirements from stakeholder findings and document
+                  the resulting changes
                 </td>
                 <td>
                   <Link to="/human-practices#ihp-toolbox-nest">
@@ -184,19 +179,20 @@ export function Contribution() {
             {basicCount} Basic Parts and {compositeCount} Composite Parts
           </strong>{" "}
           covering SELP scaffolds, ligation interfaces, functional modules,
-          reporters, and controls. The toolkit connects tunable scaffold length
-          with interchangeable functions, giving future teams a foundation for
-          building materials around their own biological objectives.
+          reporters, and controls. The scaffold parts offer different chain
+          lengths and ligation-site arrangements. Functional parts include
+          TVN-based particle-binding modules and CPC/Link-N matrix-retention
+          modules, which teams can adapt or replace through the same ligation
+          interface.
         </p>
         <p>
-          We demonstrated scaffold expansion from 2KY-5 to 2KY-10 and documented
-          how connector placement shapes the available ligation sites. Through
-          the SnoopLigase2 interface, teams can introduce new DogTag-bearing
-          sequences while retaining the scaffold and assembly strategy. Our
-          reporter assay produced a detectable ligation product within{" "}
-          <strong>10 minutes</strong>, with the SUMO-DogTag substrate band
-          disappearing by <strong>60 minutes</strong>, providing an experimental
-          reference for establishing the system in another laboratory.
+          We built 2KY-10 from 2KY-5 and documented how connector placement
+          determines the ligation sites. The SnoopLigase2 interface lets teams
+          attach new DogTag-bearing sequences to compatible scaffold constructs.
+          In our reporter assay, a ligation-product band was visible at{" "}
+          <strong>10 minutes</strong>, and the SUMO-DogTag substrate band had
+          disappeared by <strong>60 minutes</strong>. Teams can reproduce this
+          reaction as a reference when testing new modules.
         </p>
         <figure className="figure d-block my-4 text-center">
           <img
@@ -208,10 +204,10 @@ export function Contribution() {
             decoding="async"
           />
           <FigureCaption className="figure-caption">
-            Figure 2 | Assembly and validation logic for integrating new
-            functions into the platform. A shared interface allows functional
-            sequences to be replaced, while ligation assays and functional
-            assays address two distinct questions.
+            Figure 2 | Assembly and testing of new functional modules. New
+            functional sequences use the same ligation interface. Ligation
+            assays check attachment; functional assays assess the activity of
+            the assembled modules.
             <FigureSourceCitation
               source={1}
               href="#contribution-figure-sources"
@@ -229,10 +225,9 @@ export function Contribution() {
         <details className="mb-4">
           <summary>Selected Parts and Registry Entries</summary>
           <TableCaption>
-            Table 2 | Biological parts for modular material engineering.
-            Selected Registry entries are grouped by task; the Parts page
-            provides complete sequences, component annotations, and FASTA
-            downloads.
+            Table 2 | Selected NEST parts and their uses. The Parts page
+            provides sequence annotations and FASTA downloads for the full
+            collection.
           </TableCaption>
           <div className="table-responsive mb-4">
             <table
@@ -263,8 +258,8 @@ export function Contribution() {
                     />
                   </td>
                   <td>
-                    Compare scaffold lengths and select terminal ligation sites
-                    for functional modules.
+                    Choose a scaffold length with terminal tags for module
+                    attachment.
                   </td>
                 </tr>
                 <tr>
@@ -315,8 +310,8 @@ export function Contribution() {
                     <RegistryParts ids={["BBa_26NBBOY6", "BBa_26ZF9WQJ"]} />
                   </td>
                   <td>
-                    Investigate sequence-dependent protease cleavage using
-                    paired constructs with the same surrounding architecture.
+                    Test how peptide sequence affects protease cleavage in the
+                    same fusion context.
                   </td>
                 </tr>
               </tbody>
@@ -331,12 +326,14 @@ export function Contribution() {
           2 Protocols for Protein Hydrogel Preparation
         </h3>
         <p>
-          We share a preparation workflow connecting protein recovery, buffer
-          exchange, lyophilization, and blue-light photocrosslinking. Building
-          on established inverse transition cycling (ITC) methods,
-          <sup className="article-citation">[1, 2]</sup> we established a
-          working preparation route for our SELP scaffolds and documented the
-          optimization decisions behind it.
+          We share protocols for protein recovery, buffer exchange,
+          lyophilization, and blue-light photocrosslinking. We adapted inverse
+          transition cycling (ITC)<sup className="article-citation">[1, 2]</sup>{" "}
+          for our SELP scaffolds and recorded the optimization experiments.
+          Comparing temperature and salt concentration showed that salt
+          concentration had the stronger effect on scaffold recovery. These
+          results help teams choose which preparation conditions to investigate
+          first.
         </p>
         <figure className="figure d-block my-4 text-center">
           <img
@@ -349,9 +346,10 @@ export function Contribution() {
           />
           <FigureCaption className="figure-caption">
             Figure 3 | SELP recovery and preparation workflow. Target-protein
-            bands in the supernatants collected after heating (H-Sup) and
-            cooling (C-Sup) help identify protein loss during phase transition
-            and resolubilization, respectively.
+            bands in H-Sup (the supernatant after heating) track protein
+            remaining outside the precipitated phase; bands in C-Sup (the
+            supernatant after cooling) track soluble protein recovered after
+            resolubilization.
             <FigureSourceCitation
               source={1}
               href="#contribution-figure-sources"
@@ -359,10 +357,9 @@ export function Contribution() {
           </FigureCaption>
         </figure>
         <p>
-          The contribution combines practical procedures with optimization
-          records and checks for tracking protein recovery. Future teams can use
-          these resources to plan preparation, troubleshoot individual steps,
-          and adapt the workflow to their own protein hydrogel materials. The{" "}
+          Teams can follow the protocols, use the recovery checks to
+          troubleshoot individual steps, and adapt the preparation sequence to
+          their own protein hydrogel materials. The{" "}
           <Link to="/protocol">Protocol Library</Link> provides{" "}
           <a
             href={
@@ -408,11 +405,12 @@ export function Contribution() {
           3 Modeling for Protein Hydrogel Design
         </h3>
         <p>
-          We contribute a computational workflow that connects protein sequence,
+          Our computational workflow takes protein sequences through
           conformational sampling, network construction, and mechanical
-          analysis. Using SELP hydrogels as a worked example, we combine
-          simulation with experimental calibration to help teams compare
-          candidate designs and prioritize wet-lab testing.
+          analysis. We applied it to SELP hydrogels and calibrated the
+          calculations against experimental measurements. Teams can use this
+          workflow to compare candidate designs and select constructs for
+          wet-lab testing.
         </p>
         <figure className="figure d-block my-4 text-center">
           <img
@@ -429,14 +427,14 @@ export function Contribution() {
           </FigureCaption>
         </figure>
         <p>
-          We share the assumptions, parameters, network checks, and calibration
-          approach needed to build on the workflow. The{" "}
-          <Link to="/model">Model page</Link> presents the methods and results,
-          while the <Link to="/software">Software page</Link> explains task
-          configuration and output inspection. Together, they give future teams
-          a documented starting point for investigating their own material
-          designs and connecting computational comparisons with targeted
-          experiments.
+          The <Link to="/model">Model page</Link> records the assumptions,
+          parameter values, network checks, and calibration method. It also
+          describes computational approaches to SnoopLigase2 engineering and
+          magnetic-field analysis. The <Link to="/software">Software page</Link>{" "}
+          explains how to configure tasks and inspect their outputs. These
+          records help teams set up simulations, calibrate the model with their
+          own measurements, and plan experiments around the resulting design
+          comparisons.
         </p>
         <h3
           id="contribution-software-hardware"
@@ -450,10 +448,9 @@ export function Contribution() {
           <a href={HARDWARE_SOURCE}>
             mechanical drawings and PCB project files
           </a>{" "}
-          that extend our contribution into practical material preparation. The
-          app brings together formulation selection, QR-code scanning, and
-          step-by-step guidance; the hardware provides independently driven
-          dispensing channels and a mixing architecture.
+          for material selection and preparation. The app supports formulation
+          selection, QR-code scanning, and step-by-step guidance. The hardware
+          provides independently driven dispensing channels and a mixing system.
         </p>
         <figure className="figure d-block my-4 text-center">
           <img
@@ -475,13 +472,12 @@ export function Contribution() {
           </FigureCaption>
         </figure>
         <p>
-          Future teams can adapt the material catalog and instructions to new
-          scaffold and module combinations, or build on the device architecture
-          for their own preparation tasks. The{" "}
+          Teams can change the app's material catalog and instructions for new
+          scaffold and module combinations, or adapt the device design to their
+          own preparation tasks. The{" "}
           <Link to="/software">Software documentation</Link> and{" "}
           <Link to="/hardware">Hardware guide</Link> provide the operating
-          workflows, device descriptions, and bills of materials that support
-          this reuse.
+          workflows, device descriptions, and bills of materials.
         </p>
         <h3
           id="contribution-human-practices"
@@ -495,11 +491,12 @@ export function Contribution() {
           <Link to="/human-practices#ihp-toolbox-nest">
             Integrated Human Practices toolbox
           </Link>{" "}
-          that connects stakeholder needs with engineering decisions. The NEST
-          framework organizes project development. SEED translates stakeholder
-          findings into a Product Requirements Document (PRD), carries those
-          requirements into the DBTL cycle, and returns results to stakeholders
-          for feedback.
+          for turning stakeholder findings into engineering decisions. NEST
+          organizes the work around needs, co-design, implementation, and
+          long-term impact. SEED uses a Product Requirements Document (PRD) to
+          translate stakeholder findings into requirements for the DBTL cycle.
+          Teams then discuss the design and results with stakeholders to guide
+          the next iteration.
         </p>
         <figure className="figure d-block my-4 text-center">
           <img
@@ -512,10 +509,9 @@ export function Contribution() {
           />
           <FigureCaption className="figure-caption">
             Figure 6 | The SEED cycle with the PRD document and the DBTL loop
-            harmonised inside it. Future teams can reuse this method: a question
-            is explored with stakeholders and the literature, the needs are
-            written into a PRD, the engineering team runs the DBTL loop, and the
-            results return to the stakeholders for dialogue.
+            inside it. Stakeholder dialogue and literature research inform the
+            PRD. Its requirements guide the DBTL cycle, and the results feed
+            into the next stakeholder discussion.
             <FigureSourceCitation
               source={1}
               href="#contribution-figure-sources"
@@ -527,11 +523,10 @@ export function Contribution() {
           <Link to="/human-practices#ihp-nest-codesign">
             documented design cycles
           </Link>{" "}
-          show the method in practice: clinical feedback about different joint
-          loads informed the work on SELP repeat number and mechanical modeling.
-          Future teams can reuse the framework and cases to plan stakeholder
-          engagement, translate findings into actionable requirements, and
-          demonstrate how Human Practices shapes their own project.
+          show how advice from clinicians about joint loads guided our choices
+          of SELP repeat number and mechanical modeling. Teams can use these
+          cases to plan stakeholder engagement, write design requirements, and
+          record how feedback changes their project.
         </p>
         <References level={2}>
           <div className="references-list references-list--paragraphs">

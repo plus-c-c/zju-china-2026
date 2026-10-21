@@ -2172,7 +2172,14 @@ export function HumanPractices() {
     <div className="row mt-4 mb-5">
       <div className="col-lg-10 mx-auto">
         <article ref={articleRef}>
-          <h2 className="mb-4">Integrated Human Practices</h2>
+          <blockquote className="ihp-quote">
+            <p>
+              &ldquo;Human Practices is the study of how your work affects the
+              world, and how the world affects your work.&rdquo;
+            </p>
+            <footer>&mdash; Peter Carr, iGEM Judging Director</footer>
+          </blockquote>
+          <h2>Overview</h2>
           <p>
             Integrated Human Practices is how our project meets the world
             outside the laboratory. Cartilage defects are a complex problem —
