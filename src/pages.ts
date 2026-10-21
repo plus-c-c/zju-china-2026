@@ -27,6 +27,7 @@ import {
   Plant,
   Software,
   Sustainability,
+  GetYourNest,
 } from "./contents";
 
 interface Base {
@@ -242,6 +243,12 @@ export const unlistedPages: Page[] = [
     title: "Sustainability",
     path: "/sustainability",
     component: Sustainability,
+  },
+  {
+    name: "Get Your NEST",
+    title: "Get Your NEST",
+    path: "/get-your-nest",
+    component: GetYourNest,
   },
 ];
 

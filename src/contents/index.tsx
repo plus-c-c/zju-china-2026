@@ -18,6 +18,7 @@ export { Software } from "./software.tsx";
 export { Hardware } from "./hardware.tsx";
 // Engagement
 export { Entrepreneurship } from "./entrepreneurship.tsx";
+export { GetYourNest } from "./get-your-nest.tsx";
 export { HumanPractices } from "./human-practices.tsx";
 export { Education } from "./education.tsx";
 export { Game } from "./game.tsx";

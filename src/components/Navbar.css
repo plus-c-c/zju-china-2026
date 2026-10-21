@@ -288,8 +288,23 @@ body:has(.nest-navbar-hidden) .page-article {
   margin-left: 12px;
 }
 
+.navigation-cart a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  color: #fff;
+}
+
 .navigation-cart img {
   display: block;
+  transition: transform 160ms ease;
+}
+
+.navigation-cart a:hover img,
+.navigation-cart a:focus-visible img {
+  transform: translateY(-1px) scale(1.08);
 }
 .nest-navigation-toggle {
   display: none;
