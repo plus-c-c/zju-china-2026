@@ -1919,20 +1919,142 @@ const CONTENT: ContentBlock[] = [
 
 
 
-const LATIN_PHRASE =
-  /(Escherichia coli|E\. coli|in vitro|in vivo|in situ|ex vivo)/g;
+const GLOBAL_BOLD_PHRASES = [
+  "Shanghai Lingjiu Medical Technology",
+  "Shanghai Lingjiu",
+  "Huadan Angel",
+  "Weixinkang",
+  "Yuanyi Bio",
+  "Lanyiwei",
+  "Yiru Bio",
+] as const;
+
+const BOLD_PHRASES_BY_SOURCE_INDEX: Partial<
+  Record<number, readonly string[]>
+> = {
+  37: ["The total addressable market (TAM)"],
+  44: [
+    "3.22206 billion by 2033",
+    "a compound annual growth rate (CAGR) of approximately 13.27%",
+  ],
+  48: ["The serviceable available market (SAM)"],
+  59: ["a SAM of USD 483.31 million"],
+  63: ["SOM is USD 483.31 million × 60% × 19% = USD 55.10 million"],
+  79: [
+    "initial capital investment, annual operating expenses, and annual capital expenditure",
+  ],
+  85: [
+    "Investment costs",
+    "purchase costs (PC), direct costs (DC), indirect costs (IC), and other costs (OC)",
+    "fixed capital costs (FC)",
+  ],
+  89: ["Major Equipment Cost (MEC)", "Unlisted Equipment Cost:"],
+  92: [
+    "Installation Cost",
+    "Piping and Insulation Costs",
+    "Electrical Cost",
+    "Control System Cost",
+    "Building Cost",
+    "Land Improvement Cost",
+    "Auxiliary Facilities Cost",
+  ],
+  100: [
+    "Engineering Cost",
+    "Construction Management Cost",
+    "Contingency Cost",
+    "Contractor's Fee",
+  ],
+  105: ["Start-up and Validation"],
+  107: ["fixed capital investment (FCI)", "total capital investment (TCI)"],
+  109: ["Working capital (WC)"],
+  111: [
+    "Approximately 19% of knee arthroscopy patients",
+    "248,900 patients per year",
+    "2.1 cm²",
+  ],
+  112: ["major equipment costs", "USD 1.115 million"],
+  120: [
+    "Raw Material Cost",
+    "Utilities Cost",
+    "Direct Labor Cost",
+    "Consumables Cost",
+    "Waste Treatment and Disposal Cost",
+    "Transportation and Logistics Cost",
+    "Quality Control Cost",
+    "Royalties",
+  ],
+  130: [
+    "Research and Development Cost (R&D)",
+    "Marketing Cost",
+    "Maintenance Cost",
+    "Insurance Cost",
+  ],
+  136: [
+    "313.6 kg tryptone, 156.8 kg yeast extract, and 313.6 kg sodium chloride",
+  ],
+  138: ["USD 130,100"],
+  175: ["CNY 2.6603 million"],
+  177: ["CNY 1.84 million per year"],
+  180: ["CNY 365,000"],
+  223: ["cash-flow", "net-present-value (NPV)"],
+  226: ["real cost of capital (RCC)"],
+  231: ["warranting further development and financing consideration"],
+  243: ["Angel round"],
+  244: ["Pre-A round"],
+  245: ["Series A"],
+  246: ["Series B and beyond"],
+  267: ["minimum viable product (MVP)"],
+};
+
+const LATIN_PHRASES = [
+  "Escherichia coli",
+  "E. coli",
+  "in vitro",
+  "in vivo",
+  "in situ",
+  "ex vivo",
+] as const;
+
+function boldPhrasesFor(sourceIndex: number) {
+  return [
+    ...GLOBAL_BOLD_PHRASES,
+    ...(BOLD_PHRASES_BY_SOURCE_INDEX[sourceIndex] ?? []),
+  ];
+}
 
 /** Preserve the legacy <em> wrapper in imported copy while also emphasizing
  *  Latin phrases that were stored as plain text. */
-function InlineText({ text }: { text: string }) {
+function InlineText({
+  text,
+  boldPhrases = GLOBAL_BOLD_PHRASES,
+}: {
+  text: string;
+  boldPhrases?: readonly string[];
+}) {
+  const boldPhraseSet = new Set(boldPhrases);
+  const inlinePhrases = [...boldPhrases, ...LATIN_PHRASES].sort(
+    (left, right) => right.length - left.length,
+  );
+  const inlinePhrasePattern = new RegExp(
+    `(${inlinePhrases.map((phrase) =>
+      phrase.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"),
+    ).join("|")})`,
+    "g",
+  );
   return (
     <>
       {text
         .replace(/<\/?em>/g, "")
-        .split(LATIN_PHRASE)
-        .map((part, index) =>
-          index % 2 === 1 ? <em key={index}>{part}</em> : part,
-        )}
+        .split(inlinePhrasePattern)
+        .map((part, index) => {
+          if (boldPhraseSet.has(part)) {
+            return <strong key={index}>{part}</strong>;
+          }
+          if (LATIN_PHRASES.includes(part as (typeof LATIN_PHRASES)[number])) {
+            return <em key={index}>{part}</em>;
+          }
+          return part;
+        })}
     </>
   );
 }
@@ -1942,7 +2064,10 @@ function renderBlock(block: ContentBlock, key: string): ReactNode {
     case "paragraph":
       return (
         <p key={key}>
-          <InlineText text={block.text} />
+          <InlineText
+            text={block.text}
+            boldPhrases={boldPhrasesFor(block.source_index)}
+          />
         </p>
       );
     case "heading": {
@@ -1972,11 +2097,17 @@ function renderBlock(block: ContentBlock, key: string): ReactNode {
           {block.items.map((item, index) => (
             <li key={`${key}-${index}`}>
               {typeof item === "string" ? (
-                <InlineText text={item} />
+                <InlineText
+                  text={item}
+                  boldPhrases={boldPhrasesFor(block.source_index)}
+                />
               ) : (
                 <>
                   <MathFormula>{item.formula}</MathFormula>:{" "}
-                  <InlineText text={item.text} />
+                  <InlineText
+                    text={item.text}
+                    boldPhrases={boldPhrasesFor(block.source_index)}
+                  />
                 </>
               )}
             </li>
@@ -2060,7 +2191,13 @@ function renderBlock(block: ContentBlock, key: string): ReactNode {
                 >
                   {row.map((cell, cellIndex) => (
                     <td key={`${key}-cell-${rowIndex}-${cellIndex}`}>
-                      <InlineText text={cell} />
+                      {row[0] === "East Asia" ? (
+                        <strong>
+                          <InlineText text={cell} />
+                        </strong>
+                      ) : (
+                        <InlineText text={cell} />
+                      )}
                     </td>
                   ))}
                 </tr>
@@ -2142,7 +2279,9 @@ export function Entrepreneurship() {
                   variant="secondary"
                 >
                   {criterion.paragraphs.map((paragraph) => (
-                    <p key={paragraph}>{paragraph}</p>
+                    <p key={paragraph}>
+                      <InlineText text={paragraph} />
+                    </p>
                   ))}
                 </ExtendCard>
               ))}
