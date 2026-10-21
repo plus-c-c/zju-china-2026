@@ -182,6 +182,13 @@
 .mobile-home .opening-burden__legend strong {
   font-size: 15px;
 }
+.mobile-home.nest-home > .mobile-home__burden {
+  /* Keep room for the 44px scroll cue without a second large section gap. */
+  padding-bottom: 72px;
+}
+.mobile-home.nest-home > .mobile-home__impact {
+  padding-top: 16px;
+}
 .mobile-home .opening-impact__map-background {
   display: none;
 }
@@ -245,6 +252,14 @@
   :is(.opening-sports__score, .opening-rehab__cost) {
   margin: 16px 0;
 }
+.mobile-home .opening-scene--impact .opening-rehab__cost-note {
+  position: static;
+  inset: auto;
+  display: block;
+  margin: 12px 0 0;
+  line-height: 1.5;
+  white-space: normal;
+}
 .mobile-home :is(.opening-sports__decor, .opening-rehab__decor) {
   display: none;
 }
@@ -272,7 +287,8 @@
   display: flex;
   flex-direction: column;
   gap: 18px;
-  padding-bottom: 320px;
+  /* The syringe extends 400px above the bottom; keep it below the button. */
+  padding-bottom: 432px;
 }
 .mobile-home .hydrogel-materials-page > :is(h1, h2, div, a) {
   position: relative;
@@ -488,9 +504,9 @@
   display: flex;
   flex-direction: column;
   aspect-ratio: auto;
-  padding: 40px 0 60px;
+  padding: 28px 0 36px;
   margin: 0;
-  gap: 24px;
+  gap: 16px;
 }
 .mobile-home .selp-pipeline__card {
   position: relative;
@@ -515,17 +531,20 @@
 .mobile-home .selp-pipeline__art {
   display: none;
 }
-.mobile-home
-  :is(
-    .selp-pipeline__art--magnetic-network,
-    .selp-pipeline__art--gag-chain,
-    .selp-pipeline__art--liposome
-  ) {
+.mobile-home .selp-pipeline__art--magnetic-network,
+.mobile-home .selp-pipeline__art--gag-chain,
+.mobile-home .selp-pipeline__art--liposome {
   display: block;
-  position: static;
+  /* Anchor both animated images and paused canvases to their own frame. */
+  position: relative;
+  top: auto;
+  right: auto;
+  bottom: auto;
+  left: auto;
   width: 85%;
+  max-width: 420px;
   height: 220px;
-  margin: auto;
+  margin: 0 auto;
   transform: none;
 }
 .mobile-home :is(.selp-pipeline__pill, .selp-pipeline__connector) {
@@ -534,6 +553,51 @@
 .mobile-home .selp-pipeline__stage > :not(.selp-pipeline__connector) {
   opacity: 1;
   translate: none;
+}
+.mobile-home .selp-after-pipeline {
+  width: 100%;
+  min-height: 0;
+  margin-left: 0;
+  padding: 32px 0 40px;
+}
+.mobile-home .selp-promotion {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  aspect-ratio: auto;
+  margin: 56px auto 0;
+}
+.mobile-home .selp-promotion > h2 {
+  position: static;
+  order: -1;
+  width: 100%;
+  font-size: clamp(22px, 5.5vw, 34px);
+  line-height: 1.25;
+  transform: none;
+  -webkit-text-stroke-width: 1px;
+}
+.mobile-home .selp-promotion__frame {
+  position: relative;
+  inset: auto;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  box-sizing: border-box;
+  border: 3px solid #fff2a6;
+  border-radius: 12px;
+  box-shadow: 3px 4px 0 rgb(91 141 199 / 45%);
+}
+.mobile-home .selp-promotion__frame iframe {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transform: none;
+}
+.mobile-home .selp-promotion__depth,
+.mobile-home .selp-promotion__border,
+.mobile-home .selp-promotion__decoration {
+  display: none;
 }
 .mobile-home__footer-bird {
   display: block;
@@ -582,7 +646,11 @@
   position: relative;
   inset: auto;
   width: 220px;
+  max-width: 100%;
   height: auto;
+  align-self: center;
+  /* Reserve a perch above the button without covering the paragraph. */
+  margin-top: 48px;
   transform: none;
 }
 .mobile-home .opening-scene--impact > .opening-scene {

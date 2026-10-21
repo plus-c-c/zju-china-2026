@@ -1,5 +1,7 @@
 import {
   useEffect,
+  useContext,
+  useLayoutEffect,
   useRef,
   useState,
   lazy,
@@ -7,6 +9,8 @@ import {
   type ReactNode,
   type CSSProperties,
 } from "react";
+import { useLocation } from "react-router-dom";
+import { HomeResumeContext, saveHomeProgress } from "../utils/homeProgress";
 import { PipelineBird } from "../components/home/PipelineBird";
 import { StoryBird } from "../components/home/StoryBird";
 import { HomeIntro } from "../components/home/HomeIntro";
@@ -33,6 +37,7 @@ import { StoryContext } from "../components/home/StoryContext";
 import {
   STORY_STOPS,
   STORY_SCROLL_RATIO,
+  getStoryHandoffTop,
   useStoryNavigation,
 } from "../components/home/UseStoryNavigation";
 
@@ -91,6 +96,7 @@ function Scene({
   );
 }
 function DesktopHome() {
+  const resume = useContext(HomeResumeContext);
   const {
     position,
     direction,
@@ -124,7 +130,7 @@ function DesktopHome() {
   useEffect(() => {
     document.body.classList.add("home-story-open");
     document.documentElement.classList.add("home-story-open");
-    window.scrollTo(0, 0);
+    if (!resume) window.scrollTo(0, 0);
     const element = viewport.current;
     const observer = new ResizeObserver(([entry]) =>
       setSize({
@@ -138,7 +144,7 @@ function DesktopHome() {
       document.body.classList.remove("home-story-open");
       document.documentElement.classList.remove("home-story-open");
     };
-  }, []);
+  }, [resume]);
   const scenes = [
     {
       name: "NEST introduction",
@@ -212,12 +218,14 @@ function DesktopHome() {
                     ...(crossfade?.incoming === index
                       ? {
                           transform: "translateY(-100%)",
-                          opacity: index === 4 ? 1 : index === 8 ? Math.max(0, (crossfade.opacity - 0.5) * 2) : crossfade.opacity,
+                          opacity: index === 4 ? 1 : crossfade.opacity,
                           zIndex: 2,
                         }
                       : {}),
                     ...(crossfade && page === index && index !== 0 && index !== 2 && index !== 4
-                      ? { opacity: 1 - Math.min(1, crossfade.opacity * 2) }
+                      ? { opacity: crossfade.incoming === 8
+                          ? 1 - crossfade.opacity
+                          : 1 - Math.min(1, crossfade.opacity * 2) }
                       : {}),
                     ...(index === 0 ? {
                       opacity: page === 0 ? (crossfade?.incoming === 1 ? 1 - Math.min(1, crossfade.opacity * 2) : 1) : 0,
@@ -311,7 +319,43 @@ function DesktopHome() {
 }
 
 export function Home() {
+  const { key } = useLocation();
+  const resume = useContext(HomeResumeContext);
   const [mobile, setMobile] = useState(() => window.matchMedia("(max-width: 991.98px)").matches);
+  useLayoutEffect(() => {
+    const remember = () => {
+      const viewport = document.querySelector<HTMLElement>(".story-viewport");
+      const root = document.querySelector(".home-scroll-space");
+      const top = root ? root.getBoundingClientRect().top + window.scrollY : 0;
+      const mobileOa = document.querySelector('.mobile-home section[aria-label="Osteoarthritis target"]');
+      const oaTop = getStoryHandoffTop()
+        ?? (mobileOa ? mobileOa.getBoundingClientRect().top + window.scrollY : Infinity);
+      // The three module sections return to the OA overview above them.
+      const scrollY = Math.min(window.scrollY, oaTop);
+      saveHomeProgress(key, {
+        scrollY,
+        storyPosition: viewport
+          ? Math.max(0, Math.min(STORY_STOPS.length - 1,
+              (scrollY - top) / (viewport.clientHeight * STORY_SCROLL_RATIO)))
+          : 0,
+      });
+    };
+    const restore = () => {
+      if (resume) window.scrollTo({ top: resume.scrollY, behavior: "instant" });
+      remember();
+    };
+    restore();
+    // Reapply after the desktop canvas measures its viewport on mount.
+    const frame = requestAnimationFrame(restore);
+    window.addEventListener("scroll", remember, { passive: true });
+    // Capture the final position before a Link changes the active route.
+    document.addEventListener("click", remember, true);
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", remember);
+      document.removeEventListener("click", remember, true);
+    };
+  }, [key, resume]);
   useEffect(() => {
     const media = window.matchMedia("(max-width: 991.98px)");
     const update = () => setMobile(media.matches);

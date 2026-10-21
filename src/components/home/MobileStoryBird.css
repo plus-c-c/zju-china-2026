@@ -1,0 +1,69 @@
+.mobile-story-bird {
+  position: fixed;
+  z-index: 12;
+  width: 64px;
+  height: 60px;
+  transform: translate(-50%, -100%);
+  opacity: 0;
+  pointer-events: none;
+  filter: drop-shadow(0 3px 2px rgb(23 59 100 / 10%));
+}
+
+.mobile-story-bird img {
+  position: absolute;
+  width: 168px;
+  max-width: none;
+  height: auto;
+  left: -17.2px;
+  top: -25.2px;
+  clip-path: inset(10% 40% 12% 4%);
+}
+
+.mobile-story-bird__flight {
+  position: absolute;
+  inset: 0;
+  visibility: hidden;
+  transform: rotate(var(--mobile-bird-heading, 0deg));
+}
+
+.mobile-story-bird[data-flying="true"] .mobile-story-bird__rest {
+  visibility: hidden;
+}
+
+.mobile-story-bird[data-flying="true"] .mobile-story-bird__flight {
+  visibility: visible;
+}
+
+.mobile-story-bird__flight img {
+  clip-path: inset(8% 38% 17% 4%);
+}
+
+.mobile-story-bird[data-flying="true"] .mobile-story-bird__flight img {
+  animation: mobile-bird-wing 360ms steps(1, end) infinite;
+}
+
+.mobile-story-bird__flight img:nth-child(2) {
+  opacity: 0;
+}
+
+.mobile-story-bird[data-flying="true"]
+  .mobile-story-bird__flight
+  img:nth-child(2) {
+  animation-delay: -180ms;
+}
+
+@keyframes mobile-bird-wing {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mobile-story-bird__flight img {
+    animation: none !important;
+  }
+}
