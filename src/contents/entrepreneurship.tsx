@@ -463,6 +463,16 @@ export function Entrepreneurship() {
     <div className="row mt-4 mb-5">
       <div className="col-lg-10 mx-auto">
         <article className="entrepreneurship-article">
+          <blockquote className="entrepreneurship-quote">
+            <p>
+              &ldquo;Hydrogels must be redesigned to respond to biological
+              signals, not just swell in water. Only then can we realize their
+              promise for controlled delivery and tissue repair.&rdquo;
+            </p>
+            <footer>
+              &mdash; Nicholas A. Peppas, Chief Scientist of Appian Labs
+            </footer>
+          </blockquote>
           <h2 id="background">Background</h2>
           <p>
             Articular cartilage supports everyday activities such as walking,
