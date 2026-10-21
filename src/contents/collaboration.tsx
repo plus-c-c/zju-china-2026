@@ -310,11 +310,6 @@ export function Collaboration() {
             photos={[SMART_MIRROR]}
             caption="Figure 1.6.1 | A smart mirror exploring movement monitoring and rehabilitation guidance."
           />
-          <p>
-            This collaboration extended our attention from repair materials to
-            rehabilitation support. Bringing technology into everyday use
-            requires continued discussion between medicine and engineering.
-          </p>
 
           <h2 id="activities">2 Participating in Various Activities</h2>
           <h3 id="synthetic-biology">2.1 In the field of synthetic biology</h3>
