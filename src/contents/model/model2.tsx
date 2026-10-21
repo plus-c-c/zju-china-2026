@@ -11,13 +11,9 @@ import {
   type ReactNode,
 } from "react";
 import { MathFormula } from "../../components/MathFormula";
-import {
-  STEP_ADVANCE_ENABLED,
-  useBoundaryStepAdvance,
-} from "../../components/useBoundaryStepAdvance";
+import { useContainedStepperScroll } from "../../components/useContainedStepperScroll";
 import {
   STEPPER_STEP_PX,
-  useCardWheel,
   useStepperProgress,
 } from "../../components/stepperWheel";
 import "./model.css";
@@ -185,9 +181,8 @@ function StructureFigure({
  * Protein stepper — the same scroll pattern as the home-page story sections
  * and the Engineering DBTL cluster: the two-column cluster (structure +
  * caption + Previous/Next on the left, design text on the right) pins to the
- * middle of the viewport, and the page scroll advances one protein per step.
- * The wheel over the right-hand text scrolls that text first; the page — and
- * therefore the protein — only moves once the text reaches its end.
+ * top of the viewport. Card gestures only read the current protein; a fresh
+ * gesture outside the card may advance to the next protein.
  */
 function ProteinStepper({ steps }: { steps: ProteinStep[] }) {
   const [index, setIndex] = useState(0);
@@ -240,20 +235,16 @@ function ProteinStepper({ steps }: { steps: ProteinStep[] }) {
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [goTo]);
 
-  /** Boundary stepping: the wheel / touch advances one protein per gesture
-   *  once the text panel reaches its bottom (or its top, scrolling up). */
-  const suppressUntilRef = useBoundaryStepAdvance({
+  useContainedStepperScroll({
     stageRef: pinRef,
+    runwayRef,
     panelRef,
     getIndex: () => indexRef.current,
     getCount: () => stepsRef.current.length,
-    onAdvance: (target) => goTo(target, "smooth"),
+    onAdvance: (target) => goTo(target),
   });
 
-  // Bottom-anchored text card: regular steps stretch until the top gap
-  // equals the bottom gap (CSS default height); wide steps fit their
-  // content (measured height, set inline). Either way the bottom stays
-  // fixed and only the top edge moves, animated by the CSS transition.
+  // Wide steps use their measured content height, capped by the viewport.
   useLayoutEffect(() => {
     const panel = panelRef.current;
     if (!panel) return;
@@ -281,24 +272,12 @@ function ProteinStepper({ steps }: { steps: ProteinStep[] }) {
     return () => window.removeEventListener("resize", apply);
   }, [index]);
 
-  // The right-hand text resets whenever the protein switches: forward lands
-  // at the top, backward at the bottom (continuing an upward read).
-  const entryDirectionRef = useRef<"forward" | "backward">("forward");
+  // Start each newly selected protein at the top of its text.
   useEffect(() => {
     const panel = panelRef.current;
     if (!panel) return;
-    panel.scrollTo({
-      top:
-        STEP_ADVANCE_ENABLED && entryDirectionRef.current === "backward"
-          ? panel.scrollHeight
-          : 0,
-    });
+    panel.scrollTo({ top: 0 });
   }, [index]);
-
-  /* Wheel: shared behaviour — the text card scrolls first (1.5x gain, one
-     indivisible notch); once it is at either end the notch drives the page,
-     which advances the hidden step progress below. */
-  useCardWheel(panelRef);
 
   /* Hidden step progress shared with the other steppers: one interval per
      protein; the protein switches when its interval completes. */
@@ -308,7 +287,6 @@ function ProteinStepper({ steps }: { steps: ProteinStep[] }) {
     onIndex: (next) => {
       if (next !== indexRef.current) setIndex(next);
     },
-    suppressUntilRef,
   });
 
   // Direction of the caption / text slide; the outgoing step stays
@@ -336,7 +314,6 @@ function ProteinStepper({ steps }: { steps: ProteinStep[] }) {
     }
     const textChanged = text !== textContentRef.current;
     textContentRef.current = text;
-    entryDirectionRef.current = index > previousIndex ? "forward" : "backward";
     if (transitionTimerRef.current)
       window.clearTimeout(transitionTimerRef.current);
     setTransition({
@@ -401,11 +378,7 @@ function ProteinStepper({ steps }: { steps: ProteinStep[] }) {
           </figure>
         </div>
         <div
-          className={`protein-text${
-            !STEP_ADVANCE_ENABLED || index === 0 || index === steps.length - 1
-              ? " protein-text--chain"
-              : ""
-          }`}
+          className="protein-text"
           ref={panelRef}
           tabIndex={0}
           role="region"

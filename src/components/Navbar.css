@@ -1,3 +1,11 @@
+.page-article {
+  --page-sticky-top: 82px;
+}
+
+body:has(.nest-navbar-hidden) .page-article {
+  --page-sticky-top: 0px;
+}
+
 .nest-navbar-opening {
   visibility: hidden;
   opacity: 0;

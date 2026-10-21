@@ -2016,6 +2016,18 @@ export function HumanPractices() {
     reset: () => {},
   });
 
+  useEffect(() => {
+    const nav = navRef.current;
+    const article = articleRef.current;
+    if (!nav || !article) return;
+    const measure = () =>
+      article.style.setProperty("--ihp-primary-nav-height", `${nav.offsetHeight}px`);
+    const observer = new ResizeObserver(measure);
+    observer.observe(nav);
+    measure();
+    return () => observer.disconnect();
+  }, []);
+
   const setPageSync = (value: number | null) => {
     pageRef.current = value;
     /* The overview block sits directly above NEST, so it has no footer: its

@@ -22,17 +22,18 @@
 /* 第一步的锚点：TOC 恰好在该步粘滞钉住的那一刻高亮（stage 吸顶 84px，
    激活阈值为 0.2 视口高）。 */
 .m1-anchor:first-of-type {
-  top: calc(20dvh - 84px);
+  top: calc(20dvh - var(--page-sticky-top, 82px));
 }
 
 .m1-deck__stage {
   position: sticky;
-  top: 84px;
+  top: var(--page-sticky-top, 82px);
   z-index: 5;
   display: flex;
   flex-direction: column;
   /* 卡片底部与页面底部保持距离 */
-  max-height: calc(100vh - 84px - 48px);
+  max-height: calc(100dvh - var(--page-sticky-top, 82px) - 48px);
+  transition: top 300ms ease, max-height 300ms ease;
 }
 
 /* ===== 主方程 ===== */
@@ -444,12 +445,12 @@
   }
 
   .m1-anchor:first-of-type {
-    top: calc(20dvh - 8px);
+    top: calc(20dvh - var(--page-sticky-top, 82px));
   }
 
   .m1-deck__stage {
-    top: 8px;
-    max-height: calc(100vh - 8px - 32px);
+    top: var(--page-sticky-top, 82px);
+    max-height: calc(100dvh - var(--page-sticky-top, 82px) - 32px);
   }
 
   .m1-master {

@@ -12,14 +12,8 @@ import {
   useState,
   type CSSProperties,
 } from "react";
-import {
-  STEP_ADVANCE_ENABLED,
-  useBoundaryStepAdvance,
-} from "../../components/useBoundaryStepAdvance";
-import {
-  useCardWheel,
-  useStepperProgress,
-} from "../../components/stepperWheel";
+import { useContainedStepperScroll } from "../../components/useContainedStepperScroll";
+import { useStepperProgress } from "../../components/stepperWheel";
 import { MathFormula } from "../../components/MathFormula";
 import { DataTable } from "../../components/table";
 import {
@@ -40,9 +34,8 @@ import "./model1.css";
  *   up its stage of the workflow.
  * · The step texts rotate inside one fixed card: only the text slides
  *   (clipped by the card frame), left/right slide-in / slide-out.
- * · Scrolling the text to its bottom advances to the next step (at the
- *   last step the page continues to the references); scrolling back at
- *   the top returns to the previous step. Figures scroll inline.
+ * · Card gestures only scroll the current text. Gestures outside the card
+ *   advance one step at a time. Figures scroll inline.
  */
 
 /* Pipeline stages — step N lights stage N. */
@@ -332,6 +325,9 @@ function SlideInner({
         className={`m1-slide__content${
           chain ? " m1-slide__content--chain" : ""
         }${step.num === 2 || step.num === 3 ? " m1-slide__content--readable-figures" : ""}`}
+        tabIndex={variant === "in" ? 0 : -1}
+        role="region"
+        aria-label={step.title}
         ref={(el) => {
           if (el && initialScroll) el.scrollTop = initialScroll;
           contentRef?.(el);
@@ -351,7 +347,7 @@ export function SelpHydrogelModeling() {
     prev: number | null;
     dir: 1 | -1;
   }>({ current: 1, prev: null, dir: 1 });
-  /* 切换后新内容的初始滚动位置（上滑返回时停在底部） */
+  /* 新步骤从顶部开始阅读。 */
   const [entry, setEntry] = useState<"top" | "bottom">("top");
   const deckRef = useRef<HTMLDivElement | null>(null);
   const stageRef = useRef<HTMLDivElement | null>(null);
@@ -437,27 +433,23 @@ export function SelpHydrogelModeling() {
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [currentNum, total, scrollToStep]);
 
-  /* 内容滚到边界后的滚轮/触摸：一次手势步进一格（首/末步交给页面） */
-  const suppressUntilRef = useBoundaryStepAdvance({
+  useContainedStepperScroll({
     stageRef,
+    runwayRef: deckRef,
     panelRef: contentRef,
-    getIndex: () => stepRef.current,
+    cardRef,
+    getIndex: () => stepRef.current - 1,
     getCount: () => total,
-    onAdvance: (target) => {
+    onAdvance: (index) => {
+      const target = index + 1;
       outScrollRef.current = contentRef.current?.scrollTop ?? 0;
-      setEntry(
-        target > stepRef.current || !STEP_ADVANCE_ENABLED ? "top" : "bottom",
-      );
+      setEntry("top");
+      stepRef.current = target;
       lastStepRef.current = target;
       setActiveStep(target);
-      scrollToStep(target - 1, "smooth");
+      scrollToStep(index);
     },
   });
-
-  /* Wheel: shared behaviour — the slide's text scrolls first (1.5x gain,
-     one indivisible notch); once it is at either end the notch drives the
-     page, which advances the hidden step progress below. */
-  useCardWheel(contentRef, cardRef);
 
   /* Hidden step progress shared with the other steppers: one interval per
      step; the slide switches when its interval completes. */
@@ -468,15 +460,10 @@ export function SelpHydrogelModeling() {
       const target = index + 1;
       if (target === lastStepRef.current) return;
       outScrollRef.current = contentRef.current?.scrollTop ?? 0;
-      setEntry(
-        target > lastStepRef.current || !STEP_ADVANCE_ENABLED
-          ? "top"
-          : "bottom",
-      );
+      setEntry("top");
       lastStepRef.current = target;
       setActiveStep(target);
     },
-    suppressUntilRef,
   });
 
   const step = deckSteps.find((s) => s.num === view.current) ?? deckSteps[0];
@@ -554,11 +541,7 @@ export function SelpHydrogelModeling() {
                 variant="in"
                 dir={view.dir}
                 animate={view.prev !== null}
-                chain={
-                  !STEP_ADVANCE_ENABLED ||
-                  currentNum === 1 ||
-                  currentNum === total
-                }
+                chain={false}
                 contentRef={(el) => {
                   contentRef.current = el;
                 }}

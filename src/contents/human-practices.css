@@ -201,6 +201,26 @@ html[data-ihp-swipe="up"]::view-transition-new(root) {
   align-items: center;
 }
 
+.ihp-page-nav {
+  position: sticky;
+  top: var(--page-sticky-top, 82px);
+  z-index: 30;
+  width: 100%;
+  padding-block: 4px;
+  background: #f5faff;
+  box-shadow: 0 8px 0 #f5faff;
+  transition: top 300ms ease;
+}
+
+.ihp-section > :is(.eng-subnav, .ihp-nest-tabs) {
+  position: sticky;
+  top: calc(var(--page-sticky-top, 82px) + var(--ihp-primary-nav-height, 72px) + 8px);
+  z-index: 29;
+  padding-block: 4px;
+  background: #f5faff;
+  transition: top 300ms ease;
+}
+
 .ihp-page-nav--selected .eng-module-button {
   /* Frames hug their label instead of filling the row, so each pill stays
      narrow; the selected one grows much wider so the current page is

@@ -101,26 +101,22 @@ export function Navbar({ introEntrance = false, opening = false }: { introEntran
       const target = pointer
         ? document.elementFromPoint(pointer.x, pointer.y)
         : null;
-      // The Engineering level-1 row pins to the very top of the viewport
-      // during the DBTL runway. Protect only the actual buttons: gaps and
-      // the surrounding navigation background still reveal the site navbar.
-      const engineeringNav = document.querySelector<HTMLElement>(
-        ".eng-module-nav",
+      // Only the actual pinned controls are protected. The surrounding
+      // navigation background and gaps still reveal the main navigation.
+      const pinnedBar = target?.closest<HTMLElement>(
+        ".eng-module-nav, .m1-master, .m3-master, .ihp-nest-tabs, .ihp-section > .eng-subnav",
       );
-      const engineeringRect = engineeringNav?.getBoundingClientRect();
+      const pinnedRect = pinnedBar?.getBoundingClientRect();
       const navHeight = navRef.current?.offsetHeight ?? 88;
-      const engineeringAtTop =
-        !!engineeringRect &&
-        engineeringRect.top >= 0 &&
-        engineeringRect.top <= navHeight + 12;
-      const overEngineeringL1 =
-        engineeringAtTop &&
-        !!target?.closest(".eng-module-button") &&
-        !!engineeringNav?.contains(target);
+      const overPinnedControl =
+        !!pinnedRect &&
+        pinnedRect.top >= 0 &&
+        pinnedRect.top <= navHeight + 12 &&
+        !!target?.closest("a, button, [role='button']");
       const overNavigation =
         visible &&
         pointer &&
-        !overEngineeringL1 &&
+        !overPinnedControl &&
         (navRef.current?.contains(target) ||
           (pointer.y >= 0 &&
             pointer.y <= (navRef.current?.offsetHeight ?? 88)));
@@ -132,7 +128,7 @@ export function Navbar({ introEntrance = false, opening = false }: { introEntran
         !!pointer &&
         pointer.y >= 0 &&
         pointer.y <= (navRef.current?.offsetHeight ?? 88) &&
-        !overEngineeringL1;
+        !overPinnedControl;
       if (overRevealArea && pointer) {
         // No overlay intercepts clicks. Exclude the entire section sticky bar,
         // including its padding, and other interactive controls at the edge.
