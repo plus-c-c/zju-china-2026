@@ -479,7 +479,7 @@ export function Contribution() {
             buffer exchange
           </a>
           ,{" "}
-          <a href={PROTOCOL + "protein-lyophilization-freeze-drying.pdf"}>
+          <a href={PROTOCOL + "protein-lyophilisation-freeze-drying.pdf"}>
             lyophilization
           </a>
           ,{" "}

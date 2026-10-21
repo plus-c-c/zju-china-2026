@@ -10,15 +10,6 @@ export function NotFound() {
             alt=""
             width="2360"
             height="1640"
-            onError={(event) => {
-              const fallback = `https://static.igem.wiki/teams/6102/wiki/images/page-404-bird.png`;
-              if (
-                event.currentTarget.src !==
-                new URL(fallback, window.location.href).href
-              ) {
-                event.currentTarget.src = fallback;
-              }
-            }}
           />
         </div>
         <h1 id="not-found-title" className="not-found-page__label">
