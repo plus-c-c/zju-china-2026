@@ -261,7 +261,8 @@ body.home-story-open .app {
 .opening-scene--impact .opening-sports__title strong,
 .opening-scene--impact .opening-rehab__title strong { color: #e30c00; }
 .opening-scene--impact .opening-sports__score strong { color: #004aad; }
-.opening-scene--impact .opening-sports__score :is(span, small) { color: #38618d; }
+.opening-scene--impact .opening-sports__score :is(span, small),
+.opening-scene--impact .opening-rehab__cost b { color: #38618d; }
 
 /* A single stationary gradient stays continuous while scene content moves. */
 .story-viewport { background: var(--homepage-background); }
