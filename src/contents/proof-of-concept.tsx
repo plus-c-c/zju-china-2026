@@ -591,46 +591,52 @@ export function ProofOfConcept() {
                   translated into an observable response to an external field
                   (Figures 13 and 14).
                 </p>
-                <figure className="my-4 text-center">
-                  <AnimatedWebPSprite
-                    sprite="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-11-sprite.webp"
-                    fallback="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-11.webp"
-                    frames={56}
-                    columns={10}
-                    rows={6}
-                    width={360}
-                    height={240}
-                    alt="Figure 13 | Bright-field recording of magnetic particle aggregates reorienting"
-                    className="poc-sprite rounded"
-                  />
-                  <FigureCaption className="figure-caption mt-2">
-                    <strong>
-                      Figure 13 | Bright-Field Dynamic Recording of Magnetic
-                      Particle Aggregates Reorienting in Response to an Applied
-                      Field.
-                    </strong>
-                  </FigureCaption>
-                </figure>
-                <figure className="my-4 text-center">
-                  <AnimatedWebPSprite
-                    sprite="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-12-sprite.webp"
-                    fallback="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-12.webp"
-                    frames={60}
-                    columns={10}
-                    rows={6}
-                    width={360}
-                    height={240}
-                    alt="Figure 14 | Fluorescence recording of protein-labeled complexes reorienting"
-                    className="poc-sprite rounded"
-                  />
-                  <FigureCaption className="figure-caption mt-2">
-                    <strong>
-                      Figure 14 | Fluorescence Dynamic Recording of
-                      Protein-Labeled SELP-TVN-Magnetic Nanoparticle Complexes
-                      Reorienting.
-                    </strong>
-                  </FigureCaption>
-                </figure>
+                <div className="poc-animation-grid">
+                  <figure className="poc-animation-panel">
+                    <div className="poc-animation-frame">
+                      <AnimatedWebPSprite
+                        sprite="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-11-sprite.webp"
+                        fallback="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-11.webp"
+                        frames={56}
+                        columns={10}
+                        rows={6}
+                        width={360}
+                        height={240}
+                        alt="Figure 13 | Bright-field recording of magnetic particle aggregates reorienting"
+                        className="poc-sprite rounded"
+                      />
+                    </div>
+                    <FigureCaption className="figure-caption">
+                      <strong>
+                        Figure 13 | Bright-Field Dynamic Recording of Magnetic
+                        Particle Aggregates Reorienting in Response to an Applied
+                        Field.
+                      </strong>
+                    </FigureCaption>
+                  </figure>
+                  <figure className="poc-animation-panel">
+                    <div className="poc-animation-frame">
+                      <AnimatedWebPSprite
+                        sprite="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-12-sprite.webp"
+                        fallback="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-12.webp"
+                        frames={60}
+                        columns={10}
+                        rows={6}
+                        width={360}
+                        height={240}
+                        alt="Figure 14 | Fluorescence recording of protein-labeled complexes reorienting"
+                        className="poc-sprite rounded"
+                      />
+                    </div>
+                    <FigureCaption className="figure-caption">
+                      <strong>
+                        Figure 14 | Fluorescence Dynamic Recording of
+                        Protein-Labeled SELP-TVN-Magnetic Nanoparticle Complexes
+                        Reorienting.
+                      </strong>
+                    </FigureCaption>
+                  </figure>
+                </div>
                 <p>
                   TVN enabled the association of proteins with magnetic
                   particles and allowed the protein-particle complexes to be
