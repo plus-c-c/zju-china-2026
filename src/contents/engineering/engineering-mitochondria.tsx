@@ -2,7 +2,7 @@ import { DbtlFigure } from "./Figure";
 import type { DbtlModule } from "./dbtl";
 
 export const mitochondriaModule: DbtlModule = {
-  title: "Mitochondrial therapeutic module",
+  title: "Mitochondrial Therapeutic Module",
   intro: (
     <>
       <p>
@@ -14,7 +14,7 @@ export const mitochondriaModule: DbtlModule = {
         potential of exogenous mitochondria to provide metabolic support.
       </p>
       <p>
-        NEST&rsquo;s mitochondrial therapeutic module builds on this concept:
+        NEST&rsquo;s Mitochondrial Therapeutic Module builds on this concept:
         liposomes <strong>serve as mitochondrial delivery carriers</strong>,
         engineered linker peptides <strong>connect the carriers to the SELP
         scaffold</strong>, and enzymatic cleavage is intended to <strong>enable
@@ -533,7 +533,7 @@ export const mitochondriaModule: DbtlModule = {
   outro: (
     <>
       <p>
-        Through these engineering cycles, the mitochondrial module developed
+        Through these engineering cycles, the Mitochondrial Therapeutic Module developed
         into a set of components that could be evaluated individually:
         <strong>liposomes provided the carrier interface</strong>, <strong>the
         linker peptide coordinated anchoring and detachment</strong>, and the GFP

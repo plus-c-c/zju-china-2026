@@ -151,6 +151,20 @@ export function useContainedStepperScroll(options: StepperScrollOptions) {
     };
     const onTouchMove = (event: TouchEvent) => {
       if (touchY === null || event.touches.length !== 1) return;
+      if (window.matchMedia("(max-width: 991.98px)").matches) {
+        const panel = live.current.panelRef.current;
+        const card =
+          live.current.cardRef?.current ??
+          panel?.closest(".dbtl-panel") ??
+          panel;
+        if (event.target instanceof Node && card?.contains(event.target)) {
+          // Native touch scrolling preserves horizontal tables, pinch zoom,
+          // and scroll chaining into the page at either end of the content.
+          // Desktop wheel and gutter step gestures keep their existing rules.
+          touchY = event.touches[0].clientY;
+          return;
+        }
+      }
       const y = event.touches[0].clientY;
       const delta = touchY - y;
       if (Math.abs(delta) < 4) return;

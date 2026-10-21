@@ -347,3 +347,25 @@
   margin-top: 0.9rem;
   padding-top: 0.9rem;
 }
+
+.timeline-modal-photos {
+  display: grid;
+  gap: 1.5rem;
+  margin-top: 1.75rem;
+}
+
+.timeline-modal-photos a {
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+  margin-inline: auto;
+}
+
+.timeline-modal-photos img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 34rem;
+  object-fit: contain;
+}

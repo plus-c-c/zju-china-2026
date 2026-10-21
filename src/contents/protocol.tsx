@@ -61,6 +61,15 @@ export function Protocol() {
           >
             {selected.title}
           </div>
+          <a
+            className="protocol-pdf-link"
+            href={selected.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Open PDF: ${selected.title}`}
+          >
+            Open PDF
+          </a>
           <iframe
             key={selected.url}
             id="protocol-document"

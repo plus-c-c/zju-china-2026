@@ -62,6 +62,7 @@ body.clean .controls{display:none}body.clean .player{width:100%}
 .shaft-fibula {left:400px;top:684px;width:115px;height:820px}
 .injection-camera { animation-name:inject; will-change:transform; }
 .scope-camera { animation-name:scope; will-change:transform; }
+.scope-model{display:contents}
 .gel-growth { transform-origin:667px 319px; animation-name:gel-growth; }
 .cure-light {  animation-name:cure-light; }
 .gel-blue { animation-name:gel-blue; }
@@ -562,6 +563,26 @@ html,body{width:100%;height:100%;min-height:0;overflow:hidden;background:#d4e7fb
 .player{width:100%;height:100%}.viewport{width:100%;height:100%;aspect-ratio:auto;background:#d4e7fb}
 .stage{left:50%;top:50%;transform-origin:center;transform:translate(-50%,-50%) scale(var(--stage-scale,1))}
 .controls,.debug-panel{display:none!important}
+.mobile-syringe-needle{display:none}
+/* Mobile keeps the hardware journey in frame, then gives the joint its own
+   closer composition. Instruments scale around their tips, not the bone. */
+@media(max-width:991.98px){
+ .stage{overflow:visible;isolation:auto}
+ /* Clip only at the visible viewport, not at a pre-composited scene boundary. */
+ .hardware-scene{contain:none;overflow:visible}
+ .hardware-camera,.clinical-camera,.injection-camera,.scope-camera{overflow:visible;will-change:auto}
+ .clinical-scene{transform-origin:670px 360px;transform:translateX(-30px) scale(var(--clinical-zoom,1))}
+ .injection-model{transform:matrix(-0.255703870,-0.220659451,-0.220659451,0.255703870,727.974797397,305.229009570)}
+ /* Only phones use the complete artwork. Keep its tip at (704,347). */
+ .scope-model{display:block;position:absolute;inset:0;overflow:visible;transform-origin:704px 347px;transform:scale(.67)}
+ .scope-art{inset:auto;left:690.14px;top:310.04px;width:504.24px;height:auto;max-width:none;transform-origin:13.86px 36.96px;transform:rotate(8deg)}
+ /* A small SVG viewport crops the source needle before any scene movement.
+    Avoid clip-path on a full-size moving image: mobile compositors can retain
+    the initial clipped raster after the syringe moves back into view. */
+ .syringe-needle{display:none}
+ .mobile-syringe-needle{display:block;position:absolute;left:0;top:280px;width:345px;height:60px;overflow:hidden;transform-origin:345px 33px;transform:scale(.65,.9);pointer-events:none}
+ .injection-model .mobile-syringe-needle{transform:scale(.65,1.5)}
+}
 </style></head><body><main class="player" data-loading><div class="viewport" role="img" aria-label="Hydrogel travels from the reactor through a transparent pump and syringe into the knee joint, where blue light cures it to repair cartilage."><div class="stage" id="stage">
 <div class="hardware-scene anim"><div class="hardware-camera anim">
  <svg class="hardware-hose" viewBox="0 0 3180 720" aria-hidden="true"><defs><linearGradient id="hose-fill" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#bce8f2"/><stop offset=".4" stop-color="#65bbd5"/><stop offset="1" stop-color="#78c7de"/></linearGradient></defs>
@@ -622,6 +643,7 @@ html,body{width:100%;height:100%;min-height:0;overflow:hidden;background:#d4e7fb
       <img class="syringe-piston-ring anim" src="https://static.igem.wiki/teams/6102/wiki/home-opening/layer-18bb786bf708.avif" alt="">
       <img class="syringe-pushrod anim" src="https://static.igem.wiki/teams/6102/wiki/home-opening/layer-18bb786bf708.avif" alt="">
       <img class="syringe-needle" src="https://static.igem.wiki/teams/6102/wiki/home-opening/layer-18bb786bf708.avif" alt="">
+      <svg class="mobile-syringe-needle" viewBox="0 280 345 60" aria-hidden="true"><image href="https://static.igem.wiki/teams/6102/wiki/home-opening/layer-18bb786bf708.avif" width="1280" height="720"/></svg>
       <img class="syringe-hook" src="https://static.igem.wiki/teams/6102/wiki/home-opening/layer-3d78ee4ddcf7.avif" alt="">
     </div></div>
 </div></div>
@@ -668,9 +690,10 @@ html,body{width:100%;height:100%;min-height:0;overflow:hidden;background:#d4e7fb
       <img class="syringe-piston-ring anim" src="https://static.igem.wiki/teams/6102/wiki/home-opening/layer-18bb786bf708.avif" alt="">
       <img class="syringe-pushrod anim" src="https://static.igem.wiki/teams/6102/wiki/home-opening/layer-18bb786bf708.avif" alt="">
       <img class="syringe-needle" src="https://static.igem.wiki/teams/6102/wiki/home-opening/layer-18bb786bf708.avif" alt="">
+      <svg class="mobile-syringe-needle" viewBox="0 280 345 60" aria-hidden="true"><image href="https://static.igem.wiki/teams/6102/wiki/home-opening/layer-18bb786bf708.avif" width="1280" height="720"/></svg>
       <img class="syringe-hook" src="https://static.igem.wiki/teams/6102/wiki/home-opening/layer-3d78ee4ddcf7.avif" alt="">
     </div></div>
-            <div class="scope-camera anim"><img class="layer" src="https://static.igem.wiki/teams/6102/wiki/home-opening/layer-11faf34702d9.avif" alt=""></div>
+            <div class="scope-camera anim"><picture class="scope-model"><source media="(max-width:991.98px)" srcset="https://static.igem.wiki/teams/6102/wiki/home-opening/arthroscope-complete-20261021.avif"><img class="layer scope-art" src="https://static.igem.wiki/teams/6102/wiki/home-opening/layer-11faf34702d9.avif" width="1280" height="720" alt=""></picture></div>
 
           </div>
         </div>
@@ -686,7 +709,22 @@ html,body{width:100%;height:100%;min-height:0;overflow:hidden;background:#d4e7fb
  const stage=document.querySelector('#stage');
  const player=document.querySelector('.player');
  const viewport=stage.closest('.viewport');
- const fitStage=()=>stage.style.setProperty('--stage-scale',String(viewport.clientHeight/720));
+ const mobileLayout=window.matchMedia('(max-width:991.98px)');
+ const fitStage=()=>{
+  const width=viewport.clientWidth,height=viewport.clientHeight;
+  // Preserve desktop framing; phones must fit both axes, including landscape.
+  const scale=mobileLayout.matches
+   ? Math.min(Math.max(1,width-24)/1280,Math.max(1,height-32)/720)
+   : height/720;
+  stage.style.setProperty('--stage-scale',String(scale));
+  if(mobileLayout.matches){
+   // Bone pixels occupy x=367..973, y=0..720 in the source layer.
+   // Enlarge the joint to about 82% of the phone width. Reserve 8px at
+   // each side for the instruments; short landscapes still cap height.
+   const clinicalScale=Math.min(width*.82/606,Math.max(1,width-16)/704,Math.max(1,height-32)*.84/720);
+   stage.style.setProperty('--clinical-zoom',String(clinicalScale/scale));
+  }
+ };
  new ResizeObserver(fitStage).observe(viewport);
  fitStage();
  const duration=16750;
@@ -722,7 +760,18 @@ html,body{width:100%;height:100%;min-height:0;overflow:hidden;background:#d4e7fb
   };
   requestAnimationFrame(tick);
  }
- Promise.all([...document.images].map(image=>image.decode().catch(()=>{}))).then(()=>{
+ async function decodeImage(image){
+  try{await image.decode();}
+  catch{
+   // Retry a failed mobile layer before starting; a missing needle must not be
+   // treated as a successfully loaded frame on a slow connection.
+   if(mobileLayout.matches&&!image.naturalWidth){
+    image.src=image.currentSrc||image.src;
+    try{await image.decode();}catch{/* Other loaded layers can still play. */}
+   }
+  }
+ }
+ Promise.all([...document.images].map(decodeImage)).then(()=>{
   tracks=stage.getAnimations({subtree:true});
   clock=tracks.find(a=>a.effect?.getTiming().duration===18000);
   tracks.forEach(a=>{a.pause();a.currentTime=0;});

@@ -7,7 +7,7 @@
       "order": 1,
       "id": "BBa_261SXVOZ",
       "title": "TVNFKLY magnetite-binding peptide",
-      "description": "A seven-residue magnetite-binding peptide, TVNFKLY, used to couple Fe₃O₄ magnetic nanoparticles to a modular protein scaffold. The 21-bp coding region is fused downstream of DogTag through a flexible linker in the magnetic-response module.",
+      "description": "A seven-residue magnetite-binding peptide, TVNFKLY, used to couple Fe₃O₄ magnetic nanoparticles to a modular protein scaffold. The 21-bp coding region is fused downstream of DogTag through a flexible linker in the Magnetically Responsive Anisotropy Module.",
       "components": [],
       "shortName": "TVNFKLY",
       "category": "Magnetic response",
@@ -88,7 +88,7 @@
       "order": 4,
       "id": "BBa_261WIYFW",
       "title": "Link-N matrix-associated domain (Link-N DNA variant)",
-      "description": "Encodes the 16-residue Link-N peptide DHLSDNYTLDHDRAIH, derived from the N-terminal region of cartilage link protein HAPLN1. This reusable matrix-associated domain supplies the Link-N function in the GAG retention module and can be combined with the CPC capture domain. This Basic part contains only the Link-N coding region, without a start or stop codon, for in-frame assembly into fusion proteins. It preserves the exact DNA variant used in the ZJU-China 2026 Link-N composite.",
+      "description": "Encodes the 16-residue Link-N peptide DHLSDNYTLDHDRAIH, derived from the N-terminal region of cartilage link protein HAPLN1. This reusable matrix-associated domain supplies the Link-N function in the GAG Retention Module and can be combined with the CPC capture domain. This Basic part contains only the Link-N coding region, without a start or stop codon, for in-frame assembly into fusion proteins. It preserves the exact DNA variant used in the ZJU-China 2026 Link-N composite.",
       "components": [],
       "shortName": "Link-N · Link-N variant",
       "category": "Matrix retention",
@@ -277,7 +277,7 @@
       "order": 11,
       "id": "BBa_2622N6K0",
       "title": "Link-N matrix-associated domain (CPC-Link-N DNA variant)",
-      "description": "Encodes the 16-residue Link-N peptide DHLSDNYTLDHDRAIH, derived from the N-terminal region of cartilage link protein HAPLN1. This reusable matrix-associated domain supplies the Link-N function in the GAG retention module and can be combined with the CPC capture domain. This Basic part contains only the Link-N coding region, without a start or stop codon, for in-frame assembly into fusion proteins. It preserves the exact DNA variant used in the ZJU-China 2026 CPC-Link-N composite.",
+      "description": "Encodes the 16-residue Link-N peptide DHLSDNYTLDHDRAIH, derived from the N-terminal region of cartilage link protein HAPLN1. This reusable matrix-associated domain supplies the Link-N function in the GAG Retention Module and can be combined with the CPC capture domain. This Basic part contains only the Link-N coding region, without a start or stop codon, for in-frame assembly into fusion proteins. It preserves the exact DNA variant used in the ZJU-China 2026 CPC-Link-N composite.",
       "components": [],
       "shortName": "Link-N · CPC-Link-N variant",
       "category": "Matrix retention",
@@ -492,8 +492,8 @@
       "kind": "composite",
       "order": 1,
       "id": "BBa_26ZPD683",
-      "title": "DogTag-CPC-Link-N GAG retention module",
-      "description": "A recombinant GAG retention module that combines the 20-residue cationic peptide carrier CPC (RRRRAARRRAARRRAARRRR) with the 16-residue Link-N peptide (DHLSDNYTLDHDRAIH) through a GGSG linker. CPC supplies the positively charged GAG-capture domain; Link-N supplies the complementary matrix-associated domain. Together, these motifs are designed to enrich and retain extracellular-matrix components within a modular cartilage-repair scaffold. DogTag supplies the ligation handle for integration with a compatible SnoopTag-bearing scaffold. The complete expression CDS includes a His-tagged leader, a SUMO region, AviTag, a TEV recognition site and a glycine-rich spacer, supporting recombinant production, processing and biochemical evaluation.",
+      "title": "DogTag-CPC-Link-N GAG Retention Module",
+      "description": "A recombinant GAG Retention Module that combines the 20-residue cationic peptide carrier CPC (RRRRAARRRAARRRAARRRR) with the 16-residue Link-N peptide (DHLSDNYTLDHDRAIH) through a GGSG linker. CPC supplies the positively charged GAG-capture domain; Link-N supplies the complementary matrix-associated domain. Together, these motifs are designed to enrich and retain extracellular-matrix components within a modular cartilage-repair scaffold. DogTag supplies the ligation handle for integration with a compatible SnoopTag-bearing scaffold. The complete expression CDS includes a His-tagged leader, a SUMO region, AviTag, a TEV recognition site and a glycine-rich spacer, supporting recombinant production, processing and biochemical evaluation.",
       "components": [
         "BBa_K3716003",
         "BBa_263RONL8",
@@ -548,14 +548,14 @@
           "lane": 0
         }
       ],
-      "summary": "A recombinant GAG retention module that combines the 20-residue cationic peptide carrier CPC (RRRRAARRRAARRRAARRRR) with the 16-residue Link-N peptide (DHLSDNYTLDHDRAIH) through a GGSG linker."
+      "summary": "A recombinant GAG Retention Module that combines the 20-residue cationic peptide carrier CPC (RRRRAARRRAARRRAARRRR) with the 16-residue Link-N peptide (DHLSDNYTLDHDRAIH) through a GGSG linker."
     },
     {
       "kind": "composite",
       "order": 2,
       "id": "BBa_26OZ27MH",
       "title": "DogTag-GTWSLLL matched control module",
-      "description": "A newly designed matched control for the DogTag-TVN magnetic-response module. The unrelated peptide GTWSLLL replaces TVNFKLY while the His-SUMO expression region, DogTag, SGGGGS linker and terminal stop codon remain identical. The 441-bp CDS encodes a 146-residue precursor and allows the contribution of the TVN sequence to nanoparticle association to be tested in the same fusion architecture.",
+      "description": "A newly designed matched control for the DogTag-TVN Magnetically Responsive Anisotropy Module. The unrelated peptide GTWSLLL replaces TVNFKLY while the His-SUMO expression region, DogTag, SGGGGS linker and terminal stop codon remain identical. The 441-bp CDS encodes a 146-residue precursor and allows the contribution of the TVN sequence to nanoparticle association to be tested in the same fusion architecture.",
       "components": ["BBa_2668RPJW", "BBa_261FVLIT", "BBa_26EC8O68"],
       "shortName": "DogTag–GTWSLLL control",
       "category": "Magnetic response",
@@ -595,7 +595,7 @@
           "lane": 0
         }
       ],
-      "summary": "A newly designed matched control for the DogTag-TVN magnetic-response module."
+      "summary": "A newly designed matched control for the DogTag-TVN Magnetically Responsive Anisotropy Module."
     },
     {
       "kind": "composite",
@@ -629,7 +629,7 @@
       "order": 4,
       "id": "BBa_266WDNPZ",
       "title": "DogTag-Link-N matrix retention module",
-      "description": "A recombinant matrix-retention module containing Link-N (DHLSDNYTLDHDRAIH), the 16-residue N-terminal peptide of cartilage link protein. The module is designed to support extracellular-matrix retention and matrix development in a cartilage-repair scaffold. DogTag supplies a ligation handle for integration with a compatible SnoopTag-bearing scaffold. The complete expression CDS includes a His-tagged leader, a SUMO region, AviTag, a TEV recognition site and a glycine-rich spacer. This construct delivers the Link-N component and the Link-N-only comparator for the combined CPC-Link-N GAG retention module.",
+      "description": "A recombinant matrix-retention module containing Link-N (DHLSDNYTLDHDRAIH), the 16-residue N-terminal peptide of cartilage link protein. The module is designed to support extracellular-matrix retention and matrix development in a cartilage-repair scaffold. DogTag supplies a ligation handle for integration with a compatible SnoopTag-bearing scaffold. The complete expression CDS includes a His-tagged leader, a SUMO region, AviTag, a TEV recognition site and a glycine-rich spacer. This construct delivers the Link-N component and the Link-N-only comparator for the combined CPC-Link-N GAG Retention Module.",
       "components": ["BBa_267Q6XR6", "BBa_261WIYFW"],
       "shortName": "DogTag–Link-N",
       "category": "Matrix retention",
@@ -813,8 +813,8 @@
       "kind": "composite",
       "order": 9,
       "id": "BBa_26R5QAZM",
-      "title": "DogTag-TVN magnetic-response module",
-      "description": "A recombinant magnetic-response module combining DogTag with the magnetite-binding peptide TVNFKLY through an SGGGGS linker. The 441-bp complete CDS encodes a 146-residue His-SUMO-tagged precursor. DogTag supplies the scaffold-ligation interface, while TVN supplies the Fe₃O₄-binding motif, enabling integration of magnetic nanoparticles into the scaffold for magnetic alignment studies.",
+      "title": "DogTag-TVN Magnetically Responsive Anisotropy Module",
+      "description": "A recombinant Magnetically Responsive Anisotropy Module combining DogTag with the magnetite-binding peptide TVNFKLY through an SGGGGS linker. The 441-bp complete CDS encodes a 146-residue His-SUMO-tagged precursor. DogTag supplies the scaffold-ligation interface, while TVN supplies the Fe₃O₄-binding motif, enabling integration of magnetic nanoparticles into the scaffold for magnetic alignment studies.",
       "components": ["BBa_2668RPJW", "BBa_261FVLIT", "BBa_261SXVOZ"],
       "shortName": "DogTag–TVN",
       "category": "Magnetic response",
@@ -854,7 +854,7 @@
           "lane": 0
         }
       ],
-      "summary": "A recombinant magnetic-response module combining DogTag with the magnetite-binding peptide TVNFKLY through an SGGGGS linker."
+      "summary": "A recombinant Magnetically Responsive Anisotropy Module combining DogTag with the magnetite-binding peptide TVNFKLY through an SGGGGS linker."
     },
     {
       "kind": "composite",

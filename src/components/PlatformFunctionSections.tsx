@@ -234,6 +234,13 @@ export function PlatformFunctionSections({
               key={track}
               id={`${id}-${track}-button`}
               className={`project-tracks__button project-tracks__button--${track}`}
+              aria-label={
+                track === "platform"
+                  ? "Programmable Biomimetic Platform"
+                  : track === "function"
+                    ? "Repair Function Modules"
+                    : "Whole-Process System"
+              }
               aria-pressed={active === track}
               aria-controls={`${id}-${track}`}
               onClick={() => select(track)}
@@ -276,6 +283,13 @@ export function PlatformFunctionSections({
                     System
                   </>
                 )}
+              </span>
+              <span className="project-tracks__mobile-label" aria-hidden="true">
+                {track === "platform"
+                  ? "Platform"
+                  : track === "function"
+                    ? "Function"
+                    : "Whole Process"}
               </span>
             </button>
           ))}

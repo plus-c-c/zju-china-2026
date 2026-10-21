@@ -226,6 +226,32 @@
   max-width: 420px;
 }
 
+@media (max-width: 991.98px) {
+  .wetlab-split img[src$="/01-skeleton/12.avif"] {
+    max-width: min(100%, 531px);
+  }
+
+  .wetlab-split img[src$="/01-skeleton/14.avif"] {
+    max-width: min(100%, 490px);
+  }
+
+  .wetlab-split img[src$="/02/anisotropy-v2-02-008d394b.avif"] {
+    max-width: min(100%, 440px);
+  }
+
+  .wetlab-split img[src$="/02/anisotropy-v2-04-5bef46b7.avif"] {
+    max-width: min(100%, 530px);
+  }
+
+  .wetlab-split img[src$="/02/anisotropy-v2-07-b6c92224.avif"] {
+    max-width: min(100%, 530px);
+  }
+
+  .wetlab-split img[src$="/03/09.avif"] {
+    max-width: min(100%, 420px);
+  }
+}
+
 /* Whitening in progress: show nothing rather than the original sheet (a
    failed pass keeps the original visible as a fallback). The rule is global
    because the jump button is portalled outside the article. */

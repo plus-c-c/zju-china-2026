@@ -13,6 +13,13 @@ export type TimelineDetail = {
   content: ReactNode;
 };
 
+export type TimelinePhoto = {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+};
+
 export type TimelineItem = {
   /** Human-readable date label, e.g. "28 January 2025". */
   date: string;
@@ -28,6 +35,8 @@ export type TimelineItem = {
   imageScale?: number;
   /** Optional sections rendered in the "Read more" dialog. */
   details?: TimelineDetail[];
+  /** Supporting images from the interview manuscript, in source order. */
+  photos?: TimelinePhoto[];
   /** Optional grouping label (used by pages that split the timeline). */
   stage?: string;
 };
@@ -279,6 +288,27 @@ export function Timeline({ items }: { items: TimelineItem[] }) {
                   {section.content}
                 </div>
               ))}
+              {openItem.photos && openItem.photos.length > 0 && (
+                <div className="timeline-modal-photos">
+                  {openItem.photos.map((photo) => (
+                    <a
+                      key={photo.src}
+                      href={photo.src}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`Open full image: ${photo.alt}`}
+                    >
+                      <img
+                        src={photo.src}
+                        alt={photo.alt}
+                        width={photo.width}
+                        height={photo.height}
+                        loading="lazy"
+                      />
+                    </a>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         </div>

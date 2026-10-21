@@ -193,3 +193,27 @@ html[data-wetlab-swipe] .page-jump {
     bottom: 78px;
   }
 }
+
+@media (max-width: 991.98px) {
+  .page-jump {
+    --arrow-w: 132px;
+    min-height: 44px;
+    justify-content: center;
+  }
+
+  .page-jump__target {
+    font-size: 12px;
+  }
+
+  .page-jump--right {
+    /* The tablet back-to-top control extends 125px above the viewport edge. */
+    bottom: calc(140px + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+@media (max-width: 575.98px) {
+  .page-jump--right {
+    /* Phone back-to-top: 79px high, 16px from the bottom, plus a 13px gap. */
+    bottom: calc(108px + env(safe-area-inset-bottom, 0px));
+  }
+}

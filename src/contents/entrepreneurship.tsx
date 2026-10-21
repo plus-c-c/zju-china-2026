@@ -347,7 +347,7 @@ const RISK_ROWS = [
   },
   {
     id: "R4",
-    stage: "Mitochondrial delivery",
+    stage: "Mitochondrial Therapeutic Module",
     level: "Critical",
     risk: "Source traceability, functional potency, storage stability and the reproducibility of enzyme-responsive delivery remain highly uncertain. A validated scaffold does not validate a complete mitochondrial product.",
     action: "Define source, quality and potency requirements, and evaluate delivery separately from the scaffold. Do not include the module in the first candidate unless its benefit is demonstrated and complete manufacturing and regulatory documentation exists.",
@@ -1768,7 +1768,7 @@ export function Entrepreneurship() {
             pharmacy, food science, ecology, biophysics, physics, computer
             science and philosophy. Around NEST we have built a relatively
             complete early-stage R&amp;D capability: wet-lab members cover the
-            SELP scaffold and ligation system, the GAG-retention module,
+            SELP scaffold and ligation system, the GAG Retention Module,
             mitochondrial delivery and functional peptides; dry-lab members
             handle protein modelling, mathematical modelling, data analysis and
             software development. The team also has hardware design, product

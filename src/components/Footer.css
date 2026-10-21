@@ -237,3 +237,30 @@
     height: 70px;
   }
 }
+
+/* A stopped marquee must not hide the remaining supporters on phones. */
+@media (max-width: 700px) and (prefers-reduced-motion: reduce) {
+  .sponsors-container {
+    overflow: visible;
+    mask-image: none;
+    -webkit-mask-image: none;
+  }
+
+  .sponsors-track {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    width: 100%;
+    transform: none;
+  }
+
+  .sponsor-slide {
+    width: 100%;
+    height: 80px;
+    margin: 0;
+  }
+
+  .sponsor-slide:nth-child(n + 7) {
+    display: none;
+  }
+}

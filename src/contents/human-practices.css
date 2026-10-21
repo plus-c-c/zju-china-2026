@@ -382,6 +382,10 @@ html[data-ihp-swipe="up"] .nest-navbar {
   color: #365dc9;
 }
 
+.ihp-mobile-overview {
+  display: none;
+}
+
 @media (max-width: 992px) {
   .ihp-nest-tabs {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -390,6 +394,73 @@ html[data-ihp-swipe="up"] .nest-navbar {
 
   .ihp-nest-tab__label {
     white-space: normal;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .ihp-page-nav {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 0.7fr) minmax(0, 1.5fr);
+    align-items: stretch;
+    gap: 6px;
+  }
+
+  .ihp-page-nav .eng-module-button,
+  .ihp-page-nav.ihp-page-nav--selected .eng-module-button,
+  .ihp-page-nav .eng-module-button.active {
+    min-width: 0;
+    max-width: 100%;
+    min-height: 44px;
+    padding: 8px 6px;
+    font-size: 0.875rem;
+    line-height: 1.25;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    transform: none;
+  }
+
+  .ihp-nest-tabs {
+    gap: 4px 8px;
+    margin-bottom: 16px;
+  }
+
+  .ihp-nest-tab {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 6px;
+    min-height: 44px;
+    padding: 6px 4px;
+    text-align: left;
+  }
+
+  .ihp-nest-tab__letter {
+    width: 24px;
+    height: 28px;
+    object-fit: contain;
+  }
+
+  .ihp-nest-tab__label {
+    min-width: 0;
+    font-size: 0.8125rem;
+    text-align: left;
+    overflow-wrap: anywhere;
+  }
+
+  .ihp-mobile-overview {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    margin-top: 8px;
+    padding: 8px 0;
+    border: 0;
+    background: none;
+    color: #365dc9;
+    font: inherit;
+    font-size: 0.875rem;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    cursor: pointer;
   }
 }
 
@@ -411,6 +482,36 @@ html[data-ihp-swipe="up"] .nest-navbar {
 
 .ihp-timeline-stage:first-of-type .ihp-timeline-stage__title {
   margin-top: 0.4rem;
+}
+
+@media (min-width: 992px) {
+  .ihp-timeline-stage .timeline-row {
+    display: grid;
+    grid-template-columns: minmax(20rem, 0.95fr) minmax(0, 1.4fr);
+    gap: clamp(2rem, 3vw, 3.25rem);
+    align-items: center;
+  }
+
+  .ihp-timeline-stage .timeline-rail {
+    display: flex;
+    align-items: center;
+    min-width: 0;
+    max-width: none;
+    padding-left: calc(var(--tl-rail-center) + var(--tl-dot-size) * 0.7);
+  }
+
+  .ihp-timeline-stage .timeline-title-desktop {
+    position: static;
+    transform: none;
+    max-width: none;
+    line-height: 1.45;
+    overflow-wrap: anywhere;
+  }
+
+  .ihp-timeline-stage .timeline-card-wrap {
+    min-width: 0;
+    padding-inline: 0;
+  }
 }
 
 .ihp-quote {

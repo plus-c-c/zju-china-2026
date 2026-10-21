@@ -1,3 +1,6 @@
+.notebook-pdf-link {
+  display: none;
+}
 .notebook-page .notebook-pdf {
   display: block;
   width: 100%;
@@ -6,6 +9,22 @@
   border: 1px solid #b8c9e6;
   border-radius: 0.25rem;
   background-color: #fff;
+}
+@media (max-width: 767.98px) {
+  .notebook-pdf-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    margin-bottom: 12px;
+    padding: 8px 12px;
+    color: #365dc9;
+    font-weight: 600;
+    text-underline-offset: 0.2em;
+  }
+  .notebook-pdf-link:focus-visible {
+    outline: 2px solid #365dc9;
+    outline-offset: 2px;
+  }
 }
 @media (max-width: 575.98px) {
   .notebook-page .notebook-pdf {

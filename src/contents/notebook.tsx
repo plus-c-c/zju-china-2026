@@ -18,7 +18,7 @@ const notebooks = [
   },
   {
     id: "tvn-magnetic-binding",
-    title: "TVN Magnetic Binding Module",
+    title: "Magnetically Responsive Anisotropy Module",
     pdf: "https://static.igem.wiki/teams/6102/wiki/final-notebook/04-notebook-tvn-adsorption.pdf",
   },
   {
@@ -71,6 +71,15 @@ export function Notebook() {
             <h2 id={notebook.id} className="mb-4">
               {notebook.title}
             </h2>
+            <a
+              className="notebook-pdf-link"
+              href={notebook.pdf}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Open PDF: ${notebook.title}`}
+            >
+              Open PDF
+            </a>
             <iframe
               className="notebook-pdf"
               src={notebook.pdf}

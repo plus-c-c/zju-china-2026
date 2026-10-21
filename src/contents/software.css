@@ -13,6 +13,16 @@
   color: #212529;
 }
 
+.software-ordering-image {
+  width: 25%;
+}
+
+@media (max-width: 767.98px) {
+  .software-ordering-image {
+    width: min(100%, 300px);
+  }
+}
+
 /* Inline addresses such as #/flow/<flow-id> read as UI routes, not prose. */
 .software-page :not(pre) > code {
   color: #0b4f8a;

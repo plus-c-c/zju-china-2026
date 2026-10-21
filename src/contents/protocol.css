@@ -57,6 +57,9 @@
   font-size: 1.5rem;
   font-weight: 700;
 }
+.protocol-pdf-link {
+  display: none;
+}
 .protocol-pdf {
   display: block;
   width: 100%;
@@ -67,6 +70,20 @@
   background: #fff;
 }
 @media (max-width: 767.98px) {
+  .protocol-pdf-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    margin-bottom: 12px;
+    padding: 8px 12px;
+    color: #365dc9;
+    font-weight: 600;
+    text-underline-offset: 0.2em;
+  }
+  .protocol-pdf-link:focus-visible {
+    outline: 2px solid #365dc9;
+    outline-offset: 2px;
+  }
   .protocol-layout {
     grid-template-columns: 1fr;
     gap: 24px;

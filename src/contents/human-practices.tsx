@@ -12,6 +12,7 @@ import {
 import { TransparentImage } from "../components/TransparentImage";
 import { StakeBridgeEmbed } from "../components/StakeBridgeEmbed";
 import { SeedReaderRail } from "./human-practices/SeedReader";
+import { stakeholderMedia } from "./human-practices/stakeholder-media";
 import {
   cancelSectionScroll,
   getSectionScrollOffset,
@@ -48,14 +49,6 @@ function Figure({
 }
 
 /**
- * Placeholder timeline entries.
- *
- * Replace the `date`, `title` and `summary` fields of each entry with the real
- * human-practices content. An entry shows a "Read more" button only when it
- * has `details`; add or remove `details` sections as needed. To display a
- * photo inside the rail dot, add `image: "..."` (plus `imageAlt`).
- */
-/**
  * Stakeholder interviews, summarised from the team's stakeholder archive.
  * Each entry records the approximate date of the engagement, a card title and
  * summary, and the Rationale / Interview Summary / Integration behind
@@ -72,21 +65,40 @@ function stakeholder(
   integration: ReactNode,
   imageId?: string,
 ): TimelineItem {
+  const media = stakeholderMedia[title];
+  const image = media?.portrait !== undefined
+    ? media.portrait ?? undefined
+    : imageId
+      ? `https://static.igem.wiki/teams/6102/wiki/images/engagement/ihp/${imageId}.avif`
+      : undefined;
   return {
     date,
     stage,
     title,
     summary: <p>{summary}</p>,
-    ...(imageId
+    ...(image
       ? {
-          image: `https://static.igem.wiki/teams/6102/wiki/images/engagement/ihp/${imageId}.avif`,
+          image,
           imageAlt: title,
         }
       : {}),
+    photos: media?.photos,
     details: [
       { heading: "Rationale", content: <p>{rationale}</p> },
       { heading: "Interview Summary", content: <p>{interview}</p> },
-      { heading: "Integration", content: <p>{integration}</p> },
+      {
+        heading: "Integration",
+        content: (
+          <p>
+            {typeof integration === "string" && integration.endsWith("View Gallery.") ? (
+              <>
+                {integration.slice(0, -"View Gallery.".length)}
+                <Link to="/education">View Gallery</Link>.
+              </>
+            ) : integration}
+          </p>
+        ),
+      },
     ],
   };
 }
@@ -103,7 +115,7 @@ const chainStages: ChainStage[] = [
     label: "Patient",
     people: [
       { name: "Xuan Ge", image: photo("ihp-01") },
-      { name: "Yue Wang, Yu Xu & Fangrui Liang" },
+      { name: "Yue Wang, Yu Xu & Fangrui Liang", image: photo("postoperative-patients") },
       { name: "Grandpa Gu" },
     ],
   },
@@ -142,8 +154,8 @@ const chainStages: ChainStage[] = [
     label: "Manufacturing",
     people: [
       { name: "Beijing Weixinkang" },
-      { name: "Shaanxi Lanyanwei", image: photo("ihp-38") },
-      { name: "Yuanyi Biology", image: photo("ihp-30") },
+      { name: "Lanyiwei", image: photo("ihp-38") },
+      { name: "Genekor Biotech", image: photo("ihp-30") },
       { name: "Shanghai Lingjiu", image: photo("ihp-28") },
     ],
   },
@@ -152,22 +164,22 @@ const chainStages: ChainStage[] = [
     label: "Market access",
     people: [
       { name: "Li Zhuoya", image: photo("ihp-27") },
-      { name: "ZJU Innovation & Entrepreneurship College" },
+      { name: "ZJU Innovation & Entrepreneurship College", image: photo("zju-entrepreneurship-institute") },
       { name: "Zhang Jie", image: photo("ihp-26") },
       { name: "Prof. Erik Forsberg", image: photo("ihp-44") },
       { name: "Prof. Li Jianqin", image: photo("ihp-34") },
       { name: "Zhang Binghong", image: photo("ihp-39") },
       { name: "Mavis Wu", image: photo("ihp-40") },
-      { name: "Tung Wah Group of Hospitals", image: photo("ihp-33") },
-      { name: "Legislator Lam Chit-yuen", image: photo("ihp-32") },
+      { name: "Tung Wah Group of Hospitals", image: photo("hospital-procurement-visit") },
+      { name: "Legislator Lam Chit-huen", image: photo("ihp-32") },
     ],
   },
   {
     id: "rehabilitation",
     label: "Rehabilitation",
     people: [
-      { name: "Dr. Shen Yang" },
-      { name: "Chen Xi (artist)" },
+      { name: "Dr. Shen Yang", image: photo("shen-yang") },
+      { name: "Chen Xi (artist)", image: photo("chen-xi") },
     ],
   },
 ];
@@ -280,7 +292,7 @@ const timelineItems: TimelineItem[] = [
     "Professor Ouyang Hongwei helped us narrow down the indications to focal, partial-thickness cartilage defects and early degeneration, and required that the degradation of the material match tissue regeneration. The interview prompted the supplementation of the degradation curve and clarified the therapeutic boundaries of the platform.",
     "The original concept of NEST was to develop an injectable, in-situ forming biomimetic hydrogel. However, at that time, our internal description of \"what exactly NEST treats\" was ambiguous — \"cartilage repair\" and \"osteoarthritis treatment\" were almost treated as one and the same. Yet, if the research scenario from the outset was not fully defined and remained nothing more than a vague, grand vision, this topic would in all likelihood be meaningless and lack any practical applicability. Ouyang Hongwei is a leading expert in regenerative medicine in China and a trailblazer in the field of therapeutic materials for osteoarticular diseases in the country.Therefore, to ensure that our project can be truly applied in bioengineering and regenerative medicine to address real human problems, we consulted Professor Ouyang Hongwei, who has long been engaged in tissue engineering of articular cartilage and repair of motor system injuries, with the aim of first clarifying the boundaries of repair scenarios and indications.",
     "Based on his research experience in the field of articular cartilage tissue engineering and musculoskeletal system injuries, Professor Ouyang put forward three points. First, repair should not be limited to defect filling: the material is implanted into a continuously degenerating microenvironment, and the filler itself will be remodeled by this environment. Second, the degradation rate of the material should be coordinated with the formation rate of nascent tissue, and it must reliably integrate with the surrounding cartilage. Third, and the most thought-provoking point for us, he directly asked us which clinical scenario we were targeting: focal partial-thickness defects, early degeneration, or late-stage OA with extensive subchondral bone changes?He clearly pointed out that \"local cartilage repair\" cannot be equated with \"the ability to reverse osteoarthritis at all stages\".",
-    "Prior to our discussion with Professor Ouyang, we used to open our project introduction with \"injectable hydrogel for osteoarthritis\", and then supplement later that we actually target focal defects — which effectively framed a platform-grade material as a disease-specific therapy. After the discussion, we reversed the order of presentation: the target lesions of NEST are focal, partial-thickness articular cartilage defects, as well as post-traumatic and early degenerative stages; advanced OA is no longer a claimed indication, and only appears in the background as a downstream consequence of the cycle \"cartilage loss — mechanical imbalance — elevated inflammation — further degeneration\". The degradation rate has shifted from being a \"variable we never paid attention to\" to a parameter that must be deliberately designed, which is the most impactful insight from this discussion on the material itself. Our original sequence simulation revolved around five variables: the number of repeats versus chain length and strength, the S/E ratio versus phase transition temperature Tt, X-site substitution versus hydrophilic-hydrophobic balance, the number and exposure level of crosslinking sites versus gelation rate, and the reverse regulation of functional site insertion position — none of these five variables concerned when the material would degrade and disappear. It was not until Professor Ouyang pointed out that the degradation rate should be coordinated with the formation of nascent tissue that this gap came to our attention.We therefore added characterization items: in addition to ITC purification, compression testing, and lap shear testing, we supplemented degradation curves, i. e., the mass loss and modulus attenuation at 4/8/12 weeks under three conditions: PBS, simulated fluid containing collagenase/protease, and simulated synovial fluid. The significance of this set of data is to provide a time window for \"the material remaining intact\", which can then be aligned with the histological time window for \"the emergence of nascent matrix\". We considered introducing degradable sites into the main chain, and the most straightforward approach is to reuse the existing MMP-13-responsive peptide in the cargo module as the degradation element of the main chain.However, this will make main chain degradation and load release compete for the same enzyme: at the peak of inflammation, we want mitochondria to be released, but we do not want the scaffold to collapse at the same time.Therefore, if we adopt this approach, the degradation element of the main chain should be selected to follow a mechanism orthogonal to that of MMP-13. However, based on a literature review, our own degradation curves, and the normal regeneration rate of cartilage, we found that the degradation of the material is basically complementary to the regeneration period of cartilage, so there is no need to specifically introduce an additional degradation module. The relevant results have also been included in our Results section. After an amicable exchange, Professor Ouyang Hongwei established an advisory team for us and advised us to keep in touch with Researchers Hong Yi and Yi Junzhi, both PhD candidates in his lab who specialize in materials research, to guide our follow-up experiments and design work.",
+    "Prior to our discussion with Professor Ouyang, we used to open our project introduction with \"injectable hydrogel for osteoarthritis\", and then supplement later that we actually target focal defects — which effectively framed a platform-grade material as a disease-specific therapy. After the discussion, we reversed the order of presentation: the target lesions of NEST are focal, partial-thickness articular cartilage defects, as well as post-traumatic and early degenerative stages; advanced OA is no longer a claimed indication, and only appears in the background as a downstream consequence of the cycle \"cartilage loss — mechanical imbalance — elevated inflammation — further degeneration\". The degradation rate has shifted from being a \"variable we never paid attention to\" to a parameter that must be deliberately designed, which is the most impactful insight from this discussion on the material itself. Our original sequence simulation revolved around five variables: the number of repeats versus chain length and strength, the S/E ratio versus phase transition temperature Tt, X-site substitution versus hydrophilic-hydrophobic balance, the number and exposure level of crosslinking sites versus gelation rate, and the reverse regulation of functional site insertion position — none of these five variables concerned when the material would degrade and disappear. It was not until Professor Ouyang pointed out that the degradation rate should be coordinated with the formation of nascent tissue that this gap came to our attention.We therefore added characterization items: in addition to ITC purification, compression testing, and lap shear testing, we supplemented degradation curves, i. e., the mass loss and modulus attenuation at 4/8/12 weeks under three conditions: PBS, simulated fluid containing collagenase/protease, and simulated synovial fluid. The significance of this set of data is to provide a time window for \"the material remaining intact\", which can then be aligned with the histological time window for \"the emergence of nascent matrix\". We considered introducing degradable sites into the main chain, and the most straightforward approach is to reuse the existing MMP-13-responsive peptide in the Mitochondrial Therapeutic Module as the degradation element of the main chain.However, this will make main chain degradation and load release compete for the same enzyme: at the peak of inflammation, we want mitochondria to be released, but we do not want the scaffold to collapse at the same time.Therefore, if we adopt this approach, the degradation element of the main chain should be selected to follow a mechanism orthogonal to that of MMP-13. However, based on a literature review, our own degradation curves, and the normal regeneration rate of cartilage, we found that the degradation of the material is basically complementary to the regeneration period of cartilage, so there is no need to specifically introduce an additional degradation module. The relevant results have also been included in our Results section. After an amicable exchange, Professor Ouyang Hongwei established an advisory team for us and advised us to keep in touch with Researchers Hong Yi and Yi Junzhi, both PhD candidates in his lab who specialize in materials research, to guide our follow-up experiments and design work.",
     "ihp-12",
   ),
   stakeholder(
@@ -328,9 +340,9 @@ const timelineItems: TimelineItem[] = [
     "R&D",
     "6. Let magnetic particles drive the orientation of the skeleton: Lin Si'en",
     "Professor Lin Si'en distinguishes between particle orientation, protein network orientation and directional mechanical properties, pointing out that the three need to be verified separately. The interview prompted the team to introduce magnetic particle-binding peptides to anchor the particles to the SELP backbone for transmitting magnetic force.",
-    "In the early stage of the project, the magnetically responsive module was merely a conceptual idea along one of our research directions: since the collagen in the superficial zone of natural cartilage is parallel to the articular surface while that in the deep zone is perpendicular to the cartilage-bone interface, and this directional arrangement is closely correlated with the tissue's shear resistance and compression resistance, if we could achieve an ordered alignment within the material, it would be possible to approximate the mechanical behavior of natural cartilage. Furthermore, numerous studies have indicated that such anisotropy can promote cell adhesion in tissues, making it highly suitable for incorporation into our project. Our original approach was to directly mix Fe₃O₄ magnetic nanoparticles into the SELP precursor solution, apply an external magnetic field to induce their alignment, and then crosslink and fix them — there was no anchoring mechanism, nor had we considered how to verify that the particles had been properly aligned. We took this prototype to consult with Professor Sze Yan Lam from the field of tissue engineering and regenerative medicine at the University of Hong Kong, with the core question being: how can mere structural orientation be translated into measurable functionality in tissue engineering applications.",
+    "In the early stage of the project, the Magnetically Responsive Anisotropy Module was merely a conceptual idea along one of our research directions: since the collagen in the superficial zone of natural cartilage is parallel to the articular surface while that in the deep zone is perpendicular to the cartilage-bone interface, and this directional arrangement is closely correlated with the tissue's shear resistance and compression resistance, if we could achieve an ordered alignment within the material, it would be possible to approximate the mechanical behavior of natural cartilage. Furthermore, numerous studies have indicated that such anisotropy can promote cell adhesion in tissues, making it highly suitable for incorporation into our project. Our original approach was to directly mix Fe₃O₄ magnetic nanoparticles into the SELP precursor solution, apply an external magnetic field to induce their alignment, and then crosslink and fix them — there was no anchoring mechanism, nor had we considered how to verify that the particles had been properly aligned. We took this prototype to consult with Professor Sze Yan Lam from the field of tissue engineering and regenerative medicine at the University of Hong Kong, with the core question being: how can mere structural orientation be translated into measurable functionality in tissue engineering applications.",
     "Professor Lin's response centered on \"evidence\". He told us that observing magnetic particles aligned in a certain direction does not automatically prove that the entire SELP network has formed stable anisotropy, nor does it equate to having reproduced the layered mechanical properties of natural cartilage — particle orientation, protein network orientation, and the direction-dependent properties of the final gel are three things that must be demonstrated separately. He also listed five variables that affect the orientation effect: magnetic field strength and gradient, particle concentration, crosslinking efficiency, rheological properties of the precursor solution, and photocrosslinking timing.Finally, he added that when discussing the effects on cells, a distinction should also be made between the two levels: \"the formation of a directional material structure\" and \"this structure indeed alters cellular behavior\".",
-    "The teacher pointed out that particle orientation is not equivalent to network orientation, which later directly led to our final design of the Fe₃O₄-binding peptide. This is the point from this discussion that has had the most profound impact on NEST. In our original scheme, there was no physical connection between the particles and the protein network — the magnetic field only pulled the particles, and there was no guarantee at all that the particles could drive the SELP chains to align together. After Professor Lin pointed out this disconnect, we realized that the magnetic force must be transferred to the backbone instead of idling in the aqueous phase.First, we had Wu Jialin and Sun Yuxuan from our team conduct relevant modeling simulations. Although SELP can regulate charges to attract magnetic nanoparticles by introducing lysine, we found that magnetic nanoparticles alone indeed cannot ensure consistent molecular orientation of SELP. This led to our current scheme: we introduce Fe₃O₄-binding peptides as magnetic response recognition elements, first anchor Fe₃O₄ to the SELP backbone via short peptides, and then use a low-intensity external magnetic field to induce synchronous orientation of the particles and the backbone.The two screened 7-mer short peptides HYIDFRW and TVNFKLY have been verified to be able to bind to Fe₃O₄ nanoparticles, and TVNFKLY can also be tandemized with other functional peptides while retaining its binding capacity. The statement in the Description that \"our design does not randomly mix magnetic particles into the material\" is precisely targeted at the iteration of this part of our own work. Furthermore, this change has triggered a cascading consequence: a standardized connection method is required for the magnetically responsive unit, which has thus been incorporated into the SnoopTag2/DogTag interface system, forming the current SELP–STJr + DogTag–Fe₃O₄ peptide → SELP–peptide–MNP assembly route. The magnetically responsive module has evolved from \"adding components into the material\" to \"assembling the module onto the scaffold\", which marks the starting point of its integration into the platform-based architecture and also provides feasible support for the introduction of our linker system. Beyond the aspects mentioned above, we also found that the envisioned operation process after introducing the magnetic module was rather crude: the sequence and duration of the three steps — injection, magnetic field application, and light irradiation — had not been defined. After Professor Lin listed rheological properties and photocrosslinking timing as variables affecting orientation, these two factors were designed as an integrated whole, which eventually developed into the current fixed operation sequence: injection and filling — observation and confirmation — magnetic field alignment — blue light crosslinking; it also explicitly specifies that blue light is turned on while the magnetically induced alignment is maintained, so as to fix the internal structure via rapid crosslinking before proceeding to subsequent operations.This requirement is further implemented in the hardware: the endoscopic module is equipped with an independently controlled blue light source, which allows the operator to first observe the defect location and filling status, and activate the light irradiation only after the material is in place and completes the predetermined orientation. We therefore chose the Ru/SPS system that can gel in 2 seconds, because the oriented structure must be instantly locked while the magnetic field is still applied; the faster the gelation, the smaller the window for structural relaxation after the field is removed.",
+    "The teacher pointed out that particle orientation is not equivalent to network orientation, which later directly led to our final design of the Fe₃O₄-binding peptide. This is the point from this discussion that has had the most profound impact on NEST. In our original scheme, there was no physical connection between the particles and the protein network — the magnetic field only pulled the particles, and there was no guarantee at all that the particles could drive the SELP chains to align together. After Professor Lin pointed out this disconnect, we realized that the magnetic force must be transferred to the backbone instead of idling in the aqueous phase.First, we had Wu Jialin and Sun Yuxuan from our team conduct relevant modeling simulations. Although SELP can regulate charges to attract magnetic nanoparticles by introducing lysine, we found that magnetic nanoparticles alone indeed cannot ensure consistent molecular orientation of SELP. This led to our current scheme: we introduce Fe₃O₄-binding peptides as magnetic response recognition elements, first anchor Fe₃O₄ to the SELP backbone via short peptides, and then use a low-intensity external magnetic field to induce synchronous orientation of the particles and the backbone.The two screened 7-mer short peptides HYIDFRW and TVNFKLY have been verified to be able to bind to Fe₃O₄ nanoparticles, and TVNFKLY can also be tandemized with other functional peptides while retaining its binding capacity. The statement in the Description that \"our design does not randomly mix magnetic particles into the material\" is precisely targeted at the iteration of this part of our own work. Furthermore, this change has triggered a cascading consequence: a standardized connection method is required for the magnetically responsive unit, which has thus been incorporated into the SnoopTag2/DogTag interface system, forming the current SELP–STJr + DogTag–Fe₃O₄ peptide → SELP–peptide–MNP assembly route. The Magnetically Responsive Anisotropy Module has evolved from \"adding components into the material\" to \"assembling the module onto the scaffold\", which marks the starting point of its integration into the platform-based architecture and also provides feasible support for the introduction of our linker system. Beyond the aspects mentioned above, we also found that the envisioned operation process after introducing the Magnetically Responsive Anisotropy Module was rather crude: the sequence and duration of the three steps — injection, magnetic field application, and light irradiation — had not been defined. After Professor Lin listed rheological properties and photocrosslinking timing as variables affecting orientation, these two factors were designed as an integrated whole, which eventually developed into the current fixed operation sequence: injection and filling — observation and confirmation — magnetic field alignment — blue light crosslinking; it also explicitly specifies that blue light is turned on while the magnetically induced alignment is maintained, so as to fix the internal structure via rapid crosslinking before proceeding to subsequent operations.This requirement is further implemented in the hardware: the endoscopic module is equipped with an independently controlled blue light source, which allows the operator to first observe the defect location and filling status, and activate the light irradiation only after the material is in place and completes the predetermined orientation. We therefore chose the Ru/SPS system that can gel in 2 seconds, because the oriented structure must be instantly locked while the magnetic field is still applied; the faster the gelation, the smaller the window for structural relaxation after the field is removed.",
     "ihp-13",
   ),
   stakeholder(
@@ -350,7 +362,7 @@ const timelineItems: TimelineItem[] = [
     "Professor Wu Congjun's discussion helped the team distinguish between the filling orientation window before light irradiation and the rapid fixation requirement after light irradiation, clarified the workflow of injecting first, followed by observation, magnetic field orientation, and then activation of the blue light, and adopted independently controlled light sources.",
     "Professor Congjun Wu holds the Chair Professorship in Physics at Westlake University. In the design of the NEST platform, we need to ensure that the SELP precursor solution remains fluid initially, so that it can be injected to fill irregularly shaped cartilage defects, and then rapidly form a stable network at the target site. Therefore, how to use blue light to timely trigger cross-linking and how to arrange the timing of light irradiation became the key focus of our discussions with Professor Congjun Wu.",
     "We introduced to Professor Wu the Ru/SPS visible light crosslinking system adopted in this project: it triggers crosslinking between tyrosine sites on protein chains via blue light, so as to form a covalent network in the precursor solution. Under the described experimental conditions, this system can achieve gelation after being irradiated with blue light for approximately 2 seconds. What we focus on is how to convert this rapid gelation capability into a controllable operation process, so that the material can not only have sufficient time to complete filling and internal orientation, but also be quickly fixed when needed.The discussion centered on \"immediate cross-linking upon light exposure\" has further clarified two distinct timing requirements for us: an operational window must be maintained before light exposure, while fixation should be completed as soon as possible after light exposure. If blue light is activated too early, the material may lose its fluidity before the filling process or magnetic field alignment is finalized; if the trigger is delayed excessively, the risk of precursor liquid leakage or deformation of the already formed structure may increase. Therefore, the cross-linking rate and light exposure timing need to be designed in a coordinated manner.",
-    "This exchange prompted us to more explicitly control the injection and photo-crosslinking in separate steps in the design, forming an operation sequence of \"injection filling — observation confirmation — magnetic field orientation — blue light crosslinking\". In the magnetically responsive module, we plan to turn on the blue light while maintaining the magnetic field-induced orientation, use rapid crosslinking to fix the internal structure, and then proceed to subsequent operations. A blue light source independently controlled in the endoscopic module is designed: the operator can first observe the defect location and filling status, and then activate the light irradiation after the material is in place and completes the predetermined orientation.The software workflow also needs to explicitly present the light irradiation and gel formation steps accordingly, so as to align the rapid response capability of the material with the actual operation sequence. This discussion has made us more clearly aware that the project's requirement for \"rapid cross-linking\" covers the entire process before and after triggering. Based on this, we have specified the timing of turning on the blue light and its coordination with the magnetic field operation.",
+    "This exchange prompted us to more explicitly control the injection and photo-crosslinking in separate steps in the design, forming an operation sequence of \"injection filling — observation confirmation — magnetic field orientation — blue light crosslinking\". In the Magnetically Responsive Anisotropy Module, we plan to turn on the blue light while maintaining the magnetic field-induced orientation, use rapid crosslinking to fix the internal structure, and then proceed to subsequent operations. A blue light source independently controlled in the endoscopic module is designed: the operator can first observe the defect location and filling status, and then activate the light irradiation after the material is in place and completes the predetermined orientation.The software workflow also needs to explicitly present the light irradiation and gel formation steps accordingly, so as to align the rapid response capability of the material with the actual operation sequence. This discussion has made us more clearly aware that the project's requirement for \"rapid cross-linking\" covers the entire process before and after triggering. Based on this, we have specified the timing of turning on the blue light and its coordination with the magnetic field operation.",
     "ihp-20",
   ),
   stakeholder(
@@ -368,9 +380,9 @@ const timelineItems: TimelineItem[] = [
     "R&D",
     "10. Multi-module Process and Quality Control: Ma Guanghui",
     "Professor Ma Guanghui focuses on the compatibility of various components under different conditions of temperature, salinity, light exposure and storage. The interview prompted the team to convert the module list into a step-by-step process, establish batch quality indicators, and separately evaluate the integrity and function of mitochondrial load. 35",
-    "Ma Guanghui is a professor at the University of Science and Technology of China and has also served as a judge for iGEM. By the mid-project stage, the designs for all three functional modules had taken shape, yet we consistently approached problems on a per-module basis: how to achieve orientation for the magnetic response module, how to implement enrichment for the GAG retention module, and how to trigger responsive release for the cargo module. Meanwhile, NEST not only involves recombinant protein expression and purification, but also integrates magnetic nanoparticles, standardized peptide , liposomal carriers, mitochondrial loading, temperature control, injection and in-situ photo-crosslinking into a unified workflow.We consulted Teacher Ma regarding the feasibility of the project, as it depends not only on whether individual components are effective, but also on whether the various components are compatible in terms of operating sequence, stability and storage requirements.",
+    "Ma Guanghui is a professor at the University of Science and Technology of China and has also served as a judge for iGEM. By the mid-project stage, the designs for all three functional modules had taken shape, yet we consistently approached problems on a per-module basis: how to achieve orientation for the Magnetically Responsive Anisotropy Module, how to implement enrichment for the GAG Retention Module, and how to trigger responsive release for the Mitochondrial Therapeutic Module. Meanwhile, NEST not only involves recombinant protein expression and purification, but also integrates magnetic nanoparticles, standardized peptide , liposomal carriers, mitochondrial loading, temperature control, injection and in-situ photo-crosslinking into a unified workflow.We consulted Teacher Ma regarding the feasibility of the project, as it depends not only on whether individual components are effective, but also on whether the various components are compatible in terms of operating sequence, stability and storage requirements.",
     "The instructor has extensive experience with iGEM, so from the perspective of engineering and process integration, he mainly focuses on whether multiple components need to be mixed at the same time; which components are sensitive to temperature, salt concentration, light or shear conditions; how long the assembly can be maintained after completion; whether proteins, magnetic particles and liposomes from different batches can provide consistent performance; and which steps in the process are most likely to cause loss or inactivation. For vectors carrying exogenous mitochondria, the integrity and functional maintenance of the payload require special separate consideration.",
-    "Originally, NEST was a parallel list of modules; after discussion, it evolved into a pipeline with defined sequences, time windows, and acceptance checkpoints. We decomposed precursor solution preparation, module assembly, temporary storage, delivery, injection, magnetic field alignment, and blue-light crosslinking into discrete steps, and specified for each step the input components, operation window, condition monitoring items, and release criteria.The practical consequence of this decomposition is that a previously non-existent problem arises between every two adjacent steps: under what conditions should the output of the previous step be handed over to the next step, how long can it wait, and what will be lost during the waiting process. These problems are invisible in the modular checklist-style thinking, and therefore they enable us to view and solve problems from a perspective of practical application. We have gradually established at the material end quality metrics including protein purity, endotoxin/residual impurities, conjugation efficiency, storage stability and functional retention. This directly addresses the instructor's question regarding batch consistency: if a \"platform\" performs differently from batch to batch, the interchangeability of modules becomes meaningless. The \"conjugation efficiency\" mentioned here is also a core metric for linker modules, and refers to the same parameter that Teacher Yi Junzhi cited when stating that \"the plug-and-play capability of modules must be validated by assembly efficiency\". For the mitochondrial module, we separately evaluated payload integrity, responsive linker cleavage, and delivery outcomes. This is a direct implementation of the instructor's instruction that \"payload integrity and functional retention require separate consideration\". Mitochondria are not small-molecule drugs; rather, they are organelles with complete metabolic functions — capable of participating in ATP production, redox homeostasis maintenance, and cellular metabolic recovery — that may become inactivated at every step of assembly, storage, injection, and light exposure, and inactivated mitochondria serve no purpose even if successfully released. This exchange transformed our NEST from a set of designs into a complete process. None of the questions the instructor raised concerned whether a certain module was advanced; all of them focused on whether these modules could coexist on the same timeline. As a matter of fact, the starting point of the core thread running through materials, hardware and monetization — \"assembly — precursor preparation — injection filling — magnetic field orientation — blue light crosslinking\" — in the current NEST documentation lies right here.",
+    "Originally, NEST was a parallel list of modules; after discussion, it evolved into a pipeline with defined sequences, time windows, and acceptance checkpoints. We decomposed precursor solution preparation, module assembly, temporary storage, delivery, injection, magnetic field alignment, and blue-light crosslinking into discrete steps, and specified for each step the input components, operation window, condition monitoring items, and release criteria.The practical consequence of this decomposition is that a previously non-existent problem arises between every two adjacent steps: under what conditions should the output of the previous step be handed over to the next step, how long can it wait, and what will be lost during the waiting process. These problems are invisible in the modular checklist-style thinking, and therefore they enable us to view and solve problems from a perspective of practical application. We have gradually established at the material end quality metrics including protein purity, endotoxin/residual impurities, conjugation efficiency, storage stability and functional retention. This directly addresses the instructor's question regarding batch consistency: if a \"platform\" performs differently from batch to batch, the interchangeability of modules becomes meaningless. The \"conjugation efficiency\" mentioned here is also a core metric for linker modules, and refers to the same parameter that Teacher Yi Junzhi cited when stating that \"the plug-and-play capability of modules must be validated by assembly efficiency\". For the Mitochondrial Therapeutic Module, we separately evaluated payload integrity, responsive linker cleavage, and delivery outcomes. This is a direct implementation of the instructor's instruction that \"payload integrity and functional retention require separate consideration\". Mitochondria are not small-molecule drugs; rather, they are organelles with complete metabolic functions — capable of participating in ATP production, redox homeostasis maintenance, and cellular metabolic recovery — that may become inactivated at every step of assembly, storage, injection, and light exposure, and inactivated mitochondria serve no purpose even if successfully released. This exchange transformed our NEST from a set of designs into a complete process. None of the questions the instructor raised concerned whether a certain module was advanced; all of them focused on whether these modules could coexist on the same timeline. As a matter of fact, the starting point of the core thread running through materials, hardware and monetization — \"assembly — precursor preparation — injection filling — magnetic field orientation — blue light crosslinking\" — in the current NEST documentation lies right here.",
     "ihp-35",
   ),
   stakeholder(
@@ -390,7 +402,7 @@ const timelineItems: TimelineItem[] = [
     "Addressing the pain points of long rehabilitation cycles, frequent trips to hospitals and difficulties in professional exercise guidance, our team collaborated with the Lin Lei Team to develop an intelligent rehabilitation mirror. The training content is determined by doctors' recommendations and patient research, while motion monitoring and demonstration feedback help patients conduct standardized training at home and stick to their rehabilitation regimen. Our product is also undergoing iteration and optimization.",
     "During our extensive prior investigation into patient conditions, we observed that rehabilitation therapy, despite being a widely applicable treatment modality, is extremely difficult for patients to adhere to. The root cause lies in the excessively long treatment cycle, the requirement for professional personnel to guide patients through the exercises, which consumes a tremendous amount of their energy, and the constant back-and-forth travel between home and the hospital, all of which further dampen their enthusiasm for treatment. We turned to Professor Hong Zhou, Party Secretary of the College of Biomedical Engineering & Instrument Science at Zhejiang University, who leads an outstanding team of researchers, for assistance.",
     "To address this issue, we collaborated with the team led by Lin Lei from the Biomedical Engineering program at Zhejiang University to develop an intelligent mirror rehabilitation system, which allows patients to complete rehabilitation treatment at home by observing their own movements through the mirror. The mirror is embedded with a set of components designed by AI, which can monitor whether the patient's movements conform to the tutorial specifications built into the mirror, and also enable patients to see in the mirror whether their movements match the actions of the AI avatar displayed on the mirror, which can improve patients' compliance with rehabilitation treatment.",
-    "We have maintained a long-term cooperation: the ZJU-China team provided professional medical guidance and research findings to reflect the rehabilitation exercises and specific functions that patients actually need, while students from the biomedical engineering team offered technical support. We have achieved sound function development, which can provide patients with ample encouragement, and meanwhile take into account the psychological issues of rehabilitation patients. The current effect of the mirror is as follows. Based on the feedback from Zhang Yumei, we have reflected on our work: our current product only accommodates standing rehabilitation exercises, and we should take into account the convenience for patients when they receive treatment in sitting or lying positions in the next step. [1.mp4]",
+    "We have maintained a long-term cooperation: the ZJU-China team provided professional medical guidance and research findings to reflect the rehabilitation exercises and specific functions that patients actually need, while students from the biomedical engineering team offered technical support. We have achieved sound function development, which can provide patients with ample encouragement, and meanwhile take into account the psychological issues of rehabilitation patients. The current effect of the mirror is as follows. Based on the feedback from Zhang Yumei, we have reflected on our work: our current product only accommodates standing rehabilitation exercises, and we should take into account the convenience for patients when they receive treatment in sitting or lying positions in the next step.",
     "ihp-24",
   ),
   stakeholder(
@@ -537,7 +549,7 @@ const timelineItems: TimelineItem[] = [
     "Artist Chen Xi advised us on motion sensors and artistic visualisation, and our rehabilitation movements became two artworks. The collaboration also brought a visual-tracking piece on engineered bacteria into our science talks and is planned for a future art–science exhibition.",
     "Chen Xi is a designer and artist, currently a PhD candidate in Art and Computational Technology at Goldsmiths, University of London. He curated the exhibition *Larvae of Time* for Bai Shunong, a Berggruen Scholar at the School of Life Sciences, Peking University. The exhibition features a series of visual artworks created through artistic processing of eye-tracking data that records the artist drawing butterfly trajectories in mid-air, bridging the gaps between science and art, as well as biology and the general public.",
     "At a lecture, we had the privilege of meeting Chen Xi. We explained our background to him and mentioned that we were inspired by his work *Larvae of Time*, and wanted to create a trajectory artwork based on cartilage rehabilitation movements. Chen Xi gave us specific advice on using sensors and guidance on artistic drawing, which helped us complete this visual art piece derived from cartilage rehabilitation movements. He also enthusiastically shared their experience of drawing with visual sensors, and allowed us to present our new work of visual tracking trajectory drawing of engineered bacteria, which enhanced the interactivity after the popular science lecture on synthetic biology and deepened people's understanding of engineered bacteria.",
-    "Finally, referring to the suggestions from Chen Xi, we completed artworks on two themes. We plan to exhibit our paintings in the upcoming technology + art exhibitions to be held at the Future Learning Center, to promote the concept of cartilage health and knowledge of synthetic biology to more people. View Gallery. Interested in our design details? Click to jump to Design Interested in our business plan? Click to visit Entrepreneurship Interested in our anthropological and philosophical reflections? Click to visit Education",
+    "Finally, referring to the suggestions from Chen Xi, we completed artworks on two themes. We plan to exhibit our paintings in the upcoming technology + art exhibitions to be held at the Future Learning Center, to promote the concept of cartilage health and knowledge of synthetic biology to more people. View Gallery.",
   ),
 ];
 /* ------------------------------------------------------------------ */
@@ -1458,6 +1470,21 @@ function EngagementBlock() {
         stages={chainStages}
         note="To protect patient privacy, we have applied privacy protection measures to all patients except those who have given consent to appear on camera."
       />
+      <p>
+        During the Stakeholder Interviews session, we found it extremely difficult
+        to maintain the comprehensiveness and orderliness of stakeholder
+        interviews in terms of work arrangement. Therefore, we developed a tool
+        called StakeBridge, which can help subsequent teams organize Stakeholder
+        Interviews materials. We found in interviews with stakeholders that many
+        scholars are very willing to communicate with student teams. Meanwhile,
+        when communicating with other iGEM teams, they raised the problem of
+        difficulties in stakeholder communication. Inspired by BioBricks and the
+        biological parts library, we aim to establish a sustainably accumulating
+        repository of stakeholder engagement experiences, showcasing stakeholders
+        in the field who are willing to communicate with teams, and helping other
+        iGEMers take the first step in stakeholder outreach.{" "}
+        <a href="#ihp-toolbox-stakebridge">Explore StakeBridge</a>.
+      </p>
       <h4 id="ihp-engagement-timeline" className="mt-5 mb-3" data-toc="include">
         Stakeholder Interviews
       </h4>
@@ -2200,24 +2227,13 @@ export function HumanPractices() {
     };
   }, []);
 
-  /* Touch / keyboard can still return to the overview; the wheel is left to
-     the page so the reader keeps a normal scroll. */
+  /* Keep the keyboard shortcut; touch scrolling leaves the current page open. */
   useEffect(() => {
-    let touchY = 0;
     const atSectionTop = () =>
       pageRef.current !== null &&
       openScrollRef.current !== null &&
       window.scrollY <= openScrollRef.current + 2;
 
-    const onTouchStart = (event: TouchEvent) => {
-      touchY = event.touches[0]?.clientY ?? 0;
-    };
-    const onTouchMove = (event: TouchEvent) => {
-      const y = event.touches[0]?.clientY ?? 0;
-      if (y > touchY + 6 && atSectionTop() && !busyRef.current) {
-        actionsRef.current.collapse();
-      }
-    };
     const onKeyDown = (event: KeyboardEvent) => {
       if (
         (event.key === "ArrowUp" || event.key === "PageUp") &&
@@ -2228,12 +2244,8 @@ export function HumanPractices() {
         actionsRef.current.collapse();
       }
     };
-    window.addEventListener("touchstart", onTouchStart, { passive: true });
-    window.addEventListener("touchmove", onTouchMove, { passive: true });
     window.addEventListener("keydown", onKeyDown);
     return () => {
-      window.removeEventListener("touchstart", onTouchStart);
-      window.removeEventListener("touchmove", onTouchMove);
       window.removeEventListener("keydown", onKeyDown);
     };
   }, []);
@@ -2309,6 +2321,19 @@ export function HumanPractices() {
             collects the stakeholder map and the interviews behind every step.
             Use the three buttons to open a page.
           </p>
+          {page !== null && (
+            <button
+              type="button"
+              className="ihp-mobile-overview"
+              onClick={() => {
+                if (busyRef.current) return;
+                syncHash(null);
+                collapseWithSwipe();
+              }}
+            >
+              Back to overview
+            </button>
+          )}
           <div
             className={`eng-module-nav ihp-page-nav${
               page !== null ? " ihp-page-nav--selected" : ""

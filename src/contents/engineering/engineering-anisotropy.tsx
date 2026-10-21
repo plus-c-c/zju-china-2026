@@ -2,7 +2,7 @@ import { DbtlFigure } from "./Figure";
 import type { DbtlModule } from "./dbtl";
 
 export const anisotropyModule: DbtlModule = {
-  title: "Magnetically responsive anisotropy module",
+  title: "Magnetically Responsive Anisotropy Module",
   intro: (
     <>
       <p>

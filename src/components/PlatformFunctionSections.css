@@ -100,6 +100,10 @@ body:has(.nest-navbar-hidden) .project-tracks {
   white-space: nowrap;
 }
 
+.project-tracks__mobile-label {
+  display: none;
+}
+
 .project-tracks__whole-label,
 .project-tracks__function-label {
   white-space: nowrap;
@@ -275,34 +279,31 @@ body:has(.nest-navbar-hidden) .project-tracks {
 
 @media (max-width: 767.98px) {
   .project-tracks .project-tracks__button {
-    height: 64px;
-    min-height: 64px;
+    height: 56px;
+    min-height: 56px;
     padding: 6px 12px;
     gap: 10px;
     font-size: 16px;
   }
 
   .project-tracks .project-tracks__art {
-    flex-basis: 36px;
-    width: 36px;
+    display: none;
   }
 
-  .project-tracks .project-tracks__art--whole-process {
-    flex-basis: 22px;
-    width: 22px;
+  .project-tracks__label {
+    display: none;
   }
 
-  .project-tracks__choices {
-    grid-template-columns: minmax(0, 1fr);
-    grid-auto-rows: 1fr;
+  .project-tracks__mobile-label {
+    display: block;
+    min-width: 0;
+    text-align: center;
+    white-space: normal;
   }
 
-  .project-tracks__choices::after {
-    top: 0;
-    bottom: auto;
-    width: 2px;
-    height: calc(100% / var(--project-track-count));
-    transform: translateY(calc(var(--project-track-index) * 100%));
+  .project-tracks:where([data-track-count="3"]) .project-tracks__button {
+    padding-inline: 6px;
+    font-size: 14px;
   }
 }
 

@@ -315,6 +315,10 @@
   inset: 0;
 }
 @media (max-width: 767.98px) {
+  .description-figure-pair {
+    grid-template-columns: 1fr;
+  }
+
   .page-article .description-article > .description-closing {
     width: 100%;
   }

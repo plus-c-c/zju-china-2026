@@ -2,11 +2,11 @@ import { DbtlFigure } from "./Figure";
 import type { DbtlModule } from "./dbtl";
 
 export const gagRetentionModule: DbtlModule = {
-  title: "GAG retention module",
+  title: "GAG Retention Module",
   intro: (
     <>
       <p>
-        We developed the GAG retention module through iterative
+        We developed the GAG Retention Module through iterative
         Design&ndash;Build&ndash;Test&ndash;Learn (DBTL) cycles, focusing on
         both protein engineering and functional-assay engineering. Rather than
         treating recombinant-protein expression, tag removal, and functional
