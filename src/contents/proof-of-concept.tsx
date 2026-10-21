@@ -262,21 +262,17 @@ export function ProofOfConcept() {
                       sourceSize={[2400, 1650]}
                       crop={[250, 1025, 1900, 480]}
                       label="B"
-                      alt="Figure 2B | SDS-PAGE of 2KY-10 expression and recovery, with the target band in the rightmost resuspended-pellet lane and the lyophilized product shown alongside"
+                      alt="Figure 2B | SDS-PAGE of 2KY-10 expression and recovery, with reconstituted purified protein powder in the rightmost sample lane and the lyophilized product shown alongside"
                     />
                   </div>
                   <FigureCaption className="figure-caption mt-2">
                     <strong>
-                      Figure 2 | Expression and Recovery of 2KY-5 and 2KY-10
-                      Scaffold Proteins.
+                      Figure 2 | Expression and fractionation analysis of the SELP scaffold protein.
                     </strong>{" "}
-                    (A) SDS-PAGE of 2KY-5 shows the target band after IPTG
-                    induction, predominantly in the lysate supernatant
-                    (Sup) rather than the pellet (Pel). (B) SDS-PAGE of
-                    2KY-10 shows the target band in the rightmost protein
-                    sample lane (resuspended pellet), supporting recovery of
-                    the scaffold protein; the lyophilized product is shown
-                    alongside. Arrows and red boxes mark the target bands.
+                    SDS–PAGE analysis of samples before and after IPTG induction,
+                    lysate supernatant, clarified supernatant, resuspended pellet,
+                    and reconstituted purified protein powder. Red dashed boxes
+                    indicate the expected position of the target protein (~55 kDa).
                   </FigureCaption>
                 </figure>
                 <figure className="my-4 text-center">
