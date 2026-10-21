@@ -67,7 +67,7 @@
   font-style: normal;
 }
 
-/* Individual image and its Feishu label. */
+/* Individual linked image. */
 .edu-image {
   min-width: 0;
   margin: 0;
@@ -85,14 +85,6 @@
   max-height: none !important;
   border-radius: 0;
   object-fit: contain;
-}
-
-.edu-image figcaption {
-  margin-top: 0.45rem;
-  color: #6b7280;
-  font-size: 0.82rem;
-  line-height: 1.45;
-  text-align: center;
 }
 
 /* Equal-width image columns, top-aligned like the Feishu grid blocks. */
@@ -226,4 +218,8 @@
   .edu-image--half {
     width: 100%;
   }
+}
+
+.education-article #gallery {
+  scroll-margin-top: 7rem;
 }

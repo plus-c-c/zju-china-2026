@@ -20,6 +20,12 @@ export type TimelinePhoto = {
   height: number;
 };
 
+export type TimelineVideo = {
+  embedUrl: string;
+  watchUrl: string;
+  title: string;
+};
+
 export type TimelineItem = {
   /** Human-readable date label, e.g. "28 January 2025". */
   date: string;
@@ -37,6 +43,7 @@ export type TimelineItem = {
   details?: TimelineDetail[];
   /** Supporting images from the interview manuscript, in source order. */
   photos?: TimelinePhoto[];
+  video?: TimelineVideo;
   /** Optional grouping label (used by pages that split the timeline). */
   stage?: string;
 };
@@ -307,6 +314,20 @@ export function Timeline({ items }: { items: TimelineItem[] }) {
                       />
                     </a>
                   ))}
+                </div>
+              )}
+              {openItem.video && (
+                <div className="timeline-modal-video">
+                  <iframe
+                    src={openItem.video.embedUrl}
+                    title={openItem.video.title}
+                    loading="lazy"
+                    allow="fullscreen; picture-in-picture"
+                    allowFullScreen
+                  />
+                  <a href={openItem.video.watchUrl} target="_blank" rel="noopener noreferrer">
+                    Watch on iGEM Video Universe
+                  </a>
                 </div>
               )}
             </div>

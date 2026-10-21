@@ -21,12 +21,11 @@ const eduImg = (file: string) => `${EDUCATION_IMG}/${file}.avif?v=20261021c`;
 type EduImageProps = {
   file: string;
   alt: string;
-  caption?: string;
   maxWidth?: string;
   className?: string;
 };
 
-function EduImage({ file, alt, caption, maxWidth, className }: EduImageProps) {
+function EduImage({ file, alt, maxWidth, className }: EduImageProps) {
   return (
     <figure
       className={`edu-image${className ? ` ${className}` : ""}`}
@@ -47,7 +46,6 @@ function EduImage({ file, alt, caption, maxWidth, className }: EduImageProps) {
           decoding="async"
         />
       </a>
-      {caption ? <figcaption>{caption}</figcaption> : null}
     </figure>
   );
 }
@@ -155,12 +153,10 @@ export function Education() {
               />
               <EduImage
                 file="synedu-home"
-                caption="synedu1"
                 alt="SynEduGlobal education platform homepage."
               />
               <EduImage
                 file="synedu-activities"
-                caption="synedu2"
                 alt="SynEduGlobal education activity materials page."
               />
             </div>
@@ -180,13 +176,15 @@ export function Education() {
             formats and evaluation methods for each tier.
           </p>
           <p>
-            All materials for the following activities (including PPTs, posters,
-            handouts and activity guidelines) have been made publicly available
-            at{" "}
-            <a href="https://syneduglobal.top" target="_blank" rel="noreferrer">
-              https://syneduglobal.top
-            </a>
-            .
+            <strong>
+              All materials for the following activities (including PPTs, posters,
+              handouts and activity guidelines) have been made publicly available
+              at{" "}
+              <a href="https://syneduglobal.top" target="_blank" rel="noreferrer">
+                https://syneduglobal.top
+              </a>
+              .
+            </strong>
           </p>
 
           <h3>
@@ -217,17 +215,14 @@ export function Education() {
           <div className="edu-image-grid edu-image-grid--3">
             <EduImage
               file="qigudeng-01"
-              caption="06"
               alt="Children taking part in a table-top biology game at Qigudeng Community."
             />
             <EduImage
               file="qigudeng-02"
-              caption="07"
               alt="A team member guiding a young child through a hands-on activity at Qigudeng Community."
             />
             <EduImage
               file="qigudeng-03"
-              caption="09"
               alt="Children examining teaching aids during the Qigudeng Community session."
             />
           </div>
@@ -278,12 +273,10 @@ export function Education() {
           <div className="edu-image-grid edu-image-grid--2">
             <EduImage
               file="wenlan-01"
-              caption="04"
               alt="A team member presenting a science activity at Wenlan Academy."
             />
             <EduImage
               file="wenlan-02"
-              caption="05"
               alt="Group photograph of children and team members at Wenlan Academy."
             />
           </div>
@@ -312,12 +305,10 @@ export function Education() {
           <div className="edu-image-grid edu-image-grid--2">
             <EduImage
               file="high-school-01"
-              caption="02"
               alt="Team members distributing leaflets during a high-school presentation."
             />
             <EduImage
               file="high-school-02"
-              caption="03"
               alt="Group photograph of high-school students and the team after the presentation."
             />
           </div>
@@ -358,7 +349,6 @@ export function Education() {
             </div>
             <EduImage
               file="art-trajectory-01"
-              caption="Action Illustration"
               alt="Action illustration from the rehabilitation trajectory project."
             />
           </div>
@@ -367,22 +357,18 @@ export function Education() {
           <div className="edu-image-grid edu-image-grid--2">
             <EduImage
               file="art-trajectory-02"
-              caption="art01"
               alt="Rehabilitation trajectory artwork art01."
             />
             <EduImage
               file="art-trajectory-03"
-              caption="art02"
               alt="Rehabilitation trajectory artwork art02."
             />
             <EduImage
               file="art-trajectory-04"
-              caption="art03"
               alt="Rehabilitation trajectory artwork art03."
             />
             <EduImage
               file="art-trajectory-05"
-              caption="art04"
               alt="Rehabilitation trajectory artwork art04."
             />
           </div>
@@ -398,7 +384,6 @@ export function Education() {
           </p>
           <EduImage
             file="public-01"
-            caption="art05｜A visual trajectory drawing of a high school student participating in the interaction"
             className="edu-image--half"
             alt="A green and purple visual trajectory drawing produced through eye-tracking."
           />
@@ -418,22 +403,18 @@ export function Education() {
           <div className="edu-image-grid edu-image-grid--2">
             <EduImage
               file="public-02"
-              caption="15"
               alt="Team member presenting educational materials to visiting experts at the Future Learning Center."
             />
             <EduImage
               file="public-04"
-              caption="16"
               alt="Visitors examining educational materials at the Future Learning Center."
             />
             <EduImage
               file="public-03"
-              caption="Promotional Page Display"
               alt="Promotional materials on display at the Future Learning Center."
             />
             <EduImage
               file="elderly-01"
-              caption="One of the visiting delegations"
               alt="A visiting delegation touring the Future Learning Center."
             />
           </div>
@@ -445,7 +426,6 @@ export function Education() {
           </p>
           <EduImage
             file="report-cover"
-            caption="13"
             alt="An older adult walking on a stone path in Yantan Village during field research."
           />
           <h3>7 Proposal to the Health Commission</h3>
@@ -553,7 +533,6 @@ export function Education() {
           </p>
           <EduImage
             file="medical-lecture-02"
-            caption="14"
             alt="Group photograph of participants in the overseas ethnography workshop in Chiang Mai."
           />
 
@@ -581,7 +560,6 @@ export function Education() {
           </p>
           <EduImage
             file="medical-lecture-03"
-            caption="Lecture 11"
             maxWidth="512px"
             alt="Medical anthropology lecture for medical students."
           />
@@ -592,7 +570,6 @@ export function Education() {
           </h3>
           <EduImage
             file="medical-lecture-04"
-            caption="08"
             alt="Chen Bohang speaking during the discussion on synthetic biology and the philosophy of science and technology."
           />
 

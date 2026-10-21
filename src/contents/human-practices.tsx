@@ -91,6 +91,7 @@ function stakeholder(
         }
       : {}),
     photos: media?.photos,
+    video: media?.video,
     details: [
       { heading: "Rationale", content: <p><StakeholderText>{rationale}</StakeholderText></p> },
       { heading: "Interview Summary", content: <p><StakeholderText>{interview}</StakeholderText></p> },
@@ -101,7 +102,7 @@ function stakeholder(
             {typeof integration === "string" && integration.endsWith("View Gallery.") ? (
               <>
                 <StakeholderText>{integration.slice(0, -"View Gallery.".length)}</StakeholderText>
-                <Link to="/education">View Gallery</Link>.
+                <Link to="/education#gallery">View Gallery</Link>.
               </>
             ) : typeof integration === "string" ? (
               <StakeholderText>{integration}</StakeholderText>
@@ -188,7 +189,7 @@ const chainStages: ChainStage[] = [
       { name: "Prof. Li Jianqin", image: photo("ihp-34") },
       { name: "Zhang Binghong", image: photo("ihp-39") },
       { name: "Mavis Wu", image: photo("ihp-40") },
-      { name: "Tung Wah Group of Hospitals", image: photo("hospital-procurement-visit") },
+      { name: "Tung Wah Group of Hospitals", image: photo("tung-wah-hospitals-logo") },
       { name: "Legislator Lam Chit-huen", image: photo("ihp-32") },
       {
         name: "ZJU Innovation & Entrepreneurship College — left portrait",
@@ -997,7 +998,14 @@ function DiscoveryBlock() {
         including osteoarthritis, focal traumatic defects, and post-surgical
         adaptive defects.
       </p>
-      <h4 className="mt-4 mb-2">1.1 Field Research</h4>
+      <h4
+        id="ihp-nest-field-research"
+        className="mt-4 mb-2"
+        data-toc="include"
+        data-toc-depth="3"
+      >
+        1.1 Field Research
+      </h4>
       <p>
         We conducted questionnaire surveys in the following areas and platforms:
         a university community (around 150 respondents), Qigudeng Subdistrict,
@@ -1157,7 +1165,14 @@ function DiscoveryBlock() {
           development target of NEST.
         </p>
       </ExtendCard>
-      <h4 className="mt-4 mb-2">1.2 Literature Review</h4>
+      <h4
+        id="ihp-nest-literature-review"
+        className="mt-4 mb-2"
+        data-toc="include"
+        data-toc-depth="3"
+      >
+        1.2 Literature Review
+      </h4>
       <p>
         In the existing literature, there are no authoritative sources
         specifying what degree of cartilage defect qualifies as a pathological
@@ -1384,7 +1399,7 @@ function ImpactBlock() {
         <Link to="/education">Learn more</Link>.
       </p>
 
-      <h2 className="mt-5 mb-3">Summary and Reflection</h2>
+      <h2 id="ihp-nest-summary" className="mt-5 mb-3">Summary and Reflection</h2>
       <p>
         Our iHP work has been as comprehensive and effective as possible,
         addressing all patient-centered aspects. We not only focus on

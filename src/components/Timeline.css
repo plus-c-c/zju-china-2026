@@ -369,3 +369,20 @@
   max-height: 34rem;
   object-fit: contain;
 }
+
+.timeline-modal-video {
+  width: min(100%, 22rem);
+  margin: 1.75rem auto 0;
+}
+
+.timeline-modal-video iframe {
+  display: block;
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  border: 0;
+}
+
+.timeline-modal-video > a {
+  display: inline-block;
+  margin-top: 0.75rem;
+}

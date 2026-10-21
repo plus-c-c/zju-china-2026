@@ -1,4 +1,4 @@
-import type { TimelinePhoto } from "../../components/Timeline";
+import type { TimelinePhoto, TimelineVideo } from "../../components/Timeline";
 
 /** Matched to Stakeholder Engagement-final-EN; public image URLs verified. */
 export const stakeholderMedia: Record<
@@ -6,6 +6,7 @@ export const stakeholderMedia: Record<
   {
     portrait?: string | null;
     photos: TimelinePhoto[];
+    video?: TimelineVideo;
   }
 > = {
   "Understanding the Plight of Primary Healthcare and the Lack of Public Awareness: A Visit to the Elderly in Yantan Village":
@@ -128,6 +129,11 @@ export const stakeholderMedia: Record<
           height: 1280,
         },
       ],
+      video: {
+        embedUrl: "https://video.igem.org/videos/embed/cMyaiiK1HmwZxV5gM9EAip",
+        watchUrl: "https://video.igem.org/w/cMyaiiK1HmwZxV5gM9EAip",
+        title: "Home rehabilitation mirror demonstration",
+      },
     },
   "Expression Amplification and Batch Consistency: Yuanyi Bio": {
     photos: [
@@ -207,7 +213,7 @@ export const stakeholderMedia: Record<
         },
       ],
       portrait:
-        "https://static.igem.wiki/teams/6102/wiki/images/engagement/ihp/hospital-procurement-visit.avif",
+        "https://static.igem.wiki/teams/6102/wiki/images/engagement/ihp/tung-wah-hospitals-logo.avif",
     },
   "Dr. Yang Shen": {
     photos: [
