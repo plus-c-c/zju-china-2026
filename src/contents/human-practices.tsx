@@ -633,92 +633,112 @@ function CoDesignBlock() {
 
       <h4 className="mt-4 mb-2">Cycle 1 — SELP</h4>
       <p data-seed-phase="spark">
-        S: Based on the background research, we wanted to design a material that
-        can heal a broad range of hyaline cartilage defects, starting with a
-        filler that meets the complex requirements of cartilage repair — filling
-        the defect directly and reducing pain immediately. We presented the
-        first SELP design — a fixed set of 2KY5, 2KY10 and 2KY16 proteins — to
-        Dr. Qiu Xiaoming and Prof. Ouyang Hongwei&rsquo;s research team. The
-        doctors said that different joints (elbow, knee) bear different loads
-        and need different strengths; a single strength could not achieve our
-        goal of filling all hyaline cartilage defects.
+        S: Based on our background research, we aim to design a material capable
+        of treating a wide range of hyaline cartilage defects. The first step is
+        to select a filling material that can meet the complex requirements of
+        cartilage repair, which can directly fill the defect, immediately
+        alleviate patients' pain, and fill the gap in early-stage treatment. We
+        presented the first version of the SELP design draft — a protein design
+        only covering fixed variants 2ky5,2ky10 and 2ky16 — to Dr. Qiu Xiaoming
+        and the research team of Ouyang Hongwei.Doctors believe that cartilage
+        in different parts of the body such as elbows and knees is subjected to
+        varying levels of force and thus requires different levels of strength.
+        If we only develop a material with a single strength, we will be unable
+        to achieve the broad application goal of being able to fill all hyaline
+        cartilage defects.
       </p>
       <p data-seed-phase="explore">
-        E: We found that the repeat number of the 2KY protein series can tune
-        the material&rsquo;s strength and toughness, and that higher repeat
-        numbers reduce pore size and raise cell adhesion, favoring GAG
-        production, native cartilage growth and anti-inflammatory signaling —
-        fitting patients with different immune capacities and defect sizes. We
-        decided to build a programmable method for the repeat-number series and
-        to use modeling to fix the hydrogel&rsquo;s final properties.
+        E: Our research found that by regulating the repeat number of 2KY series
+        proteins, we can alter the strength and toughness of our material. As
+        the value increases, the pore size decreases, and cell adhesion
+        increases accordingly, which is more conducive to GAG production, native
+        cartilage growth, and upregulation of anti- inflammatory factor levels,
+        and can also adapt to patients with different immune capacities and
+        defect severities. We decided to find a method for programmatically
+        regulating the series of proteins, and use modeling work to help us
+        determine the final properties of the hydrogel.
       </p>
       <p data-seed-phase="engineering">
-        E: We entered the SELP DBTL cycle. To realize the complex functions SELP
-        needs as a broadly applicable filler, we surfaced many experimental
-        questions and discussed them actively with several stakeholders (see the{" "}
-        <a href="#ihp-engagement-timeline">stakeholder interviews</a>).
+        E: We entered the DBTL cycle of SELP. To better realize the complex
+        functions required for SELP as a versatile defect-filling material, we
+        raised a number of issues at the experimental level and actively held
+        discussions with multiple stakeholders. See{" "}
+        <a href="#ihp-engagement-timeline">Engagement Timeline</a>.
       </p>
       <p data-seed-phase="dialogue">
-        D: We showed the latest design to doctors and researchers; the feedback
-        was positive, and the experiments that followed confirmed the
-        design&rsquo;s reliability.
+        D: We showed our latest design to Dr. Qiu Xiaoming and the team led by
+        Ouyang Hongwei again, and they gave relatively positive feedback.
+        Subsequent experiments have verified the reliability of our design.
       </p>
 
       <h4 className="mt-4 mb-2">Cycle 2 — Linker System</h4>
       <p data-seed-phase="spark">
-        S: Reading the literature made clear that filling the defect alone is
-        not enough. To fit the repair needs of different clinical
-        micro-environments we wanted to add therapy-related functional modules —
-        but large modules inserted inside the molecule would disturb
-        SELP&rsquo;s normal function, so we chose protein linkers for an
-        extensible design. We first tried the mainstream SpyTag and SnoopTag
-        systems, but protein modeling showed the linkers were too large and
-        would bury the functional peptide domain.
+        S: Through literature research, we found that simply filling the defects
+        is insufficient. To better meet the requirements of microenvironment
+        repair for different clinical conditions, we intend to add
+        therapy-related functional modules. However, if high-molecular-weight
+        functional modules are directly inserted into the molecule, they will
+        significantly impair the normal function of our SELP protein, so we plan
+        to adopt protein linkers for extended design. Initially, we selected the
+        mainstream SpyTag and SnoopTag linker systems, but protein modeling
+        revealed that these linkers have excessively large molecular weights,
+        which would mask the functional short peptide domains.
       </p>
       <p data-seed-phase="explore">
-        E: We asked stakeholders; Dr. Yi Junzhi suggested using SnoopLigase as
-        the linker system.
+        E: We interviewed stakeholders, among whom Dr. Yi Junzhi suggested that
+        SnoopLigase could be adopted as our linker system. We initially opted
+        for the mainstream SpyTag and SnoopTag adapter system, yet protein
+        modeling revealed that the molecular weight of these adapters was
+        excessively large, which would mask the functional short peptide
+        domains.
       </p>
       <p data-seed-phase="engineering">
-        E: Through modeling we engineered the enzyme, improved the ligation
-        efficiency, and iterated the system into our{" "}
-        <strong>SnoopLigase-ZJU</strong> linker, built on the SnoopLigase 2
-        toolkit (SnoopLigase2, SnoopTag2 and DogTag2), greatly improving its
-        efficiency and keeping the linker system running reliably.
+        E: Through our modeling work, we engineered enzymes to improve
+        efficiency and iterated on the SnoopLigase system. We innovatively
+        developed the
+        <strong>SnoopligaseZJU</strong> system, which significantly boosts work
+        efficiency and ensures the efficient operation of our linker system.
       </p>
       <p data-seed-phase="dialogue">
-        D: We showed the design to Dr. Yi Junzhi and Dr. Ren Bo, who agreed with
-        it.
+        D: We showed our design to Dr. Yi Junzhi and Dr. Ren Bo, and they
+        approved of it.
       </p>
 
       <h4 className="mt-4 mb-2">Cycle 3 — Functional Modules</h4>
       <p data-seed-phase="spark">
-        S: With the programmable platform in place, we chose OA as NEST&rsquo;s
-        first concrete application and asked doctors whether the material would
-        fit clinical needs.
+        S: After designing the programmable platform, we selected OA as the
+        first specific application condition for the NEST series materials, and
+        carried out modularization loading targeting OA. We hope our materials
+        can meet clinical needs, so we consulted doctors.
       </p>
       <p data-seed-phase="explore">
-        E: In our conversations the doctors explained that the closed
-        environment of OA easily forms a vicious cycle of local mechanical
-        imbalance, GAG loss and aggravated inflammation. Reading the literature
-        widely, we found that anisotropy — a physical property of native
-        cartilage — can mimic its structure: carrying shear while keeping
-        toughness and elasticity, stopping the vicious cycle at its start.
+        E: During our conversation with the doctor, we learned that the closed
+        microenvironment of osteoarthritis readily gives rise to a vicious cycle
+        involving three factors: local mechanical imbalance, GAG loss, and
+        exacerbated inflammatory response. After extensive literature review, we
+        found that the physical property of anisotropy can effectively mimic the
+        natural structure of cartilage, as it can withstand shear force while
+        maintaining toughness and elasticity, thus perfectly blocking the onset
+        of this three-part vicious cycle.
       </p>
       <p data-seed-phase="engineering">
-        E: Together with doctors and researchers we designed a
-        magnetic-nanoparticle-binding peptide that aligns SELP under an external
-        field to create anisotropy, a GAG-retaining peptide based on
-        electrostatic adsorption, and a liposome delivery module for
-        personalized treatment — addressing the three vicious-cycle modules one
-        by one.
+        E: After consulting with physicians and researchers, we designed
+        magnetic nanoparticles to adsorb short peptides, and applied an external
+        magnetic field to attract SELP, thereby achieving anisotropic alignment.
+        We also developed a GAG- retaining peptide segment based on the
+        principle of electrostatic adsorption, as well as a liposome delivery
+        module that meets the personalized treatment needs of patients, to break
+        down the three vicious cycle modules one by one.
       </p>
       <p data-seed-phase="dialogue">
-        D: We returned to the doctors and researchers for their opinions. One
-        doctor thought the material too complex, which could raise concerns in
-        practical use and difficulties during market approval — this made us
-        weigh safety even more carefully. We also compared the collected patient
-        needs to make sure the programmable modules cover almost every case.
+        D: We revisited doctors and researchers and solicited their opinions.
+        Some doctors pointed out that our material was overly complex, which
+        might trigger concerns among clinicians in practical application and
+        pose potential difficulties during the marketing approval process. This
+        feedback prompted us to adopt a more cautious attitude toward the safety
+        issues related to our material. In addition, we cross- referenced the
+        patient needs collected via questionnaires to ensure that our
+        programmable module can accommodate patients in almost all scenarios.
       </p>
     </>
   );
@@ -736,28 +756,34 @@ function SituatedBlock() {
 
       <h4 className="mt-4 mb-2">Cycle 1 — Hardware</h4>
       <p data-seed-phase="spark">
-        S: To bring the project into clinical use, we designed a hardware system
-        matched to all of our biological designs: a first version combined an
-        endoscope and a blue-light illumination system into one in-body device,
-        plus a syringe.
+        S: To enable our project to be applied in clinical settings, we have
+        designed a set of hardware systems that are compatible with all
+        biological designs. The first version includes an implantable device
+        that integrates an endoscope and a blue light irradiation system, as
+        well as a syringe.
       </p>
       <p data-seed-phase="explore">
-        E: We tested it in a clinical setting. The nurses we interviewed raised
-        three main issues: where should the material be prepared? How should the
-        system be operated? How should it connect to the hospital&rsquo;s
-        existing displays? We did on-site research, consulted medical-device
-        companies, and decided to add a pre-mixing module, an electronic manual
-        and a Bluetooth connection.
+        E: We proceeded to the clinical scenario trial. The interviewed nurses
+        raised three core questions for us: Where should the preprocessing of
+        materials be performed? How to operate this operating system? How can
+        the system be adapted to the hospital's existing display devices? In
+        response to these questions, we conducted on-site investigations and
+        troubleshooting, consulted with a medical device company, and decided to
+        add a premixing module, an electronic instruction manual, and a
+        Bluetooth connection component.
       </p>
       <p data-seed-phase="engineering">
-        E: Combined with the wet-lab protein purification design, we iterated
-        the hardware into an integrated system compatible with different
-        operating-room configurations.
+        E: Combined with the protein purification design of the wet lab, we
+        carried out the iteration of hardware, and finally obtained the
+        integrated hardware that is widely adapted to operating rooms of
+        different specifications.
       </p>
       <p data-seed-phase="dialogue">
-        D: To match user habits, we ran comparative evaluations with the
-        emergency-ward nurse team of the 254 Hospital and medical students,
-        and chose the highest-scoring scheme — which stakeholders also approved.
+        D: To ensure the device conforms to users' usage habits, we invited the
+        nurse team from the emergency ward of 254 Hospital and medical college
+        students to conduct evaluations of different schemes, and finally
+        selected the one with the highest score, which has also been recognized
+        by stakeholders.
       </p>
 
       <h4 id="ihp-syringe-questionnaire" className="mt-5 mb-3">
@@ -777,20 +803,20 @@ function SituatedBlock() {
         caption={
           <>
             <strong>
-              Figure 5 | Participant profile and evaluation design
-              (24 participants, 72 evaluations).
+              Figure 5 | Participant profile and evaluation design (24
+              participants, 72 evaluations).
             </strong>{" "}
             (A) Participant roles. (B) Prior syringe use. (C) Balanced
-            repeated-measures design in which each participant
-            evaluated configurations A, B and C. The 72 evaluations are not 72
-            independent participants.
+            repeated-measures design in which each participant evaluated
+            configurations A, B and C. The 72 evaluations are not 72 independent
+            participants.
           </>
         }
       />
       <ExtendCard title="Questionnaire details: design, figures and comparison">
         <p>
-          The run included 24 participants — clinicians, researchers,
-          device developers, students and other users — each evaluating three
+          The run included 24 participants — clinicians, researchers, device
+          developers, students and other users — each evaluating three
           configurations (A, B, C) in a balanced repeated-measures design,
           giving 72 evaluations. The figures compare the configurations on
           start-up force, resistance, speed and stop control, hand fatigue,
@@ -809,8 +835,8 @@ function SituatedBlock() {
               </strong>{" "}
               Values show the proportion of favourable responses for start
               force, resistance suitability, speed control, output smoothness,
-              stop control and hand fatigue. Configuration B showed
-              the most balanced profile; Configuration C showed more difficulty with
+              stop control and hand fatigue. Configuration B showed the most
+              balanced profile; Configuration C showed more difficulty with
               start-up and fatigue. These are exploratory differences, not
               evidence of clinical superiority.
             </>
@@ -835,71 +861,86 @@ function SituatedBlock() {
       </ExtendCard>
       <p>
         Configuration B had the most balanced profile, which informed the scheme
-        we carried forward. These are exploratory results from the evaluation, not clinical evidence.
+        we carried forward. These are exploratory results from the evaluation,
+        not clinical evidence.
       </p>
 
       <h4 className="mt-4 mb-2">Cycle 2 — Manufacturing</h4>
       <p data-seed-phase="spark">
-        S: We wanted our material to be produced at factory scale and discussed
-        sample production with Beijing Weixinkang. They invited us to cooperate
-        and advised us to consider protein purification, transport and storage.
+        S: We hope our materials can be manufactured in a factory, and we have
+        discussed matters related to sample production with Beijing MicroXinkang
+        Company. They have extended a cooperation invitation to us and suggested
+        that we take into account the design of the materials for protein
+        purification, product transportation and storage.
       </p>
       <p data-seed-phase="explore">
-        E: We reviewed how marketed hydrogels are extracted, purified and
-        transported, and decided on a protein powder packaged as a
-        pharmaceutical for hospitals. We visited a mature synbio raw-material
-        company, Yuanyi Biology, to learn more about practical scenarios.
+        E: We conducted a literature review on protein extraction, purification
+        and drug transportation methods of commercially available hydrogels, and
+        finally decided to make it into protein powder, package it into a
+        pharmaceutical preparation and supply it to hospitals. We visited a
+        mature synthetic biology raw material production company, YuanYi Bio, to
+        learn more knowledge applicable in practical scenarios.
       </p>
       <p data-seed-phase="engineering">
-        E: We turned the information from our research and the company&rsquo;s
-        guidance into concrete engineering design. Around protein purification,
-        powder preparation, packaging, transport and storage, we mapped the
-        technical problems NEST must solve to move from a lab sample to a
-        standardized product. We prioritized the protein-powder form, focusing
-        on keeping the protein intact and the hydrogel performance after
-        reconstitution while remaining easy to produce, transport and store.
-        Together with the company&rsquo;s production experience we listed the
-        quality-control points for later sample preparation — protein purity,
-        storage stability, post-reconstitution performance and batch consistency
-        — and brought these requirements into the sample-cooperation discussions
-        with Weixinkang, laying the groundwork for process optimization and
-        scale-up.
+        E: We convert the information obtained from research and enterprise
+        guidance into specific engineering design solutions, and further sort
+        out the technical issues that NEST needs to address in the process of
+        transforming from laboratory samples to standardized products focusing
+        on key links such as protein purification, powder preparation, product
+        packaging, transportation and storage. We take protein powder as the
+        Product Form for priority exploration, and focus on how to maintain the
+        integrity of protein materials and the properties of their hydrogel
+        after reconstitution while facilitating factory production,
+        transportation and storage.In addition, based on the production
+        experience of the enterprise, we sorted out the key points of quality
+        control that need attention in the subsequent sample preparation,
+        including protein purity, storage stability, material properties after
+        reconstitution and batch consistency, and incorporated these
+        requirements into the communication with Microxincon regarding sample
+        cooperation, laying a foundation for subsequent process optimization and
+        production scale-up.
       </p>
       <p data-seed-phase="dialogue">
-        D: We interviewed Weixinkang again; their engineers approved, and we
-        signed a sample-cooperation agreement.
+        D: We conducted another interview with Weixinkang, obtained recognition
+        from their engineers, and successfully signed a sample cooperation
+        agreement with them.
       </p>
 
       <h4 className="mt-4 mb-2">
         Cycle 3 — Entrepreneurship &amp; Market Access
       </h4>
       <p data-seed-phase="spark">
-        S: As a material entering the human body, NEST must be careful about
-        product safety and face many market-access reviews. We had many
-        questions about the approval process, the market and sales channels, and
-        after research we also had thoughts and questions about public and
-        commercial medical insurance. A simple cost estimate showed the early
-        investment would be large and unavoidable — which meant we needed early
-        funding.
+        S: As a medical material to be implanted into the human body, NEST
+        requires us to treat product safety with greater prudence and undergo
+        various inspections for Market Access. We have numerous doubts regarding
+        the access process, market conditions and sales channels. After
+        conducting research, we have also formed some thoughts and questions
+        about the access of national health insurance and commercial health
+        insurance. Following a preliminary cost calculation, we find that our
+        upfront investment is enormous and unavoidable, which determines that we
+        need upfront financial support.
       </p>
       <p data-seed-phase="explore">
-        E: With these questions we looked widely for stakeholders across
-        production, sales, government regulation, finance and start-up
-        mentoring, and received effective advice. We also received guidance from
-        Shaanxi Lanyanwei Biotechnology, which has rich experience in
-        translating medical research into products.
+        E: In response to these issues, we have extensively reached out to
+        stakeholders across multiple links including production, sales,
+        government regulation, finance, and entrepreneurship guidance. We have
+        also received guidance from Shaanxi Lanyiwei Biotechnology Co. , Ltd. ,
+        which boasts rich experience in the commercialization of medical
+        research achievements.
       </p>
       <p data-seed-phase="engineering">
-        E: We weighed cost more heavily in the design, built a detailed business
-        model, found a CDMO partner, joined several entrepreneurship events, and
-        secured our first letter of intent for investment. More in{" "}
-        <Link to="/entrepreneurship">Entrepreneurship</Link>.
+        E: In our design, we placed greater emphasis on cost considerations,
+        established a detailed business model, sought out CDMO partners,
+        participated in multiple entrepreneurship events, and successfully
+        secured our first letter of intent for investment. For more information,
+        please refer to <Link to="/entrepreneurship">Entrepreneurship</Link>
       </p>
       <p data-seed-phase="dialogue">
-        D: Every revision and iteration of the business model was discussed with
-        the relevant stakeholders until the team and the stakeholders agreed.
-        Through competitions and investor pitches, the recognition of investment
-        institutions also demonstrated the project&rsquo;s entrepreneurial
+        D: Every time we modify and iterate on our business model, we will
+        consult with the corresponding stakeholders for feedback until we reach
+        a consensus within our team and among the stakeholders. Through
+        competitions and investor pitches, the recognition of investment
+        institutions also demonstrated the project’s entrepreneurial
         feasibility.
       </p>
     </>
@@ -911,37 +952,46 @@ function DiscoveryBlock() {
     <>
       <h3 className="mt-4 mb-3">N — Need-led Discovery</h3>
       <p>
-        After a member of our team suffered an acute cartilage injury, we became
-        interested in hyaline cartilage damage. It can lead to many conditions —
-        osteoarthritis, focal traumatic defects and post-operative adaptive
-        defects — and we found that the cases around us were far more numerous
-        than the cases recorded in the medical system.
+        After a member of our team suffered an acute cartilage injury, we
+        developed an interest in hyaline cartilage injuries. We found that
+        hyaline cartilage injuries can lead to a variety of conditions,
+        including osteoarthritis, focal traumatic defects, and post-surgical
+        adaptive defects.
       </p>
       <p>
-        We ran a questionnaire through three recruitment streams: a university
-        community (~150 responses), community sites in Hangzhou&rsquo;s Gongshu
-        (Qigudeng Street) and Xihu (Sandun Town) districts and Tianjin&rsquo;s
-        Nankai District (~1,200), and Chinese online platforms (Xiaohongshu, CDM
-        patient groups; ~300). The form included strict privacy protection and
-        risk notices. In total the questionnaire reached more than{" "}
+        We conducted questionnaire surveys in the following areas and platforms:
+        a university community (around 150 respondents), Qigudeng Subdistrict,
+        Gongshu District, Hangzhou, a certain subdistrict in Sandun Town, Xihu
+        District, Hangzhou, Shuishang West Subdistrict, Nankai District, Tianjin
+        (a total of 1200 respondents), and Chinese internet platforms (RedNote,
+        CDM patient support groups)(300 respondents). Our questionnaire form
+        features rigorous privacy protection and risk notification mechanisms.
+        In total the questionnaire reached more than{" "}
         <strong>1,700 people</strong>, of whom{" "}
         <strong>1,647 provided valid responses</strong>.
       </p>
       <p>
-        Beyond the questionnaire we interviewed patients from the three main
-        presentations of hyaline cartilage injury (see{" "}
-        <a href="#ihp-engagement-patient">Stakeholder Interviews</a>). The broad
-        case mix, the sharp pain and the persistent foreign-body sensation
-        convinced us to build a product that can treat hyaline cartilage defects
-        widely, and this inspired the platform design.
+        In addition to the extensive questionnaire survey, we also conducted
+        in-depth interviews with patients representing three main types of
+        hyaline cartilage injury. For details, please refer to the subsequent{" "}
+        <a
+          href="#ihp-engagement-
+        patient"
+        >
+          Stakeholder Interviews
+        </a>
+        . The wide distribution of such cases, coupled with the sharp pain and
+        persistent foreign body sensation experienced by patients, motivated us
+        to develop a product capable of widely healing hyaline cartilage
+        injuries, which also inspired our platform-based design concept.
       </p>
       <ExtendCard title="Survey details: responses, figures and clinical context">
         <p>
           Among the 1,647 valid responses, 391 respondents (23.7%) reported
           personal or family experience of cartilage injury; including family
-          members who were unsure, the figure was 432 (26.2%). The
-          university and online samples were purposively enriched, so the
-          overall share is not population-representative.
+          members who were unsure, the figure was 432 (26.2%). The university
+          and online samples were purposively enriched, so the overall share is
+          not population-representative.
         </p>
         <Figure
           src={`${HP_FIG}/fig1.avif`}
@@ -984,8 +1034,9 @@ function DiscoveryBlock() {
               (A) Injury mechanism among respondents with personal or family
               experience (n = 391). (B) Proportion reporting surgical treatment.
               (C) Age distribution of community respondents with chronic
-              degeneration/OA (n = 83); 57.8% were aged 46 years or older. Injury
-              mechanism is used as a proxy for local traumatic defect and OA.
+              degeneration/OA (n = 83); 57.8% were aged 46 years or older.
+              Injury mechanism is used as a proxy for local traumatic defect and
+              OA.
             </>
           }
         />
@@ -1016,14 +1067,14 @@ function DiscoveryBlock() {
           }
         />
         <p>
-          The treatment picture shows the limits of current options.
-          Painkillers were the most common treatment (61.6%), followed by TCM
-          (32.7%) and rehabilitation exercise (29.4%); 12.5% had surgery and
-          13.6% received no treatment. Recovery outcomes left residual symptoms
-          (slight improvement, no change or worsening) in 47–71% of treated
-          respondents; and when asked for their first-choice treatment, respondents
-          preferred TCM (35.8%) and rehabilitation (33.2%) ahead of painkillers
-          (16.9%) and surgery (14.1%). The same trade-offs recur in interviews:
+          The treatment picture shows the limits of current options. Painkillers
+          were the most common treatment (61.6%), followed by TCM (32.7%) and
+          rehabilitation exercise (29.4%); 12.5% had surgery and 13.6% received
+          no treatment. Recovery outcomes left residual symptoms (slight
+          improvement, no change or worsening) in 47–71% of treated respondents;
+          and when asked for their first-choice treatment, respondents preferred
+          TCM (35.8%) and rehabilitation (33.2%) ahead of painkillers (16.9%)
+          and surgery (14.1%). The same trade-offs recur in interviews:
           untreated symptoms persist, rehabilitation is hard to sustain, and
           surgery is reserved for more severe cases.
         </p>
@@ -1047,41 +1098,65 @@ function DiscoveryBlock() {
           }
         />
         <p>
-          Published data are similarly uneven: statistics are relatively
-          complete for osteoarthritis (OA) and its cartilage damage, while focal
-          traumatic and post-operative defects are barely recorded. GBD 2021
-          covers OA across 204 countries, with projections to 2050 [1]; the US
-          Osteoarthritis Initiative contributed more than 430,000 clinical and
-          imaging examinations [2]. Focal defects are studied at a much smaller
-          scale: Hjelle et al. examined 1,000 knee arthroscopies [3]. For
-          evidence strength and design safety we chose OA — the best-documented
-          and most widespread condition — as NEST&rsquo;s first application.
+          Literature research shows that current statistics on osteoarthritis
+          (OA) and its associated cartilage damage are relatively comprehensive,
+          while data on local traumatic defects and postoperative secondary
+          defects remain very limited. For example, the Global Burden of Disease
+          (GBD) study has compiled osteoarthritis (OA) data from 204 countries
+          and regions spanning 1990 to 2023, categorized by joint site, age,
+          gender and region [1]. The US Osteoarthritis Initiative (OAI) also
+          conducted long-term follow-up on 4,796 subjects, accumulating over
+          430,000 clinical and imaging examinations and approximately 26.63
+          million images [2].In contrast, studies on focal cartilage defects are
+          generally smaller in scale; for instance, Hjelle et al. only
+          investigated the status of cartilage defects in 1,000 patients
+          undergoing knee arthroscopy [3]. Considering the sufficiency of
+          evidence and the safety of the study design, we decided to take
+          OA-related cartilage defects, which have the largest volume of data
+          and the widest scope of influence, as the primary research and
+          development target of NEST.
         </p>
       </ExtendCard>
       <p>
-        Clinical practice itself is unsettled. No authority defines how much
-        cartilage loss counts as disease; even for OA, the authoritative
-        standards in the United States and China do not agree. China&rsquo;s
-        2018 guideline uses both the Kellgren&ndash;Lawrence and Outerbridge
-        classifications [4], while the AAOS guideline mainly addresses patients
-        with already diagnosed symptomatic OA [5]; neither sets a common
-        threshold of defect area, depth or volume at which a person counts as
-        ill or treatment should start. Different doctors therefore diagnose the
-        same defect differently, and in early or mid-stage cases the lack of a
-        unified standard makes doctors inclined not to diagnose the patient at
-        all. In post-operative cases, the damage often comes from the
-        surgery&rsquo;s own success criteria — how the implanted material
-        threatens the cartilage that remains. A patient we interviewed (Yue Wang,
-        after patellar surgery) described in detail how the repositioning of her
-        patella let the implant occupy the space her cartilage needed; several
-        doctors we interviewed acknowledged this.
+        In the existing literature, there are no authoritative sources
+        specifying what degree of cartilage defect qualifies as a pathological
+        condition. Even for osteoarthritis (OA), which has the most
+        well-established standards and comprehensive data, no unified diagnostic
+        criteria are defined in the authoritative treatment guidelines of either
+        the US or China. Chinese guidelines adopt both the Kellgren- Lawrence
+        (K–L) and Outerbridge grading systems [4], while the American Academy of
+        Orthopaedic Surgeons (AAOS) guidelines primarily target patients with
+        already diagnosed symptomatic OA [5]. Neither set of guidelines
+        establishes a uniform standard for determining disease onset or
+        initiating treatment based solely on the area, depth, or volume of a
+        cartilage defect. In this context, we have found that doctors from
+        different regions and with different professional backgrounds do not
+        reach consistent diagnoses for the same type of cartilage defect. In
+        cases of early- to-mid stage osteoarthritis (OA) and localized traumatic
+        defects, the lack of unified diagnostic criteria and effective treatment
+        protocols for early cartilage injury tends to lead clinicians to refrain
+        from classifying the patient as having a pathological condition.
+        However, in the broad category of post-surgical cartilage injury, the
+        underlying cause of such damage often stems from the fact that, in
+        orthopedic surgery, the metrics for measuring surgical success overlook
+        the threat posed by implanted materials to cartilage health, and fail to
+        attach due importance to functional recovery as defined by the patient's
+        perceived physical well-being.For example, when conducting an in-depth
+        interview with Yue, a patient suffering from cartilage wear after
+        patella surgery, she elaborated in detail that the attending doctor's
+        realignment of her original patella position had caused the artificial
+        implant to encroach on the original space for cartilage survival. This
+        point was also confirmed by multiple doctors in the doctor interviews.
       </p>
       <p>
-        Patients also overlook their own cartilage health. Told that no
-        treatment is needed, they rationalize the pain and ignore it; older
-        patients — especially in remote areas — are reluctant or unable to seek
-        care. Grandpa Gu in Yantan village, Zhejiang, concentrates this
-        difficulty in one case.
+        On the one hand, when patients receive a diagnosis that no treatment is
+        needed after going to the hospital, they will deliberately ignore their
+        pain symptoms and rationalize their conditions; on the other hand, some
+        patients, especially elderly patients, inherently have a relatively low
+        willingness to seek medical treatment, and the elderly in remote areas
+        also face the problem of inconvenient access to medical care. Grandpa Gu
+        from Yantan Village, Zhejiang Province, epitomizes the predicament of
+        elderly patients.
       </p>
       <p>
         Out of this discovery we defined four values that our project design is
@@ -1151,56 +1226,56 @@ function ImpactBlock() {
       <h3 className="mt-4 mb-3">T — Trust and Lasting Impact</h3>
       <h4 className="mt-4 mb-2">Sustained Commercialization</h4>
       <p>
-        Medical products take years to reach the market — far longer than a
-        single iGEM season — so NEST needs a sustainable, long-term business
-        plan. To meet the relevant
-        administrative requirements, we plan to file a patent application in
-        November 2026. We have also developed a detailed business plan, including
-        a dedicated ESG module that helps NexCode Biotechnologies assess its
-        broader social impact and operate as a responsible enterprise. All 16
-        team members remain committed to improving the project, reaching
-        profitability, and advancing the real-world translation of NEST.
+        Medical products require a long lead time to reach the market—far beyond
+        a single iGEM season—so we need a sustainable, long-term business plan.
+        To meet the relevant administrative requirements, we plan to file a
+        patent application in November 2026. We have developed a highly detailed
+        Business Plan, including a dedicated ESG module designed to encourage
+        NexCode Biotechnologies to consider its broader social impact and
+        operate as a responsible enterprise. All 16 team members are committed
+        to continuously improving the project, achieving profitability, and
+        advancing the real- world translation of NEST.
       </p>
       <h4 className="mt-4 mb-2">The Pain That Goes Unnoticed</h4>
       <p>
-        During our preliminary research, we found a striking discrepancy: many
-        people around us reported symptoms, yet relatively few cases appeared
-        in official records. Consultations with hospital stakeholders confirmed that pain
-        which &ldquo;does not meet the diagnostic threshold but is nonetheless
-        real&rdquo; is common in clinical practice. Because effective solutions
-        for early-stage cartilage damage remain limited, both physicians and
-        patients tend to overlook these injuries.
+        During our preliminary research, we discovered a striking discrepancy
+        surrounding articular cartilage injuries: many people around us reported
+        symptoms, yet relatively few cases appeared in official records. Our
+        subsequent consultations with hospital stakeholders confirmed that pain
+        which “does not meet the diagnostic threshold but is nonetheless real”
+        is far from uncommon in clinical practice. However, because effective
+        solutions for early-stage cartilage damage remain limited, both
+        physicians and patients tend to overlook these injuries.
       </p>
       <p>
-        Protecting cartilage health requires collective action. To break this
-        cycle of neglect, we ran targeted education and advocacy for children,
-        older adults, the general public and medical students. Under the
-        guidance of Zhang Binghong, we compiled our findings into a research
-        report and submitted it to the Hangzhou Municipal Health Commission. The
-        Commission accepted our recommendations and issued an official response;
-        under policy requirements, the response cannot be made public. We also
-        provided practical references — our age-specific lectures and activities
-        — for the government&rsquo;s planned training of community hospitals,
-        residents&rsquo; committees and other grassroots organizations.
+        Protecting cartilage health requires collective action. To help break
+        this cycle of neglect, we conducted targeted educational and advocacy
+        activities for children, older adults, the general public, and medical
+        students. Under the guidance of Zhang Binghong, we compiled our findings
+        into a research report and submitted it to the Hangzhou Municipal Health
+        Commission. The Commission accepted our recommendations and issued an
+        official response, which cannot be publicly disclosed due to policy
+        requirements. Our team also provided practical references for the
+        government’s planned training programs for community hospitals,
+        residents’ committees, and other grassroots organizations. Our
+        age-specific lectures and activities may serve as useful examples for
+        future public education on cartilage health.
       </p>
       <p>
-        We encouraged physicians and medical students to adopt patient-centred
-        orthopaedic care that values patients&rsquo; lived experience rather
-        than focusing only on functional restoration. With anthropology
-        scholars, we wrote one paper,{" "}
-        <em>
-          Pain beyond the diagnostic threshold: the medical invisibility of
-          early joint symptoms
-        </em>
-        , on the structural factors that make hidden suffering from seemingly
-        minor conditions overlooked in health systems, and shared the findings
-        with Zhejiang University&rsquo;s Institute of
-        Social Medicine and Health Services Management. We also ran
-        medical-anthropology lectures and seminars to strengthen future
-        physicians&rsquo; awareness that illness is not merely physiological
-        harm but is shaped by social conditions and structural violence. We
-        discussed the ethics and philosophy of synthetic biology with Dr. Chen
-        Bohang of the Department of Philosophy of Science and Technology.
+        We also encouraged physicians and medical students to adopt a
+        patient-centered approach to orthopedic care—one that values patients’
+        lived experiences of health rather than focusing solely on the
+        restoration of physical function. In collaboration with medical
+        anthropologists, we wrote two papers examining the structural factors
+        within healthcare systems that cause the hidden suffering associated
+        with seemingly minor conditions to be overlooked. We shared our findings
+        with the Institute of Social Medicine and Health Management at Zhejiang
+        University. In addition, we organized lectures and seminars on medical
+        anthropology to strengthen future physicians’ awareness of patients’
+        lived experiences. These activities helped participants understand that
+        illness is not merely a form of physiological harm; it is often shaped
+        by social conditions and compounded by structural violence embedded in
+        systems of power.
       </p>
       <h4 className="mt-4 mb-2">Research Report</h4>
       <p>
@@ -1230,31 +1305,42 @@ function ImpactBlock() {
         </div>
       </ExtendCard>
 
-      <h4 className="mt-4 mb-2">Our Contribution to Synthetic Biology Education</h4>
+      <h4 className="mt-4 mb-2">
+        Our Contribution to Synthetic Biology Education
+      </h4>
       <p>
-        Every institution we worked with responded enthusiastically. In conversations
-        with other iGEM teams, however, we learned that many struggled to find
-        suitable education partners. We therefore joined other teams to create{" "}
+        Throughout our synthetic biology education initiatives, we received an
+        enthusiastic response from every educational institution we worked with.
+        However, through conversations with other teams, we learned that many
+        struggled to find suitable educational partners. To address this
+        challenge, we collaborated with Westlake and XJTLU-China to create{" "}
         <a href="https://syneduglobal.top" target="_blank" rel="noreferrer">
           <strong>SynEdu Global</strong>
         </a>
-        , an open synthetic-biology education platform. It connects institutions
-        and iGEM teams, supports collaboration invitations and resource sharing,
-        and its online format helps reduce regional disparities in access.
+        , an open synthetic biology education platform for everyone. Both
+        educational institutions and iGEM teams can use the platform to invite
+        teams to collaborate and share synthetic biology education resources. By
+        moving these connections and materials online, the platform also helps
+        reduce regional disparities in access to educational opportunities.
       </p>
       <p>
         We later recognized that the biotechnology industry also has a strong
-        interest in synthetic biology and that many professionals need further
-        education. We partnered with Jiangnan University to develop an
-        industry-oriented module and signed a five-year cooperation agreement to
-        support the platform&rsquo;s long-term operation.
+        interest in synthetic biology and that many industry professionals
+        require further education in the field. We therefore partnered with
+        Jiangnan University to develop an industry- focused module. Our four
+        universities signed a five-year cooperation agreement to ensure the
+        platform’s sustainable, long-term operation.
+        <Link to="/education">Education</Link>
       </p>
       <p>
-        Beyond promoting synthetic biology and reducing public misconceptions,
-        we reflected critically on the field itself. We held extensive
-        discussions with Researcher Chen Bohang of the Department of Philosophy
-        of Science and Technology, examining the ethical questions raised by
-        synthetic biology. <Link to="/education">Learn more</Link>.
+        Our educational program extended beyond lectures, hands-on activities,
+        and fitness exercises. We also collaborated with artist Chen Xi to
+        create visual artwork. View Gallery. Beyond
+        promoting synthetic biology and reducing public misconceptions, we
+        critically reflected on the development of both the healthcare system
+        and synthetic biology itself. To deepen this reflexive inquiry, we held
+        extensive discussions with Dr. Shen Yang and Dr. Chen Bohang.
+        <Link to="/education">Education</Link>
       </p>
 
       <h4 className="mt-5 mb-3">Summary and reflection</h4>
