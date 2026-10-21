@@ -28,6 +28,18 @@ const productAreas = [
   },
 ];
 
+function ProductAreaText({ text }: { text: string }) {
+  return (
+    <>
+      {text
+        .split(/(in situ)/g)
+        .map((part, index) =>
+          index % 2 === 1 ? <em key={index}>{part}</em> : part,
+        )}
+    </>
+  );
+}
+
 export function GetYourNest() {
   const [selectedAreas, setSelectedAreas] = useState<string[]>([]);
   const [submitted, setSubmitted] = useState(false);
@@ -97,7 +109,9 @@ export function GetYourNest() {
                   />
                   <span className="gyn-card-check" aria-hidden="true" />
                   <span className="gyn-card-title">{area.title}</span>
-                  <span className="gyn-card-text">{area.text}</span>
+                  <span className="gyn-card-text">
+                    <ProductAreaText text={area.text} />
+                  </span>
                 </label>
               ))}
             </div>

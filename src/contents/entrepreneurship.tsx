@@ -1,5 +1,5 @@
 import { useId, useState, type ReactNode } from "react";
-import { TableCaption } from "../components/FigureCaption";
+import { FigureCaption, TableCaption } from "../components/FigureCaption";
 import { MathFormula } from "../components/MathFormula";
 import { References } from "../components/References";
 import "./entrepreneurship.css";
@@ -1899,10 +1899,32 @@ const CONTENT: ContentBlock[] = [
 
 
 
+const LATIN_PHRASE =
+  /(Escherichia coli|E\. coli|in vitro|in vivo|in situ|ex vivo)/g;
+
+/** Preserve the legacy <em> wrapper in imported copy while also emphasizing
+ *  Latin phrases that were stored as plain text. */
+function InlineText({ text }: { text: string }) {
+  return (
+    <>
+      {text
+        .replace(/<\/?em>/g, "")
+        .split(LATIN_PHRASE)
+        .map((part, index) =>
+          index % 2 === 1 ? <em key={index}>{part}</em> : part,
+        )}
+    </>
+  );
+}
+
 function renderBlock(block: ContentBlock, key: string): ReactNode {
   switch (block.type) {
     case "paragraph":
-      return <p key={key}>{block.text}</p>;
+      return (
+        <p key={key}>
+          <InlineText text={block.text} />
+        </p>
+      );
     case "heading": {
       if (block.level === 2) {
         return (
@@ -1928,7 +1950,9 @@ function renderBlock(block: ContentBlock, key: string): ReactNode {
       return (
         <ul key={key}>
           {block.items.map((item, index) => (
-            <li key={`${key}-${index}`}>{item}</li>
+            <li key={`${key}-${index}`}>
+              <InlineText text={item} />
+            </li>
           ))}
         </ul>
       );
@@ -1980,7 +2004,7 @@ function renderBlock(block: ContentBlock, key: string): ReactNode {
               </span>
             ))}
           </div>
-          <figcaption className="figure-caption">{block.caption}</figcaption>
+          <FigureCaption>{block.caption}</FigureCaption>
         </figure>
       );
     case "table":
@@ -1992,7 +2016,7 @@ function renderBlock(block: ContentBlock, key: string): ReactNode {
               <tr>
                 {block.rows[0].map((cell, index) => (
                   <th scope="col" key={`${key}-head-${index}`}>
-                    {cell}
+                    <InlineText text={cell} />
                   </th>
                 ))}
               </tr>
@@ -2008,7 +2032,9 @@ function renderBlock(block: ContentBlock, key: string): ReactNode {
                   key={`${key}-row-${rowIndex}`}
                 >
                   {row.map((cell, cellIndex) => (
-                    <td key={`${key}-cell-${rowIndex}-${cellIndex}`}>{cell}</td>
+                    <td key={`${key}-cell-${rowIndex}-${cellIndex}`}>
+                      <InlineText text={cell} />
+                    </td>
                   ))}
                 </tr>
               ))}

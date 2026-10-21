@@ -122,7 +122,7 @@ export function AdministrationUnit() {
         blue-light illumination, this design allows the operator to observe the
         target area and activate the blue light as needed, providing hardware
         support for{" "}
-        <strong>in situ hydrogel photocrosslinking experiments.</strong>
+        <strong><em>in situ</em> hydrogel photocrosslinking experiments.</strong>
       </p>
       <figure className="hardware-media hardware-media--portrait">
         <img

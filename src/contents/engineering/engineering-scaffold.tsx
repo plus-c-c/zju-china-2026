@@ -65,7 +65,7 @@ export const scaffoldModule: DbtlModule = {
                       Require multi-component formulation and chemical
                       crosslinking, resulting in large batch-to-batch variation;
                       crosslinkers and residual monomers are cytotoxic, making
-                      safe in situ gelation difficult; functional expansion
+                      safe <em>in situ</em> gelation difficult; functional expansion
                       relies on chemical modification
                     </td>
                   </tr>
@@ -129,7 +129,7 @@ export const scaffoldModule: DbtlModule = {
               The conclusions of the interviews and of the literature assessment
               were highly consistent: what clinicians care about most is not
               &ldquo;how strong a material can be made&rdquo;, but
-              &ldquo;whether it can be set in situ within a few minutes during
+              &ldquo;whether it can be set <em>in situ</em> within a few minutes during
               surgery, whether batches are consistent, and whether its functions
               can later be adjusted on demand&rdquo;. These are precisely the
               requirements that conventional chemically crosslinked hydrogel
@@ -275,7 +275,7 @@ export const scaffoldModule: DbtlModule = {
           <>
             <p>
               Cartilage defects are irregular in shape and variable in depth, so
-              the material must <strong>gelate in situ</strong> in order to
+              the material must <strong>gelate <em>in situ</em></strong> in order to
               conform to the lesion; moreover, the joint cavity is continuously
               flushed by synovial fluid, so solidification must be completed{" "}
               <strong>within seconds</strong>, otherwise the precursor is
@@ -310,7 +310,7 @@ export const scaffoldModule: DbtlModule = {
                   Exogenous chemical crosslinkers (e.g., glutaraldehyde)
                 </strong>
                 : crosslinking is efficient, but the cytotoxicity is well
-                established and in situ use is not possible;
+                established and <em>in situ</em> use is not possible;
               </li>
               <li>
                 <strong>

@@ -76,15 +76,28 @@ const personPattern = new RegExp(
   `\\b(?:(?:${title}\\s+)?(?:${fullNames})|${title}\\s+(?:${surnames}))\\b`,
   "g",
 );
+const latinPattern =
+  "Escherichia coli|E\\. coli|in vitro|in vivo|in situ|ex vivo";
+const emphasisPattern = new RegExp(
+  `(${personPattern.source})|(${latinPattern})`,
+  "g",
+);
 
-/** Emphasize people in interview prose without changing text or stored data. */
+/** Emphasize people and Latin phrases in interview prose without changing
+ *  the stored manuscript text. */
 export function StakeholderText({ children }: { children: string }) {
   const parts = [];
   let end = 0;
-  for (const match of children.matchAll(personPattern)) {
+  for (const match of children.matchAll(emphasisPattern)) {
     const start = match.index;
     parts.push(children.slice(end, start));
-    parts.push(<strong key={start}>{match[0]}</strong>);
+    parts.push(
+      match[1] ? (
+        <strong key={start}>{match[1]}</strong>
+      ) : (
+        <em key={start}>{match[2]}</em>
+      ),
+    );
     end = start + match[0].length;
   }
   parts.push(children.slice(end));

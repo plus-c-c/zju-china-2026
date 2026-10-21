@@ -107,7 +107,7 @@ export const anisotropyModule: DbtlModule = {
         Learn: (
           <>
             <p>
-              The magnetic-field route was better suited to our proposed in situ
+              The magnetic-field route was better suited to our proposed <em>in situ</em>
               workflow and was selected for further development. Separating
               alignment from photocrosslinking also allows the external field to
               be adjusted before the structure is fixed. The next challenge was

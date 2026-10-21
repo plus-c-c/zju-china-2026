@@ -12,7 +12,7 @@ export function BackgroundAndPrinciples() {
         temperatures must be carefully controlled. Deviations from the required
         temperature may cause premature gelation or inactivate bioactive
         components. During administration, the system must also provide steady
-        delivery, visualization of the target site, and in situ
+        delivery, visualization of the target site, and <em>in situ</em>
         photocrosslinking, together with an external magnetic field to regulate
         anisotropic structures within the material. Achieving consistent and
         reproducible performance across these steps is difficult when relying

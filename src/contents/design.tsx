@@ -17,7 +17,7 @@ export function Design() {
             treatments—rehabilitation and drugs, microfracture, osteochondral
             transplantation, autologous chondrocyte implantation, and joint
             replacement—struggle to restore durable native hyaline cartilage.
-            Water-rich, injectable hydrogels that form in situ have recently
+            Water-rich, injectable hydrogels that form <em>in situ</em> have recently
             emerged as a new direction, but remain limited: one material must
             combine strength, toughness, and wet adhesion; degradation must be
             coordinated with tissue regeneration; and multistep modification and
@@ -57,7 +57,7 @@ export function Design() {
               Figure 0.1 | Overview of the NEST platform. The upper panel shows
               SELP scaffolds and functional modules expressed in <em>E. coli</em>,
               assembled through SnoopTag/DogTag ligation, and combined into a
-              hydrogel precursor that is crosslinked in situ using Ru/SPS under
+              hydrogel precursor that is crosslinked <em>in situ</em> using Ru/SPS under
               450 nm blue light. The lower panel illustrates the proposed
               treatment workflow: injection into the cartilage defect, magnetic
               alignment using a knee brace, and blue-light crosslinking to fix
@@ -443,7 +443,7 @@ export function Design() {
                   />
                   <FigureCaption className="figure-caption">
                     Figure 1.2 | Ru/SPS-mediated visible-light crosslinking and
-                    in situ gelation of SELPs. Tyrosine residues on the protein
+                    <em>in situ</em> gelation of SELPs. Tyrosine residues on the protein
                     chains form dityrosine crosslinks under Ru/SPS and 450 nm
                     blue light, converting the SELP precursor solution into a
                     covalent network; photographs show the material before and
@@ -498,7 +498,7 @@ export function Design() {
                 </figure>
                 <p>
                   Regarding degradation, the SELP scaffold can{" "}
-                  <strong>degrade naturally in vivo</strong>, and its
+                  <strong>degrade naturally <em>in vivo</em></strong>, and its
                   degradation rate slows as the number of repeat units
                   increases; the repeat number m can therefore tune both
                   mechanical properties and degradation rate, allowing design
@@ -1267,7 +1267,7 @@ export function Design() {
                   functional sites in the aqueous phase. The components are
                   attached to SELP through site-specific ligation before
                   injection, enter the defect with the scaffold, and are fixed
-                  by in situ crosslinking (Figure 3.3.3). Structural support and
+                  by <em>in situ</em> crosslinking (Figure 3.3.3). Structural support and
                   matrix protection thus occur within the same network, jointly
                   intervening in the feedback loop of matrix loss, reduced load
                   bearing, and aggravated damage.
@@ -1608,7 +1608,7 @@ export function Design() {
                   and uses software to organize formulation, state, and
                   operation information. The hardware is not an accessory to the
                   material but the execution step that converts molecular design
-                  into an in situ scaffold.
+                  into an <em>in situ</em> scaffold.
                 </p>
                 <h3 className="mt-4 mb-3">
                   4.1 Formulation and Staging: Converting a Functional
@@ -1818,7 +1818,7 @@ export function Design() {
               <p id="design-reference-16" style={{ scrollMarginTop: "112px" }}>
                 [16] McKenna LA, Liu H, Sansom PA, Dean MF. An N-terminal
                 peptide from link protein stimulates proteoglycan biosynthesis
-                in human articular cartilage in vitro. <em>Arthritis Rheum</em>.
+                in human articular cartilage <em>in vitro</em>. <em>Arthritis Rheum</em>.
                 1998;41(1):157–162.
               </p>
               <p id="design-reference-17" style={{ scrollMarginTop: "112px" }}>

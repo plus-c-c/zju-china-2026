@@ -312,7 +312,7 @@ export function Implementation() {
           </table>
         </div>
         <p>
-          We have completed in vitro cell-viability tests. Further biological
+          We have completed <em>in vitro</em> cell-viability tests. Further biological
           evaluation will depend on the final formulation and the type and
           duration of tissue contact. It will need to examine local tissue
           responses, degradation products, and relevant systemic effects{" "}

@@ -2,6 +2,18 @@ import { useState } from "react";
 import { protocolGroups } from "./protocol-data";
 import "./protocol.css";
 
+function ProtocolTitle({ text }: { text: string }) {
+  return (
+    <>
+      {text
+        .split(/(E\. coli)/g)
+        .map((part, index) =>
+          index % 2 === 1 ? <em key={index}>{part}</em> : part,
+        )}
+    </>
+  );
+}
+
 export function Protocol() {
   const [selectedUrl, setSelectedUrl] = useState(
     protocolGroups[0].protocols[0].url,
@@ -43,7 +55,7 @@ export function Protocol() {
                       aria-controls="protocol-document"
                       onClick={() => setSelectedUrl(protocol.url)}
                     >
-                      {protocol.title}
+                      <ProtocolTitle text={protocol.title} />
                     </button>
                   </li>
                 ))}
@@ -59,7 +71,7 @@ export function Protocol() {
             className="protocol-title mb-3"
             aria-live="polite"
           >
-            {selected.title}
+            <ProtocolTitle text={selected.title} />
           </div>
           <a
             className="protocol-pdf-link"

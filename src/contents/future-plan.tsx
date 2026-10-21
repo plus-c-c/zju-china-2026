@@ -194,7 +194,7 @@ export function FuturePlan() {
           2.1 Evaluating Candidate Materials in Models of Actual Defects
         </h3>
         <p>
-          We will use ex vivo cartilage-defect models to determine whether the
+          We will use <em>ex vivo</em> cartilage-defect models to determine whether the
           precursor can be delivered into irregular spaces, form a continuous
           material, and integrate with wet cartilage interfaces. Cyclic
           compression and fluid exchange will be used to quantify material
@@ -241,7 +241,7 @@ export function FuturePlan() {
           />
           <FigureCaption className="figure-caption">
             Figure 2 | Material validation and manufacturing-process development
-            will proceed in parallel. Before moving to in vivo studies, we will
+            will proceed in parallel. Before moving to <em>in vivo</em> studies, we will
             verify both tissue-interface performance and reproducible production
             of qualified batches. Bioreactor production, ITC scale-up, and
             formulation optimization remain future work.
@@ -274,7 +274,7 @@ export function FuturePlan() {
           predefined requirements for wet-state adhesion and cyclic loading in
           tissue models, while multiple production batches remain consistent in
           identity, purity, reconstitution, gelation, and target functionality.
-          Once these criteria have been met, the in vivo study design will be
+          Once these criteria have been met, the <em>in vivo</em> study design will be
           determined according to the intended use and risk profile of the
           selected candidate.
         </p>

@@ -181,7 +181,7 @@ const treatmentCards = [
     body: (
       <>
         Supplies chondrocytes for tissue repair, but generally requires cell
-        harvesting, ex vivo expansion, and implantation, with a demanding
+        harvesting, <em>ex vivo</em> expansion, and implantation, with a demanding
         treatment and postoperative rehabilitation process.
         <Citation refs={[2, 10]} />
       </>

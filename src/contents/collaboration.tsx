@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
+import { FigureCaption } from "../components/FigureCaption";
 import "./collaboration.css";
 
 /** Figures live on the team static host; see the upload folder notes. */
@@ -137,7 +138,7 @@ function CollabFigure({
           </a>
         ))}
       </div>
-      <figcaption className="figure-caption">{caption}</figcaption>
+      <FigureCaption>{caption}</FigureCaption>
     </figure>
   );
 }

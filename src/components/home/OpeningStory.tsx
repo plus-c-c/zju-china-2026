@@ -383,7 +383,7 @@ export function RehabilitationScene({ play }: { play: boolean }) {
                   Bank of England spot rate, 19 Oct 2026:
                   https://www.bankofengland.co.uk/boeapps/database/Rates.asp?into=GBP&rateview=A */}
               <strong>~$2.7</strong>
-              <b>billion/yr.</b>
+              <strong>billion/yr.</strong>
             </div>
             <span
               className="opening-text-line opening-rehab__cost-note"

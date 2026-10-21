@@ -118,7 +118,7 @@ export function SafetyAndSecurity() {
           <p>
             The injection and curing steps are designed to occur sequentially.
             The Ru/SPS visible-light crosslinking system is intended to enable
-            rapid in situ curing under blue-light irradiation, reducing the time
+            rapid <em>in situ</em> curing under blue-light irradiation, reducing the time
             during which the uncrosslinked precursor may be displaced by
             synovial fluid. The curing conditions must be controlled to achieve
             reproducible crosslinking while minimizing unnecessary exposure to

@@ -24,10 +24,10 @@ export function Plant() {
               adhere to iGEM safety guidelines!
             </p>
             <p>
-              <i>
+              <em>
                 Note: Photosynthetic bacteria cannot be considered for this
                 prize.
-              </i>
+              </em>
             </p>
             <hr />
             <p>

@@ -122,11 +122,6 @@ const chapters: Chapter[] = [
             </thead>
             <tbody>
               <tr>
-                <td>Users</td>
-                <td>End users, beneficiaries and affected communities</td>
-                <td>Needs, existing practices and barriers</td>
-              </tr>
-              <tr>
                 <td>Research &amp; development</td>
                 <td>Researchers, domain experts and designers</td>
                 <td>Assumptions, feasibility and evidence</td>
@@ -431,8 +426,8 @@ const chapters: Chapter[] = [
         <h3>Classify the record</h3>
         <ul>
           <li>
-            <b>Project stages:</b> choose every relevant step, from Users to
-            Impact &amp; follow-up. Custom stages are welcome.
+            <b>Project stages:</b> choose every relevant step, from Research
+            &amp; development to Impact &amp; follow-up. Custom stages are welcome.
           </li>
           <li>
             <b>Stakeholder roles:</b> choose one or more roles, such as users,

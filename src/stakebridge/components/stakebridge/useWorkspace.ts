@@ -58,7 +58,15 @@ export function useWorkspace() {
           const stages = loaded && upgradeDefaultStages(loaded.stages);
           const next =
             loaded && stages !== loaded.stages
-              ? { ...loaded, stages: stages! }
+              ? {
+                  ...loaded,
+                  stages: stages!,
+                  // Removing a default stage also removes its interviews, so
+                  // old workspaces cannot keep orphaned "Users" entries.
+                  stakeholders: loaded.stakeholders.filter((item) =>
+                    stages!.some((stage) => stage.id === item.stageId),
+                  ),
+                }
               : loaded;
           current.current = next;
           setWorkspace(next);

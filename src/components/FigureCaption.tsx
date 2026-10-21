@@ -95,7 +95,7 @@ export function FigureCaptionText({ children }: { children: ReactNode }) {
     );
   }
   const text = textOf(children);
-  const label = /^\s*Figure\s+[A-Za-z0-9][\w.-]*\s*\|\s*/.exec(text);
+  const label = /^\s*(?:Figures?|Video)\s+[^|]+\|\s*/.exec(text);
   if (!label) return <>{children}</>;
   const [lead, rest] = splitAt(
     withoutBold(children),
