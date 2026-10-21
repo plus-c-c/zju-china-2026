@@ -601,15 +601,6 @@ function SeedMethodBlock() {
         </li>
       </ul>
       <p>
-        Between the two &ldquo;E&rdquo;s, multi-step, multi-team requirements
-        can make collaboration difficult and information mismatched. We adapted
-        the PRD (product requirement document) feedback pattern from product
-        teams so that real-world needs are fed back to the project in an orderly
-        and accurate way, keeping the team&rsquo;s work coordinated. The
-        interactive SEED ring lives on the Engineering page; the static artwork
-        on the right shows how the two cycles nest.
-      </p>
-      <p>
         Every design cycle in the narrative —{" "}
         <strong>Evidence-based Co-design</strong> and{" "}
         <strong>Situated Implementation</strong> — runs one SEED loop: the
@@ -2276,14 +2267,16 @@ export function HumanPractices() {
             the design deliberately cautious: every step should answer a real
             problem. <strong>56 stakeholders</strong> took part in our
             interviews and technical tests, our questionnaire reached more than{" "}
-            <strong>1,700 people</strong> (1,647 valid responses), and our
+            <strong>1,700 people</strong>, and our
             online and offline activities and lectures reached more than{" "}
             <strong>450 people</strong>. We hoped to treat patients through
             technology, fill a gap through design, innovate in the industry,
             raise awareness of cartilage health in society, deepen understanding
             of the patient community and, finally, contribute to the
-            synthetic-biology community. Below this overview the page is split
-            into three pages: the{" "}
+            synthetic-biology community.
+          </p>
+          <p>
+            Below this overview the page is split into three pages: the{" "}
             <a href="#toolbox">
               <strong>Toolbox</strong>
             </a>{" "}

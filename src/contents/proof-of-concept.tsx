@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import {
   PlatformFunctionSections,
   SharedProjectSections,
@@ -17,6 +18,101 @@ import {
   BiosafetyResultsText,
 } from "./results/biosafety-content";
 import "./proof-of-concept.css";
+
+function AnimatedWebPSprite({
+  sprite,
+  fallback,
+  frames,
+  columns,
+  rows,
+  width,
+  height,
+  alt,
+  className,
+  frameMs = 100,
+}: {
+  sprite: string;
+  fallback: string;
+  frames: number;
+  columns: number;
+  rows: number;
+  width: number;
+  height: number;
+  alt: string;
+  className?: string;
+  frameMs?: number;
+}) {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [failed, setFailed] = useState(false);
+
+  useEffect(() => {
+    if (failed) return;
+    const image = new Image();
+    let timer: number | undefined;
+    let frame = 0;
+
+    const draw = () => {
+      const context = canvasRef.current?.getContext("2d");
+      if (!context) return;
+      const column = frame % columns;
+      const row = Math.floor(frame / columns);
+      context.clearRect(0, 0, width, height);
+      context.drawImage(
+        image,
+        column * width,
+        row * height,
+        width,
+        height,
+        0,
+        0,
+        width,
+        height,
+      );
+      frame = (frame + 1) % frames;
+    };
+
+    image.onload = () => {
+      draw();
+      if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        timer = window.setInterval(draw, frameMs);
+      }
+    };
+    image.onerror = () => setFailed(true);
+    image.src = sprite;
+
+    return () => {
+      if (timer) window.clearInterval(timer);
+      image.onload = null;
+      image.onerror = null;
+    };
+  }, [sprite, frames, columns, rows, width, height, frameMs, failed]);
+
+  if (failed) {
+    return (
+      <img
+        src={fallback}
+        alt={alt}
+        className={className}
+        width={width}
+        height={height}
+        loading="lazy"
+        decoding="async"
+        style={{ width: "100%", maxWidth: 520 }}
+      />
+    );
+  }
+
+  return (
+    <canvas
+      ref={canvasRef}
+      width={width}
+      height={height}
+      role="img"
+      aria-label={alt}
+      className={className}
+    />
+  );
+}
 
 export function ProofOfConcept() {
   return (
@@ -496,15 +592,16 @@ export function ProofOfConcept() {
                   (Figures 13 and 14).
                 </p>
                 <figure className="my-4 text-center">
-                  <img
-                    src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-11.webp"
-                    alt="Figure 13 | Bright-field recording of magnetic particle aggregates reorienting"
-                    className="img-fluid rounded"
+                  <AnimatedWebPSprite
+                    sprite="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-11-sprite.webp"
+                    fallback="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-11.webp"
+                    frames={56}
+                    columns={10}
+                    rows={6}
                     width={360}
                     height={240}
-                    loading="lazy"
-                    decoding="async"
-                    style={{ width: "100%", maxWidth: 520 }}
+                    alt="Figure 13 | Bright-field recording of magnetic particle aggregates reorienting"
+                    className="poc-sprite rounded"
                   />
                   <FigureCaption className="figure-caption mt-2">
                     <strong>
@@ -515,15 +612,16 @@ export function ProofOfConcept() {
                   </FigureCaption>
                 </figure>
                 <figure className="my-4 text-center">
-                  <img
-                    src="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-12.webp"
-                    alt="Figure 14 | Fluorescence recording of protein-labeled complexes reorienting"
-                    className="img-fluid rounded"
+                  <AnimatedWebPSprite
+                    sprite="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-12-sprite.webp"
+                    fallback="https://static.igem.wiki/teams/6102/wiki/images/proof-of-concept/figure-12.webp"
+                    frames={60}
+                    columns={10}
+                    rows={6}
                     width={360}
                     height={240}
-                    loading="lazy"
-                    decoding="async"
-                    style={{ width: "100%", maxWidth: 520 }}
+                    alt="Figure 14 | Fluorescence recording of protein-labeled complexes reorienting"
+                    className="poc-sprite rounded"
                   />
                   <FigureCaption className="figure-caption mt-2">
                     <strong>

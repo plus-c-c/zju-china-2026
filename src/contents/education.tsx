@@ -1,7 +1,6 @@
 import { TableCaption } from "../components/FigureCaption";
 import { Link } from "react-router-dom";
 import { FlappyInjection } from "../components/FlappyInjection";
-import { Inspirations, InspirationLink } from "../components/Inspirations";
 import "./education.css";
 
 /** Static host for the Education figures. The exported `edu-*.avif`
@@ -57,15 +56,6 @@ function PhotoFigure({
 }
 
 export function Education() {
-  const links: InspirationLink[] = [
-    { year: 2024, teamName: "CityU-HongKong", pageName: "education" },
-    { year: 2024, teamName: "CJUH-JLU-China", pageName: "education" },
-    { year: 2024, teamName: "Keystone", pageName: "education" },
-    { year: 2024, teamName: "Stanford", pageName: "education" },
-    { year: 2024, teamName: "GEMS-Taiwan", pageName: "education" },
-    { year: 2024, teamName: "Heidelberg", pageName: "education" },
-  ];
-
   return (
     <div className="row mt-4 mb-5">
       <div className="col-lg-10 mx-auto">
@@ -1186,6 +1176,15 @@ export function Education() {
               activities for different ages, shared resources, and reflection
               within the team.
             </p>
+            <div className="education-video-frame">
+              <iframe
+                title="ZJU-China: Education summary (2026) [English]"
+                src="https://video.igem.org/videos/embed/rv8h4bZFFbLsKBnVbxyv5i"
+                allow="fullscreen"
+                sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
+                loading="lazy"
+              />
+            </div>
           </div>
           <p>
             We brought knowledge into the community and integrated the
@@ -1221,9 +1220,6 @@ export function Education() {
           </p>
           <FlappyInjection />
 
-          <div className="mt-5">
-            <Inspirations inspirationLinkList={links} />
-          </div>
         </article>
       </div>
     </div>
