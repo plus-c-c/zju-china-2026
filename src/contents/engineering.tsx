@@ -373,10 +373,14 @@ export function Engineering() {
     return design >= 0 ? design : first;
   };
   const startIndex = startIndexForTab(tabIndex);
+  /* A level-2 button opens the first step of the group: the group/part
+     Introduction when one exists, otherwise Cycle 1 of the first part. This
+     is deliberately different from clicking a level-3 tab, where the lead
+     step is skipped and the tab starts at its first phase. */
+  const groupStartIndex = sequence.findIndex((entry) => entry.tab === 0);
 
-  // Any level switch returns to the top of the sequence — Cycle 1 Design for
-  // sub-module views (skipping the lead step when there is one), the top of
-  // the static cluster for the Introduction / Conclusion views. The scroll
+  // Any level switch returns to the top of the sequence — the Introduction
+  // when the group has one, otherwise Cycle 1 of its first part. The scroll
   // happens before paint, so the stepper mounts with the right progress and
   // the scroll mapping cannot jump to a stale step. (Comparing against the
   // previous values keeps the very first render — and dev double-invocation —
@@ -400,13 +404,14 @@ export function Engineering() {
       });
       return;
     }
-    if (runway && startIndex >= 0 && stepCount > 1) {
+    const targetIndex = navChanged ? groupStartIndex : startIndex;
+    if (runway && targetIndex >= 0 && stepCount > 1) {
       const total = runway.offsetHeight - window.innerHeight;
       const top = runway.getBoundingClientRect().top + window.scrollY;
       window.scrollTo({
         top:
           top +
-          (total * startIndex) / Math.max(1, scrollSpan) +
+          (total * targetIndex) / Math.max(1, scrollSpan) +
           (navChanged ? 0 : DBTL_TAB_SCROLL_NUDGE),
         behavior: "instant",
       });
@@ -424,6 +429,7 @@ export function Engineering() {
     groupIndex,
     tabIndex,
     startIndex,
+    groupStartIndex,
     stepCount,
     scrollSpan,
     projectDesignActive,

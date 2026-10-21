@@ -1040,10 +1040,6 @@
   margin-top: 0 !important;
 }
 
-.dbtl .dbtl-panel-inner:has(> .dbtl-section-title:first-child) {
-  margin-top: 0;
-}
-
 /* Level-2 headings authored inside lead/outlook content. Bootstrap's default
    h3 is larger than the card title, so normalize it to the same secondary
    tier used by dbtl-section-title. */
