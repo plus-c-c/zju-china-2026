@@ -54,8 +54,8 @@ interface DbtlStepperProps {
  * story sections: the page-level runway wraps the whole pinned cluster
  * (nav rows, tabs, ring, panel, cycle buttons), and the scroll progress
  * through the runway turns the ring and, when a quarter turn completes,
- * switches the Design–Build–Test–Learn step. Text scrolls first; a
- * boundary gesture advances once and absorbs its remaining momentum.
+ * switches the Design–Build–Test–Learn step. Card gestures only scroll the
+ * current phase's content; gestures outside the card may advance once.
  * Ring, tab and cycle clicks use the same runway positions.
  */
 export function DbtlStepper({
@@ -180,8 +180,8 @@ export function DbtlStepper({
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [goToStep]);
 
-  /** Boundary stepping: the wheel / touch advances one step per gesture once
-   *  the text panel reaches its bottom (or its top, scrolling up). */
+  /** Inside the card, gestures only read current content. Outside it,
+   *  one gesture may change one step. */
   useEngineeringScroll({
     stageRef: rootRef,
     panelRef,
@@ -419,26 +419,6 @@ export function DbtlStepper({
             tabIndex={0}
             role="region"
             aria-label={caption || stepModule?.title || "Lead or outlook"}
-            onKeyDown={(event) => {
-              if (!stepsRef.current.length) return;
-              if (
-                event.key === "ArrowDown" ||
-                event.key === "PageDown" ||
-                event.key === "ArrowRight"
-              ) {
-                event.preventDefault();
-                goToStep(
-                  Math.min(indexRef.current + 1, stepsRef.current.length - 1),
-                );
-              } else if (
-                event.key === "ArrowUp" ||
-                event.key === "PageUp" ||
-                event.key === "ArrowLeft"
-              ) {
-                event.preventDefault();
-                goToStep(Math.max(indexRef.current - 1, 0));
-              }
-            }}
           >
             <div
               className="dbtl-panel-inner"

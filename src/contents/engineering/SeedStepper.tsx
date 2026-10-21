@@ -124,8 +124,8 @@ export function SeedStepper({
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [goToStep]);
 
-  /** Boundary stepping: the wheel / touch advances one step per gesture once
-   *  the text panel reaches its bottom (or its top, scrolling up). */
+  /** Inside the card, gestures only read current content. Outside it,
+   *  one gesture may change one step. */
   useEngineeringScroll({
     stageRef: rootRef,
     panelRef,
@@ -350,26 +350,6 @@ export function SeedStepper({
             tabIndex={0}
             role="region"
             aria-label={caption || stepModule?.title || "Lead or outlook"}
-            onKeyDown={(event) => {
-              if (!stepsRef.current.length) return;
-              if (
-                event.key === "ArrowDown" ||
-                event.key === "PageDown" ||
-                event.key === "ArrowRight"
-              ) {
-                event.preventDefault();
-                goToStep(
-                  Math.min(indexRef.current + 1, stepsRef.current.length - 1),
-                );
-              } else if (
-                event.key === "ArrowUp" ||
-                event.key === "PageUp" ||
-                event.key === "ArrowLeft"
-              ) {
-                event.preventDefault();
-                goToStep(Math.max(indexRef.current - 1, 0));
-              }
-            }}
           >
             <div className="dbtl-panel-inner" key={step?.key ?? "static"}>
               {step?.content ?? content}

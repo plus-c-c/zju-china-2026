@@ -102,9 +102,8 @@ export function Navbar({ introEntrance = false, opening = false }: { introEntran
         ? document.elementFromPoint(pointer.x, pointer.y)
         : null;
       // The Engineering level-1 row pins to the very top of the viewport
-      // during the DBTL runway. Its rectangle must not wake the navbar, or
-      // the bar would cover the buttons. The tiny gap above it and the areas
-      // to its left/right remain normal wake zones.
+      // during the DBTL runway. Protect only the actual buttons: gaps and
+      // the surrounding navigation background still reveal the site navbar.
       const engineeringNav = document.querySelector<HTMLElement>(
         ".eng-module-nav",
       );
@@ -115,13 +114,9 @@ export function Navbar({ introEntrance = false, opening = false }: { introEntran
         engineeringRect.top >= 0 &&
         engineeringRect.top <= navHeight + 12;
       const overEngineeringL1 =
-        !!pointer &&
         engineeringAtTop &&
-        engineeringRect &&
-        pointer.x >= engineeringRect.left - 8 &&
-        pointer.x <= engineeringRect.right + 8 &&
-        pointer.y >= engineeringRect.top - 2 &&
-        pointer.y <= engineeringRect.bottom + 10;
+        !!target?.closest(".eng-module-button") &&
+        !!engineeringNav?.contains(target);
       const overNavigation =
         visible &&
         pointer &&
@@ -142,7 +137,7 @@ export function Navbar({ introEntrance = false, opening = false }: { introEntran
         // No overlay intercepts clicks. Exclude the entire section sticky bar,
         // including its padding, and other interactive controls at the edge.
         const protectedBar = document.querySelector(
-          ".wetlab-results__navigation, .project-tracks__navigation, .eng-section-navigation",
+          ".wetlab-results__navigation, .project-tracks__navigation",
         );
         const rect = protectedBar?.getBoundingClientRect();
         const overSectionBar =

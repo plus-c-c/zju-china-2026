@@ -10,9 +10,9 @@ interface EngineeringScrollOptions {
   onAdvance: (index: number) => void;
 }
 
-/** Preserve the card's original wheel speed. Reaching the edge ends the
- * current gesture; a separate gesture can advance once and lands at the top.
- * Listeners belong to this runway, not to the entire browser window. */
+/** Inside a card, wheel/touch/scroll keys only read that card's current
+ * content and never drive the page runway. Outside it, one deliberate
+ * gesture may change one step. Listeners stay local to Engineering. */
 export function useEngineeringScroll(options: EngineeringScrollOptions) {
   const live = useRef(options);
   live.current = options;
@@ -31,32 +31,34 @@ export function useEngineeringScroll(options: EngineeringScrollOptions) {
       gesture: EngineeringWheelGesture,
       gain: number,
     ) => {
-      const bounds = runway.getBoundingClientRect();
-      if (bounds.top > 2 || bounds.bottom < window.innerHeight - 2) return;
       const { panelRef, getIndex, getCount, onAdvance } = live.current;
       const panel = panelRef.current;
       if (!panel) return;
       const max = Math.max(0, panel.scrollHeight - panel.clientHeight);
-      const direction = delta > 0 ? 1 : -1;
-      const atEdge =
-        direction > 0 ? panel.scrollTop >= max - 1 : panel.scrollTop <= 1;
-      const next = getIndex() + direction;
-      const action = gesture.move(
-        performance.now(),
-        delta,
-        atEdge,
-        next >= 0 && next < getCount(),
-      );
-      if (action === "release") return;
-      event.preventDefault();
-      if (action === "scroll") {
+      const card = panel.closest(".dbtl-panel");
+      const insideCard =
+        event.target instanceof Node && card?.contains(event.target);
+      if (insideCard) {
+        event.preventDefault();
+        gesture.reset();
         panel.scrollTop = Math.max(
           0,
           Math.min(max, panel.scrollTop + delta * gain),
         );
-      } else if (action === "advance") {
-        onAdvance(next);
+        return;
       }
+      const bounds = runway.getBoundingClientRect();
+      if (bounds.top > 2 || bounds.bottom < window.innerHeight - 2) return;
+      const direction = delta > 0 ? 1 : -1;
+      const next = getIndex() + direction;
+      const action = gesture.move(
+        performance.now(),
+        delta,
+        next >= 0 && next < getCount(),
+      );
+      if (action === "release") return;
+      event.preventDefault();
+      if (action === "advance") onAdvance(next);
     };
     const onWheel = (event: WheelEvent) => {
       if (
@@ -90,13 +92,55 @@ export function useEngineeringScroll(options: EngineeringScrollOptions) {
     const onTouchEnd = () => {
       touchY = null;
     };
+    const onKeyDown = (event: KeyboardEvent) => {
+      const panel = live.current.panelRef.current;
+      if (
+        !panel ||
+        !(event.target instanceof Node) ||
+        !panel.contains(event.target)
+      )
+        return;
+      if (event.ctrlKey || event.metaKey || event.altKey) return;
+      if (
+        event.target instanceof Element &&
+        event.target.closest(
+          "input, textarea, select, [contenteditable='true']",
+        )
+      )
+        return;
+      const page = panel.clientHeight * 0.85;
+      const offsets: Record<string, number> = {
+        ArrowDown: 40,
+        ArrowUp: -40,
+        PageDown: page,
+        PageUp: -page,
+        " ": event.shiftKey ? -page : page,
+        Home: -Infinity,
+        End: Infinity,
+        ArrowLeft: 0,
+        ArrowRight: 0,
+      };
+      const delta = offsets[event.key];
+      if (delta === undefined) return;
+      event.preventDefault();
+      event.stopPropagation();
+      panel.scrollTop = Math.max(
+        0,
+        Math.min(
+          panel.scrollHeight - panel.clientHeight,
+          panel.scrollTop + delta,
+        ),
+      );
+    };
     runway.addEventListener("wheel", onWheel, { passive: false });
+    runway.addEventListener("keydown", onKeyDown);
     runway.addEventListener("touchstart", onTouchStart, { passive: true });
     runway.addEventListener("touchmove", onTouchMove, { passive: false });
     runway.addEventListener("touchend", onTouchEnd, { passive: true });
     runway.addEventListener("touchcancel", onTouchEnd, { passive: true });
     return () => {
       runway.removeEventListener("wheel", onWheel);
+      runway.removeEventListener("keydown", onKeyDown);
       runway.removeEventListener("touchstart", onTouchStart);
       runway.removeEventListener("touchmove", onTouchMove);
       runway.removeEventListener("touchend", onTouchEnd);
