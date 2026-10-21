@@ -33,7 +33,7 @@ export type TimelineItem = {
 };
 
 /**
- * Vertical engagement timeline with a scroll-driven progress line, reveal
+ * Vertical stakeholder-interview timeline with a scroll-driven progress line, reveal
  * animations and an optional "Read more" dialog per entry.
  *
  * Data is passed in through `items`, so the component can be reused on any

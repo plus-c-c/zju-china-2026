@@ -20,8 +20,6 @@ const SEED_RING =
   "https://static.igem.wiki/teams/6102/wiki/images/engagement/ihp/seed-ring.avif";
 const SURVEY_REPORT_PDF =
   "https://static.igem.wiki/teams/6102/wiki/hp-new/res.pdf";
-const HEALTH_COMMISSION_PDF =
-  "https://static.igem.wiki/teams/6102/wiki/hp-file/gov.pdf";
 
 function Figure({
   src,
@@ -1190,18 +1188,14 @@ function ImpactBlock() {
       </p>
       <h4 className="mt-5 mb-3">Reports behind the neglected pain</h4>
       <p>
-        Two documents record this work in full: the{" "}
+        The survey report records this work in full. Open the card below to read
+        it here, or use the link to open it in a new tab:{" "}
         <a href={SURVEY_REPORT_PDF} target="_blank" rel="noreferrer">
           survey report on the neglected pain of cartilage injury
-        </a>{" "}
-        and the{" "}
-        <a href={HEALTH_COMMISSION_PDF} target="_blank" rel="noreferrer">
-          reply from the Hangzhou Municipal Health Commission
         </a>
-        . Open the card below to read both documents here, or use the links to
-        open them in a new tab.
+        .
       </p>
-      <ExtendCard title="Read the full reports (PDF)">
+      <ExtendCard title="Read the full report (PDF)">
         <div className="ihp-pdf">
           <div className="ihp-pdf__head">
             <strong>
@@ -1215,20 +1209,6 @@ function ImpactBlock() {
             className="ihp-pdf__frame"
             src={SURVEY_REPORT_PDF}
             title="Survey report — the neglected pain of cartilage injury"
-            loading="lazy"
-          />
-        </div>
-        <div className="ihp-pdf">
-          <div className="ihp-pdf__head">
-            <strong>Reply from the Hangzhou Municipal Health Commission</strong>
-            <a href={HEALTH_COMMISSION_PDF} target="_blank" rel="noreferrer">
-              Open in a new tab
-            </a>
-          </div>
-          <iframe
-            className="ihp-pdf__frame"
-            src={HEALTH_COMMISSION_PDF}
-            title="Reply from the Hangzhou Municipal Health Commission"
             loading="lazy"
           />
         </div>
