@@ -177,11 +177,11 @@
 }
 
 .m1-slide__inner--in.m1-slide__inner--fwd {
-  animation: m1-in-fwd 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: m1-in-fwd 380ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .m1-slide__inner--in.m1-slide__inner--back {
-  animation: m1-in-back 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: m1-in-back 380ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .m1-slide__inner--out {
@@ -192,11 +192,11 @@
 }
 
 .m1-slide__inner--out.m1-slide__inner--fwd {
-  animation: m1-out-fwd 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: m1-out-fwd 380ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .m1-slide__inner--out.m1-slide__inner--back {
-  animation: m1-out-back 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: m1-out-back 380ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 @keyframes m1-in-fwd {

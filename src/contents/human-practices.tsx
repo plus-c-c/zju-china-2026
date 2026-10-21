@@ -11,7 +11,11 @@ import {
 } from "../components/StakeholderChain";
 import { TransparentImage } from "../components/TransparentImage";
 import { SeedReaderRail } from "./human-practices/SeedReader";
-import { scrollToSection } from "./human-practices/scrollToSection";
+import {
+  cancelSectionScroll,
+  getSectionScrollOffset,
+  scrollToSection,
+} from "./human-practices/scrollToSection";
 import "./human-practices.css";
 
 /** All figures live on the team static host. */
@@ -1460,6 +1464,53 @@ function SectionSubnav({
   items: { id: string; label: string }[];
   className?: string;
 }) {
+  const navRef = useRef<HTMLElement>(null);
+  const [activeId, setActiveId] = useState(items[0]?.id);
+
+  useEffect(() => {
+    const nav = navRef.current;
+    const section = nav?.parentElement;
+    if (!nav || !section) return;
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const line = getSectionScrollOffset() + 8;
+      let current = items[0]?.id;
+      for (const item of items) {
+        const target = section.querySelector<HTMLElement>(`#${item.id}`);
+        if (target && target.getBoundingClientRect().top <= line)
+          current = item.id;
+      }
+      if (
+        window.scrollY + innerHeight >=
+        document.documentElement.scrollHeight - 2
+      ) {
+        current = items[items.length - 1]?.id;
+      }
+      setActiveId(current);
+    };
+    const schedule = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+    const observer = new ResizeObserver(schedule);
+    observer.observe(nav);
+    for (const item of items) {
+      const target = section.querySelector(`#${item.id}`);
+      if (target) observer.observe(target);
+    }
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule);
+    nav.addEventListener("transitionend", schedule);
+    update();
+    return () => {
+      cancelAnimationFrame(frame);
+      observer.disconnect();
+      window.removeEventListener("scroll", schedule);
+      window.removeEventListener("resize", schedule);
+      nav.removeEventListener("transitionend", schedule);
+    };
+  }, [items]);
+
   const jump = (id: string) => {
     if (!document.getElementById(id)) return;
     history.replaceState(null, "", `#${id}`);
@@ -1467,15 +1518,14 @@ function SectionSubnav({
        changes above the target never turn into an instant correction. */
     scrollToSection(id);
   };
-  /* The second-level buttons are pure jump links: the page TOC already marks
-     the section being read, so they carry no selected state of their own. */
   return (
-    <nav className={className} aria-label="Page sections">
+    <nav ref={navRef} className={className} aria-label="Page sections">
       {items.map((item) => (
         <button
           key={item.id}
           type="button"
-          className="eng-subnav-button"
+          className={`eng-subnav-button${activeId === item.id ? " active" : ""}`}
+          aria-current={activeId === item.id ? "location" : undefined}
           onClick={() => jump(item.id)}
         >
           {item.label}
@@ -1704,9 +1754,6 @@ function NestPage() {
 const HP_PAGE_SWIPE = true;
 /** Matches the cross-page swipe transition in toc.css. */
 const HP_PAGE_SWIPE_MS = 640;
-/** Keeps the incoming section heading just below the fixed site header. */
-const HP_SECTION_OFFSET = 96;
-
 export function HumanPractices() {
   /* Toolbox is preselected on mount: the page never starts in the bare
      overview state, which avoids the layout/scroll edge cases around it. */
@@ -1752,10 +1799,16 @@ export function HumanPractices() {
      right below them. */
   const alignSectionTop = () => {
     const nav = navRef.current;
-    if (!nav) return;
+    const viewport = nav?.nextElementSibling;
+    if (!nav || !(viewport instanceof HTMLElement)) return;
+    cancelSectionScroll();
+    // The sticky row's current rectangle follows the viewport, so it cannot
+    // locate the start of the section. Its flowing sibling keeps that anchor.
+    const offset =
+      (parseFloat(getComputedStyle(nav).top) || 0) + nav.offsetHeight + 8;
     const top = Math.max(
       0,
-      nav.getBoundingClientRect().top + window.scrollY - HP_SECTION_OFFSET,
+      viewport.getBoundingClientRect().top + window.scrollY - offset,
     );
     window.scrollTo({ top, behavior: "instant" });
     openScrollRef.current = window.scrollY;
@@ -1836,9 +1889,9 @@ export function HumanPractices() {
     }, HP_PAGE_SWIPE_MS);
   };
 
-  /* Switching between two open pages: the buttons and the overview above
-     stay exactly where they are. The outgoing page is cloned into a ghost
-     layer so both pages pan at the same time, inside the section's column:
+  /* Switching between two open pages resets to the incoming page's start.
+     The outgoing page is cloned into a ghost layer so both pages pan at the
+     same time, inside the section's column:
      the old one leaves through one edge while the new one enters from the
      other. */
   const switchPage = (index: number) => {
@@ -1851,6 +1904,7 @@ export function HumanPractices() {
     window.clearTimeout(timerRef.current);
     if (!viewport || !current || reduceMotion()) {
       setPageSync(index);
+      alignSectionTop();
       busyRef.current = false;
       return;
     }
@@ -1859,6 +1913,7 @@ export function HumanPractices() {
     ghost.setAttribute("aria-hidden", "true");
     viewport.appendChild(ghost);
     setPageSync(index);
+    alignSectionTop();
     const incoming = viewport.querySelector<HTMLElement>(
       ".ihp-section:not(.ihp-section-ghost)",
     );
@@ -1884,8 +1939,12 @@ export function HumanPractices() {
   };
 
   const selectPage = (index: number) => {
-    if (busyRef.current || index === pageRef.current) return;
+    if (busyRef.current) return;
     syncHash(index);
+    if (index === pageRef.current) {
+      alignSectionTop();
+      return;
+    }
     const wasOpen = pageRef.current !== null;
     if (wasOpen) {
       switchPage(index);
@@ -1947,9 +2006,10 @@ export function HumanPractices() {
       const el = document.getElementById("ihp-syringe-questionnaire");
       if (!el) return;
       const top = el.getBoundingClientRect().top;
-      if (Math.abs(top - 130) > 24) {
+      const offset = getSectionScrollOffset();
+      if (Math.abs(top - offset) > 24) {
         window.scrollTo({
-          top: top + window.scrollY - 130,
+          top: top + window.scrollY - offset,
           behavior: "instant",
         });
       }
@@ -1996,7 +2056,9 @@ export function HumanPractices() {
       return null;
     };
     let timer = 0;
+    const cancelPendingAlignment = () => window.clearTimeout(timer);
     const jump = () => {
+      cancelPendingAlignment();
       const raw = window.location.hash.replace(/^#/, "");
       if (!raw) return;
       let id: string;
@@ -2008,10 +2070,14 @@ export function HumanPractices() {
       const target = pageOf(id);
       if (target === null) return;
       const align = (attempt = 0) => {
+        if (["toolbox", "nest", "stakeholder-engagement"].includes(id)) {
+          alignSectionTop();
+          return;
+        }
         const el = document.getElementById(id);
-        const anchor = el ?? navRef.current;
-        if (!anchor) return;
-        const top = anchor.getBoundingClientRect().top + window.scrollY - 130;
+        if (!el) return;
+        const top =
+          el.getBoundingClientRect().top + window.scrollY - getSectionScrollOffset();
         window.scrollTo({ top: Math.max(0, top), behavior: "instant" });
         if (el && attempt < 4) {
           window.clearTimeout(timer);
@@ -2027,8 +2093,16 @@ export function HumanPractices() {
     };
     jump();
     window.addEventListener("hashchange", jump);
+    window.addEventListener("wheel", cancelPendingAlignment, { passive: true });
+    window.addEventListener("pointerdown", cancelPendingAlignment, {
+      passive: true,
+    });
+    window.addEventListener("keydown", cancelPendingAlignment);
     return () => {
       window.removeEventListener("hashchange", jump);
+      window.removeEventListener("wheel", cancelPendingAlignment);
+      window.removeEventListener("pointerdown", cancelPendingAlignment);
+      window.removeEventListener("keydown", cancelPendingAlignment);
       window.clearTimeout(timer);
     };
   }, []);

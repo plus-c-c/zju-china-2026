@@ -368,7 +368,7 @@ export function SelpHydrogelModeling() {
     stepRef.current = activeStep;
   }, [activeStep]);
 
-  /* 步骤变化 → 触发滑出/滑入（560ms 后移除滑出层） */
+  /* Remove the outgoing layer just after the Engineering-length transition. */
   useEffect(() => {
     setView((v) =>
       v.current === activeStep
@@ -383,7 +383,7 @@ export function SelpHydrogelModeling() {
 
   useEffect(() => {
     if (view.prev === null) return;
-    const timer = setTimeout(() => setView((v) => ({ ...v, prev: null })), 560);
+    const timer = setTimeout(() => setView((v) => ({ ...v, prev: null })), 420);
     return () => clearTimeout(timer);
   }, [view]);
 

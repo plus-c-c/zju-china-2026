@@ -76,12 +76,20 @@
   border-radius: 8px;
   opacity: 0.16;
   transition:
-    opacity 450ms ease,
-    background-color 450ms ease;
+    opacity 700ms ease,
+    background-color 450ms ease,
+    filter 700ms ease,
+    transform 700ms ease;
 }
 
 .m3-term--on {
   opacity: 1;
+}
+
+.m3-term--omitted {
+  opacity: 0;
+  filter: blur(2px);
+  transform: translateY(3px);
 }
 
 .m3-term--new {
@@ -177,11 +185,11 @@
 }
 
 .m3-slide__inner--in.m3-slide__inner--fwd {
-  animation: m3-in-fwd 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: m3-in-fwd 380ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .m3-slide__inner--in.m3-slide__inner--back {
-  animation: m3-in-back 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: m3-in-back 380ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .m3-slide__inner--out {
@@ -192,11 +200,11 @@
 }
 
 .m3-slide__inner--out.m3-slide__inner--fwd {
-  animation: m3-out-fwd 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: m3-out-fwd 380ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .m3-slide__inner--out.m3-slide__inner--back {
-  animation: m3-out-back 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: m3-out-back 380ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 @keyframes m3-in-fwd {
@@ -413,6 +421,11 @@
 
 /* ===== 动画降级 ===== */
 @media (prefers-reduced-motion: reduce) {
+  .m3-term {
+    transition: none;
+    animation: none;
+  }
+
   .m3-slide__inner--in,
   .m3-slide__inner--out {
     animation: none;
@@ -421,10 +434,6 @@
   /* 无动画时滑出层直接隐藏，避免旧文本在卡片上闪现 */
   .m3-slide__inner--out {
     display: none;
-  }
-
-  .m3-term {
-    transition: none;
   }
 
   .m3-term--new {

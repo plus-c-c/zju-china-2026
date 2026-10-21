@@ -36,8 +36,8 @@ import "./model3.css";
  * · The core equation is always fully visible: it scales down to fit.
  */
 
-/* 主方程项（与 m3Steps 的 term 对应，steps = 该项在推导中出现的步骤）。
-   ψ_dip 在最终模型中被近似忽略，没有对应的步骤，只作为末项展示。 */
+/* Terms light up when introduced. The dipolar term is removed only when
+   the reader reaches the explicit approximation in the final derivation. */
 const MASTER_TERMS: { id: string; latex: string; steps: number[] }[] = [
   { id: "fiber", latex: "\\psi_{\\mathrm{fiber}}", steps: [2] },
   { id: "orient", latex: "\\psi_{\\mathrm{orient}}", steps: [3, 4] },
@@ -46,7 +46,7 @@ const MASTER_TERMS: { id: string; latex: string; steps: number[] }[] = [
   { id: "fluid", latex: "\\psi_{\\mathrm{fluid}}", steps: [7] },
   { id: "coupling", latex: "\\psi_{\\mathrm{coupling}}", steps: [7] },
   { id: "crosslink", latex: "\\psi_{\\mathrm{crosslink}}", steps: [8] },
-  { id: "dip", latex: "\\psi_{\\mathrm{dip}}", steps: [] },
+  { id: "dip", latex: "\\psi_{\\mathrm{dip}}", steps: [3] },
 ];
 
 function Parts({ parts }: { parts: M3Part[] }) {
@@ -84,7 +84,9 @@ function FigureBlock({ block }: { block: M3Block }) {
         style={block.width ? { maxWidth: block.width } : undefined}
       />
       {block.caption ? (
-        <FigureCaption className="figure-caption">{block.caption}</FigureCaption>
+        <FigureCaption className="figure-caption">
+          {block.caption}
+        </FigureCaption>
       ) : null}
     </figure>
   );
@@ -129,7 +131,7 @@ function Blocks({ blocks }: { blocks: M3Block[] }) {
       nodes.push(<FigureBlock key={index} block={block} />);
     } else {
       nodes.push(
-        <p key={index}>
+        <p key={index} data-model-milestone={block.milestone}>
           <Parts parts={block.parts ?? []} />
         </p>,
       );
@@ -193,6 +195,7 @@ function SlideInner({
 
 export function Model3() {
   const [activeStep, setActiveStep] = useState(1);
+  const [dipOmitted, setDipOmitted] = useState(false);
   /* 幻灯片视图：current = 当前步，prev = 正在滑出的上一步，dir = 切换方向 */
   const [view, setView] = useState<{
     current: number;
@@ -221,7 +224,7 @@ export function Model3() {
     stepRef.current = activeStep;
   }, [activeStep]);
 
-  /* 步骤变化 → 触发滑出/滑入（560ms 后移除滑出层） */
+  /* Remove the outgoing layer just after the Engineering-length transition. */
   useEffect(() => {
     setView((v) =>
       v.current === activeStep
@@ -236,10 +239,7 @@ export function Model3() {
 
   useEffect(() => {
     if (view.prev === null) return;
-    const timer = setTimeout(
-      () => setView((v) => ({ ...v, prev: null })),
-      560,
-    );
+    const timer = setTimeout(() => setView((v) => ({ ...v, prev: null })), 420);
     return () => clearTimeout(timer);
   }, [view]);
 
@@ -251,6 +251,38 @@ export function Model3() {
     if (!el) return;
     el.scrollTop = entry === "bottom" ? el.scrollHeight : 0;
   }, [currentNum, entry]);
+
+  useLayoutEffect(() => {
+    const panel = contentRef.current;
+    if (!panel || currentNum !== 9) {
+      setDipOmitted(false);
+      return;
+    }
+    const marker = panel.querySelector<HTMLElement>(
+      '[data-model-milestone="neglect-dipolar"]',
+    );
+    if (!marker) return;
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      setDipOmitted(
+        marker.getBoundingClientRect().top <=
+          panel.getBoundingClientRect().top + panel.clientHeight * 0.7,
+      );
+    };
+    const schedule = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+    const observer = new ResizeObserver(schedule);
+    observer.observe(panel);
+    panel.addEventListener("scroll", schedule, { passive: true });
+    update();
+    return () => {
+      cancelAnimationFrame(frame);
+      observer.disconnect();
+      panel.removeEventListener("scroll", schedule);
+    };
+  }, [currentNum]);
 
   /* 跳转到某一步：把页面滚到跑道中对应的进度位置（同 engineering） */
   const scrollToStep = useCallback(
@@ -270,7 +302,12 @@ export function Model3() {
   /* 左右方向键与滚轮等效：切换上一步 / 下一步 */
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.defaultPrevented || event.metaKey || event.ctrlKey || event.altKey)
+      if (
+        event.defaultPrevented ||
+        event.metaKey ||
+        event.ctrlKey ||
+        event.altKey
+      )
         return;
       const forward = event.key === "ArrowRight" || event.key === "ArrowDown";
       const backward = event.key === "ArrowLeft" || event.key === "ArrowUp";
@@ -346,14 +383,19 @@ export function Model3() {
               </span>
               {MASTER_TERMS.map((term, index) => {
                 const on =
-                  term.steps.length > 0 && activeStep >= Math.min(...term.steps);
+                  term.steps.length > 0 &&
+                  activeStep >= Math.min(...term.steps);
                 const fresh = term.steps.includes(activeStep);
+                const omitted =
+                  term.id === "dip" && activeStep === 9 && dipOmitted;
                 return (
                   <span
                     key={term.id}
+                    data-term={term.id}
+                    aria-hidden={omitted || undefined}
                     className={`m3-term${on ? " m3-term--on" : ""}${
                       fresh ? " m3-term--new" : ""
-                    }`}
+                    }${omitted ? " m3-term--omitted" : ""}`}
                   >
                     {index > 0 && <span className="m3-term__op">+</span>}
                     <MathFormula>{term.latex}</MathFormula>

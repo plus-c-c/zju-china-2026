@@ -4,6 +4,22 @@ const ANCHOR_OFFSET = 130;
 
 let activeJump: (() => void) | null = null;
 
+export function cancelSectionScroll() {
+  activeJump?.();
+}
+
+/** Account for both pinned navigation rows, including a revealed site header. */
+export function getSectionScrollOffset() {
+  const primary = document.querySelector<HTMLElement>(".ihp-page-nav");
+  const secondary = document.querySelector<HTMLElement>(
+    ".ihp-section:not(.ihp-section-ghost) > :is(.eng-subnav, .ihp-nest-tabs)",
+  );
+  const nav = secondary ?? primary;
+  return nav
+    ? (parseFloat(getComputedStyle(nav).top) || 0) + nav.offsetHeight + 16
+    : ANCHOR_OFFSET;
+}
+
 /**
  * Bring an in-page heading just below the sticky header.
  *
@@ -18,7 +34,7 @@ let activeJump: (() => void) | null = null;
  * the target is reached exactly, without a second scroll. The animation stops
  * as soon as the reader scrolls by hand.
  */
-export function scrollToSection(id: string, offset = ANCHOR_OFFSET) {
+export function scrollToSection(id: string, offset?: number) {
   const target = document.getElementById(id);
   if (!target) return;
 
@@ -28,7 +44,9 @@ export function scrollToSection(id: string, offset = ANCHOR_OFFSET) {
   const startY = window.scrollY;
   const startTime = performance.now();
   const startTarget =
-    target.getBoundingClientRect().top + startY - offset;
+    target.getBoundingClientRect().top +
+    startY -
+    (offset ?? getSectionScrollOffset());
   const distance = Math.abs(startTarget - startY);
   const duration = Math.min(850, Math.max(340, distance * 0.35));
 
@@ -73,7 +91,10 @@ export function scrollToSection(id: string, offset = ANCHOR_OFFSET) {
       stop();
       return;
     }
-    const dest = el.getBoundingClientRect().top + window.scrollY - offset;
+    const dest =
+      el.getBoundingClientRect().top +
+      window.scrollY -
+      (offset ?? getSectionScrollOffset());
     const progress = Math.min(1, (now - startTime) / duration);
     const eased = 1 - Math.pow(1 - progress, 3);
     const y = Math.round(startY + (dest - startY) * eased);
