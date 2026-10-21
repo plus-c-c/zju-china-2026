@@ -164,6 +164,13 @@ function Blocks({
             </MathFormula>
           );
         }
+        if (block.t === "figure-row") {
+          return (
+            <div key={index} className="m1-figure-row">
+              <Blocks blocks={block.blocks ?? []} citationize={citationize} />
+            </div>
+          );
+        }
         if (block.t === "figure") {
           return (
             <figure key={index} className="m1-figure">

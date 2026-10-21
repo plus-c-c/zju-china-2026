@@ -332,6 +332,43 @@
   border-radius: 10px;
 }
 
+/* Compare the experimental curves and moduli side by side, with captions below. */
+.m1-figure-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: auto auto;
+  grid-auto-flow: column;
+  gap: 0.75rem 1.5rem;
+  margin: 24px 0;
+  align-items: start;
+}
+
+.m1-figure-row .m1-figure {
+  margin: 0;
+  align-self: end;
+}
+
+.m1-figure-row .m1-figure img {
+  width: 100%;
+  max-height: none;
+}
+
+.m1-figure-row .m1-figure-caption {
+  margin: 0;
+}
+
+@media (max-width: 600px) {
+  .m1-figure-row {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: none;
+    grid-auto-flow: row;
+  }
+
+  .m1-figure-row .m1-figure-caption:not(:last-child) {
+    margin-bottom: 1rem;
+  }
+}
+
 /* Keep multi-panel network results readable within the scrolling content. */
 .m1-slide__content--readable-figures .m1-figure img {
   width: 100%;

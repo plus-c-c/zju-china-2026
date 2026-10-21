@@ -11,7 +11,8 @@ export interface M1Part {
 }
 
 export interface M1Block {
-  t: "h3" | "h4" | "p" | "display" | "figure" | "table" | "video";
+  t: "h3" | "h4" | "p" | "display" | "figure" | "figure-row" | "table" | "video";
+  blocks?: M1Block[];
   v?: string;
   parts?: M1Part[];
   src?: string;
@@ -651,32 +652,37 @@ export const m1Steps: M1Step[] = [
         ],
       },
       {
-        t: "figure",
-        src: "https://static.igem.wiki/teams/6102/wiki/images/model/selp/6.avif",
-        alt: "Experimental stress–strain curves",
-        width: 680,
-      },
-      {
-        t: "p",
-        parts: [
+        t: "figure-row",
+        blocks: [
           {
-            t: "em",
-            v: "Figure 7 | Experimentally measured stress–strain curves. ",
+            t: "figure",
+            src: "https://static.igem.wiki/teams/6102/wiki/images/model/selp/6.avif",
+            alt: "Experimental stress–strain curves",
+            width: 680,
           },
-        ],
-      },
-      {
-        t: "figure",
-        src: "https://static.igem.wiki/teams/6102/wiki/images/model/selp/7.avif",
-        alt: "Experimental Young’s moduli",
-        width: 680,
-      },
-      {
-        t: "p",
-        parts: [
           {
-            t: "em",
-            v: "Figure 8 | Experimentally measured compressive moduli.  ",
+            t: "p",
+            parts: [
+              {
+                t: "em",
+                v: "Figure 7 | Experimentally measured stress–strain curves. ",
+              },
+            ],
+          },
+          {
+            t: "figure",
+            src: "https://static.igem.wiki/teams/6102/wiki/images/model/selp/7.avif",
+            alt: "Experimental Young’s moduli",
+            width: 680,
+          },
+          {
+            t: "p",
+            parts: [
+              {
+                t: "em",
+                v: "Figure 8 | Experimentally measured compressive moduli.  ",
+              },
+            ],
           },
         ],
       },
