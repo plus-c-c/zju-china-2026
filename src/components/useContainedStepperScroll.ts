@@ -1,6 +1,7 @@
 import { useEffect, useRef, type RefObject } from "react";
 import { STEPPER_WHEEL_GAIN } from "./stepperWheel";
 import { StepperWheelGesture } from "./stepperGesture";
+import { registerScrollDeckRegion } from "./scrollDeckRegions";
 
 interface StepperScrollOptions {
   stageRef: RefObject<HTMLElement | null>;
@@ -24,6 +25,17 @@ export function useContainedStepperScroll(options: StepperScrollOptions) {
       live.current.stageRef.current?.closest<HTMLElement>(".eng-runway");
     if (!runway) return;
     const global = Boolean(live.current.runwayRef);
+    const unregisterHint = registerScrollDeckRegion({
+      runway,
+      getPin: () =>
+        global
+          ? live.current.stageRef.current
+          : runway.querySelector<HTMLElement>(".eng-pin"),
+      getCard: () =>
+        live.current.cardRef?.current ??
+        live.current.panelRef.current?.closest<HTMLElement>(".dbtl-panel") ??
+        live.current.panelRef.current,
+    });
     const root = global ? window : runway;
     const wheel = new StepperWheelGesture();
     const touch = new StepperWheelGesture();
@@ -179,6 +191,7 @@ export function useContainedStepperScroll(options: StepperScrollOptions) {
     root.addEventListener("touchend", onTouchEnd, { passive: true });
     root.addEventListener("touchcancel", onTouchEnd, { passive: true });
     return () => {
+      unregisterHint();
       root.removeEventListener("wheel", onWheel as EventListener);
       root.removeEventListener("keydown", onKeyDown as EventListener, global);
       root.removeEventListener("touchstart", onTouchStart as EventListener);

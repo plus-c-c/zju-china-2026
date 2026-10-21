@@ -1,0 +1,135 @@
+.scroll-deck-hint {
+  position: fixed;
+  right: 24px;
+  bottom: 140px;
+  z-index: 1060;
+  width: min(336px, calc(100vw - 32px));
+  padding: 20px;
+  border: 1px solid #d2def7;
+  border-radius: 20px;
+  background: #fff;
+  color: #263552;
+  box-shadow: 0 12px 36px rgb(34 60 129 / 15%);
+  font-family: "Outfit", sans-serif;
+  animation: scroll-deck-hint-enter 360ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.scroll-deck-hint__title {
+  margin: 0 24px 18px 0;
+  color: #223c81;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.scroll-deck-hint__close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: grid;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  padding: 7px;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: #7185ac;
+  cursor: pointer;
+}
+
+.scroll-deck-hint svg {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.scroll-deck-hint__close svg {
+  width: 100%;
+  height: 100%;
+}
+
+.scroll-deck-hint__row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.scroll-deck-hint__row > svg {
+  flex: 0 0 34px;
+  width: 34px;
+  height: 34px;
+  padding: 2px;
+  border-radius: 8px;
+  background: #eef4ff;
+  color: #3659cd;
+}
+
+.scroll-deck-hint__row p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.scroll-deck-hint__row strong {
+  display: block;
+  color: #223c81;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.scroll-deck-hint__confirm {
+  display: block;
+  margin: 18px 0 0 auto;
+  padding: 6px 18px;
+  border: 0;
+  border-radius: 20px;
+  background: #3659cd;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.5;
+  cursor: pointer;
+}
+
+.scroll-deck-hint__close:hover {
+  background: #eef4ff;
+  color: #223c81;
+}
+
+.scroll-deck-hint__confirm:hover {
+  background: #2847b1;
+}
+
+.scroll-deck-hint button:focus-visible {
+  outline: 3px solid #8ab6ff;
+  outline-offset: 3px;
+}
+
+@keyframes scroll-deck-hint-enter {
+  from {
+    opacity: 0;
+    transform: translateX(calc(100% + 24px));
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 575.98px) {
+  .scroll-deck-hint {
+    right: 16px;
+    bottom: 104px;
+    padding: 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-deck-hint {
+    animation: none;
+  }
+}
