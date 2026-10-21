@@ -99,6 +99,49 @@ export function ExtendCard({
   );
 }
 
+const JUDGING_CRITERIA = [
+  {
+    title:
+      "Has the team discovered their first potential customers and identified any unmet needs not yet covered by other existing solutions?",
+    paragraphs: [
+      "Our business model is B2B. Our first potential customers are medical device companies, research hospitals, and regenerative medicine translational institutions in China. Our initial end users are at least 240,000 new patients with knee cartilage injuries each year in China. Hospitals and companies are the primary purchasers and partners, while patients are the ultimate beneficiaries. We have established preliminary contacts with Weixinkang, Lanyiwei, Yuanyi Bio, Shanghai Lingjiu, and other companies.",
+      "Existing cartilage hydrogels generally use fixed formulations, making it difficult to adjust mechanical properties, degradation rates, and biological functions for different defects. Complex formulations may also complicate quality control and scalable manufacturing. Through a programmable SELP scaffold and standardized functional interfaces, NEST aims to provide a cartilage-repair platform that can be customized, manufactured consistently, and continuously expanded.",
+    ],
+  },
+  {
+    title:
+      "Has the team shown that their solution is possible, scalable and inventive?",
+    paragraphs: [
+      "Our current results demonstrate the feasibility of our approach. NEST's minimum viable product is the SELP–SnoopTag2 hydrogel. We have completed preliminary SELP production and lyophilization in the laboratory and evaluated its mechanical properties. SnoopTag2 serves as a standardized interface for attaching functional peptides, enabling different modules to be assembled onto the same platform. Experiments also demonstrated the introduction of different functional peptides through this interface. In addition, our CCK-8 assay indicated that the product was harmless to cells.",
+      "NEST's innovation lies in combining sequence-programmable SELP, whose composition can be tuned to match different tissues, with a modular protein-conjugation interface. This offers potential applications across tissues, including ocular surface repair and breast reconstruction, as well as across injury sites and etiologies within the same tissue, providing substantial extensibility and innovation.",
+    ],
+  },
+  {
+    title:
+      "Has the team presented logical product development plans with realistic milestones, timelines, resources and risks?",
+    paragraphs: [
+      "We have developed a staged product-development plan with milestones from 2026 to 2042. We will first select a lead candidate, optimize the material and manufacturing process, complete nonclinical and aseptic-production validation, and then proceed to clinical studies, regulatory review, and market expansion. Each stage has defined decision criteria and resource requirements. The project will advance only when safety, performance, manufacturing, and funding meet the predetermined requirements.",
+      "We have also prepared a timeline, preliminary cost budget, ten-year cash-flow analysis, and phased fundraising plan. Major risks relating to technical safety, manufacturing scale-up, sterile storage, regulatory registration, clinical adoption, intellectual property, and funding have been systematically assessed. Required resources are detailed in the cost-analysis tables.",
+    ],
+  },
+  {
+    title:
+      "Has the team outlined the skills, capabilities, and stakeholders required to be credible in developing their solution further?",
+    paragraphs: [
+      "We have identified the skills, capabilities, and stakeholders needed for the next development stage. NEST consists of 16 members from different disciplines and has early-stage capabilities in experimental validation and commercial research. We recognize gaps in intellectual property, medical-device registration, financing, and marketing, and plan to address them through training and collaboration with patent agencies, investment advisors, and industry partners.",
+      "We have also identified and contacted external stakeholders to support the further development of NEST. A detailed list is available on our Stakeholder Engagement page.",
+    ],
+  },
+  {
+    title:
+      "Has the team considered the positive and negative long-term impacts of their fully developed solution?",
+    paragraphs: [
+      "We have considered both positive and negative long-term impacts. NEST's long-term goal is to facilitate cartilage repair, alleviate pain and restricted mobility, and reduce the medical, economic, and quality-of-life burdens of cartilage disorders. Its modular design could also help researchers connect new functional peptides, investigate repair mechanisms, and develop additional indications, supporting continued innovation in cartilage regeneration and potentially creating wider value in regenerative medicine.",
+      "At the same time, NEST has not yet completed clinical trials, and additional studies and long-term safety assessments are required. Public understanding of synthetic biology, engineered-microbe production, and protein hydrogels may also affect trust and access. We plan to narrow the gap between technical principles and public understanding by sharing research data, communicating science accessibly, and strengthening physician–patient communication.",
+    ],
+  },
+];
+
 const CONTENT: ContentBlock[] = [
   {
     "type": "heading",
@@ -1959,8 +2002,8 @@ function renderBlock(block: ContentBlock, key: string): ReactNode {
           </table>
         </div>
       );
-    case "card":
-      return (
+    case "card": {
+      const card = (
         <ExtendCard
           title={block.title}
           key={key}
@@ -1971,6 +2014,18 @@ function renderBlock(block: ContentBlock, key: string): ReactNode {
           )}
         </ExtendCard>
       );
+      if (block.title !== "Total Addressable Market (TAM)") {
+        return card;
+      }
+      return [
+        <div className="entre-card entre-download-card" key={`${key}-download`}>
+          <div className="entre-card-header">
+            <span className="entre-card-title">Download Our Cost Sheet</span>
+          </div>
+        </div>,
+        card,
+      ];
+    }
   }
 }
 
@@ -1997,6 +2052,22 @@ export function Entrepreneurship() {
               &mdash; Nicholas A. Peppas, Chief Scientist of Appian Labs
             </footer>
           </blockquote>
+          <h2 id="judging-criteria">Judging Criteria</h2>
+          <p>
+            For your convenience, we have summarised how we have addressed the
+            iGEM entrepreneurship criteria in the following section.
+          </p>
+          <p>
+            For your convenience, the following section summarizes how we have
+            addressed the iGEM entrepreneurship judging criteria.
+          </p>
+          {JUDGING_CRITERIA.map((criterion) => (
+            <ExtendCard title={criterion.title} key={criterion.title}>
+              {criterion.paragraphs.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+            </ExtendCard>
+          ))}
           {articleBlocks.map((block, index) =>
             renderBlock(block, `block-${index}`),
           )}

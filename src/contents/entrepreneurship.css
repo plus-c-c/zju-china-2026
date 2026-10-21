@@ -64,6 +64,14 @@
   background: var(--entre-header-hover);
 }
 
+.entre-download-card > .entre-card-header {
+  cursor: default;
+}
+
+.entre-download-card > .entre-card-header:hover {
+  background: var(--entre-header);
+}
+
 .entre-card-header:focus-visible {
   outline: 3px solid rgb(54 93 201 / 42%);
   outline-offset: -3px;
