@@ -18,7 +18,7 @@ type HeadingBlock = {
 type ListBlock = {
   type: "list";
   source_index: number;
-  items: string[];
+  items: Array<string | { formula: string; text: string }>;
 };
 type FormulaBlock = { type: "formula"; source_index: number; text: string };
 type FigureBlock = {
@@ -779,11 +779,26 @@ const CONTENT: ContentBlock[] = [
         "type": "list",
         "source_index": 146,
         "items": [
-          "k: a specific manufacturing operation;",
-          "F_labor,k: labor-hours required per hour of operation k;",
-          "c_labor,k: the fully loaded hourly labor cost for operation k;",
-          "h_operation,k: annual operating hours for operation k;",
-          "C_labor: annual direct labor cost."
+          {
+            "formula": "k",
+            "text": "a specific manufacturing operation;"
+          },
+          {
+            "formula": "F_{\\mathrm{labor},k}",
+            "text": "labor-hours required per hour of operation k;"
+          },
+          {
+            "formula": "c_{\\mathrm{labor},k}",
+            "text": "the fully loaded hourly labor cost for operation k;"
+          },
+          {
+            "formula": "h_{\\mathrm{operation},k}",
+            "text": "annual operating hours for operation k;"
+          },
+          {
+            "formula": "C_{\\mathrm{labor}}",
+            "text": "annual direct labor cost."
+          }
         ]
       },
       {
@@ -1928,7 +1943,15 @@ function renderBlock(block: ContentBlock, key: string): ReactNode {
       return (
         <ul key={key}>
           {block.items.map((item, index) => (
-            <li key={`${key}-${index}`}>{item}</li>
+            <li key={`${key}-${index}`}>
+              {typeof item === "string" ? (
+                item
+              ) : (
+                <>
+                  <MathFormula>{item.formula}</MathFormula>: {item.text}
+                </>
+              )}
+            </li>
           ))}
         </ul>
       );
