@@ -253,6 +253,11 @@
   white-space: pre-line;
 }
 
+.entrepreneurship-article table > tbody > .entre-table-row--highlight > td {
+  --bs-table-bg: #FFD601;
+  background-color: #FFD601;
+}
+
 @media (max-width: 767.98px) {
   .entre-card-header {
     padding: 0.82rem 1rem;

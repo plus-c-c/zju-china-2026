@@ -34,6 +34,7 @@ type TableBlock = {
   source_index: number;
   caption: string;
   rows: string[][];
+  highlightRows?: string[];
 };
 type CardBlock = {
   type: "card";
@@ -202,6 +203,7 @@ const CONTENT: ContentBlock[] = [
         "type": "table",
         "source_index": 49,
         "caption": "Table 1 | Weighted comparison of cartilage-repair market size, potential, and accessibility across East Asia, Europe, high-income Asia-Pacific, and other regions.",
+        "highlightRows": ["East Asia"],
         "rows": [
           [
             "Market region",
@@ -1930,7 +1932,14 @@ function renderBlock(block: ContentBlock, key: string): ReactNode {
             </thead>
             <tbody>
               {block.rows.slice(1).map((row, rowIndex) => (
-                <tr key={`${key}-row-${rowIndex}`}>
+                <tr
+                  className={
+                    block.highlightRows?.includes(row[0])
+                      ? "entre-table-row--highlight"
+                      : undefined
+                  }
+                  key={`${key}-row-${rowIndex}`}
+                >
                   {row.map((cell, cellIndex) => (
                     <td key={`${key}-cell-${rowIndex}-${cellIndex}`}>{cell}</td>
                   ))}
