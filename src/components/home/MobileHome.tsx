@@ -47,11 +47,11 @@ export function MobileHome() {
           <OpeningStatement />
           <HomeScrollCue />
         </section>
-        <section aria-label="Global burden">
+        <section className="mobile-home__burden" aria-label="Global burden">
           <GlobalBurdenScene />
           <HomeScrollCue />
         </section>
-        <section aria-label="Pain and recovery">
+        <section className="mobile-home__impact" aria-label="Pain and recovery">
           <ImpactScene play />
           <HomeScrollCue />
         </section>
