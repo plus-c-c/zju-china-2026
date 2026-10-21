@@ -12,6 +12,11 @@ const CIF = "https://static.igem.wiki/teams/6102/wiki/images/cif/";
 const PROTOCOL = "https://static.igem.wiki/teams/6102/wiki/protocol/";
 const APP_SOURCE = "https://github.com/plus-c-c/igem-2026-app";
 const HARDWARE_SOURCE = "https://github.com/ccc8701/ZJU-China-2026-hardware";
+const STAKEBRIDGE = `${import.meta.env.BASE_URL}stakebridge/index.html`;
+const STAKEBRIDGE_SOURCE =
+  "https://gitlab.igem.org/2026/software/zju-china/nest/-/tree/main/stakebridge";
+const HP_REPORT = "https://static.igem.wiki/teams/6102/wiki/hp-new/res.pdf";
+const SYNEDU = "https://syneduglobal.top";
 const basicCount = collection.parts.filter(
   (part) => part.kind === "basic",
 ).length;
@@ -90,19 +95,42 @@ export function Contribution() {
     <div className="row mt-4">
       <div className="col">
         <p>
-          NEST provides biological parts and methods for building protein
-          hydrogels with different scaffold lengths and interchangeable
-          functional modules. Future iGEM teams can reuse the constructs and
-          ligation interface, follow our preparation protocols, and adapt the
-          modeling, software, hardware, and Human Practices resources to their
-          own projects.
+          Through NEST, we share the biological components, experimental
+          methods, design tools, and Human Practices resources developed across
+          our project. Future iGEM teams can build on these contributions to
+          develop protein biomaterials, investigate real needs, involve
+          stakeholders in engineering decisions, and share knowledge with wider
+          communities.
+        </p>
+        <p>
+          Our experimental contributions include SELP scaffolds, interchangeable
+          functional modules, a common SnoopLigase2 ligation interface, and
+          protocols for protein recovery and hydrogel preparation. We also share
+          modeling workflows that connect protein sequence to network mechanics,
+          alongside an open-source application for clinicians and hardware
+          designs for material preparation and administration. These resources
+          give teams documented starting points for building, testing, and
+          adapting their own material systems.
+        </p>
+        <p>
+          Our Human Practices contributions include the NEST framework and SEED
+          cycle, mixed-methods research and engagement guidance, the StakeBridge
+          stakeholder library, implementation and sustainability case studies,
+          medical-anthropology and cartilage-health research, and the
+          collaboratively developed SynEdu Global education platform. Together,
+          they offer approaches and resources for understanding patient
+          experience, connecting evidence to design, considering barriers to
+          use, and supporting education beyond a single project. The sections
+          below explain what each contribution offers and how to access and
+          adapt it.
         </p>
         <figure className="figure d-block my-4 text-center">
           <ContributionOverview />
           <FigureCaption className="figure-caption">
             Figure 1 | Resources shared with the iGEM community. The diagram
             links our biological parts and protocols, modeling workflow, app and
-            hardware, and NEST/SEED Human Practices toolbox.
+            hardware, and Human Practices toolkit, including the stakeholder
+            library and NEST/SEED methods.
             <FigureSourceCitation
               source={1}
               href="#contribution-figure-sources"
@@ -176,36 +204,67 @@ export function Contribution() {
               <tr>
                 <th scope="row">Software and Hardware</th>
                 <td>
-                  Android app source code, mechanical drawings, PCB projects,
-                  and bills of materials
+                  Application source code, preparation and administration
+                  hardware drawings, PCB projects, and bills of materials
                 </td>
                 <td>
-                  Adapt formulation guidance and dispensing hardware to new
-                  material combinations
+                  Adapt clinician guidance, material preparation, and
+                  administration modules to new material systems
                 </td>
                 <td>
-                  <a href={APP_SOURCE}>App Code</a> ·{" "}
+                  <a href={APP_SOURCE}>Application Code</a> ·{" "}
                   <a href={HARDWARE_SOURCE}>Hardware Files</a> ·{" "}
                   <Link to="/hardware">Hardware Guide</Link>
                 </td>
               </tr>
               <tr>
-                <th scope="row">Human Practices</th>
+                <th scope="row">Human Practices Methods</th>
                 <td>
-                  NEST framework, SEED cycle, mixed-methods guidance, and
-                  examples of stakeholder feedback applied to project design
+                  NEST framework, SEED cycle, mixed-methods research guidance,
+                  and design and implementation case studies
                 </td>
                 <td>
-                  Set design requirements from stakeholder findings and document
-                  the resulting changes
+                  Investigate needs, translate findings into requirements, and
+                  plan stakeholder-informed design and implementation
                 </td>
                 <td>
-                  <Link to="/human-practices#ihp-toolbox-nest">
-                    iHP Toolbox
-                  </Link>{" "}
-                  ·{" "}
-                  <Link to="/human-practices#ihp-nest-codesign">
-                    Worked Examples
+                  <Link to="/human-practices#toolbox">iHP Toolkit</Link> ·{" "}
+                  <Link to="/human-practices#nest">Worked Examples</Link>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Stakeholder Engagement</th>
+                <td>
+                  Stakeholder map and interview records, StakeBridge library,
+                  interview workspace, handbook, and contribution workflow
+                </td>
+                <td>
+                  Find relevant stakeholders, reuse interview approaches, trace
+                  feedback to design decisions, and contribute new records
+                </td>
+                <td>
+                  <a href={`${STAKEBRIDGE}#registry`}>Stakeholder Library</a> ·{" "}
+                  <Link to="/human-practices#ihp-toolbox-stakebridge">
+                    StakeBridge Guide
+                  </Link>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Research, Education and Lasting Impact</th>
+                <td>
+                  Cartilage-health report, medical-anthropology reflections,
+                  SynEdu Global, education activities, and sustainability
+                  planning
+                </td>
+                <td>
+                  Learn from patient experiences, adapt public education,
+                  connect with educational partners, and plan lasting impact
+                </td>
+                <td>
+                  <a href={HP_REPORT}>Research Report</a> ·{" "}
+                  <a href={SYNEDU}>SynEdu Global</a> ·{" "}
+                  <Link to="/human-practices#ihp-nest-trust">
+                    Lasting Impact
                   </Link>
                 </td>
               </tr>
@@ -483,21 +542,33 @@ export function Contribution() {
           className="mt-5 mb-3"
           data-toc-depth="1"
         >
-          4 Software and Hardware for Material Preparation
+          4 Software and Hardware for Material Preparation and Clinician Use
         </h2>
         <p>
-          We share <a href={APP_SOURCE}>Android application source code</a> and{" "}
+          We share <a href={APP_SOURCE}>application source code</a> and{" "}
           <a href={HARDWARE_SOURCE}>
             mechanical drawings and PCB project files
           </a>{" "}
-          for material selection and preparation. The app supports formulation
-          selection, QR-code scanning, and step-by-step guidance. The hardware
-          provides independently driven dispensing channels and a mixing system.
+          for material preparation and clinician workflows. The application
+          supports physicians, nurses, and clinical operators in formulation
+          selection and ordering, QR-code scanning, and viewing
+          formulation-specific operating instructions. Its step-by-step workflow
+          guides reagent loading and preparation through premixing.
+        </p>
+        <p>
+          The hardware includes both preparation and administration modules. The
+          preparation unit provides independently driven dispensing channels,
+          mixing, and temperature control. Administration components include an
+          injection assembly, arthroscopic imaging and blue-light
+          photocrosslinking, and a magnetic leg band for applying an external
+          field. These designs give future teams references for material
+          handling, delivery, visualization, and photocrosslinking in workflows
+          designed for clinician use.
         </p>
         <figure className="figure d-block my-4 text-center">
           <img
             src={`${CIF}12.avif`}
-            alt="The reagent-preparation prototype and the application interface."
+            alt="The preparation hardware prototype and the clinician application interface."
             className="figure-img img-fluid rounded"
             style={{ width: "100%", clipPath: "inset(1% round 6px)" }}
             loading="lazy"
@@ -514,9 +585,10 @@ export function Contribution() {
           </FigureCaption>
         </figure>
         <p>
-          Teams can change the app's material catalog and instructions for new
-          scaffold and module combinations, or adapt the device design to their
-          own preparation tasks. The{" "}
+          Teams can customize the application&rsquo;s material catalog and
+          clinician guidance for new scaffold and module combinations, adapt the
+          preparation hardware to their formulations, and modify administration
+          components for their own delivery and handling studies. The{" "}
           <Link to="/software">Software documentation</Link> and{" "}
           <Link to="/hardware">Hardware guide</Link> provide the operating
           workflows, device descriptions, and bills of materials.
@@ -526,19 +598,32 @@ export function Contribution() {
           className="mt-5 mb-3"
           data-toc-depth="1"
         >
-          5 Human Practices: NEST and SEED
+          5 Human Practices: Methods, Shared Tools and Community Resources
         </h2>
         <p>
-          We contribute an{" "}
-          <Link to="/human-practices#ihp-toolbox-nest">
-            Integrated Human Practices toolbox
-          </Link>{" "}
-          for turning stakeholder findings into engineering decisions. NEST
-          organizes the work around needs, co-design, implementation, and
-          long-term impact. SEED uses a Product Requirements Document (PRD) to
-          translate stakeholder findings into requirements for the DBTL cycle.
-          Teams then discuss the design and results with stakeholders to guide
-          the next iteration.
+          Our Human Practices contributions cover how teams investigate needs,
+          involve stakeholders, refine designs, prepare for implementation, and
+          share their findings. We bring together methodological tools, a
+          stakeholder library, practical case studies, research, and education
+          resources that teams can adapt to their own questions and communities.
+        </p>
+        <h3
+          id="contribution-nest-seed"
+          className="mt-4 mb-3"
+          data-toc-depth="2"
+        >
+          5.1 NEST and SEED: Connecting Needs to Engineering
+        </h3>
+        <p>
+          The <Link to="/human-practices#ihp-toolbox-nest">NEST framework</Link>{" "}
+          organizes Human Practices around Need-led Discovery, Evidence-based
+          Co-design, Situated Implementation, and Trust and Lasting Impact.
+          Within it, the{" "}
+          <Link to="/human-practices#ihp-toolbox-seed">SEED cycle</Link>{" "}
+          connects a question to exploration, engineering, and renewed dialogue.
+          Stakeholder findings and literature inform a Product Requirements
+          Document (PRD), which guides the Design–Build–Test–Learn (DBTL) cycle;
+          the results then return to stakeholders for feedback.
         </p>
         <figure className="figure d-block my-4 text-center">
           <img
@@ -561,14 +646,175 @@ export function Contribution() {
           </FigureCaption>
         </figure>
         <p>
-          Our{" "}
-          <Link to="/human-practices#ihp-nest-codesign">
-            documented design cycles
+          Our <Link to="/human-practices#ihp-nest-codesign">design cycles</Link>{" "}
+          document this process for SELP scaffolds, the ligation system, and
+          functional modules. For example, clinicians&rsquo; concerns about
+          different joint loads guided scaffold-length choices and mechanical
+          modeling. Teams can use these cases to formulate requirements,
+          document the reasoning behind a change, and plan the next stakeholder
+          discussion.
+        </p>
+        <h3
+          id="contribution-hp-research-methods"
+          className="mt-4 mb-3"
+          data-toc-depth="2"
+        >
+          5.2 Mixed Methods and Stakeholder Engagement
+        </h3>
+        <p>
+          We document a{" "}
+          <Link to="/human-practices#ihp-toolbox-mixed">
+            mixed-methods approach
           </Link>{" "}
-          show how advice from clinicians about joint loads guided our choices
-          of SELP repeat number and mechanical modeling. Teams can use these
-          cases to plan stakeholder engagement, write design requirements, and
-          record how feedback changes their project.
+          that combines questionnaires, interviews, and literature research.
+          Surveys help identify patterns in reported experiences; interviews
+          explain the circumstances behind them. Our{" "}
+          <Link to="/human-practices#ihp-nest-field-research">
+            field-research analysis
+          </Link>{" "}
+          shows how we brought these findings into design requirements and
+          records the limits of the survey sample. Teams can adapt this process
+          when deciding what evidence to collect and how to interpret it.
+        </p>
+        <p>
+          The{" "}
+          <Link to="/human-practices#ihp-stakeholders-map">
+            stakeholder map
+          </Link>{" "}
+          follows the project from patients and research through treatment,
+          manufacturing, market access, and rehabilitation. The corresponding{" "}
+          <Link to="/human-practices#ihp-engagement-timeline">
+            interview records
+          </Link>{" "}
+          connect the reason for each conversation to findings and their
+          influence on the project. Together, they give teams examples for
+          identifying relevant perspectives, scheduling engagement, and
+          integrating evidence across a project&rsquo;s development.
+        </p>
+        <h3
+          id="contribution-stakebridge"
+          className="mt-4 mb-3"
+          data-toc-depth="2"
+        >
+          5.3 StakeBridge: A Shared Stakeholder Library
+        </h3>
+        <p>
+          Inspired by BioBricks and the iGEM parts registry, we developed{" "}
+          <Link to="/human-practices#ihp-toolbox-stakebridge">
+            <strong>StakeBridge</strong>
+          </Link>{" "}
+          as a shared library of stakeholders and engagement experiences.
+          Records bring together roles, project stages, the reason for
+          engagement, interview findings, design decisions, limitations, and
+          supporting sources. Teams can search by stage, role, or field, learn
+          from previous conversations, and contribute their own experiences so
+          that knowledge can accumulate across teams and years.
+        </p>
+        <p>
+          The <a href={`${STAKEBRIDGE}#workspace`}>interview workspace</a> lets
+          teams organize their own stages and interviews, link feedback to
+          decisions, and export Word reports or full backups. The{" "}
+          <a href={`${STAKEBRIDGE}#handbook`}>handbook</a> provides guidance and
+          an interview template, while the{" "}
+          <a href={`${STAKEBRIDGE}#contribute`}>contribution form</a> prepares
+          records for maintainer review. Public contact information and
+          confirmed interview availability are recorded separately. Explore the{" "}
+          <a href={`${STAKEBRIDGE}#registry`}>library</a> or adapt the{" "}
+          <a href={STAKEBRIDGE_SOURCE}>MIT-licensed source code</a>; library
+          records are shared under CC BY 4.0.
+        </p>
+        <h3
+          id="contribution-hp-implementation"
+          className="mt-4 mb-3"
+          data-toc-depth="2"
+        >
+          5.4 Implementation and Sustainable Development
+        </h3>
+        <p>
+          Our{" "}
+          <Link to="/human-practices#ihp-nest-situated">
+            implementation cycles
+          </Link>{" "}
+          document how nurses, manufacturers, and business and access advisers
+          shaped hardware operation, material preparation, storage, costs, and
+          routes to use. The{" "}
+          <Link to="/human-practices#ihp-syringe-questionnaire">
+            syringe evaluation
+          </Link>{" "}
+          provides a concrete example: 24 participants each assessed three
+          configurations, with comparisons of handling, fatigue, operational
+          problems, and satisfaction. Teams can adapt this evaluation structure
+          to compare prototypes with intended users.
+        </p>
+        <p>
+          The <Link to="/entrepreneurship">business plan</Link> extends these
+          considerations to development milestones, financing, market access,
+          and environmental, social, and governance (ESG) responsibilities.
+          Together, the cases and planning documents offer a reference for
+          bringing manufacturing, affordability, and long-term responsibility
+          into project discussions. Teams should adapt the questions and
+          planning process to their own product and setting.
+        </p>
+        <h3
+          id="contribution-hp-social-research"
+          className="mt-4 mb-3"
+          data-toc-depth="2"
+        >
+          5.5 Patient Experience, Anthropology and Health Research
+        </h3>
+        <p>
+          Our{" "}
+          <Link to="/human-practices#ihp-toolbox-anthro">
+            anthropology and philosophy work
+          </Link>{" "}
+          examines how patients&rsquo; experiences, diagnostic thresholds, and
+          social conditions shape the problems that biomedical projects seek to
+          address. We worked with medical anthropologists on a paper about
+          overlooked suffering and organized medical-anthropology lectures and
+          seminars for future doctors. These documented activities offer a case
+          for teams considering the social and ethical dimensions of their
+          projects.
+        </p>
+        <p>
+          We also share a{" "}
+          <a href={HP_REPORT}>cartilage-health research report</a> that brings
+          together findings about neglected pain and proposals for community
+          health education. Its development and the associated outreach are
+          described under{" "}
+          <Link to="/human-practices#ihp-nest-trust">
+            Trust and Lasting Impact
+          </Link>
+          . Teams can use this work as a case study in turning field research
+          into public-facing recommendations and keeping lived experience
+          visible alongside technical measures of success.
+        </p>
+        <h3
+          id="contribution-hp-education"
+          className="mt-4 mb-3"
+          data-toc-depth="2"
+        >
+          5.6 SynEdu Global and Shared Education Resources
+        </h3>
+        <p>
+          Together with Westlake, XJTLU-China, and Jiangnan University, we
+          developed <a href={SYNEDU}>SynEdu Global</a> to connect iGEM teams,
+          educational institutions, and organizations seeking synthetic biology
+          education. Users can share and download activity materials, exchange
+          ideas, and find educational partners. An industry-focused module
+          extends the platform&rsquo;s scope, and the four founding universities
+          signed a five-year cooperation agreement to support continued
+          operation. Future teams can reuse materials, contribute activities,
+          and develop new collaborations through the platform.
+        </p>
+        <p>
+          Our <Link to="/education">Education page</Link> also documents
+          activities for children, older adults, the public, and medical
+          students, including practical activities, cartilage-health education,
+          and{" "}
+          <Link to="/education#gallery">artwork developed with Chen Xi</Link>.
+          These examples give teams ideas for adapting content and formats to
+          different audiences, while the platform provides a place to share the
+          resulting resources and sustain cooperation.
         </p>
         <References level={2}>
           <div className="references-list references-list--paragraphs">
@@ -593,15 +839,31 @@ export function Contribution() {
           <ul className="references-list figure-sources-list">
             <FigureSourceEntry source={1} id="contribution-figure-sources">
               <p>
-                Icons from <a href="https://bioicons.com/">Bioicons</a>:
-                Marcel Tisch, Simon D&uuml;rr, jaiganesh, and Daniel-Marcos
-                (<a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>);
-                DBCLS (<a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>);
-                Servier (<a href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>).
+                Icons from <a href="https://bioicons.com/">Bioicons</a>: Marcel
+                Tisch, Simon D&uuml;rr, jaiganesh, and Daniel-Marcos (
+                <a href="https://creativecommons.org/publicdomain/zero/1.0/">
+                  CC0
+                </a>
+                ); DBCLS (
+                <a href="https://creativecommons.org/licenses/by/4.0/">
+                  CC BY 4.0
+                </a>
+                ); Servier (
+                <a href="https://creativecommons.org/licenses/by/3.0/">
+                  CC BY 3.0
+                </a>
+                ).
               </p>
               <p>
-                Google. <a href="https://github.com/googlefonts/noto-emoji">Noto Emoji</a>.{" "}
-                <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache 2.0</a>.
+                Google.{" "}
+                <a href="https://github.com/googlefonts/noto-emoji">
+                  Noto Emoji
+                </a>
+                .{" "}
+                <a href="https://www.apache.org/licenses/LICENSE-2.0">
+                  Apache 2.0
+                </a>
+                .
               </p>
             </FigureSourceEntry>
           </ul>
