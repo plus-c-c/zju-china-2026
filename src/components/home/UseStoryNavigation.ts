@@ -1,13 +1,7 @@
 import { useCallback, useContext, useEffect, useRef, useState } from "react";
 import { HomeResumeContext } from "../../utils/homeProgress";
-
-export const STORY_STOPS = [
-  0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 5, 5, 6, 6, 6, 6, 6, 7, 7, 8, 8,
-];
-
-// One timeline beat takes less than a screen of scrolling.
-export const STORY_SCROLL_RATIO = 0.6;
-export const STORY_PIPELINE_BEAT = 21;
+import { STORY_STOPS, STORY_SCROLL_RATIO, STORY_PIPELINE_BEAT } from "./storyTimeline";
+export { STORY_STOPS, STORY_SCROLL_RATIO, STORY_PIPELINE_BEAT } from "./storyTimeline";
 
 // Include the map reveal and card draw before moving to the next scene.
 const STORY_PAGE_STOPS = [0, 2, 4, 4.8, 6, 8, 10, 12.8, 14, 19, 21];

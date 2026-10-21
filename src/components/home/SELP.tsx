@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { resetHomeProgress } from "../../utils/homeProgress";
+import { Link } from "react-router-dom";
+import { type HomeReturnTarget } from "../../utils/homeProgress";
+import { HomeReturnLink } from "./HomeReturnLink";
 import { PeerTubePlayer } from "@peertube/embed-api/build/player.min.js";
 import { TransparentImage } from "../TransparentImage";
 import { getStoryHandoffTop } from "./UseStoryNavigation";
@@ -55,12 +56,13 @@ export function SelpAndSnoopLigaseScene() {
             Programmable sequences enable model-guided control of strength and
             toughness to mimic different types of natural cartilage.
           </p>
-          <Link
+          <HomeReturnLink
+            returnTo="selp"
             className="nest-solution-button nest-solution-button--selp"
             to="/design#1-programmable-material-foundation-the-selp-scaffold"
           >
             learn more
-          </Link>
+          </HomeReturnLink>
         </article>
 
         <article className="nest-solution-card nest-solution-card--ligase">
@@ -69,12 +71,13 @@ export function SelpAndSnoopLigaseScene() {
             An engineered ligation system enables modular functionalization of
             SELP for targeted cartilage repair.
           </p>
-          <Link
+          <HomeReturnLink
+            returnTo="selp"
             className="nest-solution-button nest-solution-button--ligase"
             to="/design#2-standardized-interface-decoupling-functional-assembly-from-scaffold-design"
           >
             learn more
-          </Link>
+          </HomeReturnLink>
         </article>
 
         <img
@@ -145,17 +148,15 @@ export function OsteoarthritisTargetScene() {
 
 const PIPELINE_ASSETS = "https://static.igem.wiki/teams/6102/wiki/images/home";
 
-function PipelinePill({ label, to }: { label: string; to: string }) {
-  const { key } = useLocation();
+function PipelinePill({ label, to, returnTo }: {
+  label: string;
+  to: string;
+  returnTo: HomeReturnTarget;
+}) {
   return (
-    <Link className="selp-pipeline__pill" to={to} onClick={(event) => {
-      if (!event.defaultPrevented && event.button === 0
-        && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey) {
-        resetHomeProgress(key);
-      }
-    }}>
+    <HomeReturnLink className="selp-pipeline__pill" to={to} returnTo={returnTo}>
       {label}
-    </Link>
+    </HomeReturnLink>
   );
 }
 
@@ -612,6 +613,7 @@ export function SelpPipeline({ readingWidth }: { readingWidth?: number } = {}) {
           />
           <PipelinePill
             label="About Anisotropy"
+            returnTo="magnetic"
             to="/design#3-2-module-1-magnetically-responsive-anisotropy-directional-load-bearing"
           />
           <PipelineConnector variant="first" />
@@ -650,6 +652,7 @@ export function SelpPipeline({ readingWidth }: { readingWidth?: number } = {}) {
           />
           <PipelinePill
             label="About GAG"
+            returnTo="gag"
             to="/design#3-3-module-2-cpc-link-n-maintaining-matrix-retention-and-renewal"
           />
           <PipelineConnector variant="second" />
@@ -689,6 +692,7 @@ export function SelpPipeline({ readingWidth }: { readingWidth?: number } = {}) {
           />
           <PipelinePill
             label="About Delivery"
+            returnTo="mitochondrial"
             to="/design#3-4-module-3-mmp-13-responsive-mitochondrial-delivery-linking-local-response-to-cellular-support"
           />
         </section>
