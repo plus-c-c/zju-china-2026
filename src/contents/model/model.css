@@ -87,8 +87,8 @@
   top: min(
     calc(40dvh - var(--protein-figure-h, 466px) / 2 - 60px + 2dvh),
     calc(
-      100dvh - 10dvh - var(--protein-card-h, 0px) - var(--protein-figure-h, 466px) -
-        24px
+      100dvh - var(--page-sticky-top, 82px) - 10dvh -
+        var(--protein-card-h, 0px) - var(--protein-figure-h, 466px) - 24px
     )
   );
 }
@@ -97,9 +97,10 @@
   /* Wide steps: the card keeps the same bottom coordinate and grows
      upwards to hold its text completely (same typography as every other
      card, no scrolling). Its height is set inline from the measured content
-     and animates like the regular steps. It sits above the structure so the
-     overlap over the image's lower corner stays a clean card edge. */
+     and animates like the regular steps. Keep it below the zoom inset. */
   z-index: 3;
+  top: auto;
+  bottom: 10dvh;
   max-height: calc(100dvh - var(--page-sticky-top, 82px) - 48px);
   overflow-y: auto;
 }
