@@ -464,6 +464,10 @@ html[data-ihp-swipe="up"] .nest-navbar {
   }
 }
 
+.ihp-stakebridge-intro {
+  margin-top: clamp(1.5rem, 3vw, 2rem);
+}
+
 /* Stakeholder interviews: each stage of the product path gets its own
    heading and timeline run. */
 .ihp-timeline-stage {

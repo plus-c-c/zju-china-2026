@@ -209,11 +209,11 @@ export const stakeholderMedia: Record<
       portrait:
         "https://static.igem.wiki/teams/6102/wiki/images/engagement/ihp/hospital-procurement-visit.avif",
     },
-  "PhD Shenyang": {
+  "Dr. Yang Shen": {
     photos: [
       {
         src: "https://static.igem.wiki/teams/6102/wiki/images/engagement/ihp/shen-yang.avif",
-        alt: "PhD Shenyang — supporting photograph",
+        alt: "Dr. Yang Shen — supporting photograph",
         width: 458,
         height: 406,
       },

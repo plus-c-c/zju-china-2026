@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { StakeholderText } from "../../components/StakeholderText";
 import {
   openToContact,
   REPOSITORY,
@@ -202,7 +203,7 @@ export function RegistryView({
               {entry.id} <span>Version {entry.revision}</span>
             </div>
             <h1>{entry.title}</h1>
-            <p>{entry.topic || entry.summary}</p>
+            <p><StakeholderText>{entry.topic || entry.summary}</StakeholderText></p>
           </div>
           <a
             className="record-source"
@@ -258,16 +259,16 @@ export function RegistryView({
             {tab === "documentation" && (
               <>
                 <div className="record-summary">
-                  <p>{entry.summary}</p>
+                  <p><StakeholderText>{entry.summary}</StakeholderText></p>
                 </div>
                 <section id="record-rationale">
                   <h2>Rationale</h2>
-                  <p>{entry.rationale}</p>
+                  <p><StakeholderText>{entry.rationale}</StakeholderText></p>
                 </section>
                 <section id="record-interview">
                   <h2>Stakeholder interview</h2>
                   {entry.interview ? (
-                    <p>{entry.interview}</p>
+                    <p><StakeholderText>{entry.interview}</StakeholderText></p>
                   ) : (
                     <ol>
                       {entry.questions.map((question) => (
@@ -278,7 +279,7 @@ export function RegistryView({
                 </section>
                 <section id="record-integration">
                   <h2>Integration</h2>
-                  <p>{entry.integration}</p>
+                  <p><StakeholderText>{entry.integration}</StakeholderText></p>
                 </section>
                 {entry.members.length > 0 && (
                   <section>
@@ -346,7 +347,7 @@ export function RegistryView({
                     <h3>
                       {experience.team} <span>{experience.year}</span>
                     </h3>
-                    <p>{experience.summary}</p>
+                    <p><StakeholderText>{experience.summary}</StakeholderText></p>
                     <a
                       href={experience.source}
                       target="_blank"
@@ -590,7 +591,7 @@ export function RegistryView({
                   <p className="library-organisation">
                     {item.organisation || item.role}
                   </p>
-                  <p className="library-topic">{item.topic || item.summary}</p>
+                  <p className="library-topic"><StakeholderText>{item.topic || item.summary}</StakeholderText></p>
                   <div className="library-card-bottom">
                     <span>
                       {item.publicContacts?.length

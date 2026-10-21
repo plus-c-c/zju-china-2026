@@ -12,6 +12,7 @@ import {
 import { TransparentImage } from "../components/TransparentImage";
 import { StakeBridgeEmbed } from "../components/StakeBridgeEmbed";
 import { SeedReaderRail } from "./human-practices/SeedReader";
+import { StakeholderText } from "../components/StakeholderText";
 import { stakeholderMedia } from "./human-practices/stakeholder-media";
 import {
   cancelSectionScroll,
@@ -75,7 +76,7 @@ function stakeholder(
     date,
     stage,
     title,
-    summary: <p>{summary}</p>,
+    summary: <p><StakeholderText>{summary}</StakeholderText></p>,
     ...(image
       ? {
           image,
@@ -84,17 +85,19 @@ function stakeholder(
       : {}),
     photos: media?.photos,
     details: [
-      { heading: "Rationale", content: <p>{rationale}</p> },
-      { heading: "Interview Summary", content: <p>{interview}</p> },
+      { heading: "Rationale", content: <p><StakeholderText>{rationale}</StakeholderText></p> },
+      { heading: "Interview Summary", content: <p><StakeholderText>{interview}</StakeholderText></p> },
       {
         heading: "Integration",
         content: (
           <p>
             {typeof integration === "string" && integration.endsWith("View Gallery.") ? (
               <>
-                {integration.slice(0, -"View Gallery.".length)}
+                <StakeholderText>{integration.slice(0, -"View Gallery.".length)}</StakeholderText>
                 <Link to="/education">View Gallery</Link>.
               </>
+            ) : typeof integration === "string" ? (
+              <StakeholderText>{integration}</StakeholderText>
             ) : integration}
           </p>
         ),
@@ -178,7 +181,7 @@ const chainStages: ChainStage[] = [
     id: "rehabilitation",
     label: "Rehabilitation",
     people: [
-      { name: "Dr. Shen Yang", image: photo("shen-yang") },
+      { name: "Dr. Yang Shen", image: photo("shen-yang") },
       { name: "Chen Xi (artist)", image: photo("chen-xi") },
     ],
   },
@@ -536,10 +539,10 @@ const timelineItems: TimelineItem[] = [
   stakeholder(
     "Late October 2026",
     "Rehabilitation",
-    "PhD Shenyang",
-    "Dr. Shen Yang helped us turn the interviews into a systematic anthropological study of why early joint symptoms remain medically invisible. The work became a paper discussed at an ethnographic workshop and fed back to Zhejiang University's health-services institute, and it shaped our medical-humanities lectures for future doctors.",
-    "Through field research and interviews with doctors and patients, we have gained a preliminary understanding of the current situation where cartilage defects are neglected within the healthcare system. We aim to further explore the structural issues underlying the neglect of hidden ailments in the healthcare system and how to address this problem systematically. Shen Yang, a researcher under the \"New 100 Talents Program\" of the Department of Sociology at Zhejiang University, holds a PhD in Anthropology from Boston University. We contacted her at the 3rd Annual Conference of Social Studies of the Department of Sociology at Zhejiang University, hoping that she could offer us some insights and suggestions.",
-    "Dr. Shenyang advised us to produce a thesis after systematic study. After completing one semester of coursework, we authored the paper *Pain Beyond Diagnostic Thresholds: Medical Invisibility of Early Joint Symptoms*. Starting from the observation of \"frequent symptom reports but sparse formal documentation\" in a background survey on cartilage injuries, and incorporating exchanges with hospital stakeholders, this paper discusses how real pain is underestimated during the processes of diagnosis and documentation.Drawing on Kleinman’s distinction between disease and illness experience, as well as Carel and Kidd’s framework of epistemic injustice, this paper analyzes how patients’ accounts of pain, mobility limitations, and life disruptions are translated into clinically recognizable information, and which experiences may be omitted in this process. The paper proposes that even when a diagnosis remains unclear, patients’ care needs can still be identified and addressed. Understanding this issue requires simultaneous consideration of the uncertainty inherent in pathological identification, the situational context of patients’ expression, and the organizational structure of healthcare services.The contribution of this paper lies in expanding the focus from the number of confirmed cases to the under-documented symptom burden, and proposing the direction of incorporating patient-reported pain, life impact and follow-up needs into assessment. Meanwhile, the article also pays attention to structural violence and the inherent power imbalance in the doctor-patient relationship.",
+    "Dr. Yang Shen",
+    "Dr. Yang Shen helped us turn the interviews into a systematic anthropological study of why early joint symptoms remain medically invisible. The work became a paper discussed at an ethnographic workshop and fed back to Zhejiang University's health-services institute, and it shaped our medical-humanities lectures for future doctors.",
+    "Through field research and interviews with doctors and patients, we have gained a preliminary understanding of the current situation where cartilage defects are neglected within the healthcare system. We aim to further explore the structural issues underlying the neglect of hidden ailments in the healthcare system and how to address this problem systematically. Dr. Yang Shen, a researcher under the \"New 100 Talents Program\" of the Department of Sociology at Zhejiang University, holds a PhD in Anthropology from Boston University. We contacted her at the 3rd Annual Conference of Social Studies of the Department of Sociology at Zhejiang University, hoping that she could offer us some insights and suggestions.",
+    "Dr. Shen advised us to produce a thesis after systematic study. After completing one semester of coursework, we authored the paper *Pain Beyond Diagnostic Thresholds: Medical Invisibility of Early Joint Symptoms*. Starting from the observation of \"frequent symptom reports but sparse formal documentation\" in a background survey on cartilage injuries, and incorporating exchanges with hospital stakeholders, this paper discusses how real pain is underestimated during the processes of diagnosis and documentation.Drawing on Kleinman’s distinction between disease and illness experience, as well as Carel and Kidd’s framework of epistemic injustice, this paper analyzes how patients’ accounts of pain, mobility limitations, and life disruptions are translated into clinically recognizable information, and which experiences may be omitted in this process. The paper proposes that even when a diagnosis remains unclear, patients’ care needs can still be identified and addressed. Understanding this issue requires simultaneous consideration of the uncertainty inherent in pathological identification, the situational context of patients’ expression, and the organizational structure of healthcare services.The contribution of this paper lies in expanding the focus from the number of confirmed cases to the under-documented symptom burden, and proposing the direction of incorporating patient-reported pain, life impact and follow-up needs into assessment. Meanwhile, the article also pays attention to structural violence and the inherent power imbalance in the doctor-patient relationship.",
     "We brought this paper to the ethnography workshop in Chiang Mai for exchanges, and fed back the findings of the paper to the Institute of Social Medicine and Health Management of Zhejiang University. We also held medical anthropology lectures and seminars to further enhance the patient awareness of future doctors, helping them understand that diseases are not merely physiological infringements, but are often accompanied by the influence of social environments and the violence of power structures. We also called for the recognition and response to patients' care needs even within ambiguous diagnostic criteria. We hope to address patients' problems at a deeper level by reflecting on the healthcare system.",
   ),
   stakeholder(
@@ -1343,7 +1346,7 @@ function ImpactBlock() {
         promoting synthetic biology and reducing public misconceptions, we
         critically reflected on the development of both the healthcare system
         and synthetic biology itself. To deepen this reflexive inquiry, we held
-        extensive discussions with Dr. Shen Yang and Dr. Chen Bohang.
+        extensive discussions with Dr. Yang Shen and Dr. Chen Bohang.
         <Link to="/education">Education</Link>
       </p>
 
@@ -1470,21 +1473,26 @@ function EngagementBlock() {
         stages={chainStages}
         note="To protect patient privacy, we have applied privacy protection measures to all patients except those who have given consent to appear on camera."
       />
-      <p>
-        During the Stakeholder Interviews session, we found it extremely difficult
-        to maintain the comprehensiveness and orderliness of stakeholder
-        interviews in terms of work arrangement. Therefore, we developed a tool
-        called StakeBridge, which can help subsequent teams organize Stakeholder
-        Interviews materials. We found in interviews with stakeholders that many
-        scholars are very willing to communicate with student teams. Meanwhile,
-        when communicating with other iGEM teams, they raised the problem of
-        difficulties in stakeholder communication. Inspired by BioBricks and the
-        biological parts library, we aim to establish a sustainably accumulating
-        repository of stakeholder engagement experiences, showcasing stakeholders
-        in the field who are willing to communicate with teams, and helping other
-        iGEMers take the first step in stakeholder outreach.{" "}
-        <a href="#ihp-toolbox-stakebridge">Explore StakeBridge</a>.
-      </p>
+      <div className="ihp-stakebridge-intro">
+        <p>
+          During the Stakeholder Interviews session, we found it extremely difficult
+          to maintain the comprehensiveness and orderliness of stakeholder
+          interviews in terms of work arrangement. Therefore, we developed a tool
+          called StakeBridge, which can help subsequent teams organize Stakeholder
+          Interviews materials.
+        </p>
+        <p>
+          We found in interviews with stakeholders that many
+          scholars are very willing to communicate with student teams. Meanwhile,
+          when communicating with other iGEM teams, they raised the problem of
+          difficulties in stakeholder communication. Inspired by BioBricks and the
+          biological parts library, we aim to establish a sustainably accumulating
+          repository of stakeholder engagement experiences, showcasing stakeholders
+          in the field who are willing to communicate with teams, and helping other
+          iGEMers take the first step in stakeholder outreach.{" "}
+          <a href="#ihp-toolbox-stakebridge">Explore StakeBridge</a>.
+        </p>
+      </div>
       <h4 id="ihp-engagement-timeline" className="mt-5 mb-3" data-toc="include">
         Stakeholder Interviews
       </h4>
