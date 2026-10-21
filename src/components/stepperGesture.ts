@@ -5,6 +5,31 @@ const GUTTER_IDLE_MS = 80;
 
 type GestureAction = "hold" | "advance" | "release";
 
+/** Stop an incoming page gesture at the nearest end of a deck, even when
+ * its delta would otherwise carry the page past the entire sticky region. */
+export function getStepperEntryIndex({
+  top,
+  bottom,
+  pinTop,
+  viewportHeight,
+  delta,
+  count,
+}: {
+  top: number;
+  bottom: number;
+  pinTop: number;
+  viewportHeight: number;
+  delta: number;
+  count: number;
+}): number | null {
+  if (count <= 0) return null;
+  const before = top - pinTop;
+  const after = bottom - viewportHeight;
+  if (before > 2 && delta >= before) return 0;
+  if (after < -2 && delta <= after) return count - 1;
+  return null;
+}
+
 export class StepperWheelGesture {
   private lastTime = -Infinity;
   private direction = 0;

@@ -1,6 +1,10 @@
 import { useEffect, useRef, type RefObject } from "react";
 import { STEPPER_WHEEL_GAIN } from "./stepperWheel";
-import { StepperGutterGesture, StepperWheelGesture } from "./stepperGesture";
+import {
+  getStepperEntryIndex,
+  StepperGutterGesture,
+  StepperWheelGesture,
+} from "./stepperGesture";
 import { registerScrollDeckRegion } from "./scrollDeckRegions";
 
 interface StepperScrollOptions {
@@ -71,12 +75,33 @@ export function useContainedStepperScroll(options: StepperScrollOptions) {
         );
         return;
       }
+      const bounds = runway.getBoundingClientRect();
+      const top = global ? parseFloat(getComputedStyle(stage).top) || 0 : 0;
       if (global) {
         if (
           event.target instanceof Element &&
           event.target.closest(".nest-navbar, .page-toc")
         )
           return;
+        const entry = getStepperEntryIndex({
+          top: bounds.top,
+          bottom: bounds.bottom,
+          pinTop: top,
+          viewportHeight: innerHeight,
+          delta,
+          count: getCount(),
+        });
+        if (entry !== null) {
+          // Entry belongs to the incoming gesture. Discard its remaining
+          // momentum before allowing another gesture to change cards.
+          event.preventDefault();
+          const now = performance.now();
+          gutter.reset();
+          gutter.start(now, delta, entry);
+          gutter.consume(now);
+          onAdvance(entry);
+          return;
+        }
         const x =
           event instanceof WheelEvent
             ? event.clientX
@@ -91,8 +116,6 @@ export function useContainedStepperScroll(options: StepperScrollOptions) {
         )
           return;
       }
-      const bounds = runway.getBoundingClientRect();
-      const top = global ? parseFloat(getComputedStyle(stage).top) || 0 : 0;
       if (bounds.top > top + 2 || bounds.bottom < window.innerHeight - 2)
         return;
       if (global) {

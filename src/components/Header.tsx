@@ -40,13 +40,14 @@ export function Header({ title }: HeaderProps) {
   const { pathname } = useLocation();
   const normalizedPath = pathname.replace(/\/$/, "") || "/";
   const imageName = headerImages[normalizedPath];
-  const imageSource = normalizedPath === "/human-practices"
-    ? "https://static.igem.wiki/teams/6102/wiki/images/engagement/ihp/7851a9f3ca247b2148bdd7331b3e4b2e.avif"
-    : normalizedPath === "/members"
-      ? membersHeaderImage
-      : imageName
-        ? `${headerImageBase}/${imageName}`
-        : undefined;
+  const imageSource =
+    normalizedPath === "/human-practices"
+      ? "https://static.igem.wiki/teams/6102/wiki/images/engagement/ihp/7851a9f3ca247b2148bdd7331b3e4b2e.avif"
+      : normalizedPath === "/members"
+        ? membersHeaderImage
+        : imageName
+          ? `${headerImageBase}/${imageName}`
+          : undefined;
 
   const titleRef = useRef<HTMLHeadingElement>(null);
   const textRef = useRef<HTMLSpanElement>(null);
@@ -68,7 +69,12 @@ export function Header({ title }: HeaderProps) {
       if (normalizedPath === "/human-practices") {
         const reference = document.createElement("span");
         reference.textContent = "Entrepreneurship";
-        Object.assign(reference.style, { position: "absolute", visibility: "hidden", whiteSpace: "nowrap", letterSpacing: "-0.005em" });
+        Object.assign(reference.style, {
+          position: "absolute",
+          visibility: "hidden",
+          whiteSpace: "nowrap",
+          letterSpacing: "-0.005em",
+        });
         heading.append(reference);
         width = reference.getBoundingClientRect().width;
         reference.remove();
@@ -102,18 +108,33 @@ export function Header({ title }: HeaderProps) {
           <img
             className="header-image"
             src={imageSource}
-            style={normalizedPath === "/human-practices" ? { objectPosition: "center 57%" } : undefined}
+            style={
+              normalizedPath === "/human-practices"
+                ? { objectPosition: "center 57%" }
+                : undefined
+            }
             alt=""
             aria-hidden="true"
             loading="eager"
             decoding="async"
           />
         )}
-        {normalizedPath !== "/human-practices" && (
-          <h1 className="header-title" ref={titleRef}>
-            <span ref={textRef}>{title}</span>
-          </h1>
-        )}
+        <h1
+          className={`header-title${normalizedPath === "/human-practices" ? " header-title--integrated-hp" : ""}`}
+          ref={titleRef}
+        >
+          <span ref={textRef}>
+            {normalizedPath === "/human-practices" ? (
+              <>
+                Integrated
+                <br />
+                Human Practices
+              </>
+            ) : (
+              title
+            )}
+          </span>
+        </h1>
       </div>
     </header>
   );

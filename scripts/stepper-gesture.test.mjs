@@ -1,6 +1,53 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { StepperGutterGesture } from "../src/components/stepperGesture.ts";
+import {
+  getStepperEntryIndex,
+  StepperGutterGesture,
+} from "../src/components/stepperGesture.ts";
+
+test("a long page gesture stops at the first card instead of skipping the deck", () => {
+  assert.equal(
+    getStepperEntryIndex({
+      top: 2310,
+      bottom: 4410,
+      pinTop: 82,
+      viewportHeight: 900,
+      delta: 4500,
+      count: 6,
+    }),
+    0,
+  );
+});
+
+test("reverse entry from below stops at the last card", () => {
+  assert.equal(
+    getStepperEntryIndex({
+      top: -3000,
+      bottom: -900,
+      pinTop: 0,
+      viewportHeight: 900,
+      delta: -4500,
+      count: 6,
+    }),
+    5,
+  );
+});
+
+test("normal scrolling outside a deck and movement inside it are not entry", () => {
+  const bounds = {
+    top: 2310,
+    bottom: 4410,
+    pinTop: 82,
+    viewportHeight: 900,
+    count: 6,
+  };
+  assert.equal(getStepperEntryIndex({ ...bounds, delta: 100 }), null);
+  assert.equal(getStepperEntryIndex({ ...bounds, delta: -4500 }), null);
+  assert.equal(
+    getStepperEntryIndex({ ...bounds, top: -400, bottom: 1700, delta: 4500 }),
+    null,
+  );
+});
 
 test("continuous momentum cannot advance a second card", () => {
   const gesture = new StepperGutterGesture();
