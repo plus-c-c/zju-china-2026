@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { resetHomeProgress } from "../../utils/homeProgress";
 import { PeerTubePlayer } from "@peertube/embed-api/build/player.min.js";
 import { TransparentImage } from "../TransparentImage";
 import { getStoryHandoffTop } from "./UseStoryNavigation";
@@ -145,8 +146,14 @@ export function OsteoarthritisTargetScene() {
 const PIPELINE_ASSETS = "https://static.igem.wiki/teams/6102/wiki/images/home";
 
 function PipelinePill({ label, to }: { label: string; to: string }) {
+  const { key } = useLocation();
   return (
-    <Link className="selp-pipeline__pill" to={to}>
+    <Link className="selp-pipeline__pill" to={to} onClick={(event) => {
+      if (!event.defaultPrevented && event.button === 0
+        && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey) {
+        resetHomeProgress(key);
+      }
+    }}>
       {label}
     </Link>
   );

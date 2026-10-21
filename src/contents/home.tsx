@@ -37,7 +37,6 @@ import { StoryContext } from "../components/home/StoryContext";
 import {
   STORY_STOPS,
   STORY_SCROLL_RATIO,
-  getStoryHandoffTop,
   useStoryNavigation,
 } from "../components/home/UseStoryNavigation";
 
@@ -327,16 +326,11 @@ export function Home() {
       const viewport = document.querySelector<HTMLElement>(".story-viewport");
       const root = document.querySelector(".home-scroll-space");
       const top = root ? root.getBoundingClientRect().top + window.scrollY : 0;
-      const mobileOa = document.querySelector('.mobile-home section[aria-label="Osteoarthritis target"]');
-      const oaTop = getStoryHandoffTop()
-        ?? (mobileOa ? mobileOa.getBoundingClientRect().top + window.scrollY : Infinity);
-      // The three module sections return to the OA overview above them.
-      const scrollY = Math.min(window.scrollY, oaTop);
       saveHomeProgress(key, {
-        scrollY,
+        scrollY: window.scrollY,
         storyPosition: viewport
           ? Math.max(0, Math.min(STORY_STOPS.length - 1,
-              (scrollY - top) / (viewport.clientHeight * STORY_SCROLL_RATIO)))
+              (window.scrollY - top) / (viewport.clientHeight * STORY_SCROLL_RATIO)))
           : 0,
       });
     };
