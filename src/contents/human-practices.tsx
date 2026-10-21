@@ -1459,21 +1459,55 @@ function ImpactBlock() {
         <Link to="/education">Learn more</Link>.
       </p>
 
-      <h2 id="ihp-nest-summary" className="mt-5 mb-3">Summary and Reflection</h2>
+      <h4 id="ihp-nest-summary" className="mt-4 mb-2" data-toc="exclude">
+        Summary and Reflection
+      </h4>
       <p>
-        Our iHP work has been as comprehensive and effective as possible,
-        addressing all patient-centered aspects. We not only focus on
-        biotherapeutic approaches, but also care deeply about the social
-        circumstances of patients. We have also contributed to the iGEM
-        community through numerous platform-based initiatives. Thank you to all
-        members of our team; it is your dedication that has made this
-        comprehensive iHP work possible.
+        We believe NEST has largely fulfilled our commitments to four core
+        values:
       </p>
       <p>
-        Two limitations remain: we have not developed synthetic biology safety
-        standards for biomimetic cartilage biomaterials, and we have not yet
-        established a sufficiently transferable format for other teams to
-        reproduce our anthropological research approach.
+        <strong>Health:</strong> Through innovative design and continuous
+        iteration, we developed NEST, a series of programmable biomaterials
+        with the potential to address diverse cartilage defects. NEST aims to
+        fill the treatment gap for early- and mid-stage cartilage damage while
+        enabling personalized therapies.
+      </p>
+      <p>
+        <strong>Empathy:</strong> Guided by patient feedback, we adopted a
+        patient-centered approach. Beyond physical recovery, we care about
+        patients’ quality of life and psychological well-being. Through public
+        outreach, we also raised awareness of cartilage health and patients’
+        often invisible suffering.
+      </p>
+      <p>
+        <strong>Accessibility:</strong> We developed a comprehensive business
+        plan to bring NEST closer to patients. Through SynEduGlobal, we also
+        promoted accessible synthetic biology education and helped bridge
+        educational gaps.
+      </p>
+      <p>
+        <strong>Responsibility:</strong> We prioritized biosafety, research
+        ethics, and participant privacy throughout our work, while
+        incorporating ESG principles into our business planning. We shared
+        reusable HP tools and built collaborative platforms for the iGEM
+        community. By reflecting on why cartilage damage often remains
+        invisible, we extended our responsibility beyond current patients to
+        society and future generations.
+      </p>
+      <p>
+        We sincerely thank every team member whose dedication made our
+        integrated Human Practices possible.
+      </p>
+      <p>
+        Two limitations remain: Although we maintained strict biosafety and
+        ethical practices, we have not yet developed widely applicable
+        standards. Nor have we established a fully transferable framework for
+        other teams to replicate our anthropological research methods.
+      </p>
+      <p>
+        Yet iGEM 2026 is only the beginning of NEST. Recognizing these
+        limitations is our first step toward overcoming them.
       </p>
     </>
   );
