@@ -18,7 +18,7 @@ const notebooks = [
   },
   {
     id: "tvn-magnetic-binding",
-    title: "TVN Magnetic Binding Module",
+    title: "Magnetically Responsive Anisotropy Module",
     pdf: "https://static.igem.wiki/teams/6102/wiki/final-notebook/04-notebook-tvn-adsorption.pdf",
   },
   {

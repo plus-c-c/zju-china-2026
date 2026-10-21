@@ -1130,7 +1130,7 @@ const CONTENT: ContentBlock[] = [
   {
     type: "paragraph",
     source_index: 221,
-    text: "Intellectual-property review, fundraising, and partnership development will continue throughout the project. Mitochondrial delivery and other advanced modules will proceed as parallel research directions and cannot automatically rely on evidence or approvals for the initial formulation. Facility investment should reflect validated demand and process maturity. We will not assign a break-even year or market-share forecast without a defensible financial model.",
+    text: "Intellectual-property review, fundraising, and partnership development will continue throughout the project. The Mitochondrial Therapeutic Module and other advanced modules will proceed as parallel research directions and cannot automatically rely on evidence or approvals for the initial formulation. Facility investment should reflect validated demand and process maturity. We will not assign a break-even year or market-share forecast without a defensible financial model.",
   },
   {
     type: "heading",
@@ -1222,7 +1222,7 @@ const CONTENT: ContentBlock[] = [
         "Implement product-specific biological evaluation and impurity controls covering local tissue reactions, immune risks, and degradation products. Reformulate, substitute, or remove components that fail justified safety specifications; pause development where necessary.",
       ],
       [
-        "R4 Mitochondrial delivery\nCritical",
+        "R4 Mitochondrial Therapeutic Module\nCritical",
         "Mitochondrial provenance, functional potency, storage stability, and reproducibility of enzyme-responsive delivery remain uncertain. The module may substantially increase quality-control, manufacturing, and regulatory complexity and requires independent validation.",
         "Establish separate provenance, quality-control, and potency criteria for mitochondria and independently verify delivery. Consider inclusion in the candidate product only after incremental benefits and manufacturing and regulatory evidence are demonstrated; otherwise maintain it as an independent research direction.",
       ],

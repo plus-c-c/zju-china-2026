@@ -27,7 +27,7 @@ export function BiosafetyMethods() {
         TVN, CPC, and LinkN peptides were each assessed at 2.5, 5, and 10 μM.
         Combined CPC and LinkN treatment (CPC+LinkN) was assessed at the indicated
         concentrations of 2.5 and 5 μM, and the functional peptide from the
-        mitochondrial delivery module (Mito) was assessed at 5 and 10 μM.
+        Mitochondrial Therapeutic Module (Mito) was assessed at 5 and 10 μM.
       </p>
       <p>
         Individual measurements were retained as overlaid dots in the plots.
@@ -87,7 +87,7 @@ export function BiosafetyFigureCaption({
       0.648 mM. (C–E) TVN, CPC, and LinkN peptides, respectively, at 2.5, 5, and
       10 μM. (F) Combined CPC and LinkN treatment (CPC+LinkN) at the indicated
       concentrations of 2.5 and 5 μM. (G) Functional peptide from the
-      mitochondrial delivery module (Mito) at 5 and 10 μM. Overlaid dots represent
+      Mitochondrial Therapeutic Module (Mito) at 5 and 10 μM. Overlaid dots represent
       individual measurements. (H) Photograph of the assay plate. Yellow, blue,
       and red boxes indicate control, blank, and peptide-treated wells,
       respectively.

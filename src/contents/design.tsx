@@ -839,7 +839,7 @@ export function Design() {
                   id="3-2-module-1-magnetically-responsive-anisotropy-directional-load-bearing"
                   className="mt-5 mb-3"
                 >
-                  3.2 Module 1 | Magnetically Responsive Anisotropy: Directional
+                  3.2 Module 1 | Magnetically Responsive Anisotropy Module: Directional
                   Load Bearing
                 </h3>
                 <h4 className="mt-4 mb-3">
@@ -905,7 +905,7 @@ export function Design() {
                   Accordingly, building on the three-dimensional support
                   provided by the SELP scaffold, we introduce{" "}
                   <strong>
-                    a magnetically responsive module consisting of Fe₃O₄
+                    a Magnetically Responsive Anisotropy Module consisting of Fe₃O₄
                     magnetic nanoparticles (MNPs) and a binding peptide.
                   </strong>{" "}
                   First, the SELP precursor solution, already conjugated with
@@ -1028,7 +1028,7 @@ export function Design() {
                   id="3-3-module-2-cpc-link-n-maintaining-matrix-retention-and-renewal"
                   className="mt-5 mb-3"
                 >
-                  3.3 Module 2 | CPC/Link-N: Maintaining Matrix Retention and
+                  3.3 Module 2 | GAG Retention Module: Maintaining Matrix Retention and
                   Renewal
                 </h3>
                 <h4 className="mt-4 mb-3">
@@ -1273,7 +1273,7 @@ export function Design() {
                     style={{ width: "88%" }}
                   />
                   <FigureCaption className="figure-caption">
-                    Figure 3.3.3 | Design of the CPC/Link-N dual-function module
+                    Figure 3.3.3 | Design of the GAG Retention Module (CPC/Link-N)
                     attached to the SELP scaffold. Assembly of a
                     dogtag–CPC–linker–Link-N fusion protein onto SELP through
                     the standardized SnoopTag2/dogtag interface. CPC focuses on
@@ -1285,7 +1285,7 @@ export function Design() {
                   id="3-4-module-3-mmp-13-responsive-mitochondrial-delivery-linking-local-response-to-cellular-support"
                   className="mt-5 mb-3"
                 >
-                  3.4 Module 3 | MMP-13-Responsive Mitochondrial Delivery:
+                  3.4 Module 3 | Mitochondrial Therapeutic Module:
                   Linking Local Response to Cellular Support
                 </h3>
                 <h4 className="mt-4 mb-3">3.4.1 Design Rationale and Goals</h4>
@@ -1367,7 +1367,7 @@ export function Design() {
                   />
                   <FigureCaption className="figure-caption">
                     Figure 3.4.1 | Overall design of the MMP-13-responsive
-                    mitochondrial delivery module. Three stages are shown: local
+                    Mitochondrial Therapeutic Module. Three stages are shown: local
                     anchoring, detachment of the responsive linker, and cellular
                     delivery. Liposomes carrying exogenous mitochondria are
                     anchored to the SELP hydrogel through a linker; after the
@@ -1677,8 +1677,7 @@ export function Design() {
                   efficiency of the connector system, we engineered the key
                   ligase, SnoopLigase. Mutations at three sites conferred
                   greater stability and higher catalytic turnover. We also
-                  conducted modeling simulations of magnetically responsive
-                  anisotropy, in which the mechanical properties of hydrogels
+                  conducted modeling simulations of the Magnetically Responsive Anisotropy Module, in which the mechanical properties of hydrogels
                   containing magnetic nanoparticles were predicted. These
                   results help us better understand and apply magnetic fields to
                   engineer the anisotropy of hydrogels.

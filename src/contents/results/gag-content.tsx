@@ -35,7 +35,7 @@ export function GagContent() {
       </h4>
       <div className="source-block">
         <p>
-          To validate the molecular basis of our GAG-retention module, we established a complete
+          To validate the molecular basis of our GAG Retention Module, we established a complete
           experimental workflow spanning plasmid construction, recombinant protein preparation, tag
           removal, and functional validation. The overall strategy was to first obtain a purified
           recombinant protein that could be used in subsequent experiments while retaining the CPC
@@ -85,7 +85,7 @@ export function GagContent() {
             </h5>
             <div className="source-block">
               <p>
-                The GAG-retention module required a recombinant protein that could be stably
+                The GAG Retention Module required a recombinant protein that could be stably
                 expressed while remaining compatible with downstream functional validation.
                 Therefore, we adopted a modular fusion protein design: the His tag was used for
                 protein purification, SUMO was used to facilitate recombinant protein expression and
@@ -554,7 +554,7 @@ export function GagContent() {
               </p>
               <p>
                 This experiment therefore primarily addressed the first key question of the
-                GAG-retention module:
+                GAG Retention Module:
               </p>
               <p>
                 <strong>Can the engineered CPC-containing recombinant protein still directly interact with sulfated GAGs at the molecular level?</strong>
@@ -840,7 +840,7 @@ export function GagContent() {
       </h4>
       <div className="source-block">
         <p>
-          The experiments described above represent the <strong>molecular validation of the GAG-retention module</strong>. Their purpose was to determine
+          The experiments described above represent the <strong>molecular validation of the GAG Retention Module</strong>. Their purpose was to determine
           whether the engineered CPC-containing protein retained the GAG interaction expected from
           the design.
         </p>

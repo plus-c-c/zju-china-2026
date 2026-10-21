@@ -9,7 +9,7 @@ export function ScaffoldIntro() {
       characterization, cellular evaluation, and the ligation system. Within
       each experiment, the corresponding results and supporting figures are
       presented alongside the experimental description. Function is organized
-      into magnetically responsive anisotropy, GAG retention and delivery.
+      into Magnetically Responsive Anisotropy Module, GAG Retention Module, and Mitochondrial Therapeutic Module.
     </>
   );
 }
