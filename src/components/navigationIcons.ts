@@ -79,19 +79,23 @@ export const pageDetails: Record<
   },
   "/human-practices": {
     icon: "20_integrated_human_practices.png",
-    description: "Needs, design and responsibility",
+    description: "Into Reality",
   },
   "/entrepreneurship": {
     icon: "21_entrepreneurship.png",
-    description: "Business plans and social impact",
+    description: "NEST to Change the World",
   },
   "/education": {
     icon: "22_education.png",
-    description: "Teaching, sharing and reflection",
+    description: "Public & Industry Outreach",
   },
   "/collaboration": {
     icon: "23_collaboration.png",
-    description: "Joint work, exchange and support",
+    description: "Communication & Activities",
+  },
+  "/game": {
+    icon: "29-game.avif",
+    description: "Fly, inject and repair cartilage",
   },
   "/members": {
     icon: "26_members.png",

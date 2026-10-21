@@ -24,6 +24,7 @@ const headerImages: Record<string, string> = {
   "/human-practices": "16-engagement-ihp.avif",
   "/entrepreneurship": "17-engagement-entrepreneurship.avif",
   "/education": "18-engagement-education.avif",
+  "/game": "https://static.igem.wiki/teams/6102/wiki/header/title/game.avif",
   "/collaboration": "19-engagement-collaboration.avif",
   "/notebook": "20-team-notebook.avif",
   "/sponsors": "23-team-sponsors.avif",
@@ -46,7 +47,7 @@ export function Header({ title }: HeaderProps) {
       : normalizedPath === "/members"
         ? membersHeaderImage
         : imageName
-          ? `${headerImageBase}/${imageName}`
+          ? new URL(imageName, `${headerImageBase}/`).href
           : undefined;
 
   const titleRef = useRef<HTMLHeadingElement>(null);
