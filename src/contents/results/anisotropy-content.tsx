@@ -406,9 +406,22 @@ export function AnisotropyContent() {
               </FigureCaption>
             </figure>
             <div className="source-block">
-              <p>
-                <span className="wetlab-results__video-pending">ZJU-China: MNPs in magnetic field (2026).</span> <span className="badge">Video awaiting platform review</span>
-              </p>
+              <figure className="wetlab-results__video wetlab-results__video--half">
+                <div className="wetlab-results__video-frame">
+                  <iframe
+                    title="ZJU-China: MNPs in magnetic field (2026)"
+                    src="https://video.igem.org/videos/embed/aKNRpgAnSstH3okfNiHitR"
+                    allow="fullscreen"
+                    sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
+                    loading="lazy"
+                  />
+                </div>
+                <figcaption>
+                  <a href="https://video.igem.org/w/aKNRpgAnSstH3okfNiHitR" target="_blank" rel="noopener noreferrer">
+                    ZJU-China: MNPs in magnetic field (2026).
+                  </a>
+                </figcaption>
+              </figure>
             </div>
             <figure className="figure-block">
               <a className="figure-link" href="https://static.igem.wiki/teams/6102/wiki/images/result/02/anisotropy-v2-11-1aef8f37.avif" target="_blank" rel="noopener noreferrer" aria-label="Open full-size image: Figure 4.4.4">
