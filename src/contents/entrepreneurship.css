@@ -203,7 +203,7 @@
 .entre-figure__media--stack {
   display: flex;
   flex-direction: column;
-  gap: 0;
+  gap: 16px;
 }
 
 .entre-figure__image {
