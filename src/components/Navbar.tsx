@@ -518,7 +518,7 @@ export function Navbar({ introEntrance = false, opening = false }: { introEntran
                 }
                 return null;
               })}
-              <li className="navigation-cart">
+              <li className="navigation-cart navigation-shortcut">
                 <Link
                   to="/get-your-nest"
                   aria-label="Get your NEST"
@@ -536,14 +536,31 @@ export function Navbar({ introEntrance = false, opening = false }: { introEntran
                   />
                 </Link>
               </li>
-              <li className="navigation-game">
+              <li className="navigation-game navigation-shortcut">
                 <Link
                   to="/game"
-                  className={`nest-nav-trigger${location.pathname === "/game" ? " is-active" : ""}`}
+                  aria-label="Game"
+                  title="Game"
                   aria-current={location.pathname === "/game" ? "page" : undefined}
                   onClick={closeMenus}
                 >
-                  <span>Game</span>
+                  <svg
+                    width="22"
+                    height="22"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.7"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden="true"
+                    focusable="false"
+                  >
+                    <path d="M7.5 5.5h9c2 0 3.1 1.6 3.6 3.5l1.5 6.5c.6 2.5-2.5 4-4.2 2.1L14.8 15H9.2l-2.6 2.6c-1.7 1.9-4.8.4-4.2-2.1L3.9 9c.5-1.9 1.6-3.5 3.6-3.5Z" />
+                    <path d="M8 8.5v5M5.5 11h5" />
+                    <circle cx="16" cy="9.5" r=".8" fill="currentColor" stroke="none" />
+                    <circle cx="18" cy="12.5" r=".8" fill="currentColor" stroke="none" />
+                  </svg>
                 </Link>
               </li>
             </ul>

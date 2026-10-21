@@ -206,6 +206,17 @@
   gap: 16px;
 }
 
+.entre-figure__image-panel {
+  display: block;
+  width: 100%;
+}
+
+.entre-figure__image-panel--blue {
+  padding: clamp(0.55rem, 1.8vw, 1.25rem);
+  border-radius: 18px;
+  background: #dce9ff;
+}
+
 .entre-figure__image-frame {
   display: block;
   width: 100%;
@@ -278,7 +289,8 @@
     font-size: 1.02rem;
   }
 
-  .entre-figure__media--blue {
+  .entre-figure__media--blue,
+  .entre-figure__image-panel--blue {
     border-radius: 14px;
   }
 
