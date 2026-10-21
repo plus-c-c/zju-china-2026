@@ -119,6 +119,16 @@ html[data-ihp-swipe="up"]::view-transition-new(root) {
   from { transform: translateX(-100%); }
 }
 
+/* Keep the five Toolbox links compact in the article column. */
+.ihp-toolbox-tabs {
+  gap: 6px;
+}
+
+.ihp-toolbox-tabs .eng-subnav-button {
+  padding: 6px 10px;
+  font-size: 15px;
+}
+
 /* NEST's four module buttons stay on one row; the labels are compacted just
    enough to fit the article column. */
 .ihp-subnav-row {

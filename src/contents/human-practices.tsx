@@ -1380,24 +1380,6 @@ function EngagementBlock() {
         stages={chainStages}
         note="Out of respect for patient privacy, every patient is anonymised unless they consented to appear on camera."
       />
-      <p className="mt-4">
-        In the Stakeholder Interviews we found it very hard to keep the
-        interviews comprehensive and orderly in our work plan, so we developed a
-        tool — <strong>StakeBridge</strong> — to help later teams organise their
-        stakeholder-interview material. Talking with stakeholders showed us how
-        willing many scholars are to communicate with student teams, while teams
-        we met at other iGEM events told us that reaching stakeholders is
-        difficult. Inspired by BioBricks and the parts registry, we want to
-        build a stakeholder-engagement library that keeps accumulating
-        experience and shows the stakeholders in a field who are willing to talk
-        to teams. Organised along the product&rsquo;s path — patient, R&amp;D,
-        treatment, manufacturing, market access, and
-        rehabilitation — it collects roles, interview questions and integration
-        cases, so a team that does not yet know whom to ask, what to ask or how
-        to act can find a participation path that fits its own project.
-      </p>
-      <StakeBridgeEmbed />
-
       <h4 id="ihp-engagement-timeline" className="mt-5 mb-3" data-toc="include">
         Stakeholder Interviews
       </h4>
@@ -1600,6 +1582,31 @@ function NestFrameworkBlock() {
   );
 }
 
+function StakeBridgeBlock() {
+  return (
+    <>
+      <h3 className="mt-4 mb-3">StakeBridge</h3>
+      <p>
+        We expect stakeholder maps to be comprehensive, structured, and aligned
+        with the project development lifecycle. To this end, we organize
+        stakeholders based on the general workflow of product design. The
+        modules of our project are divided into: Patient → R&amp;D → Treatment →
+        Manufacturing → Market Authorization &amp; Access → Rehabilitation.
+      </p>
+      <p>
+        Following this guiding principle, we developed a piece of software that
+        enables other teams to organize the ranking of stakeholders and
+        interview content based on product concepts, so as to facilitate project
+        management. Inspired by BioBricks and the parts library, we also built a
+        stakeholder library within the tool, which displays stakeholders in the
+        relevant field who are willing to communicate with teams, helping other
+        iGEMers take the first step in stakeholder outreach.
+      </p>
+      <StakeBridgeEmbed />
+    </>
+  );
+}
+
 function ToolboxPage() {
   const sections = [
     {
@@ -1608,6 +1615,11 @@ function ToolboxPage() {
       node: <NestFrameworkBlock />,
     },
     { id: "ihp-toolbox-seed", label: "SEED", node: <SeedMethodBlock /> },
+    {
+      id: "ihp-toolbox-stakebridge",
+      label: "StakeBridge",
+      node: <StakeBridgeBlock />,
+    },
     {
       id: "ihp-toolbox-mixed",
       label: "Mixed Methods",
@@ -1621,7 +1633,10 @@ function ToolboxPage() {
   ];
   return (
     <>
-      <SectionSubnav items={sections.map(({ id, label }) => ({ id, label }))} />
+      <SectionSubnav
+        className="eng-subnav ihp-toolbox-tabs"
+        items={sections.map(({ id, label }) => ({ id, label }))}
+      />
       {sections.map((entry) => (
         <section className="ihp-subpage" id={entry.id} key={entry.id}>
           {entry.node}
@@ -2064,6 +2079,8 @@ export function HumanPractices() {
       let id: string;
       try {
         id = decodeURIComponent(raw);
+        // Keep the previous engagement link on the restored stakeholder map.
+        if (id === "ihp-engagement-stakebridge") id = "ihp-stakeholders-map";
       } catch {
         return;
       }

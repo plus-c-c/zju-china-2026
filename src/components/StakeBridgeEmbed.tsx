@@ -6,7 +6,7 @@ export function StakeBridgeEmbed() {
 
   return (
     <section
-      id="ihp-engagement-stakebridge"
+      id="ihp-toolbox-stakebridge-app"
       className="ihp-stakebridge"
       aria-label="StakeBridge"
     >

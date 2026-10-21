@@ -98,8 +98,8 @@ input[type="checkbox"] {
 .app-header {
   display: flex;
   align-items: center;
-  gap: 24px;
-  padding: 12px max(4.5%, calc((100% - 1320px) / 2));
+  gap: 2px 24px;
+  padding: 8px max(4.5%, calc((100% - 1320px) / 2));
   border-bottom: 1px solid var(--line);
   background: #f5faff;
 }
@@ -115,8 +115,8 @@ input[type="checkbox"] {
   letter-spacing: -0.8px;
 }
 .app-brand img {
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
 }
 .app-header nav {
   display: flex;
@@ -128,7 +128,8 @@ input[type="checkbox"] {
   text-decoration: none;
   color: #526680;
   font-size: 16px;
-  padding: 4px 0;
+  padding: 3px 0;
+  line-height: 1.4;
 }
 .app-header nav a[aria-current] {
   color: var(--ink);
@@ -140,7 +141,8 @@ input[type="checkbox"] {
   text-decoration: none;
   border: 1px solid #cbdcf4;
   border-radius: 9px;
-  padding: 10px 15px;
+  padding: 6px 10px;
+  line-height: 1.4;
 }
 .app-button {
   display: inline-flex;
@@ -220,7 +222,7 @@ input[type="checkbox"] {
   grid-template-columns: 1.15fr 0.85fr;
   align-items: center;
   gap: 56px;
-  padding: 12px 0 16px;
+  padding: 0 0 8px;
 }
 .library-collection {
   display: inline-block;
@@ -300,7 +302,7 @@ input[type="checkbox"] {
 .home-page {
   max-width: 1320px;
   margin: 0 auto;
-  padding: 24px 30px;
+  padding: 12px 24px;
 }
 .home-handbook {
   display: inline-block;
@@ -1379,7 +1381,7 @@ input[type="checkbox"] {
 }
 @media (max-width: 1100px) {
   .app-header {
-    gap: 22px;
+    column-gap: 22px;
     padding-inline: 30px;
   }
   .app-header nav {
@@ -1427,7 +1429,6 @@ input[type="checkbox"] {
   }
   .app-header {
     flex-wrap: wrap;
-    gap: 10px;
   }
   .app-header nav {
     order: 3;
@@ -1527,7 +1528,7 @@ input[type="checkbox"] {
     width: 100%;
   }
   .app-header {
-    padding: 12px 20px;
+    padding: 8px 20px;
   }
   .app-brand {
     font-size: 23px;
@@ -1541,7 +1542,7 @@ input[type="checkbox"] {
     font-size: 14px;
   }
   .repository-link {
-    padding: 8px 11px;
+    padding: 6px 10px;
     font-size: 14px;
   }
   .directory,
@@ -1553,11 +1554,11 @@ input[type="checkbox"] {
   }
   .home-hero {
     grid-template-columns: 1fr;
-    padding: 10px 0;
+    padding: 0 0 8px;
     gap: 30px;
   }
   .home-page {
-    padding-block: 20px 24px;
+    padding-block: 12px 20px;
   }
   .home-hero h1 {
     font-size: clamp(42px, 12.7vw, 56px);

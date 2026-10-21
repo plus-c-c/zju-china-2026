@@ -5,7 +5,9 @@ This directory contains the complete StakeBridge application, adapted from
 `10a3cd2d1e2ce2bfb90bb87400c402cbd8617834`.
 
 `stakebridge/index.html` is a second Vite entry. It is embedded beneath the
-existing StakeBridge introduction in **Human Practices → Stakeholder Engagement**.
+StakeBridge introduction in **Human Practices → Toolbox → StakeBridge**,
+immediately after SEED at the same section level. The sticky section navigation
+links to `#ihp-toolbox-stakebridge`.
 The application and wiki have separate documents, styles and hash navigation,
 and are published together by the existing iGEM Pages build. The embedded and
 separately opened views use the same browser origin and IndexedDB workspace.
