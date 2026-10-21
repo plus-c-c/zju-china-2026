@@ -238,7 +238,7 @@ export function DeliveryContent() {
               <p>
                 The published SnoopLigase system catalyzes covalent isopeptide-bond formation
                 between DogTag and SnoopTagJr. This work established a basis for using SDS-PAGE
-                mobility shifts to assess peptide ligation activity <sup className="article-citation">[15]</sup>.
+                mobility shifts to assess peptide ligation activity <sup className="article-citation">[13]</sup>.
               </p>
               <p>
                 The recovered DogTag-containing peptide was mixed with GFP-SnoopTag and SnoopLigase
@@ -286,8 +286,8 @@ export function DeliveryContent() {
             <div className="source-block">
               <p>
                 TOMM20 (Tom20) is a receptor of the mitochondrial outer-membrane protein import
-                machinery <sup className="article-citation">[16]</sup>, whereas cytochrome c oxidase subunit IV (COX IV) is located in the
-                inner mitochondrial membrane <sup className="article-citation">[17]</sup>. Their complementary localizations provided the
+                machinery <sup className="article-citation">[15]</sup>, whereas cytochrome c oxidase subunit IV (COX IV) is located in the
+                inner mitochondrial membrane <sup className="article-citation">[16]</sup>. Their complementary localizations provided the
                 rationale for assessing mitochondrial components from both membrane compartments.
               </p>
               <p>
@@ -301,7 +301,7 @@ export function DeliveryContent() {
               <p>
                 Marker detection was interpreted as evidence of mitochondrial components; organelle
                 purity, membrane integrity, and respiratory function require distinct assessments
-                <sup className="article-citation">[17]</sup>.
+                <sup className="article-citation">[16]</sup>.
               </p>
             </div>
           </div>
@@ -344,9 +344,9 @@ export function DeliveryContent() {
                 DOTAP and DOPE were selected as cationic and fusogenic lipid components,
                 respectively. A previous study used DOTAP/DOPE coatings to improve mitochondrial
                 transfer, providing a rationale for investigating this lipid combination in our
-                carrier system <sup className="article-citation">[18]</sup>. DSPE-PEG-Mal was included to provide maleimide groups for
+                carrier system <sup className="article-citation">[17]</sup>. DSPE-PEG-Mal was included to provide maleimide groups for
                 conjugation with Cys-containing peptides, based on established peptide–PEG–lipid
-                coupling chemistry <sup className="article-citation">[19]</sup>.
+                coupling chemistry <sup className="article-citation">[18]</sup>.
               </p>
               <p>
                 Functionalized liposomes were prepared using DOPE, DOTAP, and DSPE-PEG-Mal and
@@ -479,7 +479,7 @@ export function DeliveryContent() {
             <div className="source-block">
               <p>
                 The conjugation strategy was based on thiol–maleimide coupling between a peptide
-                cysteine residue and a maleimide-functionalized PEG–lipid <sup className="article-citation">[19]</sup>.
+                cysteine residue and a maleimide-functionalized PEG–lipid <sup className="article-citation">[18]</sup>.
               </p>
               <p>
                 The Cys-containing linker peptide was co-incubated with maleimide-functionalized
@@ -562,7 +562,7 @@ export function DeliveryContent() {
             <div className="source-block">
               <p>
                 MMP-13 was selected as a disease-relevant enzyme because Mmp13-deficient mice show
-                reduced osteoarthritic cartilage erosion <sup className="article-citation">[20]</sup>. This finding motivated evaluation of
+                reduced osteoarthritic cartilage erosion <sup className="article-citation">[19]</sup>. This finding motivated evaluation of
                 MMP-13 responsiveness in the linker design.
               </p>
               <p>

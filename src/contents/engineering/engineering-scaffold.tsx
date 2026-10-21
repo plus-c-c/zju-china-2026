@@ -500,7 +500,7 @@ export const scaffoldModule: DbtlModule = {
                 </strong>
                 , leaving no extra bases at the junction and preserving the
                 reading frame, while the restriction sites remain outside the
-                doubled array so that the cycle can be repeated indefinitely;
+                doubled array so that the cycle can be repeated iteratively;
               </li>
               <li>
                 The key feature of the design is that the enzyme recognition
@@ -577,7 +577,7 @@ export const scaffoldModule: DbtlModule = {
             <DbtlFigure
               trimRight={35}
               src="result/01/16.avif"
-              caption="Figure 1.4.2 | Recursive doubling cycle of the PRe-RDL platform. Both enzyme recognition sites lie within the flanking linkers, outside the repeat array, so that the doubling cycle can be repeated indefinitely without introducing extra bases at the junction."
+              caption="Figure 1.4.2 | Recursive doubling cycle of the PRe-RDL platform. Both enzyme recognition sites lie within the flanking linkers, outside the repeat array, so that the doubling cycle can be repeated iteratively without introducing extra bases at the junction."
             />
           </>
         ),

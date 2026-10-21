@@ -46,6 +46,7 @@ function EduImage({ file, alt, maxWidth, className }: EduImageProps) {
           decoding="async"
         />
       </a>
+      <figcaption className="figure-caption">{alt}</figcaption>
     </figure>
   );
 }
@@ -88,7 +89,7 @@ export function Education() {
             public fear and misunderstanding of synthetic biology.
           </p>
 
-          <h2>SynEduGlobal Education Platform</h2>
+          <h2>SynEdu Global Education Platform</h2>
           <p>
             During our communication with other teams, we found that the
             difficulty in the popularization and promotion of synthetic biology
@@ -115,7 +116,7 @@ export function Education() {
               <p>
                 As the initiator, ZJU-China, together with Westlake,
                 XJTLU-China and Jiangnan-China, has built{" "}
-                <strong>SynEduGlobal</strong> (
+                <strong>SynEdu Global</strong> (
                 <a
                   href="https://syneduglobal.top"
                   target="_blank"
@@ -149,15 +150,15 @@ export function Education() {
             <div className="edu-synedu-media">
               <EduImage
                 file="synedu-mou-01"
-                alt="SynEduGlobal project poster."
+                alt="SynEdu Global project poster."
               />
               <EduImage
                 file="synedu-home"
-                alt="SynEduGlobal education platform homepage."
+                alt="SynEdu Global education platform homepage."
               />
               <EduImage
                 file="synedu-activities"
-                alt="SynEduGlobal education activity materials page."
+                alt="SynEdu Global education activity materials page."
               />
             </div>
           </div>

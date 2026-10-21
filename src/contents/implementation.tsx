@@ -368,17 +368,10 @@ export function Implementation() {
               </a>
             </p>
             <p>
-              [2] Meyer DE, Chilkoti A. Purification of recombinant proteins by
-              fusion with thermally-responsive polypeptides.{" "}
-              <em>Nature Biotechnology</em>. 1999;17:1112&ndash;1115.{" "}
-              <a href="https://doi.org/10.1038/70265">Source</a>
+              {"[2] Meyer, D. E., & Chilkoti, A. (1999). Purification of recombinant proteins by fusion with thermally-responsive polypeptides. "}<em>{"Nature Biotechnology, 17"}</em>{"(11), 1112–1115. "}<a href="https://doi.org/10.1038/15100" target="_blank" rel="noreferrer">{"https://doi.org/10.1038/15100"}</a>
             </p>
             <p>
-              [3] Hassouneh W, Christensen T, Chilkoti A. Elastin-like
-              polypeptides as a purification tag for recombinant proteins.{" "}
-              <em>Current Protocols in Protein Science</em>.
-              2010;61:6.11.1&ndash;16.{" "}
-              <a href="https://doi.org/10.1002/0471140864.ps0611s61">Source</a>
+              {"[3] Hassouneh, W., Christensen, T., & Chilkoti, A. (2010). Elastin‐like polypeptides as a purification tag for recombinant proteins. "}<em>{"Current Protocols in Protein Science, 61"}</em>{"(1). "}<a href="https://doi.org/10.1002/0471140864.ps0611s61" target="_blank" rel="noreferrer">{"https://doi.org/10.1002/0471140864.ps0611s61"}</a>
             </p>
             <p>
               [4] ZJU-China. NEST Hardware project records and accompanying
@@ -396,7 +389,7 @@ export function Implementation() {
               [6] National Medical Products Administration (NMPA) Government
               Service Portal. Product Classification of Drug&ndash;Device
               Combination Products.{" "}
-              <a href="https://english.nmpa.gov.cn/">Source</a>
+              <a href="https://zwfw.nmpa.gov.cn/web/taskview/11100000MB0341032Y100207203200001">Source</a>
             </p>
           </div>
         </References>

@@ -43,7 +43,7 @@ export function ScaffoldResults() {
         each and ligating them, makes one cycle double the repeat array and
         rebuild the plasmid, with no extra bases left at the junction, the
         reading frame unchanged, and both enzyme sites retained outside the
-        doubled array, so the cycle can be repeated indefinitely.
+        doubled array, so the cycle can be repeated iteratively.
       </p>
       <p>
         The key to this design is that the enzyme recognition sites lie within
@@ -130,8 +130,7 @@ export function ScaffoldResults() {
         the purification effect. Compared with the initial lysis supernatant,
         the contaminant bands in the post-cooling supernatant collected after
         ITC disappeared, while the 2KY-5 band was present only in the final
-        solution, with almost no loss during the process, indicating excellent
-        purification (figure).
+        solution, supporting enrichment of the target protein (figure).
       </p>
       {/* One figure removed from the draft (SDS-PAGE of the ITC process) */}
       <p>
@@ -139,7 +138,7 @@ export function ScaffoldResults() {
         ultrafiltration tube by centrifugation at 3500g for 30 min, yielding
         about 5 mL of concentrated solution; samples before and after
         concentration were measured by the BCA method, giving a concentration
-        factor of about 3.5 with essentially no protein loss (figure).
+        factor of about 3.5 (figure).
       </p>
       {/* One figure removed from the draft (BCA quantification) */}
       <p>

@@ -1717,103 +1717,49 @@ export function Design() {
           <References level={2}>
             <div className="references-list references-list--paragraphs">
               <p id="design-reference-1" style={{ scrollMarginTop: "112px" }}>
-                [1] Huang W, Tarakanova A, Dinjaski N, Wang Q, Xia X, Chen Y,
-                Wong JY, Buehler MJ, Kaplan DL. Design of multistimuli
-                responsive hydrogels using integrated modeling and genetically
-                engineered silk–elastin-like proteins. <em>Adv Funct Mater</em>.
-                2016;26(23):4113–4123. doi:10.1002/adfm.201600236.
+                {"[1] Huang, W., Tarakanova, A., Dinjaski, N., Wang, Q., Xia, X., Chen, Y., Wong, J. Y., Buehler, M. J., & Kaplan, D. L. (2016). Design of multistimuli responsive hydrogels using integrated modeling and genetically engineered silk–elastin‐like proteins. "}<em>{"Advanced Functional Materials, 26"}</em>{"(23), 4113–4123. "}<a href="https://doi.org/10.1002/adfm.201600236" target="_blank" rel="noreferrer">{"https://doi.org/10.1002/adfm.201600236"}</a>
               </p>
               <p id="design-reference-2" style={{ scrollMarginTop: "112px" }}>
-                [2] Gonzalez-Obeso C, Backlund FG, Kaplan DL. Charge-modulated
-                accessibility of tyrosine residues for silk-elastin copolymers
-                cross-linking. <em>Biomacromolecules</em>. 2022;23(3):760–765.
-                doi:10.1021/acs.biomac.1c01192.
+                {"[2] Gonzalez-Obeso, C., Backlund, F. G., & Kaplan, D. L. (2022). Charge-modulated accessibility of tyrosine residues for silk-elastin copolymer cross-linking. "}<em>{"Biomacromolecules, 23"}</em>{"(3), 760–765. "}<a href="https://doi.org/10.1021/acs.biomac.1c01192" target="_blank" rel="noreferrer">{"https://doi.org/10.1021/acs.biomac.1c01192"}</a>
               </p>
               <p id="design-reference-3" style={{ scrollMarginTop: "112px" }}>
-                [3] Ruoslahti E. RGD and other recognition sequences for
-                integrins. <em>Annu Rev Cell Dev Biol</em>. 1996;12:697–715.
-                doi:10.1146/annurev.cellbio.12.1.697.
+                {"[3] Ruoslahti, E. (1996). RGD and other recognition sequences for integrins. "}<em>{"Annual Review of Cell and Developmental Biology, 12"}</em>{"(1), 697–715. "}<a href="https://doi.org/10.1146/annurev.cellbio.12.1.697" target="_blank" rel="noreferrer">{"https://doi.org/10.1146/annurev.cellbio.12.1.697"}</a>
               </p>
               <p id="design-reference-4" style={{ scrollMarginTop: "112px" }}>
-                [4] Nie K, Fan Z, Sun W, et al. Ultrafast crosslinking, strongly
-                adhesive de novo protein hydrogels promote cartilage
-                regeneration. <em>Bioact Mater</em>. 2026;56:368–385. Published
-                online 27 October 2025. doi:
-                <a href="https://doi.org/10.1016/j.bioactmat.2025.10.009">
-                  10.1016/j.bioactmat.2025.10.009
-                </a>
-                .
+                {"[4] Nie, K., Fan, Z., Sun, W., Wu, B., Zhou, S., Zhao, H., Ou, J., Ji, T., Tian, J., Wei, W., Ouyang, H., Hay, D. C., & Huang, W. (2026). Ultrafast crosslinking, strongly adhesive de novo protein hydrogels promote cartilage regeneration. "}<em>{"Bioactive Materials, 56"}</em>{", 368–385. "}<a href="https://doi.org/10.1016/j.bioactmat.2025.10.009" target="_blank" rel="noreferrer">{"https://doi.org/10.1016/j.bioactmat.2025.10.009"}</a>
               </p>
               <p id="design-reference-5" style={{ scrollMarginTop: "112px" }}>
-                [5] Fancy DA, Kodadek T. Chemistry for the analysis of
-                protein–protein interactions: rapid and efficient cross-linking
-                triggered by long wavelength light.{" "}
-                <em>Proc Natl Acad Sci USA</em>. 1999;96(11):6020–6024.
-                doi:10.1073/pnas.96.11.6020.
+                {"[5] Fancy, D. A., & Kodadek, T. (1999). Chemistry for the analysis of protein–protein interactions: Rapid and efficient cross-linking triggered by long wavelength light. "}<em>{"Proceedings of the National Academy of Sciences, 96"}</em>{"(11), 6020–6024. "}<a href="https://doi.org/10.1073/pnas.96.11.6020" target="_blank" rel="noreferrer">{"https://doi.org/10.1073/pnas.96.11.6020"}</a>
               </p>
               <p id="design-reference-6" style={{ scrollMarginTop: "112px" }}>
-                [6] Cui X, Soliman BG, Alcala-Orozco CR, Li J, Vis MAM, Santos
-                M, Wise SG, Levato R, Malda J, Woodfield TBF, Rnjak-Kovacina J,
-                Lim KS. Rapid photocrosslinking of silk hydrogels with high cell
-                density and enhanced shape fidelity. <em>Adv Healthc Mater</em>.
-                2020;9(4):e1901667. doi:10.1002/adhm.201901667.
+                {"[6] Cui, X., Soliman, B. G., Alcala‐Orozco, C. R., Li, J., Vis, M. A. M., Santos, M., Wise, S. G., Levato, R., Malda, J., Woodfield, T. B. F., Rnjak‐Kovacina, J., & Lim, K. S. (2020). Rapid photocrosslinking of silk hydrogels with high cell density and enhanced shape fidelity. "}<em>{"Advanced Healthcare Materials, 9"}</em>{"(4), 1901667. "}<a href="https://doi.org/10.1002/adhm.201901667" target="_blank" rel="noreferrer">{"https://doi.org/10.1002/adhm.201901667"}</a>
               </p>
               <p id="design-reference-7" style={{ scrollMarginTop: "112px" }}>
-                [7] Meyer DE, Chilkoti A. Purification of recombinant proteins
-                by fusion with thermally-responsive polypeptides.{" "}
-                <em>Nat Biotechnol</em>. 1999;17(11):1112–1115.
-                doi:10.1038/15100.
+                {"[7] Meyer, D. E., & Chilkoti, A. (1999). Purification of recombinant proteins by fusion with thermally-responsive polypeptides. "}<em>{"Nature Biotechnology, 17"}</em>{"(11), 1112–1115. "}<a href="https://doi.org/10.1038/15100" target="_blank" rel="noreferrer">{"https://doi.org/10.1038/15100"}</a>
               </p>
               <p id="design-reference-8" style={{ scrollMarginTop: "112px" }}>
-                [8] Buldun CM, Jean JX, Bedford MR, Howarth M. SnoopLigase
-                catalyzes peptide–peptide locking and enables solid-phase
-                conjugate isolation. <em>J Am Chem Soc</em>.
-                2018;140(8):3008–3018. doi:10.1021/jacs.7b13237.
+                {"[8] Buldun, C. M., Jean, J. X., Bedford, M. R., & Howarth, M. (2018). SnoopLigase catalyzes peptide–peptide locking and enables solid-phase conjugate isolation. "}<em>{"Journal of the American Chemical Society, 140"}</em>{"(8), 3008–3018. "}<a href="https://doi.org/10.1021/jacs.7b13237" target="_blank" rel="noreferrer">{"https://doi.org/10.1021/jacs.7b13237"}</a>
               </p>
               <p id="design-reference-9" style={{ scrollMarginTop: "112px" }}>
-                [9] Keeble AH, Wood DP, Howarth M. Design and evolution of
-                enhanced peptide–peptide ligation for modular transglutaminase
-                assembly. <em>Bioconjug Chem</em>. 2023;34.
-                doi:10.1021/acs.bioconjchem.3c00122.
+                {"[9] Keeble, A. H., Wood, D. P., & Howarth, M. (2023). Design and evolution of enhanced peptide–peptide ligation for modular transglutaminase assembly. "}<em>{"Bioconjugate Chemistry, 34"}</em>{"(6), 1019–1036. "}<a href="https://doi.org/10.1021/acs.bioconjchem.3c00122" target="_blank" rel="noreferrer">{"https://doi.org/10.1021/acs.bioconjchem.3c00122"}</a>
               </p>
               <p id="design-reference-10" style={{ scrollMarginTop: "112px" }}>
-                [10] Fierer JO, Veggiani G, Howarth M. SpyLigase peptide–peptide
-                ligation polymerizes affibodies to enhance magnetic cancer cell
-                capture. <em>Proc Natl Acad Sci USA</em>.
-                2014;111(13):E1176–E1181. doi:10.1073/pnas.1315776111.
+                {"[10] Fierer, J. O., Veggiani, G., & Howarth, M. (2014). SpyLigase peptide–peptide ligation polymerizes affibodies to enhance magnetic cancer cell capture. "}<em>{"Proceedings of the National Academy of Sciences, 111"}</em>{"(13). "}<a href="https://doi.org/10.1073/pnas.1315776111" target="_blank" rel="noreferrer">{"https://doi.org/10.1073/pnas.1315776111"}</a>
               </p>
               <p id="design-reference-11" style={{ scrollMarginTop: "112px" }}>
-                [11] Chen M, Chen S, Xie C, Li F, Tao C, Gong W, Qu M, Lin S,
-                Shao Z, Xiao G. Global prevalence, incidence, and years lived
-                with disability (YLDs) of osteoarthritis: trends from 1990 to
-                2021 and projections to 2050. <em>J Orthop Translat</em>.
-                2026;56:101029. doi:10.1016/j.jot.2025.11.005.
+                {"[11] Chen, M., Chen, S., Xie, C., Li, F., Tao, C., Gong, W., Qu, M., Lin, S., Shao, Z., & Xiao, G. (2026). Global prevalence, incidence, and years lived with disability (ylds) of osteoarthritis: Trends from 1990 to 2021 and projections to 2050. "}<em>{"Journal of Orthopaedic Translation, 56"}</em>{", 101029. "}<a href="https://doi.org/10.1016/j.jot.2025.11.005" target="_blank" rel="noreferrer">{"https://doi.org/10.1016/j.jot.2025.11.005"}</a>
               </p>
               <p id="design-reference-12" style={{ scrollMarginTop: "112px" }}>
-                [12] Medvedeva EV, Grebenik EA, Gornostaeva SN, Telpuhov VI,
-                Lychagin AV, Timashev PS, Chagin AS. Repair of damaged articular
-                cartilage: current approaches and future directions.{" "}
-                <em>Int J Mol Sci</em>. 2018;19(8):2366.
-                doi:10.3390/ijms19082366.
+                {"[12] Medvedeva, E. V., Grebenik, E. A., Gornostaeva, S. N., Telpuhov, V. I., Lychagin, A. V., Timashev, P. S., & Chagin, A. S. (2018). Repair of damaged articular cartilage: Current approaches and future directions. "}<em>{"International Journal of Molecular Sciences, 19"}</em>{"(8), 2366. "}<a href="https://doi.org/10.3390/ijms19082366" target="_blank" rel="noreferrer">{"https://doi.org/10.3390/ijms19082366"}</a>
               </p>
               <p id="design-reference-13" style={{ scrollMarginTop: "112px" }}>
-                [13] Li Y, Yin G, Pu X, Chen X, Liao X, Huang Z. Novel
-                bi-functional 14-mer peptides with both ovarian carcinoma cells
-                targeting and magnetic Fe₃O₄ nanoparticles affinity.{" "}
-                <em>Materials (Basel)</em>. 2019;12(5):755.
-                doi:10.3390/ma12050755.
+                {"[13] Li, Y., Yin, G., Pu, X., Chen, X., Liao, X., & Huang, Z. (2019). Novel bi-functional 14-mer peptides with both ovarian carcinoma cells targeting and magnetic Fe3O4 nanoparticles affinity. "}<em>{"Materials, 12"}</em>{"(5), 755. "}<a href="https://doi.org/10.3390/ma12050755" target="_blank" rel="noreferrer">{"https://doi.org/10.3390/ma12050755"}</a>
               </p>
               <p id="design-reference-14" style={{ scrollMarginTop: "112px" }}>
-                [14] Horkay F, et al. Cartilage extracellular matrix polymers:
-                hierarchical structure, osmotic properties, and function.{" "}
-                <em>Soft Matter</em>. 2024;20:6033–6043. doi:10.1039/D4SM00617H.
+                {"[14] Horkay, F., Basser, P. J., & Geissler, E. (2024). Cartilage extracellular matrix polymers: Hierarchical structure, osmotic properties, and function. "}<em>{"Soft Matter, 20"}</em>{"(30), 6033–6043. "}<a href="https://doi.org/10.1039/D4SM00617H" target="_blank" rel="noreferrer">{"https://doi.org/10.1039/D4SM00617H"}</a>
               </p>
               <p id="design-reference-15" style={{ scrollMarginTop: "112px" }}>
-                [15] Vedadghavami A, Wagner EK, Mehta S, He T, Zhang C, Bajpayee
-                AG. Cartilage penetrating cationic peptide carriers for
-                applications in drug delivery to avascular negatively charged
-                tissues. <em>Acta Biomater</em>. 2019;93:258–269.
-                doi:10.1016/j.actbio.2018.12.004.
+                {"[15] Vedadghavami, A., Wagner, E. K., Mehta, S., He, T., Zhang, C., & Bajpayee, A. G. (2019). Cartilage penetrating cationic peptide carriers for applications in drug delivery to avascular negatively charged tissues. "}<em>{"Acta Biomaterialia, 93"}</em>{", 258–269. "}<a href="https://doi.org/10.1016/j.actbio.2018.12.004" target="_blank" rel="noreferrer">{"https://doi.org/10.1016/j.actbio.2018.12.004"}</a>
               </p>
               <p id="design-reference-16" style={{ scrollMarginTop: "112px" }}>
                 [16] McKenna LA, Liu H, Sansom PA, Dean MF. An N-terminal
@@ -1822,30 +1768,16 @@ export function Design() {
                 1998;41(1):157–162.
               </p>
               <p id="design-reference-17" style={{ scrollMarginTop: "112px" }}>
-                [17] Liu H, McKenna LA, Dean MF. An N-terminal peptide from link
-                protein can stimulate biosynthesis of collagen by human
-                articular cartilage. <em>Arch Biochem Biophys</em>. 2000.
-                doi:10.1006/abbi.2000.1758.
+                {"[17] Liu, H., McKenna, L. A., & Dean, M. F. (2000). An N-terminal peptide from link protein can stimulate biosynthesis of collagen by human articular cartilage. "}<em>{"Archives of Biochemistry and Biophysics, 378"}</em>{"(1), 116–122. "}<a href="https://doi.org/10.1006/abbi.2000.1758" target="_blank" rel="noreferrer">{"https://doi.org/10.1006/abbi.2000.1758"}</a>
               </p>
               <p id="design-reference-18" style={{ scrollMarginTop: "112px" }}>
-                [18] He R, Wang B, Cui M, Xiong Z, Lin H, Zhao L, et al. Link
-                protein N-terminal peptide as a potential stimulating factor for
-                stem cell-based cartilage regeneration. <em>Stem Cells Int</em>.
-                2018;2018:3217895. doi:10.1155/2018/3217895.
+                {"[18] He, R., Wang, B., Cui, M., Xiong, Z., Lin, H., Zhao, L., Li, Z., Wang, Z., Peggrem, S., Xia, Z., & Shao, Z. (2018). Link protein N-terminal peptide as a potential stimulating factor for stem cell-based cartilage regeneration. "}<em>{"Stem Cells International, 2018"}</em>{", 1–11. "}<a href="https://doi.org/10.1155/2018/3217895" target="_blank" rel="noreferrer">{"https://doi.org/10.1155/2018/3217895"}</a>
               </p>
               <p id="design-reference-19" style={{ scrollMarginTop: "112px" }}>
-                [19] Roberts JJ, Nicodemus GD, Giunta S, Bryant SJ.
-                Incorporation of biomimetic matrix molecules in PEG hydrogels
-                enhances matrix deposition and reduces load-induced loss of
-                chondrocyte-secreted matrix. <em>J Biomed Mater Res A</em>.
-                2011;97(3):281–291. doi:10.1002/jbm.a.33057.
+                {"[19] Roberts, J. J., Nicodemus, G. D., Giunta, S., & Bryant, S. J. (2011). Incorporation of biomimetic matrix molecules in PEG hydrogels enhances matrix deposition and reduces load‐induced loss of chondrocyte‐secreted matrix. "}<em>{"Journal of Biomedical Materials Research Part A, 97A"}</em>{"(3), 281–291. "}<a href="https://doi.org/10.1002/jbm.a.33057" target="_blank" rel="noreferrer">{"https://doi.org/10.1002/jbm.a.33057"}</a>
               </p>
               <p id="design-reference-20" style={{ scrollMarginTop: "112px" }}>
-                [20] Maneiro E, Martín MA, de Andres MC, López-Armada MJ,
-                Fernández-Sueiro JL, del Hoyo P, Galdo F, Arenas J, Blanco FJ.
-                Mitochondrial respiratory activity is altered in osteoarthritic
-                human articular chondrocytes. <em>Arthritis Rheum</em>.
-                2003;48(3):700–708. doi:10.1002/art.10837.
+                {"[20] Maneiro, E., Martín, M. A., de Andres, M. C., López‐Armada, M. J., Fernández‐Sueiro, J. L., del Hoyo, P., Galdo, F., Arenas, J., & Blanco, F. J. (2003). Mitochondrial respiratory activity is altered in osteoarthritic human articular chondrocytes. "}<em>{"Arthritis & Rheumatism, 48"}</em>{"(3), 700–708. "}<a href="https://doi.org/10.1002/art.10837" target="_blank" rel="noreferrer">{"https://doi.org/10.1002/art.10837"}</a>
               </p>
               <p id="design-reference-21" style={{ scrollMarginTop: "112px" }}>
                 [21] Lee RA, Woo JS, Lee SY, Na HS, Cho KH, Lee YS, Lee JS, Kim
@@ -1859,10 +1791,7 @@ export function Design() {
                 <em>Biomaterials</em>. 2023. PMID:37864947.
               </p>
               <p id="design-reference-23" style={{ scrollMarginTop: "112px" }}>
-                [23] Nobs L, Buchegger F, Gurny R, Allémann E. Current methods
-                for attaching targeting ligands to liposomes and nanoparticles.{" "}
-                <em>J Pharm Sci</em>. 2004;93(8):1980–1992.
-                doi:10.1002/jps.20098.
+                {"[23] Nobs, L., Buchegger, F., Gurny, R., & Allémann, E. (2004). Current methods for attaching targeting ligands to liposomes and nanoparticles. "}<em>{"Journal of Pharmaceutical Sciences, 93"}</em>{"(8), 1980–1992. "}<a href="https://doi.org/10.1002/jps.20098" target="_blank" rel="noreferrer">{"https://doi.org/10.1002/jps.20098"}</a>
               </p>
               <p id="design-reference-24" style={{ scrollMarginTop: "112px" }}>
                 [24] Mitchell PG, et al. Cloning, expression, and type II

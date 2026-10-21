@@ -711,7 +711,7 @@ function SeedMethodBlock() {
       </p>
       <p>
         SEED is the seed of our product design — the first step that let NEST
-        begin to treat cartilage pain — and we hope it can also be a seed for
+        work toward addressing cartilage pain — and we hope it can also be a seed for
         the iGEM community, helping more teams see real pain and solve it.
       </p>
     </>
@@ -1215,7 +1215,7 @@ function DiscoveryBlock() {
           gender and region [1]. The US Osteoarthritis Initiative (OAI) also
           conducted long-term follow-up on 4,796 subjects, accumulating over
           430,000 clinical and imaging examinations and approximately 26.63
-          million images [2].In contrast, studies on focal cartilage defects are
+          million images [2]. In contrast, studies on focal cartilage defects are
           generally smaller in scale; for instance, Hjelle et al. only
           investigated the status of cartilage defects in 1,000 patients
           undergoing knee arthroscopy [3]. Considering the sufficiency of
@@ -1249,7 +1249,7 @@ function DiscoveryBlock() {
         cartilage defect. In this context, we have found that doctors from
         different regions and with different professional backgrounds do not
         reach consistent diagnoses for the same type of cartilage defect. In
-        cases of early- to-mid stage osteoarthritis (OA) and localized traumatic
+        cases of early- to mid-stage osteoarthritis (OA) and localized traumatic
         defects, the lack of unified diagnostic criteria and effective treatment
         protocols for early cartilage injury tends to lead clinicians to refrain
         from classifying the patient as having a pathological condition.
@@ -1258,7 +1258,7 @@ function DiscoveryBlock() {
         orthopedic surgery, the metrics for measuring surgical success overlook
         the threat posed by implanted materials to cartilage health, and fail to
         attach due importance to functional recovery as defined by the patient's
-        perceived physical well-being.For example, when conducting an in-depth
+        perceived physical well-being. For example, when conducting an in-depth
         interview with Yue, a patient suffering from cartilage wear after
         patella surgery, she elaborated in detail that the attending doctor's
         realignment of her original patella position had caused the artificial
@@ -1351,7 +1351,7 @@ function ImpactBlock() {
         NexCode Biotechnologies to consider its broader social impact and
         operate as a responsible enterprise. All 16 team members are committed
         to continuously improving the project, achieving profitability, and
-        advancing the real- world translation of NEST.
+        advancing the real-world translation of NEST.
       </p>
       <h4 className="mt-4 mb-2">The Pain That Goes Unnoticed</h4>
       <p>

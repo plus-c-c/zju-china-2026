@@ -127,7 +127,7 @@ export function ScaffoldContent() {
                   reconstitutes the plasmid, with no extra bases remaining at
                   the junction and the reading frame unchanged. Both enzyme
                   sites remain outside the doubled array, so the cycle can be
-                  repeated indefinitely
+                  repeated iteratively
                 </strong>{" "}
                 (Figure 1.1.1).
               </p>
@@ -551,8 +551,7 @@ export function ScaffoldContent() {
                 supernatant, the contaminating protein bands were absent from
                 the cooled supernatant collected after ITC, and the band
                 corresponding to 2KY-5 was present only in the final solution,
-                with almost no loss during the process, indicating{" "}
-                <strong>excellent purification</strong> (Figure 1.2.5).
+                supporting <strong>enrichment of the target protein</strong> (Figure 1.2.5).
               </p>
             </div>
             <div className="source-block figure-block" data-block="32">
@@ -566,7 +565,7 @@ export function ScaffoldContent() {
                   <img
                     loading="lazy"
                     src="https://static.igem.wiki/teams/6102/wiki/images/result/01-skeleton/07.avif"
-                    alt="Figure 1.2.5. SDS-PAGE verification of ITC purification under the optimized conditions (65 °C, PBS containing 2 M NaCl). Contaminating protein bands are removed and the 2KY-5 band is retained in the final solution with almost no loss."
+                    alt="Figure 1.2.5. SDS-PAGE verification of ITC purification under the optimized conditions (65 °C, PBS containing 2 M NaCl). Contaminating protein bands are removed and the 2KY-5 band is retained in the final solution with a detectable target-protein band."
                   />
                 </a>
               </p>
@@ -576,8 +575,7 @@ export function ScaffoldContent() {
                 <strong>Figure 1.2.5 |</strong> SDS-PAGE verification of ITC
                 purification under the optimized conditions (65 °C, PBS
                 containing 2 M NaCl). Contaminating protein bands are removed
-                and the 2KY-5 band is retained in the final solution with almost
-                no loss.
+                and the 2KY-5 band remains detectable in the final solution.
               </FigureCaption>
             </div>
             <div className="source-block" data-block="34">
@@ -585,8 +583,7 @@ export function ScaffoldContent() {
                 The purified 2KY-5 supernatant was concentrated with an
                 ultrafiltration tube to give approximately 5 mL of solution. The
                 concentration factor between the samples before and after
-                concentration was approximately 3.5, with essentially no protein
-                loss (Figure 1.2.6).
+                concentration was approximately 3.5 (Figure 1.2.6).
               </p>
             </div>
             <div className="source-block figure-block" data-block="35">
@@ -600,7 +597,7 @@ export function ScaffoldContent() {
                   <img
                     loading="lazy"
                     src="https://static.igem.wiki/teams/6102/wiki/images/result/01-skeleton/08.avif"
-                    alt="Figure 1.2.6. BCA quantification of the protein concentration before and after ultrafiltration concentration. The concentration factor was approximately 3.5, with essentially no protein loss."
+                    alt="Figure 1.2.6. BCA quantification of the protein concentration before and after ultrafiltration concentration. The concentration factor was approximately 3.5."
                   />
                 </a>
               </p>
@@ -609,8 +606,7 @@ export function ScaffoldContent() {
               <FigureCaption as="p" className="figure-caption">
                 <strong>Figure 1.2.6 |</strong> BCA quantification of the
                 protein concentration before and after ultrafiltration
-                concentration. The concentration factor was approximately 3.5,
-                with essentially no protein loss.
+                concentration. The concentration factor was approximately 3.5.
               </FigureCaption>
             </div>
             <div className="source-block" data-block="37">
@@ -937,7 +933,7 @@ export function ScaffoldContent() {
               <FigureCaption as="p" className="figure-caption">
                 <strong>Figure 1.2.10 |</strong> Digital photograph of SELP
                 hydrogels and SEM images, (A) and (B) are hydrogels made from
-                SELP with different repeats of unit.The hydrogel has an
+                SELP with different numbers of repeat units. The hydrogel has an
                 interconnected, three-dimensional porous network with pores of
                 varying size.
               </FigureCaption>
@@ -1988,8 +1984,8 @@ export function ScaffoldContent() {
                 <strong>ligation had occurred within 10 min</strong> (a distinct
                 ligation-product band of approximately 45 kDa appeared,
                 consistent with the sum of SUMO-DogTag at 14.7 kDa and
-                SnoopTag2-sfGFP at 30 kDa) and was complete within 1 h (the band
-                of SUMO-DogTag, which was present in lower amount, disappeared),
+                SnoopTag2-sfGFP at 30 kDa) and by 1 h the band
+                of SUMO-DogTag, which was present in lower amount, was no longer detectable,
                 demonstrating that{" "}
                 <strong>
                   the ligation reaction is very rapid and efficient
@@ -2008,7 +2004,7 @@ export function ScaffoldContent() {
                   <img
                     loading="lazy"
                     src="https://static.igem.wiki/teams/6102/wiki/images/result/01-skeleton/30.avif"
-                    alt="Figure 3.3.1. SDS-PAGE analysis of the ligation reaction time course. Samples were taken at 10, 30 and 60 min; the approximately 45-kDa ligation product appeared within 10 min and the reaction was complete within 1 h."
+                    alt="Figure 3.3.1. SDS-PAGE analysis of the ligation reaction time course. Samples were taken at 10, 30 and 60 min; the approximately 45-kDa ligation product appeared within 10 min and the SUMO-DogTag substrate band was no longer detectable at 1 h."
                   />
                 </a>
               </p>
@@ -2018,7 +2014,7 @@ export function ScaffoldContent() {
                 <strong>Figure 3.3.1 |</strong> SDS-PAGE analysis of the
                 ligation reaction time course. Samples were taken at 10, 30 and
                 60 min; the approximately 45-kDa ligation product appeared
-                within 10 min and the reaction was complete within 1 h.
+                within 10 min and the SUMO-DogTag substrate band was no longer detectable at 1 h.
               </FigureCaption>
             </div>
           </div>
@@ -2054,26 +2050,25 @@ export function ScaffoldContent() {
 }
 
 const SCAFFOLD_REFERENCES = [
-  { block: "117", text: "[1] Huang W, Tarakanova A, Dinjaski N, Wang Q, Xia X, Chen Y, Wong JY, Buehler MJ, Kaplan DL. Design of multistimuli responsive hydrogels using integrated modeling and genetically engineered silk–elastin-like proteins. Adv. Funct. Mater. 2016;26(23):4113–4123", doi: "https://doi.org/10.1002/adfm.201600236" },
-  { block: "118", text: "[2] Nie K, et al. Ultrafast crosslinking, strongly adhesive de novo protein hydrogels promote cartilage regeneration. Bioact. Mater. 2026;56:368–385", doi: "https://doi.org/10.1016/j.bioactmat.2025.10.009" },
-  { block: "119", text: "[3] McDaniel JR, MacKay JA, Quiroz FG, Chilkoti A. Recursive directional ligation by plasmid reconstruction allows rapid and seamless cloning of oligomeric genes. Biomacromolecules 2010;11(4):944–952", doi: "https://doi.org/10.1021/bm901387t" },
-  { block: "120", text: "[4] Meyer DE, Chilkoti A. Purification of recombinant proteins by fusion with thermally-responsive polypeptides. Nat. Biotechnol. 1999;17(11):1112–1115", doi: "https://doi.org/10.1038/15100" },
-  { block: "121", text: "[5] Cho Y, Zhang Y, Christensen T, Sagle LB, Chilkoti A, Cremer PS. Effects of Hofmeister anions on the phase transition temperature of elastin-like polypeptides. J. Phys. Chem. B 2008;112(44):13765–13771", doi: "https://doi.org/10.1021/jp8062977" },
-  { block: "122", text: "[6] Smith PK, Krohn RI, Hermanson GT, Mallia AK, Gartner FH, Provenzano MD, Fujimoto EK, Goeke NM, Olson BJ, Klenk DC. Measurement of protein using bicinchoninic acid. Anal. Biochem. 1985;150(1):76–85", doi: "https://doi.org/10.1016/0003-2697(85)90442-7" },
-  { block: "123", text: "[7] Fancy DA, Kodadek T. Chemistry for the analysis of protein–protein interactions: rapid and efficient cross-linking triggered by long wavelength light. Proc. Natl. Acad. Sci. U.S.A. 1999;96(11):6020–6024", doi: "https://doi.org/10.1073/pnas.96.11.6020" },
-  { block: "124", text: "[8] Elvin CM, Carr AG, Huson MG, Maxwell JM, Pearson RD, Vuocolo T, Liyou NE, Wong DCC, Merritt DJ, Dixon NE. Synthesis and properties of crosslinked recombinant pro-resilin. Nature 2005;437(7061):999–1002", doi: "https://doi.org/10.1038/nature04085" },
-  { block: "125", text: "[9] Malencik DA, Anderson SR. Dityrosine as a product of oxidative stress and fluorescent probe. Amino Acids 2003;25(3-4):233–247", doi: "https://doi.org/10.1007/s00726-003-0014-z" },
-  { block: "127", text: "[10] von der Mark K, Gauss V, von der Mark H, Müller P. Relationship between cell shape and type of collagen synthesised as chondrocytes lose their cartilage phenotype in culture. Nature 1977;267(5611):531–532", doi: "https://doi.org/10.1038/267531a0" },
-  { block: "128", text: "[11] Lefebvre V, Huang W, Harley VR, Goodfellow PN, de Crombrugghe B. SOX9 is a potent activator of the chondrocyte-specific enhancer of the proα1(II) collagen gene. Mol. Cell. Biol. 1997;17(4):2336–2346", doi: "https://doi.org/10.1128/MCB.17.4.2336" },
-  { block: "129", text: "[12] Veggiani G, Nakamura T, Brenner MD, Gayet RV, Yan J, Robinson CV, Howarth M. Programmable polyproteams built using twin peptide superglues. Proc. Natl. Acad. Sci. U.S.A. 2016;113(5):1202–1207", doi: "https://doi.org/10.1073/pnas.1519214113" },
-  { block: "130", text: "[13] Buldun CM, Jean JX, Bedford MR, Howarth M. SnoopLigase catalyzes peptide–peptide locking and enables solid-phase conjugate isolation. J. Am. Chem. Soc. 2018;140(8):3008–3018", doi: "https://doi.org/10.1021/jacs.7b13237" },
+  { block: "117", text: "[1] Huang, W., Tarakanova, A., Dinjaski, N., Wang, Q., Xia, X., Chen, Y., Wong, J. Y., Buehler, M. J., & Kaplan, D. L. (2016). Design of multistimuli responsive hydrogels using integrated modeling and genetically engineered silk–elastin‐like proteins. Advanced Functional Materials, 26(23), 4113–4123.", doi: "https://doi.org/10.1002/adfm.201600236" },
+  { block: "118", text: "[2] Nie, K., Fan, Z., Sun, W., Wu, B., Zhou, S., Zhao, H., Ou, J., Ji, T., Tian, J., Wei, W., Ouyang, H., Hay, D. C., & Huang, W. (2026). Ultrafast crosslinking, strongly adhesive de novo protein hydrogels promote cartilage regeneration. Bioactive Materials, 56, 368–385.", doi: "https://doi.org/10.1016/j.bioactmat.2025.10.009" },
+  { block: "119", text: "[3] McDaniel, J. R., MacKay, J. A., Quiroz, F. G., & Chilkoti, A. (2010). Recursive directional ligation by plasmid reconstruction allows rapid and seamless cloning of oligomeric genes. Biomacromolecules, 11(4), 944–952.", doi: "https://doi.org/10.1021/bm901387t" },
+  { block: "120", text: "[4] Meyer, D. E., & Chilkoti, A. (1999). Purification of recombinant proteins by fusion with thermally-responsive polypeptides. Nature Biotechnology, 17(11), 1112–1115.", doi: "https://doi.org/10.1038/15100" },
+  { block: "121", text: "[5] Cho, Y., Zhang, Y., Christensen, T., Sagle, L. B., Chilkoti, A., & Cremer, P. S. (2008). Effects of Hofmeister anions on the phase transition temperature of elastin-like polypeptides. The Journal of Physical Chemistry B, 112(44), 13765–13771.", doi: "https://doi.org/10.1021/jp8062977" },
+  { block: "122", text: "[6] Smith, P. K., Krohn, R. I., Hermanson, G. T., Mallia, A. K., Gartner, F. H., Provenzano, M. D., Fujimoto, E. K., Goeke, N. M., Olson, B. J., & Klenk, D. C. (1985). Measurement of protein using bicinchoninic acid. Analytical Biochemistry, 150(1), 76–85.", doi: "https://doi.org/10.1016/0003-2697(85)90442-7" },
+  { block: "123", text: "[7] Fancy, D. A., & Kodadek, T. (1999). Chemistry for the analysis of protein–protein interactions: Rapid and efficient cross-linking triggered by long wavelength light. Proceedings of the National Academy of Sciences, 96(11), 6020–6024.", doi: "https://doi.org/10.1073/pnas.96.11.6020" },
+  { block: "124", text: "[8] Elvin, C. M., Carr, A. G., Huson, M. G., Maxwell, J. M., Pearson, R. D., Vuocolo, T., Liyou, N. E., Wong, D. C. C., Merritt, D. J., & Dixon, N. E. (2005). Synthesis and properties of crosslinked recombinant pro-resilin. Nature, 437(7061), 999–1002.", doi: "https://doi.org/10.1038/nature04085" },
+  { block: "125", text: "[9] Malencik, D. A., & Anderson, S. R. (2003). Dityrosine as a product of oxidative stress and fluorescent probe. Amino Acids, 25(3-4), 233–247.", doi: "https://doi.org/10.1007/s00726-003-0014-z" },
+  { block: "127", text: "[10] VON DER MARK, K. L. A. U. S., GAUSS, V. E. R. E. N. A., VON DER MARK, H. E. L. G. A., & MÜLLER, P. E. T. E. R. (1977). Relationship between cell shape and type of collagen synthesised as chondrocytes lose their cartilage phenotype in culture. Nature, 267(5611), 531–532.", doi: "https://doi.org/10.1038/267531a0" },
+  { block: "128", text: "[11] Lefebvre, V., Huang, W., Harley, V. R., Goodfellow, P. N., & de Crombrugghe, B. (1997). SOX9 is a potent activator of the chondrocyte-specific enhancer of the proα1(II) collagen gene. Molecular and Cellular Biology, 17(4), 2336–2346.", doi: "https://doi.org/10.1128/MCB.17.4.2336" },
+  { block: "129", text: "[12] Veggiani, G., Nakamura, T., Brenner, M. D., Gayet, R. V., Yan, J., Robinson, C. V., & Howarth, M. (2016). Programmable polyproteams built using twin peptide superglues. Proceedings of the National Academy of Sciences, 113(5), 1202–1207.", doi: "https://doi.org/10.1073/pnas.1519214113" },
+  { block: "130", text: "[13] Buldun, C. M., Jean, J. X., Bedford, M. R., & Howarth, M. (2018). SnoopLigase catalyzes peptide–peptide locking and enables solid-phase conjugate isolation. Journal of the American Chemical Society, 140(8), 3008–3018.", doi: "https://doi.org/10.1021/jacs.7b13237" },
   { block: "131", text: "[14] Keeble AH, Wood DP, Howarth M. Design and evolution of enhanced peptide–peptide ligation for modular transglutaminase assembly. Bioconjugate Chem. 2023;34(6):1019–1036", doi: null },
-  { block: "132", text: "[15] Buldun CM, Jean JX, Bedford MR, Howarth M. SnoopLigase Catalyzes Peptide–Peptide Locking and Enables Solid-Phase Conjugate Isolation. Journal of the American Chemical Society. 2018;140(8):3008–3018", doi: null },
-  { block: "133", text: "[16] Abe Y, Shodai T, Muto T, Mihara K, Torii H, Nishikawa S, Endo T, Kohda D. Structural Basis of Presequence Recognition by the Mitochondrial Protein Import Receptor Tom20. Cell. 2000;100(5):551–560", doi: null },
-  { block: "134", text: "[17] Okutani A, Naima J, Ogihara A, Motoichi T, Ohsawa I, Ohta Y. A method for isolating and cryopreserving intact mitochondria with improved integrity and functionality. Biophysics and Physicobiology. 2025;22(2):e220012", doi: null },
-  { block: "135", text: "[18] Nakano T, et al. Mitochondrial surface coating with artificial lipid membrane improves the transfer efficacy. Communications Biology. 2022;5:745", doi: null },
-  { block: "136", text: "[19] Miyasaki K, Han S, Carton O, Kandell RM, Gunn J, Kwon EJ. Formulation methods for peptide-modified lipid nanoparticles. Journal of Controlled Release. 2025;385:114030", doi: null },
-  { block: "137", text: "[20] Little CB, Barai A, Burkhardt D, Smith SM, Fosang AJ, Werb Z, Shah M, Thompson EW. Matrix metalloproteinase 13–deficient mice are resistant to osteoarthritic cartilage erosion but not chondrocyte hypertrophy or osteophyte development. Arthritis & Rheumatism. 2009;60(12):3723–3733", doi: null },
+  { block: "133", text: "[15] Abe Y, Shodai T, Muto T, Mihara K, Torii H, Nishikawa S, Endo T, Kohda D. Structural Basis of Presequence Recognition by the Mitochondrial Protein Import Receptor Tom20. Cell. 2000;100(5):551–560", doi: null },
+  { block: "134", text: "[16] Okutani A, Naima J, Ogihara A, Motoichi T, Ohsawa I, Ohta Y. A method for isolating and cryopreserving intact mitochondria with improved integrity and functionality. Biophysics and Physicobiology. 2025;22(2):e220012", doi: null },
+  { block: "135", text: "[17] Nakano T, et al. Mitochondrial surface coating with artificial lipid membrane improves the transfer efficacy. Communications Biology. 2022;5:745", doi: null },
+  { block: "136", text: "[18] Miyasaki K, Han S, Carton O, Kandell RM, Gunn J, Kwon EJ. Formulation methods for peptide-modified lipid nanoparticles. Journal of Controlled Release. 2025;385:114030", doi: null },
+  { block: "137", text: "[19] Little CB, Barai A, Burkhardt D, Smith SM, Fosang AJ, Werb Z, Shah M, Thompson EW. Matrix metalloproteinase 13–deficient mice are resistant to osteoarthritic cartilage erosion but not chondrocyte hypertrophy or osteophyte development. Arthritis & Rheumatism. 2009;60(12):3723–3733", doi: null },
 ];
 
 export function ScaffoldReferences() {

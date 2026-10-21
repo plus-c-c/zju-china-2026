@@ -148,7 +148,7 @@ export function GagContent() {
             <div className="table-scroll">
               <table>
                 <TableCaption as="caption">
-                  Table 5.1.1. Full lengths and insert sequences of the three expression plasmids.
+                  Table 5.1.1. Full lengths and insert identities of the three expression plasmids.
                 </TableCaption>
                 <thead>
                   <tr>

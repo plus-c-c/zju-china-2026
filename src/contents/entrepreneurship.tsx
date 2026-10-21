@@ -1296,7 +1296,7 @@ const CONTENT: ContentBlock[] = [
       [
         "R7 Regulatory pathwayCritical",
         "Combining a scaffold, bioactive modules, mitochondria, and delivery devices may create different product classifications and evidence requirements. Regulatory uncertainty could change study scope, timelines, and funding needs.",
-        "Define intended use, composition, and principal mode of action; engage NMPA early on classification and filing. Map evidence requirements by product configuration and revise scope, budget, and timelines before major R&D and capacity investments [12, 13]."
+        "Define intended use, composition, and principal mode of action; engage NMPA early on classification and filing. Map evidence requirements by product configuration and revise scope, budget, and timelines before major R&D and capacity investments [26]."
       ],
       [
         "R8 Hardware integration and clinical usabilityHigh",
@@ -1651,7 +1651,7 @@ const CONTENT: ContentBlock[] = [
   {
     "type": "paragraph",
     "source_index": 304,
-    "text": "NEST plans a traceable waste-management process covering segregation, deactivation, documentation, and compliant disposal of engineered microorganisms, fermentation effluents, high-salt purification liquids, and disposable consumables. SELP hydrogels are designed as temporary scaffolds that degrade progressively. Previous research has demonstrated in vivo biodegradability of engineered SELP hydrogels [32, 33]. We will use Day 28 as a key assessment point to examine whether NEST degradation rates can be coordinated with cartilage regeneration."
+    "text": "NEST plans a traceable waste-management process covering segregation, deactivation, documentation, and compliant disposal of engineered microorganisms, fermentation effluents, high-salt purification liquids, and disposable consumables. SELP hydrogels are designed as temporary scaffolds that degrade progressively. Previous research has investigated silk fibroin scaffolds for bone regeneration [32] and engineered protein hydrogels for cartilage regeneration [33]. We will use Day 28 as a key assessment point to examine whether NEST degradation rates can be coordinated with cartilage regeneration."
   },
   {
     "type": "heading",
@@ -1753,7 +1753,7 @@ const CONTENT: ContentBlock[] = [
   {
     "type": "paragraph",
     "source_index": 327,
-    "text": "[1] Suwelack T, Stegemann M, Ang FX. Starting a Start-up. In: Creating a Customer Experience-Centric Startup. Business Guides on the Go. Springer, Cham; 2022. p. 33–51. https://doi.org/10.1007/978-3-030-92458-4\\_3.",
+    "text": "[1] Suwelack T, Stegemann M, Ang FX. Starting a Start-up. In: Creating a Customer Experience-Centric Startup. Business Guides on the Go. Springer, Cham; 2022. p. 33–51. https://doi.org/10.1007/978-3-030-92458-4_3.",
   },
   {
     "type": "paragraph",
@@ -1768,17 +1768,17 @@ const CONTENT: ContentBlock[] = [
   {
     "type": "paragraph",
     "source_index": 330,
-    "text": "[4] Chang AH, Sharma L, Roemer FW, et al. Magnetic resonance imaging-defined knee osteoarthritis rarely occurs without cartilage damage. Osteoarthritis and Cartilage Open. 2026;8(1):100733. https://doi.org/10.1016/j.ocarto.2025.100733."
+    "text": "[4] Chang, A. H., Sharma, L., Roemer, F. W., Almagor, O., Lee, J., & Guermazi, A. (2026). Magnetic resonance imaging-defined knee osteoarthritis rarely occurs without cartilage damage. Osteoarthritis and Cartilage Open, 8(1), 100733. https://doi.org/10.1016/j.ocarto.2025.100733"
   },
   {
     "type": "paragraph",
     "source_index": 331,
-    "text": "[5] Hjelle K, Solheim E, Strand T, Muri R, Brittberg M. Articular cartilage defects in 1,000 knee arthroscopies. Arthroscopy. 2002;18(7):730–734. https://doi.org/10.1053/jars.2002.32839."
+    "text": "[5] Hjelle, K., Solheim, E., Strand, T., Muri, R., & Brittberg, M. (2002). Articular cartilage defects in 1,000 knee arthroscopies. Arthroscopy, 18(7), 730–734. https://doi.org/10.1053/jars.2002.32839"
   },
   {
     "type": "paragraph",
     "source_index": 332,
-    "text": "[6] Li K, Liu J, Wang D, et al. Towards global integration: China’s evolving role in joint replacement and sports medicine. Knee Surgery, Sports Traumatology, Arthroscopy. 2026;34(5):1567–1571. https://doi.org/10.1002/ksa.70217."
+    "text": "[6] Li, K., Liu, J., Wang, D., Sun, Y., Yang, P., Tian, H., Zhang, X., Li, J., Kayaalp, M. E., Hirschmann, M. T., Wang, J., Huang, W., & Wang, K. (2026). Towards global integration: China's evolving role in joint replacement and sports medicine. Knee Surgery, Sports Traumatology, Arthroscopy, 34(5), 1567–1571. https://doi.org/10.1002/ksa.70217"
   },
   {
     "type": "paragraph",
@@ -1788,7 +1788,7 @@ const CONTENT: ContentBlock[] = [
   {
     "type": "paragraph",
     "source_index": 334,
-    "text": "[8] Frisbie DD, Cross MW, McIlwraith CW. A comparative study of articular cartilage thickness in the stifle of animal species used in human pre-clinical studies compared to articular cartilage thickness in the human knee. Veterinary and Comparative Orthopaedics and Traumatology. 2006;19(3):142–146. doi:10.1055/s-0038-1632990."
+    "text": "[8] Frisbie, D. D., Cross, M. W., & McIlwraith, C. W. (2006). A comparative study of articular cartilage thickness in the stifle of animal species used in human pre-clinical studies compared to articular cartilage thickness in the human knee. Veterinary and Comparative Orthopaedics and Traumatology, 19(3), 142–146. https://doi.org/10.1055/s-0038-1632990"
   },
   {
     "type": "paragraph",
@@ -1848,12 +1848,12 @@ const CONTENT: ContentBlock[] = [
   {
     "type": "paragraph",
     "source_index": 346,
-    "text": "[20] Sahlman WA. The Structure and Governance of Venture-Capital Organizations. Journal of Financial Economics. 1990;27(2):473–521. https://doi.org/10.1016/0304-405X(90)90065-8."
+    "text": "[20] Sahlman, W. A. (1990). The structure and governance of venture-capital organizations. Journal of Financial Economics, 27(2), 473–521. https://doi.org/10.1016/0304-405X(90)90065-8"
   },
   {
     "type": "paragraph",
     "source_index": 347,
-    "text": "[21] Gompers PA. Optimal Investment, Monitoring, and the Staging of Venture Capital. The Journal of Finance. 1995;50(5):1461–1489. https://doi.org/10.1111/j.1540-6261.1995.tb05185.x."
+    "text": "[21] Gompers, P. A. (1995). Optimal investment, monitoring, and the staging of venture capital. The Journal of Finance, 50(5), 1461–1489. https://doi.org/10.1111/j.1540-6261.1995.tb05185.x"
   },
   {
     "type": "paragraph",
@@ -1903,17 +1903,17 @@ const CONTENT: ContentBlock[] = [
   {
     "type": "paragraph",
     "source_index": 357,
-    "text": "[31] Spiller KL, Maher SA, Lowman AM. Hydrogels for the Repair of Articular Cartilage Defects. Tissue Engineering Part B: Reviews. 2011;17(4):281–299. https://doi.org/10.1089/ten.teb.2011.0077."
+    "text": "[31] Spiller, K. L., Maher, S. A., & Lowman, A. M. (2011). Hydrogels for the repair of articular cartilage defects. Tissue Engineering Part B: Reviews, 17(4), 281–299. https://doi.org/10.1089/ten.teb.2011.0077"
   },
   {
     "type": "paragraph",
     "source_index": 358,
-    "text": "[32] Liang R, Li R, Mo W, Zhang X, Ye J, Xie C, Li W, Peng Z, Gu Y, Huang Y, Zhang S, Wang X, Ouyang H. Engineering biomimetic silk fibroin hydrogel scaffolds with “organic-inorganic assembly” strategy for rapid bone regeneration. Bioactive Materials. 2024;40:541–556. https://doi.org/10.1016/j.bioactmat.2024.06.024."
+    "text": "[32] Liang, R., Li, R., Mo, W., Zhang, X., Ye, J., Xie, C., Li, W., Peng, Z., Gu, Y., Huang, Y., Zhang, S., Wang, X., & Ouyang, H. (2024). Engineering biomimetic silk fibroin hydrogel scaffolds with “organic-inorganic assembly” strategy for rapid bone regeneration. Bioactive Materials, 40, 541–556. https://doi.org/10.1016/j.bioactmat.2024.06.024"
   },
   {
     "type": "paragraph",
     "source_index": 359,
-    "text": "[33] Nie K, Fan Z, Sun W, Wu B, Zhou S, Zhao H, Ou J, Ji T, Tian J, Wei W, Ouyang H, Hay DC, Huang W. Ultrafast crosslinking, strongly adhesive de novo protein hydrogels promote cartilage regeneration. Bioactive Materials. 2026;56:368–385. https://doi.org/10.1016/j.bioactmat.2025.10.009."
+    "text": "[33] Nie, K., Fan, Z., Sun, W., Wu, B., Zhou, S., Zhao, H., Ou, J., Ji, T., Tian, J., Wei, W., Ouyang, H., Hay, D. C., & Huang, W. (2026). Ultrafast crosslinking, strongly adhesive de novo protein hydrogels promote cartilage regeneration. Bioactive Materials, 56, 368–385. https://doi.org/10.1016/j.bioactmat.2025.10.009"
   }
 ];
 
