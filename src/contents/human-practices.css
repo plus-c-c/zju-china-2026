@@ -165,6 +165,20 @@ html[data-ihp-swipe="up"]::view-transition-new(root) {
   overflow: clip;
 }
 
+/* Structural headings for the left TOC. They group each deck page without
+   adding a duplicate visible heading to the article itself. */
+.ihp-toc-page-heading {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden;
+  border: 0;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
 .ihp-section-ghost {
   position: absolute;
   inset: 0;
@@ -208,7 +222,13 @@ html[data-ihp-swipe="up"]::view-transition-new(root) {
 /* Once a page is selected the three level-1 buttons spread across the whole
    article column; the active one is still the widest of the three. */
 .ihp-page-nav--selected {
+  position: sticky;
+  top: 0;
+  z-index: 20;
   align-items: center;
+  margin-bottom: 0;
+  padding-block: 10px;
+  background: #f5faff;
 }
 
 .ihp-page-nav {
@@ -333,11 +353,16 @@ html[data-ihp-swipe="up"] .nest-navbar {
 /* NEST module switcher: borderless text tabs with letter badges; the scroll
    spy marks the module in view with a bottom underline. */
 .ihp-nest-tabs {
+  position: sticky;
+  top: var(--ihp-page-nav-height, 68px);
+  z-index: 10;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   align-items: stretch;
   gap: 6px 14px;
   margin: 6px 0 22px;
+  padding-top: 6px;
+  background: #f5faff;
 }
 
 .ihp-nest-tab {
@@ -367,7 +392,8 @@ html[data-ihp-swipe="up"] .nest-navbar {
   transition: opacity 0.2s ease;
 }
 
-.ihp-nest-tab:hover .ihp-nest-tab__letter {
+.ihp-nest-tab:hover .ihp-nest-tab__letter,
+.ihp-nest-tab.is-active .ihp-nest-tab__letter {
   opacity: 0.75;
 }
 
@@ -378,7 +404,8 @@ html[data-ihp-swipe="up"] .nest-navbar {
   text-align: center;
 }
 
-.ihp-nest-tab:hover {
+.ihp-nest-tab:hover,
+.ihp-nest-tab.is-active {
   color: #365dc9;
 }
 

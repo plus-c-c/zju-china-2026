@@ -784,9 +784,9 @@
 }
 
 .dbtl-caption {
-  /* Card title: stays clearly above the 1.25rem body text and wraps
+  /* Level-1 card title: larger than headings inside the card, and wraps
      instead of truncating when the title is long. */
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   font-weight: 700;
   line-height: 1.35;
   color: #223c81;
@@ -1044,6 +1044,15 @@
   margin-top: 0;
 }
 
+/* Level-2 headings authored inside lead/outlook content. Bootstrap's default
+   h3 is larger than the card title, so normalize it to the same secondary
+   tier used by dbtl-section-title. */
+.dbtl .dbtl-panel-inner > h3 {
+  font-size: 1.5rem;
+  line-height: 1.4;
+  color: #223c81;
+}
+
 /* Figures inside a DBTL panel: images stack in the reading order, with the
    caption below the (last) image. */
 .dbtl .dbtl-panel-inner .dbtl-figure {
@@ -1077,6 +1086,10 @@
   border: 1px solid #e3e8f4;
   border-radius: 12px;
   background: #fbfcfe;
+}
+
+.dbtl .dbtl-panel-inner .dbtl-figure-imgs--row > img {
+  width: auto;
 }
 
 .dbtl .dbtl-panel-inner .dbtl-figure img:last-of-type {
@@ -1234,6 +1247,10 @@
 
   .dbtl-subnav {
     margin-top: 0.2rem;
+  }
+
+  .dbtl .dbtl-panel-inner .dbtl-figure-imgs:not(.dbtl-figure-imgs--row) > img {
+    width: 100%;
   }
 }
 

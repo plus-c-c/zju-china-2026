@@ -1,6 +1,13 @@
 import { TableCaption } from "../components/FigureCaption";
 import { FigureCaption } from "../components/FigureCaption";
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import {
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+  Fragment,
+  type ReactNode,
+} from "react";
 import { Link } from "react-router-dom";
 import { flushSync } from "react-dom";
 import { Timeline, type TimelineItem } from "../components/Timeline";
@@ -1553,9 +1560,13 @@ function EngagementBlock() {
 /* ------------------------------------------------------------------ */
 
 const HP_PAGES = [
-  { key: "toolbox", label: "iHP Toolkit" },
-  { key: "nest", label: "NEST" },
-  { key: "engagement", label: "Stakeholder Engagement" },
+  { key: "toolbox", id: "toolbox", label: "iHP Toolkit" },
+  { key: "nest", id: "nest", label: "NEST" },
+  {
+    key: "engagement",
+    id: "stakeholder-engagement",
+    label: "Stakeholder Engagement",
+  },
 ];
 
 function SectionSubnav({
@@ -1842,12 +1853,54 @@ const NEST_TABS = [
   { id: "ihp-nest-trust", letter: "T", label: "Trust and Lasting Impact" },
 ];
 
-/* NEST module switcher: one card per module, letter badge + label. The tabs
-   are pure jump links — the page TOC already marks the module being read, so
-   no tab carries a selected state. */
+/* NEST module switcher: one card per module, letter badge + label. The active
+   tab follows the module currently crossing the reading line. */
 function NestSubnav() {
+  const [activeId, setActiveId] = useState(NEST_TABS[0].id);
+
+  useEffect(() => {
+    const sections = NEST_TABS.map((tab) =>
+      document.getElementById(tab.id),
+    ).filter((section): section is HTMLElement => section !== null);
+    if (!sections.length) return;
+
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      /* Match the section jump's landing line. The latest module whose top
+         has crossed that line is the module the reader is currently in. */
+      const readingLine = 130;
+      let current = sections[0].id;
+      for (const section of sections) {
+        if (section.getBoundingClientRect().top <= readingLine) {
+          current = section.id;
+        } else {
+          break;
+        }
+      }
+      setActiveId(current);
+    };
+    const scheduleUpdate = () => {
+      if (!frame) frame = window.requestAnimationFrame(update);
+    };
+
+    update();
+    window.addEventListener("scroll", scheduleUpdate, { passive: true });
+    window.addEventListener("resize", scheduleUpdate);
+    const observer = new ResizeObserver(scheduleUpdate);
+    sections.forEach((section) => observer.observe(section));
+
+    return () => {
+      window.removeEventListener("scroll", scheduleUpdate);
+      window.removeEventListener("resize", scheduleUpdate);
+      observer.disconnect();
+      window.cancelAnimationFrame(frame);
+    };
+  }, []);
+
   const jump = (id: string) => {
     if (!document.getElementById(id)) return;
+    setActiveId(id);
     history.replaceState(null, "", `#${id}`);
     scrollToSection(id);
   };
@@ -1857,7 +1910,8 @@ function NestSubnav() {
         <button
           key={tab.id}
           type="button"
-          className="ihp-nest-tab"
+          className={`ihp-nest-tab${activeId === tab.id ? " is-active" : ""}`}
+          aria-current={activeId === tab.id ? "true" : undefined}
           onClick={() => jump(tab.id)}
         >
           <NestGlyph letter={tab.letter} />
@@ -1947,6 +2001,28 @@ export function HumanPractices() {
     document.documentElement.classList.toggle("ihp-overview", value === null);
     flushSync(() => setPage(value));
   };
+
+  /* The NEST module row pins directly below the level-1 page switcher. Keep
+     the offset measured so the two sticky rows also stack correctly when the
+     page switcher wraps at a narrow viewport. */
+  useLayoutEffect(() => {
+    const nav = navRef.current;
+    const article = articleRef.current;
+    if (!nav || !article) return;
+    const update = () => {
+      article.style.setProperty(
+        "--ihp-page-nav-height",
+        `${nav.getBoundingClientRect().height}px`,
+      );
+    };
+    update();
+    const observer = new ResizeObserver(update);
+    observer.observe(nav);
+    return () => {
+      observer.disconnect();
+      article.style.removeProperty("--ihp-page-nav-height");
+    };
+  }, []);
 
   /* Keep the level-1 buttons just under the site header when a page opens,
      so they stay in place while its sub-panels switch; the section starts
@@ -2388,9 +2464,28 @@ export function HumanPractices() {
           {page !== null && (
             <div className="ihp-section-viewport">
               <div className="ihp-section">
-                {page === 0 && <ToolboxPage />}
-                {page === 1 && <NestPage />}
-                {page === 2 && <EngagementBlock />}
+                {HP_PAGES.map((entry, index) => (
+                  <Fragment key={entry.key}>
+                    <h3
+                      id={entry.id}
+                      className="ihp-toc-page-heading"
+                      data-toc-group="true"
+                      data-toc-group-current={
+                        page === index ? "true" : undefined
+                      }
+                      aria-hidden="true"
+                    >
+                      {entry.label}
+                    </h3>
+                    {page === index && (
+                      <div data-toc-scope-depth="3">
+                        {index === 0 && <ToolboxPage />}
+                        {index === 1 && <NestPage />}
+                        {index === 2 && <EngagementBlock />}
+                      </div>
+                    )}
+                  </Fragment>
+                ))}
               </div>
             </div>
           )}

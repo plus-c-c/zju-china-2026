@@ -16,7 +16,13 @@ import {
 } from "./tocState";
 import "./toc.css";
 
-type Heading = { id: string; text: string; level: number };
+type Heading = {
+  id: string;
+  text: string;
+  level: number;
+  group: boolean;
+  groupCurrent: boolean;
+};
 
 export type TocEntry = {
   id: string;
@@ -141,10 +147,12 @@ export function Toc({
     /* Step anchors (data-toc-track) mark each deck step; they are tracked by
        the scroll spy even though they are visually hidden. */
     const isExpanded = (element: HTMLElement) =>
-      element.dataset.tocTrack === "true" ||
-      (!element.closest("[hidden], details:not([open])") &&
-        element.dataset.tocCollapsed !== "true" &&
-        !element.classList.contains("visually-hidden"));
+      (element.dataset.tocGroup !== "true" ||
+        element.dataset.tocGroupCurrent === "true") &&
+      (element.dataset.tocTrack === "true" ||
+        (!element.closest("[hidden], details:not([open])") &&
+          element.dataset.tocCollapsed !== "true" &&
+          !element.classList.contains("visually-hidden")));
 
     const collectHeadings = () => {
       collectFrame = 0;
@@ -180,7 +188,14 @@ export function Toc({
         id: element.id,
         text: element.dataset.tocLabel || element.textContent || "",
         level:
-          element.tagName === "H2" ? 1 : Number(element.dataset.tocDepth) || 2,
+          Number(element.dataset.tocDepth) ||
+          Number(
+            element.closest<HTMLElement>("[data-toc-scope-depth]")?.dataset
+              .tocScopeDepth,
+          ) ||
+          (element.tagName === "H2" ? 1 : 2),
+        group: element.dataset.tocGroup === "true",
+        groupCurrent: element.dataset.tocGroupCurrent === "true",
       }));
       setHeadings((previous) =>
         previous.length === next.length &&
@@ -188,7 +203,9 @@ export function Toc({
           (heading, index) =>
             heading.id === next[index].id &&
             heading.text === next[index].text &&
-            heading.level === next[index].level,
+            heading.level === next[index].level &&
+            heading.group === next[index].group &&
+            heading.groupCurrent === next[index].groupCurrent,
         )
           ? previous
           : next,
@@ -249,7 +266,13 @@ export function Toc({
       subtree: true,
       characterData: true,
       attributes: true,
-      attributeFilter: ["hidden", "open", "class", "data-toc-collapsed"],
+      attributeFilter: [
+        "hidden",
+        "open",
+        "class",
+        "data-toc-collapsed",
+        "data-toc-group-current",
+      ],
     });
 
     const hashTimers: number[] = [];
@@ -392,13 +415,24 @@ export function Toc({
           .reverse()
           .find((heading) => heading.level === 1)?.id || ""
       : "";
+  const hasCollapsibleGroups = headings.some((heading) => heading.group);
+  const currentGroupId = headings.find(
+    (heading) => heading.group && heading.groupCurrent,
+  )?.id;
   const visibleHeadings = headings.filter((heading, index) => {
     if (heading.level === 1) return true;
     const parentId = headings
       .slice(0, index)
       .reverse()
       .find((candidate) => candidate.level === 1)?.id;
-    return parentId === activeTopLevelId;
+    if (parentId !== activeTopLevelId) return false;
+    if (!hasCollapsibleGroups) return true;
+    if (heading.group) return true;
+    const groupId = headings
+      .slice(0, index)
+      .reverse()
+      .find((candidate) => candidate.group)?.id;
+    return groupId === currentGroupId;
   });
 
   const showToc = !hideToc && headings.length > 0;
