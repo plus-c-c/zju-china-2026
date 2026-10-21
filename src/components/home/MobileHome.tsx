@@ -14,7 +14,7 @@ import {
 } from "./SELP";
 import { StoryContext } from "./StoryContext";
 import { Footer } from "../Footer";
-const bird = "https://static.igem.wiki/teams/6102/wiki/home-opening/guide-bird-rest.avif";
+import { MobileStoryBird } from "./MobileStoryBird";
 import "./MobileHome.css";
 
 // Mobile uses the same content and controls in a readable, native scroll layout.
@@ -85,7 +85,7 @@ export function MobileHome() {
           <h2>NEST</h2>
           <img
             src="https://static.igem.wiki/teams/6102/wiki/images/home/bird-return-bone-2.avif"
-            alt="NEST bird resting on a cartilage scaffold"
+            alt="NEST cartilage scaffold"
           />
           <HomeScrollCue />
         </section>
@@ -98,9 +98,10 @@ export function MobileHome() {
           <HomeScrollCue />
         </section>
         <SelpPipeline />
-        <img className="mobile-home__footer-bird" src={bird} alt="NEST bird" />
+        <div className="mobile-home__footer-bird" aria-hidden="true" />
         <Footer />
       </div>
+      <MobileStoryBird />
     </StoryContext.Provider>
   );
 }
