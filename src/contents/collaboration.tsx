@@ -179,7 +179,7 @@ export function Collaboration() {
             1 Collaboration and Communication
           </h2>
 
-          <h3 id="iraq-team">1.1 Helping to Build the First Team in Iraq</h3>
+          <h3 id="iraq-team">1.1 keep on support and help the team in Iraq</h3>
           <p>
             Joining iGEM for the first time involves much more than choosing a
             research topic. Registration, team responsibilities, resource
