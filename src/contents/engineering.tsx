@@ -111,8 +111,8 @@ const ALL_SECTIONS: Section[] = [
     label: "Wet Lab",
     groups: [
       selpHydrogelsGroup,
-      gagRetentionGroup,
       tvnMagneticBindingGroup,
+      gagRetentionGroup,
       mitochondrialTherapyGroup,
     ],
   },
