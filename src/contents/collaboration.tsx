@@ -182,27 +182,32 @@ export function Collaboration() {
           <h3 id="iraq-team">1.1 Helping to build the first team in Iraq</h3>
           <p>
             Joining iGEM for the first time involves much more than choosing a
-            research topic. Registration, responsibilities, resources, and
-            presenting results all require attention. For teams still building
-            experience, each can become a difficult threshold to cross alone.
+            research topic. Registration, team responsibilities, resource
+            coordination, and presenting results all require careful attention.
+            For teams with limited experience, each of these steps can become a
+            difficult threshold to cross alone.
           </p>
           <p>
-            For two years, we have stayed in contact with the Al-Nahrain
-            University team in Iraq, sharing our experience of participating in
-            iGEM. We hope to support our partners as they develop the ability to
-            advance their project independently, while keeping knowledge in
-            circulation within the community.
+            For two years, we have maintained close contact with the Al-Nahrain
+            University team in Iraq, sharing our experience and insights from
+            participating in iGEM. With our guidance and continued support,
+            Al-Nahrain University became the first team from Iraq to participate
+            in iGEM. Through ongoing knowledge exchange and collaboration, we
+            hope to help our partners develop the skills and confidence to
+            advance their projects independently, while keeping knowledge and
+            experience circulating throughout the iGEM community.
           </p>
           <p>
-            Our exchanges covered iGEM projects and judging requirements, team
-            roles and preparation, Wiki writing and presentations, and the
-            balance of needs, resources, and feasibility when selecting a topic.
+            Our exchanges covered a wide range of topics, including iGEM project
+            design and judging requirements, team roles and preparation, Wiki
+            writing and presentations, and how to balance practical needs,
+            available resources, and project feasibility when selecting a topic.
           </p>
           <p>
             This year, we held five online meetings to discuss and advance topic
             selection. We also discussed participation procedures and possible
-            arrangements in response to the team&rsquo;s inability to travel to
-            Paris.
+            alternative arrangements in response to the team&rsquo;s inability to
+            travel to Paris.
           </p>
           <CollabFigure
             photos={[IRAQ_MEETING]}
