@@ -1940,7 +1940,12 @@ function renderBlock(block: ContentBlock, key: string): ReactNode {
       );
     case "figure":
       return (
-        <figure className="entre-figure" key={key}>
+        <figure
+          className={`entre-figure${
+            block.number === 1 ? " entre-figure--half-size" : ""
+          }`}
+          key={key}
+        >
           <div
             className={`entre-figure__media${
               block.special && block.files.length === 1
