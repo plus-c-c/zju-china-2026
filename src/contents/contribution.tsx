@@ -515,7 +515,7 @@ export function Contribution() {
         </p>
         <figure className="figure d-block my-4 text-center">
           <img
-            src={`${CIF}contribution-figure-4-new.avif`}
+            src="https://static.igem.wiki/teams/6102/wiki/images/model/selp/selp-workflow-transparent-20261018.avif"
             alt="Overview of the modeling workflow from protein conformation sampling to network mechanical analysis."
             className="figure-img img-fluid rounded"
             style={{ width: "100%" }}
