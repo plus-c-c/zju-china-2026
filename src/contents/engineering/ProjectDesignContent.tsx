@@ -19,6 +19,10 @@ function inline(value: string): ReactNode[] {
 const IMAGE_URL =
   /^https:\/\/static\.igem\.wiki\/\S+\.(?:avif|jpe?g|png|webp)$/i;
 
+function heading(value: string) {
+  return inline(value.replace(/^\d+(?:\.\d+)*[.)]?\s+/, ""));
+}
+
 export function ProjectDesignCard({ source }: { source: string }) {
   const blocks = source.split(/\n{2,}/).map((block) => block.trim());
   const content: ReactNode[] = [];
@@ -28,8 +32,12 @@ export function ProjectDesignCard({ source }: { source: string }) {
     if (!block) continue;
 
     if (/^Figure \d+/i.test(block) && IMAGE_URL.test(blocks[index + 1] ?? "")) {
+      const profile = /^Figure (?:1|4)\b/i.test(block) ? "composite" : "diagram";
       content.push(
-        <PanelFigure className="project-design-figure" key={`figure-${index}`}>
+        <PanelFigure
+          className={`project-design-figure dbtl-figure--readable dbtl-figure--${profile}`}
+          key={`figure-${index}`}
+        >
           <img src={blocks[index + 1]} alt="" loading="lazy" />
           <figcaption>{inline(block)}</figcaption>
         </PanelFigure>,
@@ -39,7 +47,10 @@ export function ProjectDesignCard({ source }: { source: string }) {
     }
     if (IMAGE_URL.test(block)) {
       content.push(
-        <PanelFigure className="project-design-figure" key={`image-${index}`}>
+        <PanelFigure
+          className="project-design-figure dbtl-figure--readable dbtl-figure--diagram"
+          key={`image-${index}`}
+        >
           <img src={block} alt="" loading="lazy" />
         </PanelFigure>,
       );
@@ -48,7 +59,7 @@ export function ProjectDesignCard({ source }: { source: string }) {
     if (block.startsWith("### ")) {
       content.push(
         <h3 className="dbtl-section-title" key={`heading-${index}`}>
-          {inline(block.slice(4))}
+          {heading(block.slice(4))}
         </h3>,
       );
       continue;
@@ -56,7 +67,7 @@ export function ProjectDesignCard({ source }: { source: string }) {
     if (block.startsWith("#### ")) {
       content.push(
         <h4 className="project-design-subheading" key={`subheading-${index}`}>
-          {inline(block.slice(5))}
+          {heading(block.slice(5))}
         </h4>,
       );
       continue;
