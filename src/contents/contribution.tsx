@@ -41,28 +41,13 @@ export function Contribution() {
         <h2 data-toc="exclude">Contribution</h2>
         <hr />
         <p>
-          NEST gives future iGEM teams a connected toolkit for developing
-          protein-based hydrogels: biological parts for building scaffolds and
-          adding functions, protocols for preparing materials, a computational
-          workflow for comparing designs, and software and hardware resources
-          for organizing preparation. We also share our NEST and SEED human
-          practices methods to connect stakeholder needs with engineering
-          decisions.
+          NEST contributes a reusable toolkit for engineering protein-based
+          hydrogels. We share modular biological parts, preparation protocols,
+          modeling methods, software and hardware resources, and an Integrated
+          Human Practices toolbox. Together, these resources help future iGEM
+          teams move from scaffold design to functional assembly, material
+          preparation, and application support.
         </p>
-        <p>
-          Our contribution brings together{" "}
-          <strong>
-            reusable components, experimental evidence, and instructions for
-            building on them
-          </strong>
-          . The SELP scaffolds and functional modules provide concrete starting
-          constructs; the reporter assay provides a reference for checking
-          ligation; and the preparation and modeling records explain how we
-          selected and evaluated working conditions. Teams can begin with one
-          resource or combine them into a workflow for their own
-          material-development questions.
-        </p>
-
         <figure className="figure d-block my-4 text-center">
           <img
             src={`${CIF}01-nest-contributions-equal.avif`}
@@ -85,17 +70,16 @@ export function Contribution() {
             />
           </FigureCaption>
         </figure>
-
+        <TableCaption>
+          Table 1 | Reusable contributions for future iGEM teams. Resources are
+          grouped by what they provide, how they can be used, and where they can
+          be accessed.
+        </TableCaption>
         <div className="table-responsive mb-4">
           <table
             className="table table-bordered align-middle"
             aria-label="Community resources, reuse opportunities, and access"
           >
-            <TableCaption as="caption">
-              Table 1 | Reusable contributions for future iGEM teams. Resources
-              are grouped by what they provide, how they can be used, and where
-              they can be accessed.
-            </TableCaption>
             <thead className="table-primary">
               <tr>
                 <th scope="col">Contribution</th>
@@ -191,51 +175,29 @@ export function Contribution() {
             </tbody>
           </table>
         </div>
-
         <h3 id="contribution-parts" className="mt-5 mb-3" data-toc-depth="1">
           1 Parts for Modular Protein Hydrogel Design
         </h3>
         <p>
-          Our <Link to="/parts">Parts page</Link> brings together{" "}
+          We contribute{" "}
           <strong>
             {basicCount} Basic Parts and {compositeCount} Composite Parts
-          </strong>
-          , with sequences, component annotations, Registry links, and FASTA
-          downloads. The toolkit covers scaffold construction, protein ligation,
-          functional modules, and experimental controls, so a team can select
-          components according to the task it wants to perform.
-        </p>
-        <h4 className="mt-4 mb-3">Scaffold length and connector placement</h4>
-        <p>
-          We used the established PRe-RDL method to extend the highly repetitive
-          SELP coding sequence from 2KY-5 to 2KY-10. Colony PCR and sequencing
-          confirmed repeat doubling, and the longer construct was expressed and
-          purified, yielding approximately{" "}
-          <strong>480 mg per liter of bacterial culture</strong>. The{" "}
-          <Link to="/experiments#wetlab-scaffold-17">construction method</Link>{" "}
-          and <Link to="/results#wetlab-scaffold-17">supporting results</Link>{" "}
-          give future teams a demonstrated route for extending the scaffold.
+          </strong>{" "}
+          covering SELP scaffolds, ligation interfaces, functional modules,
+          reporters, and controls. The toolkit connects tunable scaffold length
+          with interchangeable functions, giving future teams a foundation for
+          building materials around their own biological objectives.
         </p>
         <p>
-          Connector placement supplies a second design choice. Our construction
-          records explain how a tag within the amplified cassette is copied
-          during repeat doubling, while a tag outside that region remains at the
-          terminus. The Registry-linked toolkit also includes 2KY-5 and 2KY-10
-          constructs flanked by SnoopTag2 at both termini. Future teams can use
-          these sequence records and the documented placement logic to plan
-          scaffold length and the arrangement of functional attachment sites
-          together.
+          We demonstrated scaffold expansion from 2KY-5 to 2KY-10 and documented
+          how connector placement shapes the available ligation sites. Through
+          the SnoopLigase2 interface, teams can introduce new DogTag-bearing
+          sequences while retaining the scaffold and assembly strategy. Our
+          reporter assay produced a detectable ligation product within{" "}
+          <strong>10 minutes</strong>, with the SUMO-DogTag substrate band
+          disappearing by <strong>60 minutes</strong>, providing an experimental
+          reference for establishing the system in another laboratory.
         </p>
-        <h4 className="mt-4 mb-3">A shared interface for functional modules</h4>
-        <p>
-          We use the established SnoopLigase2 system to connect
-          SnoopTag2-bearing partners with DogTag-bearing modules. Through this
-          interface, teams can retain the assembly strategy while introducing
-          their own functional sequences. Our toolkit includes magnetic-binding
-          and matrix-retention constructs, together with reporters and matched
-          controls that support their evaluation.
-        </p>
-
         <figure className="figure d-block my-4 text-center">
           <img
             src={`${CIF}9.avif`}
@@ -256,130 +218,111 @@ export function Contribution() {
             />
           </FigureCaption>
         </figure>
-
-        <div className="table-responsive mb-4">
-          <table
-            className="table table-bordered align-middle"
-            aria-label="Selected biological parts and their reuse opportunities"
-          >
-            <TableCaption as="caption">
-              Table 2 | Biological parts for modular material engineering.
-              Selected Registry entries are grouped by task; the Parts page
-              provides complete sequences, component annotations, and FASTA
-              downloads.
-            </TableCaption>
-            <thead className="table-primary">
-              <tr>
-                <th scope="col">Part Group</th>
-                <th scope="col">Registry Entries</th>
-                <th scope="col">Reuse Opportunity</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">
-                  SELP scaffolds: 2KY-5, 2KY-10, and terminally tagged
-                  constructs
-                </th>
-                <td>
-                  <RegistryParts
-                    ids={[
-                      "BBa_26HEMGR4",
-                      "BBa_267QOE6D",
-                      "BBa_26IPYN3G",
-                      "BBa_26HWVIKX",
-                    ]}
-                  />
-                </td>
-                <td>
-                  Compare scaffold lengths and select terminal ligation sites
-                  for functional modules.
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">
-                  SnoopLigase2, SnoopTag2-sfGFP, and SUMO-DogTag
-                </th>
-                <td>
-                  <RegistryParts
-                    ids={["BBa_26O4AA95", "BBa_26RVHX1R", "BBa_26PVPRQ2"]}
-                  />
-                </td>
-                <td>
-                  Reproduce the reporter reaction as a reference before
-                  evaluating a new module.
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">
-                  DogTag-TVN and the matched DogTag-GTWSLLL control
-                </th>
-                <td>
-                  <RegistryParts ids={["BBa_26R5QAZM", "BBa_26OZ27MH"]} />
-                </td>
-                <td>
-                  Assess the contribution of the TVN sequence to particle
-                  association within the same fusion architecture.
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">
-                  DogTag-CPC, DogTag-Link-N, and DogTag-CPC-Link-N
-                </th>
-                <td>
-                  <RegistryParts
-                    ids={["BBa_267XBQOY", "BBa_266WDNPZ", "BBa_26ZPD683"]}
-                  />
-                </td>
-                <td>
-                  Compare individual and combined matrix-retention components
-                  through a common ligation handle.
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">
-                  MMP13sp and scrambled-sequence fusion designs
-                </th>
-                <td>
-                  <RegistryParts ids={["BBa_26NBBOY6", "BBa_26ZF9WQJ"]} />
-                </td>
-                <td>
-                  Investigate sequence-dependent protease cleavage using paired
-                  constructs with the same surrounding architecture.
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <h4 className="mt-4 mb-3">
-          A reference reaction for checking assembly
-        </h4>
         <p>
-          In our sfGFP reporter assay, a ligation-product band was detectable
-          after <strong>10 minutes</strong>, and the SUMO-DogTag substrate band
-          disappeared by <strong>60 minutes</strong>. The{" "}
-          <Link to="/results#wetlab-scaffold-35">time-course results</Link> and{" "}
-          <a
-            href={
-              PROTOCOL +
-              "ligation-reaction-snoopligase2-mediated-peptide-peptide-ligation.pdf"
-            }
-          >
-            Ligation Protocol
-          </a>{" "}
-          provide a reference that other teams can reproduce when establishing
-          the system in their own laboratory.
+          The <Link to="/parts">Parts page</Link> provides sequences, component
+          annotations, FASTA downloads, and Registry links. Teams can follow the{" "}
+          <Link to="/experiments#wetlab-scaffold-17">construction method</Link>,{" "}
+          <Link to="/results#wetlab-scaffold-17">supporting results</Link>, and{" "}
+          <Link to="/results#wetlab-scaffold-35">time-course results</Link> to
+          select parts and plan validation of new modules.
         </p>
-        <p>
-          A practical route for extending NEST is to reproduce this reporter
-          reaction, introduce the new DogTag-bearing module, and then evaluate
-          the function of the assembled product. Enzyme-omission and
-          tag-omission controls help assess ligation dependence, while matched
-          functional controls address activity or binding specificity. This
-          separates the evidence for successful attachment from the evidence for
-          the intended material function.
-        </p>
-
+        <details className="mb-4">
+          <summary>Selected Parts and Registry Entries</summary>
+          <TableCaption>
+            Table 2 | Biological parts for modular material engineering.
+            Selected Registry entries are grouped by task; the Parts page
+            provides complete sequences, component annotations, and FASTA
+            downloads.
+          </TableCaption>
+          <div className="table-responsive mb-4">
+            <table
+              className="table table-bordered align-middle"
+              aria-label="Selected biological parts and their reuse opportunities"
+            >
+              <thead className="table-primary">
+                <tr>
+                  <th scope="col">Part Group</th>
+                  <th scope="col">Registry Entries</th>
+                  <th scope="col">Reuse Opportunity</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">
+                    SELP scaffolds: 2KY-5, 2KY-10, and terminally tagged
+                    constructs
+                  </th>
+                  <td>
+                    <RegistryParts
+                      ids={[
+                        "BBa_26HEMGR4",
+                        "BBa_267QOE6D",
+                        "BBa_26IPYN3G",
+                        "BBa_26HWVIKX",
+                      ]}
+                    />
+                  </td>
+                  <td>
+                    Compare scaffold lengths and select terminal ligation sites
+                    for functional modules.
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">
+                    SnoopLigase2, SnoopTag2-sfGFP, and SUMO-DogTag
+                  </th>
+                  <td>
+                    <RegistryParts
+                      ids={["BBa_26O4AA95", "BBa_26RVHX1R", "BBa_26PVPRQ2"]}
+                    />
+                  </td>
+                  <td>
+                    Reproduce the reporter reaction as a reference before
+                    evaluating a new module.
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">
+                    DogTag-TVN and the matched DogTag-GTWSLLL control
+                  </th>
+                  <td>
+                    <RegistryParts ids={["BBa_26R5QAZM", "BBa_26OZ27MH"]} />
+                  </td>
+                  <td>
+                    Assess the contribution of the TVN sequence to particle
+                    association within the same fusion architecture.
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">
+                    DogTag-CPC, DogTag-Link-N, and DogTag-CPC-Link-N
+                  </th>
+                  <td>
+                    <RegistryParts
+                      ids={["BBa_267XBQOY", "BBa_266WDNPZ", "BBa_26ZPD683"]}
+                    />
+                  </td>
+                  <td>
+                    Compare individual and combined matrix-retention components
+                    through a common ligation handle.
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">
+                    MMP13sp and scrambled-sequence fusion designs
+                  </th>
+                  <td>
+                    <RegistryParts ids={["BBa_26NBBOY6", "BBa_26ZF9WQJ"]} />
+                  </td>
+                  <td>
+                    Investigate sequence-dependent protease cleavage using
+                    paired constructs with the same surrounding architecture.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </details>
         <h3
           id="contribution-protocols"
           className="mt-5 mb-3"
@@ -388,30 +331,13 @@ export function Contribution() {
           2 Protocols for Protein Hydrogel Preparation
         </h3>
         <p>
-          Our contribution to protein hydrogel preparation combines
-          <strong>
-            {" "}
-            accessible procedures, a tested preparation sequence, and practical
-            checks for protein recovery
-          </strong>
-          . The workflow connects inverse transition cycling (ITC),
-          ultrafiltration-based buffer exchange, and lyophilization, with a
-          separate protocol for blue-light photocrosslinking. Teams can use the
-          individual procedures or follow the sequence from recovered scaffold
-          protein to hydrogel preparation.
+          We share a preparation workflow connecting protein recovery, buffer
+          exchange, lyophilization, and blue-light photocrosslinking. Building
+          on established inverse transition cycling (ITC) methods,
+          <sup className="article-citation">[1, 2]</sup> we established a
+          working preparation route for our SELP scaffolds and documented the
+          optimization decisions behind it.
         </p>
-        <p>
-          Using SELP as the experimental system, we adapted established ITC
-          principles<sup className="article-citation">[1, 2]</sup> and compared
-          65&nbsp;&deg;C and 80&nbsp;&deg;C across NaCl concentrations of 0.5,
-          1, and 2&nbsp;M. Salt concentration had the more pronounced effect in
-          this screen. We selected{" "}
-          <strong>65&nbsp;&deg;C in PBS containing 2&nbsp;M NaCl</strong> for
-          subsequent scaffold variants. The{" "}
-          <Link to="/results#wetlab-scaffold-04">purification results</Link>{" "}
-          show the comparison and the resulting preparation workflow.
-        </p>
-
         <figure className="figure d-block my-4 text-center">
           <img
             src={`${CIF}10.avif`}
@@ -432,67 +358,62 @@ export function Contribution() {
             />
           </FigureCaption>
         </figure>
-
         <p>
-          The optimization records also explain where to look when recovery
-          changes: target-protein bands in the supernatant after heating (H-Sup)
-          identify material remaining outside the recovered phase, while the
-          supernatant after cooling (C-Sup) helps assess resolubilization.
-          Tracking these fractions lets teams connect a change in yield to a
-          particular preparation step and choose the next condition to
-          investigate.
-        </p>
-        <p>
-          Future teams can adopt the screening strategy for thermoresponsive
-          proteins and adapt the buffer-exchange, lyophilization, and
-          crosslinking steps to their own protein hydrogel systems. The value
-          lies in sharing both the procedures and the reasoning used to connect
-          protein recovery with material preparation.
-        </p>
-        <p>
-          <strong>Use these resources:</strong>{" "}
+          The contribution combines practical procedures with optimization
+          records and checks for tracking protein recovery. Future teams can use
+          these resources to plan preparation, troubleshoot individual steps,
+          and adapt the workflow to their own protein hydrogel materials. The{" "}
+          <Link to="/protocol">Protocol Library</Link> provides{" "}
           <a
             href={
               PROTOCOL + "purification-by-inverse-transition-cycling-itc.pdf"
             }
           >
             ITC
-          </a>{" "}
-          ·{" "}
+          </a>
+          ,{" "}
           <a
             href={
               PROTOCOL +
               "protein-ultrafiltration-concentration-and-buffer-exchange.pdf"
             }
           >
-            Buffer Exchange
-          </a>{" "}
-          ·{" "}
+            buffer exchange
+          </a>
+          ,{" "}
           <a href={PROTOCOL + "protein-lyophilisation-freeze-drying.pdf"}>
-            Lyophilization
-          </a>{" "}
-          ·{" "}
+            lyophilization
+          </a>
+          ,{" "}
+          <a
+            href={
+              PROTOCOL +
+              "ligation-reaction-snoopligase2-mediated-peptide-peptide-ligation.pdf"
+            }
+          >
+            ligation
+          </a>
+          , and{" "}
           <a
             href={
               PROTOCOL + "blue-light-photo-crosslinking-of-selp-hydrogels.pdf"
             }
           >
-            Photocrosslinking
+            photocrosslinking
           </a>{" "}
-          · <Link to="/protocol">Full Protocol Library</Link>
+          protocols alongside the corresponding{" "}
+          <Link to="/results#wetlab-scaffold-04">preparation results</Link>.
         </p>
-
         <h3 id="contribution-modeling" className="mt-5 mb-3" data-toc-depth="1">
           3 Modeling for Protein Hydrogel Design
         </h3>
         <p>
-          We share a computational workflow for comparing protein hydrogel
-          designs before selecting candidates for wet-lab testing. It connects
-          protein sequence, single-chain conformational sampling, coarse-grained
-          network construction, and mechanical analysis, using SELP hydrogels as
-          a worked example.
+          We contribute a computational workflow that connects protein sequence,
+          conformational sampling, network construction, and mechanical
+          analysis. Using SELP hydrogels as a worked example, we combine
+          simulation with experimental calibration to help teams compare
+          candidate designs and prioritize wet-lab testing.
         </p>
-
         <figure className="figure d-block my-4 text-center">
           <img
             src={`${CIF}contribution-figure-4-new.avif`}
@@ -507,29 +428,16 @@ export function Contribution() {
             conformation sampling to network mechanical analysis.
           </FigureCaption>
         </figure>
-
         <p>
-          The reusable contribution includes the choices that make these stages
-          work together: how chains are sampled, how crosslinks and interchain
-          contacts are represented, how network connectivity is checked, and how
-          calculated stiffness is related to experimental modulus. Our records
-          document numerical sensitivity analyses and experimental calibration,
-          giving other teams a basis for interpreting the calculated results and
-          choosing their own comparison conditions.
+          We share the assumptions, parameters, network checks, and calibration
+          approach needed to build on the workflow. The{" "}
+          <Link to="/model">Model page</Link> presents the methods and results,
+          while the <Link to="/software">Software page</Link> explains task
+          configuration and output inspection. Together, they give future teams
+          a documented starting point for investigating their own material
+          designs and connecting computational comparisons with targeted
+          experiments.
         </p>
-        <p>
-          The <Link to="/model">Model page</Link> explains these methods and
-          their application to our constructs. The{" "}
-          <Link to="/software">Software page</Link> translates the computational
-          stages into task types, parameter settings, input files, and output
-          inspection. Future teams can follow the workflow, calibrate its
-          parameters against their own material measurements, and use the
-          resulting comparisons to plan targeted experiments. The Model page
-          also documents complementary approaches to SnoopLigase2 engineering
-          and magnetic-field analysis that can inform further platform
-          development.
-        </p>
-
         <h3
           id="contribution-software-hardware"
           className="mt-5 mb-3"
@@ -542,17 +450,17 @@ export function Contribution() {
           <a href={HARDWARE_SOURCE}>
             mechanical drawings and PCB project files
           </a>{" "}
-          to help future teams develop the practical preparation workflow around
-          a modular material. These resources address formulation information,
-          operating guidance, component dispensing, and device construction.
+          that extend our contribution into practical material preparation. The
+          app brings together formulation selection, QR-code scanning, and
+          step-by-step guidance; the hardware provides independently driven
+          dispensing channels and a mixing architecture.
         </p>
-
         <figure className="figure d-block my-4 text-center">
           <img
             src={`${CIF}12.avif`}
             alt="The reagent-preparation prototype and the application interface."
             className="figure-img img-fluid rounded"
-            style={{ width: "100%" }}
+            style={{ width: "100%", clipPath: "inset(1% round 6px)" }}
             loading="lazy"
             decoding="async"
           />
@@ -566,32 +474,15 @@ export function Contribution() {
             />
           </FigureCaption>
         </figure>
-
         <p>
-          The app organizes material selection, component descriptions, QR-code
-          scanning, and a four-step preparation guide. Future teams can adapt
-          the material catalog and instructions for their own scaffold and
-          functional-module combinations, using the existing application as a
-          starting point for formulation-specific guidance.
+          Future teams can adapt the material catalog and instructions to new
+          scaffold and module combinations, or build on the device architecture
+          for their own preparation tasks. The{" "}
+          <Link to="/software">Software documentation</Link> and{" "}
+          <Link to="/hardware">Hardware guide</Link> provide the operating
+          workflows, device descriptions, and bills of materials that support
+          this reuse.
         </p>
-        <p>
-          The hardware preparation unit provides three independently driven
-          syringe channels and a mixing architecture, supported by device
-          descriptions and bills of materials. The{" "}
-          <Link to="/hardware">Hardware page</Link> documents the STM32
-          controller, ESP32 communication layer, and web interface, together
-          with the mechanical design. Teams can reference these files when
-          building dispensing systems, adapting ingredient channels, or
-          selecting replaceable fluid-contact consumables for a new material
-          workflow.
-        </p>
-        <p>
-          This gives the community resources at both levels: software for
-          organizing preparation information and hardware designs for handling
-          material components. Each can be adopted and developed independently
-          according to the needs of the next project.
-        </p>
-
         <h3
           id="contribution-human-practices"
           className="mt-5 mb-3"
@@ -600,17 +491,16 @@ export function Contribution() {
           5 Human Practices: NEST and SEED
         </h3>
         <p>
-          We share an{" "}
+          We contribute an{" "}
           <Link to="/human-practices#ihp-toolbox-nest">
             Integrated Human Practices toolbox
           </Link>{" "}
-          that connects stakeholder engagement with decisions about what to
-          build and how to develop it. NEST organizes the work into Need-led
-          Discovery, Evidence-based Co-design, Situated Implementation, and
-          Trust and Lasting Impact. Within this framework, SEED gives teams a
-          cycle they can apply to an individual design question.
+          that connects stakeholder needs with engineering decisions. The NEST
+          framework organizes project development. SEED translates stakeholder
+          findings into a Product Requirements Document (PRD), carries those
+          requirements into the DBTL cycle, and returns results to stakeholders
+          for feedback.
         </p>
-
         <figure className="figure d-block my-4 text-center">
           <img
             src={`${CIF}02-seed-prd-harmonized.avif`}
@@ -632,48 +522,17 @@ export function Contribution() {
             />
           </FigureCaption>
         </figure>
-
-        <ol>
-          <li>
-            <strong>Spark a Question:</strong> identify a need or engineering
-            problem that requires investigation.
-          </li>
-          <li>
-            <strong>Explore &amp; Analyze:</strong> combine stakeholder dialogue
-            and literature research, then translate the findings into a Product
-            Requirements Document (PRD).
-          </li>
-          <li>
-            <strong>Engineering &amp; Implementation:</strong> use those
-            requirements to guide the Design–Build–Test–Learn (DBTL) cycle.
-          </li>
-          <li>
-            <strong>Dialogue &amp; Feedback:</strong> return the design and
-            results to stakeholders and use their feedback to guide the next
-            iteration.
-          </li>
-        </ol>
         <p>
           Our{" "}
           <Link to="/human-practices#ihp-nest-codesign">
             documented design cycles
           </Link>{" "}
-          show how this process influenced NEST. For example, clinical feedback
-          about the different loads borne by different joints helped turn
-          material strength into a design requirement, informing the work on
-          SELP repeat number and mechanical modeling. The stakeholder records
-          connect the reason for each conversation, the findings, and their
-          integration into the project.
+          show the method in practice: clinical feedback about different joint
+          loads informed the work on SELP repeat number and mechanical modeling.
+          Future teams can reuse the framework and cases to plan stakeholder
+          engagement, translate findings into actionable requirements, and
+          demonstrate how Human Practices shapes their own project.
         </p>
-        <p>
-          Future teams can reuse this structure to plan stakeholder questions,
-          write requirements the engineering team can act on, and document how
-          feedback changes a design. The toolbox and worked examples make the
-          method available alongside the biological parts and technical
-          resources, so teams can build both their material system and the
-          process used to develop it.
-        </p>
-
         <References level={2}>
           <div className="references-list references-list--paragraphs">
             <p>
