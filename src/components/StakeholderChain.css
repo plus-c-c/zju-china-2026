@@ -175,7 +175,7 @@
 
 /* Avatars inside the dropdown cards. The cards themselves keep their size and
    styling and only grow taller, so the row keeps its original format. */
-.chain__mini-card img,
+.chain__mini-avatar,
 .chain__mini-initials {
   /* Two avatars per card, each half the card's width, so the row fills the
      card without a gap on the right. */
@@ -185,9 +185,21 @@
   margin: 1px;
   border-radius: 50%;
   background: #dce9ff;
+  vertical-align: middle;
+}
+
+.chain__mini-avatar {
+  display: inline-block;
+  overflow: hidden;
+}
+
+.chain__mini-avatar img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
   object-fit: cover;
   object-position: 50% 30%;
-  vertical-align: middle;
 }
 
 .chain__mini-initials {

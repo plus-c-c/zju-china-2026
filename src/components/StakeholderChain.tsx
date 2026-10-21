@@ -9,6 +9,9 @@ export type ChainPerson = {
   name: string;
   /** Optional portrait; falls back to initials. */
   image?: string;
+  /** Optional focal point and zoom for cropping this portrait only. */
+  imagePosition?: string;
+  imageScale?: number;
 };
 
 export type ChainStage = {
@@ -88,13 +91,24 @@ export function StakeholderChain({
                 <div className="chain__mini-card" key={stage.id}>
                   {stage.people.map((person) =>
                     person.image ? (
-                      <img
+                      <span
                         key={person.name}
-                        src={person.image}
-                        alt={person.name}
+                        className="chain__mini-avatar"
                         title={person.name}
-                        loading="lazy"
-                      />
+                      >
+                        <img
+                          src={person.image}
+                          alt={person.name}
+                          loading="lazy"
+                          style={{
+                            objectPosition: person.imagePosition,
+                            transform: person.imageScale
+                              ? `scale(${person.imageScale})`
+                              : undefined,
+                            transformOrigin: person.imagePosition,
+                          }}
+                        />
+                      </span>
                     ) : (
                       <span
                         key={person.name}

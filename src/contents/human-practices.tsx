@@ -156,7 +156,11 @@ const chainStages: ChainStage[] = [
       { name: "Dr. Li Zhiguo", image: photo("ihp-43") },
       { name: "Dr. Ren Bo", image: photo("ihp-09") },
       { name: "Dr. Zhang Yumei", image: photo("ihp-10") },
-      { name: "Nurse Xue Han and her nursing team (18 in total)", image: photo("ihp-11") },
+      {
+        name: "Nurse Xue Han's nursing team",
+        image: photo("ihp-51"),
+        imagePosition: "40% 30%",
+      },
     ],
   },
   {
@@ -166,7 +170,12 @@ const chainStages: ChainStage[] = [
       { name: "Beijing Weixinkang" },
       { name: "Shaanxi Lanyiwei Biotechnology Co., Ltd.", image: photo("ihp-38") },
       { name: "Yuanyi Bio", image: photo("ihp-30") },
-      { name: "Shanghai Lingjiu", image: photo("ihp-28") },
+      {
+        name: "Shanghai Lingjiu",
+        image: photo("ihp-28"),
+        imagePosition: "2% 50%",
+        imageScale: 1.1,
+      },
     ],
   },
   {
@@ -174,7 +183,6 @@ const chainStages: ChainStage[] = [
     label: "Market Authorization & Access",
     people: [
       { name: "Li Zhuoya", image: photo("ihp-27") },
-      { name: "ZJU Innovation & Entrepreneurship College", image: photo("zju-entrepreneurship-institute") },
       { name: "Zhang Jie", image: photo("ihp-26") },
       { name: "Prof. Erik Forsberg", image: photo("ihp-44") },
       { name: "Prof. Li Jianqin", image: photo("ihp-34") },
@@ -182,6 +190,18 @@ const chainStages: ChainStage[] = [
       { name: "Mavis Wu", image: photo("ihp-40") },
       { name: "Tung Wah Group of Hospitals", image: photo("hospital-procurement-visit") },
       { name: "Legislator Lam Chit-huen", image: photo("ihp-32") },
+      {
+        name: "ZJU Innovation & Entrepreneurship College — left portrait",
+        image: photo("ihp-52"),
+        imagePosition: "12% 40%",
+        imageScale: 2,
+      },
+      {
+        name: "ZJU Innovation & Entrepreneurship College — right portrait",
+        image: photo("ihp-52"),
+        imagePosition: "75% 40%",
+        imageScale: 2.3,
+      },
     ],
   },
   {
