@@ -7,8 +7,8 @@ interface DbtlFigureProps {
   src: string | string[];
   caption?: ReactNode;
   alt?: string;
-  /** Preserve enough image height for labels, even with a long caption. */
-  readable?: boolean;
+  /** Balance detail and page rhythm for each kind of scientific figure. */
+  readable?: "diagram" | "composite" | "gel" | "microscopy" | "portrait";
   sharedFrame?: boolean;
   /** Ignore empty trailing space in the source canvas without editing it. */
   trimRight?: number;
@@ -76,7 +76,9 @@ export function DbtlFigure({
   const sources = Array.isArray(src) ? src : [src];
   const label = alt ?? (typeof caption === "string" ? caption : "Figure");
   return (
-    <PanelFigure className={`dbtl-figure${readable ? " dbtl-figure--readable" : ""}`}>
+    <PanelFigure
+      className={`dbtl-figure${readable ? ` dbtl-figure--readable dbtl-figure--${readable}` : ""}`}
+    >
       <div
         className={`dbtl-figure-imgs${sources.length > 1 ? " dbtl-figure-imgs--row" : ""}${sharedFrame ? " dbtl-figure-imgs--shared" : ""}${trimRight ? " dbtl-figure-imgs--trimmed" : ""}`}
       >

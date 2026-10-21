@@ -103,7 +103,7 @@ export const mitochondriaModule: DbtlModule = {
               extent to which mitochondrial function was preserved.
             </p>
             <DbtlFigure
-              readable
+              readable="microscopy"
               src="result/04/09.avif"
               caption="Figure 1.1.1 | Confocal fluorescence imaging of the liposome–mitochondria complexes. Partial overlap between the liposomal and mitochondrial signals supports a spatial association between the two components."
             />
@@ -166,7 +166,7 @@ export const mitochondriaModule: DbtlModule = {
               differences within this region (Figure 1.2.1).
             </p>
             <DbtlFigure
-              readable
+              readable="diagram"
               src="design/04/02.avif"
               caption="Figure 1.2.1 | Design of the responsive construct and the Control construct. Both share the same attachment sites and expression framework; the responsive region RRGPLGLSLGKR is replaced by the scrambled sequence RKGLSLGLPGRR in the Control construct."
             />
@@ -303,7 +303,7 @@ export const mitochondriaModule: DbtlModule = {
               be used to generate reporter substrates for subsequent assays.
             </p>
             <DbtlFigure
-              readable
+              readable="gel"
               src="result/04/06.avif"
               caption="Figure 2.2.1 | GFP-SnoopTag ligation reactions with and without SnoopLigase. Higher-molecular-weight bands appear in the ligase-containing reactions for both the responsive and Control peptides."
             />

@@ -540,7 +540,7 @@ export const scaffoldModule: DbtlModule = {
               amplification using Method 2 of the Mut Express II kit.
             </p>
             <DbtlFigure
-              readable
+              readable="diagram"
               src="result/01/12.avif"
               caption="Figure 1.4.1 | Construction of the 2KY-10 plasmid by one round of PRe-RDL. The parental plasmid is divided into two aliquots and digested with AcuI + XbaI (digest A) and with BseRI + XbaI (digest B); the 1008-bp gene-containing fragment from digest A and the 6483-bp backbone fragment from digest B are ligated to reconstitute the plasmid carrying a doubled repeat array."
             />

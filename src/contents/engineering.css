@@ -1083,10 +1083,27 @@
   margin-bottom: 0;
 }
 
+.dbtl .dbtl-panel-inner .dbtl-figure--readable {
+  --figure-display-height: 400px;
+  margin-block: 0.75rem;
+}
+
+.dbtl .dbtl-panel-inner .dbtl-figure--diagram {
+  --figure-display-height: 380px;
+}
+
+.dbtl .dbtl-panel-inner :is(.dbtl-figure--gel, .dbtl-figure--microscopy) {
+  --figure-display-height: 360px;
+}
+
+.dbtl .dbtl-panel-inner .dbtl-figure--portrait {
+  --figure-display-height: 480px;
+}
+
 .dbtl .dbtl-panel-inner .dbtl-figure--readable img {
-  /* These detailed figures fill the reading width. Tall artwork and its
-     caption stay together in the current card's scrollable content. */
-  max-height: none;
+  /* Keep the complete artwork centred at a considered viewing size.
+     Portrait diagrams get more height; gels and microscopy stay compact. */
+  max-height: min(var(--figure-display-height), 52dvh);
 }
 
 .dbtl .dbtl-panel-inner .dbtl-figure-imgs--shared {
