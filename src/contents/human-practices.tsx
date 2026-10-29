@@ -2561,6 +2561,31 @@ export function HumanPractices() {
             open the iHP Toolkit, Stakeholder Engagement, or NEST-based
             Integrated Human Practices.
           </p>
+          <p>
+            To explore the frameworks and methods used throughout our Human
+            Practices activities, see the{" "}
+            <a href="#toolbox">
+              <strong>iHP Toolkit</strong>
+            </a>
+            .
+          </p>
+          <p>
+            If you would like to know which stakeholders we engage with, what we
+            discussed specifically, and what impact has been generated, please
+            click{" "}
+            <a href="#stakeholder-engagement">
+              <strong>Stakeholder Engagement</strong>
+            </a>
+            .
+          </p>
+          <p>
+            If you want to learn about the overall IHP process and results of
+            our project, please click{" "}
+            <a href="#nest">
+              <strong>NEST-based Integrated Human Practice overview</strong>
+            </a>
+            .
+          </p>
           {page !== null && (
             <button
               type="button"
