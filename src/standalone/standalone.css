@@ -1,0 +1,465 @@
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+html {
+  background: #fcf9f3;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  overscroll-behavior: none;
+  background: #fcf9f3;
+  color: #173b64;
+  font-family: "Outfit", sans-serif;
+}
+
+.sa-page {
+  /* Matches the SEED deck slide background. */
+  --homepage-base: #fcf9f3;
+  --homepage-background: #fcf9f3;
+  --story-center-lift: 0px;
+  position: relative;
+  width: 100%;
+  height: 100dvh;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.sa-background {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background: var(--homepage-background);
+  pointer-events: none;
+}
+
+.sa-stage-wrap,
+.sa-viewport,
+.sa-stage {
+  position: relative;
+  width: 100%;
+  height: 100dvh;
+}
+
+.sa-viewport {
+  position: relative !important;
+  top: auto !important;
+  height: 100dvh !important;
+  overflow: hidden;
+  background: transparent !important;
+}
+
+.sa-stage {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.sa-scene {
+  position: absolute !important;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 0 !important;
+  background: transparent !important;
+  transform-origin: center;
+}
+
+.sa-scene--global {
+  z-index: 1;
+}
+
+/* The incoming scene is overlaid in place instead of being scrolled in. */
+.sa-scene--impact {
+  z-index: 2;
+  opacity: var(--impact-scene-opacity, 0);
+  will-change: opacity;
+}
+
+.sa-scene .home-scene-canvas {
+  will-change: transform;
+}
+
+/* Loop reset: a short dissolve to the shared page background. */
+.sa-fade {
+  position: fixed;
+  z-index: 1000;
+  inset: 0;
+  background: var(--homepage-background);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 480ms ease;
+}
+
+.sa-fade.is-visible {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sa-fade {
+    transition: none;
+  }
+}
+
+/* "2 in 3" settles quickly: only the first two rebounds are pronounced. */
+.sa-scene--global .opening-burden__stat strong {
+  display: block;
+  transform-origin: 50% 55%;
+}
+
+.sa-scene--global.is-stat-live .opening-burden__stat strong {
+  animation: sa-stat-damped 1120ms cubic-bezier(0.18, 0.72, 0.28, 1) 40ms both;
+}
+
+@keyframes sa-stat-damped {
+  0% {
+    transform: scale(1);
+  }
+
+  10% {
+    transform: scale(1.16);
+  }
+
+  22% {
+    transform: scale(0.955);
+  }
+
+  34% {
+    transform: scale(1.075);
+  }
+
+  46% {
+    transform: scale(0.988);
+  }
+
+  58% {
+    transform: scale(1.012);
+  }
+
+  70% {
+    transform: scale(0.998);
+  }
+
+  82%,
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Impact columns: lower-right enters first, then upper-left. */
+.sa-scene--impact .opening-scene--rehab .opening-side--right,
+.sa-scene--impact .opening-scene--sports .opening-side--left {
+  opacity: 0;
+  visibility: hidden;
+  will-change: opacity, transform;
+}
+
+.sa-scene--impact.is-right-in .opening-scene--rehab .opening-side--right {
+  visibility: visible;
+  animation: sa-impact-in-right 620ms cubic-bezier(0.22, 0.8, 0.3, 1) both;
+}
+
+.sa-scene--impact.is-left-in .opening-scene--sports .opening-side--left {
+  visibility: visible;
+  animation: sa-impact-in-left 620ms cubic-bezier(0.22, 0.8, 0.3, 1) both;
+}
+
+@keyframes sa-impact-in-right {
+  from {
+    opacity: 0;
+    transform: translate(74px, 48px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes sa-impact-in-left {
+  from {
+    opacity: 0;
+    transform: translate(-64px, -44px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
+
+/* The number follows its column entrance with the original damped motion. */
+.sa-scene--impact.is-right-number
+  .opening-scene--rehab
+  .opening-rehab__cost
+  strong,
+.sa-scene--impact.is-left-number
+  .opening-scene--sports
+  .opening-sports__score
+  > strong {
+  display: inline-block;
+  transform-origin: 50% 80%;
+  will-change: transform;
+  animation: sa-stat-damped 1120ms cubic-bezier(0.18, 0.72, 0.28, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sa-scene--impact .opening-scene--rehab .opening-side--right,
+  .sa-scene--impact .opening-scene--sports .opening-side--left {
+    visibility: visible;
+    opacity: 1;
+    animation: none;
+  }
+
+  .sa-scene--impact.is-right-number
+    .opening-scene--rehab
+    .opening-rehab__cost
+    strong,
+  .sa-scene--impact.is-left-number
+    .opening-scene--sports
+    .opening-sports__score
+    > strong {
+    animation: none;
+  }
+}
+
+/* Expanded study evidence: 25,000 and 2 in 3 use one centered slot. */
+.sa-scene--global .opening-burden__stat {
+  display: none !important;
+}
+
+.sa-study-stats {
+  position: absolute;
+  z-index: 4;
+  top: 110px;
+  left: 100px;
+  width: 1080px;
+  height: 240px;
+  color: rgb(23 59 99 / 82%);
+  text-align: center;
+  pointer-events: none;
+  opacity: calc(var(--burden-stat-reveal, 0) * (1 - var(--global-exit, 0)));
+  will-change: opacity;
+}
+
+.sa-study-stat {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  opacity: 0;
+  transition: opacity 260ms ease;
+}
+
+.sa-study-stat--count {
+  opacity: 1;
+}
+
+.sa-study-stats.is-second .sa-study-stat--count {
+  opacity: 0;
+}
+
+.sa-study-stats.is-second .sa-study-stat--result {
+  opacity: 1;
+  transition-delay: 260ms;
+}
+
+.sa-study-kicker {
+  min-height: 35px;
+  font-family: "Outfit", sans-serif;
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 1.25;
+  white-space: nowrap;
+}
+
+.sa-study-number {
+  display: block;
+  margin: 8px 0 2px;
+  color: #004aad;
+  font-family: "Outfit", sans-serif;
+  font-size: 150px;
+  font-weight: 900;
+  line-height: 0.95;
+  letter-spacing: 0;
+  transform-origin: 50% 58%;
+  will-change: transform;
+}
+
+.sa-study-label {
+  display: block;
+  font-family: "Outfit", sans-serif;
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.sa-scene--global.is-stat-live .sa-study-stat--count .sa-study-number {
+  animation: sa-stat-damped 1120ms cubic-bezier(0.18, 0.72, 0.28, 1) both;
+}
+
+.sa-scene--global.is-stat-live
+  .sa-study-stats.is-second
+  .sa-study-stat--result
+  .sa-study-number {
+  animation: sa-stat-damped 1120ms cubic-bezier(0.18, 0.72, 0.28, 1) 260ms both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sa-scene--global.is-stat-live .sa-study-stat--count .sa-study-number,
+  .sa-scene--global.is-stat-live
+    .sa-study-stats.is-second
+    .sa-study-stat--result
+    .sa-study-number {
+    animation: none;
+  }
+}
+
+/* The patient illustrations are omitted; only the two data columns remain. */
+.sa-scene--impact .opening-sports__person,
+.sa-scene--impact .opening-rehab__person,
+.sa-scene--impact .opening-impact__stairs {
+  display: none !important;
+}
+
+/* Recovery copy: lower-right, reversed rows, same 25px body format. */
+.sa-scene--impact .opening-scene--impact .opening-rehab__cost {
+  top: 390px;
+  left: 656px;
+  width: 576px;
+}
+
+.sa-scene--impact
+  .opening-scene--impact
+  .opening-rehab__cost
+  > .opening-text-line:not(.opening-rehab__cost-note) {
+  position: absolute;
+  top: 65px;
+  left: 0;
+  width: 100%;
+}
+
+.sa-scene--impact .opening-scene--impact .opening-rehab__cost-note {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  margin-top: 0;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.sa-scene--impact .opening-scene--impact .opening-rehab__title {
+  top: 610px;
+}
+
+
+/* Make the world map 90% of the 1280px stage width (5% side margins). */
+.sa-scene--global .opening-scene--burden .opening-burden__map {
+  left: 64px !important;
+  width: 1152px !important;
+}
+
+.sa-scene--global .opening-scene--burden .opening-burden__world {
+  width: 1152px !important;
+  height: 489.6px !important;
+}
+
+.sa-scene--global .opening-scene--burden .opening-burden__legend {
+  top: 498px !important;
+}
+
+/* First chapter: center the whole composition and enlarge its typography. */
+.sa-scene--global .opening-burden__title {
+  translate: 0 175px;
+}
+
+.sa-scene--global .sa-study-stats {
+  translate: 0 175px;
+}
+
+.sa-scene--global .opening-burden__title {
+  font-size: 54px;
+}
+
+.sa-study-kicker {
+  font-size: 31px;
+}
+
+.sa-study-number {
+  font-size: 168px;
+}
+
+.sa-study-label {
+  font-size: 35px;
+}
+
+/* Leave the title enough breathing room above the enlarged map. */
+.sa-scene--global .opening-scene--burden .opening-burden__map {
+  top: 86px !important;
+}
+
+/* Account for the SVG's internal 12/900 padding so the visible map itself
+   leaves about a 5% gutter at 16:9. */
+.sa-scene--global#home-3 .opening-scene--burden .opening-burden__map {
+  left: 48px !important;
+  width: 1184px !important;
+}
+
+.sa-scene--global#home-3 .opening-scene--burden .opening-burden__world {
+  width: 1184px !important;
+  height: 503.5px !important;
+}
+
+.sa-scene--global#home-3 .opening-scene--burden .opening-burden__legend {
+  top: 512px !important;
+}
+
+
+.sa-scene--global .opening-burden__legend {
+  display: none !important;
+}
+
+
+/* Both scenes use the same background map dimensions. The impact scene is
+   scaled internally by 0.88, so its map is compensated to match the global
+   scene on screen. */
+.sa-scene--global#home-3 .opening-scene--burden .opening-burden__map {
+  left: 48px !important;
+  top: 86px !important;
+  width: 1184px !important;
+  height: 642px !important;
+}
+
+.sa-scene--global#home-3 .opening-scene--burden .opening-burden__world {
+  width: 1184px !important;
+  height: 503.5px !important;
+}
+
+.sa-scene--impact#home-4 .opening-impact__map-background .opening-burden__map {
+  left: -32.75px !important;
+  top: 48.64px !important;
+  width: 1345.45px !important;
+  height: 729.55px !important;
+}
+
+.sa-scene--impact#home-4 .opening-impact__map-background .opening-burden__world {
+  width: 1345.45px !important;
+  height: 572.16px !important;
+}
